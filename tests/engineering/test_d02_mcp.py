@@ -87,6 +87,8 @@ class D02Mcp(unittest.TestCase):
         r = C.server_unavailable()
         self.assertEqual((r["check_design_status"], r["initialize_status"], r["legion_verdict"]),
                          ("MCP_UNAVAILABLE", "MCP_UNAVAILABLE", "Z"))
+        self.assertEqual((r["server_crashes_on_start"]["status"], r["server_crashes_on_start"]["legion_verdict"]),
+                         ("MCP_SERVER_EXITED", "Z"))
 
     def test_d02_13_evaluate_with_unavailable_server_never_F(self):
         a = C.A()

@@ -257,8 +257,14 @@ def server_unavailable():
         brick = json.loads((rt.stand / STAND_EXAMPLES[0]).read_text(encoding="utf-8"))
         call = a.check_design(brick, gone)
         init = a.initialize(gone)
+        # the real server, started with no stand behind it: it dies on import before answering
+        broken = a.Runtime(engineer=rt.engineer, stand=Path(d), ztl=rt.ztl, commits=rt.commits)
+        crash = a.check_design(brick, broken)
     return {"check_design_status": call["status"], "initialize_status": init["status"],
-            "legion_verdict": a.confirmed_verdict(call, None, rt)[0]}
+            "legion_verdict": a.confirmed_verdict(call, None, rt)[0],
+            "server_crashes_on_start": {"status": crash["status"],
+                                        "legion_verdict": a.confirmed_verdict(crash, None, rt)[0],
+                                        "stderr_tail": crash["transport"].get("stderr_tail", "")[-400:]}}
 
 
 def timeout():

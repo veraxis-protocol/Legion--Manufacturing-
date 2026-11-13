@@ -110,10 +110,10 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - name: Python venv with hash-pinned packages
+      - name: Python venv with hash-pinned packages (ZTL Stand imports numpy at load time; the D02 tests run it for real)
         run: |
           python3 -m venv .venv
-          .venv/bin/pip install --no-deps --require-hashes -r requirements-ci.txt
+          .venv/bin/pip install --no-deps --require-hashes -r requirements-ci.txt -r requirements-ztl.txt
       - run: .venv/bin/python -m unittest discover -s tests -t . -p "test_*.py" -v
 
   manufacturing-skills:

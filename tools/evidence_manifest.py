@@ -17,7 +17,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 from lmfg_common import artifact_header, write_json  # noqa: E402
 
-EXTRA = ["manifests/UPSTREAM_MANIFEST.json", "legion/engineering/DEAL_RESCUE_PIN.json", "SOURCE_PINS.json",
+EXTRA = ["manifests/UPSTREAM_MANIFEST.json", "manifests/ZTL_SOURCE_PINS.json", "legion/engineering/DEAL_RESCUE_PIN.json",
+         "SOURCE_PINS.json",
          "LICENSE_MATRIX.json"]
 
 

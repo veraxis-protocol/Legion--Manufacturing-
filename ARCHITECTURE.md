@@ -29,7 +29,7 @@ legion/                               reused LEGION mechanisms, behind adapters
 product/                              buyer, manufacturer and enterprise journeys over the integrated backend
 ```
 
-## What exists after WO-LMFG-002
+## What exists after WO-LMFG-003
 
 | Path | What it is |
 |---|---|
@@ -39,6 +39,8 @@ product/                              buyer, manufacturer and enterprise journey
 | `manufacturing/connectors/` | `lifecycle.py` (DISCONNECTED -> ... -> VERIFIED, UNAVAILABLE on failure or expiry, no execution authority). `fusion.py` (MCP client and guard around the endpoint in `.mcp.json`), `m365.py` (Microsoft Graph, GET allow-list), `netsuite.py` (REST record service, record types from `erp-connectors.md`), `infor_m3.py` (M3 MI transactions parsed from `erp-connectors.md`) |
 | `manufacturing/runtime/` | `catalog.py` (17 skills classified, each bound to a quote in its SKILL.md), `upstream_exec.py` (runs upstream scripts from a copy in a task folder), `gates.py` (consumer **Blocks** rows from the contracts as T/Z gates) |
 | `legion/engineering/` | WO-D01. `DEAL_RESCUE_PIN.json` + `pinned_source.py` fetch and verify Deal-Rescue's CAD modules at a pinned commit (not copied); `step_intake.py` orders STEP -> XCAF -> BOM -> requirements -> verification (Z) and hands CNC parts to `geometry-estimate` path C1 |
+| `legion/engineering/ztl_adapter.py` | WO-D02 (WO-LMFG-003). The minimal adapter to the real ZTL route: stdio JSON-RPC to `_deps/ztl-engineer/mcp_server.py` tool `check_design` (which runs `python -m ustand.stand`), plus the stand's own independent checker (`--dev`). EARNED -> T and REFUTED -> F only when MCP result, pinned judge identity and checker agree; everything else (OPEN, errors, timeout, malformed, unavailable) is Z. Proofs are bound to source, revision, requirements, policy and brick; aggregation over mandatory predicates is strict; the receipt layer is Deal-Rescue `ztl_gate` (Ed25519, CAD-025) and the production layer Deal-Rescue `admission.decide`. Nothing executes an order or payment |
+| `manifests/ZTL_SOURCE_PINS.json` | ztl-engineer, ztl-stand and ZTL at pinned commits, every file with git blob SHA-1, size and SHA-256; materialized as sparse checkouts in git-ignored `_deps/` |
 
 ## Invariants carried by the code (WO-LMFG-001 section 3)
 

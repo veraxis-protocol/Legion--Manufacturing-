@@ -42,7 +42,8 @@ VERDICT_MAP = {"EARNED": T, "REFUTED": F}          # every other stand verdict, 
 POLICY = {
     "schema": "legion.engineering.ztl-policy.v1",
     "verdict_map": {"EARNED": T, "REFUTED": F, "OPEN": Z, "BRICK ERROR": Z, "STAND ERROR": Z, "STAND FAULT": Z,
-                    "MCP_TIMEOUT": Z, "MCP_UNAVAILABLE": Z, "MCP_ERROR": Z, "MCP_MALFORMED": Z, "UNKNOWN": Z},
+                    "MCP_TIMEOUT": Z, "MCP_UNAVAILABLE": Z, "MCP_SERVER_EXITED": Z, "MCP_ERROR": Z, "MCP_MALFORMED": Z,
+                    "MCP_TOOL_ERROR": Z, "UNKNOWN": Z},
     "aggregation": "any mandatory F -> F; all mandatory T + valid bindings + authenticated receipt -> T; else Z",
     "proof_validity": "same source_sha256, source_commit, drawing_revision, spec_digest, requirements_digest, "
                       "policy_sha256 and brick_sha256 as when the stand was called",
@@ -142,6 +143,9 @@ def initialize(rt: Runtime, timeout_s: float = 60, transport=stdio_transport) ->
     if raw["status"] != "EXITED":
         return {**out, "status": raw["status"], "initialized": False}
     by_id, bad = _replies(raw["stdout"])
+    if not by_id and raw.get("returncode"):
+        return {**out, "status": "MCP_SERVER_EXITED", "initialized": False, "responses": [], "malformed_lines": bad,
+                "server_info": None, "tools": []}
     init, tools = by_id.get(0, {}), by_id.get(1, {})
     names = [t.get("name") for t in (tools.get("result") or {}).get("tools", [])]
     ok = "result" in init and "check_design" in names
@@ -160,6 +164,9 @@ def check_design(brick: dict, rt: Runtime, time_limit_s: int = DEFAULT_TIME_LIMI
     if raw["status"] != "EXITED":
         return {**out, "status": raw["status"], "stand_called": False, "stand_verdict": None, "stand_result": None}
     by_id, bad = _replies(raw["stdout"])
+    if not by_id and raw.get("returncode"):        # the server died before answering (e.g. a missing dependency)
+        return {**out, "status": "MCP_SERVER_EXITED", "stand_called": False, "stand_verdict": None,
+                "stand_result": None, "malformed_lines": bad}
     reply = by_id.get(1)
     out["response"] = reply
     if bad:

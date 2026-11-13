@@ -1,8 +1,9 @@
-# Engineering-verifier job only (WO-LMFG-003 / WO-D02). Installed with --no-deps --require-hashes on ubuntu-24.04
+# Unit-test and engineering-verifier jobs (WO-LMFG-003 / WO-D02). Installed with --no-deps --require-hashes on ubuntu-24.04
 # (CPython 3.12, x86_64): exactly these wheels, nothing resolved. Not redistributed.
 # sympy + mpmath: ztl-stand's certificate path (ustand/certify.py, checker.py) imports sympy lazily; its own test
 #   suite needs it. BSD-3-Clause / BSD-3-Clause.
-# numpy + scipy: parts of ztl-stand's own test suite (tests/test_stand.py: frames, FEA). BSD-3-Clause.
+# numpy: imported when the stand loads (ustand/certify.py), so the MCP server cannot start without it.
+# scipy: parts of ztl-stand's own test suite (tests/test_stand.py: frames, FEA). BSD-3-Clause both.
 # cryptography (+ cffi, pycparser): Deal-Rescue ztl_gate verifies Ed25519 attestations (D02-17 replay tests use a
 #   key generated in memory per run). Apache-2.0 OR BSD-3-Clause / MIT-0 / BSD-3-Clause.
 sympy==1.14.0 --hash=sha256:e091cc3e99d2141a0ba2847328f5479b05d94a6635cb96148ccb3f34671bd8f5

@@ -4,10 +4,11 @@ LEGION Manufacturing is a functional superset of Anthropic's **Claude for Manufa
 intact, plus LEGION's engineering verification, marketplace, coalition, negotiation and payment controls (work order
 WO-LMFG-001).
 
-**Status: INTEGRATION PREVIEW (WO-LMFG-001 Phase A, WO-LMFG-002 capability activation).** Nothing in this repository is
+**Status: INTEGRATION PREVIEW (WO-LMFG-001 Phase A, WO-LMFG-002 capability activation, WO-LMFG-003 ZTL Engineer integration).** Nothing in this repository is
 production software. No connector is live, no payment is made, no Claude plugin is distributed, and no claim of
 superiority is made. See [docs/WO_LMFG_001_STATUS.md](docs/WO_LMFG_001_STATUS.md) and
-[docs/WO_LMFG_002_STATUS.md](docs/WO_LMFG_002_STATUS.md).
+[docs/WO_LMFG_002_STATUS.md](docs/WO_LMFG_002_STATUS.md) and
+[docs/WO_LMFG_003_STATUS.md](docs/WO_LMFG_003_STATUS.md).
 
 ## What is here today
 
@@ -18,8 +19,8 @@ superiority is made. See [docs/WO_LMFG_001_STATUS.md](docs/WO_LMFG_001_STATUS.md
 | `SOURCE_PINS.json`, `LICENSE_MATRIX.json` | Pinned revisions and the license decision for every source |
 | `tools/` | Manifest verifier, upstream baseline runner, license/secret policy, protected-repository check (stdlib only) |
 | `manufacturing/` | Contract reader and B05 envelope over Anthropic's contracts, four read-only connector adapters, skill catalog, upstream runner, consumer gates ([ARCHITECTURE.md](ARCHITECTURE.md)) |
-| `legion/engineering/` | LEGION CAD reuse: Deal-Rescue's STEP/XCAF/BOM code fetched at a pinned commit and verified, handed to the `geometry-estimate` contract |
-| `tests/upstream/`, `tests/manufacturing/`, `tests/connectors/`, `tests/engineering/` | Baseline, 17 per-skill suites (`test_c01`..`test_c17`), B01..B05 contract suites, D01 CAD suite |
+| `legion/engineering/` | LEGION CAD reuse: Deal-Rescue's STEP/XCAF/BOM code fetched at a pinned commit and verified, handed to the `geometry-estimate` contract; `ztl_adapter.py` connects it to the real ZTL Engineer MCP -> ZTL Stand -> checker route (pins in `manifests/ZTL_SOURCE_PINS.json`) |
+| `tests/upstream/`, `tests/manufacturing/`, `tests/connectors/`, `tests/engineering/` | Baseline, 17 per-skill suites (`test_c01`..`test_c17`), B01..B05 contract suites, D01 CAD suite, D02 ZTL suites (`test_d02_*`) |
 | `evidence/` | Machine-readable results with a SHA-256 list (`SHA256SUMS`) |
 | `product/` | Empty scaffolding for later phases |
 
@@ -37,7 +38,12 @@ python3 -I tools/protected_pins.py
 python3 -m unittest discover -s tests -t . -p "test_*.py" -v
 python3 -I tools/test_report.py skills --evidence evidence/SKILL_MATRIX.json
 python3 -I tools/connector_acceptance.py --evidence evidence/CONNECTOR_ACCEPTANCE.json
+python3 -I tools/ztl_pins.py --verify
+python3 -I tools/d02_run.py --out evidence --stand-suite --regressions
 ```
+
+`tools/d02_run.py` needs the ZTL pins (fetched into `_deps/`) and, for its full set, `LMFG_REAL_CAD=1` with
+`requirements-cad.txt` and `requirements-ztl.txt` (CI job `engineering-verifier`).
 
 CI runs the same checks on every push and pull request (`.github/workflows/ci.yml`).
 

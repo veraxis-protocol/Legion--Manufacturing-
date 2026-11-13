@@ -1,6 +1,6 @@
 {
-  "source_commit": "df0f8b60029ce4fe8c293eeb84b402c88a4fc609",
-  "executed_at_utc": "2026-11-13T20:13:18+00:00",
+  "source_commit": "8ec589f75f48ebac4d0ce44ed57ce52d45c6c2d0",
+  "executed_at_utc": "2026-11-13T23:50:53+00:00",
   "environment": {
     "python": "3.14.7",
     "implementation": "CPython",
@@ -55,16 +55,20 @@
       "sha256": "01139587426679001aaa4795b3f3332dd20f3c105376c0efb79bca737a1a2877"
     },
     {
+      "path": "manifests/ZTL_SOURCE_PINS.json",
+      "sha256": "9450b6ff59b7ef0d08da71a4f3272c4ef83fee57f70592392139642dca5b1543"
+    },
+    {
       "path": "legion/engineering/DEAL_RESCUE_PIN.json",
-      "sha256": "a5bf1a02c833212030143a9b30a51a42c3bf5f08011b5d2f59c96547522a9afd"
+      "sha256": "3c4fe2079ce1ea7555b18e15d67b2f6615ac1be56c2cdf4539ad692f68a6829a"
     },
     {
       "path": "SOURCE_PINS.json",
-      "sha256": "1536cf37614e797b745e10411c68fcba929ac39eb2396f811dfbd8bd8585370e"
+      "sha256": "af5258f60b03af87d99bd63034e92a52fa9f28b5408104fbdb88d10edfa1283c"
     },
     {
       "path": "LICENSE_MATRIX.json",
-      "sha256": "4b574dc0feed096af1d0470594410659a9f88cf11698d82b25bcc0712021e947"
+      "sha256": "561f290fa6f5cc9e956cc58f690d325718fd0ea0574317d73ed2a6fe51efdc0f"
     }
   ]
 }
