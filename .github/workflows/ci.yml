@@ -49,6 +49,8 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+      - name: Verify the committed evidence against its SHA256SUMS
+        run: python3 -I tools/evidence_manifest.py --check
       - run: python3 -I tools/repo_policy.py --evidence evidence/LICENSE_REPORT.json
       - name: Publish evidence
         if: always()

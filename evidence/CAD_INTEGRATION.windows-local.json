@@ -1,0 +1,140 @@
+{
+  "source_commit": "df0f8b60029ce4fe8c293eeb84b402c88a4fc609",
+  "executed_at_utc": "2026-11-13T20:12:17+00:00",
+  "environment": {
+    "python": "3.14.7",
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "os_name": "nt",
+    "ci": false,
+    "github_run_id": null,
+    "github_workflow": null,
+    "github_job": null
+  },
+  "command": "python -I tools/test_report.py engineering",
+  "inputs": {
+    "suite": "tests/engineering"
+  },
+  "status": "PASS",
+  "counts": {
+    "tests": 13,
+    "PASS": 9,
+    "FAIL": 0,
+    "ERROR": 0,
+    "NOT_RUN": 4,
+    "BLOCKED": 0
+  },
+  "rule": "NOT_RUN and BLOCKED are never counted as PASS; an unexplained skip is a FAIL",
+  "modules": {
+    "test_d01_cad": {
+      "PASS": 9,
+      "NOT_RUN": 4
+    }
+  },
+  "results": [
+    {
+      "id": "tests.engineering.test_d01_cad.Offline.test_handoff_is_a_valid_c1_geometry_estimate",
+      "module": "test_d01_cad",
+      "class": "Offline",
+      "test": "test_handoff_is_a_valid_c1_geometry_estimate",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d01_cad.Offline.test_pinned_files_verified_and_licensed",
+      "module": "test_d01_cad",
+      "class": "Offline",
+      "test": "test_pinned_files_verified_and_licensed",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d01_cad.Offline.test_t03_bom_reconciled_on_the_existing_fixture",
+      "module": "test_d01_cad",
+      "class": "Offline",
+      "test": "test_t03_bom_reconciled_on_the_existing_fixture",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d01_cad.Offline.test_t03_quantity_change_is_F",
+      "module": "test_d01_cad",
+      "class": "Offline",
+      "test": "test_t03_quantity_change_is_F",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d01_cad.Offline.test_t04_materials_and_tolerances_only_from_sources",
+      "module": "test_d01_cad",
+      "class": "Offline",
+      "test": "test_t04_materials_and_tolerances_only_from_sources",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d01_cad.Offline.test_t05_t06_revision_and_missing_requirements_recorded",
+      "module": "test_d01_cad",
+      "class": "Offline",
+      "test": "test_t05_t06_revision_and_missing_requirements_recorded",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d01_cad.Offline.test_t07_unsupported_inputs_are_Z",
+      "module": "test_d01_cad",
+      "class": "Offline",
+      "test": "test_t07_unsupported_inputs_are_Z",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d01_cad.Offline.test_t08_existing_samples_reproduce",
+      "module": "test_d01_cad",
+      "class": "Offline",
+      "test": "test_t08_existing_samples_reproduce",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d01_cad.Offline.test_tampered_pin_is_refused",
+      "module": "test_d01_cad",
+      "class": "Offline",
+      "test": "test_tampered_pin_is_refused",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d01_cad.RealStep.test_t01_t02_hash_and_structure",
+      "module": "test_d01_cad",
+      "class": "RealStep",
+      "test": "test_t01_t02_hash_and_structure",
+      "status": "NOT_RUN",
+      "detail": "NOT RUN: needs cadquery-ocp and the pinned reBot STEP (LMFG_REAL_CAD=1, CI engineering job)"
+    },
+    {
+      "id": "tests.engineering.test_d01_cad.RealStep.test_t03_t08_bom_40_of_40_and_53_of_53",
+      "module": "test_d01_cad",
+      "class": "RealStep",
+      "test": "test_t03_t08_bom_40_of_40_and_53_of_53",
+      "status": "NOT_RUN",
+      "detail": "NOT RUN: needs cadquery-ocp and the pinned reBot STEP (LMFG_REAL_CAD=1, CI engineering job)"
+    },
+    {
+      "id": "tests.engineering.test_d01_cad.RealStep.test_t04_t05_t06_requirements_revision_handoff",
+      "module": "test_d01_cad",
+      "class": "RealStep",
+      "test": "test_t04_t05_t06_requirements_revision_handoff",
+      "status": "NOT_RUN",
+      "detail": "NOT RUN: needs cadquery-ocp and the pinned reBot STEP (LMFG_REAL_CAD=1, CI engineering job)"
+    },
+    {
+      "id": "tests.engineering.test_d01_cad.RealStep.test_tampered_and_unreadable_step",
+      "module": "test_d01_cad",
+      "class": "RealStep",
+      "test": "test_tampered_and_unreadable_step",
+      "status": "NOT_RUN",
+      "detail": "NOT RUN: needs cadquery-ocp and the pinned reBot STEP (LMFG_REAL_CAD=1, CI engineering job)"
+    }
+  ]
+}

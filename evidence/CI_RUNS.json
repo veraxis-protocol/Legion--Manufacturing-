@@ -1,63 +1,468 @@
 {
-  "schema": "legion.manufacturing.evidence.ci-runs.v1",
-  "recorded_at_utc": "2026-11-13T18:25:58+00:00",
-  "repository": "veraxis-protocol/Legion--Manufacturing-",
-  "workflow": "LEGION Manufacturing CI (.github/workflows/ci.yml)",
-  "runner": "ubuntu-24.04, system python3",
-  "runs": [
-    {
-      "run_id": 43482142568,
-      "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43482142568",
-      "head_sha": "997d573d5ee164d91da2881fd198c5d6304fd210",
-      "event": "push",
-      "conclusion": "success",
-      "jobs": "5/5 success",
-      "annotations": [
-        "Node.js 20 deprecation warning for actions/checkout v4.2.2 (fixed in the next run)"
+ "schema": "legion.manufacturing.evidence.ci-runs.v1",
+ "recorded_at_utc": "2026-11-13",
+ "repository": "veraxis-protocol/Legion--Manufacturing-",
+ "workflow": "LEGION Manufacturing CI (.github/workflows/ci.yml)",
+ "runner": "ubuntu-24.04, system python3",
+ "runs": [
+  {
+   "run_id": 43482142568,
+   "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43482142568",
+   "head_sha": "997d573d5ee164d91da2881fd198c5d6304fd210",
+   "event": "push",
+   "conclusion": "success",
+   "jobs": "5/5 success",
+   "annotations": [
+    "Node.js 20 deprecation warning for actions/checkout v4.2.2 (fixed in the next run)"
+   ]
+  },
+  {
+   "run_id": 43482437185,
+   "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43482437185",
+   "head_sha": "dff7bb7b30b7d1711fb0346a332716772e56bda6",
+   "event": "push",
+   "conclusion": "success",
+   "jobs": {
+    "Anthropic upstream executable baseline (WO-A03)": {
+     "job_id": 132082065378,
+     "conclusion": "success",
+     "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43482437185/job/132082065378"
+    },
+    "Source integrity (INV-01, WO-A02)": {
+     "job_id": 132082065672,
+     "conclusion": "success",
+     "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43482437185/job/132082065672"
+    },
+    "Unit tests": {
+     "job_id": 132082065847,
+     "conclusion": "success",
+     "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43482437185/job/132082065847"
+    },
+    "License compliance and secret scan (WO-A01)": {
+     "job_id": 132082065934,
+     "conclusion": "success",
+     "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43482437185/job/132082065934"
+    },
+    "Protected repositories unchanged (INV-09)": {
+     "job_id": 132082066063,
+     "conclusion": "success",
+     "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43482437185/job/132082066063"
+    }
+   },
+   "annotations": [],
+   "artifacts": {
+    "evidence-source-integrity": "sha256:cee2302c1bb5dd8adf96b367712d54fd6d8af867fdee4854f2cf9726122f06af",
+    "evidence-license-report": "sha256:2b102c6946041c581a8c2ea30ad4015823c4cfdbcb22af6a5ef958feaf456d7b",
+    "evidence-protected-repos": "sha256:ee4c0938383fd9c22de5b19d86bcbbafa455dc5308d1dfcf51a5f0c905b69220",
+    "evidence-upstream-baseline": "sha256:dcd9e292be30581a81890a589b988446fa130955387b72398512e4531aae4f9b"
+   }
+  },
+  {
+   "run_id": 43498728219,
+   "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43498728219",
+   "head_sha": "13265194cc671017069043719201081b458adcee",
+   "event": "push",
+   "conclusion": "failure",
+   "jobs": {
+    "Unit tests (all suites except the real-STEP CAD run)": {
+     "job_id": 132138577975,
+     "conclusion": "success",
+     "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43498728219/job/132138577975",
+     "steps": [
+      [
+       "Set up job",
+       "success"
+      ],
+      [
+       "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+       "success"
+      ],
+      [
+       "Python venv with hash-pinned packages",
+       "success"
+      ],
+      [
+       "Run .venv/bin/python -m unittest discover -s tests -t . -p \"test_*.py\" -v",
+       "success"
+      ],
+      [
+       "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+       "success"
+      ],
+      [
+       "Complete job",
+       "success"
       ]
+     ],
+     "annotations": []
+    },
+    "Source integrity (INV-01, WO-A02)": {
+     "job_id": 132138578295,
+     "conclusion": "failure",
+     "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43498728219/job/132138578295",
+     "steps": [
+      [
+       "Set up job",
+       "success"
+      ],
+      [
+       "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+       "success"
+      ],
+      [
+       "Verify every imported file against the manifest",
+       "success"
+      ],
+      [
+       "Publish evidence",
+       "failure"
+      ],
+      [
+       "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+       "success"
+      ],
+      [
+       "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+       "success"
+      ],
+      [
+       "Complete job",
+       "success"
+      ]
+     ],
+     "annotations": []
+    },
+    "LEGION CAD reuse on the real reBot STEP (WO-D01)": {
+     "job_id": 132138578479,
+     "conclusion": "success",
+     "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43498728219/job/132138578479",
+     "steps": [
+      [
+       "Set up job",
+       "success"
+      ],
+      [
+       "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+       "success"
+      ],
+      [
+       "Python venv with hash-pinned OpenCascade bindings (no dependency resolution)",
+       "success"
+      ],
+      [
+       "D01 suite (pinned Deal-Rescue fetched and verified; pinned STEP downloaded and verified)",
+       "success"
+      ],
+      [
+       "Publish evidence",
+       "success"
+      ],
+      [
+       "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+       "success"
+      ],
+      [
+       "Remove disposable inputs (34.8 MB STEP, pinned copies, venv)",
+       "success"
+      ],
+      [
+       "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+       "success"
+      ],
+      [
+       "Complete job",
+       "success"
+      ]
+     ],
+     "annotations": [
+      "status=PASS tests=13 PASS=13 FAIL=0 ERROR=0 NOT_RUN=0 BLOCKED=0 sha256=aadf3a92b92c67a898ba3df9afd25d2c6da8937ace5a2a6345dc5d23899c5de8 source_commit=13265194cc671017069043719201081b458adcee"
+     ]
+    },
+    "Four connector contract suites and live acceptance status (WO-B01..B05)": {
+     "job_id": 132138578484,
+     "conclusion": "success",
+     "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43498728219/job/132138578484",
+     "steps": [
+      [
+       "Set up job",
+       "success"
+      ],
+      [
+       "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+       "success"
+      ],
+      [
+       "Run python3 -m venv .venv",
+       "success"
+      ],
+      [
+       "Contract suites (scripted provider responses, never reported as connectivity)",
+       "success"
+      ],
+      [
+       "Live acceptance (no credentials are provided to this workflow, so every live test is BLOCKED)",
+       "success"
+      ],
+      [
+       "Publish evidence",
+       "success"
+      ],
+      [
+       "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+       "success"
+      ],
+      [
+       "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+       "success"
+      ],
+      [
+       "Complete job",
+       "success"
+      ]
+     ],
+     "annotations": [
+      "status=BLOCKED live_tests=38 PASS=0 FAIL=0 BLOCKED=38 sha256=1231bfb870ac3dad468f7fa98bfa579b7d6204b5741357bed4e3d9b00d2fe2a4 source_commit=13265194cc671017069043719201081b458adcee",
+      "status=PASS tests=51 PASS=51 FAIL=0 ERROR=0 NOT_RUN=0 BLOCKED=0 sha256=161df86f9147d83041d6564c843d21d02d1bbdc1fe49fb90ebaee137e5d8ee1f source_commit=13265194cc671017069043719201081b458adcee"
+     ]
+    },
+    "License compliance and secret scan (WO-A01)": {
+     "job_id": 132138578501,
+     "conclusion": "success",
+     "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43498728219/job/132138578501",
+     "steps": [
+      [
+       "Set up job",
+       "success"
+      ],
+      [
+       "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+       "success"
+      ],
+      [
+       "Run python3 -I tools/repo_policy.py --evidence evidence/LICENSE_REPORT.json",
+       "success"
+      ],
+      [
+       "Publish evidence",
+       "success"
+      ],
+      [
+       "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+       "success"
+      ],
+      [
+       "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+       "success"
+      ],
+      [
+       "Complete job",
+       "success"
+      ]
+     ],
+     "annotations": []
+    },
+    "17 manufacturing skills, classified and tested (WO-LMFG-002, Phase C)": {
+     "job_id": 132138578518,
+     "conclusion": "success",
+     "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43498728219/job/132138578518",
+     "steps": [
+      [
+       "Set up job",
+       "success"
+      ],
+      [
+       "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+       "success"
+      ],
+      [
+       "Run python3 -m venv .venv",
+       "success"
+      ],
+      [
+       "Run tests/manufacturing and publish the per-skill matrix",
+       "success"
+      ],
+      [
+       "Publish evidence",
+       "success"
+      ],
+      [
+       "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+       "success"
+      ],
+      [
+       "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+       "success"
+      ],
+      [
+       "Complete job",
+       "success"
+      ]
+     ],
+     "annotations": [
+      "status=PASS tests=220 PASS=198 FAIL=0 ERROR=0 NOT_RUN=20 BLOCKED=2 sha256=40ce205edb6820539068711f97add460a72891335032c5dd2eba1d12c48df5c9 source_commit=13265194cc671017069043719201081b458adcee"
+     ]
+    },
+    "Protected repositories unchanged (INV-09)": {
+     "job_id": 132138578520,
+     "conclusion": "success",
+     "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43498728219/job/132138578520",
+     "steps": [
+      [
+       "Set up job",
+       "success"
+      ],
+      [
+       "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+       "success"
+      ],
+      [
+       "Run python3 -I tools/protected_pins.py --evidence evidence/PROTECTED_REPOS.json",
+       "success"
+      ],
+      [
+       "Publish evidence",
+       "success"
+      ],
+      [
+       "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+       "success"
+      ],
+      [
+       "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+       "success"
+      ],
+      [
+       "Complete job",
+       "success"
+      ]
+     ],
+     "annotations": []
+    },
+    "Anthropic upstream executable baseline (WO-A03)": {
+     "job_id": 132138578551,
+     "conclusion": "failure",
+     "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43498728219/job/132138578551",
+     "steps": [
+      [
+       "Set up job",
+       "success"
+      ],
+      [
+       "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+       "success"
+      ],
+      [
+       "Run python3 --version",
+       "success"
+      ],
+      [
+       "Run upstream entrypoints on a copy of the import",
+       "success"
+      ],
+      [
+       "Publish evidence",
+       "failure"
+      ],
+      [
+       "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+       "success"
+      ],
+      [
+       "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+       "success"
+      ],
+      [
+       "Complete job",
+       "success"
+      ]
+     ],
+     "annotations": []
+    },
+    "SHA-256 manifest over every evidence artifact of this run": {
+     "job_id": 132138881037,
+     "conclusion": "success",
+     "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43498728219/job/132138881037",
+     "steps": [
+      [
+       "Set up job",
+       "success"
+      ],
+      [
+       "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+       "success"
+      ],
+      [
+       "Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333",
+       "success"
+      ],
+      [
+       "Hash every artifact file; publish the digest list as a public annotation",
+       "success"
+      ],
+      [
+       "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+       "success"
+      ],
+      [
+       "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+       "success"
+      ],
+      [
+       "Complete job",
+       "success"
+      ]
+     ],
+     "annotations": [
+      "aadf3a92b92c67a898ba3df9afd25d2c6da8937ace5a2a6345dc5d23899c5de8  CAD_INTEGRATION.json;1231bfb870ac3dad468f7fa98bfa579b7d6204b5741357bed4e3d9b00d2fe2a4  CONNECTOR_ACCEPTANCE.json;161df86f9147d83041d6564c843d21d02d1bbdc1fe49fb90ebaee137e5d8ee1f  CONNECTOR_CONTRACTS.json;185a1eb056380b235cf983fe6b3cbeb60c8febf258d89d1e885fe37c447bab46  LICENSE_REPORT.json;bd0ae5397db79d6c8ac8346a371cf8b98b12abc842b46aceff256ec4b4aca791  PROTECTED_REPOS.json;40ce205edb6820539068711f97add460a72891335032c5dd2eba1d12c48df5c9  SKILL_MATRIX.json;60d4338d90c351e0f9af0d420dea20f1ef6871b88fa8f748a8da58bc695b1be6  SOURCE_MANIFEST.json;a9f12b3ef782f3cca4f73cc36dd294858a8abdb2e0e675771074efe20efe86da  UPSTREAM_BASELINE.json"
+     ]
+    }
+   },
+   "artifacts": [
+    {
+     "name": "evidence-cad-integration",
+     "size_in_bytes": 1056,
+     "digest": "sha256:d7f17bb05a12fed963b3e8954528ae5902fd8e9a41e00bdb81ce0170a7013dda"
     },
     {
-      "run_id": 43482437185,
-      "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43482437185",
-      "head_sha": "dff7bb7b30b7d1711fb0346a332716772e56bda6",
-      "event": "push",
-      "conclusion": "success",
-      "jobs": {
-        "Anthropic upstream executable baseline (WO-A03)": {
-          "job_id": 132082065378,
-          "conclusion": "success",
-          "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43482437185/job/132082065378"
-        },
-        "Source integrity (INV-01, WO-A02)": {
-          "job_id": 132082065672,
-          "conclusion": "success",
-          "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43482437185/job/132082065672"
-        },
-        "Unit tests": {
-          "job_id": 132082065847,
-          "conclusion": "success",
-          "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43482437185/job/132082065847"
-        },
-        "License compliance and secret scan (WO-A01)": {
-          "job_id": 132082065934,
-          "conclusion": "success",
-          "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43482437185/job/132082065934"
-        },
-        "Protected repositories unchanged (INV-09)": {
-          "job_id": 132082066063,
-          "conclusion": "success",
-          "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43482437185/job/132082066063"
-        }
-      },
-      "annotations": [],
-      "artifacts": {
-        "evidence-source-integrity": "sha256:cee2302c1bb5dd8adf96b367712d54fd6d8af867fdee4854f2cf9726122f06af",
-        "evidence-license-report": "sha256:2b102c6946041c581a8c2ea30ad4015823c4cfdbcb22af6a5ef958feaf456d7b",
-        "evidence-protected-repos": "sha256:ee4c0938383fd9c22de5b19d86bcbbafa455dc5308d1dfcf51a5f0c905b69220",
-        "evidence-upstream-baseline": "sha256:dcd9e292be30581a81890a589b988446fa130955387b72398512e4531aae4f9b"
-      }
+     "name": "evidence-license-report",
+     "size_in_bytes": 1939,
+     "digest": "sha256:6c5d85c195cf8f35fe89067fdf9cf11138e228e528b330eab19805e18925caf2"
+    },
+    {
+     "name": "evidence-source-integrity",
+     "size_in_bytes": 1113,
+     "digest": "sha256:4e69be06a442f06c127148b118246ebdc42bdccc7e25040bd4f312c0cc5a787d"
+    },
+    {
+     "name": "evidence-protected-repos",
+     "size_in_bytes": 1052,
+     "digest": "sha256:d2f346f473b34a2a9a3791809662650754f28c45e4be04665a06eb38bcfd0bfb"
+    },
+    {
+     "name": "evidence-skill-matrix",
+     "size_in_bytes": 6248,
+     "digest": "sha256:3c92a13bb69c6cc469e31e6445a98b732e64bd88561f83978bb14bb2323b79a1"
+    },
+    {
+     "name": "evidence-upstream-baseline",
+     "size_in_bytes": 4661,
+     "digest": "sha256:f7e469d02903171bdc7f64f97729d9a384e7d41703bfbb184cb1914a4f2323ef"
+    },
+    {
+     "name": "evidence-manifest",
+     "size_in_bytes": 591,
+     "digest": "sha256:4e1b5e502d4c865126a1c82aa2718706dc402f28fd1947bc51b2c98752092daf"
+    },
+    {
+     "name": "evidence-connectors",
+     "size_in_bytes": 4032,
+     "digest": "sha256:7abe3798b161da1c8b7f1f9cd791cdc4ce3d8eeda3c3b65ea0bb35904bdb79b9"
     }
-  ],
-  "linux_baseline_inference": "tools/upstream_baseline.py exits 1 when any check FAILs, so job 'Anthropic upstream executable baseline (WO-A03)' = success means 0 FAIL on Linux, including plant_setup.py --selftest; the unit test test_plant_setup_selftest is not skipped on Linux and passed in job 'Unit tests'.",
-  "access_note": "Job logs, summaries and artifact downloads require a signed-in GitHub session; run/job conclusions and artifact digests are public."
+   ],
+   "note": "source-integrity and upstream-baseline: every verification step succeeded; the only failed step was 'Publish evidence' (public step list above), where tools/ci_summary.py crashed on the Phase A 'skills' key. Fixed in df0f8b6, with tests/upstream/test_ci_summary.py rendering every evidence file."
+  }
+ ],
+ "linux_baseline_inference": "tools/upstream_baseline.py exits 1 when any check FAILs, so job 'Anthropic upstream executable baseline (WO-A03)' = success means 0 FAIL on Linux, including plant_setup.py --selftest; the unit test test_plant_setup_selftest is not skipped on Linux and passed in job 'Unit tests'.",
+ "access_note": "Job logs, summaries and artifact downloads require a signed-in GitHub session; run/job conclusions and artifact digests are public."
 }

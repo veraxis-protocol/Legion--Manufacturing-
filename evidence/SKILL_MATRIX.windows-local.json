@@ -1,0 +1,2153 @@
+{
+  "source_commit": "df0f8b60029ce4fe8c293eeb84b402c88a4fc609",
+  "executed_at_utc": "2026-11-13T20:12:14+00:00",
+  "environment": {
+    "python": "3.14.7",
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "os_name": "nt",
+    "ci": false,
+    "github_run_id": null,
+    "github_workflow": null,
+    "github_job": null
+  },
+  "command": "python -I tools/test_report.py skills",
+  "inputs": {
+    "suite": "tests/manufacturing"
+  },
+  "status": "PASS",
+  "counts": {
+    "tests": 220,
+    "PASS": 198,
+    "FAIL": 0,
+    "ERROR": 0,
+    "NOT_RUN": 20,
+    "BLOCKED": 2
+  },
+  "rule": "NOT_RUN and BLOCKED are never counted as PASS; an unexplained skip is a FAIL",
+  "skills": [
+    {
+      "id": "C01",
+      "skill": "onboarding",
+      "mode": "FILE_CAPABLE",
+      "description_sha256": "68defaa17c574cb9cc9874fd138fa1ac782ca22ab736c7e45dda9ad272cb2c1d",
+      "skill_md_sha256": "e80a1b18ec2f98e8f5a840d264aac8354b3643425dc954f6782f4795ec75201e",
+      "runs_plant_setup_find": true,
+      "deterministic_code": [
+        "plant_setup.py find",
+        "plant_setup.py render",
+        "plant_setup.py install",
+        "plant_setup.py stamp"
+      ],
+      "file_only": true,
+      "file_only_evidence": {
+        "quote": "takes a bulk drop of the plant's own documents",
+        "line": 3
+      },
+      "claude_runtime_required": true,
+      "live_required": [],
+      "live_optional": [
+        "Microsoft 365",
+        "Oracle NetSuite",
+        "Infor M3",
+        "Autodesk Fusion"
+      ],
+      "live_evidence": {
+        "quote": "tests the four supported connectors",
+        "line": 3
+      },
+      "approval_gates_section": true,
+      "produces": [
+        "plant profile"
+      ],
+      "consumes": [],
+      "chain_of": [],
+      "tests": 14,
+      "counts": {
+        "PASS": 13,
+        "NOT_RUN": 1
+      },
+      "by_class": {
+        "1_positive": {
+          "PASS": 2
+        },
+        "2_negative": {
+          "PASS": 2
+        },
+        "3_missing_data": {
+          "PASS": 1
+        },
+        "4_provenance": {
+          "PASS": 1
+        },
+        "5_approval_boundary": {
+          "PASS": 1
+        },
+        "6_regression": {
+          "PASS": 1
+        },
+        "live_systems": {
+          "PASS": 1
+        },
+        "model_driven_run": {
+          "NOT_RUN": 1
+        },
+        "skill_specific": {
+          "PASS": 4
+        }
+      },
+      "verdict": "PASS",
+      "results": [
+        {
+          "test": "test_1_positive_contract_handoffs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_1_positive_deterministic_code_runs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_out_of_contract_values",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_run_inside_plugin_refused",
+          "status": "PASS"
+        },
+        {
+          "test": "test_3_missing_data_never_filled",
+          "status": "PASS"
+        },
+        {
+          "test": "test_4_provenance",
+          "status": "PASS"
+        },
+        {
+          "test": "test_5_approval_gates_preserved",
+          "status": "PASS"
+        },
+        {
+          "test": "test_6_regression_against_upstream_baseline",
+          "status": "PASS"
+        },
+        {
+          "test": "test_7_model_driven_run",
+          "status": "NOT_RUN",
+          "detail": "NOT RUN: the skill's reasoning steps are executed by Claude; no Claude runtime or model credential is used in this repository's tests, and no model output is claimed from a fixture"
+        },
+        {
+          "test": "test_8_live_systems",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c01_missing_systems_reported_not_connected",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c01_profile_persists_and_reconnects",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c01_render_refuses_rate_values_and_emails",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c01_stamp_changes_only_the_configured_line",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "id": "C02",
+      "skill": "custom-connector",
+      "mode": "LIVE_SYSTEM_REQUIRED",
+      "description_sha256": "ba34d0da4ad0505ce5f910afa776b60d476cbf373ee632a502d72618ef90a55c",
+      "skill_md_sha256": "4195cfae044e2d97262a823287894efa6146432c5b53062abc9eb55cda1784b8",
+      "runs_plant_setup_find": true,
+      "deterministic_code": [
+        "plant_setup.py find"
+      ],
+      "file_only": false,
+      "file_only_evidence": null,
+      "claude_runtime_required": true,
+      "live_required": [
+        "the target system (vendor API, database view or export contract)"
+      ],
+      "live_optional": [],
+      "live_evidence": {
+        "quote": "Test against real data, and show it back",
+        "line": 244
+      },
+      "approval_gates_section": true,
+      "produces": [
+        "consolidated-dataset"
+      ],
+      "consumes": [],
+      "chain_of": [],
+      "tests": 13,
+      "counts": {
+        "PASS": 11,
+        "NOT_RUN": 1,
+        "BLOCKED": 1
+      },
+      "by_class": {
+        "1_positive": {
+          "PASS": 2
+        },
+        "2_negative": {
+          "PASS": 2
+        },
+        "3_missing_data": {
+          "PASS": 1
+        },
+        "4_provenance": {
+          "PASS": 1
+        },
+        "5_approval_boundary": {
+          "PASS": 1
+        },
+        "6_regression": {
+          "PASS": 1
+        },
+        "live_systems": {
+          "BLOCKED": 1
+        },
+        "model_driven_run": {
+          "NOT_RUN": 1
+        },
+        "skill_specific": {
+          "PASS": 3
+        }
+      },
+      "verdict": "PASS_WITH_BLOCKED",
+      "results": [
+        {
+          "test": "test_1_positive_contract_handoffs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_1_positive_deterministic_code_runs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_out_of_contract_values",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_run_inside_plugin_refused",
+          "status": "PASS"
+        },
+        {
+          "test": "test_3_missing_data_never_filled",
+          "status": "PASS"
+        },
+        {
+          "test": "test_4_provenance",
+          "status": "PASS"
+        },
+        {
+          "test": "test_5_approval_gates_preserved",
+          "status": "PASS"
+        },
+        {
+          "test": "test_6_regression_against_upstream_baseline",
+          "status": "PASS"
+        },
+        {
+          "test": "test_7_model_driven_run",
+          "status": "NOT_RUN",
+          "detail": "NOT RUN: the skill's reasoning steps are executed by Claude; no Claude runtime or model credential is used in this repository's tests, and no model output is claimed from a fixture"
+        },
+        {
+          "test": "test_8_live_systems",
+          "status": "BLOCKED",
+          "detail": "BLOCKED: needs the target system (vendor API, database view or export contract)"
+        },
+        {
+          "test": "test_c02_mapping_requirements",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c02_untrusted_connector_rejected",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c02_valid_scoped_connector_accepted",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "id": "C03",
+      "skill": "data-consolidate",
+      "mode": "FILE_CAPABLE",
+      "description_sha256": "204b2d5bd563e1afbd5d22f94fde6d9932b966c5557f6550c061905164b6b788",
+      "skill_md_sha256": "1aa4ce5933de050d3b8cf1c971efbca810064d562a9c5bc131f51e0b87c1aad5",
+      "runs_plant_setup_find": true,
+      "deterministic_code": [
+        "plant_setup.py find"
+      ],
+      "file_only": true,
+      "file_only_evidence": {
+        "quote": "File-only is the designed path",
+        "line": 67
+      },
+      "claude_runtime_required": true,
+      "live_required": [],
+      "live_optional": [
+        "Oracle NetSuite",
+        "Infor M3",
+        "CMMS"
+      ],
+      "live_evidence": {
+        "quote": "If no connector is available at all",
+        "line": 434
+      },
+      "approval_gates_section": true,
+      "produces": [
+        "consolidated-dataset"
+      ],
+      "consumes": [],
+      "chain_of": [],
+      "tests": 15,
+      "counts": {
+        "PASS": 14,
+        "NOT_RUN": 1
+      },
+      "by_class": {
+        "1_positive": {
+          "PASS": 2
+        },
+        "2_negative": {
+          "PASS": 2
+        },
+        "3_missing_data": {
+          "PASS": 1
+        },
+        "4_provenance": {
+          "PASS": 1
+        },
+        "5_approval_boundary": {
+          "PASS": 1
+        },
+        "6_regression": {
+          "PASS": 1
+        },
+        "live_systems": {
+          "PASS": 1
+        },
+        "model_driven_run": {
+          "NOT_RUN": 1
+        },
+        "skill_specific": {
+          "PASS": 5
+        }
+      },
+      "verdict": "PASS",
+      "results": [
+        {
+          "test": "test_1_positive_contract_handoffs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_1_positive_deterministic_code_runs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_out_of_contract_values",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_run_inside_plugin_refused",
+          "status": "PASS"
+        },
+        {
+          "test": "test_3_missing_data_never_filled",
+          "status": "PASS"
+        },
+        {
+          "test": "test_4_provenance",
+          "status": "PASS"
+        },
+        {
+          "test": "test_5_approval_gates_preserved",
+          "status": "PASS"
+        },
+        {
+          "test": "test_6_regression_against_upstream_baseline",
+          "status": "PASS"
+        },
+        {
+          "test": "test_7_model_driven_run",
+          "status": "NOT_RUN",
+          "detail": "NOT RUN: the skill's reasoning steps are executed by Claude; no Claude runtime or model credential is used in this repository's tests, and no model output is claimed from a fixture"
+        },
+        {
+          "test": "test_8_live_systems",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c03_common_columns_and_key_pairs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c03_example_tabs_and_rows",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c03_freshness_as_of_carries_a_zone",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c03_mismatches_classified_not_dropped",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c03_units_and_counts",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "id": "C04",
+      "skill": "customer-inquiry-intake",
+      "mode": "FILE_CAPABLE",
+      "description_sha256": "8f6c911fe0c1972444ca0a4728b03741a80ead8b3c706d7bc4b5c0a1314f9e2a",
+      "skill_md_sha256": "38ce2bc232b61fdfb25109a21d3033738682f6f80d35c685c64e15f993dd4142",
+      "runs_plant_setup_find": true,
+      "deterministic_code": [
+        "plant_setup.py find"
+      ],
+      "file_only": true,
+      "file_only_evidence": {
+        "quote": "Runs on a pasted email and an uploaded PDF with no connector at all.",
+        "line": 356
+      },
+      "claude_runtime_required": true,
+      "live_required": [],
+      "live_optional": [
+        "Microsoft 365",
+        "Oracle NetSuite"
+      ],
+      "live_evidence": {
+        "quote": "Accept the RFQ pasted or uploaded",
+        "line": 360
+      },
+      "approval_gates_section": true,
+      "produces": [
+        "intake-form"
+      ],
+      "consumes": [],
+      "chain_of": [],
+      "tests": 13,
+      "counts": {
+        "PASS": 12,
+        "NOT_RUN": 1
+      },
+      "by_class": {
+        "1_positive": {
+          "PASS": 2
+        },
+        "2_negative": {
+          "PASS": 2
+        },
+        "3_missing_data": {
+          "PASS": 1
+        },
+        "4_provenance": {
+          "PASS": 1
+        },
+        "5_approval_boundary": {
+          "PASS": 1
+        },
+        "6_regression": {
+          "PASS": 1
+        },
+        "live_systems": {
+          "PASS": 1
+        },
+        "model_driven_run": {
+          "NOT_RUN": 1
+        },
+        "skill_specific": {
+          "PASS": 3
+        }
+      },
+      "verdict": "PASS",
+      "results": [
+        {
+          "test": "test_1_positive_contract_handoffs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_1_positive_deterministic_code_runs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_out_of_contract_values",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_run_inside_plugin_refused",
+          "status": "PASS"
+        },
+        {
+          "test": "test_3_missing_data_never_filled",
+          "status": "PASS"
+        },
+        {
+          "test": "test_4_provenance",
+          "status": "PASS"
+        },
+        {
+          "test": "test_5_approval_gates_preserved",
+          "status": "PASS"
+        },
+        {
+          "test": "test_6_regression_against_upstream_baseline",
+          "status": "PASS"
+        },
+        {
+          "test": "test_7_model_driven_run",
+          "status": "NOT_RUN",
+          "detail": "NOT RUN: the skill's reasoning steps are executed by Claude; no Claude runtime or model credential is used in this repository's tests, and no model output is claimed from a fixture"
+        },
+        {
+          "test": "test_8_live_systems",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c04_declined_or_superseded_inquiry_is_Z",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c04_every_critical_field_has_provenance",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c04_rfq_source_identity_from_m365_survives_into_the_envelope",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "id": "C05",
+      "skill": "quote-build",
+      "mode": "FILE_CAPABLE",
+      "description_sha256": "771c92e0ef1107c57de05449688efc5520f2888f7088810851b8809a3f40b084",
+      "skill_md_sha256": "90a238498807c7e0cff856d86b8d96b8f55013a653f2a886efd26bc1442a0cfd",
+      "runs_plant_setup_find": true,
+      "deterministic_code": [
+        "plant_setup.py find"
+      ],
+      "file_only": true,
+      "file_only_evidence": {
+        "quote": "Runs on the intake form plus pasted cost figures with no connector at all.",
+        "line": 446
+      },
+      "claude_runtime_required": true,
+      "live_required": [],
+      "live_optional": [
+        "Oracle NetSuite",
+        "Infor M3",
+        "Autodesk Fusion"
+      ],
+      "live_evidence": {
+        "quote": "Feature path only, and the internal sheet says so",
+        "line": 460
+      },
+      "approval_gates_section": true,
+      "produces": [],
+      "consumes": [
+        "intake-form",
+        "geometry-estimate",
+        "supplier-bid",
+        "consolidated-dataset"
+      ],
+      "chain_of": [],
+      "tests": 13,
+      "counts": {
+        "PASS": 12,
+        "NOT_RUN": 1
+      },
+      "by_class": {
+        "1_positive": {
+          "PASS": 2
+        },
+        "2_negative": {
+          "PASS": 2
+        },
+        "3_missing_data": {
+          "PASS": 1
+        },
+        "4_provenance": {
+          "PASS": 1
+        },
+        "5_approval_boundary": {
+          "PASS": 1
+        },
+        "6_regression": {
+          "PASS": 1
+        },
+        "live_systems": {
+          "PASS": 1
+        },
+        "model_driven_run": {
+          "NOT_RUN": 1
+        },
+        "skill_specific": {
+          "PASS": 3
+        }
+      },
+      "verdict": "PASS",
+      "results": [
+        {
+          "test": "test_1_positive_contract_handoffs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_1_positive_deterministic_code_runs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_out_of_contract_values",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_run_inside_plugin_refused",
+          "status": "PASS"
+        },
+        {
+          "test": "test_3_missing_data_never_filled",
+          "status": "PASS"
+        },
+        {
+          "test": "test_4_provenance",
+          "status": "PASS"
+        },
+        {
+          "test": "test_5_approval_gates_preserved",
+          "status": "PASS"
+        },
+        {
+          "test": "test_6_regression_against_upstream_baseline",
+          "status": "PASS"
+        },
+        {
+          "test": "test_7_model_driven_run",
+          "status": "NOT_RUN",
+          "detail": "NOT RUN: the skill's reasoning steps are executed by Claude; no Claude runtime or model credential is used in this repository's tests, and no model output is claimed from a fixture"
+        },
+        {
+          "test": "test_8_live_systems",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c05_rates_resolved_from_the_rates_file_never_printed_by_setup",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c05_supplier_bid_examples_are_consumable",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c05_unconfirmed_or_failed_model_never_prices",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "id": "C06",
+      "skill": "rfq-to-quote",
+      "mode": "FILE_CAPABLE",
+      "description_sha256": "a5df6d4c36723c5568a8f4483fcb8d1f729044d9ac482e8363ecabc88d5f9e24",
+      "skill_md_sha256": "8f4a8247cabd8ab8c9287b0a62e64f12ba225c6f2c78920112932a2f34444df1",
+      "runs_plant_setup_find": true,
+      "deterministic_code": [
+        "plant_setup.py find"
+      ],
+      "file_only": true,
+      "file_only_evidence": {
+        "quote": "**The chain still completes.**",
+        "line": 296
+      },
+      "claude_runtime_required": true,
+      "live_required": [],
+      "live_optional": [
+        "Autodesk Fusion",
+        "Oracle NetSuite",
+        "Infor M3",
+        "Microsoft 365"
+      ],
+      "live_evidence": {
+        "quote": "Steps 5 and 6 both degrade",
+        "line": 293
+      },
+      "approval_gates_section": true,
+      "produces": [
+        "geometry-estimate",
+        "intake-form"
+      ],
+      "consumes": [
+        "consolidated-dataset"
+      ],
+      "chain_of": [],
+      "tests": 12,
+      "counts": {
+        "PASS": 11,
+        "NOT_RUN": 1
+      },
+      "by_class": {
+        "1_positive": {
+          "PASS": 2
+        },
+        "2_negative": {
+          "PASS": 2
+        },
+        "3_missing_data": {
+          "PASS": 1
+        },
+        "4_provenance": {
+          "PASS": 1
+        },
+        "5_approval_boundary": {
+          "PASS": 1
+        },
+        "6_regression": {
+          "PASS": 1
+        },
+        "live_systems": {
+          "PASS": 1
+        },
+        "model_driven_run": {
+          "NOT_RUN": 1
+        },
+        "skill_specific": {
+          "PASS": 2
+        }
+      },
+      "verdict": "PASS",
+      "results": [
+        {
+          "test": "test_1_positive_contract_handoffs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_1_positive_deterministic_code_runs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_out_of_contract_values",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_run_inside_plugin_refused",
+          "status": "PASS"
+        },
+        {
+          "test": "test_3_missing_data_never_filled",
+          "status": "PASS"
+        },
+        {
+          "test": "test_4_provenance",
+          "status": "PASS"
+        },
+        {
+          "test": "test_5_approval_gates_preserved",
+          "status": "PASS"
+        },
+        {
+          "test": "test_6_regression_against_upstream_baseline",
+          "status": "PASS"
+        },
+        {
+          "test": "test_7_model_driven_run",
+          "status": "NOT_RUN",
+          "detail": "NOT RUN: the skill's reasoning steps are executed by Claude; no Claude runtime or model credential is used in this repository's tests, and no model output is claimed from a fixture"
+        },
+        {
+          "test": "test_8_live_systems",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c06_c1_is_unverified_and_never_firm",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c06_legion_cad_handoff_is_contract_valid_and_gated",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "id": "C07",
+      "skill": "supplier-quote-request",
+      "mode": "FILE_CAPABLE",
+      "description_sha256": "86e3c1fdba5adfeea1a31f72dd5a279a090ad5cdc45db831425a1d38c461dc48",
+      "skill_md_sha256": "197aa3bcdc91f37c6222292bf9bdb94af0ef20de2988ec273faf8ccd4c4682a6",
+      "runs_plant_setup_find": true,
+      "deterministic_code": [
+        "plant_setup.py find"
+      ],
+      "file_only": true,
+      "file_only_evidence": {
+        "quote": "Runs on an uploaded drawing and pasted quantities with no connector.",
+        "line": 362
+      },
+      "claude_runtime_required": true,
+      "live_required": [],
+      "live_optional": [
+        "Oracle NetSuite",
+        "Infor M3",
+        "Microsoft 365"
+      ],
+      "live_evidence": {
+        "quote": "the revision comparison **cannot clear**",
+        "line": 366
+      },
+      "approval_gates_section": true,
+      "produces": [
+        "supplier-bid"
+      ],
+      "consumes": [
+        "supplier-caused-flag"
+      ],
+      "chain_of": [],
+      "tests": 12,
+      "counts": {
+        "PASS": 11,
+        "NOT_RUN": 1
+      },
+      "by_class": {
+        "1_positive": {
+          "PASS": 2
+        },
+        "2_negative": {
+          "PASS": 2
+        },
+        "3_missing_data": {
+          "PASS": 1
+        },
+        "4_provenance": {
+          "PASS": 1
+        },
+        "5_approval_boundary": {
+          "PASS": 1
+        },
+        "6_regression": {
+          "PASS": 1
+        },
+        "live_systems": {
+          "PASS": 1
+        },
+        "model_driven_run": {
+          "NOT_RUN": 1
+        },
+        "skill_specific": {
+          "PASS": 2
+        }
+      },
+      "verdict": "PASS",
+      "results": [
+        {
+          "test": "test_1_positive_contract_handoffs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_1_positive_deterministic_code_runs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_out_of_contract_values",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_run_inside_plugin_refused",
+          "status": "PASS"
+        },
+        {
+          "test": "test_3_missing_data_never_filled",
+          "status": "PASS"
+        },
+        {
+          "test": "test_4_provenance",
+          "status": "PASS"
+        },
+        {
+          "test": "test_5_approval_gates_preserved",
+          "status": "PASS"
+        },
+        {
+          "test": "test_6_regression_against_upstream_baseline",
+          "status": "PASS"
+        },
+        {
+          "test": "test_7_model_driven_run",
+          "status": "NOT_RUN",
+          "detail": "NOT RUN: the skill's reasoning steps are executed by Claude; no Claude runtime or model credential is used in this repository's tests, and no model output is claimed from a fixture"
+        },
+        {
+          "test": "test_8_live_systems",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c07_bid_fields_preserved",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c07_sourcing_blocked_on_unapproved_or_revisionless_flag",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "id": "C08",
+      "skill": "design-space-explore",
+      "mode": "LIVE_SYSTEM_REQUIRED",
+      "description_sha256": "9f7696320e24028a0e2c94808ebe91e2d33598b507cbdc2ff7b3115717b7e34a",
+      "skill_md_sha256": "f3183c44f68e1222b0b498a872627d7204b64aa5cbc1e2ebc5c6200b6630dc7e",
+      "runs_plant_setup_find": false,
+      "deterministic_code": [],
+      "file_only": false,
+      "file_only_evidence": null,
+      "claude_runtime_required": true,
+      "live_required": [
+        "Autodesk Fusion desktop with the base model open"
+      ],
+      "live_optional": [],
+      "live_evidence": {
+        "quote": "the skill cannot generate variants and says",
+        "line": 209
+      },
+      "approval_gates_section": true,
+      "produces": [
+        "variant-manifest"
+      ],
+      "consumes": [],
+      "chain_of": [],
+      "tests": 12,
+      "counts": {
+        "PASS": 10,
+        "NOT_RUN": 1,
+        "BLOCKED": 1
+      },
+      "by_class": {
+        "1_positive": {
+          "PASS": 2
+        },
+        "2_negative": {
+          "PASS": 2
+        },
+        "3_missing_data": {
+          "PASS": 1
+        },
+        "4_provenance": {
+          "PASS": 1
+        },
+        "5_approval_boundary": {
+          "PASS": 1
+        },
+        "6_regression": {
+          "PASS": 1
+        },
+        "live_systems": {
+          "BLOCKED": 1
+        },
+        "model_driven_run": {
+          "NOT_RUN": 1
+        },
+        "skill_specific": {
+          "PASS": 2
+        }
+      },
+      "verdict": "PASS_WITH_BLOCKED",
+      "results": [
+        {
+          "test": "test_1_positive_contract_handoffs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_1_positive_deterministic_code_runs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_out_of_contract_values",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_run_inside_plugin_refused",
+          "status": "PASS"
+        },
+        {
+          "test": "test_3_missing_data_never_filled",
+          "status": "PASS"
+        },
+        {
+          "test": "test_4_provenance",
+          "status": "PASS"
+        },
+        {
+          "test": "test_5_approval_gates_preserved",
+          "status": "PASS"
+        },
+        {
+          "test": "test_6_regression_against_upstream_baseline",
+          "status": "PASS"
+        },
+        {
+          "test": "test_7_model_driven_run",
+          "status": "NOT_RUN",
+          "detail": "NOT RUN: the skill's reasoning steps are executed by Claude; no Claude runtime or model credential is used in this repository's tests, and no model output is claimed from a fixture"
+        },
+        {
+          "test": "test_8_live_systems",
+          "status": "BLOCKED",
+          "detail": "BLOCKED: needs Autodesk Fusion desktop with the base model open"
+        },
+        {
+          "test": "test_c08_original_unchanged_invalid_rejected",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c08_unsourced_variant_row_is_not_scored",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "id": "C09",
+      "skill": "trade-study-report",
+      "mode": "FILE_CAPABLE",
+      "description_sha256": "e263974dcf5b153af9a37169e93422e341cc200bf683522691c5cf6a37c389f6",
+      "skill_md_sha256": "26133c5dcdbd06c8cb12a42d0b34f6eb63a2db28c74f274fdd16792a9b1fe0b3",
+      "runs_plant_setup_find": true,
+      "deterministic_code": [
+        "plant_setup.py find"
+      ],
+      "file_only": true,
+      "file_only_evidence": {
+        "quote": "Runs entirely from a filled-in matrix and pasted figures",
+        "line": 4
+      },
+      "claude_runtime_required": true,
+      "live_required": [],
+      "live_optional": [
+        "Oracle NetSuite",
+        "Infor M3"
+      ],
+      "live_evidence": {
+        "quote": "with no\nconnector and no CAD backend at all",
+        "line": 205
+      },
+      "approval_gates_section": true,
+      "produces": [],
+      "consumes": [
+        "variant-manifest"
+      ],
+      "chain_of": [],
+      "tests": 13,
+      "counts": {
+        "PASS": 11,
+        "NOT_RUN": 2
+      },
+      "by_class": {
+        "1_positive": {
+          "PASS": 2
+        },
+        "2_negative": {
+          "PASS": 2
+        },
+        "3_missing_data": {
+          "PASS": 1
+        },
+        "4_provenance": {
+          "PASS": 1
+        },
+        "5_approval_boundary": {
+          "PASS": 1
+        },
+        "6_regression": {
+          "PASS": 1
+        },
+        "live_systems": {
+          "PASS": 1
+        },
+        "model_driven_run": {
+          "NOT_RUN": 1
+        },
+        "skill_specific": {
+          "PASS": 2,
+          "NOT_RUN": 1
+        }
+      },
+      "verdict": "PASS",
+      "results": [
+        {
+          "test": "test_1_positive_contract_handoffs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_1_positive_deterministic_code_runs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_out_of_contract_values",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_run_inside_plugin_refused",
+          "status": "PASS"
+        },
+        {
+          "test": "test_3_missing_data_never_filled",
+          "status": "PASS"
+        },
+        {
+          "test": "test_4_provenance",
+          "status": "PASS"
+        },
+        {
+          "test": "test_5_approval_gates_preserved",
+          "status": "PASS"
+        },
+        {
+          "test": "test_6_regression_against_upstream_baseline",
+          "status": "PASS"
+        },
+        {
+          "test": "test_7_model_driven_run",
+          "status": "NOT_RUN",
+          "detail": "NOT RUN: the skill's reasoning steps are executed by Claude; no Claude runtime or model credential is used in this repository's tests, and no model output is claimed from a fixture"
+        },
+        {
+          "test": "test_8_live_systems",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c09_hand_authored_manifest_is_a_complete_input",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c09_sensitivity_reproducibility",
+          "status": "NOT_RUN",
+          "detail": "NOT RUN: weighted scoring and the sensitivity sweep are computed by the Claude-run skill; reproducibility needs two model-driven runs on the same matrix"
+        },
+        {
+          "test": "test_c09_unknown_backend_rejected",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "id": "C10",
+      "skill": "daily-production-report",
+      "mode": "FILE_CAPABLE",
+      "description_sha256": "236a98e2ea4ca5c70549619af88102b6e9e86125db716f6ed771389d7cfe10c6",
+      "skill_md_sha256": "39838cbd9d12635dfba843f2fcc41e49beb411d26f2e6378814fedc70984fd35",
+      "runs_plant_setup_find": true,
+      "deterministic_code": [
+        "plant_setup.py find"
+      ],
+      "file_only": true,
+      "file_only_evidence": {
+        "quote": "Without a planning export",
+        "line": 449
+      },
+      "claude_runtime_required": true,
+      "live_required": [],
+      "live_optional": [
+        "Oracle NetSuite",
+        "Infor M3",
+        "CMMS"
+      ],
+      "live_evidence": {
+        "quote": "no CMMS connector is live",
+        "line": 440
+      },
+      "approval_gates_section": true,
+      "produces": [],
+      "consumes": [
+        "consolidated-dataset",
+        "downtime-record",
+        "pulse-day-record",
+        "floor-layout"
+      ],
+      "chain_of": [],
+      "tests": 14,
+      "counts": {
+        "PASS": 13,
+        "NOT_RUN": 1
+      },
+      "by_class": {
+        "1_positive": {
+          "PASS": 2
+        },
+        "2_negative": {
+          "PASS": 2
+        },
+        "3_missing_data": {
+          "PASS": 1
+        },
+        "4_provenance": {
+          "PASS": 1
+        },
+        "5_approval_boundary": {
+          "PASS": 1
+        },
+        "6_regression": {
+          "PASS": 1
+        },
+        "live_systems": {
+          "PASS": 1
+        },
+        "model_driven_run": {
+          "NOT_RUN": 1
+        },
+        "skill_specific": {
+          "PASS": 4
+        }
+      },
+      "verdict": "PASS",
+      "results": [
+        {
+          "test": "test_1_positive_contract_handoffs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_1_positive_deterministic_code_runs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_out_of_contract_values",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_run_inside_plugin_refused",
+          "status": "PASS"
+        },
+        {
+          "test": "test_3_missing_data_never_filled",
+          "status": "PASS"
+        },
+        {
+          "test": "test_4_provenance",
+          "status": "PASS"
+        },
+        {
+          "test": "test_5_approval_gates_preserved",
+          "status": "PASS"
+        },
+        {
+          "test": "test_6_regression_against_upstream_baseline",
+          "status": "PASS"
+        },
+        {
+          "test": "test_7_model_driven_run",
+          "status": "NOT_RUN",
+          "detail": "NOT RUN: the skill's reasoning steps are executed by Claude; no Claude runtime or model credential is used in this repository's tests, and no model output is claimed from a fixture"
+        },
+        {
+          "test": "test_8_live_systems",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c10_breakdown_input_gate",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c10_day_record_meets_its_contract",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c10_losses_reconcile",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c10_oee_reconciles_to_source",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "id": "C11",
+      "skill": "morning-plant-pulse",
+      "mode": "FILE_CAPABLE",
+      "description_sha256": "8c5aa9d00780aa5c23c4ae727a7ed182ca8f298f406dce4ae4afe57c6fd01e4b",
+      "skill_md_sha256": "e46d6719c01f1dbe9ad3ded9eccb56c391e022447211fdfe3f5818f03c160c79",
+      "runs_plant_setup_find": true,
+      "deterministic_code": [
+        "plant_setup.py find",
+        "pulse_compute.py",
+        "render_short.py"
+      ],
+      "file_only": true,
+      "file_only_evidence": {
+        "quote": "Run connector-only and name every tab that could not be built",
+        "line": 331
+      },
+      "claude_runtime_required": true,
+      "live_required": [],
+      "live_optional": [
+        "Oracle NetSuite",
+        "Infor M3",
+        "CMMS"
+      ],
+      "live_evidence": {
+        "quote": "no CMMS connector is live",
+        "line": 338
+      },
+      "approval_gates_section": true,
+      "produces": [
+        "pulse-day-record"
+      ],
+      "consumes": [
+        "consolidated-dataset"
+      ],
+      "chain_of": [],
+      "tests": 14,
+      "counts": {
+        "PASS": 13,
+        "NOT_RUN": 1
+      },
+      "by_class": {
+        "1_positive": {
+          "PASS": 2
+        },
+        "2_negative": {
+          "PASS": 2
+        },
+        "3_missing_data": {
+          "PASS": 1
+        },
+        "4_provenance": {
+          "PASS": 1
+        },
+        "5_approval_boundary": {
+          "PASS": 1
+        },
+        "6_regression": {
+          "PASS": 1
+        },
+        "live_systems": {
+          "PASS": 1
+        },
+        "model_driven_run": {
+          "NOT_RUN": 1
+        },
+        "skill_specific": {
+          "PASS": 4
+        }
+      },
+      "verdict": "PASS",
+      "results": [
+        {
+          "test": "test_1_positive_contract_handoffs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_1_positive_deterministic_code_runs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_out_of_contract_values",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_run_inside_plugin_refused",
+          "status": "PASS"
+        },
+        {
+          "test": "test_3_missing_data_never_filled",
+          "status": "PASS"
+        },
+        {
+          "test": "test_4_provenance",
+          "status": "PASS"
+        },
+        {
+          "test": "test_5_approval_gates_preserved",
+          "status": "PASS"
+        },
+        {
+          "test": "test_6_regression_against_upstream_baseline",
+          "status": "PASS"
+        },
+        {
+          "test": "test_7_model_driven_run",
+          "status": "NOT_RUN",
+          "detail": "NOT RUN: the skill's reasoning steps are executed by Claude; no Claude runtime or model credential is used in this repository's tests, and no model output is claimed from a fixture"
+        },
+        {
+          "test": "test_8_live_systems",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c11_absent_oee_is_absent_not_zero",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c11_engine_and_renderer_on_both_drops",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c11_fixture_inputs_hashed",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c11_no_stale_record_for_a_day_without_data",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "id": "C12",
+      "skill": "breakdown-diagnosis",
+      "mode": "FILE_CAPABLE",
+      "description_sha256": "71b0c9b0aca85ca4b317554b6d409b228ffce0033a618becc81aae76216fe3a3",
+      "skill_md_sha256": "52c2d1d65ee4749ebd4aee3c1944a385eb36db17846882db701b2840fdb40f52",
+      "runs_plant_setup_find": true,
+      "deterministic_code": [
+        "plant_setup.py find"
+      ],
+      "file_only": true,
+      "file_only_evidence": {
+        "quote": "it reads the maintenance export",
+        "line": 316
+      },
+      "claude_runtime_required": true,
+      "live_required": [],
+      "live_optional": [
+        "CMMS",
+        "Microsoft 365"
+      ],
+      "live_evidence": {
+        "quote": "no CMMS connector is live",
+        "line": 226
+      },
+      "approval_gates_section": true,
+      "produces": [
+        "downtime-record"
+      ],
+      "consumes": [
+        "consolidated-dataset"
+      ],
+      "chain_of": [],
+      "tests": 13,
+      "counts": {
+        "PASS": 11,
+        "NOT_RUN": 2
+      },
+      "by_class": {
+        "1_positive": {
+          "PASS": 2
+        },
+        "2_negative": {
+          "PASS": 2
+        },
+        "3_missing_data": {
+          "PASS": 1
+        },
+        "4_provenance": {
+          "PASS": 1
+        },
+        "5_approval_boundary": {
+          "PASS": 1
+        },
+        "6_regression": {
+          "PASS": 1
+        },
+        "live_systems": {
+          "PASS": 1
+        },
+        "model_driven_run": {
+          "NOT_RUN": 1
+        },
+        "skill_specific": {
+          "NOT_RUN": 1,
+          "PASS": 2
+        }
+      },
+      "verdict": "PASS",
+      "results": [
+        {
+          "test": "test_1_positive_contract_handoffs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_1_positive_deterministic_code_runs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_out_of_contract_values",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_run_inside_plugin_refused",
+          "status": "PASS"
+        },
+        {
+          "test": "test_3_missing_data_never_filled",
+          "status": "PASS"
+        },
+        {
+          "test": "test_4_provenance",
+          "status": "PASS"
+        },
+        {
+          "test": "test_5_approval_gates_preserved",
+          "status": "PASS"
+        },
+        {
+          "test": "test_6_regression_against_upstream_baseline",
+          "status": "PASS"
+        },
+        {
+          "test": "test_7_model_driven_run",
+          "status": "NOT_RUN",
+          "detail": "NOT RUN: the skill's reasoning steps are executed by Claude; no Claude runtime or model credential is used in this repository's tests, and no model output is claimed from a fixture"
+        },
+        {
+          "test": "test_8_live_systems",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c12_candidate_ranking",
+          "status": "NOT_RUN",
+          "detail": "NOT RUN: ranking causes against sensor, history, photos and manual is Claude-run"
+        },
+        {
+          "test": "test_c12_naive_or_missing_day_blocks",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c12_record_carries_asset_time_and_safety",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "id": "C13",
+      "skill": "breakdown-to-next-report",
+      "mode": "FILE_CAPABLE_CHAIN",
+      "description_sha256": "39816d8eab4ef97b9bbb77796d2b5dad95e919c08eae0c0b9b25dcad28028afb",
+      "skill_md_sha256": "dee6e6f5479804ff710544f0d0fa6ef5dbb7192097e453bffeeb138662d5ef7b",
+      "runs_plant_setup_find": false,
+      "deterministic_code": [],
+      "file_only": true,
+      "file_only_evidence": {
+        "quote": "It still\nruns end to end",
+        "line": 177
+      },
+      "claude_runtime_required": true,
+      "live_required": [],
+      "live_optional": [
+        "CMMS"
+      ],
+      "live_evidence": {
+        "quote": "no CMMS connector is live",
+        "line": 176
+      },
+      "approval_gates_section": true,
+      "produces": [
+        "downtime-record"
+      ],
+      "consumes": [
+        "downtime-record"
+      ],
+      "chain_of": [
+        "breakdown-diagnosis",
+        "daily-production-report"
+      ],
+      "tests": 12,
+      "counts": {
+        "PASS": 11,
+        "NOT_RUN": 1
+      },
+      "by_class": {
+        "1_positive": {
+          "PASS": 2
+        },
+        "2_negative": {
+          "PASS": 2
+        },
+        "3_missing_data": {
+          "PASS": 1
+        },
+        "4_provenance": {
+          "PASS": 1
+        },
+        "5_approval_boundary": {
+          "PASS": 1
+        },
+        "6_regression": {
+          "PASS": 1
+        },
+        "live_systems": {
+          "PASS": 1
+        },
+        "model_driven_run": {
+          "NOT_RUN": 1
+        },
+        "skill_specific": {
+          "PASS": 2
+        }
+      },
+      "verdict": "PASS",
+      "results": [
+        {
+          "test": "test_1_positive_contract_handoffs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_1_positive_deterministic_code_runs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_out_of_contract_values",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_run_inside_plugin_refused",
+          "status": "PASS"
+        },
+        {
+          "test": "test_3_missing_data_never_filled",
+          "status": "PASS"
+        },
+        {
+          "test": "test_4_provenance",
+          "status": "PASS"
+        },
+        {
+          "test": "test_5_approval_gates_preserved",
+          "status": "PASS"
+        },
+        {
+          "test": "test_6_regression_against_upstream_baseline",
+          "status": "PASS"
+        },
+        {
+          "test": "test_7_model_driven_run",
+          "status": "NOT_RUN",
+          "detail": "NOT RUN: the skill's reasoning steps are executed by Claude; no Claude runtime or model credential is used in this repository's tests, and no model output is claimed from a fixture"
+        },
+        {
+          "test": "test_8_live_systems",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c13_a_changed_record_breaks_the_chain",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c13_lineage_survives_the_handoff",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "id": "C14",
+      "skill": "ncr-writeup",
+      "mode": "FILE_CAPABLE",
+      "description_sha256": "faeab397813b86a5c03e47bfee16fd6552ed85679845ffcfe47004e9bd216960",
+      "skill_md_sha256": "a2e496f4d60ad441a829f38bdf2132f3f2c52fba0df9cbd3b26070ec82edf59c",
+      "runs_plant_setup_find": true,
+      "deterministic_code": [
+        "plant_setup.py find"
+      ],
+      "file_only": true,
+      "file_only_evidence": {
+        "quote": "The skill runs on a pasted finding and an uploaded drawing with no connector at",
+        "line": 333
+      },
+      "claude_runtime_required": true,
+      "live_required": [],
+      "live_optional": [
+        "Oracle NetSuite",
+        "Infor M3",
+        "Microsoft 365"
+      ],
+      "live_evidence": {
+        "quote": "In-transit and at-customer cannot",
+        "line": 339
+      },
+      "approval_gates_section": true,
+      "produces": [
+        "ncr",
+        "quality-register-record"
+      ],
+      "consumes": [
+        "consolidated-dataset"
+      ],
+      "chain_of": [],
+      "tests": 14,
+      "counts": {
+        "PASS": 13,
+        "NOT_RUN": 1
+      },
+      "by_class": {
+        "1_positive": {
+          "PASS": 2
+        },
+        "2_negative": {
+          "PASS": 2
+        },
+        "3_missing_data": {
+          "PASS": 1
+        },
+        "4_provenance": {
+          "PASS": 1
+        },
+        "5_approval_boundary": {
+          "PASS": 1
+        },
+        "6_regression": {
+          "PASS": 1
+        },
+        "live_systems": {
+          "PASS": 1
+        },
+        "model_driven_run": {
+          "NOT_RUN": 1
+        },
+        "skill_specific": {
+          "PASS": 4
+        }
+      },
+      "verdict": "PASS",
+      "results": [
+        {
+          "test": "test_1_positive_contract_handoffs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_1_positive_deterministic_code_runs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_out_of_contract_values",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_run_inside_plugin_refused",
+          "status": "PASS"
+        },
+        {
+          "test": "test_3_missing_data_never_filled",
+          "status": "PASS"
+        },
+        {
+          "test": "test_4_provenance",
+          "status": "PASS"
+        },
+        {
+          "test": "test_5_approval_gates_preserved",
+          "status": "PASS"
+        },
+        {
+          "test": "test_6_regression_against_upstream_baseline",
+          "status": "PASS"
+        },
+        {
+          "test": "test_7_model_driven_run",
+          "status": "NOT_RUN",
+          "detail": "NOT RUN: the skill's reasoning steps are executed by Claude; no Claude runtime or model credential is used in this repository's tests, and no model output is claimed from a fixture"
+        },
+        {
+          "test": "test_8_live_systems",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c14_no_requirement_blocks",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c14_register_record_meets_contract",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c14_requirement_quantity_containment",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c14_unapproved_ncr_is_not_customer_facing",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "id": "C15",
+      "skill": "root-cause-capa",
+      "mode": "FILE_CAPABLE",
+      "description_sha256": "ac647133a07802cc78fdf2af048eb3b5a2044b49b59ee7ef268b73266fb1cd65",
+      "skill_md_sha256": "49fd42fda8b83d1daec265aeb286d2f69cf3c7c181df1d71754543ac9d026d98",
+      "runs_plant_setup_find": true,
+      "deterministic_code": [
+        "plant_setup.py find"
+      ],
+      "file_only": true,
+      "file_only_evidence": {
+        "quote": "Runs on exports alone.",
+        "line": 350
+      },
+      "claude_runtime_required": true,
+      "live_required": [],
+      "live_optional": [
+        "Oracle NetSuite",
+        "Infor M3"
+      ],
+      "live_evidence": {
+        "quote": "a supplier-caused determination usually cannot be reached",
+        "line": 357
+      },
+      "approval_gates_section": true,
+      "produces": [
+        "supplier-caused-flag",
+        "quality-register-record"
+      ],
+      "consumes": [
+        "ncr"
+      ],
+      "chain_of": [],
+      "tests": 13,
+      "counts": {
+        "PASS": 11,
+        "NOT_RUN": 2
+      },
+      "by_class": {
+        "1_positive": {
+          "PASS": 2
+        },
+        "2_negative": {
+          "PASS": 2
+        },
+        "3_missing_data": {
+          "PASS": 1
+        },
+        "4_provenance": {
+          "PASS": 1
+        },
+        "5_approval_boundary": {
+          "PASS": 1
+        },
+        "6_regression": {
+          "PASS": 1
+        },
+        "live_systems": {
+          "PASS": 1
+        },
+        "model_driven_run": {
+          "NOT_RUN": 1
+        },
+        "skill_specific": {
+          "PASS": 2,
+          "NOT_RUN": 1
+        }
+      },
+      "verdict": "PASS",
+      "results": [
+        {
+          "test": "test_1_positive_contract_handoffs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_1_positive_deterministic_code_runs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_out_of_contract_values",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_run_inside_plugin_refused",
+          "status": "PASS"
+        },
+        {
+          "test": "test_3_missing_data_never_filled",
+          "status": "PASS"
+        },
+        {
+          "test": "test_4_provenance",
+          "status": "PASS"
+        },
+        {
+          "test": "test_5_approval_gates_preserved",
+          "status": "PASS"
+        },
+        {
+          "test": "test_6_regression_against_upstream_baseline",
+          "status": "PASS"
+        },
+        {
+          "test": "test_7_model_driven_run",
+          "status": "NOT_RUN",
+          "detail": "NOT RUN: the skill's reasoning steps are executed by Claude; no Claude runtime or model credential is used in this repository's tests, and no model output is claimed from a fixture"
+        },
+        {
+          "test": "test_8_live_systems",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c15_alternatives_and_disconfirming_evidence_retained",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c15_ncr_without_requirement_blocks_the_8d",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c15_pattern_checks",
+          "status": "NOT_RUN",
+          "detail": "NOT RUN: SPC drift and clustering checks are written and run by the Claude-run skill"
+        }
+      ]
+    },
+    {
+      "id": "C16",
+      "skill": "inspection-to-capa",
+      "mode": "FILE_CAPABLE_CHAIN",
+      "description_sha256": "dfdd6359135710b007d66cdf3767f9ec423181820d4ec63dd3154264897d3efc",
+      "skill_md_sha256": "e39166dfa08de8544e84afad874b3aedc91a646c6f59d467103912e807d390b3",
+      "runs_plant_setup_find": false,
+      "deterministic_code": [],
+      "file_only": true,
+      "file_only_evidence": {
+        "quote": "Report \"no searchable history available\" at step 3",
+        "line": 153
+      },
+      "claude_runtime_required": true,
+      "live_required": [],
+      "live_optional": [
+        "Microsoft 365",
+        "CMMS"
+      ],
+      "live_evidence": {
+        "quote": "no CMMS connector is live",
+        "line": 163
+      },
+      "approval_gates_section": true,
+      "produces": [
+        "ncr",
+        "supplier-caused-flag"
+      ],
+      "consumes": [
+        "ncr"
+      ],
+      "chain_of": [
+        "ncr-writeup",
+        "root-cause-capa"
+      ],
+      "tests": 11,
+      "counts": {
+        "PASS": 10,
+        "NOT_RUN": 1
+      },
+      "by_class": {
+        "1_positive": {
+          "PASS": 2
+        },
+        "2_negative": {
+          "PASS": 2
+        },
+        "3_missing_data": {
+          "PASS": 1
+        },
+        "4_provenance": {
+          "PASS": 1
+        },
+        "5_approval_boundary": {
+          "PASS": 1
+        },
+        "6_regression": {
+          "PASS": 1
+        },
+        "live_systems": {
+          "PASS": 1
+        },
+        "model_driven_run": {
+          "NOT_RUN": 1
+        },
+        "skill_specific": {
+          "PASS": 1
+        }
+      },
+      "verdict": "PASS",
+      "results": [
+        {
+          "test": "test_1_positive_contract_handoffs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_1_positive_deterministic_code_runs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_out_of_contract_values",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_run_inside_plugin_refused",
+          "status": "PASS"
+        },
+        {
+          "test": "test_3_missing_data_never_filled",
+          "status": "PASS"
+        },
+        {
+          "test": "test_4_provenance",
+          "status": "PASS"
+        },
+        {
+          "test": "test_5_approval_gates_preserved",
+          "status": "PASS"
+        },
+        {
+          "test": "test_6_regression_against_upstream_baseline",
+          "status": "PASS"
+        },
+        {
+          "test": "test_7_model_driven_run",
+          "status": "NOT_RUN",
+          "detail": "NOT RUN: the skill's reasoning steps are executed by Claude; no Claude runtime or model credential is used in this repository's tests, and no model output is claimed from a fixture"
+        },
+        {
+          "test": "test_8_live_systems",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c16_requirement_and_evidence_bindings_survive",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "id": "C17",
+      "skill": "supplier-escape-to-alternate-source",
+      "mode": "FILE_CAPABLE_CHAIN",
+      "description_sha256": "fb0b22d97844a68c7b3664008e5c45f7e62a4ebdbea996d7e53bcfbda52a569c",
+      "skill_md_sha256": "021d79bf416a0c11f81390b2044c2cbb3d6425b5f3ad2f8819df75cb2652a119",
+      "runs_plant_setup_find": false,
+      "deterministic_code": [],
+      "file_only": true,
+      "file_only_evidence": {
+        "quote": "Demand picture and vendor list come from documents or are asked for",
+        "line": 171
+      },
+      "claude_runtime_required": true,
+      "live_required": [],
+      "live_optional": [
+        "Oracle NetSuite",
+        "Infor M3"
+      ],
+      "live_evidence": {
+        "quote": "The ERP (NetSuite or Infor M3)",
+        "line": 171
+      },
+      "approval_gates_section": true,
+      "produces": [
+        "supplier-caused-flag",
+        "supplier-bid"
+      ],
+      "consumes": [
+        "supplier-caused-flag"
+      ],
+      "chain_of": [
+        "ncr-writeup",
+        "root-cause-capa",
+        "supplier-quote-request"
+      ],
+      "tests": 12,
+      "counts": {
+        "PASS": 11,
+        "NOT_RUN": 1
+      },
+      "by_class": {
+        "1_positive": {
+          "PASS": 2
+        },
+        "2_negative": {
+          "PASS": 2
+        },
+        "3_missing_data": {
+          "PASS": 1
+        },
+        "4_provenance": {
+          "PASS": 1
+        },
+        "5_approval_boundary": {
+          "PASS": 1
+        },
+        "6_regression": {
+          "PASS": 1
+        },
+        "live_systems": {
+          "PASS": 1
+        },
+        "model_driven_run": {
+          "NOT_RUN": 1
+        },
+        "skill_specific": {
+          "PASS": 2
+        }
+      },
+      "verdict": "PASS",
+      "results": [
+        {
+          "test": "test_1_positive_contract_handoffs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_1_positive_deterministic_code_runs",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_out_of_contract_values",
+          "status": "PASS"
+        },
+        {
+          "test": "test_2_negative_run_inside_plugin_refused",
+          "status": "PASS"
+        },
+        {
+          "test": "test_3_missing_data_never_filled",
+          "status": "PASS"
+        },
+        {
+          "test": "test_4_provenance",
+          "status": "PASS"
+        },
+        {
+          "test": "test_5_approval_gates_preserved",
+          "status": "PASS"
+        },
+        {
+          "test": "test_6_regression_against_upstream_baseline",
+          "status": "PASS"
+        },
+        {
+          "test": "test_7_model_driven_run",
+          "status": "NOT_RUN",
+          "detail": "NOT RUN: the skill's reasoning steps are executed by Claude; no Claude runtime or model credential is used in this repository's tests, and no model output is claimed from a fixture"
+        },
+        {
+          "test": "test_8_live_systems",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c17_claim_authorized_before_sourcing",
+          "status": "PASS"
+        },
+        {
+          "test": "test_c17_no_supplier_message_is_sent",
+          "status": "PASS"
+        }
+      ]
+    }
+  ],
+  "classification_counts": {
+    "FILE_CAPABLE": 12,
+    "LIVE_SYSTEM_REQUIRED": 2,
+    "FILE_CAPABLE_CHAIN": 3
+  },
+  "skills_passing": 17
+}

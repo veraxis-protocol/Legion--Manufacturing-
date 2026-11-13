@@ -1,6 +1,6 @@
 {
-  "source_commit": null,
-  "executed_at_utc": "2026-11-13T18:20:26+00:00",
+  "source_commit": "df0f8b60029ce4fe8c293eeb84b402c88a4fc609",
+  "executed_at_utc": "2026-11-13T20:12:22+00:00",
   "environment": {
     "python": "3.14.7",
     "implementation": "CPython",
@@ -67,7 +67,7 @@
     {
       "id": "compile:shared/scripts/plant_setup.py",
       "status": "PASS",
-      "command": "C:\\Users\\Administrator\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe -I -c import py_compile,sys; py_compile.compile(sys.argv[1], cfile=sys.argv[2], doraise=True) shared/scripts/plant_setup.py C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\lmfg-upstream-1ln92mxk\\compiled.pyc",
+      "command": "C:\\Users\\Administrator\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe -I -c import py_compile,sys; py_compile.compile(sys.argv[1], cfile=sys.argv[2], doraise=True) shared/scripts/plant_setup.py C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\lmfg-upstream-kz5w7cm9\\compiled.pyc",
       "exit_code": 0,
       "traceback": false,
       "output_tail": ""
@@ -83,7 +83,7 @@
     {
       "id": "compile:skills/morning-plant-pulse/scripts/pulse_compute.py",
       "status": "PASS",
-      "command": "C:\\Users\\Administrator\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe -I -c import py_compile,sys; py_compile.compile(sys.argv[1], cfile=sys.argv[2], doraise=True) skills/morning-plant-pulse/scripts/pulse_compute.py C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\lmfg-upstream-1ln92mxk\\compiled.pyc",
+      "command": "C:\\Users\\Administrator\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe -I -c import py_compile,sys; py_compile.compile(sys.argv[1], cfile=sys.argv[2], doraise=True) skills/morning-plant-pulse/scripts/pulse_compute.py C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\lmfg-upstream-kz5w7cm9\\compiled.pyc",
       "exit_code": 0,
       "traceback": false,
       "output_tail": ""
@@ -99,7 +99,7 @@
     {
       "id": "compile:skills/morning-plant-pulse/scripts/render_short.py",
       "status": "PASS",
-      "command": "C:\\Users\\Administrator\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe -I -c import py_compile,sys; py_compile.compile(sys.argv[1], cfile=sys.argv[2], doraise=True) skills/morning-plant-pulse/scripts/render_short.py C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\lmfg-upstream-1ln92mxk\\compiled.pyc",
+      "command": "C:\\Users\\Administrator\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe -I -c import py_compile,sys; py_compile.compile(sys.argv[1], cfile=sys.argv[2], doraise=True) skills/morning-plant-pulse/scripts/render_short.py C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\lmfg-upstream-kz5w7cm9\\compiled.pyc",
       "exit_code": 0,
       "traceback": false,
       "output_tail": ""
@@ -119,7 +119,7 @@
       "command": "C:\\Users\\Administrator\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe -I shared/scripts/plant_setup.py --selftest",
       "exit_code": 1,
       "traceback": true,
-      "output_tail": "istrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-upstream-1ln92mxk\\\\claude-for-manufacturing\\\\shared\\\\scripts\\\\plant_setup.py\\\" stamp --profile <that path>, then render --profile <that path> --out <a working folder>; read the page itself with the artifact tools (Artifact, or mcp__claude-artifacts__* in Cowork), action read and url only (reading the file does not count), in a step before the publish; publish to this page's url with the file_path and files render printed (the page is rebuilt from the file on purpose, so a refusal saying the content leaves out the live page's text is answered by publishing the same files once more); then read setup/plant-context.txt back from the page and run saved --from <that file> --sha256 <render's sha256> --title <render's title>, and show its line word for word. If this run also publishes its own result (a dashboard, register or report page), save this page first and publish the result last; if the result had to come first, finish by opening the result (action open with its url) and end the reply with its link, so the person sees the result, not this page.\"}\nTraceback (most recent call last):\n  File \"C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\lmfg-upstream-1ln92mxk\\claude-for-manufacturing\\shared\\scripts\\plant_setup.py\", line 1419, in <module>\n    sys.exit(main())\n             ~~~~^^\n  File \"C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\lmfg-upstream-1ln92mxk\\claude-for-manufacturing\\shared\\scripts\\plant_setup.py\", line 1363, in main\n    return _selftest()\n  File \"C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\lmfg-upstream-1ln92mxk\\claude-for-manufacturing\\shared\\scripts\\plant_setup.py\", line 1349, in _selftest\n    _work_selftest(t)\n    ~~~~~~~~~~~~~~^^^\n  File \"C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\lmfg-upstream-1ln92mxk\\claude-for-manufacturing\\shared\\scripts\\plant_setup.py\", line 1113, in _work_selftest\n    assert i1[\"changed\"] and len(i1[\"files\"]) == 2 and i1[\"work_path\"].endswith(\"plant-setup/open-work/open-work.md\"), i1\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'work_path': 'C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\tmp3l1ovrbq\\\\other\\\\plant-setup\\\\open-work\\\\open-work.md', 'company': 'Example Manufacturing', 'sha256': 'f34da4fc2c878fb334149c83349495c751f738da5b24dd15257e30e33ac7b217', 'files': ['inquiries/example-hydraulics-EH-RFQ-0912.intake.txt', 'sourcing/SRC-2026-10-14-PN-4471-B-BO/example-finishing.bid.txt'], 'changed': True, 'persistent': False}\n"
+      "output_tail": "istrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-upstream-kz5w7cm9\\\\claude-for-manufacturing\\\\shared\\\\scripts\\\\plant_setup.py\\\" stamp --profile <that path>, then render --profile <that path> --out <a working folder>; read the page itself with the artifact tools (Artifact, or mcp__claude-artifacts__* in Cowork), action read and url only (reading the file does not count), in a step before the publish; publish to this page's url with the file_path and files render printed (the page is rebuilt from the file on purpose, so a refusal saying the content leaves out the live page's text is answered by publishing the same files once more); then read setup/plant-context.txt back from the page and run saved --from <that file> --sha256 <render's sha256> --title <render's title>, and show its line word for word. If this run also publishes its own result (a dashboard, register or report page), save this page first and publish the result last; if the result had to come first, finish by opening the result (action open with its url) and end the reply with its link, so the person sees the result, not this page.\"}\nTraceback (most recent call last):\n  File \"C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\lmfg-upstream-kz5w7cm9\\claude-for-manufacturing\\shared\\scripts\\plant_setup.py\", line 1419, in <module>\n    sys.exit(main())\n             ~~~~^^\n  File \"C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\lmfg-upstream-kz5w7cm9\\claude-for-manufacturing\\shared\\scripts\\plant_setup.py\", line 1363, in main\n    return _selftest()\n  File \"C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\lmfg-upstream-kz5w7cm9\\claude-for-manufacturing\\shared\\scripts\\plant_setup.py\", line 1349, in _selftest\n    _work_selftest(t)\n    ~~~~~~~~~~~~~~^^^\n  File \"C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\lmfg-upstream-kz5w7cm9\\claude-for-manufacturing\\shared\\scripts\\plant_setup.py\", line 1113, in _work_selftest\n    assert i1[\"changed\"] and len(i1[\"files\"]) == 2 and i1[\"work_path\"].endswith(\"plant-setup/open-work/open-work.md\"), i1\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'work_path': 'C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\tmpoliy7ta9\\\\other\\\\plant-setup\\\\open-work\\\\open-work.md', 'company': 'Example Manufacturing', 'sha256': 'f34da4fc2c878fb334149c83349495c751f738da5b24dd15257e30e33ac7b217', 'files': ['inquiries/example-hydraulics-EH-RFQ-0912.intake.txt', 'sourcing/SRC-2026-10-14-PN-4471-B-BO/example-finishing.bid.txt'], 'changed': True, 'persistent': False}\n"
     },
     {
       "id": "run:skills/morning-plant-pulse/scripts/pulse_compute.py",
@@ -146,7 +146,7 @@
         "periods.json": "0c80ada4a687f0607f79c47109a01f4c9bfb2edaa1a381b36c965214cff9a43e",
         "pulse_model.json": "b8fb12ddc6c7d2da780e4bc94585931b86ad505711cb343c94ff07eb13333eec"
       },
-      "command": "C:\\Users\\Administrator\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe -I skills/morning-plant-pulse/scripts/pulse_compute.py --exports C:\\LMFG\\repo\\tests\\upstream\\fixtures\\pulse_minimal --out C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\lmfg-upstream-1ln92mxk\\pulse-output --day 2026-11-12 --run-time 2026-11-13T06:00:00 --tz UTC",
+      "command": "C:\\Users\\Administrator\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe -I skills/morning-plant-pulse/scripts/pulse_compute.py --exports C:\\LMFG\\repo\\tests\\upstream\\fixtures\\pulse_minimal --out C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\lmfg-upstream-kz5w7cm9\\pulse-output --day 2026-11-12 --run-time 2026-11-13T06:00:00 --tz UTC",
       "exit_code": 0,
       "traceback": false,
       "output_tail": "site: SITE-1 | production day: 2026-11-12 (requested) | data complete: True\nassumption: Production-day rule: calendar day, plant local (assumed; no plant profile and no MES shift labels).\ndata problems (numbered): 0 | checked, nothing wrong: 0 | exceptions: 0\nOEE 2026-11-12: availability None, performance None, quality None, composite None\ndowntime 2026-11-12: 65 min trusted, 2 events, 0 open | scrap priced $None | downtime $ unpriced (unset)\nfigures: 355 rows | day records: 1 | self-checks: 47 run, 0 failed\n"
@@ -162,10 +162,10 @@
         "periods.json": "0c80ada4a687f0607f79c47109a01f4c9bfb2edaa1a381b36c965214cff9a43e",
         "pulse_model.json": "b8fb12ddc6c7d2da780e4bc94585931b86ad505711cb343c94ff07eb13333eec"
       },
-      "command": "C:\\Users\\Administrator\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe -I skills/morning-plant-pulse/scripts/render_short.py --out C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\lmfg-upstream-1ln92mxk\\pulse-output --day 2026-11-12",
+      "command": "C:\\Users\\Administrator\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe -I skills/morning-plant-pulse/scripts/render_short.py --out C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\lmfg-upstream-kz5w7cm9\\pulse-output --day 2026-11-12",
       "exit_code": 0,
       "traceback": false,
-      "output_tail": "short page: C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\lmfg-upstream-1ln92mxk\\pulse-output\\operations-short-SITE-1-2026-11-12.html | 3 views (1 days) | checks passed\ndecision 1: Machine: CNC-01. Safety status: not assessed. Confirm whether CNC-01 is still down, then run a breakdown diagnosis. CNC-01 carries 69% of downtime minutes month to date (45 of 65 min); MES reason text “tool change overrun”.\nthen: Nothing else is waiting on a decision. Details on the full Operations page (in this run's reply).\n"
+      "output_tail": "short page: C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\lmfg-upstream-kz5w7cm9\\pulse-output\\operations-short-SITE-1-2026-11-12.html | 3 views (1 days) | checks passed\ndecision 1: Machine: CNC-01. Safety status: not assessed. Confirm whether CNC-01 is still down, then run a breakdown diagnosis. CNC-01 carries 69% of downtime minutes month to date (45 of 65 min); MES reason text “tool change overrun”.\nthen: Nothing else is waiting on a decision. Details on the full Operations page (in this run's reply).\n"
     },
     {
       "id": "integrity:no-writes-into-plugin-tree",

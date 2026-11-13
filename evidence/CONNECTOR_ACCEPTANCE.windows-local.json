@@ -1,0 +1,324 @@
+{
+  "source_commit": "df0f8b60029ce4fe8c293eeb84b402c88a4fc609",
+  "executed_at_utc": "2026-11-13T20:12:19+00:00",
+  "environment": {
+    "python": "3.14.7",
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "os_name": "nt",
+    "ci": false,
+    "github_run_id": null,
+    "github_workflow": null,
+    "github_job": null
+  },
+  "command": "python -I tools/connector_acceptance.py",
+  "inputs": {},
+  "status": "BLOCKED",
+  "counts": {
+    "live_tests": 38,
+    "PASS": 0,
+    "FAIL": 0,
+    "BLOCKED": 38
+  },
+  "gate_b": "4/4 contract implementations are evidenced separately (CONNECTOR_CONTRACTS.json); 0/4 LIVE",
+  "systems": {
+    "B01 Autodesk Fusion": {
+      "live_tests": [
+        {
+          "id": "B01-T01",
+          "name": "Connect to a running Fusion desktop MCP instance",
+          "status": "BLOCKED",
+          "reason": "no Fusion desktop MCP endpoint: FUSION_MCP_UNREACHABLE <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>"
+        },
+        {
+          "id": "B01-T02",
+          "name": "Read the active design and its document identity",
+          "status": "BLOCKED",
+          "reason": "no Fusion desktop MCP endpoint: FUSION_MCP_UNREACHABLE <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>"
+        },
+        {
+          "id": "B01-T03",
+          "name": "Read parameters; driving vs non-driving",
+          "status": "BLOCKED",
+          "reason": "no Fusion desktop MCP endpoint: FUSION_MCP_UNREACHABLE <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>"
+        },
+        {
+          "id": "B01-T04",
+          "name": "Create a variant as a new document; original unmodified",
+          "status": "BLOCKED",
+          "reason": "no Fusion desktop MCP endpoint: FUSION_MCP_UNREACHABLE <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>"
+        },
+        {
+          "id": "B01-T05",
+          "name": "Geometry regeneration and physical-property readback",
+          "status": "BLOCKED",
+          "reason": "no Fusion desktop MCP endpoint: FUSION_MCP_UNREACHABLE <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>"
+        },
+        {
+          "id": "B01-T06",
+          "name": "Reject invalid parameter changes",
+          "status": "BLOCKED",
+          "reason": "no Fusion desktop MCP endpoint: FUSION_MCP_UNREACHABLE <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>"
+        },
+        {
+          "id": "B01-T07",
+          "name": "Document integrity before and after writes",
+          "status": "BLOCKED",
+          "reason": "no Fusion desktop MCP endpoint: FUSION_MCP_UNREACHABLE <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>"
+        },
+        {
+          "id": "B01-T08",
+          "name": "Validate supported CAM operation estimates",
+          "status": "BLOCKED",
+          "reason": "no Fusion desktop MCP endpoint: FUSION_MCP_UNREACHABLE <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>"
+        },
+        {
+          "id": "B01-T09",
+          "name": "Deny modification through read-only operations",
+          "status": "BLOCKED",
+          "reason": "no Fusion desktop MCP endpoint: FUSION_MCP_UNREACHABLE <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>"
+        },
+        {
+          "id": "B01-T10",
+          "name": "Disconnect; fail closed",
+          "status": "BLOCKED",
+          "reason": "no Fusion desktop MCP endpoint: FUSION_MCP_UNREACHABLE <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>"
+        }
+      ],
+      "probe": {
+        "endpoint": "http://127.0.0.1:27182/mcp",
+        "state": "UNAVAILABLE",
+        "history": [
+          [
+            "DISCONNECTED",
+            null
+          ],
+          [
+            "CONFIGURED",
+            null
+          ],
+          [
+            "UNAVAILABLE",
+            "FUSION_MCP_UNREACHABLE <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>"
+          ]
+        ]
+      },
+      "live": "BLOCKED"
+    },
+    "B02 Microsoft 365": {
+      "live_tests": [
+        {
+          "id": "B02-T01",
+          "name": "Authenticate with permitted scopes",
+          "status": "BLOCKED",
+          "reason": "no authorized tenant configured (LMFG_M365_TENANT_ID, LMFG_M365_CLIENT_ID, LMFG_M365_TOKEN not set); no request was made"
+        },
+        {
+          "id": "B02-T02",
+          "name": "Read one actual authorized RFQ",
+          "status": "BLOCKED",
+          "reason": "no authorized tenant configured (LMFG_M365_TENANT_ID, LMFG_M365_CLIENT_ID, LMFG_M365_TOKEN not set); no request was made"
+        },
+        {
+          "id": "B02-T03",
+          "name": "Fetch its attachments",
+          "status": "BLOCKED",
+          "reason": "no authorized tenant configured (LMFG_M365_TENANT_ID, LMFG_M365_CLIENT_ID, LMFG_M365_TOKEN not set); no request was made"
+        },
+        {
+          "id": "B02-T04",
+          "name": "Extract fields and preserve source references",
+          "status": "BLOCKED",
+          "reason": "no authorized tenant configured (LMFG_M365_TENANT_ID, LMFG_M365_CLIENT_ID, LMFG_M365_TOKEN not set); no request was made"
+        },
+        {
+          "id": "B02-T05",
+          "name": "Read a permitted manufacturing export",
+          "status": "BLOCKED",
+          "reason": "no authorized tenant configured (LMFG_M365_TENANT_ID, LMFG_M365_CLIENT_ID, LMFG_M365_TOKEN not set); no request was made"
+        },
+        {
+          "id": "B02-T06",
+          "name": "Deny unauthorized document access",
+          "status": "BLOCKED",
+          "reason": "no authorized tenant configured (LMFG_M365_TENANT_ID, LMFG_M365_CLIENT_ID, LMFG_M365_TOKEN not set); no request was made"
+        },
+        {
+          "id": "B02-T07",
+          "name": "Reject expired credentials",
+          "status": "BLOCKED",
+          "reason": "no authorized tenant configured (LMFG_M365_TENANT_ID, LMFG_M365_CLIENT_ID, LMFG_M365_TOKEN not set); no request was made"
+        },
+        {
+          "id": "B02-T08",
+          "name": "Zero unauthorized writes",
+          "status": "BLOCKED",
+          "reason": "no authorized tenant configured (LMFG_M365_TENANT_ID, LMFG_M365_CLIENT_ID, LMFG_M365_TOKEN not set); no request was made"
+        }
+      ],
+      "probe": {
+        "required_env": [
+          "LMFG_M365_TENANT_ID",
+          "LMFG_M365_CLIENT_ID",
+          "LMFG_M365_TOKEN"
+        ],
+        "missing": [
+          "LMFG_M365_TENANT_ID",
+          "LMFG_M365_CLIENT_ID",
+          "LMFG_M365_TOKEN"
+        ]
+      },
+      "live": "BLOCKED"
+    },
+    "B03 Oracle NetSuite": {
+      "live_tests": [
+        {
+          "id": "B03-T01",
+          "name": "Authorized connection",
+          "status": "BLOCKED",
+          "reason": "no authorized tenant configured (LMFG_NETSUITE_ACCOUNT, LMFG_NETSUITE_TOKEN not set); no request was made"
+        },
+        {
+          "id": "B03-T02",
+          "name": "Subsidiary and location scoping",
+          "status": "BLOCKED",
+          "reason": "no authorized tenant configured (LMFG_NETSUITE_ACCOUNT, LMFG_NETSUITE_TOKEN not set); no request was made"
+        },
+        {
+          "id": "B03-T03",
+          "name": "Item record retrieval",
+          "status": "BLOCKED",
+          "reason": "no authorized tenant configured (LMFG_NETSUITE_ACCOUNT, LMFG_NETSUITE_TOKEN not set); no request was made"
+        },
+        {
+          "id": "B03-T04",
+          "name": "Supplier record retrieval",
+          "status": "BLOCKED",
+          "reason": "no authorized tenant configured (LMFG_NETSUITE_ACCOUNT, LMFG_NETSUITE_TOKEN not set); no request was made"
+        },
+        {
+          "id": "B03-T05",
+          "name": "Historical cost retrieval",
+          "status": "BLOCKED",
+          "reason": "no authorized tenant configured (LMFG_NETSUITE_ACCOUNT, LMFG_NETSUITE_TOKEN not set); no request was made"
+        },
+        {
+          "id": "B03-T06",
+          "name": "Purchase-order and demand retrieval",
+          "status": "BLOCKED",
+          "reason": "no authorized tenant configured (LMFG_NETSUITE_ACCOUNT, LMFG_NETSUITE_TOKEN not set); no request was made"
+        },
+        {
+          "id": "B03-T07",
+          "name": "Missing records not converted to zero",
+          "status": "BLOCKED",
+          "reason": "no authorized tenant configured (LMFG_NETSUITE_ACCOUNT, LMFG_NETSUITE_TOKEN not set); no request was made"
+        },
+        {
+          "id": "B03-T08",
+          "name": "Cross-tenant access denied",
+          "status": "BLOCKED",
+          "reason": "no authorized tenant configured (LMFG_NETSUITE_ACCOUNT, LMFG_NETSUITE_TOKEN not set); no request was made"
+        },
+        {
+          "id": "B03-T09",
+          "name": "Unauthorized writes denied",
+          "status": "BLOCKED",
+          "reason": "no authorized tenant configured (LMFG_NETSUITE_ACCOUNT, LMFG_NETSUITE_TOKEN not set); no request was made"
+        },
+        {
+          "id": "B03-T10",
+          "name": "Source record identity preserved",
+          "status": "BLOCKED",
+          "reason": "no authorized tenant configured (LMFG_NETSUITE_ACCOUNT, LMFG_NETSUITE_TOKEN not set); no request was made"
+        }
+      ],
+      "probe": {
+        "required_env": [
+          "LMFG_NETSUITE_ACCOUNT",
+          "LMFG_NETSUITE_TOKEN"
+        ],
+        "missing": [
+          "LMFG_NETSUITE_ACCOUNT",
+          "LMFG_NETSUITE_TOKEN"
+        ]
+      },
+      "live": "BLOCKED"
+    },
+    "B04 Infor M3": {
+      "live_tests": [
+        {
+          "id": "B04-T01",
+          "name": "Signed-in M3 user context",
+          "status": "BLOCKED",
+          "reason": "no authorized tenant configured (LMFG_M3_MCP_URL, LMFG_M3_TOKEN not set); no request was made"
+        },
+        {
+          "id": "B04-T02",
+          "name": "Company, division, facility and warehouse scopes",
+          "status": "BLOCKED",
+          "reason": "no authorized tenant configured (LMFG_M3_MCP_URL, LMFG_M3_TOKEN not set); no request was made"
+        },
+        {
+          "id": "B04-T03",
+          "name": "Item master records",
+          "status": "BLOCKED",
+          "reason": "no authorized tenant configured (LMFG_M3_MCP_URL, LMFG_M3_TOKEN not set); no request was made"
+        },
+        {
+          "id": "B04-T04",
+          "name": "Inventory and inspection status",
+          "status": "BLOCKED",
+          "reason": "no authorized tenant configured (LMFG_M3_MCP_URL, LMFG_M3_TOKEN not set); no request was made"
+        },
+        {
+          "id": "B04-T05",
+          "name": "Manufacturing-order operations",
+          "status": "BLOCKED",
+          "reason": "no authorized tenant configured (LMFG_M3_MCP_URL, LMFG_M3_TOKEN not set); no request was made"
+        },
+        {
+          "id": "B04-T06",
+          "name": "Operation time units",
+          "status": "BLOCKED",
+          "reason": "no authorized tenant configured (LMFG_M3_MCP_URL, LMFG_M3_TOKEN not set); no request was made"
+        },
+        {
+          "id": "B04-T07",
+          "name": "Purchase-order records",
+          "status": "BLOCKED",
+          "reason": "no authorized tenant configured (LMFG_M3_MCP_URL, LMFG_M3_TOKEN not set); no request was made"
+        },
+        {
+          "id": "B04-T08",
+          "name": "Pagination and date formats",
+          "status": "BLOCKED",
+          "reason": "no authorized tenant configured (LMFG_M3_MCP_URL, LMFG_M3_TOKEN not set); no request was made"
+        },
+        {
+          "id": "B04-T09",
+          "name": "Unavailable data vs zero",
+          "status": "BLOCKED",
+          "reason": "no authorized tenant configured (LMFG_M3_MCP_URL, LMFG_M3_TOKEN not set); no request was made"
+        },
+        {
+          "id": "B04-T10",
+          "name": "No write transaction issued",
+          "status": "BLOCKED",
+          "reason": "no authorized tenant configured (LMFG_M3_MCP_URL, LMFG_M3_TOKEN not set); no request was made"
+        }
+      ],
+      "probe": {
+        "required_env": [
+          "LMFG_M3_MCP_URL",
+          "LMFG_M3_TOKEN"
+        ],
+        "missing": [
+          "LMFG_M3_MCP_URL",
+          "LMFG_M3_TOKEN"
+        ]
+      },
+      "live": "BLOCKED"
+    }
+  }
+}

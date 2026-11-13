@@ -1,0 +1,455 @@
+{
+  "source_commit": "df0f8b60029ce4fe8c293eeb84b402c88a4fc609",
+  "executed_at_utc": "2026-11-13T20:12:15+00:00",
+  "environment": {
+    "python": "3.14.7",
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "os_name": "nt",
+    "ci": false,
+    "github_run_id": null,
+    "github_workflow": null,
+    "github_job": null
+  },
+  "command": "python -I tools/test_report.py connectors",
+  "inputs": {
+    "suite": "tests/connectors"
+  },
+  "status": "PASS",
+  "counts": {
+    "tests": 51,
+    "PASS": 51,
+    "FAIL": 0,
+    "ERROR": 0,
+    "NOT_RUN": 0,
+    "BLOCKED": 0
+  },
+  "rule": "NOT_RUN and BLOCKED are never counted as PASS; an unexplained skip is a FAIL",
+  "modules": {
+    "test_b01_fusion": {
+      "PASS": 11
+    },
+    "test_b02_m365": {
+      "PASS": 8
+    },
+    "test_b03_netsuite": {
+      "PASS": 11
+    },
+    "test_b04_infor_m3": {
+      "PASS": 14
+    },
+    "test_b05_envelope": {
+      "PASS": 7
+    }
+  },
+  "results": [
+    {
+      "id": "tests.connectors.test_b01_fusion.FusionContract.test_endpoint_comes_from_upstream_mcp_json",
+      "module": "test_b01_fusion",
+      "class": "FusionContract",
+      "test": "test_endpoint_comes_from_upstream_mcp_json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b01_fusion.FusionContract.test_missing_tools_or_no_open_document",
+      "module": "test_b01_fusion",
+      "class": "FusionContract",
+      "test": "test_missing_tools_or_no_open_document",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b01_fusion.FusionContract.test_t01_t02_connect_and_document_identity",
+      "module": "test_b01_fusion",
+      "class": "FusionContract",
+      "test": "test_t01_t02_connect_and_document_identity",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b01_fusion.FusionContract.test_t03_parameters_driving_vs_not",
+      "module": "test_b01_fusion",
+      "class": "FusionContract",
+      "test": "test_t03_parameters_driving_vs_not",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b01_fusion.FusionContract.test_t04_t05_t07_variant_in_new_document_base_untouched",
+      "module": "test_b01_fusion",
+      "class": "FusionContract",
+      "test": "test_t04_t05_t07_variant_in_new_document_base_untouched",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b01_fusion.FusionContract.test_t05_unhealthy_regeneration_is_a_failed_variant",
+      "module": "test_b01_fusion",
+      "class": "FusionContract",
+      "test": "test_t05_unhealthy_regeneration_is_a_failed_variant",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b01_fusion.FusionContract.test_t06_invalid_parameter_changes_rejected_before_any_call",
+      "module": "test_b01_fusion",
+      "class": "FusionContract",
+      "test": "test_t06_invalid_parameter_changes_rejected_before_any_call",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b01_fusion.FusionContract.test_t07_moved_base_version_stops_the_run",
+      "module": "test_b01_fusion",
+      "class": "FusionContract",
+      "test": "test_t07_moved_base_version_stops_the_run",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b01_fusion.FusionContract.test_t09_scripts_checked_and_reads_are_read_only",
+      "module": "test_b01_fusion",
+      "class": "FusionContract",
+      "test": "test_t09_scripts_checked_and_reads_are_read_only",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b01_fusion.FusionContract.test_t10_unreachable_fails_closed",
+      "module": "test_b01_fusion",
+      "class": "FusionContract",
+      "test": "test_t10_unreachable_fails_closed",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b01_fusion.FusionContract.test_writes_only_after_save_as_new",
+      "module": "test_b01_fusion",
+      "class": "FusionContract",
+      "test": "test_writes_only_after_save_as_new",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b02_m365.M365Contract.test_response_from_another_tenant_refused",
+      "module": "test_b02_m365",
+      "class": "M365Contract",
+      "test": "test_response_from_another_tenant_refused",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b02_m365.M365Contract.test_t01_permitted_scopes_only",
+      "module": "test_b02_m365",
+      "class": "M365Contract",
+      "test": "test_t01_permitted_scopes_only",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b02_m365.M365Contract.test_t02_t03_rfq_and_attachments_keep_identity",
+      "module": "test_b02_m365",
+      "class": "M365Contract",
+      "test": "test_t02_t03_rfq_and_attachments_keep_identity",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b02_m365.M365Contract.test_t04_t05_export_rows_carry_file_revision_and_row",
+      "module": "test_b02_m365",
+      "class": "M365Contract",
+      "test": "test_t04_t05_export_rows_carry_file_revision_and_row",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b02_m365.M365Contract.test_t06_denied_is_denied_not_empty",
+      "module": "test_b02_m365",
+      "class": "M365Contract",
+      "test": "test_t06_denied_is_denied_not_empty",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b02_m365.M365Contract.test_t07_expired_credentials",
+      "module": "test_b02_m365",
+      "class": "M365Contract",
+      "test": "test_t07_expired_credentials",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b02_m365.M365Contract.test_t08_zero_writes",
+      "module": "test_b02_m365",
+      "class": "M365Contract",
+      "test": "test_t08_zero_writes",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b02_m365.M365Contract.test_wrong_tenant_refused",
+      "module": "test_b02_m365",
+      "class": "M365Contract",
+      "test": "test_wrong_tenant_refused",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b03_netsuite.NetSuiteContract.test_expiry_mid_read_fails_closed",
+      "module": "test_b03_netsuite",
+      "class": "NetSuiteContract",
+      "test": "test_expiry_mid_read_fails_closed",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b03_netsuite.NetSuiteContract.test_record_types_come_from_the_upstream_table",
+      "module": "test_b03_netsuite",
+      "class": "NetSuiteContract",
+      "test": "test_record_types_come_from_the_upstream_table",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b03_netsuite.NetSuiteContract.test_t01_t02_connection_and_scope",
+      "module": "test_b03_netsuite",
+      "class": "NetSuiteContract",
+      "test": "test_t01_t02_connection_and_scope",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b03_netsuite.NetSuiteContract.test_t03_t10_item_identity_preserved",
+      "module": "test_b03_netsuite",
+      "class": "NetSuiteContract",
+      "test": "test_t03_t10_item_identity_preserved",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b03_netsuite.NetSuiteContract.test_t04_supplier",
+      "module": "test_b03_netsuite",
+      "class": "NetSuiteContract",
+      "test": "test_t04_supplier",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b03_netsuite.NetSuiteContract.test_t05_t07_missing_cost_is_null_never_zero",
+      "module": "test_b03_netsuite",
+      "class": "NetSuiteContract",
+      "test": "test_t05_t07_missing_cost_is_null_never_zero",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b03_netsuite.NetSuiteContract.test_t06_demand_sign_convention_and_paging",
+      "module": "test_b03_netsuite",
+      "class": "NetSuiteContract",
+      "test": "test_t06_demand_sign_convention_and_paging",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b03_netsuite.NetSuiteContract.test_t08_cross_tenant_denied",
+      "module": "test_b03_netsuite",
+      "class": "NetSuiteContract",
+      "test": "test_t08_cross_tenant_denied",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b03_netsuite.NetSuiteContract.test_t09_writes_refused_before_transport",
+      "module": "test_b03_netsuite",
+      "class": "NetSuiteContract",
+      "test": "test_t09_writes_refused_before_transport",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b03_netsuite.NetSuiteContract.test_undocumented_record_type_refused",
+      "module": "test_b03_netsuite",
+      "class": "NetSuiteContract",
+      "test": "test_undocumented_record_type_refused",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b03_netsuite.NetSuiteContract.test_unlicensed_feature_is_blocked_not_empty",
+      "module": "test_b03_netsuite",
+      "class": "NetSuiteContract",
+      "test": "test_unlicensed_feature_is_blocked_not_empty",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b04_infor_m3.AllowList.test_documented_never_called_are_refused_without_a_call",
+      "module": "test_b04_infor_m3",
+      "class": "AllowList",
+      "test": "test_documented_never_called_are_refused_without_a_call",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b04_infor_m3.AllowList.test_reads_come_from_the_upstream_table",
+      "module": "test_b04_infor_m3",
+      "class": "AllowList",
+      "test": "test_reads_come_from_the_upstream_table",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b04_infor_m3.Lifecycle.test_connection_test_error_is_unavailable",
+      "module": "test_b04_infor_m3",
+      "class": "Lifecycle",
+      "test": "test_connection_test_error_is_unavailable",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b04_infor_m3.Lifecycle.test_expired_credential_fails_closed",
+      "module": "test_b04_infor_m3",
+      "class": "Lifecycle",
+      "test": "test_expired_credential_fails_closed",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b04_infor_m3.Lifecycle.test_facility_mismatch_is_unavailable",
+      "module": "test_b04_infor_m3",
+      "class": "Lifecycle",
+      "test": "test_facility_mismatch_is_unavailable",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b04_infor_m3.Lifecycle.test_no_profile_scope_is_unavailable_never_unfiltered",
+      "module": "test_b04_infor_m3",
+      "class": "Lifecycle",
+      "test": "test_no_profile_scope_is_unavailable_never_unfiltered",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b04_infor_m3.Lifecycle.test_t01_t02_user_context_and_scope",
+      "module": "test_b04_infor_m3",
+      "class": "Lifecycle",
+      "test": "test_t01_t02_user_context_and_scope",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b04_infor_m3.Reads.test_scope_and_filters_are_enforced",
+      "module": "test_b04_infor_m3",
+      "class": "Reads",
+      "test": "test_scope_and_filters_are_enforced",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b04_infor_m3.Reads.test_t03_item_master",
+      "module": "test_b04_infor_m3",
+      "class": "Reads",
+      "test": "test_t03_item_master",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b04_infor_m3.Reads.test_t04_inspection_status_on_the_balance",
+      "module": "test_b04_infor_m3",
+      "class": "Reads",
+      "test": "test_t04_inspection_status_on_the_balance",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b04_infor_m3.Reads.test_t05_t06_operations_never_use_runtimehours",
+      "module": "test_b04_infor_m3",
+      "class": "Reads",
+      "test": "test_t05_t06_operations_never_use_runtimehours",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b04_infor_m3.Reads.test_t07_purchase_orders_deleted_out_and_currency_never_assumed",
+      "module": "test_b04_infor_m3",
+      "class": "Reads",
+      "test": "test_t07_purchase_orders_deleted_out_and_currency_never_assumed",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b04_infor_m3.Reads.test_t08_pagination_slices_and_both_date_formats",
+      "module": "test_b04_infor_m3",
+      "class": "Reads",
+      "test": "test_t08_pagination_slices_and_both_date_formats",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b04_infor_m3.Reads.test_t09_none_found_is_empty_not_zero_and_other_errors_fail",
+      "module": "test_b04_infor_m3",
+      "class": "Reads",
+      "test": "test_t09_none_found_is_empty_not_zero_and_other_errors_fail",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b05_envelope.B05.test_disconnected_source_is_not_success",
+      "module": "test_b05_envelope",
+      "class": "B05",
+      "test": "test_disconnected_source_is_not_success",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b05_envelope.B05.test_enum_outside_contract_is_blocked",
+      "module": "test_b05_envelope",
+      "class": "B05",
+      "test": "test_enum_outside_contract_is_blocked",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b05_envelope.B05.test_every_upstream_worked_example_is_accepted_unchanged",
+      "module": "test_b05_envelope",
+      "class": "B05",
+      "test": "test_every_upstream_worked_example_is_accepted_unchanged",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b05_envelope.B05.test_missing_fields_are_never_filled",
+      "module": "test_b05_envelope",
+      "class": "B05",
+      "test": "test_missing_fields_are_never_filled",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b05_envelope.B05.test_permission_scope_survives_and_only_narrows",
+      "module": "test_b05_envelope",
+      "class": "B05",
+      "test": "test_permission_scope_survives_and_only_narrows",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b05_envelope.B05.test_source_references_survive_and_tampering_is_detected",
+      "module": "test_b05_envelope",
+      "class": "B05",
+      "test": "test_source_references_survive_and_tampering_is_detected",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.connectors.test_b05_envelope.B05.test_tenant_isolation",
+      "module": "test_b05_envelope",
+      "class": "B05",
+      "test": "test_tenant_isolation",
+      "status": "PASS",
+      "detail": ""
+    }
+  ]
+}

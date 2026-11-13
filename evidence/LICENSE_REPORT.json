@@ -1,6 +1,6 @@
 {
-  "source_commit": "7bdcdfc0578db1d6bd26d64f925874cadef15855",
-  "executed_at_utc": "2026-11-13T18:22:57+00:00",
+  "source_commit": "df0f8b60029ce4fe8c293eeb84b402c88a4fc609",
+  "executed_at_utc": "2026-11-13T20:12:23+00:00",
   "environment": {
     "python": "3.14.7",
     "implementation": "CPython",
@@ -13,14 +13,14 @@
   },
   "command": "python3 -I tools/repo_policy.py",
   "inputs": {
-    "tracked_files": 140,
+    "tracked_files": 207,
     "license_matrix": "LICENSE_MATRIX.json"
   },
   "schema": "legion.manufacturing.evidence.license-report.v1",
   "work_order": "WO-A01/WO-A02",
   "status": "PASS",
   "counts": {
-    "tracked_files_scanned": 139,
+    "tracked_files_scanned": 206,
     "secret_findings": 0,
     "forbidden_copies": 0
   },
@@ -32,12 +32,16 @@
   "forbidden_copies": [],
   "license_matrix_sources": [
     "anthropics/claude-plugins-official plugins/claude-for-manufacturing @099387b7: VENDORED_VERBATIM into upstream/claude-for-manufacturing; LICENSE retained; no modification",
-    "veraxis-protocol/LEGION-Deal-Rescue @6d5563af: COPY_PERMITTED with LICENSE+NOTICE retained; this is the lawful path to reuse commerce_adapter (WO-F01/F02)",
-    "veraxis-protocol/LEGION-Commerce @94a3e938: DO NOT COPY from this repository; use the Apache-2.0 copy in LEGION-Deal-Rescue or an owner grant",
-    "veraxis-protocol/LEGION-Marketplace @03213868: DO NOT COPY pending owner decision on commercial use; invoke as external pinned dependency, or use Apache-2.0 snapshot f34111a if the owner prefers",
-    "veraxis-protocol/LEGION-Federation @622a0896: DO NOT COPY pending owner decision; external pinned dependency",
-    "veraxis-protocol/LEGION-Formal-Core @fa1f3082: DO NOT COPY pending owner decision; external pinned dependency",
-    "inventor1975/ztl-engineer @91d11672: COPY_PERMITTED with LICENSE retained; integration via its executable interface (WO-D02)"
+    "veraxis-protocol/LEGION-Deal-Rescue @6d5563af: REUSED BY PINNED FETCH, NOT COPIED (WO-LMFG-002/D01): deal_rescue/industrial cad_xcaf, cad_bom, cad027_review, ztl_gate, pmix_adapter and two samples are fetched at 6d5563af at test time into git-ignored _deps/, verified by git blob SHA-1, size and SHA-256 (legion/engineering/DEAL_RESCUE_PIN.json), never edited. The license is that of the CURRENT pinned code (its own PROVENANCE_AND_LICENSE.md: deal_rescue/ Apache-2.0), not an older snapshot. commerce_adapter reuse remains WO-F01/F02 and is not done here.",
+    "veraxis-protocol/LEGION-Commerce @94a3e938: NOT COPIED, NOT IMPORTED (no license declared). No payment code is touched by WO-LMFG-002.",
+    "veraxis-protocol/LEGION-Marketplace @03213868: NOT COPIED, NOT IMPORTED, NOT EXECUTED. Commercial use needs the owner's written grant for the CURRENT code. The Apache-2.0 snapshot f34111a is NOT treated as authorization for current code (WO-LMFG-002 item 7); using it would be a separate, explicit owner decision.",
+    "veraxis-protocol/LEGION-Federation @622a0896: NOT COPIED, NOT IMPORTED, NOT EXECUTED. As Marketplace: snapshot 372cacc is not treated as authorization for current code.",
+    "veraxis-protocol/LEGION-Formal-Core @fa1f3082: NOT COPIED, NOT IMPORTED, NOT EXECUTED pending the owner's commercial-use decision",
+    "inventor1975/ztl-engineer @91d11672: COPY_PERMITTED with LICENSE retained; integration via its executable interface (WO-D02)",
+    "Seeed-Projects/reBot-DevArm @22f002a2 (reBot B601 DM STEP and readme): REFERENCE INPUT ONLY: downloaded at test time in CI from the pinned commit, size and SHA-256 checked, never committed or redistributed (.lmfg_cache/ is git-ignored)",
+    "PyPI PyYAML 6.0.3: CI-only install, hash-pinned (requirements-ci.txt); reads the upstream contracts' YAML examples",
+    "PyPI cadquery-ocp 8.0.1.1.0, cadquery-ocp-proxy 8.0.1.1.0, vtk 9.6.2: CAD CI job only, hash-pinned, --no-deps (requirements-cad.txt); not redistributed",
+    "pmix (via LEGION-Deal-Rescue third_party): pmix_adapter.py is pinned because cad_bom imports it for .step; it is never executed (STEP goes through cad_xcaf)"
   ],
   "open_owner_decisions": [
     "License for LEGION-authored code in this repository",

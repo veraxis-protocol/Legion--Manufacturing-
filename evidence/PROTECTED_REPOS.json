@@ -1,6 +1,6 @@
 {
-  "source_commit": "7bdcdfc0578db1d6bd26d64f925874cadef15855",
-  "executed_at_utc": "2026-11-13T18:22:59+00:00",
+  "source_commit": "df0f8b60029ce4fe8c293eeb84b402c88a4fc609",
+  "executed_at_utc": "2026-11-13T20:12:25+00:00",
   "environment": {
     "python": "3.14.7",
     "implementation": "CPython",
@@ -64,8 +64,8 @@
     {
       "repository": "anthropics/claude-plugins-official",
       "pinned": "099387b7a2ea02022bb850becca750246ae12562",
-      "remote_head": "099387b7a2ea02022bb850becca750246ae12562",
-      "status": "PASS",
+      "remote_head": "893173fb82a7184fcf3f08ae55930016d84fd588",
+      "status": "MOVED",
       "protected": false
     }
   ],
