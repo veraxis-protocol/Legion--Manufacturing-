@@ -23,8 +23,7 @@ FIND = "plant_setup.py find"
 
 SKILLS = [
     {"id": "C01", "skill": "onboarding", "deterministic_code": ["plant_setup.py find", "plant_setup.py render",
-                                                                 "plant_setup.py install", "plant_setup.py stamp",
-                                                                 "plant_setup.py saved", "plant_setup.py put"],
+                                                                 "plant_setup.py install", "plant_setup.py stamp"],
      "file_only": True, "file_only_quote": "takes a bulk drop of the plant's own documents",
      "live_required": [], "live_optional": ["Microsoft 365", "Oracle NetSuite", "Infor M3", "Autodesk Fusion"],
      "live_quote": "tests the four supported connectors", "produces": ["plant profile"], "consumes": []},

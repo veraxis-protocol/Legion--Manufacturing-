@@ -32,7 +32,8 @@ def main(path: str) -> int:
             note = c.get("upstream_defect") or (f"self-checks {c['self_checks']}" if c.get("self_checks") else "")
             print(f"| {c['status']} | `{c['id']}` | {note or ''} |")
         print()
-    if d.get("skills"):
+    if isinstance(d.get("skills"), list) and d["skills"] and isinstance(d["skills"][0], dict) \
+            and "verdict" in d["skills"][0]:          # the per-skill matrix (Phase A files use "skills" differently)
         print("| id | skill | mode | verdict | PASS | FAIL | NOT RUN | BLOCKED |\n|---|---|---|---|---|---|---|---|")
         for s in d["skills"]:
             c = s["counts"]
