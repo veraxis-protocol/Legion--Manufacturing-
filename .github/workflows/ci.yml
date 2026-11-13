@@ -13,57 +13,97 @@ permissions:
 env:
   PYTHONDONTWRITEBYTECODE: "1"
 
+# Actions are pinned by commit SHA, resolved with `git ls-remote` from the official tags:
+#   actions/checkout        v7.0.1 -> 3d3c42e5aac5ba805825da76410c181273ba90b1
+#   actions/upload-artifact v7.0.2 -> cf430e030ddbb5b0abf93d22962f4752f3646cd9
+# Every evidence job writes its JSON to the public job summary and uploads it as an artifact, also on failure.
+
 jobs:
   source-integrity:
     name: Source integrity (INV-01, WO-A02)
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - run: python3 --version
       - name: Verify every imported file against the manifest
-        run: python3 -I tools/upstream_manifest.py verify --evidence evidence/SOURCE_MANIFEST.json && cat evidence/SOURCE_MANIFEST.json
+        run: python3 -I tools/upstream_manifest.py verify --evidence evidence/SOURCE_MANIFEST.json
+      - name: Publish evidence
+        if: always()
+        run: python3 -I tools/ci_summary.py evidence/SOURCE_MANIFEST.json >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: evidence-source-integrity
+          path: evidence/SOURCE_MANIFEST.json
+          if-no-files-found: error
 
   policy:
     name: License compliance and secret scan (WO-A01)
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - run: python3 -I tools/repo_policy.py --evidence evidence/LICENSE_REPORT.json && cat evidence/LICENSE_REPORT.json
+      - run: python3 -I tools/repo_policy.py --evidence evidence/LICENSE_REPORT.json
+      - name: Publish evidence
+        if: always()
+        run: python3 -I tools/ci_summary.py evidence/LICENSE_REPORT.json >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: evidence-license-report
+          path: evidence/LICENSE_REPORT.json
+          if-no-files-found: error
 
   protected-repos:
     name: Protected repositories unchanged (INV-09)
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - run: python3 -I tools/protected_pins.py --evidence evidence/PROTECTED_REPOS.json && cat evidence/PROTECTED_REPOS.json
+      - run: python3 -I tools/protected_pins.py --evidence evidence/PROTECTED_REPOS.json
+      - name: Publish evidence
+        if: always()
+        run: python3 -I tools/ci_summary.py evidence/PROTECTED_REPOS.json >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: evidence-protected-repos
+          path: evidence/PROTECTED_REPOS.json
+          if-no-files-found: error
 
   upstream-baseline:
     name: Anthropic upstream executable baseline (WO-A03)
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - run: python3 --version
       - name: Run upstream entrypoints on a copy of the import
-        run: python3 -I tools/upstream_baseline.py --evidence evidence/UPSTREAM_BASELINE.json && cat evidence/UPSTREAM_BASELINE.json
+        run: python3 -I tools/upstream_baseline.py --evidence evidence/UPSTREAM_BASELINE.json
+      - name: Publish evidence
+        if: always()
+        run: python3 -I tools/ci_summary.py evidence/UPSTREAM_BASELINE.json >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: evidence-upstream-baseline
+          path: evidence/UPSTREAM_BASELINE.json
+          if-no-files-found: error
 
   unit-tests:
     name: Unit tests
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - run: python3 -m unittest discover -s tests -p "test_*.py" -v

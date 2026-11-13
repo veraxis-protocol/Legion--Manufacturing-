@@ -5,5 +5,6 @@ python_ci=3.12 (ubuntu-24.04 system python3)
 python_local_verified=3.14.7 (Windows 11, this work order's first run)
 third_party_packages=none
 github_actions:
-  actions/checkout=11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2, pinned by commit
+  actions/checkout=3d3c42e5aac5ba805825da76410c181273ba90b1         # v7.0.1 (ls-remote verified)
+  actions/upload-artifact=cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2 (ls-remote verified)
 upstream_pin=anthropics/claude-plugins-official@099387b7a2ea02022bb850becca750246ae12562
