@@ -73,7 +73,7 @@ def counts(rows) -> dict:
 
 def stand_suite(rt) -> dict:
     """ztl-stand's own tests/test_stand.py (a script that prints OK/FAIL per check and a final summary line)."""
-    env = dict(rt.env(), PYTHONPATH=str(rt.stand), OPENBLAS_NUM_THREADS="1")
+    env = dict(rt.env(), PYTHONPATH=C.A().stand_pythonpath(rt), OPENBLAS_NUM_THREADS="1")
     cmd = [sys.executable, "-m", "tests.test_stand"]
     try:
         p = subprocess.run(cmd, cwd=str(rt.stand), env=env, capture_output=True, encoding="utf-8", errors="replace",

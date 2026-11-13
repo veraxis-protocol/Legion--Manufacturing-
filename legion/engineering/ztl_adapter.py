@@ -190,6 +190,12 @@ def map_verdict(call: dict) -> str:
     return VERDICT_MAP.get(call.get("stand_verdict"), Z)
 
 
+def stand_pythonpath(rt: Runtime) -> str:
+    """The stand first; an existing PYTHONPATH (packages installed outside a venv) is kept after it."""
+    extra = os.environ.get("PYTHONPATH")
+    return str(rt.stand) + (os.pathsep + extra if extra else "")
+
+
 def expected_judge(rt: Runtime) -> str:
     """ustand/judge_ztl.ztl_commit() reports `git rev-parse --short HEAD` of USTAND_ZTL; it must be the pinned ZTL."""
     return "ZTL " + rt.commits["ZTL"][:7]
@@ -206,7 +212,7 @@ def stand_dev_check(brick: dict, rt: Runtime, time_limit_s: int = DEFAULT_TIME_L
         path = Path(d) / "brick.json"
         path.write_text(json.dumps(brick), encoding="utf-8")
         cmd = [rt.python, "-m", "ustand.stand", str(path), "--dev"]
-        env = dict(rt.env(), PYTHONPATH=str(rt.stand), OPENBLAS_NUM_THREADS="1")
+        env = dict(rt.env(), PYTHONPATH=stand_pythonpath(rt), OPENBLAS_NUM_THREADS="1")
         try:
             p = subprocess.run(cmd, cwd=d, env=env, capture_output=True, encoding="utf-8", errors="replace",
                                timeout=time_limit_s)
