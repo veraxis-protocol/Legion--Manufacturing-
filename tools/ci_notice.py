@@ -16,8 +16,10 @@ def main(path: str) -> int:
         return 0
     d = json.loads(p.read_text(encoding="utf-8"))
     sha = hashlib.sha256(p.read_bytes()).hexdigest()
-    counts = " ".join(f"{k}={v}" for k, v in (d.get("counts") or {}).items())
-    print(f"::notice title={p.name}::status={d.get('status')} {counts} sha256={sha} source_commit={d.get('source_commit')}")
+    counts = " ".join(f"{k}={v}" for k, v in (d.get("counts") or {}).items() if not isinstance(v, (dict, list)))
+    gate = f" gate_d02={d['gate_d02']}" if "gate_d02" in d else ""
+    print(f"::notice title={p.name}::status={d.get('status')}{gate} {counts} sha256={sha} "
+          f"source_commit={d.get('source_commit')}")
     return 0
 
 

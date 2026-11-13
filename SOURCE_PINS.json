@@ -1,6 +1,6 @@
 {
  "schema": "legion.manufacturing.source-pins.v1",
- "work_order": "WO-LMFG-001, WO-LMFG-002",
+ "work_order": "WO-LMFG-001, WO-LMFG-002, WO-LMFG-003",
  "pinned_at_utc": "2026-11-13",
  "rule": "Every pin below was resolved with git ls-remote / git cat-file before use. LEGION repositories are READ-ONLY for this work order (INV-09): tools/protected_pins.py fails if any HEAD moves away from its pin.",
  "upstream": {
@@ -65,6 +65,24 @@
    "license": "CERN-OHL-W-2.0",
    "reuse_mode": "DOWNLOADED_AT_TEST_TIME_NOT_REDISTRIBUTED",
    "pins": "legion/engineering/DEAL_RESCUE_PIN.json reference_cad (size + SHA-256 per file)"
+  }
+ ],
+ "third_party": [
+  {
+   "name": "ztl-stand",
+   "repository": "inventor1975/ztl-stand",
+   "revision": "0b4d718fa3bd3105ea002105e0d89cdd76b7b573",
+   "license": "Apache-2.0 OR MIT",
+   "reuse_mode": "PINNED_FETCH_VERIFIED (WO-D02): sparse checkout of this revision in git-ignored _deps/, every file in manifests/ZTL_SOURCE_PINS.json verified (git blob SHA-1, size, SHA-256); never copied into this repository, never modified",
+   "role": "the stand and its independent checker"
+  },
+  {
+   "name": "ZTL",
+   "repository": "inventor1975/ZTL",
+   "revision": "2ba7c209371e90058df4666bb949fc253fe6cc27",
+   "license": "Apache-2.0 OR MIT",
+   "reuse_mode": "PINNED_FETCH_VERIFIED (WO-D02): sparse checkout of this revision in git-ignored _deps/, every file in manifests/ZTL_SOURCE_PINS.json verified (git blob SHA-1, size, SHA-256); never copied into this repository, never modified",
+   "role": "the numeric judge (znumjudge, znumsolve)"
   }
  ]
 }

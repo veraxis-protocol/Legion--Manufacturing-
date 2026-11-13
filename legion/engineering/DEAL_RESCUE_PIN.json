@@ -90,6 +90,41 @@
    "git_blob": "9426d9baa74ec1cb3cead85ce801e65b6d7dd5ce",
    "sha256": "44d4211c4232d50175b46c2f332dba3c7aed1097b1cec610291a3cffc29e237a",
    "bytes": 1076
+  },
+  {
+   "path": "deal_rescue/industrial/admission.py",
+   "git_blob": "323e1d5493c78b42e3304283aaf7d1fa82b934f9",
+   "sha256": "7600a29be731323a5ca51e08f7792e99e89d7aa0c84ed3c3f1c94f8c4ee44a11",
+   "bytes": 3599,
+   "added_by": "WO-LMFG-003"
+  },
+  {
+   "path": "tests/test_cad025_ztl_gate.py",
+   "git_blob": "fb42a0b8cb9e4d202f58a76a82cabc110c079fd2",
+   "sha256": "8fe7f51f2fe63af1a0b8fda01d09bec5523b7aa1dea7645bf3d7ccd960223d96",
+   "bytes": 16918,
+   "added_by": "WO-LMFG-003"
+  },
+  {
+   "path": "tests/judge_real_cad027.py",
+   "git_blob": "4069e23c579a4ae859a24787e34aa9ed8062f528",
+   "sha256": "9808661b43a7045ac4bbc70ec4b4a58e2a02936e39bc805374e23d5e7f8bfa18",
+   "bytes": 5017,
+   "added_by": "WO-LMFG-003"
+  },
+  {
+   "path": "docs/evidence/cad027/ZTL_REVIEW.json",
+   "git_blob": "13e2f74a85392d739e48f3537d60399c872ebf3e",
+   "sha256": "3590bb55f86420bce307bcda9ace3e43a76ac8b6cadbf3c64a4a3fc78d274f24",
+   "bytes": 3952,
+   "added_by": "WO-LMFG-003"
+  },
+  {
+   "path": "docs/evidence/cad027/BOM_VERIFIED.json",
+   "git_blob": "bdd0e841f20b566c76cc0f1c7528cc51c461edd1",
+   "sha256": "bd643a398ba06aaefef80b78da18bf68b1f9d7a271f8ecfb0202fb036942dce3",
+   "bytes": 46718,
+   "added_by": "WO-LMFG-003"
   }
  ],
  "reference_cad": {

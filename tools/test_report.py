@@ -2,7 +2,8 @@
 
   python -I tools/test_report.py skills      --evidence evidence/SKILL_MATRIX.json
   python -I tools/test_report.py connectors  --evidence evidence/CONNECTOR_CONTRACTS.json
-  python -I tools/test_report.py engineering --evidence evidence/CAD_INTEGRATION.json
+  python -I tools/test_report.py engineering --evidence evidence/CAD_INTEGRATION.json   (D01 only)
+  python -I tools/test_report.py verifier    --evidence <file>                         (D02, see tools/d02_run.py)
 
 A skipped test is never PASS: its reason must start with "NOT RUN:" or "BLOCKED:" and it is counted under that
 name; any other skip reason is counted as FAIL (an unexplained skip hides a result). Exit 1 on any FAIL or ERROR.
@@ -23,8 +24,9 @@ sys.path.insert(1, str(ROOT / "tools"))
 
 from lmfg_common import artifact_header, write_json  # noqa: E402
 
-SUITES = {"skills": "tests/manufacturing", "connectors": "tests/connectors", "engineering": "tests/engineering",
-          "all": "tests"}
+SUITES = {"skills": ("tests/manufacturing", "test_*.py"), "connectors": ("tests/connectors", "test_*.py"),
+          "engineering": ("tests/engineering", "test_d01_*.py"), "verifier": ("tests/engineering", "test_d02_*.py"),
+          "all": ("tests", "test_*.py")}
 CLASS_OF = {"test_1_": "1_positive", "test_2_": "2_negative", "test_3_": "3_missing_data", "test_4_": "4_provenance",
             "test_5_": "5_approval_boundary", "test_6_": "6_regression", "test_7_": "model_driven_run",
             "test_8_": "live_systems"}
@@ -63,9 +65,9 @@ class Recorder(unittest.TextTestResult):
             self._row(test, "FAIL", "unexplained skip: " + reason)
 
 
-def run(suite_dir: str) -> list:
+def run(suite_dir: str, pattern: str = "test_*.py") -> list:
     loader = unittest.TestLoader()
-    suite = loader.discover(str(ROOT / suite_dir), pattern="test_*.py", top_level_dir=str(ROOT))
+    suite = loader.discover(str(ROOT / suite_dir), pattern=pattern, top_level_dir=str(ROOT))
     runner = unittest.TextTestRunner(resultclass=Recorder, verbosity=1, stream=sys.stderr)
     return runner.run(suite).rows
 
@@ -92,9 +94,9 @@ def main(argv=None) -> int:
     ap.add_argument("suite", choices=sorted(SUITES))
     ap.add_argument("--evidence", required=True)
     a = ap.parse_args(argv)
-    rows = run(SUITES[a.suite])
+    rows = run(*SUITES[a.suite])
     counts = Counter(r["status"] for r in rows)
-    doc = {**artifact_header(f"python -I tools/test_report.py {a.suite}", {"suite": SUITES[a.suite]}),
+    doc = {**artifact_header(f"python -I tools/test_report.py {a.suite}", {"suite": SUITES[a.suite][0], "pattern": SUITES[a.suite][1]}),
            "status": "FAIL" if counts["FAIL"] or counts["ERROR"] or not rows else "PASS",
            "counts": {"tests": len(rows), **{k: counts.get(k, 0) for k in ("PASS", "FAIL", "ERROR", "NOT_RUN", "BLOCKED")}},
            "rule": "NOT_RUN and BLOCKED are never counted as PASS; an unexplained skip is a FAIL"}

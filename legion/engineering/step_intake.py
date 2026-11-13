@@ -5,7 +5,8 @@ copy that pinned_source.py writes. This module only orders the stages and hands 
 each CNC part becomes a path-C1 `geometry-estimate` (contracts/geometry-estimate.md) inside a B05 envelope.
 
 What is never done: a material or tolerance read from geometry, a feature list recognised from faces, an hours or a
-price figure, or an engineering verdict other than Z (ZTL Engineer verification is WO-D02, not run here).
+price figure. Stage 4 (verification) is Z unless a ZTL runtime is passed (WO-D02, ztl_adapter.rebot_case); even then
+it is F or Z, never T, without an independently authenticated receipt.
 """
 from __future__ import annotations
 
@@ -45,7 +46,7 @@ def _line_with(text: str, needle: str):
 
 
 def step_intake(step_path, readme_path, expected_step_sha256: str, site: str, inquiry_ref: str,
-                tenant: str = "legion-reference") -> dict:
+                tenant: str = "legion-reference", verifier=None) -> dict:
     cad_xcaf, _, R = _modules()
     step_path, readme_path = Path(step_path), Path(readme_path)
     out = {"schema": "legion.manufacturing.cad-intake.v1", "stages": {}, "engineering_verdict": Z}
@@ -67,10 +68,10 @@ def step_intake(step_path, readme_path, expected_step_sha256: str, site: str, in
                                "inferred_fields": xcaf["inferred_fields"]}
     readme_text = readme_path.read_text(encoding="utf-8")
     readme_sha = hashlib.sha256(readme_path.read_bytes()).hexdigest()
-    return assemble(out, xcaf, readme_text, readme_sha, site, inquiry_ref, tenant)
+    return assemble(out, xcaf, readme_text, readme_sha, site, inquiry_ref, tenant, verifier)
 
 
-def assemble(out, xcaf, readme_text, readme_sha, site, inquiry_ref, tenant="legion-reference") -> dict:
+def assemble(out, xcaf, readme_text, readme_sha, site, inquiry_ref, tenant="legion-reference", verifier=None) -> dict:
     """Stages 2-4 and the contract handoff, on an XCAF result (real, or Deal-Rescue's own offline fixture)."""
     _, _, R = _modules()
     # 2 BOM against the factory readme
@@ -96,8 +97,14 @@ def assemble(out, xcaf, readme_text, readme_sha, site, inquiry_ref, tenant="legi
                                      "missing_for_engineering_T": list(R.MISSING_FOR_ENGINEERING_T),
                                      "materials_from_geometry": 0, "tolerances_from_geometry": 0}
     # 4 verification: Z until ZTL Engineer (WO-D02) and an independent attestation exist
-    out["stages"]["verification"] = {"status": Z, "why": "engineering verification is WO-D02 (ZTL Engineer); "
-                                                        "not run in WO-LMFG-002. Nothing here certifies compliance."}
+    out["stages"]["verification"] = {"status": Z, "why": "no verifier runtime given (WO-D02: pass "
+                                                        "verifier=ztl_adapter.runtime()). Nothing here certifies "
+                                                        "compliance."}
+    if verifier is not None:                          # WO-D02: the real ZTL route on what stages 1-3 emitted
+        from legion.engineering import ztl_adapter as A
+        case = A.rebot_case(out, xcaf, readme_text, readme_sha, verifier)
+        out["stages"]["verification"] = {"status": case["verdict"]["ENGINEERING_VERDICT"], **case}
+        out["engineering_verdict"] = case["verdict"]["ENGINEERING_VERDICT"]
     # handoff to Anthropic's quote chain: one path-C1 geometry estimate per CNC part
     revision = {"step_file": xcaf["file"], "step_sha256": xcaf["sha256"],
                 "source_commit": P.load_pin()["reference_cad"]["commit"] if xcaf["sha256"] == P.load_pin()[

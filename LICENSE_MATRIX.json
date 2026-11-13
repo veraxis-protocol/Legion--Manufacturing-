@@ -1,84 +1,114 @@
 {
-  "schema": "legion.manufacturing.license-matrix.v1",
-  "checked_at_utc": "2026-11-13",
-  "method": "LICENSE / NOTICE / pyproject license fields read at each pinned revision with git show <sha>:<file>. Access to source is not treated as a relicensing grant.",
-  "this_repository": {
-    "license": "NOT YET CHOSEN by the owner. No root LICENSE file is added by WO-A01; LEGION-authored files carry no grant until the owner decides.",
-    "vendored_third_party": [
-      "upstream/claude-for-manufacturing (Apache-2.0, its LICENSE kept in place)"
-    ]
+ "schema": "legion.manufacturing.license-matrix.v1",
+ "checked_at_utc": "2026-11-13",
+ "method": "LICENSE / NOTICE / pyproject license fields read at each pinned revision with git show <sha>:<file>. Access to source is not treated as a relicensing grant.",
+ "this_repository": {
+  "license": "NOT YET CHOSEN by the owner. No root LICENSE file is added by WO-A01; LEGION-authored files carry no grant until the owner decides.",
+  "vendored_third_party": [
+   "upstream/claude-for-manufacturing (Apache-2.0, its LICENSE kept in place)"
+  ]
+ },
+ "sources": [
+  {
+   "source": "anthropics/claude-plugins-official plugins/claude-for-manufacturing @099387b7",
+   "license": "Apache-2.0",
+   "evidence": "plugins/claude-for-manufacturing/LICENSE (Apache License 2.0); no NOTICE file in the subtree",
+   "decision": "VENDORED_VERBATIM into upstream/claude-for-manufacturing; LICENSE retained; no modification"
   },
-  "sources": [
-    {
-      "source": "anthropics/claude-plugins-official plugins/claude-for-manufacturing @099387b7",
-      "license": "Apache-2.0",
-      "evidence": "plugins/claude-for-manufacturing/LICENSE (Apache License 2.0); no NOTICE file in the subtree",
-      "decision": "VENDORED_VERBATIM into upstream/claude-for-manufacturing; LICENSE retained; no modification"
-    },
-    {
-      "source": "veraxis-protocol/LEGION-Deal-Rescue @6d5563af",
-      "license": "Apache-2.0",
-      "notice": "NOTICE present: copyright 2026 Veraxis; pmix (MIT) binary not committed; paypal_adapter/commerce_adapter is byte-identical to LEGION-Commerce commerce_adapter @0bb385f9 and released under Apache-2.0 by the owner's decision of 2026-11-09",
-      "decision": "REUSED BY PINNED FETCH, NOT COPIED (WO-LMFG-002/D01): deal_rescue/industrial cad_xcaf, cad_bom, cad027_review, ztl_gate, pmix_adapter and two samples are fetched at 6d5563af at test time into git-ignored _deps/, verified by git blob SHA-1, size and SHA-256 (legion/engineering/DEAL_RESCUE_PIN.json), never edited. The license is that of the CURRENT pinned code (its own PROVENANCE_AND_LICENSE.md: deal_rescue/ Apache-2.0), not an older snapshot. commerce_adapter reuse remains WO-F01/F02 and is not done here."
-    },
-    {
-      "source": "veraxis-protocol/LEGION-Commerce @94a3e938",
-      "license": "NONE_DECLARED",
-      "evidence": "no LICENSE/COPYING/NOTICE at the pinned revision",
-      "decision": "NOT COPIED, NOT IMPORTED (no license declared). No payment code is touched by WO-LMFG-002."
-    },
-    {
-      "source": "veraxis-protocol/LEGION-Marketplace @03213868",
-      "license": "PolyForm-Noncommercial-1.0.0",
-      "notice": "commercial licensing requires separate written authorization; snapshot f34111a was Apache-2.0 before the 2026-11-07 relicensing",
-      "decision": "NOT COPIED, NOT IMPORTED, NOT EXECUTED. Commercial use needs the owner's written grant for the CURRENT code. The Apache-2.0 snapshot f34111a is NOT treated as authorization for current code (WO-LMFG-002 item 7); using it would be a separate, explicit owner decision."
-    },
-    {
-      "source": "veraxis-protocol/LEGION-Federation @622a0896",
-      "license": "PolyForm-Noncommercial-1.0.0",
-      "notice": "snapshot 372cacc was Apache-2.0 before the 2026-11-07 relicensing",
-      "decision": "NOT COPIED, NOT IMPORTED, NOT EXECUTED. As Marketplace: snapshot 372cacc is not treated as authorization for current code."
-    },
-    {
-      "source": "veraxis-protocol/LEGION-Formal-Core @fa1f3082",
-      "license": "PolyForm-Noncommercial-1.0.0",
-      "decision": "NOT COPIED, NOT IMPORTED, NOT EXECUTED pending the owner's commercial-use decision"
-    },
-    {
-      "source": "inventor1975/ztl-engineer @91d11672",
-      "license": "Apache-2.0",
-      "decision": "COPY_PERMITTED with LICENSE retained; integration via its executable interface (WO-D02)"
-    },
-    {
-      "source": "Seeed-Projects/reBot-DevArm @22f002a2 (reBot B601 DM STEP and readme)",
-      "license": "CERN-OHL-W-2.0",
-      "decision": "REFERENCE INPUT ONLY: downloaded at test time in CI from the pinned commit, size and SHA-256 checked, never committed or redistributed (.lmfg_cache/ is git-ignored)"
-    },
-    {
-      "source": "PyPI PyYAML 6.0.3",
-      "license": "MIT",
-      "decision": "CI-only install, hash-pinned (requirements-ci.txt); reads the upstream contracts' YAML examples"
-    },
-    {
-      "source": "PyPI cadquery-ocp 8.0.1.1.0, cadquery-ocp-proxy 8.0.1.1.0, vtk 9.6.2",
-      "license": "Apache-2.0 (OCP, bundling OpenCascade under LGPL-2.1 with exception), Apache-2.0, BSD-3-Clause",
-      "decision": "CAD CI job only, hash-pinned, --no-deps (requirements-cad.txt); not redistributed"
-    },
-    {
-      "source": "pmix (via LEGION-Deal-Rescue third_party)",
-      "license": "MIT",
-      "decision": "pmix_adapter.py is pinned because cad_bom imports it for .step; it is never executed (STEP goes through cad_xcaf)"
-    }
-  ],
-  "open_owner_decisions": [
-    "License for LEGION-authored code in this repository",
-    "Whether LEGION Manufacturing is commercial: if yes, Marketplace/Federation/Formal-Core need a written commercial grant from Veraxis, or the Apache-2.0 snapshots f34111a / 372cacc",
-    "Whether LEGION-Commerce should carry an explicit license (today only its Deal-Rescue copy is Apache-2.0)"
-  ],
-  "wo_lmfg_002_item_7": {
-    "restricted_implementations_copied": 0,
-    "restricted_implementations_imported_or_executed": 0,
-    "status": "BLOCKED_ON_OWNER for any Marketplace / Federation / Formal-Core reuse (Phase E). Nothing in WO-LMFG-002 needs them.",
-    "rule": "Read-only access and earlier Apache-2.0 snapshots are not treated as a grant for current code."
+  {
+   "source": "veraxis-protocol/LEGION-Deal-Rescue @6d5563af",
+   "license": "Apache-2.0",
+   "notice": "NOTICE present: copyright 2026 Veraxis; pmix (MIT) binary not committed; paypal_adapter/commerce_adapter is byte-identical to LEGION-Commerce commerce_adapter @0bb385f9 and released under Apache-2.0 by the owner's decision of 2026-11-09",
+   "decision": "REUSED BY PINNED FETCH, NOT COPIED (WO-LMFG-002/D01): deal_rescue/industrial cad_xcaf, cad_bom, cad027_review, ztl_gate, pmix_adapter and two samples are fetched at 6d5563af at test time into git-ignored _deps/, verified by git blob SHA-1, size and SHA-256 (legion/engineering/DEAL_RESCUE_PIN.json), never edited. The license is that of the CURRENT pinned code (its own PROVENANCE_AND_LICENSE.md: deal_rescue/ Apache-2.0), not an older snapshot. commerce_adapter reuse remains WO-F01/F02 and is not done here."
+  },
+  {
+   "source": "veraxis-protocol/LEGION-Commerce @94a3e938",
+   "license": "NONE_DECLARED",
+   "evidence": "no LICENSE/COPYING/NOTICE at the pinned revision",
+   "decision": "NOT COPIED, NOT IMPORTED (no license declared). No payment code is touched by WO-LMFG-002."
+  },
+  {
+   "source": "veraxis-protocol/LEGION-Marketplace @03213868",
+   "license": "PolyForm-Noncommercial-1.0.0",
+   "notice": "commercial licensing requires separate written authorization; snapshot f34111a was Apache-2.0 before the 2026-11-07 relicensing",
+   "decision": "NOT COPIED, NOT IMPORTED, NOT EXECUTED. Commercial use needs the owner's written grant for the CURRENT code. The Apache-2.0 snapshot f34111a is NOT treated as authorization for current code (WO-LMFG-002 item 7); using it would be a separate, explicit owner decision."
+  },
+  {
+   "source": "veraxis-protocol/LEGION-Federation @622a0896",
+   "license": "PolyForm-Noncommercial-1.0.0",
+   "notice": "snapshot 372cacc was Apache-2.0 before the 2026-11-07 relicensing",
+   "decision": "NOT COPIED, NOT IMPORTED, NOT EXECUTED. As Marketplace: snapshot 372cacc is not treated as authorization for current code."
+  },
+  {
+   "source": "veraxis-protocol/LEGION-Formal-Core @fa1f3082",
+   "license": "PolyForm-Noncommercial-1.0.0",
+   "decision": "NOT COPIED, NOT IMPORTED, NOT EXECUTED pending the owner's commercial-use decision"
+  },
+  {
+   "source": "inventor1975/ztl-engineer @91d11672",
+   "license": "Apache-2.0",
+   "decision": "COPY_PERMITTED with LICENSE retained; integration via its executable interface (WO-D02)"
+  },
+  {
+   "source": "Seeed-Projects/reBot-DevArm @22f002a2 (reBot B601 DM STEP and readme)",
+   "license": "CERN-OHL-W-2.0",
+   "decision": "REFERENCE INPUT ONLY: downloaded at test time in CI from the pinned commit, size and SHA-256 checked, never committed or redistributed (.lmfg_cache/ is git-ignored)"
+  },
+  {
+   "source": "PyPI PyYAML 6.0.3",
+   "license": "MIT",
+   "decision": "CI-only install, hash-pinned (requirements-ci.txt); reads the upstream contracts' YAML examples"
+  },
+  {
+   "source": "PyPI cadquery-ocp 8.0.1.1.0, cadquery-ocp-proxy 8.0.1.1.0, vtk 9.6.2",
+   "license": "Apache-2.0 (OCP, bundling OpenCascade under LGPL-2.1 with exception), Apache-2.0, BSD-3-Clause",
+   "decision": "CAD CI job only, hash-pinned, --no-deps (requirements-cad.txt); not redistributed"
+  },
+  {
+   "source": "pmix (via LEGION-Deal-Rescue third_party)",
+   "license": "MIT",
+   "decision": "pmix_adapter.py is pinned because cad_bom imports it for .step; it is never executed (STEP goes through cad_xcaf)"
+  },
+  {
+   "source": "inventor1975/ztl-engineer @91d11672",
+   "license": "Apache-2.0",
+   "evidence": "LICENSE (Apache License 2.0)",
+   "decision": "PINNED_FETCH_VERIFIED at test time (WO-LMFG-003); executed unmodified as a separate process; not redistributed, not copied; license files retained in the fetched checkout"
+  },
+  {
+   "source": "inventor1975/ztl-stand @0b4d718f",
+   "license": "Apache-2.0 OR MIT",
+   "evidence": "LICENSE-APACHE, LICENSE-MIT, NOTICE ('Dual-licensed under the Apache License 2.0 or the MIT License, at your option')",
+   "decision": "PINNED_FETCH_VERIFIED at test time (WO-LMFG-003); executed unmodified as a separate process; not redistributed, not copied; license files retained in the fetched checkout"
+  },
+  {
+   "source": "inventor1975/ZTL @2ba7c209",
+   "license": "Apache-2.0 OR MIT",
+   "evidence": "LICENSE, LICENSE-APACHE, LICENSE-MIT, LICENSE-DUAL-NOTICE.txt, NOTICE",
+   "decision": "PINNED_FETCH_VERIFIED at test time (WO-LMFG-003); executed unmodified as a separate process; not redistributed, not copied; license files retained in the fetched checkout"
   }
+ ],
+ "open_owner_decisions": [
+  "License for LEGION-authored code in this repository",
+  "Whether LEGION Manufacturing is commercial: if yes, Marketplace/Federation/Formal-Core need a written commercial grant from Veraxis, or the Apache-2.0 snapshots f34111a / 372cacc",
+  "Whether LEGION-Commerce should carry an explicit license (today only its Deal-Rescue copy is Apache-2.0)"
+ ],
+ "wo_lmfg_002_item_7": {
+  "restricted_implementations_copied": 0,
+  "restricted_implementations_imported_or_executed": 0,
+  "status": "BLOCKED_ON_OWNER for any Marketplace / Federation / Formal-Core reuse (Phase E). Nothing in WO-LMFG-002 needs them.",
+  "rule": "Read-only access and earlier Apache-2.0 snapshots are not treated as a grant for current code."
+ },
+ "wo_lmfg_003": {
+  "restricted_implementations_copied": 0,
+  "restricted_implementations_imported_or_executed": 0,
+  "new_dependencies": [
+   "ztl-engineer (Apache-2.0)",
+   "ztl-stand (Apache-2.0 OR MIT)",
+   "ZTL (Apache-2.0 OR MIT)",
+   "CI wheels in requirements-ztl.txt (sympy, mpmath, numpy, scipy, cryptography, cffi, pycparser)"
+  ],
+  "deal_rescue_additions": "admission.py, tests/test_cad025_ztl_gate.py, tests/judge_real_cad027.py, docs/evidence/cad027/{ZTL_REVIEW,BOM_VERIFIED}.json at the same pinned commit (Apache-2.0)",
+  "paid_model_apis": "none: ask_engineer is never called"
+ }
 }
