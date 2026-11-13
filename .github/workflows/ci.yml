@@ -16,6 +16,8 @@ env:
 # Actions are pinned by commit SHA, resolved with `git ls-remote` from the official tags:
 #   actions/checkout        v7.0.1 -> 3d3c42e5aac5ba805825da76410c181273ba90b1
 #   actions/upload-artifact v7.0.2 -> cf430e030ddbb5b0abf93d22962f4752f3646cd9
+#   actions/download-artifact v8.0.2 -> 9000827ccba6bdab643e8b6fd33ac0654aef8333
+# No secret and no provider credential is referenced anywhere in this workflow (live connector tests stay BLOCKED).
 # Every evidence job writes its JSON to the public job summary and uploads it as an artifact, also on failure.
 
 jobs:
@@ -99,11 +101,131 @@ jobs:
           if-no-files-found: error
 
   unit-tests:
-    name: Unit tests
+    name: Unit tests (all suites except the real-STEP CAD run)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Python venv with hash-pinned packages
+        run: |
+          python3 -m venv .venv
+          .venv/bin/pip install --no-deps --require-hashes -r requirements-ci.txt
+      - run: .venv/bin/python -m unittest discover -s tests -t . -p "test_*.py" -v
+
+  manufacturing-skills:
+    name: 17 manufacturing skills, classified and tested (WO-LMFG-002, Phase C)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: |
+          python3 -m venv .venv
+          .venv/bin/pip install --no-deps --require-hashes -r requirements-ci.txt
+      - name: Run tests/manufacturing and publish the per-skill matrix
+        run: .venv/bin/python -I tools/test_report.py skills --evidence evidence/SKILL_MATRIX.json
+      - name: Publish evidence
+        if: always()
+        run: |
+          python3 -I tools/ci_summary.py evidence/SKILL_MATRIX.json >> "$GITHUB_STEP_SUMMARY"
+          python3 -I tools/ci_notice.py evidence/SKILL_MATRIX.json
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: evidence-skill-matrix
+          path: evidence/SKILL_MATRIX.json
+          if-no-files-found: error
+
+  connectors:
+    name: Four connector contract suites and live acceptance status (WO-B01..B05)
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - run: python3 -m unittest discover -s tests -p "test_*.py" -v
+      - run: |
+          python3 -m venv .venv
+          .venv/bin/pip install --no-deps --require-hashes -r requirements-ci.txt
+      - name: Contract suites (scripted provider responses, never reported as connectivity)
+        run: .venv/bin/python -I tools/test_report.py connectors --evidence evidence/CONNECTOR_CONTRACTS.json
+      - name: Live acceptance (no credentials are provided to this workflow, so every live test is BLOCKED)
+        run: .venv/bin/python -I tools/connector_acceptance.py --evidence evidence/CONNECTOR_ACCEPTANCE.json
+      - name: Publish evidence
+        if: always()
+        run: |
+          for f in CONNECTOR_CONTRACTS CONNECTOR_ACCEPTANCE; do
+            python3 -I tools/ci_summary.py evidence/$f.json >> "$GITHUB_STEP_SUMMARY"
+            python3 -I tools/ci_notice.py evidence/$f.json
+          done
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: evidence-connectors
+          path: |
+            evidence/CONNECTOR_CONTRACTS.json
+            evidence/CONNECTOR_ACCEPTANCE.json
+          if-no-files-found: error
+
+  engineering-cad:
+    name: LEGION CAD reuse on the real reBot STEP (WO-D01)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      LMFG_REAL_CAD: "1"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Python venv with hash-pinned OpenCascade bindings (no dependency resolution)
+        run: |
+          python3 -m venv .venv
+          .venv/bin/pip install --no-deps --require-hashes -r requirements-ci.txt -r requirements-cad.txt
+          .venv/bin/python -c "import OCP; print('OCP', OCP.__file__)"
+      - name: D01 suite (pinned Deal-Rescue fetched and verified; pinned STEP downloaded and verified)
+        run: .venv/bin/python -I tools/test_report.py engineering --evidence evidence/CAD_INTEGRATION.json
+      - name: Publish evidence
+        if: always()
+        run: |
+          python3 -I tools/ci_summary.py evidence/CAD_INTEGRATION.json >> "$GITHUB_STEP_SUMMARY"
+          python3 -I tools/ci_notice.py evidence/CAD_INTEGRATION.json
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: evidence-cad-integration
+          path: evidence/CAD_INTEGRATION.json
+          if-no-files-found: error
+      - name: Remove disposable inputs (34.8 MB STEP, pinned copies, venv)
+        if: always()
+        run: rm -rf .lmfg_cache _deps .venv
+
+  evidence-manifest:
+    name: SHA-256 manifest over every evidence artifact of this run
+    needs: [source-integrity, policy, protected-repos, upstream-baseline, manufacturing-skills, connectors, engineering-cad]
+    if: always()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          pattern: evidence-*
+          path: run-evidence
+          merge-multiple: true
+      - name: Hash every artifact file; publish the digest list as a public annotation
+        run: |
+          cd run-evidence
+          sha256sum *.json | tee ../SHA256SUMS.run
+          cd ..
+          echo "::notice title=Evidence SHA-256 (run ${GITHUB_RUN_ID})::$(paste -sd';' SHA256SUMS.run)"
+          { echo '## Evidence SHA-256'; echo '```'; cat SHA256SUMS.run; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: evidence-manifest
+          path: SHA256SUMS.run
+          if-no-files-found: error

@@ -32,6 +32,23 @@ def main(path: str) -> int:
             note = c.get("upstream_defect") or (f"self-checks {c['self_checks']}" if c.get("self_checks") else "")
             print(f"| {c['status']} | `{c['id']}` | {note or ''} |")
         print()
+    if d.get("skills"):
+        print("| id | skill | mode | verdict | PASS | FAIL | NOT RUN | BLOCKED |\n|---|---|---|---|---|---|---|---|")
+        for s in d["skills"]:
+            c = s["counts"]
+            print(f"| {s['id']} | `{s['skill']}` | {s['mode']} | {s['verdict']} | {c.get('PASS', 0)} | "
+                  f"{c.get('FAIL', 0) + c.get('ERROR', 0)} | {c.get('NOT_RUN', 0)} | {c.get('BLOCKED', 0)} |")
+        print()
+    if d.get("modules"):
+        print("| module | results |\n|---|---|")
+        for m, c in d["modules"].items():
+            print(f"| `{m}` | {c} |")
+        print()
+    if d.get("systems"):
+        print("| system | live | first reason |\n|---|---|---|")
+        for name, s in d["systems"].items():
+            print(f"| {name} | {s['live']} | {s['live_tests'][0]['reason'][:160]} |")
+        print()
     if d.get("repositories"):
         print("| status | repository | pinned | remote HEAD |\n|---|---|---|---|")
         for r in d["repositories"]:

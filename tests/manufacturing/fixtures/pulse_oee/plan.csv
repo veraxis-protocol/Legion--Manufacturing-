@@ -1,0 +1,3 @@
+part_number,planned_qty,plan_date,work_center,asset_id,planned_hours
+PN-100,800,2026-11-12,VMC,CNC-01,16
+PN-200,250,2026-11-12,VMC,CNC-02,8

@@ -29,14 +29,27 @@ legion/                               reused LEGION mechanisms, behind adapters
 product/                              buyer, manufacturer and enterprise journeys over the integrated backend
 ```
 
+## What exists after WO-LMFG-002
+
+| Path | What it is |
+|---|---|
+| `manufacturing/contracts/upstream.py` | Reads Anthropic's `shared/contracts/*.md` at run time: field tables, Required/Degrades/Optional, enums, YAML and CSV worked examples with their line ranges. Checks a record; never fills a value |
+| `manufacturing/adapters/envelope.py` | WO-B05. The upstream record travels unchanged inside a LEGION envelope with source bindings, a read-only permission scope (only narrows) and verification metadata. Tenant isolation, tamper detection, UNAVAILABLE instead of empty success |
+| `manufacturing/adapters/dataset_rows.py` | Checks connector-pulled rows against `consolidated-dataset.md` (common columns, key pairs, uom/currency rules) |
+| `manufacturing/connectors/` | `lifecycle.py` (DISCONNECTED -> ... -> VERIFIED, UNAVAILABLE on failure or expiry, no execution authority). `fusion.py` (MCP client and guard around the endpoint in `.mcp.json`), `m365.py` (Microsoft Graph, GET allow-list), `netsuite.py` (REST record service, record types from `erp-connectors.md`), `infor_m3.py` (M3 MI transactions parsed from `erp-connectors.md`) |
+| `manufacturing/runtime/` | `catalog.py` (17 skills classified, each bound to a quote in its SKILL.md), `upstream_exec.py` (runs upstream scripts from a copy in a task folder), `gates.py` (consumer **Blocks** rows from the contracts as T/Z gates) |
+| `legion/engineering/` | WO-D01. `DEAL_RESCUE_PIN.json` + `pinned_source.py` fetch and verify Deal-Rescue's CAD modules at a pinned commit (not copied); `step_intake.py` orders STEP -> XCAF -> BOM -> requirements -> verification (Z) and hands CNC parts to `geometry-estimate` path C1 |
+
 ## Invariants carried by the code (WO-LMFG-001 section 3)
 
-| ID | Where it is enforced in Phase A |
+| ID | Where it is enforced |
 |---|---|
-| INV-01 source integrity | `tools/upstream_manifest.py verify`, `tests/upstream/test_source_integrity.py`, CI job `source-integrity` |
-| INV-02 baseline preservation | `tools/upstream_baseline.py` (runs on a copy; detects any write into the plugin tree), CI job `upstream-baseline` |
-| INV-09 repository protection | `tools/protected_pins.py`, CI job `protected-repos` |
-| INV-03..INV-08, INV-10 | later phases (connectors, engineering, commerce, judge) |
+| INV-01 source integrity | `tools/upstream_manifest.py verify`, `tests/upstream/test_source_integrity.py`, CI job `source-integrity`; per-skill regression test `test_6_*` |
+| INV-02 baseline preservation | upstream code only runs from a copy (`upstream_exec.TaskFolder`, `upstream_baseline.py`); tree digest checked before and after |
+| INV-03 config is not connectivity | `Lifecycle`: a configuration stops at CONFIGURED; only a readback reaches VERIFIED; `tools/connector_acceptance.py` never records a live PASS |
+| INV-07 Z => no consequential execution | `manufacturing/runtime/gates.py` (`consequential_execution_allowed`), CAD `engineering_verdict` Z |
+| INV-09 repository protection | `tools/protected_pins.py`, CI job `protected-repos`; Deal-Rescue read through git objects only |
+| INV-04..06, INV-08, INV-10 | later phases (marketplace, federation, commerce, judge) |
 
 ## Execution boundaries
 

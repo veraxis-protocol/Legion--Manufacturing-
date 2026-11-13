@@ -1,0 +1,6 @@
+# CAD job only (WO-D01): OpenCascade Python bindings, the same pins as LEGION-Deal-Rescue requirements-judge.txt @6d5563a.
+# Installed with --no-deps --require-hashes: only these three cp312 manylinux x86_64 wheels. Not redistributed.
+# cadquery-ocp Apache-2.0 (bundles OpenCascade, LGPL-2.1 with exception); cadquery-ocp-proxy Apache-2.0; vtk BSD-3-Clause.
+cadquery-ocp==8.0.1.1.0 --hash=sha256:2490e0faa6c3ec029defc8b37c9cbc4662f77b6ba02f230ce760c5b2d3f74cb7
+cadquery-ocp-proxy==8.0.1.1.0 --hash=sha256:98c71bb60cfb651afe179b134ab88580fd75384fce0cc6d633f727002cd18abd
+vtk==9.6.2 --hash=sha256:8c9f31430d15afbf46c2076cf3e30b4d6136512a5faabee8318552ccea907323
