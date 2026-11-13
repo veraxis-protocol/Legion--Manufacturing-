@@ -1,0 +1,63 @@
+{
+  "schema": "legion.manufacturing.evidence.ci-runs.v1",
+  "recorded_at_utc": "2026-11-13T18:25:58+00:00",
+  "repository": "veraxis-protocol/Legion--Manufacturing-",
+  "workflow": "LEGION Manufacturing CI (.github/workflows/ci.yml)",
+  "runner": "ubuntu-24.04, system python3",
+  "runs": [
+    {
+      "run_id": 43482142568,
+      "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43482142568",
+      "head_sha": "997d573d5ee164d91da2881fd198c5d6304fd210",
+      "event": "push",
+      "conclusion": "success",
+      "jobs": "5/5 success",
+      "annotations": [
+        "Node.js 20 deprecation warning for actions/checkout v4.2.2 (fixed in the next run)"
+      ]
+    },
+    {
+      "run_id": 43482437185,
+      "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43482437185",
+      "head_sha": "dff7bb7b30b7d1711fb0346a332716772e56bda6",
+      "event": "push",
+      "conclusion": "success",
+      "jobs": {
+        "Anthropic upstream executable baseline (WO-A03)": {
+          "job_id": 132082065378,
+          "conclusion": "success",
+          "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43482437185/job/132082065378"
+        },
+        "Source integrity (INV-01, WO-A02)": {
+          "job_id": 132082065672,
+          "conclusion": "success",
+          "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43482437185/job/132082065672"
+        },
+        "Unit tests": {
+          "job_id": 132082065847,
+          "conclusion": "success",
+          "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43482437185/job/132082065847"
+        },
+        "License compliance and secret scan (WO-A01)": {
+          "job_id": 132082065934,
+          "conclusion": "success",
+          "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43482437185/job/132082065934"
+        },
+        "Protected repositories unchanged (INV-09)": {
+          "job_id": 132082066063,
+          "conclusion": "success",
+          "url": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43482437185/job/132082066063"
+        }
+      },
+      "annotations": [],
+      "artifacts": {
+        "evidence-source-integrity": "sha256:cee2302c1bb5dd8adf96b367712d54fd6d8af867fdee4854f2cf9726122f06af",
+        "evidence-license-report": "sha256:2b102c6946041c581a8c2ea30ad4015823c4cfdbcb22af6a5ef958feaf456d7b",
+        "evidence-protected-repos": "sha256:ee4c0938383fd9c22de5b19d86bcbbafa455dc5308d1dfcf51a5f0c905b69220",
+        "evidence-upstream-baseline": "sha256:dcd9e292be30581a81890a589b988446fa130955387b72398512e4531aae4f9b"
+      }
+    }
+  ],
+  "linux_baseline_inference": "tools/upstream_baseline.py exits 1 when any check FAILs, so job 'Anthropic upstream executable baseline (WO-A03)' = success means 0 FAIL on Linux, including plant_setup.py --selftest; the unit test test_plant_setup_selftest is not skipped on Linux and passed in job 'Unit tests'.",
+  "access_note": "Job logs, summaries and artifact downloads require a signed-in GitHub session; run/job conclusions and artifact digests are public."
+}

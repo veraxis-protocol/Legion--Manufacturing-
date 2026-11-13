@@ -34,15 +34,23 @@ established; **F** means a check failed.
   - FAIL: `plant_setup.py --selftest` on Windows only. Upstream defect: line 1113 asserts a POSIX `/` separator in
     `work_path`; Windows returns `\`. The tested `install()` call itself succeeded. Baseline not edited.
   - BLOCKED: `.mcp.json#fusion` needs Autodesk Fusion desktop with its MCP add-in
-- **Authoritative Linux run:** CI job `upstream-baseline` on ubuntu-24.04 (see the pull request's checks)
+- **Authoritative Linux run:** CI run [43482437185](https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43482437185)
+  on ubuntu-24.04: job `upstream-baseline` success, i.e. 0 FAIL, so the upstream self-test passes on Linux and the
+  Windows failure is a portability defect only; unit tests success (the POSIX self-test test runs there). Evidence
+  artifacts and their digests: `evidence/CI_RUNS.json`
 - **Skills:** 17/17 AVAILABLE; 1 with local code (morning-plant-pulse, scripts PASS); the live model-driven run of all
   17 is BLOCKED here (needs the Claude runtime, a plant profile and authorized connectors)
 - **Fixture:** `tests/upstream/fixtures/pulse_minimal` is LEGION-authored synthetic data, because upstream ships none
 
 ## Gate A
 
-**Z** until the pull request's CI reproduces the baseline on Linux. Then **T** for the import and the locally executable
-baseline, with Fusion and every live, model-driven skill run explicitly BLOCKED.
+**T** for the import (94/94 byte-identical, 17/17 skills, licenses) and the locally executable baseline (Linux CI 0 FAIL),
+with these items explicitly **BLOCKED** and not counted as PASS:
+- `.mcp.json#fusion`: needs Autodesk Fusion desktop with its MCP add-in
+- the live, model-driven run of all 17 skills: needs the Claude runtime, a plant profile and authorized connectors
+
+Commit and CI: branch `dev/wo-lmfg-001-phase-a`, commits `997d573` and `dff7bb7`, CI runs 43482142568 and 43482437185
+(5/5 jobs success each). Protected repositories: 6/6 unchanged (INV-09).
 
 ## Next executable WO
 
