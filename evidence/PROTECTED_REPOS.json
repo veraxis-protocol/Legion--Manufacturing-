@@ -1,0 +1,73 @@
+{
+  "source_commit": "7bdcdfc0578db1d6bd26d64f925874cadef15855",
+  "executed_at_utc": "2026-11-13T18:22:59+00:00",
+  "environment": {
+    "python": "3.14.7",
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "os_name": "nt",
+    "ci": false,
+    "github_run_id": null,
+    "github_workflow": null,
+    "github_job": null
+  },
+  "command": "python3 -I tools/protected_pins.py",
+  "inputs": {
+    "pins": "SOURCE_PINS.json"
+  },
+  "schema": "legion.manufacturing.evidence.protected-repos.v1",
+  "invariant": "INV-09",
+  "status": "PASS",
+  "repositories": [
+    {
+      "repository": "veraxis-protocol/LEGION-Deal-Rescue",
+      "pinned": "6d5563af9a0eb838297933a8ae6b128defa9f69e",
+      "remote_head": "6d5563af9a0eb838297933a8ae6b128defa9f69e",
+      "status": "PASS",
+      "protected": true
+    },
+    {
+      "repository": "veraxis-protocol/LEGION-Commerce",
+      "pinned": "94a3e93822bb88a2a5d4cbe7c17dd2846309afe0",
+      "remote_head": "94a3e93822bb88a2a5d4cbe7c17dd2846309afe0",
+      "status": "PASS",
+      "protected": true
+    },
+    {
+      "repository": "veraxis-protocol/LEGION-Marketplace",
+      "pinned": "0321386852b26bac6f67e2d3a28f5f01101a1e9c",
+      "remote_head": "0321386852b26bac6f67e2d3a28f5f01101a1e9c",
+      "status": "PASS",
+      "protected": true
+    },
+    {
+      "repository": "veraxis-protocol/LEGION-Federation",
+      "pinned": "622a0896439560cfebbc3c51e1904fe5bcb9a332",
+      "remote_head": "622a0896439560cfebbc3c51e1904fe5bcb9a332",
+      "status": "PASS",
+      "protected": true
+    },
+    {
+      "repository": "veraxis-protocol/LEGION-Formal-Core",
+      "pinned": "fa1f30828028079bf6efe6a9fdafe164b0be90b5",
+      "remote_head": "fa1f30828028079bf6efe6a9fdafe164b0be90b5",
+      "status": "PASS",
+      "protected": true
+    },
+    {
+      "repository": "inventor1975/ztl-engineer",
+      "pinned": "91d11672cb1986a7fb185d3ae5110d7209b36b97",
+      "remote_head": "91d11672cb1986a7fb185d3ae5110d7209b36b97",
+      "status": "PASS",
+      "protected": true
+    },
+    {
+      "repository": "anthropics/claude-plugins-official",
+      "pinned": "099387b7a2ea02022bb850becca750246ae12562",
+      "remote_head": "099387b7a2ea02022bb850becca750246ae12562",
+      "status": "PASS",
+      "protected": false
+    }
+  ],
+  "note": "upstream (Anthropic) is informational: it may legitimately move; the import stays at its pin"
+}

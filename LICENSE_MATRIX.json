@@ -1,0 +1,33 @@
+{
+  "schema": "legion.manufacturing.license-matrix.v1",
+  "checked_at_utc": "2026-11-13",
+  "method": "LICENSE / NOTICE / pyproject license fields read at each pinned revision with git show <sha>:<file>. Access to source is not treated as a relicensing grant.",
+  "this_repository": {
+    "license": "NOT YET CHOSEN by the owner. No root LICENSE file is added by WO-A01; LEGION-authored files carry no grant until the owner decides.",
+    "vendored_third_party": ["upstream/claude-for-manufacturing (Apache-2.0, its LICENSE kept in place)"]
+  },
+  "sources": [
+    {"source": "anthropics/claude-plugins-official plugins/claude-for-manufacturing @099387b7", "license": "Apache-2.0",
+     "evidence": "plugins/claude-for-manufacturing/LICENSE (Apache License 2.0); no NOTICE file in the subtree",
+     "decision": "VENDORED_VERBATIM into upstream/claude-for-manufacturing; LICENSE retained; no modification"},
+    {"source": "veraxis-protocol/LEGION-Deal-Rescue @6d5563af", "license": "Apache-2.0", "notice": "NOTICE present: copyright 2026 Veraxis; pmix (MIT) binary not committed; paypal_adapter/commerce_adapter is byte-identical to LEGION-Commerce commerce_adapter @0bb385f9 and released under Apache-2.0 by the owner's decision of 2026-11-09",
+     "decision": "COPY_PERMITTED with LICENSE+NOTICE retained; this is the lawful path to reuse commerce_adapter (WO-F01/F02)"},
+    {"source": "veraxis-protocol/LEGION-Commerce @94a3e938", "license": "NONE_DECLARED", "evidence": "no LICENSE/COPYING/NOTICE at the pinned revision",
+     "decision": "DO NOT COPY from this repository; use the Apache-2.0 copy in LEGION-Deal-Rescue or an owner grant"},
+    {"source": "veraxis-protocol/LEGION-Marketplace @03213868", "license": "PolyForm-Noncommercial-1.0.0",
+     "notice": "commercial licensing requires separate written authorization; snapshot f34111a was Apache-2.0 before the 2026-11-07 relicensing",
+     "decision": "DO NOT COPY pending owner decision on commercial use; invoke as external pinned dependency, or use Apache-2.0 snapshot f34111a if the owner prefers"},
+    {"source": "veraxis-protocol/LEGION-Federation @622a0896", "license": "PolyForm-Noncommercial-1.0.0",
+     "notice": "snapshot 372cacc was Apache-2.0 before the 2026-11-07 relicensing",
+     "decision": "DO NOT COPY pending owner decision; external pinned dependency"},
+    {"source": "veraxis-protocol/LEGION-Formal-Core @fa1f3082", "license": "PolyForm-Noncommercial-1.0.0",
+     "decision": "DO NOT COPY pending owner decision; external pinned dependency"},
+    {"source": "inventor1975/ztl-engineer @91d11672", "license": "Apache-2.0",
+     "decision": "COPY_PERMITTED with LICENSE retained; integration via its executable interface (WO-D02)"}
+  ],
+  "open_owner_decisions": [
+    "License for LEGION-authored code in this repository",
+    "Whether LEGION Manufacturing is commercial: if yes, Marketplace/Federation/Formal-Core need a written commercial grant from Veraxis, or the Apache-2.0 snapshots f34111a / 372cacc",
+    "Whether LEGION-Commerce should carry an explicit license (today only its Deal-Rescue copy is Apache-2.0)"
+  ]
+}

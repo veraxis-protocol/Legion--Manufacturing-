@@ -1,0 +1,24 @@
+{
+  "schema": "legion.manufacturing.source-pins.v1",
+  "work_order": "WO-LMFG-001",
+  "pinned_at_utc": "2026-11-13",
+  "rule": "Every pin below was resolved with git ls-remote / git cat-file before use. LEGION repositories are READ-ONLY for this work order (INV-09): tools/protected_pins.py fails if any HEAD moves away from its pin.",
+  "upstream": {
+    "name": "Claude for Manufacturing",
+    "repository": "https://github.com/anthropics/claude-plugins-official",
+    "revision": "099387b7a2ea02022bb850becca750246ae12562",
+    "subtree": "plugins/claude-for-manufacturing",
+    "imported_to": "upstream/claude-for-manufacturing",
+    "license": "Apache-2.0",
+    "manifest": "manifests/UPSTREAM_MANIFEST.json",
+    "reuse_mode": "VENDORED_VERBATIM"
+  },
+  "protected": [
+    {"name": "Deal Rescue reference", "repository": "veraxis-protocol/LEGION-Deal-Rescue", "revision": "6d5563af9a0eb838297933a8ae6b128defa9f69e", "license": "Apache-2.0 (+NOTICE)", "reuse_mode": "COPY_PERMITTED_WITH_NOTICE"},
+    {"name": "Commerce", "repository": "veraxis-protocol/LEGION-Commerce", "revision": "94a3e93822bb88a2a5d4cbe7c17dd2846309afe0", "license": "NONE_DECLARED (no LICENSE file at pinned revision)", "reuse_mode": "REFERENCE_ONLY; Apache-2.0 copy of commerce_adapter available via LEGION-Deal-Rescue paypal_adapter/commerce_adapter (see LICENSE_MATRIX.json)"},
+    {"name": "Marketplace", "repository": "veraxis-protocol/LEGION-Marketplace", "revision": "0321386852b26bac6f67e2d3a28f5f01101a1e9c", "license": "PolyForm-Noncommercial-1.0.0", "reuse_mode": "EXTERNAL_PINNED_DEPENDENCY_ONLY pending owner decision"},
+    {"name": "Federation", "repository": "veraxis-protocol/LEGION-Federation", "revision": "622a0896439560cfebbc3c51e1904fe5bcb9a332", "license": "PolyForm-Noncommercial-1.0.0", "reuse_mode": "EXTERNAL_PINNED_DEPENDENCY_ONLY pending owner decision"},
+    {"name": "Formal Core", "repository": "veraxis-protocol/LEGION-Formal-Core", "revision": "fa1f30828028079bf6efe6a9fdafe164b0be90b5", "license": "PolyForm-Noncommercial-1.0.0", "reuse_mode": "EXTERNAL_PINNED_DEPENDENCY_ONLY pending owner decision"},
+    {"name": "ZTL Engineer", "repository": "inventor1975/ztl-engineer", "revision": "91d11672cb1986a7fb185d3ae5110d7209b36b97", "license": "Apache-2.0", "reuse_mode": "COPY_PERMITTED_WITH_NOTICE (integration planned via its executable interface, WO-D02)"}
+  ]
+}

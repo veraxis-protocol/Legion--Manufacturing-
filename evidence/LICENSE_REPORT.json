@@ -1,0 +1,47 @@
+{
+  "source_commit": "7bdcdfc0578db1d6bd26d64f925874cadef15855",
+  "executed_at_utc": "2026-11-13T18:22:57+00:00",
+  "environment": {
+    "python": "3.14.7",
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "os_name": "nt",
+    "ci": false,
+    "github_run_id": null,
+    "github_workflow": null,
+    "github_job": null
+  },
+  "command": "python3 -I tools/repo_policy.py",
+  "inputs": {
+    "tracked_files": 140,
+    "license_matrix": "LICENSE_MATRIX.json"
+  },
+  "schema": "legion.manufacturing.evidence.license-report.v1",
+  "work_order": "WO-A01/WO-A02",
+  "status": "PASS",
+  "counts": {
+    "tracked_files_scanned": 139,
+    "secret_findings": 0,
+    "forbidden_copies": 0
+  },
+  "secret_findings": [],
+  "upstream_license": {
+    "present_and_unchanged": true,
+    "type": "Apache-2.0"
+  },
+  "forbidden_copies": [],
+  "license_matrix_sources": [
+    "anthropics/claude-plugins-official plugins/claude-for-manufacturing @099387b7: VENDORED_VERBATIM into upstream/claude-for-manufacturing; LICENSE retained; no modification",
+    "veraxis-protocol/LEGION-Deal-Rescue @6d5563af: COPY_PERMITTED with LICENSE+NOTICE retained; this is the lawful path to reuse commerce_adapter (WO-F01/F02)",
+    "veraxis-protocol/LEGION-Commerce @94a3e938: DO NOT COPY from this repository; use the Apache-2.0 copy in LEGION-Deal-Rescue or an owner grant",
+    "veraxis-protocol/LEGION-Marketplace @03213868: DO NOT COPY pending owner decision on commercial use; invoke as external pinned dependency, or use Apache-2.0 snapshot f34111a if the owner prefers",
+    "veraxis-protocol/LEGION-Federation @622a0896: DO NOT COPY pending owner decision; external pinned dependency",
+    "veraxis-protocol/LEGION-Formal-Core @fa1f3082: DO NOT COPY pending owner decision; external pinned dependency",
+    "inventor1975/ztl-engineer @91d11672: COPY_PERMITTED with LICENSE retained; integration via its executable interface (WO-D02)"
+  ],
+  "open_owner_decisions": [
+    "License for LEGION-authored code in this repository",
+    "Whether LEGION Manufacturing is commercial: if yes, Marketplace/Federation/Formal-Core need a written commercial grant from Veraxis, or the Apache-2.0 snapshots f34111a / 372cacc",
+    "Whether LEGION-Commerce should carry an explicit license (today only its Deal-Rescue copy is Apache-2.0)"
+  ]
+}

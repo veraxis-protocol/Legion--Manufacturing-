@@ -1,0 +1,9 @@
+# LEGION Manufacturing - dependency lock (WO-A01)
+# Phase A uses the Python standard library only. No third-party packages are installed or required.
+python_min=3.9            # upstream pulse_compute.py: "Standard library only, so it runs wherever Python 3.9+ does"
+python_ci=3.12 (ubuntu-24.04 system python3)
+python_local_verified=3.14.7 (Windows 11, this work order's first run)
+third_party_packages=none
+github_actions:
+  actions/checkout=11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2, pinned by commit
+upstream_pin=anthropics/claude-plugins-official@099387b7a2ea02022bb850becca750246ae12562

@@ -1,0 +1,4 @@
+work_order,part_number,qty_ordered,status,due_date
+WO-1001,PN-100,500,RELEASED,2026-11-14
+WO-1002,PN-200,250,RELEASED,2026-11-13
+WO-1003,PN-100,300,RELEASED,2026-11-15

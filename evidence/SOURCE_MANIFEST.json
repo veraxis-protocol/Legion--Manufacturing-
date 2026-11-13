@@ -1,0 +1,73 @@
+{
+  "source_commit": "7bdcdfc0578db1d6bd26d64f925874cadef15855",
+  "executed_at_utc": "2026-11-13T18:23:10+00:00",
+  "environment": {
+    "python": "3.14.7",
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "os_name": "nt",
+    "ci": false,
+    "github_run_id": null,
+    "github_workflow": null,
+    "github_job": null
+  },
+  "command": "python3 -I tools/upstream_manifest.py verify",
+  "inputs": {
+    "manifest": "manifests/UPSTREAM_MANIFEST.json",
+    "upstream_revision": "099387b7a2ea02022bb850becca750246ae12562"
+  },
+  "schema": "legion.manufacturing.evidence.source-manifest.v1",
+  "work_order": "WO-A02",
+  "status": "PASS",
+  "counts": {
+    "manifest_files": 94,
+    "files_on_disk": 94,
+    "verified": 94,
+    "missing": 0,
+    "extra": 0,
+    "byte_mismatches": 0,
+    "skill_directories": 17,
+    "skills_with_SKILL_md": 17
+  },
+  "missing": [],
+  "extra": [],
+  "byte_mismatches": [],
+  "skills": [
+    "breakdown-diagnosis",
+    "breakdown-to-next-report",
+    "custom-connector",
+    "customer-inquiry-intake",
+    "daily-production-report",
+    "data-consolidate",
+    "design-space-explore",
+    "inspection-to-capa",
+    "morning-plant-pulse",
+    "ncr-writeup",
+    "onboarding",
+    "quote-build",
+    "rfq-to-quote",
+    "root-cause-capa",
+    "supplier-escape-to-alternate-source",
+    "supplier-quote-request",
+    "trade-study-report"
+  ],
+  "license_files": [
+    "LICENSE"
+  ],
+  "references": {
+    "markdown_links_unresolved": [],
+    "backtick_paths_unresolved": [],
+    "runtime_page_paths_not_repository_files": [
+      {
+        "file": "shared/replies.md",
+        "ref": "setup/plant-context.md"
+      },
+      {
+        "file": "shared/replies.md",
+        "ref": "setup/plant-rates.md"
+      }
+    ]
+  },
+  "reference_status": "PASS",
+  "manifest_sha256": "01139587426679001aaa4795b3f3332dd20f3c105376c0efb79bca737a1a2877"
+}
