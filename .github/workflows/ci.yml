@@ -207,7 +207,7 @@ jobs:
   engineering-verifier:
     name: ZTL Engineer -> ZTL Stand -> checker on the CAD path (WO-LMFG-003, WO-D02)
     runs-on: ubuntu-24.04
-    timeout-minutes: 60
+    timeout-minutes: 90         # ztl-stand's own suite is one sequential script (420 checks, ~690 s on its author's machine)
     env:
       LMFG_REAL_CAD: "1"
       LMFG_ZTL_STRICT: "1"

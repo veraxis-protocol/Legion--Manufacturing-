@@ -31,7 +31,7 @@ REPOS = [
      "commit": "0b4d718fa3bd3105ea002105e0d89cdd76b7b573",
      "license": {"spdx": "Apache-2.0 OR MIT", "file": ["LICENSE-APACHE", "LICENSE-MIT", "NOTICE"]},
      "role": "the stand (verdicts EARNED / REFUTED / OPEN) and its independent checker; its own tests and examples",
-     "patterns": ["/ustand/", "/tests/", "/examples/", "/bench/", "/BRICKS.md", "/SPEC.md", "/README.md", "/LICENSE-APACHE",
+     "patterns": ["/ustand/", "/tests/", "/examples/", "/bench/", "/redteam/decks/", "/BRICKS.md", "/SPEC.md", "/README.md", "/LICENSE-APACHE",
                   "/LICENSE-MIT", "/NOTICE"],
      "required_files": ["BRICKS.md", "SPEC.md", "ustand/stand.py", "ustand/checker.py", "ustand/judge_ztl.py",
                         "ustand/bricks.py", "ustand/units.py", "tests/test_stand.py",

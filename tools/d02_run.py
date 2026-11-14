@@ -161,9 +161,10 @@ def main(argv=None) -> int:
             pr = tool(["tools/protected_pins.py", "--evidence", str(Path(td) / "p.json")])
             pj = json.loads((Path(td) / "p.json").read_text(encoding="utf-8")) if (Path(td) / "p.json").exists() else {}
         extra["@protected"] = {**pr, "repositories": [{k: r.get(k) for k in ("repository", "status", "pinned",
-                                                                            "remote_head")}
+                                                                            "remote_head", "protected")}
                                                       for r in pj.get("repositories", [])],
-                               "modified": sum(r.get("status") != "UNCHANGED" for r in pj.get("repositories", []))}
+                               "modified": sum(r.get("status") != "PASS" for r in pj.get("repositories", [])
+                                               if r.get("protected"))}
 
     # ---------------------------------------------------------------- the real runs, serialized
     init = C.mcp_initialize()

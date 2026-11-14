@@ -136,6 +136,7 @@
     "/tests/",
     "/examples/",
     "/bench/",
+    "/redteam/decks/",
     "/BRICKS.md",
     "/SPEC.md",
     "/README.md",
@@ -11476,6 +11477,42 @@
      "git_blob": "dda8bc4b40328e3bd0430707fbd6db69c34324b7",
      "sha256": "e24c680a1c0a4db3ce089ed92e2ad39424f1dc490dea891460f79dd9d8c356c3",
      "bytes": 38679
+    },
+    {
+     "path": "redteam/decks/imp2d-column-selfweight-with-phi.txt",
+     "git_blob": "f236d2974b24f3724890e46a189eeb29737050f0",
+     "sha256": "3bd625321fb695db14be1fc712b6b44015bfb81ea28a10b51ec4a44487226f38",
+     "bytes": 511
+    },
+    {
+     "path": "redteam/decks/imp2d-column-selfweight.txt",
+     "git_blob": "6c7141d68f091a65455dcf0cc854a13cd03c6ae8",
+     "sha256": "5bb8a8c24ea715d6fc2fd484f9807c16fbe2d747ac1f3d7fdee09ef77ab1e1b4",
+     "bytes": 494
+    },
+    {
+     "path": "redteam/decks/rel-column-fixed-pinned.txt",
+     "git_blob": "fbe187666189fa8ec00a427a64cc19e8bb0d25b3",
+     "sha256": "c79a937a25ae3df0ad22e66a0285e4de713bb8444bda5da91b61a214366eaaef",
+     "bytes": 572
+    },
+    {
+     "path": "redteam/decks/rel-strut-12m.txt",
+     "git_blob": "bcbb37bb36a8bf116d87a988eae1730fb1ae7fe0",
+     "sha256": "7b677d576414511bef73a1403a0fdff503e3685a1131049f49601d70d99192a6",
+     "bytes": 359
+    },
+    {
+     "path": "redteam/decks/rel-strut-pinned.txt",
+     "git_blob": "1ae5221966e8627f071f0b83597fa5cfe8754b3a",
+     "sha256": "628554374775516176078625a8ef7038531271d68fe30bec61e0de31acf5ffc3",
+     "bytes": 520
+    },
+    {
+     "path": "redteam/decks/rel-strut-second-order.txt",
+     "git_blob": "3fd7e99a8d57e30f31603fb9b4f2f815b4bc0adb",
+     "sha256": "8e174f0116c205f6682a8d0308cd5626f79f9eb5d71694d68a95d9ec21d083a8",
+     "bytes": 416
     },
     {
      "path": "tests/.check_times.tsv",
