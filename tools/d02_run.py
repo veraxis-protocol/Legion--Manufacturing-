@@ -36,7 +36,8 @@ from tests.engineering import d02_common as C  # noqa: E402
 OBLIGATIONS = [
     ("D02-01", "Pinned ZTL source integrity", "PASS", ["test_d02_01_"]),
     ("D02-02", "Real MCP initializes", "PASS", ["test_d02_02_"]),
-    ("D02-03", "Real check_design tool executes", "PASS", ["test_d02_03_"]),
+    ("D02-03", "Real check_design tool executes (and ztl-stand's own suite passes)", "PASS",
+     ["test_d02_03_", "@stand_suite"]),
     ("D02-04", "Fully supported positive predicate", "Scoped T", ["test_d02_04_"]),
     ("D02-05", "Violated engineering predicate", "Scoped F", ["test_d02_05_"]),
     ("D02-06", "Missing manufacturing tolerance", "Z", ["test_d02_06_"]),
@@ -175,6 +176,8 @@ def main(argv=None) -> int:
     reb_real = C.rebot(True) if C.REAL else None
     mixed_z, mixed_f = C.mixed("Z"), C.mixed("F")
     suite = stand_suite(rt) if a.stand_suite else {"status": "NOT_RUN", "why": "run with --stand-suite (CI verifier job)"}
+    extra["@stand_suite"] = {"status": suite["status"], **{k: suite.get(k) for k in ("ok", "failed", "completed",
+                                                                                     "summary_line")}}
 
     malformed = C.malformed_bricks()
     calls = [e["mcp"] for e in examples] + [c["mcp"] for c in ctrl + (ctrl_real or [])] + \
