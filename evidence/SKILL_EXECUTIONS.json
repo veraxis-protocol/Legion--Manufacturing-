@@ -1,0 +1,589 @@
+{
+  "source_commit": "763aa8e515c9d5736e972d387e1b975abbd93973",
+  "executed_at_utc": "2026-11-14T22:06:25+00:00",
+  "environment": {
+    "python": "3.14.7",
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "os_name": "nt",
+    "ci": false,
+    "github_run_id": null,
+    "github_workflow": null,
+    "github_job": null
+  },
+  "command": "python tools/skill_report.py",
+  "inputs": {},
+  "status": "Z",
+  "counts": {
+    "skills": 17,
+    "executed": 10,
+    "positive_PASS": 7,
+    "positive_FAIL": 0,
+    "positive_BLOCKED": 1,
+    "positive_Z": 2,
+    "positive_NOT_RUN": 7,
+    "negative_PASS": 0,
+    "negative_FAIL": 0,
+    "negative_Z": 0,
+    "negative_NOT_RUN": 16,
+    "e2e_stages_PASS": 0
+  },
+  "runtime_routes": [
+    "desktop-subagent"
+  ],
+  "models": [
+    "claude-opus-5-5"
+  ],
+  "tokens_total": {
+    "input_tokens": 334,
+    "output_tokens": 248007,
+    "cache_read_input_tokens": 15338601,
+    "cache_creation_input_tokens": 951131
+  },
+  "note": "Model-driven executions only. Deterministic contract/unit tests are reported separately (evidence/SKILL_MATRIX*.json) and are not counted here.",
+  "skills": [
+    {
+      "id": "B01",
+      "skill": "onboarding",
+      "chain": [],
+      "e2e_stage": null,
+      "positive": {
+        "status": "PASS",
+        "reason": null,
+        "behaviour_without_live_system": null,
+        "runtime_route": "desktop-subagent",
+        "model": "claude-opus-5-5",
+        "skills_read_or_invoked": [
+          "onboarding"
+        ],
+        "tool_summary": {
+          "Bash": 21,
+          "Read": 1,
+          "SubagentHandback": 1,
+          "Write": 5
+        },
+        "duration_s": 249.5,
+        "outputs": [
+          "approval-draft.md",
+          "config-profile-page/index.html",
+          "config-profile-page/setup/plant-context.txt",
+          "export-request-spec.md",
+          "missing-data-list.md",
+          "plant-setup-draft/plant-context.md",
+          "setup-summary.md"
+        ],
+        "deterministic_checks": "10/10",
+        "failed_checks": [],
+        "evaluator_verdict": "PASS",
+        "evaluator_fabrication": [],
+        "evaluator_arithmetic_mismatches": [],
+        "evaluator_notes": "The draft Plant context block, the config profile page (rendered by the script), the approval draft, the setup summary, the 59-item missing-data list and the export specs are all present. The memo's rates (MILL-H 145, MILL-V 95, TURN 85, INSP 60 USD/h; 12%, 18%, 10%) match the memo and appear only in the approval draft. The connectors are listed as file, not live and not tested. Values are labelled inferred, and defaults are labelled as defaults. Nothing was written or sent before a yes. No arithmetic to check.",
+        "run_record": "evidence/SKILL_OUTPUTS/B01/positive/run.json"
+      },
+      "negative": {
+        "status": "NOT RUN"
+      }
+    },
+    {
+      "id": "B02",
+      "skill": "custom-connector",
+      "chain": [],
+      "e2e_stage": null,
+      "positive": {
+        "status": "PASS",
+        "reason": null,
+        "behaviour_without_live_system": null,
+        "runtime_route": "desktop-subagent",
+        "model": "claude-opus-5-5",
+        "skills_read_or_invoked": [
+          "custom-connector"
+        ],
+        "tool_summary": {
+          "Bash": 11,
+          "Read": 2,
+          "SubagentHandback": 1,
+          "Write": 4
+        },
+        "duration_s": 213.5,
+        "outputs": [
+          "connector-output/cmms_connector.py",
+          "connector-output/cmms_readonly_views.sql",
+          "connector-output/connection-plan.html",
+          "connector-output/credential-scope-record.json",
+          "connector-output/test-run/assets.csv",
+          "connector-output/test-run/maintenance_work_orders.csv",
+          "connector-output/test-run/test_results.json"
+        ],
+        "deterministic_checks": "9/9",
+        "failed_checks": [],
+        "evaluator_verdict": "PASS",
+        "evaluator_fabrication": [],
+        "evaluator_arithmetic_mismatches": [],
+        "evaluator_notes": "Tier 4 read-only database view chosen; Tiers 1-2 honestly reported not checked (no network). Draft CREATE VIEW SQL is in the reply, the connection is read-only (mode=ro, write probe refused, hash unchanged), and the readback shows MW-160/170/152 and VMC-02/VMC-03/HMC-01 matching the SQLite strings. Gaps (as_of, location, unmapped fields) are stated. Status is tested, not registered, and there is no write scope. Effort estimate is labelled provisional. Minor: CSV instead of the contract's Excel workbook, disclosed.",
+        "run_record": "evidence/SKILL_OUTPUTS/B02/positive/run.json"
+      },
+      "negative": {
+        "status": "NOT RUN"
+      }
+    },
+    {
+      "id": "B03",
+      "skill": "data-consolidate",
+      "chain": [],
+      "e2e_stage": null,
+      "positive": {
+        "status": "PASS",
+        "reason": null,
+        "behaviour_without_live_system": null,
+        "runtime_route": "desktop-subagent",
+        "model": "claude-opus-5-5",
+        "skills_read_or_invoked": [
+          "data-consolidate"
+        ],
+        "tool_summary": {
+          "Bash": 14,
+          "Read": 1,
+          "SubagentHandback": 1,
+          "Write": 2
+        },
+        "duration_s": 256.2,
+        "outputs": [
+          "_run_facts.json",
+          "build_dataset.py",
+          "build_report.py",
+          "data_quality_report.html",
+          "dataset/_tabs_missing.csv",
+          "dataset/assets.csv",
+          "dataset/downtime_events.csv",
+          "dataset/plan.csv",
+          "dataset/production_output.csv",
+          "dataset/production_work_orders.csv",
+          "figures_block.csv",
+          "key_mismatch_log.csv"
+        ],
+        "deterministic_checks": "5/5",
+        "failed_checks": [],
+        "evaluator_verdict": "PASS",
+        "evaluator_fabrication": [],
+        "evaluator_arithmetic_mismatches": [],
+        "evaluator_notes": "The dataset was written as per-tab CSV, and the run says why: no XLSX writer was installed. The HTML report names the mismatched asset keys: CNC-01 and CNC-02 do not match HMC-01, VMC-02, VMC-03, LTH-01 or DEB-01. These are logged as class 1 orphans with no automatic fix. I rechecked the counts and they hold: 15 key checks, 8 matched, 7 unmatched, 65 downtime minutes, 8 rows with no UOM, 12 with no site. Small issues: the full report was not printed in the reply, as the run instructed. Missing revision was given as a reason to set routing aside, although revision is optional. The missing setup-time column alone was a valid reason. The assets tab dropped the work_center and description columns.",
+        "run_record": "evidence/SKILL_OUTPUTS/B03/positive/run.json"
+      },
+      "negative": {
+        "status": "NOT RUN"
+      }
+    },
+    {
+      "id": "B04",
+      "skill": "customer-inquiry-intake",
+      "chain": [],
+      "e2e_stage": null,
+      "positive": {
+        "status": "PASS",
+        "reason": null,
+        "behaviour_without_live_system": null,
+        "runtime_route": "desktop-subagent",
+        "model": "claude-opus-5-5",
+        "skills_read_or_invoked": [
+          "customer-inquiry-intake"
+        ],
+        "tool_summary": {
+          "Bash": 9,
+          "Read": 1,
+          "SubagentHandback": 1,
+          "Write": 3
+        },
+        "duration_s": 207.5,
+        "outputs": [
+          "intake-summary-northwind-MB-2040.html",
+          "plant-setup/open-work/inquiries/northwind-robotics-MB-2040.intake.txt",
+          "plant-setup/open-work/open-work.md"
+        ],
+        "deterministic_checks": "12/12",
+        "failed_checks": [],
+        "evaluator_verdict": "PASS",
+        "evaluator_fabrication": [],
+        "evaluator_arithmetic_mismatches": [],
+        "evaluator_notes": "Intake form records MB-2040 rev C, breaks 250/500/1000 (not averaged), 2027-01-15 FA date, 6061-T6, black Type II anodize, bore 22.000 +0.021/-0.000 H7 verbatim, flatness null/TBD on missing register, rev B noted as superseded/ignored. Every field cites line sources. Geometry path A correct (text spec only). Seven numbered questions drafted, not sent; bid_decision_state draft; provisional bid with would-change items; degradations stated. Counts (14 missing/1 ambiguous) and stale date 2026-11-09 (5 business days) check out. Minor: no Word copy.",
+        "run_record": "evidence/SKILL_OUTPUTS/B04/positive/run.json"
+      },
+      "negative": {
+        "status": "NOT RUN"
+      }
+    },
+    {
+      "id": "B05",
+      "skill": "quote-build",
+      "chain": [],
+      "e2e_stage": null,
+      "positive": {
+        "status": "NOT RUN"
+      },
+      "negative": {
+        "status": "NOT RUN"
+      }
+    },
+    {
+      "id": "B06",
+      "skill": "rfq-to-quote",
+      "chain": [
+        "customer-inquiry-intake",
+        "quote-build"
+      ],
+      "e2e_stage": null,
+      "positive": {
+        "status": "NOT RUN"
+      },
+      "negative": {
+        "status": "NOT RUN"
+      }
+    },
+    {
+      "id": "B07",
+      "skill": "supplier-quote-request",
+      "chain": [],
+      "e2e_stage": null,
+      "positive": {
+        "status": "PASS",
+        "reason": null,
+        "behaviour_without_live_system": null,
+        "runtime_route": "desktop-subagent",
+        "model": "claude-opus-5-5",
+        "skills_read_or_invoked": [
+          "supplier-quote-request"
+        ],
+        "tool_summary": {
+          "Bash": 13,
+          "Read": 3,
+          "SubagentHandback": 1,
+          "Write": 3
+        },
+        "duration_s": 261.8,
+        "outputs": [
+          "figures-block.md",
+          "figures.json",
+          "reply.md",
+          "scripts/render_pages.py",
+          "scripts/sourcing_compute.py",
+          "sourcing/SRC-2026-11-14-BSH-1210/alder-sintered-parts.bid.txt",
+          "sourcing/SRC-2026-11-14-BSH-1210/birch-powder-metal.bid.txt",
+          "sourcing-output/bid-comparison.html",
+          "supply-chain-command-center.html"
+        ],
+        "deterministic_checks": "10/10",
+        "failed_checks": [],
+        "evaluator_verdict": "PASS",
+        "evaluator_fabrication": [],
+        "evaluator_arithmetic_mismatches": [],
+        "evaluator_notes": "RFQ package at Rev A with MRP demand (3,200 = 800+1,200+1,200), the CoC clause (the clause set flagged unverified) and a mandated bid format. The comparison flags Alder's 25-45 vs 25-40 HRF exception and Birch's unstated revision, its tooling (1,850 USD, ownership not stated) and its lead time with no start event. Figures recomputed and correct: 1,650.00, 1,568.00, 3,418.00, 620.00 and 10/9 missing fields. The ERP revision is honestly unverified; emails are HELD, nothing was sent or awarded, and the quantity breaks are labelled as proposed.",
+        "run_record": "evidence/SKILL_OUTPUTS/B07/positive/run.json"
+      },
+      "negative": {
+        "status": "NOT RUN"
+      }
+    },
+    {
+      "id": "B08",
+      "skill": "design-space-explore",
+      "chain": [],
+      "e2e_stage": null,
+      "positive": {
+        "status": "BLOCKED",
+        "reason": "Autodesk Fusion desktop with its MCP server (plugin .mcp.json fusion -> http://127.0.0.1:${FUSION_MCP_PORT:-27182}/mcp); not installed on this host",
+        "behaviour_without_live_system": "PASS",
+        "runtime_route": "desktop-subagent",
+        "model": "claude-opus-5-5",
+        "skills_read_or_invoked": [
+          "design-space-explore"
+        ],
+        "tool_summary": {
+          "Bash": 6,
+          "Read": 2,
+          "SubagentHandback": 1,
+          "Write": 1
+        },
+        "duration_s": 69.2,
+        "outputs": [
+          "design-space-explore_MB-2040_generation-report.html"
+        ],
+        "deterministic_checks": "6/6",
+        "failed_checks": [],
+        "evaluator_verdict": "PASS",
+        "evaluator_fabrication": [],
+        "evaluator_arithmetic_mismatches": [],
+        "evaluator_notes": "Fusion was not connected. The skill reported that it was blocked, named exactly what it needs (Fusion desktop with the MB-2040 base model open, plus bore-wall values) and stopped. It produced no variants, no mass, volume or bounding box, and no manifest. The parametric check is recorded as 'not run', not as passed. The spec values it quotes (120x80x12 envelope, 22 mm H7 bore, 6061-T6) match the inputs. The 10/12/14 mm thicknesses are shown only as a draft plan with an unconfirmed count. The base model was never touched. The report is HTML only; the run notes say Word/Excel libraries were unavailable.",
+        "run_record": "evidence/SKILL_OUTPUTS/B08/positive/run.json"
+      }
+    },
+    {
+      "id": "B09",
+      "skill": "trade-study-report",
+      "chain": [],
+      "e2e_stage": null,
+      "positive": {
+        "status": "PASS",
+        "reason": null,
+        "behaviour_without_live_system": null,
+        "runtime_route": "desktop-subagent",
+        "model": "claude-opus-5-5",
+        "skills_read_or_invoked": [
+          "trade-study-report"
+        ],
+        "tool_summary": {
+          "Bash": 15,
+          "Edit": 1,
+          "Read": 1,
+          "SubagentHandback": 1,
+          "Write": 1
+        },
+        "duration_s": 243.0,
+        "outputs": [
+          "figures_block.csv",
+          "run_log.txt",
+          "trade-study-comparison-bracket.html",
+          "trade-study-memo-bracket.html",
+          "trade_study_computation.json"
+        ],
+        "deterministic_checks": "9/9",
+        "failed_checks": [],
+        "evaluator_verdict": "PASS",
+        "evaluator_fabrication": [],
+        "evaluator_arithmetic_mismatches": [],
+        "evaluator_notes": "I recomputed the ratio-normalized totals: A 0.856, B 0.783, C 0.700. They match, as do the equal-weight and tooling-zero scenarios, the flip points (unit cost 47.6%, 41.2% with tooling at 0, stiffness 87.8%) and the 350 Hz margins. Sources are cited and C's impregnation cost is stated as excluded. Gaps are stated, not filled: no template, no precision, unclear Q-number mapping, unstated source of zero tooling. The memo is a draft with approver 'not given'. One deviation: documents were not printed in full in the reply (file-only).",
+        "run_record": "evidence/SKILL_OUTPUTS/B09/positive/run.json"
+      },
+      "negative": {
+        "status": "NOT RUN"
+      }
+    },
+    {
+      "id": "B10",
+      "skill": "daily-production-report",
+      "chain": [],
+      "e2e_stage": null,
+      "positive": {
+        "status": "PASS",
+        "reason": null,
+        "behaviour_without_live_system": null,
+        "runtime_route": "desktop-subagent",
+        "model": "claude-opus-5-5",
+        "skills_read_or_invoked": [
+          "daily-production-report",
+          "data-consolidate"
+        ],
+        "tool_summary": {
+          "Bash": 15,
+          "Read": 1,
+          "SubagentHandback": 1,
+          "Write": 1
+        },
+        "duration_s": 252.9,
+        "outputs": [
+          "data-quality-report.html",
+          "dataset/assets.csv",
+          "dataset/downtime_events.csv",
+          "dataset/plan.csv",
+          "dataset/production_output.csv",
+          "dataset/production_work_orders.csv",
+          "report-output/morning-report-data.json",
+          "report-output/morning-report.html"
+        ],
+        "deterministic_checks": "10/10",
+        "failed_checks": [],
+        "evaluator_verdict": "PASS",
+        "evaluator_fabrication": [],
+        "evaluator_arithmetic_mismatches": [],
+        "evaluator_notes": "Recomputed: good 1000/1050 (95.2%), scrap 15; CNC-01 A 95.3% P 86.6% Q 98.5% OEE 81.2%; CNC-02 95.8/87.3/98.7, 82.5%; CELL-A 95.5/86.8/98.5, 81.7%; WO shortfalls 20/30; downtime 65 min, both rankings. All match. Losses left unpriced: rates_memo has no VMC rate and no standard material cost, so not pricing them is correct. Freshness gap for 13 Nov flagged, safety not assessed, week-over-week skipped, no reschedule drafted (reason given), figures block present, nothing published.",
+        "run_record": "evidence/SKILL_OUTPUTS/B10/positive/run.json"
+      },
+      "negative": {
+        "status": "NOT RUN"
+      }
+    },
+    {
+      "id": "B11",
+      "skill": "morning-plant-pulse",
+      "chain": [
+        "data-consolidate",
+        "daily-production-report"
+      ],
+      "e2e_stage": null,
+      "positive": {
+        "status": "NOT RUN"
+      },
+      "negative": {
+        "status": "NOT RUN"
+      }
+    },
+    {
+      "id": "B12",
+      "skill": "breakdown-diagnosis",
+      "chain": [],
+      "e2e_stage": null,
+      "positive": {
+        "status": "Z",
+        "reason": "no independent evaluator verdict",
+        "behaviour_without_live_system": null,
+        "runtime_route": "desktop-subagent",
+        "model": "claude-opus-5-5",
+        "skills_read_or_invoked": [
+          "breakdown-diagnosis"
+        ],
+        "tool_summary": {
+          "Bash": 10,
+          "Read": 1,
+          "SubagentHandback": 1,
+          "Write": 2
+        },
+        "duration_s": 177.1,
+        "outputs": [
+          "downtime-record-VMC-02-2026-11-10.yaml",
+          "figures.json",
+          "scripts/compute_figures.py",
+          "VMC-02-breakdown-diagnosis-2026-11-10.html"
+        ],
+        "deterministic_checks": "10/10",
+        "failed_checks": [],
+        "evaluator_verdict": null,
+        "evaluator_fabrication": null,
+        "evaluator_arithmetic_mismatches": null,
+        "evaluator_notes": null,
+        "run_record": "evidence/SKILL_OUTPUTS/B12/positive/run.json"
+      },
+      "negative": {
+        "status": "NOT RUN"
+      }
+    },
+    {
+      "id": "B13",
+      "skill": "breakdown-to-next-report",
+      "chain": [
+        "breakdown-diagnosis",
+        "daily-production-report"
+      ],
+      "e2e_stage": null,
+      "positive": {
+        "status": "Z",
+        "reason": "no independent evaluator verdict",
+        "behaviour_without_live_system": null,
+        "runtime_route": "desktop-subagent",
+        "model": "claude-opus-5-5",
+        "skills_read_or_invoked": [
+          "breakdown-diagnosis",
+          "breakdown-to-next-report",
+          "daily-production-report",
+          "data-consolidate"
+        ],
+        "tool_summary": {
+          "Bash": 18,
+          "Read": 4,
+          "SubagentHandback": 1,
+          "Write": 1
+        },
+        "duration_s": 365.6,
+        "outputs": [
+          "compute/run_chain.py",
+          "dataset/downtime_events.csv",
+          "dataset/figures_block.csv",
+          "dataset/oee_by_asset.csv",
+          "diagnosis/VMC-02-2026-11-10-diagnosis.html",
+          "figures.json",
+          "records/downtime-record_VMC-02_2026-11-10.yaml",
+          "report-output/morning-report.html"
+        ],
+        "deterministic_checks": "10/10",
+        "failed_checks": [],
+        "evaluator_verdict": null,
+        "evaluator_fabrication": null,
+        "evaluator_arithmetic_mismatches": null,
+        "evaluator_notes": null,
+        "run_record": "evidence/SKILL_OUTPUTS/B13/positive/run.json"
+      },
+      "negative": {
+        "status": "NOT RUN"
+      }
+    },
+    {
+      "id": "B14",
+      "skill": "ncr-writeup",
+      "chain": [],
+      "e2e_stage": null,
+      "positive": {
+        "status": "NOT RUN"
+      },
+      "negative": {
+        "status": "NOT RUN"
+      }
+    },
+    {
+      "id": "B15",
+      "skill": "root-cause-capa",
+      "chain": [],
+      "e2e_stage": null,
+      "positive": {
+        "status": "NOT RUN"
+      },
+      "negative": {
+        "status": "NOT RUN"
+      }
+    },
+    {
+      "id": "B16",
+      "skill": "inspection-to-capa",
+      "chain": [
+        "ncr-writeup",
+        "root-cause-capa"
+      ],
+      "e2e_stage": null,
+      "positive": {
+        "status": "NOT RUN"
+      },
+      "negative": {
+        "status": "NOT RUN"
+      }
+    },
+    {
+      "id": "B17",
+      "skill": "supplier-escape-to-alternate-source",
+      "chain": [
+        "ncr-writeup",
+        "root-cause-capa",
+        "supplier-quote-request"
+      ],
+      "e2e_stage": null,
+      "positive": {
+        "status": "NOT RUN"
+      },
+      "negative": {
+        "status": "NOT RUN"
+      }
+    },
+    {
+      "id": "E01",
+      "skill": "customer-inquiry-intake",
+      "chain": [],
+      "e2e_stage": "02_intake",
+      "positive": {
+        "status": "NOT RUN"
+      }
+    },
+    {
+      "id": "E02",
+      "skill": "quote-build",
+      "chain": [],
+      "e2e_stage": "04_cost",
+      "positive": {
+        "status": "NOT RUN"
+      }
+    },
+    {
+      "id": "E03",
+      "skill": "supplier-quote-request",
+      "chain": [],
+      "e2e_stage": "05_supplier",
+      "positive": {
+        "status": "NOT RUN"
+      }
+    }
+  ]
+}

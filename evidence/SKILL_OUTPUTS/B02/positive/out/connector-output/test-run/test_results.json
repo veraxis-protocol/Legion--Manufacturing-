@@ -1,0 +1,214 @@
+{
+  "run_utc": "2026-11-14T21:58:57+00:00",
+  "target": "C:/LMFG/runs/B02-positive/work/inputs/connector/cmms_synthetic.sqlite",
+  "access": "sqlite URI mode=ro + PRAGMA query_only=ON",
+  "checks": [
+    {
+      "check": "write refused",
+      "pass": true,
+      "detail": "INSERT refused: attempt to write a readonly database"
+    },
+    {
+      "check": "maintenance_work_orders row count = source work_orders count",
+      "pass": true,
+      "detail": "3 vs 3"
+    },
+    {
+      "check": "assets row count = source assets count",
+      "pass": true,
+      "detail": "3 vs 3"
+    },
+    {
+      "check": "open tickets = source's own v_open_work_orders",
+      "pass": true,
+      "detail": "1 vs 1"
+    },
+    {
+      "check": "each maintenance work order matches its raw record",
+      "pass": true,
+      "detail": "3 compared, mismatches: none"
+    },
+    {
+      "check": "every maintenance work order's asset exists on assets",
+      "pass": true,
+      "detail": "unmatched: none"
+    },
+    {
+      "check": "no end_before_start",
+      "pass": true,
+      "detail": "flagged: none"
+    },
+    {
+      "check": "source file unchanged (sha256 + mtime)",
+      "pass": true,
+      "detail": "sha256 88b87d83ab1ca116... before and after"
+    }
+  ],
+  "tabs": {
+    "assets": {
+      "columns": [
+        "site",
+        "source_system",
+        "source_ref",
+        "as_of",
+        "join_status",
+        "mismatch_class",
+        "contradicted_by",
+        "integrity_flags",
+        "asset_id",
+        "asset_id_verbatim",
+        "location"
+      ],
+      "rows": [
+        {
+          "site": "EPW1",
+          "source_system": "cmms",
+          "source_ref": "cmms_synthetic.sqlite:assets/VMC-02",
+          "as_of": null,
+          "join_status": "matched",
+          "mismatch_class": null,
+          "contradicted_by": null,
+          "integrity_flags": null,
+          "asset_id": "VMC-02",
+          "asset_id_verbatim": "VMC-02",
+          "location": null
+        },
+        {
+          "site": "EPW1",
+          "source_system": "cmms",
+          "source_ref": "cmms_synthetic.sqlite:assets/VMC-03",
+          "as_of": null,
+          "join_status": "matched",
+          "mismatch_class": null,
+          "contradicted_by": null,
+          "integrity_flags": null,
+          "asset_id": "VMC-03",
+          "asset_id_verbatim": "VMC-03",
+          "location": null
+        },
+        {
+          "site": "EPW1",
+          "source_system": "cmms",
+          "source_ref": "cmms_synthetic.sqlite:assets/HMC-01",
+          "as_of": null,
+          "join_status": "matched",
+          "mismatch_class": null,
+          "contradicted_by": null,
+          "integrity_flags": null,
+          "asset_id": "HMC-01",
+          "asset_id_verbatim": "HMC-01",
+          "location": null
+        }
+      ]
+    },
+    "maintenance_work_orders": {
+      "columns": [
+        "site",
+        "source_system",
+        "source_ref",
+        "as_of",
+        "join_status",
+        "mismatch_class",
+        "contradicted_by",
+        "integrity_flags",
+        "maintenance_wo",
+        "asset_id",
+        "asset_id_verbatim",
+        "opened_date",
+        "closed_date",
+        "close_out_notes"
+      ],
+      "rows": [
+        {
+          "site": "EPW1",
+          "source_system": "cmms",
+          "source_ref": "cmms_synthetic.sqlite:work_orders/MW-160",
+          "as_of": null,
+          "join_status": "matched",
+          "mismatch_class": null,
+          "contradicted_by": null,
+          "integrity_flags": null,
+          "maintenance_wo": "MW-160",
+          "asset_id": "VMC-02",
+          "asset_id_verbatim": "VMC-02",
+          "opened_date": "2026-09-23",
+          "closed_date": "2026-09-24",
+          "close_out_notes": "spindle hot after long cycle; chiller topped up"
+        },
+        {
+          "site": "EPW1",
+          "source_system": "cmms",
+          "source_ref": "cmms_synthetic.sqlite:work_orders/MW-170",
+          "as_of": null,
+          "join_status": "matched",
+          "mismatch_class": null,
+          "contradicted_by": null,
+          "integrity_flags": null,
+          "maintenance_wo": "MW-170",
+          "asset_id": "VMC-02",
+          "asset_id_verbatim": "VMC-02",
+          "opened_date": "2026-11-10",
+          "closed_date": null,
+          "close_out_notes": null
+        },
+        {
+          "site": "EPW1",
+          "source_system": "cmms",
+          "source_ref": "cmms_synthetic.sqlite:work_orders/MW-152",
+          "as_of": null,
+          "join_status": "matched",
+          "mismatch_class": null,
+          "contradicted_by": null,
+          "integrity_flags": null,
+          "maintenance_wo": "MW-152",
+          "asset_id": "VMC-03",
+          "asset_id_verbatim": "VMC-03",
+          "opened_date": "2026-08-11",
+          "closed_date": "2026-08-11",
+          "close_out_notes": "coolant pump replaced"
+        }
+      ]
+    }
+  },
+  "unmapped_in_source": {
+    "work_orders.wo_type": [
+      "CM"
+    ],
+    "work_orders.downtime_min": [
+      [
+        "MW-160",
+        95
+      ],
+      [
+        "MW-170",
+        null
+      ],
+      [
+        "MW-152",
+        40
+      ]
+    ],
+    "assets.description": [
+      [
+        "VMC-02",
+        "Vertical machining centre"
+      ],
+      [
+        "VMC-03",
+        "Vertical machining centre"
+      ],
+      [
+        "HMC-01",
+        "Horizontal machining centre"
+      ]
+    ],
+    "work_orders.note on open tickets": [
+      [
+        "MW-170",
+        "spindle overload / overtemp - open"
+      ]
+    ]
+  },
+  "source_sha256": "88b87d83ab1ca11668636bbe5e1e9847a445dce58a1ac27f4c50011fb64af72b",
+  "all_pass": true
+}

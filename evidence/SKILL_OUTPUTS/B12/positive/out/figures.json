@@ -1,0 +1,157 @@
+{
+ "maint_records_total": {
+  "value": 5,
+  "query": "all rows, maintenance_history.csv"
+ },
+ "maint_records_VMC-02": {
+  "value": 4,
+  "wos": [
+   "MW-118",
+   "MW-131",
+   "MW-140",
+   "MW-160"
+  ],
+  "query": "asset_id == \"VMC-02\""
+ },
+ "sibling_assets_by_name_prefix": {
+  "value": [
+   "VMC-03"
+  ],
+  "query": "asset name prefix \"VMC\" (no model column), asset_id != \"VMC-02\""
+ },
+ "sibling_records_symptom_match": {
+  "value": 0,
+  "wos": [],
+  "query": "siblings, note matches /spindle|grind|bearing|overtemp|overload|hot|temp|vib|drawbar|chiller/i"
+ },
+ "VMC-02_records_symptom_match": {
+  "value": 4,
+  "wos": [
+   "MW-118",
+   "MW-131",
+   "MW-140",
+   "MW-160"
+  ],
+  "query": "VMC-02, same regex"
+ },
+ "VMC-02_substantive_notes": {
+  "value": 4,
+  "of": 4,
+  "query": "VMC-02 notes non-empty and not a bare 'fixed/repaired/ok now'"
+ },
+ "template_check": {
+  "groups": 5,
+  "groups_on_more_than_one_asset": 0,
+  "query": "group all notes by exact text; count distinct assets/models (model from asset-name prefix, no model column)"
+ },
+ "last_maint_record_closed": {
+  "value": "2026-09-24",
+  "query": "max(closed)"
+ },
+ "sensor_rows_raw": {
+  "value": 7
+ },
+ "sensor_rows_exact_duplicates_removed": {
+  "value": 0,
+  "query": "identical full rows"
+ },
+ "sensor_rows_used": {
+  "value": 7
+ },
+ "sensor_first_ts": {
+  "value": "2026-11-10T13:00:00-05:00"
+ },
+ "sensor_last_ts": {
+  "value": "2026-11-10T15:24:00-05:00"
+ },
+ "spindle_vibration_mm_s": {
+  "first": 1.8,
+  "last": 11.2,
+  "min": 1.8,
+  "max": 11.2,
+  "last_over_first": 6.22,
+  "delta": 9.4,
+  "series": [
+   1.8,
+   1.9,
+   2.4,
+   3.1,
+   4.6,
+   7.9,
+   11.2
+  ]
+ },
+ "spindle_temp_c": {
+  "first": 31.0,
+  "last": 52.1,
+  "min": 31.0,
+  "max": 52.1,
+  "last_over_first": 1.68,
+  "delta": 21.1,
+  "series": [
+   31.0,
+   31.4,
+   33.2,
+   36.0,
+   40.8,
+   47.5,
+   52.1
+  ]
+ },
+ "spindle_load_pct": {
+  "first": 42.0,
+  "last": 71.0,
+  "min": 42.0,
+  "max": 71.0,
+  "last_over_first": 1.69,
+  "delta": 29.0,
+  "series": [
+   42.0,
+   44.0,
+   45.0,
+   47.0,
+   49.0,
+   58.0,
+   71.0
+  ]
+ },
+ "coolant_pressure_bar": {
+  "first": 20.1,
+  "last": 19.9,
+  "min": 19.8,
+  "max": 20.1,
+  "last_over_first": 0.99,
+  "delta": -0.2,
+  "series": [
+   20.1,
+   20.0,
+   19.9,
+   20.1,
+   20.0,
+   19.8,
+   19.9
+  ]
+ },
+ "vibration_monotonic_nondecreasing": {
+  "value": true
+ },
+ "MW-140_vib_ratio_2.1_over_1.4": {
+  "value": 1.5,
+  "query": "values quoted in MW-140 note"
+ },
+ "window_minutes": {
+  "value": 144,
+  "query": "last minus first sensor timestamp"
+ },
+ "vib_rate_per_interval_mm_s_per_min": {
+  "value": [
+   0.003,
+   0.017,
+   0.023,
+   0.05,
+   0.165,
+   0.825
+  ],
+  "query": "delta vib / delta minutes per consecutive sample"
+ }
+}

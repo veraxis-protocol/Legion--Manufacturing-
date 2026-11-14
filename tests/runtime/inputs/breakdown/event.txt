@@ -1,0 +1,4 @@
+# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.
+2026-11-10 15:24 local: VMC-02 alarm 'SPINDLE OVERLOAD / OVERTEMP', machine stopped mid-cycle on WO-8120 op 20 (MB-1880).
+Operator note: grinding noise from spindle for ~20 min before alarm, chips looked normal. Machine still down at 16:10.
+Technician photo description (no photo file): bluish discolouration visible on the spindle nose / taper area.

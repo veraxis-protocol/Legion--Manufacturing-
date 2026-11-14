@@ -1,0 +1,4 @@
+site,source_system,source_ref,as_of,join_status,mismatch_class,contradicted_by,integrity_flags,maintenance_wo,asset_id,asset_id_verbatim,opened_date,closed_date,close_out_notes
+EPW1,cmms,cmms_synthetic.sqlite:work_orders/MW-160,,matched,,,,MW-160,VMC-02,VMC-02,2026-09-23,2026-09-24,spindle hot after long cycle; chiller topped up
+EPW1,cmms,cmms_synthetic.sqlite:work_orders/MW-170,,matched,,,,MW-170,VMC-02,VMC-02,2026-11-10,,
+EPW1,cmms,cmms_synthetic.sqlite:work_orders/MW-152,,matched,,,,MW-152,VMC-03,VMC-03,2026-08-11,2026-08-11,coolant pump replaced

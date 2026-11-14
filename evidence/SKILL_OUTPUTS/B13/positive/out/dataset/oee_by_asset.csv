@@ -1,0 +1,3 @@
+asset_id,planned_min,unplanned_down_min,run_min,ideal_min,good,total,availability,performance,quality,oee
+CNC-01,960.0,45,915.0,792.0,780,792,0.9531,0.8656,0.9848,0.8125
+CNC-02,480.0,20,460.0,401.4,220,223,0.9583,0.8726,0.9865,0.825

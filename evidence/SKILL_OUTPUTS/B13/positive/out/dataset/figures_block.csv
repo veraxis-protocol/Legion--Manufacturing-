@@ -1,0 +1,57 @@
+figure,value,source,filter
+Production days in output export,2026-11-12,pulse_oee/output.csv,distinct production_day
+Plan dates in plan export,2026-11-12,pulse_oee/plan.csv,distinct plan_date
+Start dates in MES downtime export,2026-11-12,pulse_oee/downtime.csv,distinct started_at[:10]
+Latest close date in maintenance export,2026-09-24,breakdown/maintenance_history.csv,max(closed)
+Days from last maintenance record to breakdown,47,maintenance export + event.txt,2026-11-10 minus max(closed)
+Days between breakdown date and report production day,2,event.txt + output.csv,production_day minus 2026-11-10
+MES downtime rows with naive (zone-less) timestamps,2 of 2,pulse_oee/downtime.csv,started_at has no zone suffix
+Sources with a timestamp later than run time,0,file modified times,mtime > run time
+Sensor rows for VMC-02,7,breakdown/sensor_window.csv,asset_id == 'VMC-02'
+Sensor window,2026-11-10T13:00:00-05:00 to 2026-11-10T15:24:00-05:00,sensor_window.csv,min/max timestamp
+Sensor window reaches the alarm minute,True,sensor_window.csv + event.txt,last timestamp == 2026-11-10T15:24:00-05:00
+Vibration first / last (mm/s),1.8 / 11.2,sensor_window.csv,first and last VMC-02 row
+Vibration last ÷ first,6.22,sensor_window.csv,11.2 / 1.8 from the same rows
+Vibration never fell between samples,True,sensor_window.csv,each row >= previous
+Spindle temp first / last (°C),31.0 / 52.1,sensor_window.csv,first and last row
+Spindle temp rise (°C),21.1,sensor_window.csv,last - first
+Spindle load first / last (%),42 / 71,sensor_window.csv,first and last row
+Coolant pressure range (bar),19.8 to 20.1,sensor_window.csv,min/max coolant_pressure_bar
+Vibration rise rate per interval (mm/s per min),13:00-13:30: 0.003; 13:30-14:00: 0.017; 14:00-14:30: 0.023; 14:30-15:00: 0.05; 15:00-15:20: 0.165; 15:20-15:24: 0.825,sensor_window.csv,Δvibration / Δminutes per consecutive pair
+Sensor channels present,"vibration, temp, load, coolant pressure (no spindle rpm, no chiller flow/level)",sensor_window.csv header,column list
+"Minutes from alarm to last 'still down' observation (lower bound, not a duration)",46,event.txt,16:10 - 15:24
+"Maintenance records, VMC-02","4 (MW-118, MW-131, MW-140, MW-160)",maintenance_history.csv,asset_id == 'VMC-02'
+VMC-02 records with substantive close-out notes,4 of 4,maintenance_history.csv,note non-empty and not just fixed/repaired/ok
+Sibling assets (model taken from asset-name prefix 'VMC'; no model column),VMC-03,maintenance_history.csv,asset_id prefix == 'VMC' and != VMC-02
+Sibling records matching symptom words,0 — none returned,maintenance_history.csv,sibling asset AND note contains any of spindle/bearing/vib/overtemp/overload/temp/hot/grind/noise/rough/drawbar/chiller/taper
+Close-out note texts grouped (exact text),5 distinct texts across 5 records; texts on >1 asset: 0,maintenance_history.csv,group by exact close_out_note; count distinct asset_id
+VMC-02 notes citing rough/vibration/bearing,"MW-118, MW-140",maintenance_history.csv,VMC-02 AND note contains rough|vib|bearing
+VMC-02 notes citing chiller/hot/temp,MW-160,maintenance_history.csv,VMC-02 AND note contains chiller|hot|temp
+VMC-02 notes citing drawbar/clamp/belleville,MW-131,maintenance_history.csv,VMC-02 AND note contains drawbar|clamp|belleville
+VMC-02 PM records,"MW-118 (2026-03-02), MW-140 (2026-07-08)",maintenance_history.csv,VMC-02 AND type == PM
+Days between the two VMC-02 PMs,128,maintenance_history.csv,MW-140.opened - MW-118.opened
+Days from last PM in export to breakdown,125,maintenance_history.csv + event.txt,2026-11-10 - MW-140.opened
+Open maintenance WOs in export,0,maintenance_history.csv,closed is blank
+Output vs plan PN-100,"plan 800, good 780, total 792, variance -20 (-2.5%)",plan.csv + output.csv,"part_number == PN-100, day 2026-11-12"
+Output vs plan PN-200,"plan 250, good 220, total 223, variance -30 (-12.0%)",plan.csv + output.csv,"part_number == PN-200, day 2026-11-12"
+"Plant good vs plan (CELL-A, SITE-1)",good 1000 vs plan 1050 = 95.2%; total 1015,plan.csv + output.csv,"all rows, 2026-11-12"
+Scrap units,"15 (PN-100: 12, PN-200: 3)",output.csv,sum qty_scrap by part
+Part keys matched exactly across plan/output/routing/WO,2 of 2,pulse_oee exports,"set intersection on part_number, no normalization"
+Shifts in output export,CNC-01 shift 1; CNC-01 shift 2; CNC-02 shift 1,output.csv,"distinct asset_id, shift"
+MES downtime rows passing start/end/duration check,2 of 2,downtime.csv,ended_at >= started_at and minutes == stated
+OEE CNC-01,"A 95.3%, P 86.6%, Q 98.5%, OEE 81.2% (planned 960 min, down 45 min, run 915 min, ideal 792 min, good 780/792)",plan.csv + downtime.csv + output.csv + routing.csv,asset_id == CNC-01
+OEE CNC-02,"A 95.8%, P 87.3%, Q 98.7%, OEE 82.5% (planned 480 min, down 20 min, run 460 min, ideal 401.4 min, good 220/223)",plan.csv + downtime.csv + output.csv + routing.csv,asset_id == CNC-02
+"OEE CELL-A (time-weighted over CNC-01, CNC-02)","A 95.5%, P 86.8%, Q 98.5%, OEE 81.7%",same,sums of planned/run/ideal minutes and counts
+Assets in plan without output,none,plan.csv vs output.csv,plan assets not in output
+VMC-02 rows in plan / output / MES downtime,0 / 0 / 0,"plan.csv, output.csv, downtime.csv",asset_id == 'VMC-02'
+"WO-8120 / MB-1880 in work_orders, routing, plan",WO-8120: 0; MB-1880 routing: 0; MB-1880 plan: 0,"work_orders.csv, routing.csv, plan.csv",exact key match
+"MES downtime, 2026-11-12","2 events, 65 min",downtime.csv,all rows
+Downtime by reason code (minutes),TOOL 45; MAT 20,downtime.csv,sum minutes by reason_code
+Downtime by reason code (events),MAT 1; TOOL 1,downtime.csv,count by reason_code
+MES events coded Other or blank,0 of 2,downtime.csv,reason_code blank or 'Other'
+MES rows matching the diagnosis record (asset + start within shift),0,downtime.csv,"asset_id == 'VMC-02' (no rows, so start-time test not reached)"
+WO-1001 good on 2026-11-12 vs ordered,"480 of 500 (short 20), scrap 12, due 2026-11-14",work_orders.csv + output.csv,work_order == WO-1001
+WO-1002 good on 2026-11-12 vs ordered,"220 of 250 (short 30), scrap 3, due 2026-11-13",work_orders.csv + output.csv,work_order == WO-1002
+WO-1003 good on 2026-11-12 vs ordered,"300 of 300 (short 0), scrap 0, due 2026-11-15",work_orders.csv + output.csv,work_order == WO-1003
+Work orders with a sales_order column,0 — no sales_order column in work_orders.csv,work_orders.csv header,column list
+Short WOs whose due date is before run date 2026-11-14,WO-1002,work_orders.csv,short > 0 and due_date < run date

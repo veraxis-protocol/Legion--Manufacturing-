@@ -1,0 +1,297 @@
+{
+ "figures": [
+  [
+   "MRP requirement rows, BSH-1210",
+   3,
+   "demand.csv",
+   "item == \"BSH-1210\", comment line excluded"
+  ],
+  [
+   "MRP requirement total, BSH-1210 (pcs)",
+   3200,
+   "demand.csv",
+   "sum(qty_required) where item == \"BSH-1210\""
+  ],
+  [
+   "MRP requirement window",
+   "2026-12 to 2027-02 (3 months)",
+   "demand.csv",
+   "min/max of month"
+  ],
+  [
+   "MRP requirement 2026-12 (pcs)",
+   800,
+   "demand.csv",
+   "item == \"BSH-1210\" and month == \"2026-12\""
+  ],
+  [
+   "MRP requirement 2027-01 (pcs)",
+   1200,
+   "demand.csv",
+   "item == \"BSH-1210\" and month == \"2027-01\""
+  ],
+  [
+   "MRP requirement 2027-02 (pcs)",
+   1200,
+   "demand.csv",
+   "item == \"BSH-1210\" and month == \"2027-02\""
+  ],
+  [
+   "Largest single-month requirement (pcs)",
+   1200,
+   "demand.csv",
+   "max(qty_required)"
+  ],
+  [
+   "Revision(s) the MRP demand is stated against",
+   "A",
+   "demand.csv",
+   "distinct rev"
+  ],
+  [
+   "Purchase-order / receipt history rows for BSH-1210",
+   "0 - none supplied",
+   "inputs/supplier folder enumerated",
+   "no PO, receipt or usage file present among the 4 input files"
+  ],
+  [
+   "Forecast / EAU rows",
+   "0 - none supplied",
+   "inputs/supplier folder enumerated",
+   "no forecast file; demand.csv holds MRP requirement only"
+  ],
+  [
+   "Package quantity breaks proposed (pcs)",
+   "800, 1200, 3200",
+   "demand.csv",
+   "first month 2026-12 qty; largest month qty; window total - buyer to confirm"
+  ],
+  [
+   "fields_missing count, Alder Sintered Parts",
+   10,
+   "bid_supplier_A.txt, lines 2-4",
+   "mandated fields checked one by one"
+  ],
+  [
+   "fields_missing count, Birch Powder Metal",
+   9,
+   "bid_supplier_B.txt, lines 2-3",
+   "mandated fields checked one by one"
+  ],
+  [
+   "Bids received",
+   2,
+   "inputs/supplier",
+   "files named bid_*.txt"
+  ],
+  [
+   "Bids conforming to mandated format",
+   0,
+   "bid records",
+   "conformance == \"conforming\""
+  ],
+  [
+   "Suppliers confirmed approved",
+   0,
+   "bid records",
+   "no approved-supplier table and no ERP vendor records on file -> none can be confirmed"
+  ],
+  [
+   "Bids priced per unit at break 800",
+   "0 of 2",
+   "bid records",
+   "breaks[quantity==800].unit_price not null"
+  ],
+  [
+   "Bids priced per unit at break 1,200",
+   "0 of 2",
+   "bid records",
+   "breaks[quantity==1200].unit_price not null"
+  ],
+  [
+   "Extended at 3,200, Birch Powder Metal (USD)",
+   "1,568.00",
+   "bid_supplier_B.txt, line 3",
+   "0.49 x 3200"
+  ],
+  [
+   "First-order total at 3,200 incl. one-time tooling, Birch Powder Metal (USD)",
+   "3,418.00",
+   "bid_supplier_B.txt, line 3",
+   "1,568.00 + tooling 1,850.00"
+  ],
+  [
+   "Bids priced per unit at break 3,200",
+   "1 of 2",
+   "bid records",
+   "breaks[quantity==3200].unit_price not null"
+  ],
+  [
+   "Extended at own quoted qty 1,000, Alder Sintered Parts (USD)",
+   "620.00",
+   "bid_supplier_A.txt, line 3",
+   "0.62 x 1000 - supplier's own quantity, not a package break"
+  ],
+  [
+   "Extended at own quoted qty 3,000, Alder Sintered Parts (USD)",
+   "1,650.00",
+   "bid_supplier_A.txt, line 3",
+   "0.55 x 3000 - supplier's own quantity, not a package break"
+  ],
+  [
+   "Extended at own quoted qty 3,200, Birch Powder Metal (USD)",
+   "1,568.00",
+   "bid_supplier_B.txt, line 3",
+   "0.49 x 3200 - supplier's own quantity, not a package break"
+  ],
+  [
+   "Own-qty first-order total incl. tooling, Birch Powder Metal (USD)",
+   "3,418.00",
+   "bid_supplier_B.txt, line 3",
+   "1,568.00 + 1,850.00"
+  ],
+  [
+   "Shortfall of Alder's 3,000-pc quote against MRP window total (pcs)",
+   200,
+   "demand.csv + bid_supplier_A.txt",
+   "3200 - 3000"
+  ],
+  [
+   "Alder '4 weeks ARO' if order placed 2026-11-14 (illustrative)",
+   "2026-12-12",
+   "bid_supplier_A.txt line 3",
+   "today + 28 days; order date is an assumption"
+  ],
+  [
+   "Birch '6-7 weeks' if counted from 2026-11-14 (illustrative)",
+   "2026-12-26 to 2027-01-02",
+   "bid_supplier_B.txt line 3",
+   "today + 42/49 days; supplier named no start event"
+  ],
+  [
+   "First MRP requirement month",
+   "2026-12",
+   "demand.csv",
+   "min(month); no day-of-month in the export"
+  ],
+  [
+   "Required first article date",
+   "not supplied",
+   "inputs",
+   "no first-article date in drawing, demand.csv or request"
+  ],
+  [
+   "Suppliers with a recorded send",
+   0,
+   "conversation",
+   "buyer has not said any RFQ was sent"
+  ],
+  [
+   "Days past due",
+   "not computable - no response due date set",
+   "package",
+   "due date is a buyer question"
+  ]
+ ],
+ "breaks": [
+  800,
+  1200,
+  3200
+ ],
+ "comparison": {
+  "800": [
+   {
+    "supplier": "Alder Sintered Parts",
+    "unit": null,
+    "as_quoted": "not quoted at 800 (MOQ 1,000)",
+    "ext": null,
+    "foc": null,
+    "flags": [
+     "MOQ 1,000 above break 800: price does not buy this quantity"
+    ],
+    "src": "bid_supplier_A.txt, line 3"
+   },
+   {
+    "supplier": "Birch Powder Metal",
+    "unit": null,
+    "as_quoted": "not quoted at 800",
+    "ext": null,
+    "foc": null,
+    "flags": [
+     "MOQ not stated"
+    ],
+    "src": "bid_supplier_B.txt, line 3"
+   }
+  ],
+  "1200": [
+   {
+    "supplier": "Alder Sintered Parts",
+    "unit": null,
+    "as_quoted": "not quoted at 1,200 (quoted 1,000 pcs 0.62 USD/ea)",
+    "ext": null,
+    "foc": null,
+    "flags": [],
+    "src": "bid_supplier_A.txt, line 3"
+   },
+   {
+    "supplier": "Birch Powder Metal",
+    "unit": null,
+    "as_quoted": "not quoted at 1,200",
+    "ext": null,
+    "foc": null,
+    "flags": [
+     "MOQ not stated"
+    ],
+    "src": "bid_supplier_B.txt, line 3"
+   }
+  ],
+  "3200": [
+   {
+    "supplier": "Alder Sintered Parts",
+    "unit": null,
+    "as_quoted": "not quoted at 3,200 (quoted 3,000 pcs 0.55 USD/ea)",
+    "ext": null,
+    "foc": null,
+    "flags": [],
+    "src": "bid_supplier_A.txt, line 3"
+   },
+   {
+    "supplier": "Birch Powder Metal",
+    "unit": 0.49,
+    "as_quoted": "Unit price 0.49 USD at 3,200 pcs",
+    "ext": 1568.0,
+    "foc": 3418.0,
+    "flags": [
+     "MOQ not stated"
+    ],
+    "src": "bid_supplier_B.txt, line 3"
+   }
+  ]
+ },
+ "indicative": [
+  {
+   "supplier": "Alder Sintered Parts",
+   "q": 1000,
+   "unit": 0.62,
+   "ext": 620.0,
+   "foc": null,
+   "src": "bid_supplier_A.txt, line 3"
+  },
+  {
+   "supplier": "Alder Sintered Parts",
+   "q": 3000,
+   "unit": 0.55,
+   "ext": 1650.0,
+   "foc": null,
+   "src": "bid_supplier_A.txt, line 3"
+  },
+  {
+   "supplier": "Birch Powder Metal",
+   "q": 3200,
+   "unit": 0.49,
+   "ext": 1568.0,
+   "foc": 3418.0,
+   "src": "bid_supplier_B.txt, line 3"
+  }
+ ]
+}

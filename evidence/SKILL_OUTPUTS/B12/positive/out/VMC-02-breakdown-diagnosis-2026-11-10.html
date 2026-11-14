@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VMC-02 Breakdown Diagnosis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1A1D21;--paper:#F2F3F5;--paper-raised:#FFFFFF;--line:#D6D9DD;--accent:#1F5C8B;--accent-soft:#E4EDF4;--good:#2E7248;--good-soft:#E3EFE7;--warn:#A8641A;--warn-soft:#F7EBDA;--critical:#A93226;--critical-soft:#F9E9E7;--font-display:'IBM Plex Sans Condensed','Arial Narrow',sans-serif;--font-body:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,sans-serif;--font-mono:'IBM Plex Mono','SF Mono',Consolas,monospace}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ink:#E8EAEC;--paper:#15181B;--paper-raised:#1D2126;--line:#2E343A;--accent:#6BA8D4;--accent-soft:#1B2C39;--good:#6FBF88;--good-soft:#1B2E22;--warn:#D9A15C;--warn-soft:#33271A;--critical:#DE8378;--critical-soft:#35201E}}
+:root[data-theme="dark"]{--ink:#E8EAEC;--paper:#15181B;--paper-raised:#1D2126;--line:#2E343A;--accent:#6BA8D4;--accent-soft:#1B2C39;--good:#6FBF88;--good-soft:#1B2E22;--warn:#D9A15C;--warn-soft:#33271A;--critical:#DE8378;--critical-soft:#35201E}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);line-height:1.5}
+main{max-width:960px;margin:0 auto;padding:24px 16px;display:flex;flex-direction:column;gap:16px}
+h1,h2,h3{font-family:var(--font-display);font-weight:600;margin:0 0 8px}
+h1{font-size:1.75rem}h2{font-size:1.375rem}h3{font-size:1.125rem;margin-top:12px}
+.panel{background:var(--paper-raised);border:1px solid var(--line);border-radius:4px;padding:16px}
+.critical{background:var(--critical-soft);border-color:var(--critical)}
+.warn{background:var(--warn-soft)}
+.mono,td.n{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.875rem}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{font-family:var(--font-display)}
+.pill{display:inline-block;padding:1px 8px;border-radius:10px;background:var(--accent-soft);color:var(--accent);font-size:.75rem;font-weight:600}
+small{opacity:.8}
+</style>
+</head>
+<body>
+<main>
+
+<section class="panel critical">
+<h2>Safety first</h2>
+<p><strong>Follow your plant's lockout procedure before anyone works on this machine. This is not a safety assessment.</strong></p>
+<p><strong>Safety flagged: yes.</strong> The spindle drive tripped on <em>SPINDLE OVERLOAD / OVERTEMP</em> (an electrical/drive trip), and the spindle was grinding for about 20 minutes before it. The OEM page (Section 7.4) says: do not run a spindle that is grinding, and lock out the spindle drive before turning it by hand or inspecting it. The spindle nose is reported blue from heat, and the last spindle temperature reading was 52.1 &deg;C. <strong>Do not power up the spindle or reset the alarm to "see if it runs".</strong> Every check below is done with the spindle drive locked out, except the chiller check, which does not involve the spindle.</p>
+</section>
+
+<section class="panel">
+<h1>VMC-02: breakdown diagnosis</h1>
+<p><span class="pill">ADVISORY: not confirmed by a technician</span> <span class="pill">Draft only: nothing written to any system</span> <span class="pill">SYNTHETIC test data</span></p>
+<div class="tw"><table>
+<tr><th>Asset</th><td class="n">VMC-02</td></tr>
+<tr><th>Down at</th><td class="n">2026-11-10 15:24 local (event note gives no UTC offset; historian export is -05:00)</td></tr>
+<tr><th>Status</th><td>Still down at 16:10 (event note). Duration: ongoing, not yet known</td></tr>
+<tr><th>Symptom (operator's words)</th><td>"grinding noise from spindle for ~20 min before alarm, chips looked normal"</td></tr>
+<tr><th>Alarm</th><td>SPINDLE OVERLOAD / OVERTEMP, stopped mid-cycle</td></tr>
+<tr><th>Interrupted job</th><td class="n">WO-8120 op 20 (MB-1880)</td></tr>
+<tr><th>Photo</th><td>No photo file supplied; only a written description: "bluish discolouration visible on the spindle nose / taper area"</td></tr>
+<tr><th>Data freshness</th><td>No CMMS connector. Maintenance history is an export; its most recent closed record is 2026-09-24. Work done on VMC-02 after that date would not appear here. No ticket for today's event is in the inputs</td></tr>
+</table></div>
+</section>
+
+<section class="panel">
+<h2>Answer</h2>
+<p><strong>Most likely cause: spindle bearing damage or loss of preload</strong> (medium confidence). It has been getting worse for months, and the spindle chiller may have helped it along. Spindle vibration rose steadily for the whole 144-minute window, from 1.8 to 11.2 mm/s (6.22 times higher), and kept speeding up. Temperature rose from 31.0 to 52.1 &deg;C. Coolant pressure stayed flat between 19.8 and 20.1 bar. The OEM table matches "overtemp with rising vibration" and "grinding noise" to bearing wear, bearing damage or contamination. VMC-02's own history shows the same trend: "rough at 8k" in March (MW-118), then vibration up from 1.4 to 2.1 mm/s in July (MW-140, 1.5 times higher), "told sup", and no follow-up work order in the export.</p>
+<p><strong>Cheapest test to tell the candidates apart</strong>, in this order, about 10 to 15 minutes in total and no parts needed:</p>
+<ol>
+<li><strong>Check the chiller fluid level and flow</strong> (sight glass or flow indicator). This does not involve the spindle. If the chiller is low again, as in MW-160, that confirms candidate 2 as a <em>contributing</em> cause. It does not rule out candidate 1, because a low chiller does not explain the vibration rise or the grinding.</li>
+<li><strong>With the spindle drive locked out, pull the tool holder and inspect its taper and the spindle taper</strong> for pull-out marks, fretting or scoring. If you see pull-out marks, candidate 3 (drawbar) moves up. If the holder is clean, candidate 3 moves down.</li>
+<li><strong>With the spindle still locked out, turn it by hand</strong> (OEM check for grinding). If it feels rough, notchy or tight, candidate 1 (bearing) is confirmed. If it turns smoothly, candidate 1 is weaker and the run-out check comes next.</li>
+</ol>
+<p>The next step costs more: a dial indicator run-out check at the taper (the OEM limit is under 3 &micro;m), done with the spindle still not running. The OEM's vibration-spectrum check needs the spindle running, so <strong>do not use it here</strong>.</p>
+</section>
+
+<section class="panel">
+<h2>Sensor observation summary</h2>
+<p>The window covers the event: 7 samples from 2026-11-10 13:00 to 15:24 (-05:00). The last sample is at the alarm time. The export has no alarm thresholds, so this summary reads the shapes in the data, not alarm breaches.</p>
+<div class="tw"><table>
+<tr><th>Time (-05:00)</th><th>Vibration mm/s</th><th>Spindle temp &deg;C</th><th>Spindle load %</th><th>Coolant bar</th></tr>
+<tr><td class="n">13:00</td><td class="n">1.8</td><td class="n">31.0</td><td class="n">42</td><td class="n">20.1</td></tr>
+<tr><td class="n">13:30</td><td class="n">1.9</td><td class="n">31.4</td><td class="n">44</td><td class="n">20.0</td></tr>
+<tr><td class="n">14:00</td><td class="n">2.4</td><td class="n">33.2</td><td class="n">45</td><td class="n">19.9</td></tr>
+<tr><td class="n">14:30</td><td class="n">3.1</td><td class="n">36.0</td><td class="n">47</td><td class="n">20.1</td></tr>
+<tr><td class="n">15:00</td><td class="n">4.6</td><td class="n">40.8</td><td class="n">49</td><td class="n">20.0</td></tr>
+<tr><td class="n">15:20</td><td class="n">7.9</td><td class="n">47.5</td><td class="n">58</td><td class="n">19.8</td></tr>
+<tr><td class="n">15:24</td><td class="n">11.2</td><td class="n">52.1</td><td class="n">71</td><td class="n">19.9</td></tr>
+</table></div>
+<ul>
+<li><strong>Vibration: a steady climb that speeds up</strong>, with no single step. It never went down between samples. The rate of rise went from 0.003 to 0.825 mm/s per minute between the first and last sample pairs. This is the progressive-wear pattern (bearing). It does not look like one sudden event.</li>
+<li><strong>Spindle temperature and load</strong> climbed alongside vibration. Load rose from 42 to 71 % while the operator reported normal chips. That points to the spindle itself (friction) rather than the cut, but this is reasoning, not something the data proves.</li>
+<li><strong>Coolant pressure stayed flat</strong> between 19.8 and 20.1 bar. This is cutting-coolant pressure. <strong>The export has no chiller flow, level or temperature channel</strong>, so the sensor data neither supports nor rules out a chiller problem.</li>
+</ul>
+</section>
+
+<section class="panel">
+<h2>Ranked candidate causes</h2>
+
+<h3>1. Spindle bearing damage or loss of preload (progressive wear)</h3>
+<p><strong>Evidence</strong></p>
+<ul>
+<li>Sensor: vibration rose 6.22 times (1.8 to 11.2 mm/s) and kept speeding up. Temperature rose 31.0 to 52.1 &deg;C and load rose 42 to 71 %. Coolant pressure was flat.</li>
+<li>Operator: grinding noise for about 20 minutes before the alarm, with normal chips.</li>
+<li>Manual, Section 7.4: "Overtemp with rising vibration" points to spindle bearing wear or preload loss, and "Grinding noise" points to bearing damage or contamination.</li>
+<li>History on this asset: <span class="mono">MW-118</span> (2026-03-02): "spindle sounded a bit rough at 8k, monitor". <span class="mono">MW-140</span> (2026-07-08): "vib reading 2.1 mm/s at 8k (was 1.4 last yr). told sup". That is 1.5 times higher, an early warning with no corrective work order after it in the export (searched up to 2026-09-24).</li>
+<li>Bluish discolouration on the spindle nose and taper is consistent with overheating near the front bearing. This comes from a written description only, with no photo, so it is not used as proof.</li>
+</ul>
+<p><strong>First check</strong></p>
+<p>With the spindle drive locked out, turn the spindle by hand and feel for roughness or notchiness (OEM check). If that is unclear, measure run-out at the taper with a dial indicator against the OEM limit of under 3 &micro;m. Do not run the spindle for a vibration spectrum.</p>
+<p><strong>Expected fix and repair path</strong></p>
+<p>Replace the spindle bearings or rebuild or exchange the spindle cartridge, following the OEM procedure. Inspect the spindle taper for heat damage and regrind it if needed. After the repair, record a new baseline vibration reading at 8k. Before releasing the machine, also check the chiller (candidate 2) and drawbar clamp force (candidate 3), so the new bearings are not running with the same problems.</p>
+<p><small>Cited: MW-140, MW-118.</small></p>
+
+<h3>2. Spindle chiller low flow or low fluid level (cooling), likely contributing rather than primary</h3>
+<p><strong>Evidence</strong></p>
+<ul>
+<li>The alarm includes OVERTEMP, and the spindle temperature rose to 52.1 &deg;C.</li>
+<li>History on this asset: <span class="mono">MW-160</span> (2026-09-23): "spindle hot after long cycle. checked chiller - low on fluid topped up. temp ok after". The chiller was topped up, but the export shows no cause for the fluid loss (leak) being found.</li>
+<li><em>Against:</em> the manual matches chiller problems to "Overtemp, <strong>normal</strong> vibration". Here vibration rose 6.22 times, and a chiller problem does not explain grinding. The sensor export has no chiller channel.</li>
+</ul>
+<p><strong>First check</strong></p>
+<p>Check the chiller fluid level and flow. This is the cheapest check of all, takes a couple of minutes and does not involve the spindle. If the fluid is low again, look for the leak.</p>
+<p><strong>Expected fix and repair path</strong></p>
+<p>Top up the chiller, find and fix the leak, and confirm flow against the OEM chiller specification (that figure is not on the excerpt supplied). If this is the only finding but the spindle still turns rough by hand, candidate 1 stands, and a low chiller probably sped up the bearing damage.</p>
+<p><small>Cited: MW-160.</small></p>
+
+<h3>3. Drawbar clamp force low (tool holder not seated)</h3>
+<p><strong>Evidence</strong></p>
+<ul>
+<li>The alarm includes OVERLOAD, and load rose to 71 %.</li>
+<li>History on this asset: <span class="mono">MW-131</span> (2026-05-19/20): "spindle alarm 2nd shift. found drawbar clamp low, adjusted belleville stack. ran ok". This is a previous spindle alarm with this exact cause. Adjusting the Belleville stack is not the same as replacing it, so it may have weakened again.</li>
+<li>Bluish discolouration on the <em>taper</em> could also come from a loose holder fretting in the taper. A written description cannot tell this apart from bearing heat.</li>
+<li><em>Against:</em> the manual matches drawbar problems to "Overload with tool pull-out marks", and no pull-out marks are reported (nobody has looked yet). The vibration pattern is a smooth climb with no step. A holder letting go would more likely show a step change.</li>
+</ul>
+<p><strong>First check</strong></p>
+<p>With the drive locked out, pull the holder and look for pull-out or fretting marks on the holder taper. If you find marks, measure clamp force with the gauge. The OEM specification is 8.0 to 9.5 kN.</p>
+<p><strong>Expected fix and repair path</strong></p>
+<p>Replace the Belleville spring stack, not just adjust it. Set clamp force within 8.0 to 9.5 kN and inspect or replace the damaged holder. If the spindle taper is fretted, it needs regrinding.</p>
+<p><small>Cited: MW-131.</small></p>
+
+<p><small>The evidence does not support two candidates equally. Candidate 1 is backed by the sensor shape, the manual and two prior notes. Candidates 2 and 3 each rest on one prior note and part of the alarm text.</small></p>
+</section>
+
+<section class="panel">
+<h2>Cited history and coverage</h2>
+<p>There are 4 maintenance records for VMC-02 (filter <span class="mono">asset_id == "VMC-02"</span>), and all 4 have substantive close-out notes. All 4 mention the spindle, vibration, drawbar or chiller. The notes reuse no wording: grouping by exact text gives 5 groups, and 0 of them appear on more than one asset. Each note therefore counts as evidence about the asset it was written for.</p>
+<p><strong>Sibling search.</strong> The export has no model column, so siblings were found by asset-name prefix only ("VMC"). That is weaker than a real model match. It found VMC-03, whose record matched none of the symptom terms (<span class="mono">MW-152</span> "coolant pump replaced - not related"). So no fleet pattern was found by this search. Because the model is inferred only from the name, this is <em>not</em> proof that same-model machines are clean.</p>
+<div class="tw"><table>
+<tr><th>WO</th><th>Asset</th><th>Closed</th><th>Type</th><th>Close-out note</th><th>Used for</th></tr>
+<tr><td class="n">MW-118</td><td class="n">VMC-02</td><td class="n">2026-03-02</td><td>PM</td><td>quarterly PM done. greased ways. spindle sounded a bit rough at 8k, monitor</td><td>Candidate 1</td></tr>
+<tr><td class="n">MW-131</td><td class="n">VMC-02</td><td class="n">2026-05-20</td><td>CM</td><td>spindle alarm 2nd shift. found drawbar clamp low, adjusted belleville stack. ran ok</td><td>Candidate 3</td></tr>
+<tr><td class="n">MW-140</td><td class="n">VMC-02</td><td class="n">2026-07-08</td><td>PM</td><td>PM. vib reading 2.1 mm/s at 8k (was 1.4 last yr). told sup</td><td>Candidate 1</td></tr>
+<tr><td class="n">MW-160</td><td class="n">VMC-02</td><td class="n">2026-09-24</td><td>CM</td><td>spindle hot after long cycle. checked chiller - low on fluid topped up. temp ok after</td><td>Candidate 2</td></tr>
+<tr><td class="n">MW-152</td><td class="n">VMC-03</td><td class="n">2026-08-11</td><td>CM</td><td>coolant pump replaced - not related</td><td>Sibling, not relevant</td></tr>
+</table></div>
+</section>
+
+<section class="panel warn">
+<h2>PM plan adjustment: draft for the maintenance planner</h2>
+<p>The current PM plan for VMC-02 was not available (no CMMS connector, and no PM plan in the inputs). <strong>First question for the planner: what is VMC-02's current PM interval and checklist?</strong> MW-118 calls itself a "quarterly PM", and MW-118 and MW-140 are about four months apart. Proposed changes for VMC-02, for spindle bearing failure:</p>
+<ol>
+<li><strong>Trend the spindle vibration reading at 8k at every PM, and act on it.</strong> MW-140 recorded a 1.5-times rise and stopped at "told sup". Add a planner-set limit on vibration rise versus baseline. Crossing it should automatically open a corrective work order for a bearing inspection. The planner or OEM sets the limit; none is given in the inputs.</li>
+<li><strong>Set a fresh baseline after the repair</strong> and shorten the vibration-check interval for the first months after the rebuild. The planner sets the interval.</li>
+<li><strong>Add a chiller fluid level and flow check to each PM</strong>, and require any top-up to record the volume added and where it leaked from (follow-up to MW-160).</li>
+<li><strong>Add a clamp force gauge check to each PM</strong> (OEM 8.0 to 9.5 kN). If the reading is low, replace the Belleville stack rather than adjusting it (follow-up to MW-131).</li>
+</ol>
+<p><small>This is a draft. The planner owns the schedule, and nothing here has been applied.</small></p>
+</section>
+
+<section class="panel">
+<h2>Downtime record for the next production report</h2>
+<p>Saved as <span class="mono">downtime-record-VMC-02-2026-11-10.yaml</span> (contract version 3). Key fields:</p>
+<div class="tw"><table>
+<tr><th>Field</th><th>Value</th></tr>
+<tr><td class="n">asset_id</td><td class="n">VMC-02</td></tr>
+<tr><td class="n">started_at</td><td class="n">2026-11-10T15:24:00-05:00 (UTC offset taken from historian; confirm)</td></tr>
+<tr><td class="n">ended_at / duration_minutes</td><td>null / null (still down)</td></tr>
+<tr><td class="n">production_wo</td><td class="n">WO-8120</td></tr>
+<tr><td class="n">safety_flagged</td><td><strong>true</strong> (spindle drive trip; OEM do-not-run and lockout instruction)</td></tr>
+<tr><td class="n">leading_cause_confidence</td><td>medium</td></tr>
+<tr><td class="n">diagnosis_state / technician_step</td><td>advisory / pending</td></tr>
+<tr><td class="n">site, shift, reason_code</td><td>null: not in the inputs. <strong>site is required by the contract and must be filled in before this record goes into the report</strong></td></tr>
+</table></div>
+</section>
+
+<section class="panel">
+<h2>Figures block</h2>
+<p><small>Computed by <span class="mono">scripts/compute_figures.py</span>, which writes <span class="mono">figures.json</span>.</small></p>
+<div class="tw"><table>
+<tr><th>Figure</th><th>Value</th><th>Computed from</th><th>Filter or query</th></tr>
+<tr><td>Maintenance records, all assets</td><td class="n">5</td><td>maintenance_history.csv</td><td>all rows</td></tr>
+<tr><td>Maintenance records, VMC-02</td><td class="n">4 (MW-118, MW-131, MW-140, MW-160)</td><td>maintenance_history.csv</td><td><span class="mono">asset_id == "VMC-02"</span></td></tr>
+<tr><td>VMC-02 records matching symptom terms</td><td class="n">4 of 4</td><td>maintenance_history.csv</td><td>/spindle|grind|bearing|overtemp|overload|hot|temp|vib|drawbar|chiller/i</td></tr>
+<tr><td>VMC-02 substantive notes</td><td class="n">4 of 4</td><td>maintenance_history.csv</td><td>non-empty and not a bare "fixed/repaired/ok now"</td></tr>
+<tr><td>Sibling assets (name prefix)</td><td class="n">VMC-03</td><td>maintenance_history.csv</td><td>prefix "VMC", no model column</td></tr>
+<tr><td>Sibling records matching symptom terms</td><td class="n">0 (not found by this filter)</td><td>maintenance_history.csv</td><td>same regex on siblings</td></tr>
+<tr><td>Template check: note groups / groups on more than one asset</td><td class="n">5 / 0</td><td>maintenance_history.csv</td><td>group by exact note text</td></tr>
+<tr><td>Latest closed maintenance record</td><td class="n">2026-09-24</td><td>maintenance_history.csv</td><td>max(closed)</td></tr>
+<tr><td>Sensor samples used / exact duplicates removed</td><td class="n">7 / 0</td><td>sensor_window.csv</td><td>identical full rows</td></tr>
+<tr><td>Sensor window length</td><td class="n">144 min</td><td>sensor_window.csv</td><td>last minus first timestamp</td></tr>
+<tr><td>Vibration first / last / last &divide; first</td><td class="n">1.8 / 11.2 / 6.22</td><td>sensor_window.csv</td><td>first and last samples</td></tr>
+<tr><td>Vibration never decreases between samples</td><td class="n">true</td><td>sensor_window.csv</td><td>pairwise</td></tr>
+<tr><td>Vibration rate, first and last sample pairs</td><td class="n">0.003 / 0.825 mm/s per min</td><td>sensor_window.csv</td><td>delta / minutes</td></tr>
+<tr><td>Spindle temp first / last</td><td class="n">31.0 / 52.1 &deg;C</td><td>sensor_window.csv</td><td>first and last samples</td></tr>
+<tr><td>Spindle load first / last</td><td class="n">42 / 71 %</td><td>sensor_window.csv</td><td>first and last samples</td></tr>
+<tr><td>Coolant pressure min / max</td><td class="n">19.8 / 20.1 bar</td><td>sensor_window.csv</td><td>min, max</td></tr>
+<tr><td>MW-140 vibration rise (2.1 &divide; 1.4)</td><td class="n">1.5</td><td>MW-140 note text</td><td>values quoted in the note</td></tr>
+<tr><td>PM plan for VMC-02</td><td>not in inputs (no CMMS connector, no file)</td><td>inputs folder</td><td>directory listing of inputs/breakdown</td></tr>
+</table></div>
+</section>
+
+<section class="panel">
+<h2>Operations page, maintenance section</h2>
+<p>VMC-02: <strong>DOWN</strong> since 15:24 on 2026-11-10 (still down at 16:10). <strong>Safety flagged.</strong> Leading cause (advisory, medium confidence, waiting for the technician): spindle bearing damage or preload loss. Interrupted job: WO-8120 op 20 (MB-1880).</p>
+<p>Here is the Operations page maintenance section for 2026-11-10. Save it over the last one. The dashboard was not updated, because this chain does not publish dashboards and no artifact tools were used this run.</p>
+</section>
+
+</main>
+</body>
+</html>

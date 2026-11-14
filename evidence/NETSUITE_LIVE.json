@@ -1,0 +1,89 @@
+{
+  "source_commit": "763aa8e515c9d5736e972d387e1b975abbd93973",
+  "executed_at_utc": "2026-11-14T22:06:24+00:00",
+  "environment": {
+    "python": "3.14.7",
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "os_name": "nt",
+    "ci": false,
+    "github_run_id": null,
+    "github_workflow": null,
+    "github_job": null
+  },
+  "command": "python -I tools/live_probe.py",
+  "inputs": {},
+  "system": "Oracle NetSuite",
+  "live": "BLOCKED",
+  "status": "BLOCKED",
+  "blocked_reason": "no authorised Oracle NetSuite access: no matching Claude connector in the runtime (visible: ['Claude Docs', 'Dropbox', 'Google Drive', 'scheduled-tasks']) and the protected-environment credentials LMFG_NETSUITE_ACCOUNT, LMFG_NETSUITE_TOKEN are not set; no request was made",
+  "operations": [
+    {
+      "operation": "authenticated account",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "subsidiary/location scope",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "items",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "vendors",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "inventory",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "purchase orders",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "sales orders",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "work orders",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "historical purchase cost",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "routings/BOMs",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "quote from retrieved costs",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "no ERP write",
+      "status": "BLOCKED"
+    }
+  ],
+  "probe": {
+    "required_env": [
+      "LMFG_NETSUITE_ACCOUNT",
+      "LMFG_NETSUITE_TOKEN"
+    ],
+    "missing_env": [
+      "LMFG_NETSUITE_ACCOUNT",
+      "LMFG_NETSUITE_TOKEN"
+    ],
+    "runtime_connectors_visible": [
+      "Claude Docs",
+      "Dropbox",
+      "Google Drive",
+      "scheduled-tasks"
+    ],
+    "matching_connectors": []
+  },
+  "contract_tests": "evidence/CONNECTOR_CONTRACTS.windows-local.json (mock transport: contract only, never LIVE)",
+  "unblock": "connect the NetSuite connector (or LMFG_NETSUITE_* via a protected environment) for an authorised account, read-only role"
+}

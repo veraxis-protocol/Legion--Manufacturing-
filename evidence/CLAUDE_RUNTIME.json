@@ -1,0 +1,36 @@
+{
+  "source_commit": "763aa8e515c9d5736e972d387e1b975abbd93973",
+  "executed_at_utc": "2026-11-14T22:06:25+00:00",
+  "environment": {
+    "python": "3.14.7",
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "os_name": "nt",
+    "ci": false,
+    "github_run_id": null,
+    "github_workflow": null,
+    "github_job": null
+  },
+  "command": "python tools/skill_report.py",
+  "inputs": {},
+  "cli": {
+    "cli": "C:\\Users\\Administrator\\AppData\\Local\\Claude-Data\\claude_pzs8sxrjxfjjc\\claude-code\\2.1.325\\806e0a45e6f5\\claude.exe",
+    "version": "2.1.325 (Claude Code)",
+    "auth": {
+      "loggedIn": false,
+      "authMethod": "none",
+      "apiProvider": "firstParty"
+    }
+  },
+  "cli_signed_in": false,
+  "routes_used": [
+    "desktop-subagent"
+  ],
+  "models": [
+    "claude-opus-5-5"
+  ],
+  "plugin_discovery_via_cli": "BLOCKED",
+  "model_driven_execution": "PASS",
+  "status": "PARTIAL",
+  "explanation": "Skills ran through subagents of the signed-in Claude Code desktop session (real model, real tool calls, transcripts in evidence/SKILL_OUTPUTS/*/*/transcript.jsonl.gz). The plugin was loaded by path: each run read the original SKILL.md from a byte-identical copy of upstream/claude-for-manufacturing. Plugin discovery through `claude -p --plugin-dir` (tools/skill_run.py route 1) is BLOCKED while the CLI is not signed in."
+}

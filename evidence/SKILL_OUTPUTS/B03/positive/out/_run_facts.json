@@ -1,0 +1,100 @@
+{
+ "identified": [
+  [
+   "equipment.csv",
+   "Asset / equipment list",
+   "assets",
+   ""
+  ],
+  [
+   "pulse_oee/README.txt",
+   "Not a data export (readme text)",
+   null,
+   "Read for context only: says the drop is synthetic test data."
+  ],
+  [
+   "pulse_oee/downtime.csv",
+   "Downtime events (MES/historian export)",
+   "downtime_events",
+   ""
+  ],
+  [
+   "pulse_oee/output.csv",
+   "Production output (MES export)",
+   "production_output",
+   ""
+  ],
+  [
+   "pulse_oee/plan.csv",
+   "Plan / schedule (planning export)",
+   "plan",
+   ""
+  ],
+  [
+   "pulse_oee/routing.csv",
+   "UNRECOGNIZED: routing-like, missing a signature column",
+   null,
+   "Carries part, op_seq, work center and a run time per unit, but no setup time (and no revision). Per the routing signature it is not loaded and the gap is not filled."
+  ],
+  [
+   "pulse_oee/work_orders.csv",
+   "Production work orders (ERP export, system not named)",
+   "production_work_orders",
+   ""
+  ]
+ ],
+ "mtimes": {
+  "equipment.csv": "2026-11-13T23:04",
+  "pulse_oee/README.txt": "2026-11-13T14:54",
+  "pulse_oee/downtime.csv": "2026-11-13T14:54",
+  "pulse_oee/output.csv": "2026-11-13T14:54",
+  "pulse_oee/plan.csv": "2026-11-13T14:54",
+  "pulse_oee/routing.csv": "2026-11-13T14:54",
+  "pulse_oee/work_orders.csv": "2026-11-13T14:54"
+ },
+ "windows": {
+  "output.csv": [
+   "2026-11-12",
+   "2026-11-12"
+  ],
+  "downtime.csv": [
+   "2026-11-12",
+   "2026-11-12"
+  ],
+  "plan.csv": [
+   "2026-11-12",
+   "2026-11-12"
+  ]
+ },
+ "overlap": [
+  "2026-11-12",
+  "2026-11-12"
+ ],
+ "dur_checks": [
+  [
+   "pulse_oee/downtime.csv:2",
+   "45",
+   45.0
+  ],
+  [
+   "pulse_oee/downtime.csv:3",
+   "20",
+   20.0
+  ]
+ ],
+ "dups_output": 0,
+ "dups_plan": 0,
+ "used_assets": {
+  "CNC-01": [
+   "downtime.csv",
+   "output.csv",
+   "plan.csv"
+  ],
+  "CNC-02": [
+   "downtime.csv",
+   "output.csv",
+   "plan.csv"
+  ]
+ },
+ "run": "2026-11-14T16:59"
+}

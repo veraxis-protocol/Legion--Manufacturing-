@@ -1,0 +1,6 @@
+site,source_system,source_ref,as_of,join_status,mismatch_class,contradicted_by,integrity_flags,asset_id,asset_id_verbatim,location
+not stated in source,manual,equipment.csv:3,"2026-11-13 (file modified date; source records no date, zone unresolved)",unmatched,6,,,HMC-01,HMC-01,Cell A
+not stated in source,manual,equipment.csv:4,"2026-11-13 (file modified date; source records no date, zone unresolved)",unmatched,6,,,VMC-02,VMC-02,Cell A
+not stated in source,manual,equipment.csv:5,"2026-11-13 (file modified date; source records no date, zone unresolved)",unmatched,6,,,VMC-03,VMC-03,Cell B
+not stated in source,manual,equipment.csv:6,"2026-11-13 (file modified date; source records no date, zone unresolved)",unmatched,6,,,LTH-01,LTH-01,Cell B
+not stated in source,manual,equipment.csv:7,"2026-11-13 (file modified date; source records no date, zone unresolved)",unmatched,6,,,DEB-01,DEB-01,Cell B

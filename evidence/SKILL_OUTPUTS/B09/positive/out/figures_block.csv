@@ -1,0 +1,39 @@
+figure,value,computed_from,filter_or_query
+Weight sum (fraction),1.0,trade_matrix.csv,sum(weight)
+Criteria,5,trade_matrix.csv,rows
+Options,3,trade_matrix.csv,option_* columns
+Unscored cells,0,trade_matrix.csv,empty option cell
+Weighted total option_A_6061_machined,0.8562,normalized x weight,stated weights
+Weighted total option_B_7075_machined,0.7828,normalized x weight,stated weights
+Weighted total option_C_A380_diecast,0.7003,normalized x weight,stated weights
+Margin rank1-rank2,0.0734,weighted totals,option_A_6061_machined - option_B_7075_machined
+Margin rank2-rank3,0.0825,weighted totals,option_B_7075_machined - option_C_A380_diecast
+"Flip point, unit_cost_at_1000 weight",0.476 (option_A_6061_machined -> option_C_A380_diecast),"one-at-a-time sweep, step 0.001",others rescaled proportionally
+"Flip point, tooling_cost weight",none in 0..1,"one-at-a-time sweep, step 0.001",others rescaled proportionally
+"Flip point, stiffness_first_mode weight",0.878 (option_A_6061_machined -> option_B_7075_machined),"one-at-a-time sweep, step 0.001",others rescaled proportionally
+"Flip point, mass weight",none in 0..1,"one-at-a-time sweep, step 0.001",others rescaled proportionally
+"Flip point, lead_time_first_article weight",none in 0..1,"one-at-a-time sweep, step 0.001",others rescaled proportionally
+Plausible-range weightings tested,381,"grid +/-0.10 abs per weight, step 0.05, sum=1",all 5 weights varied jointly
+"Wins in plausible range, option_A_6061_machined",368,same grid,argmax weighted total
+"Wins in plausible range, option_B_7075_machined",0,same grid,argmax weighted total
+"Wins in plausible range, option_C_A380_diecast",13,same grid,argmax weighted total
+Random weightings tested,20000,"each weight x U(0.5,1.5), renormalized, seed 1",
+"Random wins, option_A_6061_machined",19868,same,argmax
+"Random wins, option_B_7075_machined",0,same,argmax
+"Random wins, option_C_A380_diecast",132,same,argmax
+"Total, tooling weight 0, option_A_6061_machined",0.8402,reweight,"tooling 0, others rescaled"
+"Total, tooling weight 0, option_B_7075_machined",0.7587,reweight,"tooling 0, others rescaled"
+"Total, tooling weight 0, option_C_A380_diecast",0.7781,reweight,"tooling 0, others rescaled"
+"Total, equal weights, option_A_6061_machined",0.9037,equal weights 0.2,
+"Total, equal weights, option_B_7075_machined",0.8402,equal weights 0.2,
+"Total, equal weights, option_C_A380_diecast",0.6014,equal weights 0.2,
+"First mode margin over 350 Hz, option_A_6061_machined",62 Hz (17.7%),FEA-2040-01..03 via matrix,value - 350
+"First mode margin over 350 Hz, option_B_7075_machined",68 Hz (19.4%),FEA-2040-01..03 via matrix,value - 350
+"First mode margin over 350 Hz, option_C_A380_diecast",15 Hz (4.3%),FEA-2040-01..03 via matrix,value - 350
+"C-win grid points, unit_cost_at_1000 weight range",0.35-0.40,plausible-range grid,winner == option_C
+"C-win grid points, tooling_cost weight range",0.00-0.05,plausible-range grid,winner == option_C
+"C-win grid points, stiffness_first_mode weight range",0.20-0.35,plausible-range grid,winner == option_C
+"C-win grid points, mass weight range",0.10-0.25,plausible-range grid,winner == option_C
+"C-win grid points, lead_time_first_article weight range",0.10-0.15,plausible-range grid,winner == option_C
+C-win grid points with tooling weight > 0,4,plausible-range grid,winner == option_C and tooling>0
+"Flip point, unit cost weight with tooling weight 0",0.412 (option_A -> option_C_A380_diecast),sweep step 0.001,tooling 0; stiffness/mass/lead rescaled

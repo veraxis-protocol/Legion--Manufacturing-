@@ -1,0 +1,526 @@
+{
+  "criteria": [
+    {
+      "name": "unit_cost_at_1000",
+      "w": 0.3,
+      "unit": "USD",
+      "better": "lower",
+      "raw": {
+        "option_A_6061_machined": 18.4,
+        "option_B_7075_machined": 24.1,
+        "option_C_A380_diecast": 9.8
+      },
+      "source": "quote-build estimates Q-118/Q-119/Q-120 (fictitious)"
+    },
+    {
+      "name": "tooling_cost",
+      "w": 0.1,
+      "unit": "USD",
+      "better": "lower",
+      "raw": {
+        "option_A_6061_machined": 0.0,
+        "option_B_7075_machined": 0.0,
+        "option_C_A380_diecast": 14500.0
+      },
+      "source": "die quote D-55 (fictitious)"
+    },
+    {
+      "name": "stiffness_first_mode",
+      "w": 0.25,
+      "unit": "Hz",
+      "better": "higher",
+      "raw": {
+        "option_A_6061_machined": 412.0,
+        "option_B_7075_machined": 418.0,
+        "option_C_A380_diecast": 365.0
+      },
+      "source": "FEA run FEA-2040-01..03 (fictitious)"
+    },
+    {
+      "name": "mass",
+      "w": 0.15,
+      "unit": "g",
+      "better": "lower",
+      "raw": {
+        "option_A_6061_machined": 198.0,
+        "option_B_7075_machined": 206.0,
+        "option_C_A380_diecast": 221.0
+      },
+      "source": "CAD mass properties (fictitious)"
+    },
+    {
+      "name": "lead_time_first_article",
+      "w": 0.2,
+      "unit": "days",
+      "better": "lower",
+      "raw": {
+        "option_A_6061_machined": 15.0,
+        "option_B_7075_machined": 18.0,
+        "option_C_A380_diecast": 63.0
+      },
+      "source": "supplier and shop schedule (fictitious)"
+    }
+  ],
+  "options": [
+    "option_A_6061_machined",
+    "option_B_7075_machined",
+    "option_C_A380_diecast"
+  ],
+  "norm": {
+    "unit_cost_at_1000": {
+      "option_A_6061_machined": 0.532608695652174,
+      "option_B_7075_machined": 0.4066390041493776,
+      "option_C_A380_diecast": 1.0
+    },
+    "tooling_cost": {
+      "option_A_6061_machined": 1.0,
+      "option_B_7075_machined": 1.0,
+      "option_C_A380_diecast": 0.0
+    },
+    "stiffness_first_mode": {
+      "option_A_6061_machined": 0.9856459330143541,
+      "option_B_7075_machined": 1.0,
+      "option_C_A380_diecast": 0.8732057416267942
+    },
+    "mass": {
+      "option_A_6061_machined": 1.0,
+      "option_B_7075_machined": 0.9611650485436893,
+      "option_C_A380_diecast": 0.8959276018099548
+    },
+    "lead_time_first_article": {
+      "option_A_6061_machined": 1.0,
+      "option_B_7075_machined": 0.8333333333333334,
+      "option_C_A380_diecast": 0.23809523809523808
+    }
+  },
+  "norm_notes": {
+    "unit_cost_at_1000": "best/value, best=9.8",
+    "tooling_cost": "best/value, best=0 (best is 0: options at 0 set to 1.0, others 0/value = 0; ratio degenerates to pass/fail)",
+    "stiffness_first_mode": "value/best, best=418",
+    "mass": "best/value, best=198",
+    "lead_time_first_article": "best/value, best=15"
+  },
+  "weights": {
+    "unit_cost_at_1000": 0.3,
+    "tooling_cost": 0.1,
+    "stiffness_first_mode": 0.25,
+    "mass": 0.15,
+    "lead_time_first_article": 0.2
+  },
+  "totals": {
+    "option_A_6061_machined": 0.8561940919492407,
+    "option_B_7075_machined": 0.7828331251930334,
+    "option_C_A380_diecast": 0.7003096232972393
+  },
+  "rank": [
+    "option_A_6061_machined",
+    "option_B_7075_machined",
+    "option_C_A380_diecast"
+  ],
+  "contributions": {
+    "option_A_6061_machined": {
+      "unit_cost_at_1000": 0.15978260869565217,
+      "tooling_cost": 0.1,
+      "stiffness_first_mode": 0.24641148325358853,
+      "mass": 0.15,
+      "lead_time_first_article": 0.2
+    },
+    "option_B_7075_machined": {
+      "unit_cost_at_1000": 0.12199170124481327,
+      "tooling_cost": 0.1,
+      "stiffness_first_mode": 0.25,
+      "mass": 0.1441747572815534,
+      "lead_time_first_article": 0.16666666666666669
+    },
+    "option_C_A380_diecast": {
+      "unit_cost_at_1000": 0.3,
+      "tooling_cost": 0.0,
+      "stiffness_first_mode": 0.21830143540669855,
+      "mass": 0.1343891402714932,
+      "lead_time_first_article": 0.047619047619047616
+    }
+  },
+  "oat": {
+    "unit_cost_at_1000": {
+      "stated": 0.3,
+      "winners": [
+        "option_A_6061_machined",
+        "option_C_A380_diecast"
+      ],
+      "flips": [
+        {
+          "at_weight": 0.476,
+          "from_": "option_A_6061_machined",
+          "to": "option_C_A380_diecast"
+        }
+      ],
+      "winner_at_0": "option_A_6061_machined",
+      "winner_at_1": "option_C_A380_diecast"
+    },
+    "tooling_cost": {
+      "stated": 0.1,
+      "winners": [
+        "option_A_6061_machined"
+      ],
+      "flips": [],
+      "winner_at_0": "option_A_6061_machined",
+      "winner_at_1": "option_A_6061_machined"
+    },
+    "stiffness_first_mode": {
+      "stated": 0.25,
+      "winners": [
+        "option_A_6061_machined",
+        "option_B_7075_machined"
+      ],
+      "flips": [
+        {
+          "at_weight": 0.878,
+          "from_": "option_A_6061_machined",
+          "to": "option_B_7075_machined"
+        }
+      ],
+      "winner_at_0": "option_A_6061_machined",
+      "winner_at_1": "option_B_7075_machined"
+    },
+    "mass": {
+      "stated": 0.15,
+      "winners": [
+        "option_A_6061_machined"
+      ],
+      "flips": [],
+      "winner_at_0": "option_A_6061_machined",
+      "winner_at_1": "option_A_6061_machined"
+    },
+    "lead_time_first_article": {
+      "stated": 0.2,
+      "winners": [
+        "option_A_6061_machined"
+      ],
+      "flips": [],
+      "winner_at_0": "option_A_6061_machined",
+      "winner_at_1": "option_A_6061_machined"
+    }
+  },
+  "grid_count": 381,
+  "grid_wins": {
+    "option_A_6061_machined": 368,
+    "option_B_7075_machined": 0,
+    "option_C_A380_diecast": 13
+  },
+  "random_wins": {
+    "option_A_6061_machined": 19868,
+    "option_B_7075_machined": 0,
+    "option_C_A380_diecast": 132
+  },
+  "totals_no_tooling": {
+    "option_A_6061_machined": 0.8402156577213786,
+    "option_B_7075_machined": 0.7587034724367037,
+    "option_C_A380_diecast": 0.7781218036635993
+  },
+  "totals_equal": {
+    "option_A_6061_machined": 0.9036509257333056,
+    "option_B_7075_machined": 0.8402274772052801,
+    "option_C_A380_diecast": 0.6014457163063974
+  },
+  "a_vs_b": {
+    "unit_cost_at_1000": [
+      0.532608695652174,
+      0.4066390041493776
+    ],
+    "tooling_cost": [
+      1.0,
+      1.0
+    ],
+    "stiffness_first_mode": [
+      0.9856459330143541,
+      1.0
+    ],
+    "mass": [
+      1.0,
+      0.9611650485436893
+    ],
+    "lead_time_first_article": [
+      1.0,
+      0.8333333333333334
+    ]
+  },
+  "figures": [
+    {
+      "figure": "Weight sum (fraction)",
+      "value": 1.0,
+      "computed_from": "trade_matrix.csv",
+      "filter": "sum(weight)"
+    },
+    {
+      "figure": "Criteria",
+      "value": 5,
+      "computed_from": "trade_matrix.csv",
+      "filter": "rows"
+    },
+    {
+      "figure": "Options",
+      "value": 3,
+      "computed_from": "trade_matrix.csv",
+      "filter": "option_* columns"
+    },
+    {
+      "figure": "Unscored cells",
+      "value": 0,
+      "computed_from": "trade_matrix.csv",
+      "filter": "empty option cell"
+    },
+    {
+      "figure": "Weighted total option_A_6061_machined",
+      "value": 0.8562,
+      "computed_from": "normalized x weight",
+      "filter": "stated weights"
+    },
+    {
+      "figure": "Weighted total option_B_7075_machined",
+      "value": 0.7828,
+      "computed_from": "normalized x weight",
+      "filter": "stated weights"
+    },
+    {
+      "figure": "Weighted total option_C_A380_diecast",
+      "value": 0.7003,
+      "computed_from": "normalized x weight",
+      "filter": "stated weights"
+    },
+    {
+      "figure": "Margin rank1-rank2",
+      "value": 0.0734,
+      "computed_from": "weighted totals",
+      "filter": "option_A_6061_machined - option_B_7075_machined"
+    },
+    {
+      "figure": "Margin rank2-rank3",
+      "value": 0.0825,
+      "computed_from": "weighted totals",
+      "filter": "option_B_7075_machined - option_C_A380_diecast"
+    },
+    {
+      "figure": "Flip point, unit_cost_at_1000 weight",
+      "value": "0.476 (option_A_6061_machined -> option_C_A380_diecast)",
+      "computed_from": "one-at-a-time sweep, step 0.001",
+      "filter": "others rescaled proportionally"
+    },
+    {
+      "figure": "Flip point, tooling_cost weight",
+      "value": "none in 0..1",
+      "computed_from": "one-at-a-time sweep, step 0.001",
+      "filter": "others rescaled proportionally"
+    },
+    {
+      "figure": "Flip point, stiffness_first_mode weight",
+      "value": "0.878 (option_A_6061_machined -> option_B_7075_machined)",
+      "computed_from": "one-at-a-time sweep, step 0.001",
+      "filter": "others rescaled proportionally"
+    },
+    {
+      "figure": "Flip point, mass weight",
+      "value": "none in 0..1",
+      "computed_from": "one-at-a-time sweep, step 0.001",
+      "filter": "others rescaled proportionally"
+    },
+    {
+      "figure": "Flip point, lead_time_first_article weight",
+      "value": "none in 0..1",
+      "computed_from": "one-at-a-time sweep, step 0.001",
+      "filter": "others rescaled proportionally"
+    },
+    {
+      "figure": "Plausible-range weightings tested",
+      "value": 381,
+      "computed_from": "grid +/-0.10 abs per weight, step 0.05, sum=1",
+      "filter": "all 5 weights varied jointly"
+    },
+    {
+      "figure": "Wins in plausible range, option_A_6061_machined",
+      "value": 368,
+      "computed_from": "same grid",
+      "filter": "argmax weighted total"
+    },
+    {
+      "figure": "Wins in plausible range, option_B_7075_machined",
+      "value": 0,
+      "computed_from": "same grid",
+      "filter": "argmax weighted total"
+    },
+    {
+      "figure": "Wins in plausible range, option_C_A380_diecast",
+      "value": 13,
+      "computed_from": "same grid",
+      "filter": "argmax weighted total"
+    },
+    {
+      "figure": "Random weightings tested",
+      "value": 20000,
+      "computed_from": "each weight x U(0.5,1.5), renormalized, seed 1",
+      "filter": ""
+    },
+    {
+      "figure": "Random wins, option_A_6061_machined",
+      "value": 19868,
+      "computed_from": "same",
+      "filter": "argmax"
+    },
+    {
+      "figure": "Random wins, option_B_7075_machined",
+      "value": 0,
+      "computed_from": "same",
+      "filter": "argmax"
+    },
+    {
+      "figure": "Random wins, option_C_A380_diecast",
+      "value": 132,
+      "computed_from": "same",
+      "filter": "argmax"
+    },
+    {
+      "figure": "Total, tooling weight 0, option_A_6061_machined",
+      "value": 0.8402,
+      "computed_from": "reweight",
+      "filter": "tooling 0, others rescaled"
+    },
+    {
+      "figure": "Total, tooling weight 0, option_B_7075_machined",
+      "value": 0.7587,
+      "computed_from": "reweight",
+      "filter": "tooling 0, others rescaled"
+    },
+    {
+      "figure": "Total, tooling weight 0, option_C_A380_diecast",
+      "value": 0.7781,
+      "computed_from": "reweight",
+      "filter": "tooling 0, others rescaled"
+    },
+    {
+      "figure": "Total, equal weights, option_A_6061_machined",
+      "value": 0.9037,
+      "computed_from": "equal weights 0.2",
+      "filter": ""
+    },
+    {
+      "figure": "Total, equal weights, option_B_7075_machined",
+      "value": 0.8402,
+      "computed_from": "equal weights 0.2",
+      "filter": ""
+    },
+    {
+      "figure": "Total, equal weights, option_C_A380_diecast",
+      "value": 0.6014,
+      "computed_from": "equal weights 0.2",
+      "filter": ""
+    },
+    {
+      "figure": "First mode margin over 350 Hz, option_A_6061_machined",
+      "value": "62 Hz (17.7%)",
+      "computed_from": "FEA-2040-01..03 via matrix",
+      "filter": "value - 350"
+    },
+    {
+      "figure": "First mode margin over 350 Hz, option_B_7075_machined",
+      "value": "68 Hz (19.4%)",
+      "computed_from": "FEA-2040-01..03 via matrix",
+      "filter": "value - 350"
+    },
+    {
+      "figure": "First mode margin over 350 Hz, option_C_A380_diecast",
+      "value": "15 Hz (4.3%)",
+      "computed_from": "FEA-2040-01..03 via matrix",
+      "filter": "value - 350"
+    },
+    {
+      "figure": "C-win grid points, unit_cost_at_1000 weight range",
+      "value": "0.35-0.40",
+      "computed_from": "plausible-range grid",
+      "filter": "winner == option_C"
+    },
+    {
+      "figure": "C-win grid points, tooling_cost weight range",
+      "value": "0.00-0.05",
+      "computed_from": "plausible-range grid",
+      "filter": "winner == option_C"
+    },
+    {
+      "figure": "C-win grid points, stiffness_first_mode weight range",
+      "value": "0.20-0.35",
+      "computed_from": "plausible-range grid",
+      "filter": "winner == option_C"
+    },
+    {
+      "figure": "C-win grid points, mass weight range",
+      "value": "0.10-0.25",
+      "computed_from": "plausible-range grid",
+      "filter": "winner == option_C"
+    },
+    {
+      "figure": "C-win grid points, lead_time_first_article weight range",
+      "value": "0.10-0.15",
+      "computed_from": "plausible-range grid",
+      "filter": "winner == option_C"
+    },
+    {
+      "figure": "C-win grid points with tooling weight > 0",
+      "value": 4,
+      "computed_from": "plausible-range grid",
+      "filter": "winner == option_C and tooling>0"
+    },
+    {
+      "figure": "Flip point, unit cost weight with tooling weight 0",
+      "value": "0.412 (option_A -> option_C_A380_diecast)",
+      "computed_from": "sweep step 0.001",
+      "filter": "tooling 0; stiffness/mass/lead rescaled"
+    }
+  ],
+  "regime_examples": {
+    "option_A_6061_machined": [
+      {
+        "unit_cost_at_1000": 0.2,
+        "tooling_cost": 0.0,
+        "stiffness_first_mode": 0.25,
+        "mass": 0.25,
+        "lead_time_first_article": 0.3
+      },
+      {
+        "unit_cost_at_1000": 0.2,
+        "tooling_cost": 0.0,
+        "stiffness_first_mode": 0.3,
+        "mass": 0.2,
+        "lead_time_first_article": 0.3
+      },
+      {
+        "unit_cost_at_1000": 0.2,
+        "tooling_cost": 0.0,
+        "stiffness_first_mode": 0.3,
+        "mass": 0.25,
+        "lead_time_first_article": 0.25
+      }
+    ],
+    "option_B_7075_machined": [],
+    "option_C_A380_diecast": [
+      {
+        "unit_cost_at_1000": 0.35,
+        "tooling_cost": 0.0,
+        "stiffness_first_mode": 0.3,
+        "mass": 0.25,
+        "lead_time_first_article": 0.1
+      },
+      {
+        "unit_cost_at_1000": 0.35,
+        "tooling_cost": 0.0,
+        "stiffness_first_mode": 0.35,
+        "mass": 0.2,
+        "lead_time_first_article": 0.1
+      },
+      {
+        "unit_cost_at_1000": 0.4,
+        "tooling_cost": 0.0,
+        "stiffness_first_mode": 0.2,
+        "mass": 0.25,
+        "lead_time_first_article": 0.15
+      }
+    ]
+  }
+}

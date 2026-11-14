@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MB-2040 Variant Generation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1A1D21; --paper: #F2F3F5; --paper-raised: #FFFFFF; --line: #D6D9DD;
+  --accent: #1F5C8B; --accent-soft: #E4EDF4;
+  --good: #2E7248; --good-soft: #E3EFE7; --warn: #A8641A; --warn-soft: #F7EBDA;
+  --critical: #A93226; --critical-soft: #F9E9E7;
+  --font-display: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif;
+  --font-body: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #E8EAEC; --paper: #15181B; --paper-raised: #1D2126; --line: #2E343A;
+    --accent: #6BA8D4; --accent-soft: #1B2C39; --good: #6FBF88; --good-soft: #1B2E22;
+    --warn: #D9A15C; --warn-soft: #33271A; --critical: #DE8378; --critical-soft: #35201E;
+  }
+}
+:root[data-theme="dark"] {
+  --ink: #E8EAEC; --paper: #15181B; --paper-raised: #1D2126; --line: #2E343A;
+  --accent: #6BA8D4; --accent-soft: #1B2C39; --good: #6FBF88; --good-soft: #1B2E22;
+  --warn: #D9A15C; --warn-soft: #33271A; --critical: #DE8378; --critical-soft: #35201E;
+}
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); line-height: 1.5; }
+main { max-width: 960px; margin: 0 auto; padding: 24px 16px 48px; }
+h1, h2 { font-family: var(--font-display); font-weight: 600; }
+h1 { font-size: 1.75rem; margin: 0 0 4px; }
+h2 { font-size: 1.125rem; margin: 0 0 8px; color: var(--accent); }
+.sub { color: var(--ink); opacity: .75; margin: 0 0 20px; font-size: .875rem; }
+.panel { background: var(--paper-raised); border: 1px solid var(--line); border-radius: 6px; padding: 16px; margin-bottom: 16px; }
+.blocked { border-left: 4px solid var(--critical); background: var(--critical-soft); }
+.warn { border-left: 4px solid var(--warn); background: var(--warn-soft); }
+table { width: 100%; border-collapse: collapse; font-size: .875rem; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; }
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.pill { display: inline-block; padding: 1px 8px; border-radius: 10px; font-size: .75rem; font-weight: 600; }
+.pill.crit { background: var(--critical-soft); color: var(--critical); border: 1px solid var(--critical); }
+.pill.warnp { background: var(--warn-soft); color: var(--warn); border: 1px solid var(--warn); }
+ol, ul { margin: 4px 0; padding-left: 20px; }
+.scroll { overflow-x: auto; }
+</style>
+</head>
+<body>
+<main>
+<h1>MB-2040 bracket: design space explore</h1>
+<p class="sub">Generation report, skill <span class="mono">design-space-explore</span>. Run date <span class="mono">2026-11-14</span>. <span class="mono">cad_backend</span>: not connected this session.</p>
+
+<section class="panel blocked">
+<h2>Status: blocked before Step 1. No variants generated, no manifest emitted</h2>
+<p><span class="pill crit">BLOCKED</span> Autodesk Fusion is not connected in this session, and the MB-2040 base model is not available to read. This skill has no file-only path and no fallback CAD backend, so it stops here rather than running degraded.</p>
+<p>Nothing was created, so there is no variant document, no mass, no volume and no bounding box to report. No value has been estimated in their place: a mass or bounding box worked out by hand from the spec sheet would not be a model-computed property, and the manifest only carries those.</p>
+<p><strong>The base model was not opened, read or modified.</strong> It was never reached.</p>
+</section>
+
+<section class="panel">
+<h2>What is needed to run</h2>
+<ol>
+<li>Autodesk Fusion <strong>desktop</strong> app (the web client does not work), with the Fusion connector enabled in the session.</li>
+<li>The existing MB-2040 base model <strong>open and active</strong> in Fusion, in the Design workspace, with no unsaved changes. Opening it from the hub by script is not verified on this connector, so it has to be opened by hand.</li>
+<li>The values for the bore wall (see the questions below), so the variant count can be stated and confirmed before anything generates.</li>
+</ol>
+<p>The open, save-as-new and base-untouched check sequence has not been run through the Fusion connector in this plugin's repo, for any caller. That still applies once Fusion is connected.</p>
+</section>
+
+<section class="panel">
+<h2>Inputs read</h2>
+<div class="scroll">
+<table>
+<tr><th>File</th><th>What it gives this run</th></tr>
+<tr><td class="mono">inputs/rfq/MB-2040_spec_revC.md</td><td>Customer spec sheet, revision C (2026-10-27). Envelope 120 x 80 x 12 mm; main bore dia 22.000 mm +0.021/-0.000 (H7), through, 12 mm deep; material aluminium 6061-T6 plate. This is a customer specification, not a CAD model.</td></tr>
+<tr><td class="mono">inputs/rfq/rfq_email.txt</td><td>RFQ thread from the customer (quantities, dates, rev C note on the M5 pattern). No CAD model attached, no parameter names, no bore-wall values.</td></tr>
+</table>
+</div>
+<p>No Fusion document, no parameter table and no trade study definition was found in the inputs.</p>
+</section>
+
+<section class="panel">
+<h2>Parametric check (Step 2): not run</h2>
+<p><span class="pill warnp">NOT RUN</span> The check needs the live model. Recorded as not run, not as passed. Still unknown:</p>
+<ul>
+<li>whether plate thickness is a user parameter that drives the main extrude, and what it is called in the model;</li>
+<li>whether "bore wall" exists as a driving parameter at all, or is set by a fixed sketch dimension (bore diameter and position against the plate edge);</li>
+<li>whether the bore depth follows plate thickness (the spec gives the bore as through and 12 mm deep, equal to the 12 mm envelope thickness);</li>
+<li>whether the model has external references or in-context relationships that variants could break.</li>
+</ul>
+</section>
+
+<section class="panel">
+<h2>Draft variant plan (Step 3): not confirmed, count not computable</h2>
+<div class="scroll">
+<table>
+<tr><th>Parameter</th><th>Values</th><th>Strategy</th><th>Count</th></tr>
+<tr><td>Plate thickness</td><td class="mono">10, 12, 14 mm</td><td>Named values, as requested</td><td class="mono">3</td></tr>
+<tr><td>Bore wall</td><td>Not given</td><td>Not given</td><td class="mono">unknown</td></tr>
+<tr><td colspan="3"><strong>Total variants</strong></td><td class="mono">3 x (bore wall values) = not yet known</td></tr>
+</table>
+</div>
+<p>Nothing generates until the engineer confirms the parameters, ranges and the resulting count as a number.</p>
+</section>
+
+<section class="panel warn">
+<h2>Questions for the engineer (recorded, not asked in this run)</h2>
+<ol>
+<li>Can you open the MB-2040 base model in Fusion desktop, with the Fusion connector on, and save or discard any unsaved changes first? Which document and version is the base?</li>
+<li>What does "bore wall" mean in the model: the wall between the 22 mm bore and the nearest plate edge, a boss wall around the bore, or something else? What is the parameter called?</li>
+<li>Which bore-wall values or range and step do you want? Then the count is 3 x that number of values. Please confirm the count before generation.</li>
+<li>The bore is specified as dia 22.000 mm H7. Should the bore diameter stay fixed while the bore wall changes?</li>
+<li>Should variants be new documents (default, named by variant ID) or named configurations of the base?</li>
+<li>Which trade study reference (<span class="mono">study_ref</span>) and site should the manifest carry? Neither is in the inputs.</li>
+<li>Note for the 10 and 14 mm variants: rev C specifies a 12 mm envelope thickness. Is the sweep exploratory, outside the current customer spec?</li>
+</ol>
+</section>
+
+<section class="panel">
+<h2>Handoff</h2>
+<p>No variant manifest was written: there are no variants and no model-computed properties to put in it, and the variant count was not confirmed. When Fusion is connected and the plan is confirmed, the manifest follows contract version 4 (<span class="mono">shared/contracts/variant-manifest.md</span>) with mass, volume and bounding box per variant, and every failed or skipped variant kept as a row.</p>
+<p><span class="mono">trade-study-report</span> is not affected: it can also take a manifest an engineer fills in by hand, with <span class="mono">cad_backend: none</span>.</p>
+</section>
+</main>
+</body>
+</html>

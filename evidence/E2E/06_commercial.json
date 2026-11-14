@@ -1,0 +1,338 @@
+{
+ "stage": "commercial",
+ "reused": "LEGION-Deal-Rescue deal_rescue/industrial/core.py @6d5563a (group_demand, valid_demand, evaluate_quote, choose_route, verify_ztl_binding, digest)",
+ "spec": {
+  "part": "MGN9-170mm linear rail (reBot B601 purchased part)",
+  "step_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+  "readme_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee",
+  "commit": "22f002a230670f96abcd3805e0daa63bdf42f354"
+ },
+ "spec_digest": "005e17a0afc7780e200e6b2ebf95c9b8640abbd83f9a0abe7fb1ea8f541cba02",
+ "offers": [
+  {
+   "route": "COALITION",
+   "supplier": "Xylem Linear Motion (fictitious)",
+   "bid_file": "rail_bid_X.txt",
+   "spec_digest": "005e17a0afc7780e200e6b2ebf95c9b8640abbd83f9a0abe7fb1ea8f541cba02",
+   "spec_revision": "reBot-DevArm@22f002a",
+   "process": "purchased linear rail",
+   "material": "MGN9 steel rail",
+   "capacity_units": 100,
+   "moq_units": 100,
+   "landed_cents": 114000,
+   "due_date": "2027-01-15",
+   "source_scope": "SYNTHETIC_TEST_ONLY",
+   "normalisation": "11.40 USD x 100 pcs (MOQ 100), FOB origin: freight NOT included (unknown); capacity taken as the quoted quantity; due = order date + 3 weeks assumed 2026-12-15 + 21 d"
+  },
+  {
+   "route": "DIRECT_PRICE",
+   "supplier": "Yarrow Motion Parts (fictitious)",
+   "bid_file": "rail_bid_Y.txt",
+   "spec_digest": "005e17a0afc7780e200e6b2ebf95c9b8640abbd83f9a0abe7fb1ea8f541cba02",
+   "spec_revision": "reBot-DevArm@22f002a",
+   "process": "purchased linear rail",
+   "material": "MGN9 steel rail",
+   "capacity_units": 250,
+   "moq_units": 250,
+   "landed_cents": 247500,
+   "due_date": "2027-01-29",
+   "source_scope": "SYNTHETIC_TEST_ONLY",
+   "normalisation": "9.90 USD x MOQ 250 DDP; accuracy class not stated (technical gap)"
+  }
+ ],
+ "offers_source": "tests\\runtime\\inputs\\e2e_bids",
+ "scenarios": {
+  "simulated_demand_demonstration": {
+   "demonstration": true,
+   "group": {
+    "spec_digest": "005e17a0afc7780e200e6b2ebf95c9b8640abbd83f9a0abe7fb1ea8f541cba02",
+    "spec_revision": "reBot-DevArm@22f002a",
+    "process": "purchased linear rail",
+    "material": "MGN9 steel rail",
+    "buyers": [
+     "SYN-BUYER-01",
+     "SYN-BUYER-02",
+     "SYN-BUYER-03",
+     "SYN-BUYER-04",
+     "SYN-BUYER-05"
+    ],
+    "units": 100,
+    "budget_cents": 150000,
+    "member_count": 5,
+    "test_only": true
+   },
+   "excluded": [],
+   "decision": {
+    "verdict": "T",
+    "route": "COALITION",
+    "landed_cents": 114000,
+    "allocation": [
+     {
+      "buyer_id": "SYN-BUYER-01",
+      "qty": 20,
+      "allocated_cents": 22800,
+      "cap_cents": 30000
+     },
+     {
+      "buyer_id": "SYN-BUYER-02",
+      "qty": 20,
+      "allocated_cents": 22800,
+      "cap_cents": 30000
+     },
+     {
+      "buyer_id": "SYN-BUYER-03",
+      "qty": 20,
+      "allocated_cents": 22800,
+      "cap_cents": 30000
+     },
+     {
+      "buyer_id": "SYN-BUYER-04",
+      "qty": 20,
+      "allocated_cents": 22800,
+      "cap_cents": 30000
+     },
+     {
+      "buyer_id": "SYN-BUYER-05",
+      "qty": 20,
+      "allocated_cents": 22800,
+      "cap_cents": 30000
+     }
+    ],
+    "alternatives": [
+     {
+      "route": "COALITION",
+      "landed_cents": 114000
+     }
+    ],
+    "rejected": [
+     {
+      "route": "DIRECT_PRICE",
+      "verdict": "F",
+      "why": "moq_or_capacity_failure"
+     }
+    ],
+    "comparison_scope": "SYNTHETIC_TEST_ONLY",
+    "coalition_needed": true
+   }
+  },
+  "simulated_demand_as_if_real": {
+   "demonstration": false,
+   "group": {},
+   "excluded": [
+    {
+     "id": "DEM-1",
+     "verdict": "Z",
+     "why": "synthetic_opt_in_not_live_authority"
+    },
+    {
+     "id": "DEM-2",
+     "verdict": "Z",
+     "why": "synthetic_opt_in_not_live_authority"
+    },
+    {
+     "id": "DEM-3",
+     "verdict": "Z",
+     "why": "synthetic_opt_in_not_live_authority"
+    },
+    {
+     "id": "DEM-4",
+     "verdict": "Z",
+     "why": "synthetic_opt_in_not_live_authority"
+    },
+    {
+     "id": "DEM-5",
+     "verdict": "Z",
+     "why": "synthetic_opt_in_not_live_authority"
+    }
+   ],
+   "decision": {
+    "verdict": "Z",
+    "route": null
+   }
+  },
+  "unverified_third_party_claim": {
+   "demonstration": false,
+   "group": {},
+   "excluded": [
+    {
+     "id": "DEM-1",
+     "verdict": "Z",
+     "why": "independent_buyer_opt_in_verifier_not_connected"
+    },
+    {
+     "id": "DEM-2",
+     "verdict": "Z",
+     "why": "independent_buyer_opt_in_verifier_not_connected"
+    },
+    {
+     "id": "DEM-3",
+     "verdict": "Z",
+     "why": "independent_buyer_opt_in_verifier_not_connected"
+    },
+    {
+     "id": "DEM-4",
+     "verdict": "Z",
+     "why": "independent_buyer_opt_in_verifier_not_connected"
+    },
+    {
+     "id": "DEM-5",
+     "verdict": "Z",
+     "why": "independent_buyer_opt_in_verifier_not_connected"
+    }
+   ],
+   "decision": {
+    "verdict": "Z",
+    "route": null
+   }
+  },
+  "duplicate_buyer": {
+   "demonstration": true,
+   "group": {
+    "spec_digest": "005e17a0afc7780e200e6b2ebf95c9b8640abbd83f9a0abe7fb1ea8f541cba02",
+    "spec_revision": "reBot-DevArm@22f002a",
+    "process": "purchased linear rail",
+    "material": "MGN9 steel rail",
+    "buyers": [
+     "SYN-BUYER-01",
+     "SYN-BUYER-02",
+     "SYN-BUYER-03",
+     "SYN-BUYER-04"
+    ],
+    "units": 80,
+    "budget_cents": 120000,
+    "member_count": 4,
+    "test_only": true
+   },
+   "excluded": [
+    {
+     "id": "DEM-6",
+     "verdict": "F",
+     "why": "duplicate_buyer_or_request"
+    }
+   ],
+   "decision": {
+    "verdict": "Z",
+    "route": null,
+    "landed_cents": null,
+    "allocation": [],
+    "alternatives": [],
+    "rejected": [
+     {
+      "route": "COALITION",
+      "verdict": "F",
+      "why": "moq_or_capacity_failure"
+     },
+     {
+      "route": "DIRECT_PRICE",
+      "verdict": "F",
+      "why": "moq_or_capacity_failure"
+     }
+    ],
+    "comparison_scope": "SYNTHETIC_TEST_ONLY",
+    "coalition_needed": false
+   }
+  },
+  "short_of_moq": {
+   "demonstration": true,
+   "group": {
+    "spec_digest": "005e17a0afc7780e200e6b2ebf95c9b8640abbd83f9a0abe7fb1ea8f541cba02",
+    "spec_revision": "reBot-DevArm@22f002a",
+    "process": "purchased linear rail",
+    "material": "MGN9 steel rail",
+    "buyers": [
+     "SYN-BUYER-01",
+     "SYN-BUYER-02",
+     "SYN-BUYER-03",
+     "SYN-BUYER-04"
+    ],
+    "units": 80,
+    "budget_cents": 120000,
+    "member_count": 4,
+    "test_only": true
+   },
+   "excluded": [],
+   "decision": {
+    "verdict": "Z",
+    "route": null,
+    "landed_cents": null,
+    "allocation": [],
+    "alternatives": [],
+    "rejected": [
+     {
+      "route": "COALITION",
+      "verdict": "F",
+      "why": "moq_or_capacity_failure"
+     },
+     {
+      "route": "DIRECT_PRICE",
+      "verdict": "F",
+      "why": "moq_or_capacity_failure"
+     }
+    ],
+    "comparison_scope": "SYNTHETIC_TEST_ONLY",
+    "coalition_needed": false
+   }
+  }
+ },
+ "moq_rule": {
+  "buyers": 5,
+  "units_each": 20,
+  "units": 100,
+  "moq": 100,
+  "meets_moq": true,
+  "arithmetic": "5 x 20 = 100"
+ },
+ "participation": {
+  "simulated_demand": true,
+  "real_third_party_buyers": 0,
+  "as_if_real_result": "Z",
+  "claimed_real_without_verifier": [
+   {
+    "id": "DEM-1",
+    "verdict": "Z",
+    "why": "independent_buyer_opt_in_verifier_not_connected"
+   }
+  ]
+ },
+ "engineering_binding": {
+  "verdict": "Z",
+  "why": "ztl_independent_verifier_not_connected",
+  "request_sha256": "dede682cd03f6da8d4fb9eca50e189f8ad5164a11d1ae63623b883f2578d94fe"
+ },
+ "gates": {
+  "demand_discovery": "T",
+  "route_comparison": "T",
+  "ztl_engineering": "Z",
+  "legion_ztl_engineering_verdict": "Z",
+  "real_supplier_quote": "Z",
+  "buyer_signatures": "Z",
+  "seller_commitment": "Z",
+  "federation_admission": "Z",
+  "marketplace_listing": "Z",
+  "payment_authority": "Z",
+  "provider_readback": "Z"
+ },
+ "coalition_proposal": {
+  "schema": "legion.industrial.federation-proposal.v1",
+  "contract_proposal_hash": "4a53d03788fb5bc96754229c141c7249e739c6f8d6b4fa907d2f75988ebc373f",
+  "source_case": "RFQ-E2E-REBOT-001",
+  "epoch": 0,
+  "proposed_route": "COALITION",
+  "buyer_ids": [
+   "SYN-BUYER-01",
+   "SYN-BUYER-02",
+   "SYN-BUYER-03",
+   "SYN-BUYER-04",
+   "SYN-BUYER-05"
+  ],
+  "source_scope": "SYNTHETIC_TEST_ONLY",
+  "reliance": "NOT_ADMITTED_TO_EXISTING_FEDERATION",
+  "external_effects": 0,
+  "paypal_captures_on_this_new_contract": 0
+ },
+ "marketplace": {
+  "status": "BLOCKED",
+  "reason": "LEGION-Marketplace and LEGION-Federation are PolyForm Noncommercial; no commercial authorisation recorded (LICENSE_MATRIX.json). Stopped at the verified coalition-proposal input contract."
+ },
+ "claims": "Simulated buyers and supplied test quotes only. No real buyer commitment, supplier offer, order or payment exists or is implied."
+}

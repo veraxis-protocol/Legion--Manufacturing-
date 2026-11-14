@@ -1,0 +1,6 @@
+# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.
+work_order,part,rev,qty_completed,qty_scrapped,op,work_center,actual_setup_min,actual_run_min_total,closed_date
+WO-7702,MB-1880,B,300,6,20,MILL-V,52,2010,2026-07-18
+WO-7702,MB-1880,B,300,6,30,MILL-V,34,1005,2026-07-18
+WO-7811,MB-1880,B,500,9,20,MILL-V,47,3240,2026-09-26
+WO-7811,MB-1880,B,500,9,30,MILL-V,29,1590,2026-09-26

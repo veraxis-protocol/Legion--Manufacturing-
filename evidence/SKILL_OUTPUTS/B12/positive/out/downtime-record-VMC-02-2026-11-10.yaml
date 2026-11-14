@@ -1,0 +1,29 @@
+# Downtime record, contract version 3 (shared/contracts/downtime-record.md)
+# Emitted by breakdown-diagnosis for daily-production-report. SYNTHETIC test data.
+# Source is export-only (no CMMS connector live); maintenance history last closed record 2026-09-24.
+contract_version: 3
+site: null                     # NOT IN INPUTS - required field; no plant profile on file. Fill before folding into the report.
+asset_id: VMC-02
+asset_id_verbatim: "VMC-02"
+started_at: 2026-11-10T15:24:00-05:00   # event note says "15:24 local" with no offset; -05:00 taken from the historian export, whose last sample (15:24) matches the alarm. Confirm.
+ended_at: null                 # still down at 16:10 per event note
+duration_minutes: null         # ongoing; never zero
+reason_code: null              # no plant reason code in inputs
+reason_text: "SPINDLE OVERLOAD / OVERTEMP alarm, stopped mid-cycle; grinding noise from spindle ~20 min before alarm"
+production_wo: WO-8120
+production_wo_verbatim: "WO-8120 op 20 (MB-1880)"
+shift: null                    # no shift pattern on file
+production_day: 2026-11-10     # calendar date of the stop; plant day boundary not on file - confirm
+source_system: breakdown_diagnosis
+source_ref: "diagnosis/2026-11-10/VMC-02"
+
+diagnosis_ref: "diagnosis/2026-11-10/VMC-02"
+leading_cause: "Spindle bearing damage / preload loss (progressive), possibly aggravated by spindle chiller low level"
+leading_cause_confidence: medium
+cited_work_orders: ["MW-140", "MW-118"]
+safety_flagged: true
+safety_reason: "Electrical fault: spindle drive tripped on SPINDLE OVERLOAD / OVERTEMP alarm. Grinding spindle: OEM Section 7.4 says do not run a spindle showing grinding noise and lock out the spindle drive before any manual rotation or inspection. Spindle nose reported bluish (heat discolouration); temp 52.1 C at stop."
+pm_adjustment_proposed: true
+maintenance_wo: null           # no maintenance ticket for this event in the inputs
+diagnosis_state: advisory
+technician_step: pending

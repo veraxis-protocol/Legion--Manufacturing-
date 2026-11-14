@@ -1,0 +1,21 @@
+tab,source_ref,key,value_verbatim,status,ladder_rung,partner,mismatch_class,note
+assets,equipment.csv:3,asset,HMC-01,unmatched,,,6,"On the equipment list; appears in no output, downtime or plan row. No other source records activity on it."
+assets,equipment.csv:4,asset,VMC-02,unmatched,,,6,"On the equipment list; appears in no output, downtime or plan row. No other source records activity on it."
+assets,equipment.csv:5,asset,VMC-03,unmatched,,,6,"On the equipment list; appears in no output, downtime or plan row. No other source records activity on it."
+assets,equipment.csv:6,asset,LTH-01,unmatched,,,6,"On the equipment list; appears in no output, downtime or plan row. No other source records activity on it."
+assets,equipment.csv:7,asset,DEB-01,unmatched,,,6,"On the equipment list; appears in no output, downtime or plan row. No other source records activity on it."
+production_output,pulse_oee/output.csv:2,production work order,WO-1001,matched,0,WO-1001,,
+production_output,pulse_oee/output.csv:2,part (vs work order's part),PN-100,matched,0,PN-100,,
+production_output,pulse_oee/output.csv:2,asset,CNC-01,unmatched,,,1,Asset ID not on the equipment list under any ladder rung.
+production_output,pulse_oee/output.csv:3,production work order,WO-1002,matched,0,WO-1002,,
+production_output,pulse_oee/output.csv:3,part (vs work order's part),PN-200,matched,0,PN-200,,
+production_output,pulse_oee/output.csv:3,asset,CNC-02,unmatched,,,1,Asset ID not on the equipment list under any ladder rung.
+production_output,pulse_oee/output.csv:4,production work order,WO-1003,matched,0,WO-1003,,
+production_output,pulse_oee/output.csv:4,part (vs work order's part),PN-100,matched,0,PN-100,,
+production_output,pulse_oee/output.csv:4,asset,CNC-01,unmatched,,,1,Asset ID not on the equipment list under any ladder rung.
+downtime_events,pulse_oee/downtime.csv:2,asset,CNC-01,unmatched,,,1,Asset ID not on the equipment list under any ladder rung.
+downtime_events,pulse_oee/downtime.csv:3,asset,CNC-02,unmatched,,,1,Asset ID not on the equipment list under any ladder rung.
+plan,pulse_oee/plan.csv:2,part (vs work-order export),PN-100,matched,0,PN-100,,
+plan,pulse_oee/plan.csv:2,asset,CNC-01,unmatched,,,1,Asset ID not on the equipment list under any ladder rung.
+plan,pulse_oee/plan.csv:3,part (vs work-order export),PN-200,matched,0,PN-200,,
+plan,pulse_oee/plan.csv:3,asset,CNC-02,unmatched,,,1,Asset ID not on the equipment list under any ladder rung.

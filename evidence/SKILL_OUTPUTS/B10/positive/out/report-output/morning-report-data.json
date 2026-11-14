@@ -1,0 +1,506 @@
+{
+  "run": "2026-11-14T17:00:47",
+  "figures": [
+    {
+      "figure": "Production days in output export",
+      "value": "2026-11-12",
+      "computed_from": "output.csv",
+      "filter": "distinct production_day"
+    },
+    {
+      "figure": "Plan dates in plan export",
+      "value": "2026-11-12",
+      "computed_from": "plan.csv",
+      "filter": "distinct plan_date"
+    },
+    {
+      "figure": "Downtime dates in downtime export",
+      "value": "2026-11-12",
+      "computed_from": "downtime.csv",
+      "filter": "distinct date(started_at)"
+    },
+    {
+      "figure": "Sources with a timestamp after run time",
+      "value": 0,
+      "computed_from": "file modified times",
+      "filter": "mtime > run time"
+    },
+    {
+      "figure": "Production day expected from last night's export",
+      "value": "2026-11-13",
+      "computed_from": "run date",
+      "filter": "run date minus 1 day"
+    },
+    {
+      "figure": "Expected production day present in output export",
+      "value": "no",
+      "computed_from": "output.csv",
+      "filter": "production_day == 2026-11-13"
+    },
+    {
+      "figure": "Sites in output export",
+      "value": "SITE-1",
+      "computed_from": "output.csv",
+      "filter": "distinct site"
+    },
+    {
+      "figure": "Output rows colliding at grain (work order, shift, day)",
+      "value": 0,
+      "computed_from": "output.csv",
+      "filter": "group by work_order, shift, production_day; count>1"
+    },
+    {
+      "figure": "Downtime rows failing end/start/duration check",
+      "value": 0,
+      "computed_from": "downtime.csv",
+      "filter": "ended<started or |stated - (end-start)| > 1 min"
+    },
+    {
+      "figure": "Rows on production_output tab",
+      "value": 3,
+      "computed_from": "production_output",
+      "filter": "all rows"
+    },
+    {
+      "figure": "Rows on plan tab",
+      "value": 2,
+      "computed_from": "plan",
+      "filter": "all rows"
+    },
+    {
+      "figure": "Rows on downtime_events tab",
+      "value": 2,
+      "computed_from": "downtime_events",
+      "filter": "all rows"
+    },
+    {
+      "figure": "Rows on production_work_orders tab",
+      "value": 3,
+      "computed_from": "production_work_orders",
+      "filter": "all rows"
+    },
+    {
+      "figure": "Rows on assets tab",
+      "value": 2,
+      "computed_from": "assets",
+      "filter": "all rows"
+    },
+    {
+      "figure": "Rows matched exactly on production_output",
+      "value": 3,
+      "computed_from": "production_output",
+      "filter": "join_status == matched"
+    },
+    {
+      "figure": "Rows matched exactly on plan",
+      "value": 2,
+      "computed_from": "plan",
+      "filter": "join_status == matched"
+    },
+    {
+      "figure": "Rows matched exactly on downtime_events",
+      "value": 2,
+      "computed_from": "downtime_events",
+      "filter": "join_status == matched"
+    },
+    {
+      "figure": "Rows matched exactly on production_work_orders",
+      "value": 3,
+      "computed_from": "production_work_orders",
+      "filter": "join_status == matched"
+    },
+    {
+      "figure": "Rows matched exactly on assets",
+      "value": 2,
+      "computed_from": "assets",
+      "filter": "join_status == matched"
+    },
+    {
+      "figure": "Rows awaiting a proposed normalization",
+      "value": 0,
+      "computed_from": "all tabs",
+      "filter": "join_status == proposed_normalization"
+    },
+    {
+      "figure": "Rows in any mismatch class",
+      "value": 0,
+      "computed_from": "all tabs",
+      "filter": "mismatch_class not null"
+    },
+    {
+      "figure": "Production work orders with no output (class 6 candidates)",
+      "value": 0,
+      "computed_from": "work_orders.csv vs output.csv",
+      "filter": "work_order not in output"
+    },
+    {
+      "figure": "Planned production time CNC-01 (min)",
+      "value": 960.0,
+      "computed_from": "plan.csv",
+      "filter": "asset_id==CNC-01: planned_hours x 60"
+    },
+    {
+      "figure": "Downtime CNC-01 (min)",
+      "value": 45.0,
+      "computed_from": "downtime.csv",
+      "filter": "asset_id==CNC-01, no integrity flag, sum duration_minutes"
+    },
+    {
+      "figure": "Run time CNC-01 (min)",
+      "value": 915.0,
+      "computed_from": "computed",
+      "filter": "planned - downtime"
+    },
+    {
+      "figure": "Ideal time CNC-01 (min)",
+      "value": 792.0,
+      "computed_from": "routing.csv x output.csv",
+      "filter": "run_min_per_unit x (good+scrap)"
+    },
+    {
+      "figure": "Availability CNC-01",
+      "value": "95.3%",
+      "computed_from": "computed",
+      "filter": "run / planned"
+    },
+    {
+      "figure": "Performance CNC-01",
+      "value": "86.6%",
+      "computed_from": "computed",
+      "filter": "ideal / run"
+    },
+    {
+      "figure": "Quality CNC-01",
+      "value": "98.5%",
+      "computed_from": "computed",
+      "filter": "good / (good+scrap)"
+    },
+    {
+      "figure": "OEE CNC-01",
+      "value": "81.2%",
+      "computed_from": "computed",
+      "filter": "A x P x Q"
+    },
+    {
+      "figure": "Planned production time CNC-02 (min)",
+      "value": 480.0,
+      "computed_from": "plan.csv",
+      "filter": "asset_id==CNC-02: planned_hours x 60"
+    },
+    {
+      "figure": "Downtime CNC-02 (min)",
+      "value": 20.0,
+      "computed_from": "downtime.csv",
+      "filter": "asset_id==CNC-02, no integrity flag, sum duration_minutes"
+    },
+    {
+      "figure": "Run time CNC-02 (min)",
+      "value": 460.0,
+      "computed_from": "computed",
+      "filter": "planned - downtime"
+    },
+    {
+      "figure": "Ideal time CNC-02 (min)",
+      "value": 401.4,
+      "computed_from": "routing.csv x output.csv",
+      "filter": "run_min_per_unit x (good+scrap)"
+    },
+    {
+      "figure": "Availability CNC-02",
+      "value": "95.8%",
+      "computed_from": "computed",
+      "filter": "run / planned"
+    },
+    {
+      "figure": "Performance CNC-02",
+      "value": "87.3%",
+      "computed_from": "computed",
+      "filter": "ideal / run"
+    },
+    {
+      "figure": "Quality CNC-02",
+      "value": "98.7%",
+      "computed_from": "computed",
+      "filter": "good / (good+scrap)"
+    },
+    {
+      "figure": "OEE CNC-02",
+      "value": "82.5%",
+      "computed_from": "computed",
+      "filter": "A x P x Q"
+    },
+    {
+      "figure": "Availability CELL-A (both assets, time-weighted)",
+      "value": "95.5%",
+      "computed_from": "computed",
+      "filter": "sum run / sum planned"
+    },
+    {
+      "figure": "Performance CELL-A",
+      "value": "86.8%",
+      "computed_from": "computed",
+      "filter": "sum ideal / sum run"
+    },
+    {
+      "figure": "Quality CELL-A",
+      "value": "98.5%",
+      "computed_from": "computed",
+      "filter": "sum good / sum (good+scrap)"
+    },
+    {
+      "figure": "OEE CELL-A",
+      "value": "81.7%",
+      "computed_from": "computed",
+      "filter": "A x P x Q on the sums"
+    },
+    {
+      "figure": "Good output vs plan PN-100",
+      "value": "780 of 800 (97.5%), variance -20",
+      "computed_from": "plan.csv + output.csv",
+      "filter": "part_number==PN-100, day 2026-11-12"
+    },
+    {
+      "figure": "Good output vs plan PN-200",
+      "value": "220 of 250 (88.0%), variance -30",
+      "computed_from": "plan.csv + output.csv",
+      "filter": "part_number==PN-200, day 2026-11-12"
+    },
+    {
+      "figure": "Total planned",
+      "value": 1050,
+      "computed_from": "plan.csv",
+      "filter": "sum planned_qty"
+    },
+    {
+      "figure": "Total good",
+      "value": 1000,
+      "computed_from": "output.csv",
+      "filter": "sum qty_good"
+    },
+    {
+      "figure": "Total scrap (units)",
+      "value": 15,
+      "computed_from": "output.csv",
+      "filter": "sum qty_scrap"
+    },
+    {
+      "figure": "Total output (good+scrap)",
+      "value": 1015,
+      "computed_from": "output.csv",
+      "filter": "sum"
+    },
+    {
+      "figure": "Good output against plan",
+      "value": "95.2%",
+      "computed_from": "computed",
+      "filter": "total good / total planned"
+    },
+    {
+      "figure": "Good output variance to plan (units)",
+      "value": -50,
+      "computed_from": "computed",
+      "filter": "good - planned"
+    },
+    {
+      "figure": "Downtime events",
+      "value": 2,
+      "computed_from": "downtime.csv",
+      "filter": "all rows"
+    },
+    {
+      "figure": "Downtime events coded Other or blank",
+      "value": "0 of 2",
+      "computed_from": "downtime.csv",
+      "filter": "reason_code in (Other, blank)"
+    },
+    {
+      "figure": "Total downtime minutes (trusted rows)",
+      "value": 65.0,
+      "computed_from": "downtime.csv",
+      "filter": "sum duration_minutes, no integrity flag"
+    },
+    {
+      "figure": "Downtime TOOL",
+      "value": "1 event(s), 45 min",
+      "computed_from": "downtime.csv",
+      "filter": "reason_code==TOOL"
+    },
+    {
+      "figure": "Downtime MAT",
+      "value": "1 event(s), 20 min",
+      "computed_from": "downtime.csv",
+      "filter": "reason_code==MAT"
+    },
+    {
+      "figure": "MFG_DOWNTIME_COST_PER_HOUR set in environment",
+      "value": "no",
+      "computed_from": "environment",
+      "filter": "checked by name only"
+    },
+    {
+      "figure": "Plant profile / rates file on file",
+      "value": "no",
+      "computed_from": "plant_setup.py find",
+      "filter": "exists=false, rates_exists=false"
+    },
+    {
+      "figure": "Scrap PN-100 (units)",
+      "value": 12,
+      "computed_from": "output.csv",
+      "filter": "part_number==PN-100"
+    },
+    {
+      "figure": "Scrap PN-200 (units)",
+      "value": 3,
+      "computed_from": "output.csv",
+      "filter": "part_number==PN-200"
+    },
+    {
+      "figure": "WO-1001 good vs ordered",
+      "value": "480 of 500, short 20, due 2026-11-14",
+      "computed_from": "work_orders.csv + output.csv",
+      "filter": "work_order==WO-1001"
+    },
+    {
+      "figure": "WO-1002 good vs ordered",
+      "value": "220 of 250, short 30, due 2026-11-13",
+      "computed_from": "work_orders.csv + output.csv",
+      "filter": "work_order==WO-1002"
+    },
+    {
+      "figure": "WO-1003 good vs ordered",
+      "value": "300 of 300, short 0, due 2026-11-15",
+      "computed_from": "work_orders.csv + output.csv",
+      "filter": "work_order==WO-1003"
+    },
+    {
+      "figure": "Production work orders short of ordered qty",
+      "value": 2,
+      "computed_from": "computed",
+      "filter": "good < qty_ordered"
+    },
+    {
+      "figure": "Production work orders with no sales order link",
+      "value": 3,
+      "computed_from": "work_orders.csv",
+      "filter": "no sales_order column"
+    }
+  ],
+  "oee": [
+    {
+      "asset": "CNC-01",
+      "cell": "CELL-A",
+      "work_center": "VMC",
+      "planned_min": 960.0,
+      "down_min": 45.0,
+      "run_min": 915.0,
+      "ideal_min": 792.0,
+      "good": 780,
+      "scrap": 12,
+      "total": 792,
+      "A": 0.953125,
+      "P": 0.8655737704918033,
+      "Q": 0.9848484848484849,
+      "OEE": 0.8125,
+      "shifts": "1, 2"
+    },
+    {
+      "asset": "CNC-02",
+      "cell": "CELL-A",
+      "work_center": "VMC",
+      "planned_min": 480.0,
+      "down_min": 20.0,
+      "run_min": 460.0,
+      "ideal_min": 401.40000000000003,
+      "good": 220,
+      "scrap": 3,
+      "total": 223,
+      "A": 0.9583333333333334,
+      "P": 0.872608695652174,
+      "Q": 0.9865470852017937,
+      "OEE": 0.8250000000000002,
+      "shifts": "1"
+    }
+  ],
+  "output_vs_plan": [
+    {
+      "part": "PN-100",
+      "asset": "CNC-01",
+      "wc": "VMC",
+      "cell": "CELL-A",
+      "day": "2026-11-12",
+      "plan": 800,
+      "good": 780,
+      "scrap": 12,
+      "total": 792,
+      "var": -20,
+      "pct": 0.975
+    },
+    {
+      "part": "PN-200",
+      "asset": "CNC-02",
+      "wc": "VMC",
+      "cell": "CELL-A",
+      "day": "2026-11-12",
+      "plan": 250,
+      "good": 220,
+      "scrap": 3,
+      "total": 223,
+      "var": -30,
+      "pct": 0.88
+    }
+  ],
+  "wo_status": [
+    {
+      "wo": "WO-1001",
+      "part": "PN-100",
+      "qty": 500,
+      "good": 480,
+      "short": 20,
+      "due": "2026-11-14",
+      "status": "RELEASED"
+    },
+    {
+      "wo": "WO-1002",
+      "part": "PN-200",
+      "qty": 250,
+      "good": 220,
+      "short": 30,
+      "due": "2026-11-13",
+      "status": "RELEASED"
+    },
+    {
+      "wo": "WO-1003",
+      "part": "PN-100",
+      "qty": 300,
+      "good": 300,
+      "short": 0,
+      "due": "2026-11-15",
+      "status": "RELEASED"
+    }
+  ],
+  "downtime_by_minutes": [
+    {
+      "code": "TOOL",
+      "text": "tool change overrun",
+      "events": 1,
+      "minutes": 45.0,
+      "assets": [
+        "CNC-01"
+      ]
+    },
+    {
+      "code": "MAT",
+      "text": "waiting on material",
+      "events": 1,
+      "minutes": 20.0,
+      "assets": [
+        "CNC-02"
+      ]
+    }
+  ],
+  "downtime_by_frequency": [
+    "MAT",
+    "TOOL"
+  ]
+}

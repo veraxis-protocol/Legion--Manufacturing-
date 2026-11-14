@@ -1,0 +1,4 @@
+# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.
+ncr,date,part,defect,cause,capa,capa_effective
+NCR-0219,2026-04-14,MB-1880,bore oversize 22.026,boring insert wear beyond 900 parts,CAPA-071 insert change every 600 parts,not verified
+NCR-0244,2026-08-02,MB-1500,slot width undersize,wrong offset after tool change,CAPA-080 offset check sheet,verified 2026-09-01

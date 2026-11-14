@@ -125,6 +125,20 @@
    "sha256": "bd643a398ba06aaefef80b78da18bf68b1f9d7a271f8ecfb0202fb036942dce3",
    "bytes": 46718,
    "added_by": "WO-LMFG-003"
+  },
+  {
+   "path": "deal_rescue/industrial/core.py",
+   "git_blob": "79145f0271878a8818422890020ff6e1306fbf12",
+   "sha256": "abc59fafe1980fdb8fb5fb40cd29c1d93e676482e961367ab5ccedd29ea8e546",
+   "bytes": 14006,
+   "added_by": "WO-LMFG-004"
+  },
+  {
+   "path": "deal_rescue/industrial/data/sources.json",
+   "git_blob": "f060be519a18582429e34ebf0d234bb7ef0840f5",
+   "sha256": "eb8243261a4496597b8563ce94659192628135d0b4b425d553f4be771f46db25",
+   "bytes": 52287,
+   "added_by": "WO-LMFG-004"
   }
  ],
  "reference_cad": {

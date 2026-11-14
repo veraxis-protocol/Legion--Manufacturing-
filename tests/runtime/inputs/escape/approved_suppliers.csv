@@ -1,0 +1,5 @@
+# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.
+supplier,commodity,status,last_audit,notes
+Alder Sintered Parts (fictitious),sintered bronze,approved,2025-11-03,current source BSH-1210
+Birch Powder Metal (fictitious),sintered bronze and iron,approved,2026-02-20,quoted BSH-1210 in 2026-10 (rev not stated)
+Cedar Bearings Inc (fictitious),bronze bushings,conditional,2024-06-15,audit overdue

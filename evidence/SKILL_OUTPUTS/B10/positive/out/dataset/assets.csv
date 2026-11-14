@@ -1,0 +1,3 @@
+site,source_system,source_ref,as_of,join_status,mismatch_class,contradicted_by,integrity_flags,asset_id,asset_id_verbatim,location
+SITE-1,derived from plan/output/downtime exports (no CMMS asset master),plan.csv;output.csv;downtime.csv,,matched,,,,CNC-01,CNC-01,(not in any source)
+SITE-1,derived from plan/output/downtime exports (no CMMS asset master),plan.csv;output.csv;downtime.csv,,matched,,,,CNC-02,CNC-02,(not in any source)

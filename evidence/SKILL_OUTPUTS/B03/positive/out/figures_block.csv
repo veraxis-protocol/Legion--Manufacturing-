@@ -1,0 +1,54 @@
+figure,value,computed_from,filter
+"Rows in, all loaded files",15,5 loaded files,"data rows, comment lines excluded"
+"Rows in, assets",5,assets,all rows
+"Rows fully joined, assets",0,assets,join_status == matched
+"Rows in, production_work_orders",3,production_work_orders,all rows
+"Rows fully joined, production_work_orders",3,production_work_orders,join_status == matched
+"Rows in, production_output",3,production_output,all rows
+"Rows fully joined, production_output",0,production_output,join_status == matched
+"Rows in, downtime_events",2,downtime_events,all rows
+"Rows fully joined, downtime_events",0,downtime_events,join_status == matched
+"Rows in, plan",2,plan,all rows
+"Rows fully joined, plan",0,plan,join_status == matched
+"Rows fully joined, all tabs",3,all tabs,join_status == matched
+Key checks run (non-asset-list rows),15,key_mismatch_log.csv,tab != assets
+Key checks matched exactly,8,key_mismatch_log.csv,status == matched
+Key checks matched after normalization,0,key_mismatch_log.csv,status == normalized
+Key checks awaiting a proposed fix (classes 2-5),0,key_mismatch_log.csv,status == proposed_normalization
+Key checks unmatched,7,key_mismatch_log.csv,status == unmatched
+Key checks matched (exact + normalized),8,reconciliation,exact + normalized
+Records in class 1,7,key_mismatch_log.csv + duplicate/window checks,mismatch_class == 1
+Records in class 2,0,key_mismatch_log.csv + duplicate/window checks,mismatch_class == 2
+Records in class 3,0,key_mismatch_log.csv + duplicate/window checks,mismatch_class == 3
+Records in class 4,0,key_mismatch_log.csv + duplicate/window checks,mismatch_class == 4
+Records in class 5,0,key_mismatch_log.csv + duplicate/window checks,mismatch_class == 5
+Records in class 6,5,key_mismatch_log.csv + duplicate/window checks,mismatch_class == 6
+Records in class 7,0,key_mismatch_log.csv + duplicate/window checks,mismatch_class == 7
+Records in class 8,0,key_mismatch_log.csv + duplicate/window checks,colliding keys at tab grain (output: WO+shift+day; plan: part+date)
+Asset IDs used in output/downtime/plan,2,"output, downtime, plan",distinct asset_id
+"Of those, on the equipment list",0,equipment.csv,any ladder rung
+Assets on equipment list,5,equipment.csv,all rows
+Equipment assets with no activity (class 6),5,assets tab,mismatch_class == 6
+Output rows with orphan asset,3,production_output,asset unmatched
+Downtime rows with orphan asset,2,downtime_events,asset unmatched
+Plan rows with orphan asset,2,plan,asset unmatched
+Downtime minutes on orphan assets,65,downtime_events,join_status == unmatched; minutes as stated
+Production WOs in output found in work-order export,3,key_mismatch_log.csv,"key == production work order, matched"
+Output rows whose part equals the work order's part,3,key_mismatch_log.csv,part vs work order part
+Work orders with no output (class 6),0,production_work_orders,mismatch_class == 6
+Rows flagged sign_convention,0,all tabs,'sign_convention' in integrity_flags
+Rows flagged mixed_sign,0,all tabs,'mixed_sign' in integrity_flags
+Rows flagged end_before_start,0,all tabs,'end_before_start' in integrity_flags
+Rows flagged duration_mismatch,0,all tabs,'duration_mismatch' in integrity_flags
+Rows flagged ncr_part_differs,0,all tabs,'ncr_part_differs' in integrity_flags
+Rows flagged ncr_dated_before_wo,0,all tabs,'ncr_dated_before_wo' in integrity_flags
+Rows flagged future_timestamp,0,all tabs,'future_timestamp' in integrity_flags
+Rows flagged units_conflict,0,all tabs,'units_conflict' in integrity_flags
+Rows with no UOM stated,8,all tabs carrying a quantity,uom empty
+Rows with as_of zone unresolved,15,all tabs,no zone in any source; no Plant context
+Rows with site not stated in source,12,all tabs,site column absent from source
+Activity overlap window start,2026-11-12,"output, downtime, plan",max of window starts
+Activity overlap window end,2026-11-12,"output, downtime, plan",min of window ends
+Class 7 (outside window) activity rows,0,activity tabs,date outside overlap
+actuals rows flagged probable_standard,n/a (operation_actuals tab missing),-,-
+Normalization rules applied,0,ladder log,no rung fired on any key

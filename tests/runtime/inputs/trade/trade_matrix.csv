@@ -1,0 +1,7 @@
+# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.
+criterion,weight,unit,better,option_A_6061_machined,option_B_7075_machined,option_C_A380_diecast,source
+unit_cost_at_1000,0.30,USD,lower,18.40,24.10,9.80,quote-build estimates Q-118/Q-119/Q-120 (fictitious)
+tooling_cost,0.10,USD,lower,0,0,14500,die quote D-55 (fictitious)
+stiffness_first_mode,0.25,Hz,higher,412,418,365,FEA run FEA-2040-01..03 (fictitious)
+mass,0.15,g,lower,198,206,221,CAD mass properties (fictitious)
+lead_time_first_article,0.20,days,lower,15,18,63,supplier and shop schedule (fictitious)

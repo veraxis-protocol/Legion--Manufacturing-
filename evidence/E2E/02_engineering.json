@@ -1,0 +1,1445 @@
+{
+ "stage": "engineering",
+ "inquiry_ref": "RFQ-E2E-REBOT-001",
+ "source": {
+  "repository": "https://github.com/Seeed-Projects/reBot-DevArm",
+  "commit": "22f002a230670f96abcd3805e0daa63bdf42f354",
+  "step": {
+   "sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+   "bytes": 34840241,
+   "file": "reBot_B601_DM_v1.1_20260625.step"
+  },
+  "readme_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee",
+  "license": "CERN-OHL-W-2.0 (fetched at run time, not redistributed)"
+ },
+ "intake": {
+  "status": "T",
+  "file": "reBot_B601_DM_v1.1_20260625.step",
+  "sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+  "bytes": 34840241,
+  "length_unit": "mm",
+  "assemblies": 33,
+  "leaf_definitions": 64,
+  "leaf_instances": 326,
+  "inferred_fields": []
+ },
+ "bom": {
+  "status": "T",
+  "mandatory_positions": 40,
+  "mandatory_positions_matched": 40,
+  "mandatory_instances_readme": 53,
+  "mandatory_instances_step": 53,
+  "purchased_readme_positions": 27,
+  "mismatches": [
+   {
+    "part_id": "DM_MOTOR1_WIRING_HARNESS_CLIP",
+    "readme": 2,
+    "step": 0
+   }
+  ],
+  "readme_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+ },
+ "requirements": {
+  "status": "T",
+  "missing_for_engineering_T": [
+   "per-part dimensional requirements and tolerances for printed parts",
+   "manufacturer tolerance for the purchased MGN9-170 rail",
+   "material grade certificates",
+   "surface finish per part",
+   "inspection requirements",
+   "functional requirements",
+   "independent Ed25519 attestation (CAD-025)"
+  ],
+  "materials_from_geometry": 0,
+  "tolerances_from_geometry": 0
+ },
+ "parts": [
+  {
+   "part_id": "01_BASE_PLATE",
+   "group": "printed",
+   "quantity": 1,
+   "material": "Bambu ABS Black",
+   "material_source": "readme.md line 54",
+   "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 30% infill)",
+   "tolerance": null,
+   "tolerance_source": null,
+   "missing_requirements": [
+    "dimensional_tolerances",
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 149,
+    "bbox": [
+     140.001,
+     200.001,
+     14.754
+    ],
+    "volume": 385497.173,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "01_BASE_LINK",
+   "group": "printed",
+   "quantity": 1,
+   "material": "Bambu ABS Black",
+   "material_source": "readme.md line 55",
+   "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 30% infill)",
+   "tolerance": null,
+   "tolerance_source": null,
+   "missing_requirements": [
+    "dimensional_tolerances",
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 102,
+    "bbox": [
+     92.0,
+     92.0,
+     63.7
+    ],
+    "volume": 247061.678,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "01_UPPER_ARM_FULLER_L",
+   "group": "printed",
+   "quantity": 1,
+   "material": "Bambu PLA Black & Green",
+   "material_source": "readme.md line 56",
+   "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 15% infill)",
+   "tolerance": null,
+   "tolerance_source": null,
+   "missing_requirements": [
+    "dimensional_tolerances",
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 74,
+    "bbox": [
+     20.616,
+     133.65,
+     34.616
+    ],
+    "volume": 71697.413,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "01_UPPER_ARM_FULLER_R",
+   "group": "printed",
+   "quantity": 1,
+   "material": "Bambu PLA Black & Green",
+   "material_source": "readme.md line 57",
+   "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 15% infill)",
+   "tolerance": null,
+   "tolerance_source": null,
+   "missing_requirements": [
+    "dimensional_tolerances",
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 74,
+    "bbox": [
+     20.616,
+     133.65,
+     34.616
+    ],
+    "volume": 71697.425,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "01_UPPER_ARM_FULLER_M",
+   "group": "printed",
+   "quantity": 1,
+   "material": "Bambu ABS Black",
+   "material_source": "readme.md line 58",
+   "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 30% infill)",
+   "tolerance": null,
+   "tolerance_source": null,
+   "missing_requirements": [
+    "dimensional_tolerances",
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 58,
+    "bbox": [
+     59.35,
+     189.933,
+     53.6
+    ],
+    "volume": 196502.591,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "01_UPPER_ARM_LIMIT",
+   "group": "printed",
+   "quantity": 1,
+   "material": "Bambu ABS Black",
+   "material_source": "readme.md line 59",
+   "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 30% infill)",
+   "tolerance": null,
+   "tolerance_source": null,
+   "missing_requirements": [
+    "dimensional_tolerances",
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 18,
+    "bbox": [
+     71.24,
+     21.193,
+     17.842
+    ],
+    "volume": 21261.084,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "01_ARM_HANDLE",
+   "group": "printed",
+   "quantity": 1,
+   "material": "Bambu ABS Black",
+   "material_source": "readme.md line 60",
+   "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 30% infill)",
+   "tolerance": null,
+   "tolerance_source": null,
+   "missing_requirements": [
+    "dimensional_tolerances",
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 29,
+    "bbox": [
+     65.206,
+     26.617,
+     23.211
+    ],
+    "volume": 23313.059,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "01_LOWER_ARM_FILLER_L",
+   "group": "printed",
+   "quantity": 1,
+   "material": "Bambu PLA Black & Green",
+   "material_source": "readme.md line 61",
+   "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 15% infill)",
+   "tolerance": null,
+   "tolerance_source": null,
+   "missing_requirements": [
+    "dimensional_tolerances",
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 235,
+    "bbox": [
+     18.916,
+     125.051,
+     31.603
+    ],
+    "volume": 57486.363,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "01_LOWER_ARM_FILLER_R",
+   "group": "printed",
+   "quantity": 1,
+   "material": "Bambu PLA Black & Green",
+   "material_source": "readme.md line 62",
+   "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 15% infill)",
+   "tolerance": null,
+   "tolerance_source": null,
+   "missing_requirements": [
+    "dimensional_tolerances",
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 232,
+    "bbox": [
+     18.916,
+     125.051,
+     31.603
+    ],
+    "volume": 57486.346,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "01_LOWER_ARM_FILLER_M",
+   "group": "printed",
+   "quantity": 1,
+   "material": "Bambu ABS Black",
+   "material_source": "readme.md line 63",
+   "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 30% infill)",
+   "tolerance": null,
+   "tolerance_source": null,
+   "missing_requirements": [
+    "dimensional_tolerances",
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 56,
+    "bbox": [
+     63.85,
+     194.395,
+     38.6
+    ],
+    "volume": 149338.149,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "01_UPPER_ARM_COVER",
+   "group": "printed",
+   "quantity": 1,
+   "material": "Bambu PLA Green",
+   "material_source": "readme.md line 64",
+   "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 15% infill)",
+   "tolerance": null,
+   "tolerance_source": null,
+   "missing_requirements": [
+    "dimensional_tolerances",
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 159,
+    "bbox": [
+     58.322,
+     73.826,
+     24.943
+    ],
+    "volume": 10754.011,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "01_LOWER_ARM_COVER",
+   "group": "printed",
+   "quantity": 1,
+   "material": "Bambu PLA Green",
+   "material_source": "readme.md line 65",
+   "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 15% infill)",
+   "tolerance": null,
+   "tolerance_source": null,
+   "missing_requirements": [
+    "dimensional_tolerances",
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 180,
+    "bbox": [
+     67.35,
+     100.838,
+     27.729
+    ],
+    "volume": 17895.961,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "01_MOTOR_COVER",
+   "group": "printed",
+   "quantity": 1,
+   "material": "Bambu ABS Black",
+   "material_source": "readme.md line 66",
+   "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 30% infill)",
+   "tolerance": null,
+   "tolerance_source": null,
+   "missing_requirements": [
+    "dimensional_tolerances",
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 66,
+    "bbox": [
+     63.079,
+     94.822,
+     33.838
+    ],
+    "volume": 21328.497,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "01_LOWER_ARM_LIMIT",
+   "group": "printed",
+   "quantity": 1,
+   "material": "Bambu PLA Green",
+   "material_source": "readme.md line 67",
+   "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 15% infill)",
+   "tolerance": null,
+   "tolerance_source": null,
+   "missing_requirements": [
+    "dimensional_tolerances",
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 26,
+    "bbox": [
+     40.0,
+     13.0,
+     35.934
+    ],
+    "volume": 13619.328,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "01_RAIL_BRACKET",
+   "group": "printed",
+   "quantity": 1,
+   "material": "Bambu PLA Green",
+   "material_source": "readme.md line 68",
+   "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 15% infill)",
+   "tolerance": null,
+   "tolerance_source": null,
+   "missing_requirements": [
+    "dimensional_tolerances",
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 75,
+    "bbox": [
+     184.07,
+     30.0,
+     68.066
+    ],
+    "volume": 43335.706,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "01_FINGER",
+   "group": "printed",
+   "quantity": 2,
+   "material": "Bambu ABS Black",
+   "material_source": "readme.md line 69",
+   "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 45% infill)",
+   "tolerance": null,
+   "tolerance_source": null,
+   "missing_requirements": [
+    "dimensional_tolerances",
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 69,
+    "bbox": [
+     31.391,
+     39.228,
+     64.823
+    ],
+    "volume": 22535.297,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "01_JOINT5_CABLE_RESTRAINT_A",
+   "group": "printed",
+   "quantity": 1,
+   "material": "Bambu PLA Green",
+   "material_source": "readme.md line 70",
+   "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 15% infill)",
+   "tolerance": null,
+   "tolerance_source": null,
+   "missing_requirements": [
+    "dimensional_tolerances",
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 90,
+    "bbox": [
+     79.011,
+     17.511,
+     63.011
+    ],
+    "volume": 12708.768,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "01_JOINT6_7_CABLE_RESTRAINT_A",
+   "group": "printed",
+   "quantity": 2,
+   "material": "Bambu ABS Black",
+   "material_source": "readme.md line 71",
+   "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 30% infill)",
+   "tolerance": null,
+   "tolerance_source": null,
+   "missing_requirements": [
+    "dimensional_tolerances",
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 118,
+    "bbox": [
+     77.016,
+     12.437,
+     63.516
+    ],
+    "volume": 11813.271,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "01_JOINT6_7_CABLE_RESTRAINT_B",
+   "group": "printed",
+   "quantity": 2,
+   "material": "Bambu ABS Black",
+   "material_source": "readme.md line 72",
+   "process": "FDM 3D printing (0.4 nozzle, 0.2 layer height, 30% infill)",
+   "tolerance": null,
+   "tolerance_source": null,
+   "missing_requirements": [
+    "dimensional_tolerances",
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 105,
+    "bbox": [
+     77.015,
+     21.121,
+     65.488
+    ],
+    "volume": 4354.526,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_BASE_REINFORCEMENT_PART",
+   "group": "cnc",
+   "quantity": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 105",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 103,
+    "bbox": [
+     92.005,
+     92.005,
+     6.955
+    ],
+    "volume": 27284.499,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_ARM_YAW_LIMIT",
+   "group": "cnc",
+   "quantity": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 106",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 57,
+    "bbox": [
+     77.002,
+     77.002,
+     7.102
+    ],
+    "volume": 12608.648,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_MOTOR_FRONT_SPACER",
+   "group": "cnc",
+   "quantity": 4,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 107",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 33,
+    "bbox": [
+     34.8,
+     34.8,
+     4.0
+    ],
+    "volume": 2728.463,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_MOTOR_BACK_SPACER",
+   "group": "cnc",
+   "quantity": 3,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 108",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 23,
+    "bbox": [
+     5.0,
+     57.0,
+     57.0
+    ],
+    "volume": 9709.288,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_FLANGE",
+   "group": "cnc",
+   "quantity": 3,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 109",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 31,
+    "bbox": [
+     9.75,
+     34.8,
+     34.8
+    ],
+    "volume": 4154.28,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_WRIST_BRACKET",
+   "group": "cnc",
+   "quantity": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 110",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 65,
+    "bbox": [
+     60.75,
+     8.0,
+     92.922
+    ],
+    "volume": 23890.764,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_GRIPPER_CONNECTOR_A",
+   "group": "cnc",
+   "quantity": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 111",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 248,
+    "bbox": [
+     35.62,
+     6.02,
+     34.433
+    ],
+    "volume": 3200.127,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_GRIPPER_CONNECTOR_B",
+   "group": "cnc",
+   "quantity": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 112",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 61,
+    "bbox": [
+     56.802,
+     56.802,
+     9.502
+    ],
+    "volume": 15100.508,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_SLIDER_BRACKET",
+   "group": "cnc",
+   "quantity": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 113",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 57,
+    "bbox": [
+     176.285,
+     3.0,
+     68.466
+    ],
+    "volume": 8187.262,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_SLIDER_EXTENSION",
+   "group": "cnc",
+   "quantity": 2,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 114",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 20,
+    "bbox": [
+     26.2,
+     17.8,
+     38.44
+    ],
+    "volume": 10223.294,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_LOWER_UPPER_LINK_L",
+   "group": "cnc",
+   "quantity": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 115",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 32,
+    "bbox": [
+     5.0,
+     76.177,
+     99.0
+    ],
+    "volume": 19411.168,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_LOWER_UPPER_LINK_R",
+   "group": "cnc",
+   "quantity": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 116",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 32,
+    "bbox": [
+     5.0,
+     76.177,
+     99.0
+    ],
+    "volume": 19411.168,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_LOWER_WRIST_LINK_L",
+   "group": "cnc",
+   "quantity": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 117",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 49,
+    "bbox": [
+     3.0,
+     103.943,
+     82.963
+    ],
+    "volume": 12283.605,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_LOWER_WRIST_LINK_R",
+   "group": "cnc",
+   "quantity": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 118",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 49,
+    "bbox": [
+     3.0,
+     103.943,
+     82.963
+    ],
+    "volume": 12283.605,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_GEAR_CONNECTOR",
+   "group": "cnc",
+   "quantity": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 119",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 39,
+    "bbox": [
+     35.002,
+     9.502,
+     35.002
+    ],
+    "volume": 2401.212,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_RACK",
+   "group": "cnc",
+   "quantity": 2,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 120",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 226,
+    "bbox": [
+     89.999,
+     6.0,
+     12.002
+    ],
+    "volume": 5588.088,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "03_LINK1",
+   "group": "cnc",
+   "quantity": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 121",
+   "process": "CNC + Sheet Metal",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 68,
+    "bbox": [
+     77.533,
+     83.89,
+     84.192
+    ],
+    "volume": 42600.877,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "03_LINK2",
+   "group": "cnc",
+   "quantity": 2,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 122",
+   "process": "CNC + Sheet Metal",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 90,
+    "bbox": [
+     23.0,
+     321.0,
+     57.0
+    ],
+    "volume": 35628.419,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "03_LINK3_L",
+   "group": "cnc",
+   "quantity": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 123",
+   "process": "CNC + Sheet Metal",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 111,
+    "bbox": [
+     28.625,
+     297.826,
+     57.0
+    ],
+    "volume": 28018.882,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "03_LINK3_R",
+   "group": "cnc",
+   "quantity": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 124",
+   "process": "CNC + Sheet Metal",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 132,
+    "bbox": [
+     27.625,
+     297.826,
+     57.0
+    ],
+    "volume": 27979.478,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "03_LINK5",
+   "group": "cnc",
+   "quantity": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 125",
+   "process": "CNC + Sheet Metal",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_observed": {
+    "solids": 1,
+    "faces": 34,
+    "bbox": [
+     50.0,
+     60.0,
+     60.0
+    ],
+    "volume": 16268.253,
+    "unit": "mm"
+   }
+  }
+ ],
+ "verification": {
+  "engineering_verdict": "Z",
+  "predicates": [
+   {
+    "predicate_id": "cad_bom_extraction",
+    "part_id": null,
+    "verdict": "T",
+    "reason": null,
+    "stand_verdict": null,
+    "proof_id": null,
+    "missing": null
+   },
+   {
+    "predicate_id": "rail_length_tolerance",
+    "part_id": null,
+    "verdict": "Z",
+    "reason": null,
+    "stand_verdict": null,
+    "proof_id": null,
+    "missing": null
+   },
+   {
+    "predicate_id": "joint2_load_torque",
+    "part_id": null,
+    "verdict": "Z",
+    "reason": null,
+    "stand_verdict": null,
+    "proof_id": null,
+    "missing": null
+   },
+   {
+    "predicate_id": "cnc_material_evidence",
+    "part_id": null,
+    "verdict": "Z",
+    "reason": null,
+    "stand_verdict": null,
+    "proof_id": null,
+    "missing": null
+   }
+  ],
+  "aggregate": {
+   "schema": "legion.engineering.verdict.v1",
+   "policy_sha256": "4ba01ca8b33e398462ca3f38f37fb92a85c2771b48e33b848aff3b136f807f47",
+   "mandatory_predicates": {
+    "cad_bom_extraction": "T",
+    "rail_length_tolerance": "Z",
+    "joint2_load_torque": "Z",
+    "cnc_material_evidence": "Z"
+   },
+   "stale_proofs": {},
+   "predicate_layer_verdict": "Z",
+   "receipt_layer": {
+    "verdict": "Z",
+    "code": "PART_FIELD_MISSING_MATERIAL_GRADE",
+    "refused": true,
+    "gate": "deal_rescue.industrial.ztl_gate",
+    "admitted": false
+   },
+   "ENGINEERING_VERDICT": "Z",
+   "blocking": [
+    "rail_length_tolerance=Z",
+    "joint2_load_torque=Z",
+    "cnc_material_evidence=Z",
+    "authenticated_receipt=Z (PART_FIELD_MISSING_MATERIAL_GRADE)",
+    "context field missing: drawing_revision"
+   ],
+   "production_admission": {
+    "verdict": "Z",
+    "why": "CONTEXT_MISSING",
+    "engineering_input": "Z",
+    "missing": null,
+    "execute_supplier_order": false,
+    "execute_paypal": false,
+    "module": "deal_rescue.industrial.admission.decide"
+   },
+   "procurement_authorized": false,
+   "payment_authorized": false,
+   "manufacturing_release": false,
+   "supplier_requests_sent": 0,
+   "paypal_calls": 0
+  },
+  "missing_for_engineering_T": [
+   "per-part dimensional requirements and tolerances for printed parts",
+   "manufacturer tolerance for the purchased MGN9-170 rail",
+   "material grade certificates",
+   "surface finish per part",
+   "inspection requirements",
+   "functional requirements",
+   "independent Ed25519 attestation (CAD-025)"
+  ]
+ },
+ "controlled_cases": [
+  {
+   "predicate_id": "rail_length_controlled_positive",
+   "verdict": "T",
+   "reason": null,
+   "stand_verdict": "EARNED",
+   "proof_id": "142a8e1f5290383be868e3fb2ad3465e48b84b664c819ac6fb560eb137f627d9",
+   "deliberate_change": null,
+   "admissible_for_rebot": false,
+   "binding": {
+    "source_repository": "https://github.com/Seeed-Projects/reBot-DevArm",
+    "source_commit": "22f002a230670f96abcd3805e0daa63bdf42f354",
+    "source_file": "hardware/reBot_B601_DM/reBot_B601_DM_v1.1_20260625.step",
+    "source_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "drawing_revision": null,
+    "spec_digest": null,
+    "requirements_digest": "3b4c598ea0f0b9e8b6a9049294b7160b0ee0d2a6f81a5e7b0fe86f917915fd9e",
+    "policy_sha256": "4ba01ca8b33e398462ca3f38f37fb92a85c2771b48e33b848aff3b136f807f47",
+    "part_id": "RAIL-170 (MGN9, purchased)",
+    "predicate_id": "rail_length_controlled_positive",
+    "predicate_inputs": {
+     "L_cad": {
+      "value": "170.000",
+      "source": "STEP nominal model, XCAF bbox of RAIL-170 in reBot_B601_DM_v1.1_20260625.step"
+     },
+     "L_spec": {
+      "value": "170",
+      "source": "readme.md purchased parts: Linear rail MGN9-170mm"
+     }
+    },
+    "units": {
+     "L_cad": "mm",
+     "L_spec": "mm",
+     "dL": "mm"
+    },
+    "tolerances": {
+     "dL": [
+      -0.02,
+      0.02
+     ]
+    },
+    "tolerance_sources": {
+     "dL": "TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (Deal-Rescue tests/test_cad027_demo.py @6d5563a)"
+    },
+    "brick_sha256": "b4ebdddc3be75b40a998d1458b07d0fc7e8ab244800719f2527e9a0083f31872",
+    "ztl_engineer_commit": "91d11672cb1986a7fb185d3ae5110d7209b36b97",
+    "ztl_stand_commit": "0b4d718fa3bd3105ea002105e0d89cdd76b7b573",
+    "ztl_commit": "2ba7c209371e90058df4666bb949fc253fe6cc27",
+    "stand_verdict": "EARNED",
+    "checker_result": {
+     "mcp_work_mode": {
+      "checker": "not run (work mode: ZTL's verdict; --dev runs the independent checker)",
+      "checked_by": "ZTL (work mode; a refutation's witness recomputed exactly; --dev adds the independent checker on every design)",
+      "judge": "ZTL 2ba7c20",
+      "how": {
+       "dL": "ZTL, outer range"
+      },
+      "rests_on": "ZTL disposition EARNED: the tolerances and ranges are the brick's data (the given quantities and the catalog's datasheet values) — taken as stated, not verified",
+      "guaranteed": {
+       "dL": [
+        "0",
+        "0"
+       ]
+      },
+      "guaranteed_unit": {
+       "dL": "mm"
+      },
+      "requirements": [
+       {
+        "quantity": "dL",
+        "op": "within",
+        "value": [
+         "-0.02",
+         "0.02"
+        ],
+        "why": "TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (Deal-Rescue tests/test_cad027_demo.py @6d5563a)"
+       }
+      ],
+      "undecided": 0,
+      "stand": "ztl-stand/1"
+     },
+     "independent_checker_dev_mode": {
+      "status": "OK",
+      "verdict": "EARNED",
+      "checked_by": "ZTL + the independent checker (dev mode)",
+      "checker": "every corner of the tolerance box recomputed exactly and inside; exact ranges equal; definitions bounded by the checker's own interval arithmetic",
+      "judge": "ZTL 2ba7c20",
+      "command": "python -m ustand.stand brick.json --dev",
+      "seconds": 0.42
+     }
+    },
+    "execution_timestamp": "2026-11-14T22:02:35+00:00"
+   }
+  },
+  {
+   "predicate_id": "rail_length_controlled_negative",
+   "verdict": "F",
+   "reason": null,
+   "stand_verdict": "REFUTED",
+   "proof_id": "fc2c43e106fb55fb2983841006dfcd5c170879be74b611a364ea4c847839e628",
+   "deliberate_change": "readme purchase spec MGN9-170mm replaced by MGN9-150mm; expected: the stand refutes dL within the window, dL = 20 mm",
+   "admissible_for_rebot": false,
+   "binding": {
+    "source_repository": "https://github.com/Seeed-Projects/reBot-DevArm",
+    "source_commit": "22f002a230670f96abcd3805e0daa63bdf42f354",
+    "source_file": "hardware/reBot_B601_DM/reBot_B601_DM_v1.1_20260625.step",
+    "source_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+    "drawing_revision": null,
+    "spec_digest": null,
+    "requirements_digest": "1013563bc7c35e46400c3336a50739ac7d0104a8d1e0580842592c61dcde2c6a",
+    "policy_sha256": "4ba01ca8b33e398462ca3f38f37fb92a85c2771b48e33b848aff3b136f807f47",
+    "part_id": "RAIL-170 (MGN9, purchased)",
+    "predicate_id": "rail_length_controlled_negative",
+    "predicate_inputs": {
+     "L_cad": {
+      "value": "170.000",
+      "source": "STEP nominal model, XCAF bbox of RAIL-170 in reBot_B601_DM_v1.1_20260625.step"
+     },
+     "L_spec": {
+      "value": "150",
+      "source": "readme.md purchased parts: Linear rail MGN9-150mm"
+     }
+    },
+    "units": {
+     "L_cad": "mm",
+     "L_spec": "mm",
+     "dL": "mm"
+    },
+    "tolerances": {
+     "dL": [
+      -0.02,
+      0.02
+     ]
+    },
+    "tolerance_sources": {
+     "dL": "TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (Deal-Rescue tests/test_cad027_demo.py @6d5563a)"
+    },
+    "brick_sha256": "a32c367e14bea1bacc0ea2f4cf9b6ffe96f2815ed1bde6c1a0bfbab31d583966",
+    "ztl_engineer_commit": "91d11672cb1986a7fb185d3ae5110d7209b36b97",
+    "ztl_stand_commit": "0b4d718fa3bd3105ea002105e0d89cdd76b7b573",
+    "ztl_commit": "2ba7c209371e90058df4666bb949fc253fe6cc27",
+    "stand_verdict": "REFUTED",
+    "checker_result": {
+     "mcp_work_mode": {
+      "checker": "the violating point recomputed exactly (rational arithmetic, no judge code)",
+      "checked_by": "ZTL (work mode; a refutation's witness recomputed exactly; --dev adds the independent checker on every design)",
+      "judge": "ZTL 2ba7c20",
+      "its_violating_point": {},
+      "value_there": {
+       "dL": "20"
+      },
+      "requirement": {
+       "quantity": "dL",
+       "op": "within",
+       "value": [
+        "-0.02",
+        "0.02"
+       ],
+       "why": "TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (Deal-Rescue tests/test_cad027_demo.py @6d5563a)"
+      },
+      "why": "every design in the catalog violates a requirement at a concrete point",
+      "reasons": {
+       "spread_over_tolerances": [
+        "20",
+        "20"
+       ],
+       "window": [
+        "-1/50 (~-0.02)",
+        "1/50 (~0.02)"
+       ],
+       "largest_contributors": []
+      },
+      "undecided": 0,
+      "stand": "ztl-stand/1"
+     },
+     "independent_checker_dev_mode": {
+      "status": "OK",
+      "verdict": "REFUTED",
+      "checked_by": "ZTL + the independent checker (dev mode)",
+      "checker": "the violating point recomputed exactly (rational arithmetic, no judge code)",
+      "judge": "ZTL 2ba7c20",
+      "command": "python -m ustand.stand brick.json --dev",
+      "seconds": 0.98
+     }
+    },
+    "execution_timestamp": "2026-11-14T22:02:37+00:00"
+   }
+  }
+ ],
+ "geometry_estimates": 21,
+ "revision_evidence": {
+  "step_file": "reBot_B601_DM_v1.1_20260625.step",
+  "step_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+  "source_commit": "22f002a230670f96abcd3805e0daa63bdf42f354",
+  "drawing_revision": null,
+  "why_no_drawing_revision": "the package is a STEP model and a readme; no drawing (path C1)"
+ }
+}

@@ -1,0 +1,579 @@
+{
+ "about": "BOM handoff from the LEGION engineering stage (real reBot B601 STEP via OpenCascade XCAF, readme-reconciled). Geometry is from the STEP; material/process/quantity from the project readme lines cited. No tolerance, finish or inspection requirement is invented.",
+ "source": {
+  "repository": "https://github.com/Seeed-Projects/reBot-DevArm",
+  "commit": "22f002a230670f96abcd3805e0daa63bdf42f354",
+  "step": {
+   "sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+   "bytes": 34840241,
+   "file": "reBot_B601_DM_v1.1_20260625.step"
+  },
+  "readme_sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee",
+  "license": "CERN-OHL-W-2.0 (fetched at run time, not redistributed)"
+ },
+ "bom_status": "T",
+ "engineering_verdict": "Z",
+ "engineering_missing": [
+  "per-part dimensional requirements and tolerances for printed parts",
+  "manufacturer tolerance for the purchased MGN9-170 rail",
+  "material grade certificates",
+  "surface finish per part",
+  "inspection requirements",
+  "functional requirements",
+  "independent Ed25519 attestation (CAD-025)"
+ ],
+ "cnc_parts": [
+  {
+   "part_id": "02_BASE_REINFORCEMENT_PART",
+   "quantity_per_arm": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 105",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_from_step": {
+    "solids": 1,
+    "faces": 103,
+    "bbox": [
+     92.005,
+     92.005,
+     6.955
+    ],
+    "volume": 27284.499,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_ARM_YAW_LIMIT",
+   "quantity_per_arm": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 106",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_from_step": {
+    "solids": 1,
+    "faces": 57,
+    "bbox": [
+     77.002,
+     77.002,
+     7.102
+    ],
+    "volume": 12608.648,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_MOTOR_FRONT_SPACER",
+   "quantity_per_arm": 4,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 107",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_from_step": {
+    "solids": 1,
+    "faces": 33,
+    "bbox": [
+     34.8,
+     34.8,
+     4.0
+    ],
+    "volume": 2728.463,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_MOTOR_BACK_SPACER",
+   "quantity_per_arm": 3,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 108",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_from_step": {
+    "solids": 1,
+    "faces": 23,
+    "bbox": [
+     5.0,
+     57.0,
+     57.0
+    ],
+    "volume": 9709.288,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_FLANGE",
+   "quantity_per_arm": 3,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 109",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_from_step": {
+    "solids": 1,
+    "faces": 31,
+    "bbox": [
+     9.75,
+     34.8,
+     34.8
+    ],
+    "volume": 4154.28,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_WRIST_BRACKET",
+   "quantity_per_arm": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 110",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_from_step": {
+    "solids": 1,
+    "faces": 65,
+    "bbox": [
+     60.75,
+     8.0,
+     92.922
+    ],
+    "volume": 23890.764,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_GRIPPER_CONNECTOR_A",
+   "quantity_per_arm": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 111",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_from_step": {
+    "solids": 1,
+    "faces": 248,
+    "bbox": [
+     35.62,
+     6.02,
+     34.433
+    ],
+    "volume": 3200.127,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_GRIPPER_CONNECTOR_B",
+   "quantity_per_arm": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 112",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_from_step": {
+    "solids": 1,
+    "faces": 61,
+    "bbox": [
+     56.802,
+     56.802,
+     9.502
+    ],
+    "volume": 15100.508,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_SLIDER_BRACKET",
+   "quantity_per_arm": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 113",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_from_step": {
+    "solids": 1,
+    "faces": 57,
+    "bbox": [
+     176.285,
+     3.0,
+     68.466
+    ],
+    "volume": 8187.262,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_SLIDER_EXTENSION",
+   "quantity_per_arm": 2,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 114",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_from_step": {
+    "solids": 1,
+    "faces": 20,
+    "bbox": [
+     26.2,
+     17.8,
+     38.44
+    ],
+    "volume": 10223.294,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_LOWER_UPPER_LINK_L",
+   "quantity_per_arm": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 115",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_from_step": {
+    "solids": 1,
+    "faces": 32,
+    "bbox": [
+     5.0,
+     76.177,
+     99.0
+    ],
+    "volume": 19411.168,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_LOWER_UPPER_LINK_R",
+   "quantity_per_arm": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 116",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_from_step": {
+    "solids": 1,
+    "faces": 32,
+    "bbox": [
+     5.0,
+     76.177,
+     99.0
+    ],
+    "volume": 19411.168,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_LOWER_WRIST_LINK_L",
+   "quantity_per_arm": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 117",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_from_step": {
+    "solids": 1,
+    "faces": 49,
+    "bbox": [
+     3.0,
+     103.943,
+     82.963
+    ],
+    "volume": 12283.605,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_LOWER_WRIST_LINK_R",
+   "quantity_per_arm": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 118",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_from_step": {
+    "solids": 1,
+    "faces": 49,
+    "bbox": [
+     3.0,
+     103.943,
+     82.963
+    ],
+    "volume": 12283.605,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_GEAR_CONNECTOR",
+   "quantity_per_arm": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 119",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_from_step": {
+    "solids": 1,
+    "faces": 39,
+    "bbox": [
+     35.002,
+     9.502,
+     35.002
+    ],
+    "volume": 2401.212,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "02_RACK",
+   "quantity_per_arm": 2,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 120",
+   "process": "CNC",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_from_step": {
+    "solids": 1,
+    "faces": 226,
+    "bbox": [
+     89.999,
+     6.0,
+     12.002
+    ],
+    "volume": 5588.088,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "03_LINK1",
+   "quantity_per_arm": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 121",
+   "process": "CNC + Sheet Metal",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_from_step": {
+    "solids": 1,
+    "faces": 68,
+    "bbox": [
+     77.533,
+     83.89,
+     84.192
+    ],
+    "volume": 42600.877,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "03_LINK2",
+   "quantity_per_arm": 2,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 122",
+   "process": "CNC + Sheet Metal",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_from_step": {
+    "solids": 1,
+    "faces": 90,
+    "bbox": [
+     23.0,
+     321.0,
+     57.0
+    ],
+    "volume": 35628.419,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "03_LINK3_L",
+   "quantity_per_arm": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 123",
+   "process": "CNC + Sheet Metal",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_from_step": {
+    "solids": 1,
+    "faces": 111,
+    "bbox": [
+     28.625,
+     297.826,
+     57.0
+    ],
+    "volume": 28018.882,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "03_LINK3_R",
+   "quantity_per_arm": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 124",
+   "process": "CNC + Sheet Metal",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_from_step": {
+    "solids": 1,
+    "faces": 132,
+    "bbox": [
+     27.625,
+     297.826,
+     57.0
+    ],
+    "volume": 27979.478,
+    "unit": "mm"
+   }
+  },
+  {
+   "part_id": "03_LINK5",
+   "quantity_per_arm": 1,
+   "material": "Aluminum Alloy 5052",
+   "material_source": "readme.md line 125",
+   "process": "CNC + Sheet Metal",
+   "tolerance": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+   "tolerance_source": "readme.md line 129",
+   "missing_requirements": [
+    "material_grade_certificate",
+    "surface_finish_per_part",
+    "inspection_requirements",
+    "functional_requirements"
+   ],
+   "geometry_from_step": {
+    "solids": 1,
+    "faces": 34,
+    "bbox": [
+     50.0,
+     60.0,
+     60.0
+    ],
+    "volume": 16268.253,
+    "unit": "mm"
+   }
+  }
+ ],
+ "purchased_rail": {
+  "name": "Linear rail",
+  "model": "MGN9-170mm",
+  "quantity_per_arm": 1,
+  "source": "readme purchased-parts table (Deal-Rescue cad027_review.parse_readme)"
+ }
+}

@@ -51,6 +51,8 @@ REPOS = [
 DEAL_RESCUE_ADDITIONS = ["deal_rescue/industrial/admission.py", "tests/test_cad025_ztl_gate.py",
                          "tests/judge_real_cad027.py", "docs/evidence/cad027/ZTL_REVIEW.json",
                          "docs/evidence/cad027/BOM_VERIFIED.json"]
+# WO-LMFG-004: the existing demand-grouping / MOQ coalition / route-comparison rules (industrial/core.py, stdlib only)
+DEAL_RESCUE_ADDITIONS_004 = ["deal_rescue/industrial/core.py", "deal_rescue/industrial/data/sources.json"]
 
 
 def freeze() -> None:
@@ -70,17 +72,20 @@ def freeze() -> None:
            "repositories": repos}
     P.ZTL_PINS.parent.mkdir(parents=True, exist_ok=True)
     P.ZTL_PINS.write_text(json.dumps(doc, indent=1) + "\n", encoding="utf-8", newline="\n")
+    pin_deal_rescue()
 
+
+def pin_deal_rescue() -> None:
     pin = P.load_pin()
     have = {f["path"] for f in pin["files"]}
     repo = P._source_repo(pin)
-    for path in DEAL_RESCUE_ADDITIONS:
+    for path in DEAL_RESCUE_ADDITIONS + DEAL_RESCUE_ADDITIONS_004:
         if path in have:
             continue
         data = P._git(repo, "cat-file", "blob", f"{pin['commit']}:{path}")
         pin["files"].append({"path": path, "git_blob": P.git_blob_sha1(data),
                              "sha256": __import__("hashlib").sha256(data).hexdigest(), "bytes": len(data),
-                             "added_by": "WO-LMFG-003"})
+                             "added_by": "WO-LMFG-004" if path in DEAL_RESCUE_ADDITIONS_004 else "WO-LMFG-003"})
     P.PIN.write_text(json.dumps(pin, indent=1, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
 
 
@@ -95,7 +100,10 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--freeze", action="store_true")
     ap.add_argument("--verify", action="store_true")
+    ap.add_argument("--deal-rescue", action="store_true", help="add the Deal-Rescue files listed above to the pin")
     a = ap.parse_args()
     if a.freeze:
         freeze()
+    elif a.deal_rescue:
+        pin_deal_rescue()
     print(json.dumps(verify(), indent=1))

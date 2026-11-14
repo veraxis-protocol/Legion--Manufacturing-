@@ -1,0 +1,202 @@
+# Intake form record - customer-inquiry-intake, contract intake-form.md version 7
+# SYNTHETIC test data (fictitious customer). Draft only; nothing sent to the customer.
+# Source abbreviations used in source_ref values:
+#   EMAIL-M1 = inputs/rfq/rfq_email.txt, message 1 (Dana Whitfield, Mon 2 Nov 2026 09:14 -0500), lines 2-14
+#   EMAIL-M2 = inputs/rfq/rfq_email.txt, message 2 (Raj Patel, Thu 29 Oct 2026 16:02 -0500), lines 16-22
+#   EMAIL-M3 = inputs/rfq/rfq_email.txt, message 3 (Dana Whitfield, Wed 28 Oct 2026 10:40 -0500), lines 24-29
+#   SPEC     = inputs/rfq/MB-2040_spec_revC.md (1 page, text spec sheet, Revision C dated 2026-10-27)
+
+contract_version: 7
+site: null   # UNRESOLVED - no ## Plant context profile exists in this session, so the building site cannot be named. Not invented.
+customer: "Northwind Robotics"
+contact:
+  name: "Dana Whitfield"
+  email: "dana.whitfield@northwind-robotics.example"
+  phone: null
+  other_contacts:
+    - { name: "Raj Patel", email: "raj.patel@northwind-robotics.example", role_as_stated: "Engineering note author" }
+rfq_reference: null   # customer gave no RFQ number; subject line only: "RE: RE: FW: RFQ - motor bracket MB-2040 rev C"
+received_at: 2026-11-02T09:14:00-05:00   # Date header of the latest message (sent time); actual arrival time in our mailbox not in the package
+response_deadline: null
+supersedes_rfq: null   # no earlier inquiry found on an Open work page (none exists this session); thread shows an earlier rev B circulation by customer procurement, which we did not receive
+payment: null
+freight: null
+packaging: null
+liability: null
+source_documents:
+  - { name: "rfq_email.txt", type: email_thread, pages: 1, messages: 3 }
+  - { name: "MB-2040_spec_revC.md", type: text_spec_sheet, pages: 1 }
+field_sources:
+  customer: "SPEC line 4; EMAIL-M1 From header line 2"
+  contact: "EMAIL-M1 From header line 2"
+  rfq_reference: "EMAIL-M1 Subject line 5 (no reference number given)"
+  received_at: "EMAIL-M1 Date header line 4"
+  response_deadline: "not stated in EMAIL-M1..M3 or SPEC"
+  payment: "not stated in EMAIL-M1..M3 or SPEC"
+  freight: "not stated in EMAIL-M1..M3 or SPEC"
+  packaging: "not stated in EMAIL-M1..M3 or SPEC"
+  liability: "not stated in EMAIL-M1..M3 or SPEC"
+
+line_items:
+  - line_no: 1
+    part_number: "MB-2040"
+    part_number_verbatim: "MB-2040"
+    description: "Motor bracket"
+    revision: "C"
+    quantities:
+      - { qty: 250, uom: each }
+      - { qty: 500, uom: each }
+      - { qty: 1000, uom: each }
+    quantities_note: "Three quantity breaks, not a range. Not averaged. Whether each break is a total order quantity or a monthly release is not stated (missing register)."
+    material: "Aluminium 6061-T6, plate, per ASTM B209"
+    specs:
+      - { characteristic: "Envelope", nominal: "120 mm x 80 mm x 12 mm", tolerance: "ISO 2768-m (general tolerance)", reading_basis: general_note, source_ref: "SPEC line 9 (Envelope); general note SPEC line 13" }
+      - { characteristic: "Main bore diameter", nominal: "22.000 mm", tolerance: "+0.021 / -0.000 (H7)", reading_basis: from_text, source_ref: "SPEC line 10" }
+      - { characteristic: "Main bore depth", nominal: "through, 12 mm deep", tolerance: "ISO 2768-m (general tolerance)", reading_basis: general_note, source_ref: "SPEC line 10; general note SPEC line 13" }
+      - { characteristic: "Mounting holes", nominal: "4x M5x0.8 tapped through", tolerance: null, reading_basis: from_text, source_ref: "SPEC line 11", note: "Thread tolerance class not stated; not assigned" }
+      - { characteristic: "Mounting hole pattern", nominal: "100 x 60 mm (rev C position)", tolerance: "ISO 2768-m (general tolerance)", reading_basis: general_note, source_ref: "SPEC line 11; general note SPEC line 13; EMAIL-M2 line 21 (rev C moved the M5 pattern 2 mm outboard)" }
+      - { characteristic: "Slot width x length", nominal: "8 mm x 40 mm, through", tolerance: "per general note: ISO 2768-m", reading_basis: general_note, source_ref: "SPEC line 12 ('tolerance per general note'); general note SPEC line 13" }
+      - { characteristic: "Surface finish, bore", nominal: "Ra 1.6 um", tolerance: "as stated", reading_basis: from_text, source_ref: "SPEC line 14" }
+      - { characteristic: "Surface finish, elsewhere", nominal: "Ra 3.2 um", tolerance: "as stated", reading_basis: from_text, source_ref: "SPEC line 14" }
+      - { characteristic: "Edge break", nominal: "0.2-0.5 mm all edges", tolerance: "range as stated", reading_basis: from_text, source_ref: "SPEC line 16" }
+      - { characteristic: "Flatness of mounting face", nominal: null, tolerance: null, reading_basis: from_text, source_ref: "SPEC line 17 ('TBD - to be confirmed by customer'); EMAIL-M2 line 22", note: "Not stated - pending customer design decision. Missing register." }
+      - { characteristic: "Marking", nominal: "Part number and lot code, laser etched", tolerance: null, reading_basis: from_text, source_ref: "SPEC line 18", note: "Location 'per customer' - not given" }
+    feature_locations_note: "The spec sheet gives no location or datum for the bore, the slot, or the hole pattern relative to the part edges. No datums are identified. Not inferred."
+    finish: "Type II sulfuric anodize, black, per MIL-A-8625"
+    certifications_required:
+      - "Material cert with each lot (EMAIL-M1 line 11)"
+      - "First article inspection report, AS9102 format, on first lot (SPEC line 19)"
+    required_delivery: 2027-01-15   # first articles; production deliveries "monthly after that", quantities per month not stated
+    eau: 4000   # "roughly 4,000 pcs if the pilot goes well (not a commitment)" - EMAIL-M3 line 29
+    geometry_inputs:
+      - { name: "MB-2040_spec_revC.md", type: text_spec, revision: "C", source_ref: "SPEC lines 2-19" }
+      - { name: "EMAIL-M2 engineering note", type: text_spec, revision: "C", source_ref: "EMAIL-M2 line 21 (M5 pattern moved 2 mm outboard vs rev B)" }
+    geometry_inputs_note: "No drawing, PDF, image or STEP file is in the package. Rev B drawings were circulated by customer procurement per EMAIL-M2 line 21; we do not hold them and the customer says to ignore them."
+    geometry_path: A   # written specifications only, no drawing - any price is a ROM at most, never a firm quote
+    line_recommendation: bid
+    line_bid_decision: draft
+    field_sources:
+      part_number: "SPEC line 4; EMAIL-M1 Subject line 5"
+      description: "EMAIL-M1 Subject line 5 ('motor bracket'); SPEC line 2"
+      revision: "SPEC lines 2 and 4; EMAIL-M1 Subject line 5; EMAIL-M2 line 21"
+      quantities: "EMAIL-M1 line 10"
+      material: "SPEC line 8"
+      finish: "SPEC line 15; EMAIL-M1 line 11 ('include anodize per the spec')"
+      certifications_required: "EMAIL-M1 line 11; SPEC line 19"
+      required_delivery: "EMAIL-M1 line 10"
+      eau: "EMAIL-M3 line 29"
+      geometry_inputs: "SPEC; EMAIL-M2 line 21"
+
+missing_register:
+  - line_no: 1
+    field: "drawing (rev C)"
+    why_it_matters: "Package holds a text spec only, so the line is geometry path A and any price is a ROM, not a firm quote. Bore, slot and hole-pattern locations and datums are not given anywhere."
+    should_have_come_from: "Customer's rev C drawing (PDF or STEP) attached to the RFQ; EMAIL-M2 confirms rev B drawings exist, so a rev C drawing presumably does"
+  - line_no: 1
+    field: "flatness of mounting face (pending change)"
+    why_it_matters: "Customer's own words: 'Flatness of the mounting face is still being decided by our design team; we will confirm it separately' (EMAIL-M2 line 22); spec says 'TBD' (SPEC line 17). A tight flatness on a 120 x 80 x 12 mm anodized aluminium plate can drive extra operations or stress relief, and is a risk to the revision being quoted."
+    should_have_come_from: "Spec sheet / drawing rev C"
+  - line_no: 1
+    field: "mounting hole thread tolerance class and positional tolerance of the 4x M5 pattern"
+    why_it_matters: "Only 'M5x0.8 tapped through' and the 100 x 60 mm pattern are stated; no thread class or position callout. Not assigned from what is typical."
+    should_have_come_from: "Drawing rev C"
+  - line_no: 1
+    field: "bore and thread condition relative to anodize (before/after, masking)"
+    why_it_matters: "H7 bore (+0.021/-0.000) and Ra 1.6 are stated, plus Type II anodize; not stated whether the H7 size applies after anodize or the bore/threads are masked. That decides process and inspection."
+    should_have_come_from: "Drawing notes / finish callout"
+  - line_no: 1
+    field: "anodize class, coating thickness and colour standard"
+    why_it_matters: "'Type II, black, per MIL-A-8625' given; class, thickness and colour match standard not stated. Needed to brief the finisher."
+    should_have_come_from: "Finish callout on drawing or spec sheet"
+  - line_no: 1
+    field: "marking location"
+    why_it_matters: "Spec says 'location per customer' (SPEC line 18); laser etch fixture and placement cannot be planned without it."
+    should_have_come_from: "Drawing rev C"
+  - line_no: 1
+    field: "delivery schedule after first articles"
+    why_it_matters: "'Production deliveries monthly after that' (EMAIL-M1 line 10) with no monthly quantity or duration; unclear whether 250/500/1,000 are total order quantities or monthly releases. Drives setup amortization and shop load."
+    should_have_come_from: "RFQ email / customer schedule"
+  - line_no: 1
+    field: "first-article quantity"
+    why_it_matters: "Number of first-article pieces due 15 Jan 2027 not stated."
+    should_have_come_from: "RFQ email"
+  - line_no: null
+    field: "response_deadline"
+    why_it_matters: "No quote-due date; we cannot prioritise against other RFQs."
+    should_have_come_from: "RFQ email"
+  - line_no: null
+    field: "payment terms"
+    why_it_matters: "Quote will otherwise assume plant standard; must be named as an assumption."
+    should_have_come_from: "Customer terms / RFQ email"
+  - line_no: null
+    field: "freight / delivery terms and ship-to"
+    why_it_matters: "Monthly deliveries; freight basis affects price."
+    should_have_come_from: "Customer terms / RFQ email"
+  - line_no: null
+    field: "packaging"
+    why_it_matters: "Black-anodized parts usually need protective packaging; unpriced if unknown."
+    should_have_come_from: "Customer terms / packaging spec"
+  - line_no: null
+    field: "liability / terms and conditions"
+    why_it_matters: "No T&Cs referenced; cannot check for clashes with plant standard terms."
+    should_have_come_from: "Customer purchase terms"
+  - line_no: null
+    field: "rfq_reference"
+    why_it_matters: "No customer RFQ number to quote against; quote can only reference part and revision."
+    should_have_come_from: "RFQ email"
+
+ambiguous_register:
+  - line_no: 1
+    field: "first article scope"
+    values_found:
+      - { value: "first articles by 15 Jan 2027, production deliveries monthly after that (first articles as a separate delivery ahead of production)", source_ref: "EMAIL-M1 line 10" }
+      - { value: "First article inspection report (AS9102 format) on first lot (FAI tied to the first production lot)", source_ref: "SPEC line 19" }
+    why_it_matters: "Whether a separate first-article build precedes production, or the first production lot carries the FAIR, changes the number of setups and the date the first production lot is due. Not resolved here; estimator decides or asks."
+
+open_questions: |
+  Subject: RE: RFQ - motor bracket MB-2040 rev C - a few questions before we quote
+
+  Hi Dana,
+
+  Thanks for sending the MB-2040 rev C spec sheet and the quantities (250, 500 and 1,000 pcs). We are working on it now. A few points would let us give you a firm price rather than a budgetary one:
+
+  1. Drawing: we only have the rev C spec sheet, not a drawing. Could you send the rev C drawing (PDF, and a STEP model if you have one)? The spec sheet does not show where the 22 mm bore, the 8 x 40 mm slot and the M5 pattern sit relative to the part edges, or the datums. Raj mentioned rev B drawings went round last week; we have not seen them and will quote rev C only.
+  2. Flatness: Raj noted the mounting-face flatness is still being decided. When do you expect to confirm it, and is there a working value we can quote against in the meantime? If it changes after we quote, we would need to revisit the price.
+  3. Anodize and the bore: does the 22.000 +0.021/-0.000 (H7) bore size apply after anodize, or should the bore and the M5 threads be masked? Please also confirm the MIL-A-8625 Type II class, coating thickness and any black colour standard.
+  4. M5 holes: is there a thread class and a position tolerance for the 4x M5 pattern, or is ISO 2768-m intended to cover the 100 x 60 mm pattern?
+  5. Quantities and schedule: are 250, 500 and 1,000 pcs total order quantities or monthly release quantities? How many pieces do you need as first articles by 15 Jan 2027, and is that separate from the first production lot (the spec asks for an AS9102 FAI report on the first lot)? What monthly quantity, and for how many months, after that?
+  6. Marking: where should the laser-etched part number and lot code go?
+  7. Commercial: when do you need our quote back, and what payment terms, freight/delivery terms (and ship-to address), packaging requirements and purchase terms and conditions should we quote against? Is there an RFQ number we should reference?
+
+  Thanks,
+  [estimator name]
+
+recommendation: bid
+recommendation_provisional: true
+recommendation_reasoning:
+  - "CONSTRAINT-FREE: no ## Plant context capability profile was available, so materials, processes, size envelope, demonstrated tolerance capability and certifications were NOT checked. This recommendation has not passed a manufacturability check; it has not run one."
+  - "NO COST HISTORY: no ERP connection or closed-work-order export was available, so no actual-cost comparable is cited. Scored on the stated requirements and dates alone."
+  - "NO QUOTE HISTORY: no prior quotes were available; absence is not evidence this is a new part to the plant."
+  - "On the stated facts there is no hard disqualifier: 6061-T6 plate, 120 x 80 x 12 mm envelope, an H7 bore, tapped holes, a through slot, ISO 2768-m general tolerance, Type II anodize and AS9102 FAIR are all stated, and none can be checked against a profile this session."
+  - "Geometry path A (text spec only): until the rev C drawing arrives any price is a ROM, not a firm quote."
+  - "First articles requested by 2027-01-15; shop load not checked (no planning export)."
+constraint_violations: []   # none determinable - no capability profile to check against (constraint-free, see reasoning)
+would_change_recommendation:
+  - { question: "Q2 flatness value", line: 1, becomes: "Could move to no_bid if the flatness confirmed is tighter than the plant's demonstrated capability on this part size once checked against the profile; stays bid otherwise." }
+  - { question: "Q3 H7 bore after anodize / masking", line: 1, becomes: "If H7 must hold after anodize with no masking and the plant has no demonstrated capability for post-anodize size control, a constraint violation would be raised; may move toward no_bid after the profile check." }
+  - { question: "Q1 rev C drawing", line: 1, becomes: "Stays bid; moves the line from geometry path A (ROM only) to C2 (firm quote possible). A drawing that shows tolerances beyond capability could flip it to no_bid." }
+  - { question: "Q5 quantities / schedule", line: 1, becomes: "Stays bid; changes which breaks are quoted and whether the 15 Jan 2027 first-article date is achievable against shop load." }
+hard_disqualifier_stopped: false
+inquiry_state: stale
+stale_since: 2026-11-09T09:14:00-05:00   # 5 business days (DEFAULT, not plant-set; no MFG_RFQ_STALE_DAYS, no profile) from received_at, because no questions_sent_at is recorded
+answers_received: []
+bid_decision_state: draft
+bid_decision_by: null
+bid_decision_at: null
+bid_decision_basis: null
+bid_decision_reset: null
+questions_sent_at: null
+questions_sent_by: null
+paused_at_step: 4
+waiting_on: "estimator: Gate 1, send the open questions; then Gate 2, confirm bid/no-bid"
+gates_passed: []

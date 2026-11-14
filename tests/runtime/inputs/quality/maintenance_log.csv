@@ -1,0 +1,4 @@
+# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.
+timestamp,asset_id,event
+2026-11-08T16:00:00-05:00,VMC-03,coolant concentration adjusted 6% -> 8%
+2026-11-11T06:40:00-05:00,VMC-03,boring head T7 insert replaced (T7-0031 -> T7-0032) after inspection hold

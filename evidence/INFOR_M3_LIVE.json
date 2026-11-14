@@ -1,0 +1,85 @@
+{
+  "source_commit": "763aa8e515c9d5736e972d387e1b975abbd93973",
+  "executed_at_utc": "2026-11-14T22:06:24+00:00",
+  "environment": {
+    "python": "3.14.7",
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "os_name": "nt",
+    "ci": false,
+    "github_run_id": null,
+    "github_workflow": null,
+    "github_job": null
+  },
+  "command": "python -I tools/live_probe.py",
+  "inputs": {},
+  "system": "Infor M3",
+  "live": "BLOCKED",
+  "status": "BLOCKED",
+  "blocked_reason": "no authorised Infor M3 access: no matching Claude connector in the runtime (visible: ['Claude Docs', 'Dropbox', 'Google Drive', 'scheduled-tasks']) and the protected-environment credentials LMFG_M3_MCP_URL, LMFG_M3_TOKEN are not set; no request was made",
+  "operations": [
+    {
+      "operation": "M3_MNS150MI_GetUserData_CurrentUser",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "MMS200MI_SearchItem",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "MMS200MI_GetItmBasic",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "MMS060MI_List",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "PMS100MI_SearchMO",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "PMS100MI_Get",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "PMS100MI_LstOperations",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "PPS200MI_SearchHead",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "PPS200MI_LstLine",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "CRS620MI_SearchSupplier",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "no write transaction",
+      "status": "BLOCKED"
+    }
+  ],
+  "probe": {
+    "required_env": [
+      "LMFG_M3_MCP_URL",
+      "LMFG_M3_TOKEN"
+    ],
+    "missing_env": [
+      "LMFG_M3_MCP_URL",
+      "LMFG_M3_TOKEN"
+    ],
+    "runtime_connectors_visible": [
+      "Claude Docs",
+      "Dropbox",
+      "Google Drive",
+      "scheduled-tasks"
+    ],
+    "matching_connectors": []
+  },
+  "contract_tests": "evidence/CONNECTOR_CONTRACTS.windows-local.json (mock transport: contract only, never LIVE)",
+  "unblock": "provide the M3 MCP server URL and token (LMFG_M3_*) for an authorised tenant, read-only"
+}

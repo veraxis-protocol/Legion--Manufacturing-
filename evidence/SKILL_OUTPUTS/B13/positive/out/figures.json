@@ -1,0 +1,353 @@
+{
+  "run_at": "2026-11-14T17:05:19-05:00",
+  "sources_modified": {
+    "breakdown/event.txt": "2026-11-13T23:04:34-05:00",
+    "breakdown/maintenance_history.csv": "2026-11-13T23:04:34-05:00",
+    "breakdown/sensor_window.csv": "2026-11-13T23:04:34-05:00",
+    "breakdown/manual_troubleshooting.md": "2026-11-13T23:04:34-05:00",
+    "pulse_oee/downtime.csv": "2026-11-13T14:54:48-05:00",
+    "pulse_oee/output.csv": "2026-11-13T14:54:48-05:00",
+    "pulse_oee/plan.csv": "2026-11-13T14:54:48-05:00",
+    "pulse_oee/routing.csv": "2026-11-13T14:54:48-05:00",
+    "pulse_oee/work_orders.csv": "2026-11-13T14:54:48-05:00",
+    "rates_memo.txt": "2026-11-13T23:04:04-05:00"
+  },
+  "figures": [
+    {
+      "figure": "Production days in output export",
+      "value": "2026-11-12",
+      "source": "pulse_oee/output.csv",
+      "filter": "distinct production_day"
+    },
+    {
+      "figure": "Plan dates in plan export",
+      "value": "2026-11-12",
+      "source": "pulse_oee/plan.csv",
+      "filter": "distinct plan_date"
+    },
+    {
+      "figure": "Start dates in MES downtime export",
+      "value": "2026-11-12",
+      "source": "pulse_oee/downtime.csv",
+      "filter": "distinct started_at[:10]"
+    },
+    {
+      "figure": "Latest close date in maintenance export",
+      "value": "2026-09-24",
+      "source": "breakdown/maintenance_history.csv",
+      "filter": "max(closed)"
+    },
+    {
+      "figure": "Days from last maintenance record to breakdown",
+      "value": 47,
+      "source": "maintenance export + event.txt",
+      "filter": "2026-11-10 minus max(closed)"
+    },
+    {
+      "figure": "Days between breakdown date and report production day",
+      "value": 2,
+      "source": "event.txt + output.csv",
+      "filter": "production_day minus 2026-11-10"
+    },
+    {
+      "figure": "MES downtime rows with naive (zone-less) timestamps",
+      "value": "2 of 2",
+      "source": "pulse_oee/downtime.csv",
+      "filter": "started_at has no zone suffix"
+    },
+    {
+      "figure": "Sources with a timestamp later than run time",
+      "value": 0,
+      "source": "file modified times",
+      "filter": "mtime > run time"
+    },
+    {
+      "figure": "Sensor rows for VMC-02",
+      "value": 7,
+      "source": "breakdown/sensor_window.csv",
+      "filter": "asset_id == 'VMC-02'"
+    },
+    {
+      "figure": "Sensor window",
+      "value": "2026-11-10T13:00:00-05:00 to 2026-11-10T15:24:00-05:00",
+      "source": "sensor_window.csv",
+      "filter": "min/max timestamp"
+    },
+    {
+      "figure": "Sensor window reaches the alarm minute",
+      "value": true,
+      "source": "sensor_window.csv + event.txt",
+      "filter": "last timestamp == 2026-11-10T15:24:00-05:00"
+    },
+    {
+      "figure": "Vibration first / last (mm/s)",
+      "value": "1.8 / 11.2",
+      "source": "sensor_window.csv",
+      "filter": "first and last VMC-02 row"
+    },
+    {
+      "figure": "Vibration last ÷ first",
+      "value": 6.22,
+      "source": "sensor_window.csv",
+      "filter": "11.2 / 1.8 from the same rows"
+    },
+    {
+      "figure": "Vibration never fell between samples",
+      "value": true,
+      "source": "sensor_window.csv",
+      "filter": "each row >= previous"
+    },
+    {
+      "figure": "Spindle temp first / last (°C)",
+      "value": "31.0 / 52.1",
+      "source": "sensor_window.csv",
+      "filter": "first and last row"
+    },
+    {
+      "figure": "Spindle temp rise (°C)",
+      "value": 21.1,
+      "source": "sensor_window.csv",
+      "filter": "last - first"
+    },
+    {
+      "figure": "Spindle load first / last (%)",
+      "value": "42 / 71",
+      "source": "sensor_window.csv",
+      "filter": "first and last row"
+    },
+    {
+      "figure": "Coolant pressure range (bar)",
+      "value": "19.8 to 20.1",
+      "source": "sensor_window.csv",
+      "filter": "min/max coolant_pressure_bar"
+    },
+    {
+      "figure": "Vibration rise rate per interval (mm/s per min)",
+      "value": "13:00-13:30: 0.003; 13:30-14:00: 0.017; 14:00-14:30: 0.023; 14:30-15:00: 0.05; 15:00-15:20: 0.165; 15:20-15:24: 0.825",
+      "source": "sensor_window.csv",
+      "filter": "Δvibration / Δminutes per consecutive pair"
+    },
+    {
+      "figure": "Sensor channels present",
+      "value": "vibration, temp, load, coolant pressure (no spindle rpm, no chiller flow/level)",
+      "source": "sensor_window.csv header",
+      "filter": "column list"
+    },
+    {
+      "figure": "Minutes from alarm to last 'still down' observation (lower bound, not a duration)",
+      "value": 46,
+      "source": "event.txt",
+      "filter": "16:10 - 15:24"
+    },
+    {
+      "figure": "Maintenance records, VMC-02",
+      "value": "4 (MW-118, MW-131, MW-140, MW-160)",
+      "source": "maintenance_history.csv",
+      "filter": "asset_id == 'VMC-02'"
+    },
+    {
+      "figure": "VMC-02 records with substantive close-out notes",
+      "value": "4 of 4",
+      "source": "maintenance_history.csv",
+      "filter": "note non-empty and not just fixed/repaired/ok"
+    },
+    {
+      "figure": "Sibling assets (model taken from asset-name prefix 'VMC'; no model column)",
+      "value": "VMC-03",
+      "source": "maintenance_history.csv",
+      "filter": "asset_id prefix == 'VMC' and != VMC-02"
+    },
+    {
+      "figure": "Sibling records matching symptom words",
+      "value": "0 — none returned",
+      "source": "maintenance_history.csv",
+      "filter": "sibling asset AND note contains any of spindle/bearing/vib/overtemp/overload/temp/hot/grind/noise/rough/drawbar/chiller/taper"
+    },
+    {
+      "figure": "Close-out note texts grouped (exact text)",
+      "value": "5 distinct texts across 5 records; texts on >1 asset: 0",
+      "source": "maintenance_history.csv",
+      "filter": "group by exact close_out_note; count distinct asset_id"
+    },
+    {
+      "figure": "VMC-02 notes citing rough/vibration/bearing",
+      "value": "MW-118, MW-140",
+      "source": "maintenance_history.csv",
+      "filter": "VMC-02 AND note contains rough|vib|bearing"
+    },
+    {
+      "figure": "VMC-02 notes citing chiller/hot/temp",
+      "value": "MW-160",
+      "source": "maintenance_history.csv",
+      "filter": "VMC-02 AND note contains chiller|hot|temp"
+    },
+    {
+      "figure": "VMC-02 notes citing drawbar/clamp/belleville",
+      "value": "MW-131",
+      "source": "maintenance_history.csv",
+      "filter": "VMC-02 AND note contains drawbar|clamp|belleville"
+    },
+    {
+      "figure": "VMC-02 PM records",
+      "value": "MW-118 (2026-03-02), MW-140 (2026-07-08)",
+      "source": "maintenance_history.csv",
+      "filter": "VMC-02 AND type == PM"
+    },
+    {
+      "figure": "Days between the two VMC-02 PMs",
+      "value": 128,
+      "source": "maintenance_history.csv",
+      "filter": "MW-140.opened - MW-118.opened"
+    },
+    {
+      "figure": "Days from last PM in export to breakdown",
+      "value": 125,
+      "source": "maintenance_history.csv + event.txt",
+      "filter": "2026-11-10 - MW-140.opened"
+    },
+    {
+      "figure": "Open maintenance WOs in export",
+      "value": 0,
+      "source": "maintenance_history.csv",
+      "filter": "closed is blank"
+    },
+    {
+      "figure": "Output vs plan PN-100",
+      "value": "plan 800, good 780, total 792, variance -20 (-2.5%)",
+      "source": "plan.csv + output.csv",
+      "filter": "part_number == PN-100, day 2026-11-12"
+    },
+    {
+      "figure": "Output vs plan PN-200",
+      "value": "plan 250, good 220, total 223, variance -30 (-12.0%)",
+      "source": "plan.csv + output.csv",
+      "filter": "part_number == PN-200, day 2026-11-12"
+    },
+    {
+      "figure": "Plant good vs plan (CELL-A, SITE-1)",
+      "value": "good 1000 vs plan 1050 = 95.2%; total 1015",
+      "source": "plan.csv + output.csv",
+      "filter": "all rows, 2026-11-12"
+    },
+    {
+      "figure": "Scrap units",
+      "value": "15 (PN-100: 12, PN-200: 3)",
+      "source": "output.csv",
+      "filter": "sum qty_scrap by part"
+    },
+    {
+      "figure": "Part keys matched exactly across plan/output/routing/WO",
+      "value": "2 of 2",
+      "source": "pulse_oee exports",
+      "filter": "set intersection on part_number, no normalization"
+    },
+    {
+      "figure": "Shifts in output export",
+      "value": "CNC-01 shift 1; CNC-01 shift 2; CNC-02 shift 1",
+      "source": "output.csv",
+      "filter": "distinct asset_id, shift"
+    },
+    {
+      "figure": "MES downtime rows passing start/end/duration check",
+      "value": "2 of 2",
+      "source": "downtime.csv",
+      "filter": "ended_at >= started_at and minutes == stated"
+    },
+    {
+      "figure": "OEE CNC-01",
+      "value": "A 95.3%, P 86.6%, Q 98.5%, OEE 81.2% (planned 960 min, down 45 min, run 915 min, ideal 792 min, good 780/792)",
+      "source": "plan.csv + downtime.csv + output.csv + routing.csv",
+      "filter": "asset_id == CNC-01"
+    },
+    {
+      "figure": "OEE CNC-02",
+      "value": "A 95.8%, P 87.3%, Q 98.7%, OEE 82.5% (planned 480 min, down 20 min, run 460 min, ideal 401.4 min, good 220/223)",
+      "source": "plan.csv + downtime.csv + output.csv + routing.csv",
+      "filter": "asset_id == CNC-02"
+    },
+    {
+      "figure": "OEE CELL-A (time-weighted over CNC-01, CNC-02)",
+      "value": "A 95.5%, P 86.8%, Q 98.5%, OEE 81.7%",
+      "source": "same",
+      "filter": "sums of planned/run/ideal minutes and counts"
+    },
+    {
+      "figure": "Assets in plan without output",
+      "value": "none",
+      "source": "plan.csv vs output.csv",
+      "filter": "plan assets not in output"
+    },
+    {
+      "figure": "VMC-02 rows in plan / output / MES downtime",
+      "value": "0 / 0 / 0",
+      "source": "plan.csv, output.csv, downtime.csv",
+      "filter": "asset_id == 'VMC-02'"
+    },
+    {
+      "figure": "WO-8120 / MB-1880 in work_orders, routing, plan",
+      "value": "WO-8120: 0; MB-1880 routing: 0; MB-1880 plan: 0",
+      "source": "work_orders.csv, routing.csv, plan.csv",
+      "filter": "exact key match"
+    },
+    {
+      "figure": "MES downtime, 2026-11-12",
+      "value": "2 events, 65 min",
+      "source": "downtime.csv",
+      "filter": "all rows"
+    },
+    {
+      "figure": "Downtime by reason code (minutes)",
+      "value": "TOOL 45; MAT 20",
+      "source": "downtime.csv",
+      "filter": "sum minutes by reason_code"
+    },
+    {
+      "figure": "Downtime by reason code (events)",
+      "value": "MAT 1; TOOL 1",
+      "source": "downtime.csv",
+      "filter": "count by reason_code"
+    },
+    {
+      "figure": "MES events coded Other or blank",
+      "value": "0 of 2",
+      "source": "downtime.csv",
+      "filter": "reason_code blank or 'Other'"
+    },
+    {
+      "figure": "MES rows matching the diagnosis record (asset + start within shift)",
+      "value": 0,
+      "source": "downtime.csv",
+      "filter": "asset_id == 'VMC-02' (no rows, so start-time test not reached)"
+    },
+    {
+      "figure": "WO-1001 good on 2026-11-12 vs ordered",
+      "value": "480 of 500 (short 20), scrap 12, due 2026-11-14",
+      "source": "work_orders.csv + output.csv",
+      "filter": "work_order == WO-1001"
+    },
+    {
+      "figure": "WO-1002 good on 2026-11-12 vs ordered",
+      "value": "220 of 250 (short 30), scrap 3, due 2026-11-13",
+      "source": "work_orders.csv + output.csv",
+      "filter": "work_order == WO-1002"
+    },
+    {
+      "figure": "WO-1003 good on 2026-11-12 vs ordered",
+      "value": "300 of 300 (short 0), scrap 0, due 2026-11-15",
+      "source": "work_orders.csv + output.csv",
+      "filter": "work_order == WO-1003"
+    },
+    {
+      "figure": "Work orders with a sales_order column",
+      "value": "0 — no sales_order column in work_orders.csv",
+      "source": "work_orders.csv header",
+      "filter": "column list"
+    },
+    {
+      "figure": "Short WOs whose due date is before run date 2026-11-14",
+      "value": "WO-1002",
+      "source": "work_orders.csv",
+      "filter": "short > 0 and due_date < run date"
+    }
+  ]
+}

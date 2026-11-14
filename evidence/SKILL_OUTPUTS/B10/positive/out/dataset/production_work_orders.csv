@@ -1,0 +1,4 @@
+site,source_system,source_ref,as_of,join_status,mismatch_class,contradicted_by,integrity_flags,production_wo,production_wo_verbatim,part_number,part_number_verbatim,qty,uom,due_date,status,sales_order,sales_order_verbatim
+SITE-1,erp_export,work_orders.csv:2,(no record timestamp in export),matched,,,,WO-1001,WO-1001,PN-100,PN-100,500,(not stated in export),2026-11-14,RELEASED,,
+SITE-1,erp_export,work_orders.csv:3,(no record timestamp in export),matched,,,,WO-1002,WO-1002,PN-200,PN-200,250,(not stated in export),2026-11-13,RELEASED,,
+SITE-1,erp_export,work_orders.csv:4,(no record timestamp in export),matched,,,,WO-1003,WO-1003,PN-100,PN-100,300,(not stated in export),2026-11-15,RELEASED,,

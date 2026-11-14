@@ -1,0 +1,90 @@
+{
+  "source_commit": "763aa8e515c9d5736e972d387e1b975abbd93973",
+  "executed_at_utc": "2026-11-14T22:06:23+00:00",
+  "environment": {
+    "python": "3.14.7",
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "os_name": "nt",
+    "ci": false,
+    "github_run_id": null,
+    "github_workflow": null,
+    "github_job": null
+  },
+  "command": "python -I tools/live_probe.py",
+  "inputs": {},
+  "system": "Autodesk Fusion",
+  "live": "BLOCKED",
+  "status": "BLOCKED",
+  "blocked_reason": "Autodesk Fusion is not installed on this host (checked C:\\Users\\Administrator\\AppData\\Local\\Autodesk\\webdeploy, C:\\Program Files\\Autodesk, C:\\Users\\Administrator\\AppData\\Roaming\\Autodesk\\Autodesk Fusion 360, \\Applications\\Autodesk Fusion.app) and nothing answers the plugin's MCP endpoint http://127.0.0.1:27182/mcp (FUSION_MCP_UNREACHABLE <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>)",
+  "operations": [
+    {
+      "operation": "confirm Fusion installed",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "MCP initialize",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "open authorised reference design",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "read parameters",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "create variant (original unchanged)",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "modify driving parameter",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "regenerate + verify geometry",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "mass / volume / bounding box",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "design-space-explore run",
+      "status": "BLOCKED"
+    },
+    {
+      "operation": "variant comparison + trade-study handoff",
+      "status": "BLOCKED"
+    }
+  ],
+  "probe": {
+    "mcp_probe": {
+      "endpoint": "http://127.0.0.1:27182/mcp",
+      "state": "UNAVAILABLE",
+      "history": [
+        [
+          "DISCONNECTED",
+          null
+        ],
+        [
+          "CONFIGURED",
+          null
+        ],
+        [
+          "UNAVAILABLE",
+          "FUSION_MCP_UNREACHABLE <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>"
+        ]
+      ]
+    },
+    "install_paths": {
+      "C:\\Users\\Administrator\\AppData\\Local\\Autodesk\\webdeploy": false,
+      "C:\\Program Files\\Autodesk": false,
+      "C:\\Users\\Administrator\\AppData\\Roaming\\Autodesk\\Autodesk Fusion 360": false,
+      "\\Applications\\Autodesk Fusion.app": false
+    }
+  },
+  "contract_tests": "evidence/CONNECTOR_CONTRACTS.windows-local.json (mock transport: contract only, never LIVE)",
+  "unblock": "install Autodesk Fusion desktop with its MCP add-in on the runner, open an authorised reference design, set FUSION_MCP_PORT if not 27182"
+}

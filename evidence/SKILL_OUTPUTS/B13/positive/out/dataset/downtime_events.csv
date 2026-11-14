@@ -1,0 +1,4 @@
+asset_id,started_at,ended_at,duration_minutes,reason_code,reason_text,production_day,source_system,safety_flagged,leading_cause,leading_cause_confidence,diagnosis_state,technician_step,note
+CNC-01,2026-11-12T09:10:00,2026-11-12T09:55:00,45,TOOL,tool change overrun,2026-11-12,mes_export,,,,,,naive timestamp in source; zone unresolved (no source-clock declaration on file)
+CNC-02,2026-11-12T13:00:00,2026-11-12T13:20:00,20,MAT,waiting on material,2026-11-12,mes_export,,,,,,naive timestamp in source; zone unresolved (no source-clock declaration on file)
+VMC-02,2026-11-10T15:24:00-05:00,,,,SPINDLE OVERLOAD / OVERTEMP; grinding noise from spindle ~20 min before alarm (operator),2026-11-10,breakdown_diagnosis,true,Spindle bearing damage / preload loss (progressive wear),high,advisory,pending,ongoing as of 2026-11-10 16:10; null duration; no MES row matched; counted once

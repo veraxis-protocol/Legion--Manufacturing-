@@ -1,0 +1,11 @@
+tab,status,why
+parts,MISSING (not empty),"No item master was in the drop and no ERP is connected. Part numbers were checked across the work-order, output and plan exports only."
+routings,MISSING (not empty),"routing.csv was set aside: it has no setup-time column (and no revision), so it does not meet the routing signature. quote-build would start at closed-job actuals, which are also missing."
+operation_actuals,MISSING (not empty),"No actuals file in the drop. With no routing either, quote-build would start at a geometry-derived or first-principles estimate."
+sales_orders,MISSING (not empty),"No sales order export; work orders carry no sales order link, so commitment impact is not traceable."
+lots,MISSING (not empty),No MES lot or quality export in the drop.
+inventory,MISSING (not empty),No inventory export in the drop.
+purchase_orders,MISSING (not empty),No purchasing export in the drop.
+inspection_results,MISSING (not empty),No quality/inspection export in the drop.
+maintenance_work_orders,MISSING (not empty),The equipment list carries assets only; no maintenance tickets.
+ncrs,MISSING (not empty),No NCR export in the drop.

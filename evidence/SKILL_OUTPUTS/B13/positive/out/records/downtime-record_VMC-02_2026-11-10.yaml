@@ -1,0 +1,26 @@
+# Downtime record, contract v3 (shared/contracts/downtime-record.md). Draft, advisory. Not written to any system.
+contract_version: 3
+site: null   # not stated in the breakdown inputs; no plant profile on file. Unresolved, not assumed to be SITE-1
+asset_id: "VMC-02"
+asset_id_verbatim: "VMC-02"
+started_at: "2026-11-10T15:24:00-05:00"   # event.txt says 15:24 local; zone -05:00 taken from the historian row for VMC-02 at the same minute (sensor_window.csv)
+ended_at: null   # machine still down at 16:10 per event.txt; no end recorded
+duration_minutes: null
+reason_code: null   # no plant reason code given; alarm text kept verbatim in reason_text
+reason_text: "SPINDLE OVERLOAD / OVERTEMP; grinding noise from spindle ~20 min before alarm (operator)"
+production_wo: "WO-8120"   # WO-8120 op 20 (MB-1880) per event.txt; not present in work_orders.csv
+production_wo_verbatim: "WO-8120"
+shift: null   # unresolved: no shift pattern on file
+production_day: "2026-11-10"   # calendar day of started_at; site day-boundary rule not on file (unconfirmed)
+source_system: "breakdown_diagnosis"
+source_ref: "diagnosis/2026-11-10/VMC-02 (inputs/breakdown/event.txt)"
+diagnosis_ref: "out/diagnosis/VMC-02-2026-11-10-diagnosis.html"
+leading_cause: "Spindle bearing damage / preload loss (progressive wear)"
+leading_cause_confidence: "high"
+cited_work_orders: ["MW-118", "MW-140"]
+safety_flagged: true
+safety_reason: "electrical fault: a trip - spindle drive stopped mid-cycle on 'SPINDLE OVERLOAD / OVERTEMP' (event.txt); rotating-part hazard per OEM manual 7.4: grinding noise reported, 'do not run a spindle showing grinding noise', lock out the spindle drive before manual rotation; drawbar Belleville stack is stored spring energy if the clamp check is done"
+pm_adjustment_proposed: true
+maintenance_wo: null   # no maintenance ticket number given; no CMMS connector
+diagnosis_state: "advisory"
+technician_step: "pending"
