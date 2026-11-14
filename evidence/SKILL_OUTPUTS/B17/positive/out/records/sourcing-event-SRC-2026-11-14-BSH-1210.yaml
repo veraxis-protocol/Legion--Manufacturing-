@@ -1,0 +1,13 @@
+# Sourcing event record (supplier-quote-request). SYNTHETIC test data. NOT saved to an Open work page.
+event_id: SRC-2026-11-14-BSH-1210
+trigger: "supplier-caused flag, NCR-UNASSIGNED, approved 2026-11-14T17:12-05:00 by Test Quality Owner (LEGION WO-LMFG-004 test operator); competing candidate C2 (receiving tester error) pending"
+part: BSH-1210
+revision: "A (confirmed current by document control - test operator; no ERP item master to compare)"
+status: open
+package_released: false             # Gate 2 not given
+determination_made_at: "2026-11-14T17:02-05:00"
+rfq_issued_at: null                 # recorded only when the buyer says it was sent
+suppliers:
+  - { supplier: "Birch Powder Metal (fictitious)", approval: approved, drafted: "2026-11-14", draft_state: HELD, sent: null, due: null, response: null, chased: null }
+  - { supplier: "Cedar Bearings Inc (fictitious)", approval: "not confirmed approved (conditional, audit overdue)", drafted: "2026-11-14", draft_state: HELD, sent: null, due: null, response: null, chased: null }
+  - { supplier: "Alder Sintered Parts (fictitious)", approval: "approved; incumbent, implicated", drafted: null, note: "invite back is the buyer's call" }

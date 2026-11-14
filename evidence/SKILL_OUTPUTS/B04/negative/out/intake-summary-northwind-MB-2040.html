@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Intake MB-2040</title>
+<style>
+:root{--ink:#1A1D21;--paper:#F2F3F5;--paper-raised:#FFFFFF;--line:#D6D9DD;--accent:#1F5C8B;--accent-soft:#E4EDF4;--warn:#A8641A;--warn-soft:#F7EBDA;--critical:#A93226;--critical-soft:#F9E9E7;--font-display:'IBM Plex Sans Condensed','Arial Narrow',sans-serif;--font-body:'IBM Plex Sans',-apple-system,sans-serif;--font-mono:'IBM Plex Mono',Consolas,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#E8EAEC;--paper:#15181B;--paper-raised:#1D2126;--line:#2E343A;--accent:#6BA8D4;--accent-soft:#1B2C39;--warn:#D9A15C;--warn-soft:#33271A;--critical:#DE8378;--critical-soft:#35201E}}
+:root[data-theme="dark"]{--ink:#E8EAEC;--paper:#15181B;--paper-raised:#1D2126;--line:#2E343A;--accent:#6BA8D4;--accent-soft:#1B2C39;--warn:#D9A15C;--warn-soft:#33271A;--critical:#DE8378;--critical-soft:#35201E}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-body);margin:0;padding:16px;line-height:1.45}
+.page{display:flex;flex-direction:column;gap:1.25rem;max-width:900px;margin:0 auto}
+.panel{background:var(--paper-raised);border:1px solid var(--line);border-radius:4px;padding:1.25rem}
+h1,h2{font-family:var(--font-display);font-weight:600;margin:0 0 .5rem}
+.crit{background:var(--critical-soft);border-color:var(--critical)}.warn{background:var(--warn-soft);border-color:var(--warn)}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.875rem}th,td{border-bottom:1px solid var(--line);padding:.35rem .5rem;text-align:left;vertical-align:top}
+code,.m{font-family:var(--font-mono);font-variant-numeric:tabular-nums}pre{white-space:pre-wrap;font-family:var(--font-mono);font-size:.85rem;background:var(--accent-soft);padding:1rem;border-radius:4px}
+</style></head><body><div class="page">
+
+<div class="panel"><h1>RFQ intake: Northwind Robotics, MB-2040 rev C motor bracket</h1>
+<p>Synthetic test data. One inquiry, one line. Source package: <code>inputs/rfq_emailonly/rfq_email.txt</code> (thread: M1 Dana Whitfield 2 Nov 2026, M2 Raj Patel 29 Oct 2026, M3 Dana Whitfield 28 Oct 2026). Draft only; nothing sent.</p></div>
+
+<div class="panel crit"><h2>The spec sheet did not arrive</h2>
+<p>M1 says "please quote the bracket per the attached spec sheet (MB-2040_spec_revC.md)". That file is not in the package; only the email thread is. The request also pointed at <code>inputs/rfq</code>, which does not exist; the thread was found at <code>inputs/rfq_emailonly</code>. Material, dimensions, tolerances and the anodize spec all live in the missing file, so they are blank here, not inferred.</p></div>
+
+<div class="panel warn"><h2>Stale: needs a decision</h2>
+<p>Received 2 Nov 2026 (M1 Date header). No questions have been sent, so the clock runs from receipt. Default interval of 5 business days (default, not set by the plant; no plant profile) puts it stale since 9 Nov 2026. It is 12 days old today. It stays <b>open</b>; stale is not a decline.</p></div>
+
+<div class="panel"><h2>Intake form (contract v7)</h2><div class="tw"><table>
+<tr><th>Field</th><th>Value</th><th>Source</th><th>Reading basis</th></tr>
+<tr><td><code>site</code></td><td>null (no plant profile)</td><td>plant_setup.py find: profile not found</td><td>-</td></tr>
+<tr><td><code>customer</code></td><td>Northwind Robotics</td><td>M1 From header</td><td>-</td></tr>
+<tr><td><code>contact</code></td><td>Dana Whitfield, dana.whitfield@northwind-robotics.example (also Raj Patel, engineering note)</td><td>M1 From; M2 From</td><td>-</td></tr>
+<tr><td><code>rfq_reference</code></td><td>null (subject only: "RFQ - motor bracket MB-2040 rev C")</td><td>M1 Subject</td><td>-</td></tr>
+<tr><td><code>received_at</code></td><td class="m">2026-11-02T09:14:00-05:00</td><td>M1 Date header (inbox receipt time unavailable)</td><td>-</td></tr>
+<tr><td><code>response_deadline</code></td><td>null</td><td>not stated</td><td>-</td></tr>
+<tr><td><code>payment / freight / packaging / liability</code></td><td>null / null / null / null</td><td>not stated</td><td>-</td></tr>
+<tr><td><code>supersedes_rfq</code></td><td>null</td><td>-</td><td>-</td></tr>
+<tr><td><code>line 1 part_number</code></td><td class="m">MB-2040</td><td>M1, M3 Subject</td><td>-</td></tr>
+<tr><td><code>description</code></td><td>Motor bracket</td><td>M1 Subject</td><td>-</td></tr>
+<tr><td><code>revision</code></td><td>C (see ambiguous register)</td><td>M1 Subject and attachment name; M2</td><td>-</td></tr>
+<tr><td><code>quantities</code></td><td class="m">250 pcs | 500 pcs | 1,000 pcs (breaks, not averaged)</td><td>M1 "Quantities: 250, 500 and 1,000 pcs."</td><td>-</td></tr>
+<tr><td><code>material</code></td><td>null (quote-build will block this line)</td><td>should be in MB-2040_spec_revC.md, not received</td><td>-</td></tr>
+<tr><td><code>specs[0]</code></td><td>M5 hole pattern moved 2 mm outboard vs rev B; tolerance not stated</td><td>M2 "rev C moved the M5 pattern 2 mm outboard"</td><td><code>from_text</code></td></tr>
+<tr><td><code>finish</code></td><td>"anodize per the spec" (type/class/colour/thickness unknown)</td><td>M1</td><td>-</td></tr>
+<tr><td><code>certifications_required</code></td><td>material cert with each lot</td><td>M1</td><td>-</td></tr>
+<tr><td><code>required_delivery</code></td><td class="m">2027-01-15 (first articles); production monthly after, quantity not stated</td><td>M1</td><td>-</td></tr>
+<tr><td><code>eau</code></td><td>~4,000 pcs "if the pilot goes well (not a commitment)"</td><td>M3</td><td>-</td></tr>
+<tr><td><code>geometry_inputs</code></td><td>[] (empty: no geometry arrived)</td><td>package contents</td><td>-</td></tr>
+<tr><td><code>geometry_path</code></td><td><code>none</code>. Reclassify to A (text spec) or C2 (drawing) when the spec sheet arrives</td><td>package contents</td><td>-</td></tr>
+<tr><td><code>line_recommendation</code> / <code>line_bid_decision</code></td><td>null / draft</td><td>-</td><td>-</td></tr>
+</table></div></div>
+
+<div class="panel"><h2>Missing register (never stated)</h2><div class="tw"><table>
+<tr><th>Line</th><th>Field</th><th>Why it matters</th><th>Should have come from</th></tr>
+<tr><td>1</td><td>Spec sheet MB-2040_spec_revC.md</td><td>No geometry, dimensions, tolerances or material without it</td><td>Attachment to M1</td></tr>
+<tr><td>1</td><td>Material</td><td>quote-build blocks the line; drives anodize and cert content</td><td>Spec sheet</td></tr>
+<tr><td>1</td><td>Dimensions and tolerances</td><td>Nothing to check or price; never inferred</td><td>Spec sheet / rev C drawing</td></tr>
+<tr><td>1</td><td>Mounting-face flatness (pending change)</td><td>Customer says it is "still being decided"; risk to the rev C being quoted</td><td>Customer engineering (M2)</td></tr>
+<tr><td>1</td><td>Anodize type, class, colour, thickness, masking</td><td>Different specs price differently</td><td>Spec sheet</td></tr>
+<tr><td>1</td><td>Monthly release quantity; whether breaks are total-order quantities</td><td>Setup amortisation and shop load</td><td>M1 / delivery schedule</td></tr>
+<tr><td>1</td><td>First-article quantity and report format</td><td>Unpriced if unknown</td><td>M1 / spec sheet</td></tr>
+<tr><td>1</td><td>Material cert content</td><td>Mill cert vs CoC sourcing</td><td>M1 / quality terms</td></tr>
+<tr><td>-</td><td>RFQ reference</td><td>Nothing to quote against or link answers to</td><td>M1</td></tr>
+<tr><td>-</td><td>Response deadline</td><td>Inquiry already 12 days old</td><td>M1</td></tr>
+<tr><td>-</td><td>Payment, freight, packaging, liability</td><td>Quote would rest on standard terms (not on file); anodized parts need packaging</td><td>Customer terms</td></tr>
+<tr><td>-</td><td>Site (internal)</td><td>No plant profile; capability unknown</td><td>Onboarding profile</td></tr>
+</table></div></div>
+
+<div class="panel"><h2>Ambiguous register (stated two ways)</h2>
+<p><b>Line 1, revision.</b> C: M1 subject and attachment name, M2. B: M2 says rev B drawings were circulated by procurement last week and should be ignored. The customer's instruction points to C, but the rev C document never arrived, so any rev B file on hand must not be used. Not resolved by intake; the estimator confirms (question 2).</p></div>
+
+<div class="panel"><h2>Manufacturability check and provisional recommendation</h2>
+<p><b>Recommendation: none (could not score). Provisional. <code>bid_decision_state: draft</code>.</b></p>
+<ul>
+<li>Constraint-free: no plant capability profile was available, so nothing was checked against plant capability. No hard disqualifier can be determined from stated facts (<code>hard_disqualifier_stopped: false</code>).</li>
+<li>No cost history: no ERP or closed work orders in this session, so there is no actual-cost comparable. No prior quotes either, which does not show this is a new part.</li>
+<li>Dates only: first articles 15 Jan 2027 is about 9 weeks out; shop load not available.</li>
+</ul>
+<p>What would change it: Q1/Q4/Q5 (spec sheet, material, anodize) make line 1 scoreable: bid if inside capability, no-bid if any requirement falls outside it. Q3 (flatness) could push it toward no-bid if tighter than demonstrated capability. Q6 (release quantities) affects whether the dates can be met.</p></div>
+
+<div class="panel"><h2>Questions back to the customer (draft, not sent)</h2>
+<pre>Subject: RE: RFQ - motor bracket MB-2040 rev C - a few questions before we quote
+
+Hi Dana,
+
+Thanks for sending the MB-2040 motor bracket RFQ. Before we can put a price on it we need a few things:
+
+1. The spec sheet. Your 2 Nov message mentions an attached spec sheet (MB-2040_spec_revC.md), but only the email thread reached us. Could you resend it, along with a rev C drawing if there is one?
+2. Revision. Raj's 29 Oct note says rev C moved the M5 pattern 2 mm outboard and that the rev B drawings procurement circulated should be ignored. Can you confirm rev C is the released revision we should quote to?
+3. Flatness. Raj also mentioned that flatness of the mounting face is still being decided. Do you have a date for that decision? Unless you tell us otherwise, we will quote rev C with flatness listed as an open item.
+4. Material. Which alloy and temper is the bracket? (If it is on the spec sheet, the resend covers this.)
+5. Anodize. Which anodize specification, type/class, colour and thickness, and are any surfaces to be masked?
+6. Quantities and deliveries. Are 250, 500 and 1,000 pcs price breaks on a total order quantity? After first articles on 15 Jan 2027, roughly how many pieces per monthly delivery should we plan for?
+7. First articles. How many first-article pieces do you need, and in what inspection report format?
+8. Material certification. What should the cert with each lot contain: a mill certificate, a certificate of conformance, or both?
+9. Commercial. When do you need our quote back, and do you have payment, freight, packaging or other terms you want us to quote to? If not, we will quote on our standard terms.
+
+Thanks,
+[estimator name]</pre>
+<p>Gate 1: the estimator reviews and sends this. When it goes, record who sent it and when; the stale clock restarts from then.</p></div>
+
+<div class="panel"><h2>Not done in this run</h2>
+<ul><li>No Open work page: no artifact tools. The intake record is saved at <code>out/inquiries/northwind-robotics-MB-2040.intake.txt</code> instead.</li>
+<li>No Word copy of the email: no Word writer available (python-docx not installed).</li>
+<li>No ERP, M365 or plant profile was available, so there was no capability check and no cost comparables.</li></ul></div>
+</div></body></html>

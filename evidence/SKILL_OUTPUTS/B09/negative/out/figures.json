@@ -1,0 +1,19 @@
+{
+ "input_files_total": 1,
+ "input_files": [
+  "C:\\LMFG\\runs\\B09-negative\\work\\inputs\\trade\\analysis_notes.md"
+ ],
+ "matrix_like_files (xlsx/xls/csv/docx/json/yaml)": 0,
+ "variant_manifest_files": 0,
+ "fea_ids_referenced": [
+  "FEA-2040-01..03"
+ ],
+ "fea_runs_in_range": 3,
+ "options_named_in_notes": [
+  "C"
+ ],
+ "Hz_values_in_notes": [
+  "350"
+ ],
+ "percent_weights_in_notes": []
+}

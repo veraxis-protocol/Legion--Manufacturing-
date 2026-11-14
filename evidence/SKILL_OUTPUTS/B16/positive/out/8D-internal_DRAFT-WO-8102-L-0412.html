@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>8D Internal Draft</title>
+<style>body{font-family:Arial,Helvetica,sans-serif;max-width:1000px;margin:0 auto;padding:16px;color:#111;background:#fff;line-height:1.4}
+table{border-collapse:collapse;width:100%;margin:8px 0 16px}td,th{border:1px solid #888;padding:4px 6px;vertical-align:top;font-size:13px}th{background:#eee;text-align:left}
+h2{border-bottom:2px solid #000;margin-top:28px}.box{border:2px solid #000;padding:8px 12px;margin:12px 0}code{font-family:Consolas,monospace}</style></head><body>
+<p><b>SYNTHETIC TEST DATA. INTERNAL 8D — DRAFT. Not for the customer (the customer version is a separate file, behind the redaction diff). Not sent.</b></p>
+<h1>8D Corrective Action Report — DRAFT-WO-8102-L-0412</h1>
+<p><i>Plant/customer controlled 8D template not available (no plant profile on file): standard eight-discipline structure used.</i></p>
+<table>
+<tr><th>NCR</th><td>DRAFT-WO-8102-L-0412 (approved as drafted by Test Quality Owner (LEGION WO-LMFG-004 test operator); approval time not given, recorded on 2026-11-14)</td><th>Site</th><td>EPW1 (test)</td></tr>
+<tr><th>Part</th><td>MB-1880 rev B</td><th>WO / lot</th><td>WO-8102 / L-0412</td></tr>
+<tr><th>Customer</th><td>Northwind Robotics</td><th>Status</th><td>D1–D5, D7 drafted; D6, D8 placeholders. Held at Gate 2.</td></tr></table>
+
+<h2>D1 — Team (proposed; the owner edits)</h2>
+<table><tr><th>Role</th><th>Name</th></tr>
+<tr><td>Quality owner / 8D champion</td><td>Test Quality Owner (LEGION WO-LMFG-004 test operator)</td></tr>
+<tr><td>Finder, final inspection</td><td>J. Ortiz</td></tr>
+<tr><td>Manufacturing / VMC-03 process owner</td><td>[to be named]</td></tr>
+<tr><td>Tooling / setup</td><td>[to be named]</td></tr>
+<tr><td>Maintenance (VMC-03)</td><td>[to be named]</td></tr>
+<tr><td>Shipping / customer contact for Northwind Robotics</td><td>[to be named]</td></tr></table>
+
+<h2>D2 — Problem description</h2>
+<p>MB-1880 rev B, WO-8102, lot L-0412, machined on VMC-03 2nd shift 2026-11-10. At final inspection on 2026-11-11 10:05 (time zone not stated; -05:00 assumed, unverified), J. Ortiz measured Bore A at 22.034, 22.031 and 22.029 mm on 3 of 5 sampled parts, against MB-1880 rev B sheet 2 note 4: dia 22.000 +0.021/-0.000 mm (max 22.021). Excess over max: 0.013, 0.010, 0.008 mm (61.9%, 47.6%, 38.1% of the 0.021 band). In-process data shows the first L-0412 part (seq 1) already at 22.022.</p>
+<p><b>Affected quantity: at least 300</b> — all of L-0412; L-0411 / WO-8101 (parts after seq 70) not ruled out, lot size and location unknown. Traceability incomplete.</p>
+<p><b>This is a recurrence after a prior CAPA that did not hold:</b> NCR-0219 (2026-04-14), same part, bore oversize 22.026, attributed to insert wear beyond 900 parts; CAPA-071 (insert change every 600 parts) was never verified effective.</p>
+
+<h2>D3 — Interim containment</h2>
+<p>Status of each action: <b>planned, not confirmed done</b> — no record in the inputs shows any action completed. Owners to be assigned.</p>
+<table><tr><th>Location</th><th>Qty</th><th>Action</th><th>Urgency</th><th>Owner</th><th>Done?</th></tr>
+<tr><td>Installed at Northwind Robotics</td><td>not checked</td><td>Ask Northwind whether any PS-5521 parts were installed or shipped onward</td><td>immediate</td><td></td><td>no</td></tr>
+<tr><td>At Northwind Robotics</td><td>not checked</td><td>Confirm delivery of PS-5521; if delivered, request quarantine (conditional notification drafted, not sent)</td><td>immediate</td><td></td><td>no</td></tr>
+<tr><td>In transit (PS-5521, shipped 2026-11-11 08:00)</td><td>30</td><td>Intercept at carrier if not delivered</td><td>immediate</td><td></td><td>no</td></tr>
+<tr><td>WIP, VMC-03 queue</td><td>120</td><td>Hold; stop downstream operations incl. anodize; tag</td><td>immediate</td><td></td><td>no</td></tr>
+<tr><td>Finished goods, FG-2 rack 14</td><td>150</td><td>Quarantine; tag; block picking</td><td>same day</td><td></td><td>no</td></tr>
+<tr><td>L-0411 / WO-8101 (after seq 70)</td><td>not checked</td><td>Locate across all five locations incl. shipments; measure Bore A</td><td>immediate</td><td></td><td>no</td></tr>
+<tr><td>Process</td><td>—</td><td>Insert T7-0031 replaced 2026-11-11 06:40 (maintenance log); first new-insert part 22.007</td><td>—</td><td></td><td>yes (logged)</td></tr></table>
+<p>Also containment / verification, <i>not corrective actions</i>: 100% Bore A measurement of held L-0412 stock for disposition; calibration check of the bore gage (gage ID not recorded).</p>
+
+<h2>D4 — Root cause (ranked candidates; not established)</h2>
+<p><b>The root cause is not yet established.</b> Two candidates are close to a tie on the evidence; the discriminating test below has not been run.</p>
+<table><tr><th>Rank</th><th>Candidate chain</th><th>For</th><th>Against</th></tr>
+<tr><td>1</td><td>Tool-life interval not controlling → insert T7-0031 ran L-0409..L-0412 unchanged (at least 510 parts) → edge condition changed progressively → Bore A grew about 0.535 µm/h past 22.021</td><td>10 consecutive increasing points (trend rule fired), r = 0.936 vs time; reset to 22.007 on new insert; NCR-0219 same mechanism</td><td>Part count on insert at first out-of-limit part only known as at least 211; no insert wear measurement; flank wear usually reduces a bored diameter, so growth needs another mechanism (weak link)</td></tr>
+<tr><td>2 (close)</td><td>Boring-head setting creep or T7 offset changes → effective diameter increased → bore past 22.021 → reset when head re-set at insert change</td><td>Growth direction fits; plant has a prior offset-after-tool-change NCR (different part)</td><td>No offset or head-setting record in evidence (weak link)</td></tr>
+<tr><td>3</td><td>Coolant 6% → 8% on 2026-11-08 16:00 → altered cutting/thermal behaviour → growth</td><td>Change preceded the run by 15.2 h</td><td>No pre-change data; steady trend not a step; reset with no coolant reversal</td></tr>
+<tr><td>4</td><td>Gage drift</td><td>Gage/calibration not recorded</td><td>Reset coincides with the insert change</td></tr></table>
+<p><b>Cheapest discriminating test:</b> examine removed insert T7-0031 under magnification and pull VMC-03 T7 offset history for 2026-11-09..11 — separates candidates 1 and 2. Plus: get WO-8099/8100/8101 quantities to count parts on the insert against CAPA-071's 600.</p>
+<p><b>Why CAPA-071 did not hold (open):</b> either the 600-part change was not applied, or 600 is too long for this edge, or the mechanism is not wear (candidate 2). The inputs cannot tell which.</p>
+
+<h2>D5 — Chosen corrective actions (proposed; each names the D4 link it breaks)</h2>
+<table><tr><th>#</th><th>Action</th><th>Breaks</th></tr>
+<tr><td>5.1</td><td>Enforce T7 insert life on VMC-03 with a controller part counter that forces the change, at an interval set from measured bore growth per part (interval to be set after the part-count and insert-wear test; not set here)</td><td>Candidate 1, link 1 "tool-life interval not controlling" and link 2 "one insert across lots unchanged"</td></tr>
+<tr><td>5.2</td><td>In-process Bore A check at a fixed frequency on VMC-03 with a reaction limit below 22.021 and a trend rule (6 increasing points) that triggers insert change / adjustment before the limit</td><td>Candidate 1 and 2, link "bore passes 22.021"</td></tr>
+<tr><td>5.3</td><td>Verify boring-head diameter setting against the setup sheet at every insert change and lock it; log every T7 offset change with time and reason</td><td>Candidate 2, link 1 "head creep / offset change"</td></tr></table>
+<p>Which of 5.1 and 5.3 is the corrective action for the confirmed cause depends on the D4 discriminating test. Improvement, not corrective action: re-measure the gage system (gage R&amp;R) on Bore A.</p>
+
+<h2>D6 — Implement and verify (PLACEHOLDER — needs a real-world outcome)</h2>
+<table><tr><th>Field</th><th>Value</th></tr>
+<tr><td>Actions implemented (which, date, by whom)</td><td></td></tr>
+<tr><td>Verification method</td><td></td></tr>
+<tr><td>Verification data / result</td><td></td></tr>
+<tr><td>Effectiveness check date</td><td></td></tr>
+<tr><td>Verified by</td><td></td></tr></table>
+
+<h2>D7 — Prevent recurrence (system level)</h2>
+<ul>
+<li><b>Why the earlier fix did not hold:</b> CAPA-071 was closed with effectiveness "not verified", and set an interval (600) from one attribution with no measured wear data. Change: no CAPA on this plant closes until an effectiveness check with data has been completed and recorded; CAPA-071 is reopened and linked to this 8D.</li>
+<li>Tool-life limits for critical bored features are set from measured process data (bore growth per part) and enforced in the machine control, not by a paper instruction.</li>
+<li>SPC with run rules on critical diameters (start with Bore A on MB-1880), so a trend inside the specification triggers action before parts leave the limit.</li>
+<li>Prior NCR search on the same part is run at every new NCR (as done here), and recurrences are escalated as recurrences.</li>
+</ul>
+
+<h2>D8 — Close and recognize (PLACEHOLDER — needs human sign-off)</h2>
+<table><tr><th>Field</th><th>Value</th></tr>
+<tr><td>Closure approved by</td><td></td></tr>
+<tr><td>Closure date</td><td></td></tr>
+<tr><td>Customer acceptance</td><td></td></tr>
+<tr><td>Team recognized</td><td></td></tr></table>
+<p>Evidence appendix and figures block (internal): inspection-to-capa_MB-1880_L-0412.html, section 4; figures_block.json.</p>
+</body></html>

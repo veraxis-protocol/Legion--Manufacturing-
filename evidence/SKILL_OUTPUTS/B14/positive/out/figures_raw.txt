@@ -1,0 +1,24 @@
+Upper limit, Bore A | 22.021 | drawing note 4 | 22.000 + 0.021
+Lower limit, Bore A | 22.000 | drawing note 4 | 22.000 - 0.000
+Excess over upper limit, part reading 22.034 | 0.013 | finding.txt + note 4 | 22.034 - 22.021
+Excess over upper limit, part reading 22.031 | 0.010 | finding.txt + note 4 | 22.031 - 22.021
+Excess over upper limit, part reading 22.029 | 0.008 | finding.txt + note 4 | 22.029 - 22.021
+Readings recorded | 3 | finding.txt | values listed after "measured"
+Readings above upper limit | 3 | finding.txt + note 4 | measured > USL
+Max reading | 22.034 | finding.txt | max
+Parts failing / sampled | 3 of 5 | finding.txt | "3 of 5 sampled"
+Fail fraction of sample | 60% | finding.txt | 3/5
+Lot size | 300 | finding.txt | "Lot size 300"
+Reported at VMC-03 queue | 120 | finding.txt | 
+Reported in FG-2 rack 14 | 150 | finding.txt | 
+Reported shipped (PS-5521) | 30 | finding.txt | 
+Sum of reported locations | 300 | computed | 120+150+30
+Sum equals lot size | True | computed | sum == lot
+Unsampled parts in lot | 295 | computed | 300-5
+Prior NCR rows in prior_ncrs.csv | 2 | prior_ncrs.csv | all rows
+Prior NCRs, same part MB-1880 | 1 (NCR-0219) | prior_ncrs.csv | part == "MB-1880"
+Prior NCRs, same defect (bore oversize, any part) | 1 (NCR-0219) | prior_ncrs.csv | defect contains "bore" and "oversize"
+Prior NCRs, same machine VMC-03 | not searchable (file has no machine/cell column) | prior_ncrs.csv | columns: ncr|date|part|defect|cause|capa|capa_effective
+Prior NCRs, same supplier/material lot | not searchable (file has no supplier/material column) | prior_ncrs.csv | 
+NCR-0219 reading over then-USL | 0.005 | prior_ncrs.csv + note 4 | 22.026 - 22.021 (assumes same requirement)
+Days NCR-0219 to this finding | 211 | computed | 2026-11-11 - 2026-04-14

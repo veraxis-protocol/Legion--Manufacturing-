@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bracket Trade Study Gaps</title>
+<style>
+:root{--bg:#fff;--fg:#1a1a1a;--mut:#555;--line:#ccc;--warn:#8a3b00}
+@media (prefers-color-scheme:dark){:root{--bg:#161616;--fg:#eee;--mut:#aaa;--line:#444;--warn:#ffb36b}}
+body{background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,sans-serif;max-width:900px;margin:0 auto;padding:16px}
+table{border-collapse:collapse;width:100%;margin:8px 0}td,th{border:1px solid var(--line);padding:4px 8px;text-align:left;vertical-align:top}
+.warn{color:var(--warn);font-weight:600}small{color:var(--mut)}
+</style></head><body>
+<h1>Bracket trade study: blocked at Step 1 (load the matrix)</h1>
+<p><small>Skill: trade-study-report (claude-for-manufacturing @099387b7). Synthetic test data. Draft for engineering review. Nothing has been written to any system of record.</small></p>
+
+<p class="warn">I can't produce a scored comparison, sensitivity analysis or decision memo yet. The trade study matrix (criteria, weights, options and scores) is not in the inputs. The only file supplied is <code>inputs/trade/analysis_notes.md</code>, and it has no FEA result values. The skill says never to impute a score, so the run stops here and lists the gaps.</p>
+
+<h2>Plant setup</h2>
+<p>I ran <code>plant_setup.py find</code>. It found no plant profile (<code>plant-setup/plant-context.md</code>: exists=false), no rates file and no CLAUDE.local.md. The plant's trade study memo template is not on file and there are no prior trade studies. When the memo is written, it will use a plain neutral structure and say so.</p>
+
+<h2>Figures block</h2>
+<table><tr><th>Figure</th><th>Value</th><th>Computed from</th><th>Filter or query</th></tr>
+<tr><td>Input files found</td><td>1 (analysis_notes.md)</td><td>work/inputs</td><td>recursive file listing (out/_figures.py)</td></tr>
+<tr><td>Matrix-like files</td><td>0 (<b>not in the inputs folder</b>)</td><td>work/inputs</td><td>suffix in .xlsx/.xls/.csv/.docx/.json/.yaml/.yml</td></tr>
+<tr><td>Variant manifests</td><td>0</td><td>work/inputs</td><td>filename contains "manifest"</td></tr>
+<tr><td>FEA runs referenced</td><td>3 (FEA-2040-01..03)</td><td>analysis_notes.md</td><td>regex FEA-NNNN-NN..NN</td></tr>
+<tr><td>Options named in notes</td><td>1 (Option C)</td><td>analysis_notes.md</td><td>regex "Option [A-Z]"</td></tr>
+<tr><td>Hz values in notes</td><td>1 (350, the requirement, not a result)</td><td>analysis_notes.md</td><td>regex "N Hz"</td></tr>
+<tr><td>Criterion weights in notes</td><td>0</td><td>analysis_notes.md</td><td>regex "N %"</td></tr>
+</table>
+
+<h2>What the inputs do establish</h2>
+<table><tr><th>Item</th><th>Content</th><th>Source</th></tr>
+<tr><td>Hard constraint (pass/fail)</td><td>First mode &gt; 350 Hz. Modal analysis fixed at the mounting face, with a 0.9 kg motor mass lumped at the bore centre.</td><td>analysis_notes.md, line 2</td></tr>
+<tr><td>Analyses run</td><td>FEA-2040-01, -02 and -03. <b>No frequencies are reported, and the notes don't say which run belongs to which option.</b></td><td>analysis_notes.md, line 2</td></tr>
+<tr><td>Option C (die cast)</td><td>Its mass includes 1.5 deg draft, but <b>no mass value is given</b>. Die life is 100k shots. There is a porosity risk at the bore that would need impregnation, and that cost is not included.</td><td>analysis_notes.md, line 3</td></tr>
+</table>
+
+<h2>Gaps that block each step</h2>
+<table><tr><th>Step</th><th>Missing</th></tr>
+<tr><td>1 Load matrix</td><td>No criteria, weights or option list. Options A and B are only implied by "Option C", so the set of options is unknown. I can't check that the weights sum to 100.</td></tr>
+<tr><td>2 Ingest results</td><td>No first-mode frequency for any FEA run, no mapping from runs to options, and no mass, cost, lead time or other scores.</td></tr>
+<tr><td>3 Totals and rank</td><td>Can't be computed. The direction of each criterion (lower or higher is better) is undefined until the criteria exist.</td></tr>
+<tr><td>4 Sensitivity</td><td>Can't run without weights and scores. It will run once those are supplied.</td></tr>
+<tr><td>5 Constraint compliance</td><td>The &gt;350 Hz constraint is known, but no option can be judged pass or fail without its FEA result. No option is disqualified or cleared.</td></tr>
+<tr><td>6 and 7 Memo and table</td><td>Not written. A memo with no scores would be fabricated.</td></tr>
+</table>
+
+<h2>Questions for the engineer (recorded instead of asked)</h2>
+<ol>
+<li>Where is the trade study matrix? Please supply the file (XLSX, DOCX or CSV) or state the criteria, the weights (summing to 100) and the full list of options.</li>
+<li>What are the first-mode frequencies from FEA-2040-01, -02 and -03, and which option does each run correspond to?</li>
+<li>What are the scores for each option on each criterion (mass, cost, manufacturability and so on)? For each, is it analysis, estimate or judgment, and who gave it?</li>
+<li>Option C: what is its mass (including the 1.5 deg draft)? Should the impregnation cost be estimated and added to its cost score, or treated as a residual risk?</li>
+<li>What volume does the bracket need over its life, so it can be compared with the 100k-shot die life?</li>
+<li>Are there any other hard constraints (envelope, material, certification) besides first mode &gt; 350 Hz?</li>
+<li>Is there a plant trade study memo template or a prior trade study to use for the memo format?</li>
+</ol>
+
+<h2>Residual risks already visible (carry into the memo)</h2>
+<ul>
+<li>Option C: porosity at the bore. The impregnation cost is excluded from the current figures (analysis_notes.md).</li>
+<li>Option C: the 100k-shot die life may require tooling replacement depending on volume, which is not stated.</li>
+</ul>
+</body></html>

@@ -1,0 +1,36 @@
+# Quality Register row per shared/contracts/quality-register-record.md (v1).
+# NOT STORED: artifact tools are not permitted in this run. The Quality Register was not updated.
+contract_version: 1
+record_key: "not given_NCR-UNASSIGNED"   # <site>_<ncr_ref>; both values pending
+ncr_ref: "NCR-UNASSIGNED"
+site: "not given"
+part_number: BSH-1210
+part_number_verbatim: "BSH-1210 rev A bushings"
+lot_number: AS-7781
+lot_number_verbatim: "AS-7781"
+found_at: "2026-11-12 (time and timezone not recorded)"
+qty_found: 5
+uom: each
+requirement_cited: "BSH-1210_drawing_revA.md rev A, drawing notes: Hardness 25-40 HRF"
+disposition_pending: true
+summary: "Lot AS-7781 hardness 46-50 HRF vs 25-40 HRF at receiving; 1,000 pcs suspect"
+customers: []
+status: open
+approval_state: approved
+containment_summary: "5 of 5 locations addressed; 600 held in Q-1, 400 issued to WO-8150 (hold); in transit, at customer, installed at customer not checked"
+escape_clock: null
+escape_clock_unknown: false
+owner: null
+due_date: null
+recurrence: no_searchable_history
+prior_ncr_refs: []
+previous_fix_held: null
+eight_d_step: "D1-D5 and D7 drafted; D6 and D8 placeholders"
+leading_cause: "Candidate (not established): lot AS-7781 material from Alder Sintered Parts above hardness spec; medium confidence; receiving-tester error ranked second"
+supplier_caused: true               # flag approved 2026-11-14T17:12-05:00
+effectiveness_check_due: null
+closed_at: null
+closed_by: null
+last_written_by: root-cause-capa
+last_written_at: "2026-11-14T17:12-05:00"
+first_recorded_at: "2026-11-14T17:02-05:00"

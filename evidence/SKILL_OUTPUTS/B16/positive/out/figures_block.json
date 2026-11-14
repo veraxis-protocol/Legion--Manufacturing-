@@ -1,0 +1,284 @@
+[
+ {
+  "figure": "Finding: parts sampled / failed",
+  "value": "5 sampled, 3 failed (as stated by inspector)",
+  "computed_from": "finding.txt",
+  "filter": "text line 3"
+ },
+ {
+  "figure": "Finding 22.034: excess over USL 22.021",
+  "value": "0.013 mm = 61.9% of the 0.021 tolerance band",
+  "computed_from": "finding.txt + drawing note 4",
+  "filter": "measured - 22.021"
+ },
+ {
+  "figure": "Finding 22.031: excess over USL 22.021",
+  "value": "0.010 mm = 47.6% of the 0.021 tolerance band",
+  "computed_from": "finding.txt + drawing note 4",
+  "filter": "measured - 22.021"
+ },
+ {
+  "figure": "Finding 22.029: excess over USL 22.021",
+  "value": "0.008 mm = 38.1% of the 0.021 tolerance band",
+  "computed_from": "finding.txt + drawing note 4",
+  "filter": "measured - 22.021"
+ },
+ {
+  "figure": "Tolerance band width",
+  "value": "0.021 mm",
+  "computed_from": "MB-1880 rev B notes, note 4",
+  "filter": "+0.021 - (-0.000)"
+ },
+ {
+  "figure": "Inspection export rows",
+  "value": "11",
+  "computed_from": "inspection_measurements.csv",
+  "filter": "all data rows"
+ },
+ {
+  "figure": "Inspection export coverage",
+  "value": "2026-11-09T07:10:00-05:00 to 2026-11-11T07:05:00-05:00",
+  "computed_from": "inspection_measurements.csv",
+  "filter": "min/max timestamp"
+ },
+ {
+  "figure": "Measurements on insert T7-0031",
+  "value": "10",
+  "computed_from": "inspection_measurements.csv",
+  "filter": "tool_id == T7-0031"
+ },
+ {
+  "figure": "Export rows above USL 22.021",
+  "value": "3 (L-0412 seq 1 = 22.022, L-0412 seq 90 = 22.029, L-0412 seq 180 = 22.034)",
+  "computed_from": "inspection_measurements.csv",
+  "filter": "bore_dia_mm > 22.021"
+ },
+ {
+  "figure": "Export rows below LSL 22.000",
+  "value": "0",
+  "computed_from": "inspection_measurements.csv",
+  "filter": "bore_dia_mm < 22.000"
+ },
+ {
+  "figure": "SPC centreline (I chart, T7-0031, n=10)",
+  "value": "22.0180 mm",
+  "computed_from": "inspection_measurements.csv",
+  "filter": "mean of 10 T7-0031 points, L-0409..L-0412"
+ },
+ {
+  "figure": "SPC UCL (I chart, n=10)",
+  "value": "22.0257 mm",
+  "computed_from": "same",
+  "filter": "CL + 2.66 x MRbar; MRbar = 0.0029"
+ },
+ {
+  "figure": "SPC LCL (I chart, n=10)",
+  "value": "22.0103 mm",
+  "computed_from": "same",
+  "filter": "CL - 2.66 x MRbar"
+ },
+ {
+  "figure": "SPC basis",
+  "value": "Individuals/moving-range chart, 10 points, lots L-0409, L-0410, L-0411, L-0412 (insert T7-0031); these limits are inflated by the trend itself, so a phase-I baseline is also shown",
+  "computed_from": "inspection_measurements.csv",
+  "filter": "tool_id == T7-0031, time order"
+ },
+ {
+  "figure": "Points beyond UCL (n=10 limits)",
+  "value": "2 [22.029, 22.034]",
+  "computed_from": "same",
+  "filter": "value > UCL"
+ },
+ {
+  "figure": "Run rule checked: trend (6+ points steadily increasing, Nelson rule 3)",
+  "value": "FIRED: 10 consecutive points strictly increasing (all 10 T7-0031 points)",
+  "computed_from": "same",
+  "filter": "longest strictly increasing run"
+ },
+ {
+  "figure": "Phase-I baseline (L-0409 + L-0410, first 5 points): CL / UCL / LCL",
+  "value": "22.0118 / 22.0171 / 22.0065 mm (MRbar 0.0020)",
+  "computed_from": "same",
+  "filter": "first 5 T7-0031 points"
+ },
+ {
+  "figure": "Later T7-0031 points beyond phase-I UCL",
+  "value": "4 of 5: L-0411 seq 70 22.019, L-0412 seq 1 22.022, L-0412 seq 90 22.029, L-0412 seq 180 22.034",
+  "computed_from": "same",
+  "filter": "points 6-10 > baseline UCL"
+ },
+ {
+  "figure": "UCL vs USL (n=10 chart)",
+  "value": "UCL 22.0257 is above USL 22.021 by 0.0047 mm",
+  "computed_from": "same",
+  "filter": "control limit vs specification limit, labelled separately"
+ },
+ {
+  "figure": "Linear trend, bore vs hours since first T7-0031 measurement",
+  "value": "slope 0.535 um/h, intercept 22.0080 mm, r = 0.936",
+  "computed_from": "same",
+  "filter": "least squares, 10 points"
+ },
+ {
+  "figure": "Fitted USL crossing",
+  "value": "24.3 h after 2026-11-09T07:10-05:00 = 2026-11-10T07:25:53.232200-05:00",
+  "computed_from": "same",
+  "filter": "(22.021 - intercept)/slope; a fit, not an observation"
+ },
+ {
+  "figure": "Fit residuals, last 3 points (L-0412)",
+  "value": "-3.1 um, +2.1 um, +5.3 um",
+  "computed_from": "same",
+  "filter": "observed - fitted"
+ },
+ {
+  "figure": "Max part_seq measured per lot on T7-0031",
+  "value": "{\"L-0409\": 80, \"L-0410\": 60, \"L-0411\": 70, \"L-0412\": 180}",
+  "computed_from": "same",
+  "filter": "max(part_seq) by lot"
+ },
+ {
+  "figure": "Parts cut on T7-0031 by the 22.034 measurement, lower bound",
+  "value": "at least 390 (sum of max part_seq; lot sizes of L-0409/L-0410/L-0411 not in inputs)",
+  "computed_from": "same",
+  "filter": "sum of max part_seq"
+ },
+ {
+  "figure": "Parts cut on T7-0031 by end of L-0412, lower bound",
+  "value": "at least 510 (80+60+70 measured seqs + L-0412 lot size 300)",
+  "computed_from": "same + finding.txt lot size",
+  "filter": "lower bound only"
+ },
+ {
+  "figure": "Cumulative part count at first export point above USL (L-0412 seq 1), lower bound",
+  "value": "at least 211",
+  "computed_from": "same",
+  "filter": "80+60+70+1"
+ },
+ {
+  "figure": "Clustering by shift: rows / above USL",
+  "value": "1: 6 rows (55% of rows), 0 above USL; 2: 5 rows (45% of rows), 3 above USL",
+  "computed_from": "inspection_measurements.csv",
+  "filter": "group by shift"
+ },
+ {
+  "figure": "Clustering by operator: rows / above USL",
+  "value": "OP-11: 6 rows (55% of rows), 0 above USL; OP-23: 5 rows (45% of rows), 3 above USL",
+  "computed_from": "inspection_measurements.csv",
+  "filter": "group by operator"
+ },
+ {
+  "figure": "Clustering by machine: rows / above USL",
+  "value": "VMC-03: 11 rows (100% of rows), 3 above USL",
+  "computed_from": "inspection_measurements.csv",
+  "filter": "group by machine"
+ },
+ {
+  "figure": "Clustering by lot: rows / above USL",
+  "value": "L-0409: 3 rows (27% of rows), 0 above USL; L-0410: 2 rows (18% of rows), 0 above USL; L-0411: 2 rows (18% of rows), 0 above USL; L-0412: 3 rows (27% of rows), 3 above USL; L-0413: 1 rows (9% of rows), 0 above USL",
+  "computed_from": "inspection_measurements.csv",
+  "filter": "group by lot"
+ },
+ {
+  "figure": "Clustering by tool_id: rows / above USL",
+  "value": "T7-0031: 10 rows (91% of rows), 3 above USL; T7-0032: 1 rows (9% of rows), 0 above USL",
+  "computed_from": "inspection_measurements.csv",
+  "filter": "group by tool_id"
+ },
+ {
+  "figure": "Shift 2 on 2026-11-09 (L-0410), values",
+  "value": "[22.013, 22.016] (in spec)",
+  "computed_from": "same",
+  "filter": "shift==2 and lot==L-0410"
+ },
+ {
+  "figure": "Shift x operator combinations present",
+  "value": "[('1', 'OP-11'), ('2', 'OP-23')]",
+  "computed_from": "same",
+  "filter": "distinct (shift, operator)"
+ },
+ {
+  "figure": "Maintenance log rows",
+  "value": "2",
+  "computed_from": "maintenance_log.csv",
+  "filter": "all data rows"
+ },
+ {
+  "figure": "Maintenance log coverage",
+  "value": "2026-11-08T16:00:00-05:00 to 2026-11-11T06:40:00-05:00",
+  "computed_from": "maintenance_log.csv",
+  "filter": "min/max timestamp"
+ },
+ {
+  "figure": "Coolant change to first export measurement",
+  "value": "15.2 h (coolant change precedes all 11 measurements; no pre-change measurements in export)",
+  "computed_from": "both",
+  "filter": "first inspection ts - coolant ts"
+ },
+ {
+  "figure": "Clock anchor: insert replacement (maintenance) to first T7-0032 part (inspection)",
+  "value": "25 min, order consistent (replacement logged before first new-insert part)",
+  "computed_from": "both",
+  "filter": "06:40 vs 07:05, both -05:00"
+ },
+ {
+  "figure": "Post-change measurement (T7-0032, L-0413 seq 1)",
+  "value": "22.007 mm, 0.014 mm below USL",
+  "computed_from": "inspection_measurements.csv",
+  "filter": "tool_id == T7-0032"
+ },
+ {
+  "figure": "Maintenance rows on VMC-03 in log",
+  "value": "2",
+  "computed_from": "maintenance_log.csv",
+  "filter": "asset_id == VMC-03"
+ },
+ {
+  "figure": "Containment quantities reconcile to lot size",
+  "value": "120 + 150 + 30 = 300 vs lot 300: reconciles",
+  "computed_from": "finding.txt",
+  "filter": "sum of stated locations"
+ },
+ {
+  "figure": "Prior NCRs in file",
+  "value": "2",
+  "computed_from": "prior_ncrs.csv",
+  "filter": "all data rows"
+ },
+ {
+  "figure": "Prior NCRs, same part MB-1880",
+  "value": "1 (NCR-0219)",
+  "computed_from": "prior_ncrs.csv",
+  "filter": "part == MB-1880"
+ },
+ {
+  "figure": "Prior NCRs, same defect (bore)",
+  "value": "1 (NCR-0219)",
+  "computed_from": "prior_ncrs.csv",
+  "filter": "defect contains 'bore'"
+ },
+ {
+  "figure": "Prior NCRs, same process/machine",
+  "value": "not determinable: prior_ncrs.csv has no machine/operation column",
+  "computed_from": "prior_ncrs.csv",
+  "filter": "no column"
+ },
+ {
+  "figure": "Prior NCRs, same supplier/material lot",
+  "value": "not determinable: no supplier/material column; no material lot in inputs",
+  "computed_from": "prior_ncrs.csv",
+  "filter": "no column"
+ },
+ {
+  "figure": "NCR-0219 measured vs USL",
+  "value": "22.026 = 0.005 mm over USL",
+  "computed_from": "prior_ncrs.csv",
+  "filter": "defect text"
+ },
+ {
+  "figure": "Calendar days from found_at (2026-11-11) to session date 2026-11-14",
+  "value": "3",
+  "computed_from": "finding.txt + session date",
+  "filter": "date difference"
+ }
+]

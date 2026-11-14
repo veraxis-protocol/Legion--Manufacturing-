@@ -1,0 +1,38 @@
+# Quality register row per shared/contracts/quality-register-record.md (v1). NOT STORED: no artifact tools in this run.
+contract_version: 1
+record_key: "not-on-file_DRAFT-WO-8102-L-0412"   # <site>_<ncr_ref>; site and NCR number both placeholders
+ncr_ref: "DRAFT-WO-8102-L-0412"
+site: "not on file"
+part_number: MB-1880
+part_number_verbatim: "MB-1880"
+lot_number: L-0412
+lot_number_verbatim: "L-0412"
+found_at: "2026-11-11T10:05 (zone unresolved)"
+qty_found: 3
+uom: each
+requirement_cited: "MB-1880 drawing rev B, sheet 2, note 4: Bore A dia 22.000 +0.021/-0.000"
+disposition_pending: true
+summary: "Bore A dia 22.029-22.034 mm vs 22.021 max on 3 of 5 samples; lot L-0412 (300) suspect, 30 shipped to Northwind Robotics."
+customers: ["Northwind Robotics"]
+
+status: awaiting_approval
+approval_state: draft
+containment_summary: "5 of 5 locations addressed; all quantities reported by inspector, none verified; at/installed at customer not checked"
+escape_clock: null
+escape_clock_unknown: true
+owner: null
+due_date: null
+recurrence: recurrence_prior_capa_failed
+prior_ncr_refs: ["NCR-0219"]
+previous_fix_held: false
+
+eight_d_step: null
+leading_cause: null
+supplier_caused: null
+effectiveness_check_due: null
+
+closed_at: null
+closed_by: null
+last_written_by: ncr-writeup
+last_written_at: "2026-11-14 (time and zone not recorded)"
+first_recorded_at: "2026-11-14 (time and zone not recorded)"

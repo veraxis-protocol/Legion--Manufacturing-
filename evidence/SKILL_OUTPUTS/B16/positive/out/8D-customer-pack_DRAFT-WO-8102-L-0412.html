@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>8D Customer Pack Draft</title>
+<style>body{font-family:Arial,Helvetica,sans-serif;max-width:1000px;margin:0 auto;padding:16px;color:#111;background:#fff;line-height:1.4}
+table{border-collapse:collapse;width:100%;margin:8px 0 16px}td,th{border:1px solid #888;padding:4px 6px;vertical-align:top;font-size:13px}th{background:#eee;text-align:left}
+h2{border-bottom:2px solid #000;margin-top:28px}.hold{border:3px solid #b00;padding:8px 12px}</style></head><body>
+<div class="hold"><b>SYNTHETIC TEST DATA. HELD AT GATE 2 — NOT SENT.</b> Customer-facing draft for Northwind Robotics. Leaves only after the quality owner reviews and approves the redaction diff (redaction-diff_DRAFT-WO-8102-L-0412.html) and a person sends it.</div>
+<h1>8D Corrective Action Report — MB-1880 rev B, lot L-0412</h1>
+<table><tr><th>Our reference</th><td>DRAFT-WO-8102-L-0412</td><th>Supplier site</th><td>EPW1 (test)</td></tr>
+<tr><th>Part</th><td>MB-1880 rev B</td><th>Lot / WO</th><td>L-0412 / WO-8102</td></tr>
+<tr><th>Your shipment</th><td>30 pieces, packing slip PS-5521, shipped 2026-11-11</td><th>Status</th><td>Interim: root cause under verification</td></tr></table>
+
+<h2>D1 — Team</h2>
+<p>Quality owner (8D champion), final inspection, manufacturing, tooling, maintenance, and customer contact. Names on request.</p>
+
+<h2>D2 — Problem description</h2>
+<p>At final inspection on 2026-11-11, Bore A on sampled MB-1880 rev B parts from lot L-0412 measured 22.029 to 22.034 mm on 3 of 5 sampled parts, against your drawing MB-1880 rev B, sheet 2, note 4: dia 22.000 +0.021/-0.000 mm (max 22.021). The excess was 0.008 to 0.013 mm. Our in-process records show the first part of the lot was already at 22.022.</p>
+<p><b>Affected quantity: at least 300</b> — all of lot L-0412. The preceding lot of this part, L-0411, is not yet ruled out and is being evaluated.</p>
+<p><b>This is a repeat occurrence.</b> The same condition (bore oversize, 22.026 mm) occurred on MB-1880 in April 2026. The corrective action then (a fixed insert-change interval) was not verified as effective, and the condition has recurred.</p>
+
+<h2>D3 — Interim containment</h2>
+<table><tr><th>Location</th><th>Quantity</th><th>Action</th><th>Status</th></tr>
+<tr><td>Installed in your product</td><td>not yet known</td><td>We ask you to tell us whether any PS-5521 parts have been installed or shipped onward</td><td>open</td></tr>
+<tr><td>At your site / in transit (PS-5521)</td><td>30</td><td>Delivery status being confirmed; if delivered, we ask you to quarantine the receipt; if not, we are intercepting it</td><td>open</td></tr>
+<tr><td>At our machine (work in process)</td><td>120</td><td>On hold; no further processing</td><td>planned, not yet confirmed</td></tr>
+<tr><td>Our finished goods</td><td>150</td><td>Quarantined, tagged, blocked from shipping</td><td>planned, not yet confirmed</td></tr>
+<tr><td>Lot L-0411</td><td>not yet known</td><td>Being located and measured</td><td>open</td></tr></table>
+<p>The boring insert was replaced on 2026-11-11; the first part after replacement measured 22.007 mm. All held stock will be 100% measured on Bore A before any disposition.</p>
+
+<h2>D4 — Root cause (under verification)</h2>
+<p>The root cause is <b>not yet confirmed</b>. Our measurements show Bore A growing steadily across four consecutive lots made with one boring insert (10 consecutive increasing readings), and returning to 22.007 mm after the insert was replaced. Two causes fit this equally well and are being separated by test:</p>
+<ol><li>Progressive change of the boring insert cutting edge over its life, because the insert-change interval was not controlling insert life.</li>
+<li>Drift of the boring-head diameter setting or tool offset during the run, reset when the insert was changed.</li></ol>
+<p>A coolant concentration change made before these lots, and the measuring gage, are being checked and are currently less likely. Verification: examination of the removed insert and review of the machine's tool-offset history.</p>
+
+<h2>D5 — Corrective actions (proposed)</h2>
+<ul><li>Insert life enforced by a machine part counter, at an interval set from measured bore growth.</li>
+<li>In-process Bore A checks with a reaction limit inside the tolerance and a trend rule, so action is taken before the limit is reached.</li>
+<li>Boring-head setting verified and locked at every insert change; all tool-offset changes logged.</li></ul>
+<p>The final choice follows the D4 verification.</p>
+
+<h2>D6 — Implementation and verification</h2><p>Pending. Dates and verification results will be reported when complete.</p>
+<h2>D7 — Prevent recurrence</h2>
+<ul><li>The April 2026 corrective action is reopened. No corrective action will be closed without a recorded effectiveness check.</li>
+<li>Tool-life limits for critical bores set from measured data and enforced in the machine control.</li>
+<li>Statistical process control with trend rules on critical diameters, starting with MB-1880 Bore A.</li></ul>
+<h2>D8 — Closure</h2><p>Pending. Closure follows verification and your acceptance.</p>
+<p>Next update: [date — quality owner to set]. Contact: [name — quality owner to set].</p>
+</body></html>

@@ -1,0 +1,642 @@
+{
+  "scrap_rate": 0.0184,
+  "ops": [
+    {
+      "op": 10,
+      "wc": "MILL-V",
+      "desc": "Saw and face blank",
+      "rung": 4,
+      "setup_min_expected": 20.0,
+      "run_min_expected": 1.5,
+      "setup_min_low": 20.0,
+      "setup_min_high": 20.0,
+      "run_min_low": 1.5,
+      "run_min_high": 1.5,
+      "cross_checks": []
+    },
+    {
+      "op": 20,
+      "wc": "MILL-V",
+      "desc": "Mill profile bore and holes op1",
+      "rung": 4,
+      "setup_min_expected": 45.0,
+      "run_min_expected": 6.2,
+      "setup_min_low": 45.0,
+      "setup_min_high": 52.0,
+      "run_min_low": 6.2,
+      "run_min_high": 6.7,
+      "cross_checks": [
+        {
+          "wo": "WO-7702",
+          "rev": "B",
+          "closed": "2026-07-18",
+          "setup_min": 52.0,
+          "run_min_pc": 6.7,
+          "run_min_pc_incl_scrap": 6.569,
+          "setup_var": 0.1556,
+          "run_var": 0.0806,
+          "setup_flag": true,
+          "run_flag": false,
+          "actuals_confidence": "recorded"
+        },
+        {
+          "wo": "WO-7811",
+          "rev": "B",
+          "closed": "2026-09-26",
+          "setup_min": 47.0,
+          "run_min_pc": 6.48,
+          "run_min_pc_incl_scrap": 6.365,
+          "setup_var": 0.0444,
+          "run_var": 0.0452,
+          "setup_flag": false,
+          "run_flag": false,
+          "actuals_confidence": "recorded"
+        }
+      ]
+    },
+    {
+      "op": 30,
+      "wc": "MILL-V",
+      "desc": "Op2 flip and finish",
+      "rung": 4,
+      "setup_min_expected": 30.0,
+      "run_min_expected": 3.1,
+      "setup_min_low": 29.0,
+      "setup_min_high": 34.0,
+      "run_min_low": 3.1,
+      "run_min_high": 3.35,
+      "cross_checks": [
+        {
+          "wo": "WO-7702",
+          "rev": "B",
+          "closed": "2026-07-18",
+          "setup_min": 34.0,
+          "run_min_pc": 3.35,
+          "run_min_pc_incl_scrap": 3.284,
+          "setup_var": 0.1333,
+          "run_var": 0.0806,
+          "setup_flag": false,
+          "run_flag": false,
+          "actuals_confidence": "recorded"
+        },
+        {
+          "wo": "WO-7811",
+          "rev": "B",
+          "closed": "2026-09-26",
+          "setup_min": 29.0,
+          "run_min_pc": 3.18,
+          "run_min_pc_incl_scrap": 3.124,
+          "setup_var": -0.0333,
+          "run_var": 0.0258,
+          "setup_flag": false,
+          "run_flag": false,
+          "actuals_confidence": "recorded"
+        }
+      ]
+    },
+    {
+      "op": 40,
+      "wc": "INSP",
+      "desc": "Deburr and inspect",
+      "rung": 4,
+      "setup_min_expected": 10.0,
+      "run_min_expected": 2.0,
+      "setup_min_low": 10.0,
+      "setup_min_high": 10.0,
+      "run_min_low": 2.0,
+      "run_min_high": 2.0,
+      "cross_checks": []
+    }
+  ],
+  "breaks": [
+    {
+      "qty": 250,
+      "starts": 255,
+      "plates": 9,
+      "plates_if_27": 10,
+      "material_usd": 1979.1,
+      "material_usd_per_good_pc": 7.9164,
+      "material_usd_if_27": 2199.0,
+      "material_usd_per_good_pc_if_27": 8.796,
+      "anodize_lots": 1,
+      "anodize_usd": 385.0,
+      "anodize_usd_per_good_pc": 1.54,
+      "setup_h": 1.75,
+      "setup_min_per_good_pc": 0.42,
+      "run_h": 54.4,
+      "work_h_total": 56.15,
+      "by_work_center": {
+        "MILL-V": {
+          "setup_h": 1.583,
+          "run_h": 45.9
+        },
+        "INSP": {
+          "setup_h": 0.167,
+          "run_h": 8.5
+        }
+      }
+    },
+    {
+      "qty": 500,
+      "starts": 510,
+      "plates": 17,
+      "plates_if_27": 19,
+      "material_usd": 3738.3,
+      "material_usd_per_good_pc": 7.4766,
+      "material_usd_if_27": 4178.1,
+      "material_usd_per_good_pc_if_27": 8.3562,
+      "anodize_lots": 2,
+      "anodize_usd": 770.0,
+      "anodize_usd_per_good_pc": 1.54,
+      "setup_h": 1.75,
+      "setup_min_per_good_pc": 0.21,
+      "run_h": 108.8,
+      "work_h_total": 110.55,
+      "by_work_center": {
+        "MILL-V": {
+          "setup_h": 1.583,
+          "run_h": 91.8
+        },
+        "INSP": {
+          "setup_h": 0.167,
+          "run_h": 17.0
+        }
+      }
+    },
+    {
+      "qty": 1000,
+      "starts": 1019,
+      "plates": 34,
+      "plates_if_27": 38,
+      "material_usd": 7476.6,
+      "material_usd_per_good_pc": 7.4766,
+      "material_usd_if_27": 8356.2,
+      "material_usd_per_good_pc_if_27": 8.3562,
+      "anodize_lots": 4,
+      "anodize_usd": 1540.0,
+      "anodize_usd_per_good_pc": 1.54,
+      "setup_h": 1.75,
+      "setup_min_per_good_pc": 0.105,
+      "run_h": 217.39,
+      "work_h_total": 219.14,
+      "by_work_center": {
+        "MILL-V": {
+          "setup_h": 1.583,
+          "run_h": 183.42
+        },
+        "INSP": {
+          "setup_h": 0.167,
+          "run_h": 33.97
+        }
+      }
+    }
+  ],
+  "plate_price": 219.9,
+  "anodize_lot": 385.0,
+  "figures": [
+    {
+      "figure": "Routing rows for MB-2040 (any rev)",
+      "value": 0,
+      "computed_from": "cost/routings.csv",
+      "filter_or_arithmetic": "part == \"MB-2040\""
+    },
+    {
+      "figure": "Closed-job rows for MB-2040 (any rev)",
+      "value": 0,
+      "computed_from": "cost/closed_jobs.csv",
+      "filter_or_arithmetic": "part == \"MB-2040\""
+    },
+    {
+      "figure": "Routing rows for MB-1880 rev B",
+      "value": 4,
+      "computed_from": "cost/routings.csv",
+      "filter_or_arithmetic": "part == \"MB-1880\" and rev == \"B\""
+    },
+    {
+      "figure": "Closed-job rows for MB-1880",
+      "value": 4,
+      "computed_from": "cost/closed_jobs.csv",
+      "filter_or_arithmetic": "part == \"MB-1880\""
+    },
+    {
+      "figure": "Distinct closed work orders, MB-1880",
+      "value": "2 (WO-7702, WO-7811)",
+      "computed_from": "cost/closed_jobs.csv",
+      "filter_or_arithmetic": "distinct work_order where part == \"MB-1880\""
+    },
+    {
+      "figure": "Closed-date span of MB-1880 work orders",
+      "value": "2026-07-18 to 2026-09-26",
+      "computed_from": "cost/closed_jobs.csv",
+      "filter_or_arithmetic": "min/max closed_date"
+    },
+    {
+      "figure": "Aluminium plate PO lines (item AL6061-PL-0.5)",
+      "value": 2,
+      "computed_from": "cost/purchase_orders.csv",
+      "filter_or_arithmetic": "item == \"AL6061-PL-0.5\""
+    },
+    {
+      "figure": "Anodize PO lines (item OSP-ANOD-II-BLK)",
+      "value": 1,
+      "computed_from": "cost/purchase_orders.csv",
+      "filter_or_arithmetic": "item == \"OSP-ANOD-II-BLK\""
+    },
+    {
+      "figure": "Prior Northwind orders / quotes in inputs",
+      "value": "0 - no sales-order or quote-history file in inputs",
+      "computed_from": "inputs folder listing",
+      "filter_or_arithmetic": "no file of that kind present; no ERP searched"
+    },
+    {
+      "figure": "Scrap rate WO-7702 (scrapped / (completed+scrapped))",
+      "value": 0.0196,
+      "computed_from": "cost/closed_jobs.csv",
+      "filter_or_arithmetic": "6 / (300+6)"
+    },
+    {
+      "figure": "Scrap rate WO-7811 (scrapped / (completed+scrapped))",
+      "value": 0.0177,
+      "computed_from": "cost/closed_jobs.csv",
+      "filter_or_arithmetic": "9 / (500+9)"
+    },
+    {
+      "figure": "Pooled scrap rate, MB-1880 WOs (allowance used)",
+      "value": 0.0184,
+      "computed_from": "cost/closed_jobs.csv",
+      "filter_or_arithmetic": "15 / (800+15), one row per WO"
+    },
+    {
+      "figure": "Op 20 WO-7702 actual run min/pc",
+      "value": 6.7,
+      "computed_from": "cost/closed_jobs.csv",
+      "filter_or_arithmetic": "actual_run_min_total / qty_completed"
+    },
+    {
+      "figure": "Op 20 WO-7702 setup variance vs MB-1880 routing",
+      "value": "+15.6% FLAG",
+      "computed_from": "closed_jobs vs routings",
+      "filter_or_arithmetic": "(52 - 45) / 45"
+    },
+    {
+      "figure": "Op 20 WO-7702 run variance vs MB-1880 routing",
+      "value": "+8.1%",
+      "computed_from": "closed_jobs vs routings",
+      "filter_or_arithmetic": "(6.7 - 6.2) / 6.2"
+    },
+    {
+      "figure": "Op 20 WO-7702 actuals_confidence",
+      "value": "recorded",
+      "computed_from": "variance test",
+      "filter_or_arithmetic": "probable_standard if |setup var| and |run var| <= 1%"
+    },
+    {
+      "figure": "Op 20 WO-7811 actual run min/pc",
+      "value": 6.48,
+      "computed_from": "cost/closed_jobs.csv",
+      "filter_or_arithmetic": "actual_run_min_total / qty_completed"
+    },
+    {
+      "figure": "Op 20 WO-7811 setup variance vs MB-1880 routing",
+      "value": "+4.4%",
+      "computed_from": "closed_jobs vs routings",
+      "filter_or_arithmetic": "(47 - 45) / 45"
+    },
+    {
+      "figure": "Op 20 WO-7811 run variance vs MB-1880 routing",
+      "value": "+4.5%",
+      "computed_from": "closed_jobs vs routings",
+      "filter_or_arithmetic": "(6.48 - 6.2) / 6.2"
+    },
+    {
+      "figure": "Op 20 WO-7811 actuals_confidence",
+      "value": "recorded",
+      "computed_from": "variance test",
+      "filter_or_arithmetic": "probable_standard if |setup var| and |run var| <= 1%"
+    },
+    {
+      "figure": "Op 30 WO-7702 actual run min/pc",
+      "value": 3.35,
+      "computed_from": "cost/closed_jobs.csv",
+      "filter_or_arithmetic": "actual_run_min_total / qty_completed"
+    },
+    {
+      "figure": "Op 30 WO-7702 setup variance vs MB-1880 routing",
+      "value": "+13.3%",
+      "computed_from": "closed_jobs vs routings",
+      "filter_or_arithmetic": "(34 - 30) / 30"
+    },
+    {
+      "figure": "Op 30 WO-7702 run variance vs MB-1880 routing",
+      "value": "+8.1%",
+      "computed_from": "closed_jobs vs routings",
+      "filter_or_arithmetic": "(3.35 - 3.1) / 3.1"
+    },
+    {
+      "figure": "Op 30 WO-7702 actuals_confidence",
+      "value": "recorded",
+      "computed_from": "variance test",
+      "filter_or_arithmetic": "probable_standard if |setup var| and |run var| <= 1%"
+    },
+    {
+      "figure": "Op 30 WO-7811 actual run min/pc",
+      "value": 3.18,
+      "computed_from": "cost/closed_jobs.csv",
+      "filter_or_arithmetic": "actual_run_min_total / qty_completed"
+    },
+    {
+      "figure": "Op 30 WO-7811 setup variance vs MB-1880 routing",
+      "value": "-3.3%",
+      "computed_from": "closed_jobs vs routings",
+      "filter_or_arithmetic": "(29 - 30) / 30"
+    },
+    {
+      "figure": "Op 30 WO-7811 run variance vs MB-1880 routing",
+      "value": "+2.6%",
+      "computed_from": "closed_jobs vs routings",
+      "filter_or_arithmetic": "(3.18 - 3.1) / 3.1"
+    },
+    {
+      "figure": "Op 30 WO-7811 actuals_confidence",
+      "value": "recorded",
+      "computed_from": "variance test",
+      "filter_or_arithmetic": "probable_standard if |setup var| and |run var| <= 1%"
+    },
+    {
+      "figure": "Setup per job, all ops (MB-1880 routing)",
+      "value": "105 min = 1.75 h",
+      "computed_from": "cost/routings.csv",
+      "filter_or_arithmetic": "sum setup_min ops 10-40"
+    },
+    {
+      "figure": "Run per piece, all ops (MB-1880 routing)",
+      "value": "12.8 min/pc = 0.2133 h/pc",
+      "computed_from": "cost/routings.csv",
+      "filter_or_arithmetic": "sum run_min_per_unit ops 10-40"
+    },
+    {
+      "figure": "Blanks per plate, zero cut allowance (upper bound)",
+      "value": 30,
+      "computed_from": "spec envelope 120x80 mm; PO plate 12x48 in",
+      "filter_or_arithmetic": "max(floor(304.8/80)*floor(1219.2/120)=30, floor(304.8/120)*floor(1219.2/80)=30)"
+    },
+    {
+      "figure": "Spare length along 48 in for 10 blanks of 120 mm",
+      "value": "19.2 mm (1.92 mm per blank)",
+      "computed_from": "same",
+      "filter_or_arithmetic": "1219.2 - 10*120; / 10"
+    },
+    {
+      "figure": "Blanks per plate if per-blank allowance > 1.92 mm on the 120 mm direction",
+      "value": 27,
+      "computed_from": "same",
+      "filter_or_arithmetic": "3 across x 9 along"
+    },
+    {
+      "figure": "Plate thickness vs finished thickness",
+      "value": "12.7 mm vs 12 mm (0.7 mm stock)",
+      "computed_from": "PO description; spec envelope",
+      "filter_or_arithmetic": "0.5*25.4 - 12"
+    },
+    {
+      "figure": "Plate price change PO-30411 -> PO-30588",
+      "value": "+3.53%",
+      "computed_from": "cost/purchase_orders.csv",
+      "filter_or_arithmetic": "(219.9 - 212.4) / 212.4"
+    },
+    {
+      "figure": "PO-30411 PO-to-receipt days",
+      "value": 7,
+      "computed_from": "cost/purchase_orders.csv",
+      "filter_or_arithmetic": "2026-08-21 - 2026-08-14"
+    },
+    {
+      "figure": "PO-30588 PO-to-receipt days",
+      "value": 7,
+      "computed_from": "cost/purchase_orders.csv",
+      "filter_or_arithmetic": "2026-10-07 - 2026-09-30"
+    },
+    {
+      "figure": "PO-30602 PO-to-receipt days",
+      "value": 12,
+      "computed_from": "cost/purchase_orders.csv",
+      "filter_or_arithmetic": "2026-10-15 - 2026-10-03"
+    },
+    {
+      "figure": "Q250: starts incl. scrap allowance",
+      "value": 255,
+      "computed_from": "qty, pooled scrap",
+      "filter_or_arithmetic": "ceil(250 / (1 - 0.0184))"
+    },
+    {
+      "figure": "Q250: plates (30/plate)",
+      "value": 9,
+      "computed_from": "starts",
+      "filter_or_arithmetic": "ceil(255/30)"
+    },
+    {
+      "figure": "Q250: material cost at PO-30588 (30/plate)",
+      "value": "$1979.10 ($7.9164/good pc)",
+      "computed_from": "PO-30588 unit price",
+      "filter_or_arithmetic": "9 x 219.9; / 250"
+    },
+    {
+      "figure": "Q250: plates (27/plate case)",
+      "value": 10,
+      "computed_from": "starts",
+      "filter_or_arithmetic": "ceil(255/27)"
+    },
+    {
+      "figure": "Q250: material cost at PO-30588 (27/plate case)",
+      "value": "$2199.00 ($8.7960/good pc)",
+      "computed_from": "PO-30588 unit price",
+      "filter_or_arithmetic": "10 x 219.9; / 250"
+    },
+    {
+      "figure": "Q250: anodize lots (<=300 pcs/lot)",
+      "value": 1,
+      "computed_from": "PO-30602 lot definition",
+      "filter_or_arithmetic": "ceil(255/300)"
+    },
+    {
+      "figure": "Q250: anodize cost at PO-30602",
+      "value": "$385.00 ($1.5400/good pc)",
+      "computed_from": "PO-30602 unit price",
+      "filter_or_arithmetic": "1 x 385; / 250"
+    },
+    {
+      "figure": "Q250: setup minutes per good piece",
+      "value": 0.42,
+      "computed_from": "routing setup total",
+      "filter_or_arithmetic": "105 / 250"
+    },
+    {
+      "figure": "Q250: run hours (on starts)",
+      "value": 54.4,
+      "computed_from": "routing run/pc",
+      "filter_or_arithmetic": "255 x 12.8 / 60"
+    },
+    {
+      "figure": "Q250: work content hours (setup + run)",
+      "value": 56.15,
+      "computed_from": "routing",
+      "filter_or_arithmetic": "1.750 + 54.40"
+    },
+    {
+      "figure": "Q250: MILL-V hours setup / run",
+      "value": "1.583 / 45.9",
+      "computed_from": "routing by work_center",
+      "filter_or_arithmetic": "sum per work_center"
+    },
+    {
+      "figure": "Q250: INSP hours setup / run",
+      "value": "0.167 / 8.5",
+      "computed_from": "routing by work_center",
+      "filter_or_arithmetic": "sum per work_center"
+    },
+    {
+      "figure": "Q500: starts incl. scrap allowance",
+      "value": 510,
+      "computed_from": "qty, pooled scrap",
+      "filter_or_arithmetic": "ceil(500 / (1 - 0.0184))"
+    },
+    {
+      "figure": "Q500: plates (30/plate)",
+      "value": 17,
+      "computed_from": "starts",
+      "filter_or_arithmetic": "ceil(510/30)"
+    },
+    {
+      "figure": "Q500: material cost at PO-30588 (30/plate)",
+      "value": "$3738.30 ($7.4766/good pc)",
+      "computed_from": "PO-30588 unit price",
+      "filter_or_arithmetic": "17 x 219.9; / 500"
+    },
+    {
+      "figure": "Q500: plates (27/plate case)",
+      "value": 19,
+      "computed_from": "starts",
+      "filter_or_arithmetic": "ceil(510/27)"
+    },
+    {
+      "figure": "Q500: material cost at PO-30588 (27/plate case)",
+      "value": "$4178.10 ($8.3562/good pc)",
+      "computed_from": "PO-30588 unit price",
+      "filter_or_arithmetic": "19 x 219.9; / 500"
+    },
+    {
+      "figure": "Q500: anodize lots (<=300 pcs/lot)",
+      "value": 2,
+      "computed_from": "PO-30602 lot definition",
+      "filter_or_arithmetic": "ceil(510/300)"
+    },
+    {
+      "figure": "Q500: anodize cost at PO-30602",
+      "value": "$770.00 ($1.5400/good pc)",
+      "computed_from": "PO-30602 unit price",
+      "filter_or_arithmetic": "2 x 385; / 500"
+    },
+    {
+      "figure": "Q500: setup minutes per good piece",
+      "value": 0.21,
+      "computed_from": "routing setup total",
+      "filter_or_arithmetic": "105 / 500"
+    },
+    {
+      "figure": "Q500: run hours (on starts)",
+      "value": 108.8,
+      "computed_from": "routing run/pc",
+      "filter_or_arithmetic": "510 x 12.8 / 60"
+    },
+    {
+      "figure": "Q500: work content hours (setup + run)",
+      "value": 110.55,
+      "computed_from": "routing",
+      "filter_or_arithmetic": "1.750 + 108.80"
+    },
+    {
+      "figure": "Q500: MILL-V hours setup / run",
+      "value": "1.583 / 91.8",
+      "computed_from": "routing by work_center",
+      "filter_or_arithmetic": "sum per work_center"
+    },
+    {
+      "figure": "Q500: INSP hours setup / run",
+      "value": "0.167 / 17.0",
+      "computed_from": "routing by work_center",
+      "filter_or_arithmetic": "sum per work_center"
+    },
+    {
+      "figure": "Q1000: starts incl. scrap allowance",
+      "value": 1019,
+      "computed_from": "qty, pooled scrap",
+      "filter_or_arithmetic": "ceil(1000 / (1 - 0.0184))"
+    },
+    {
+      "figure": "Q1000: plates (30/plate)",
+      "value": 34,
+      "computed_from": "starts",
+      "filter_or_arithmetic": "ceil(1019/30)"
+    },
+    {
+      "figure": "Q1000: material cost at PO-30588 (30/plate)",
+      "value": "$7476.60 ($7.4766/good pc)",
+      "computed_from": "PO-30588 unit price",
+      "filter_or_arithmetic": "34 x 219.9; / 1000"
+    },
+    {
+      "figure": "Q1000: plates (27/plate case)",
+      "value": 38,
+      "computed_from": "starts",
+      "filter_or_arithmetic": "ceil(1019/27)"
+    },
+    {
+      "figure": "Q1000: material cost at PO-30588 (27/plate case)",
+      "value": "$8356.20 ($8.3562/good pc)",
+      "computed_from": "PO-30588 unit price",
+      "filter_or_arithmetic": "38 x 219.9; / 1000"
+    },
+    {
+      "figure": "Q1000: anodize lots (<=300 pcs/lot)",
+      "value": 4,
+      "computed_from": "PO-30602 lot definition",
+      "filter_or_arithmetic": "ceil(1019/300)"
+    },
+    {
+      "figure": "Q1000: anodize cost at PO-30602",
+      "value": "$1540.00 ($1.5400/good pc)",
+      "computed_from": "PO-30602 unit price",
+      "filter_or_arithmetic": "4 x 385; / 1000"
+    },
+    {
+      "figure": "Q1000: setup minutes per good piece",
+      "value": 0.105,
+      "computed_from": "routing setup total",
+      "filter_or_arithmetic": "105 / 1000"
+    },
+    {
+      "figure": "Q1000: run hours (on starts)",
+      "value": 217.39,
+      "computed_from": "routing run/pc",
+      "filter_or_arithmetic": "1019 x 12.8 / 60"
+    },
+    {
+      "figure": "Q1000: work content hours (setup + run)",
+      "value": 219.14,
+      "computed_from": "routing",
+      "filter_or_arithmetic": "1.750 + 217.39"
+    },
+    {
+      "figure": "Q1000: MILL-V hours setup / run",
+      "value": "1.583 / 183.42",
+      "computed_from": "routing by work_center",
+      "filter_or_arithmetic": "sum per work_center"
+    },
+    {
+      "figure": "Q1000: INSP hours setup / run",
+      "value": "0.167 / 33.97",
+      "computed_from": "routing by work_center",
+      "filter_or_arithmetic": "sum per work_center"
+    }
+  ]
+}

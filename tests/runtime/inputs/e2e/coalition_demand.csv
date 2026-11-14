@@ -1,0 +1,7 @@
+# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious buyers. Not real demand or commitments.
+buyer_ref,organisation,item,qty,need_by,status
+SYN-BUYER-01,Lab A (fictitious),MGN9-170mm linear rail,20,2027-01-31,expressed interest by email; no signed commitment
+SYN-BUYER-02,Lab B (fictitious),MGN9-170mm linear rail,20,2027-01-31,expressed interest by email; no signed commitment
+SYN-BUYER-03,Lab C (fictitious),MGN9-170mm linear rail,20,2027-01-31,expressed interest by email; no signed commitment
+SYN-BUYER-04,Lab D (fictitious),MGN9-170mm linear rail,20,2027-01-31,expressed interest by email; no signed commitment
+SYN-BUYER-05,Harbor Robotics Lab (fictitious),MGN9-170mm linear rail,20,2027-01-31,the RFQ customer

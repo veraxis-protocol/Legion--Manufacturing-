@@ -1,0 +1,27 @@
+# Operation record (quote-build reference/hours-ladder.md, "The operation record"). SYNTHETIC data.
+# Part MB-2040, revision priced to: C. Date derived: 2026-11-14. Quantity breaks: 250, 500, 1000.
+# Geometry estimate: none (design step did not run; path A text spec; no Fusion in this run). document_ref: null, approval: n/a.
+# No routing or closed-job actuals exist for MB-2040 (figures block). Every op is rung 4, first principles,
+# using the routing of the similar bracket MB-1880 rev B (routings.csv) as a stand-in.
+operations:
+  - {part: MB-2040, rev: C, op_seq: 10, desc: "Saw and face blank", work_center: MILL-V, machine_class: null, rung: 4, path: "first principles - similar part routing MB-1880 B", cutting_data_basis: n/a,
+     setup_min: {low: 20, expected: 20, high: 20, note: "no spread available"}, run_min_pc: {low: 1.5, expected: 1.5, high: 1.5, note: "no spread available"},
+     sources: ["routings.csv MB-1880,B,10"], firm_up: "MB-2040 routing, or a confirmed geometry estimate"}
+  - {part: MB-2040, rev: C, op_seq: 20, desc: "Mill profile, bore and holes op1", work_center: MILL-V, machine_class: null, rung: 4, path: "first principles - similar part routing MB-1880 B", cutting_data_basis: n/a,
+     setup_min: {low: 45, expected: 45, high: 52, low_src: "routing", high_src: "WO-7702 actual"}, run_min_pc: {low: 6.2, expected: 6.2, high: 6.7, low_src: "routing", high_src: "WO-7702 actual 2010/300"},
+     cross_check: ["WO-7702 MB-1880 B: setup 52 (+15.6% FLAG), run 6.700 (+8.1%)", "WO-7811 MB-1880 B: setup 47 (+4.4%), run 6.480 (+4.5%)"],
+     sources: ["routings.csv MB-1880,B,20", "closed_jobs.csv WO-7702 op 20", "closed_jobs.csv WO-7811 op 20"],
+     firm_up: "MB-2040 rev C operation list incl. H7 bore finishing method (ream/bore) for Ra 1.6"}
+  - {part: MB-2040, rev: C, op_seq: 30, desc: "Op2 flip and finish", work_center: MILL-V, machine_class: null, rung: 4, path: "first principles - similar part routing MB-1880 B", cutting_data_basis: n/a,
+     setup_min: {low: 29, expected: 30, high: 34, low_src: "WO-7811", high_src: "WO-7702"}, run_min_pc: {low: 3.1, expected: 3.1, high: 3.35, low_src: "routing", high_src: "WO-7702 1005/300"},
+     cross_check: ["WO-7702: setup 34 (+13.3%), run 3.350 (+8.1%)", "WO-7811: setup 29 (-3.3%), run 3.180 (+2.6%)"],
+     sources: ["routings.csv MB-1880,B,30", "closed_jobs.csv WO-7702 op 30", "closed_jobs.csv WO-7811 op 30"], firm_up: "flatness requirement (TBD) may change this op"}
+  - {part: MB-2040, rev: C, op_seq: 40, desc: "Deburr and inspect", work_center: INSP, machine_class: null, rung: 4, path: "first principles - similar part routing MB-1880 B", cutting_data_basis: n/a,
+     setup_min: {low: 10, expected: 10, high: 10, note: "no spread available"}, run_min_pc: {low: 2.0, expected: 2.0, high: 2.0, note: "no spread available"},
+     sources: ["routings.csv MB-1880,B,40"], firm_up: "AS9102 FAI effort and edge-break 0.2-0.5 mm deburr time not covered"}
+not_timed_ops:
+  - {desc: "Laser etch PN + lot code", reason: "no op in MB-1880 routing; no plant data"}
+  - {desc: "Type II black anodize (outside process)", reason: "no vendor price or lead time in inputs"}
+  - {desc: "AS9102 first article inspection, first lot", reason: "no plant data"}
+units: "setup in minutes per job, run in minutes per piece, as declared in routings.csv / closed_jobs.csv headers"
+actuals_run_basis: "actual_run_min_total / qty_completed; scrapped pieces not included in divisor (split unknown)"

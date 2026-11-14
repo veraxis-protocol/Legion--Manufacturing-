@@ -1,0 +1,181 @@
+{
+  "part": "MB-2040",
+  "revision_priced_to": "C (spec sheet MB-2040_spec_revC.md, 2026-10-27; no drawing)",
+  "geometry_path": "A",
+  "geometry_estimate": {
+    "document_ref": null,
+    "approval": "none - design step did not run (no Fusion, text spec only)"
+  },
+  "date_derived": "2026-11-14",
+  "quantity_breaks": [
+    250,
+    500,
+    1000
+  ],
+  "scrap_allowance": 0.0184,
+  "operations": [
+    {
+      "op_seq": 10,
+      "description": "Saw and face blank (MB-1880 op, used as stand-in)",
+      "work_center": "MILL-V",
+      "machine_class": null,
+      "rung": 4,
+      "why_not_higher": "no MB-2040 routing (rung 1), no MB-2040 actuals (rung 2), no geometry estimate (rung 3)",
+      "path": "first principles - similar part routing MB-1880 rev B",
+      "cutting_data_basis": "n/a",
+      "setup_min": {
+        "low": 20.0,
+        "expected": 20.0,
+        "high": 20.0
+      },
+      "run_min_per_pc": {
+        "low": 1.5,
+        "expected": 1.5,
+        "high": 1.5
+      },
+      "sources": [
+        "inputs/cost/routings.csv MB-1880 B op 10"
+      ],
+      "cross_checks": [],
+      "firm_up_with": "a current MB-2040 Rev C routing, or a confirmed geometry estimate from a released Rev C drawing"
+    },
+    {
+      "op_seq": 20,
+      "description": "Mill profile bore and holes op1 (MB-1880 op, used as stand-in)",
+      "work_center": "MILL-V",
+      "machine_class": null,
+      "rung": 4,
+      "why_not_higher": "no MB-2040 routing (rung 1), no MB-2040 actuals (rung 2), no geometry estimate (rung 3)",
+      "path": "first principles - similar part routing MB-1880 rev B",
+      "cutting_data_basis": "n/a",
+      "setup_min": {
+        "low": 45.0,
+        "expected": 45.0,
+        "high": 52.0
+      },
+      "run_min_per_pc": {
+        "low": 6.2,
+        "expected": 6.2,
+        "high": 6.7
+      },
+      "sources": [
+        "inputs/cost/routings.csv MB-1880 B op 20",
+        "inputs/cost/closed_jobs.csv WO-7702 op 20 (closed 2026-07-18)",
+        "inputs/cost/closed_jobs.csv WO-7811 op 20 (closed 2026-09-26)"
+      ],
+      "cross_checks": [
+        {
+          "wo": "WO-7702",
+          "rev": "B",
+          "closed": "2026-07-18",
+          "setup_min": 52.0,
+          "run_min_pc": 6.7,
+          "run_min_pc_incl_scrap": 6.569,
+          "setup_var": 0.1556,
+          "run_var": 0.0806,
+          "setup_flag": true,
+          "run_flag": false,
+          "actuals_confidence": "recorded"
+        },
+        {
+          "wo": "WO-7811",
+          "rev": "B",
+          "closed": "2026-09-26",
+          "setup_min": 47.0,
+          "run_min_pc": 6.48,
+          "run_min_pc_incl_scrap": 6.365,
+          "setup_var": 0.0444,
+          "run_var": 0.0452,
+          "setup_flag": false,
+          "run_flag": false,
+          "actuals_confidence": "recorded"
+        }
+      ],
+      "firm_up_with": "a current MB-2040 Rev C routing, or a confirmed geometry estimate from a released Rev C drawing"
+    },
+    {
+      "op_seq": 30,
+      "description": "Op2 flip and finish (MB-1880 op, used as stand-in)",
+      "work_center": "MILL-V",
+      "machine_class": null,
+      "rung": 4,
+      "why_not_higher": "no MB-2040 routing (rung 1), no MB-2040 actuals (rung 2), no geometry estimate (rung 3)",
+      "path": "first principles - similar part routing MB-1880 rev B",
+      "cutting_data_basis": "n/a",
+      "setup_min": {
+        "low": 29.0,
+        "expected": 30.0,
+        "high": 34.0
+      },
+      "run_min_per_pc": {
+        "low": 3.1,
+        "expected": 3.1,
+        "high": 3.35
+      },
+      "sources": [
+        "inputs/cost/routings.csv MB-1880 B op 30",
+        "inputs/cost/closed_jobs.csv WO-7702 op 30 (closed 2026-07-18)",
+        "inputs/cost/closed_jobs.csv WO-7811 op 30 (closed 2026-09-26)"
+      ],
+      "cross_checks": [
+        {
+          "wo": "WO-7702",
+          "rev": "B",
+          "closed": "2026-07-18",
+          "setup_min": 34.0,
+          "run_min_pc": 3.35,
+          "run_min_pc_incl_scrap": 3.284,
+          "setup_var": 0.1333,
+          "run_var": 0.0806,
+          "setup_flag": false,
+          "run_flag": false,
+          "actuals_confidence": "recorded"
+        },
+        {
+          "wo": "WO-7811",
+          "rev": "B",
+          "closed": "2026-09-26",
+          "setup_min": 29.0,
+          "run_min_pc": 3.18,
+          "run_min_pc_incl_scrap": 3.124,
+          "setup_var": -0.0333,
+          "run_var": 0.0258,
+          "setup_flag": false,
+          "run_flag": false,
+          "actuals_confidence": "recorded"
+        }
+      ],
+      "firm_up_with": "a current MB-2040 Rev C routing, or a confirmed geometry estimate from a released Rev C drawing"
+    },
+    {
+      "op_seq": 40,
+      "description": "Deburr and inspect (MB-1880 op, used as stand-in)",
+      "work_center": "INSP",
+      "machine_class": null,
+      "rung": 4,
+      "why_not_higher": "no MB-2040 routing (rung 1), no MB-2040 actuals (rung 2), no geometry estimate (rung 3)",
+      "path": "first principles - similar part routing MB-1880 rev B",
+      "cutting_data_basis": "n/a",
+      "setup_min": {
+        "low": 10.0,
+        "expected": 10.0,
+        "high": 10.0
+      },
+      "run_min_per_pc": {
+        "low": 2.0,
+        "expected": 2.0,
+        "high": 2.0
+      },
+      "sources": [
+        "inputs/cost/routings.csv MB-1880 B op 40"
+      ],
+      "cross_checks": [],
+      "firm_up_with": "a current MB-2040 Rev C routing, or a confirmed geometry estimate from a released Rev C drawing"
+    }
+  ],
+  "operations_not_covered": [
+    "laser marking (part number + lot code) - no op, no hours",
+    "first article inspection AS9102 - no op, no hours",
+    "anodize - outside process, no machine time (PO-30602)"
+  ]
+}

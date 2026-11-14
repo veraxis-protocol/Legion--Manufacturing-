@@ -1,0 +1,39 @@
+# Quality register record contract v1. NOT STORED: no artifact tools in this run; the Quality Register was not updated.
+# Written by ncr-writeup (step 2), investigation fields by root-cause-capa (draft only; 8D blocked).
+contract_version: 1
+record_key: "EPW1 (test)_DRAFT-WO-8102-L-0412"
+ncr_ref: "DRAFT-WO-8102-L-0412"
+site: "EPW1 (test)"
+part_number: MB-1880
+part_number_verbatim: "MB-1880 rev B"
+lot_number: L-0412
+lot_number_verbatim: "L-0412"
+found_at: "2026-11-11T10:05:00-05:00"   # zone unverified
+qty_found: 3
+uom: each
+requirement_cited: "MB-1880 drawing rev B, sheet 2 note 4, Bore A dia 22.000 +0.021/-0.000"
+disposition_pending: true
+summary: "Bore A 22.029-22.034 mm vs 22.021 max on 3 of 5 sampled; L-0412 (300) suspect, L-0411 not ruled out; 30 shipped to Northwind Robotics."
+customers: ["Northwind Robotics"]
+
+status: open
+approval_state: approved
+containment_summary: "5 of 5 locations addressed for L-0412; at customer and installed at customer not checked; 30 in transit/delivered status unconfirmed; L-0411 not located"
+escape_clock: null
+escape_clock_unknown: true
+owner: "Test Quality Owner (LEGION WO-LMFG-004 test operator)"
+due_date: null
+recurrence: recurrence_prior_capa_failed
+prior_ncr_refs: ["NCR-0219"]
+previous_fix_held: false
+
+eight_d_step: "D5 and D7 drafted; D6 and D8 placeholders; customer pack held at Gate 2"
+leading_cause: "Candidate: progressive change at boring insert T7-0031 over its life (tool-life interval not controlling), tied closely with boring-head setting/offset drift"
+supplier_caused: false
+effectiveness_check_due: null
+
+closed_at: null
+closed_by: null
+last_written_by: root-cause-capa
+last_written_at: "2026-11-14"   # session date; time of day not recorded
+first_recorded_at: "2026-11-14"

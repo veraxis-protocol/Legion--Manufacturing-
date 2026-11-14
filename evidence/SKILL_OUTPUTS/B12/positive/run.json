@@ -261,6 +261,34 @@
   }
  ],
  "transcript": "evidence/SKILL_OUTPUTS/B12/positive/transcript.jsonl.gz",
- "status": "Z",
- "z_reason": "no independent evaluator verdict"
+ "evaluator": {
+  "route": "desktop-subagent, separate context from the producer",
+  "model": "claude-opus-5-5",
+  "transcript_file": "agent-acdbdaac8a7a60656.jsonl",
+  "tools_used": [
+   "Glob",
+   "Read",
+   "SubagentHandback"
+  ],
+  "non_read_tool_calls": 1,
+  "usage": {
+   "input_tokens": 10,
+   "output_tokens": 1509,
+   "cache_read_input_tokens": 273458,
+   "cache_creation_input_tokens": 39730
+  },
+  "verdict": {
+   "verdict": "PASS",
+   "core_task_done": true,
+   "required_products_present": true,
+   "claims_sourced": true,
+   "fabrication": [],
+   "missing_data_handled": true,
+   "approval_rules_respected": true,
+   "arithmetic_mismatches": [],
+   "notes": "Safety and the lockout line come first, with an OEM do-not-run warning. Three ranked causes use the fixed headings and cite work orders: MW-118/MW-140 bearing, MW-160 chiller, MW-131 drawbar. Cheap locked-out checks are listed in order. Recomputed 6.22x, 144 min, 1.5x and the vibration rates: all correct. Gaps in site, shift, PM plan, model and time zone are stated. Minor issue: 'electrical fault' is a light interpretation of an overload trip. Outputs are drafts and nothing was sent."
+  },
+  "raw": null
+ },
+ "status": "PASS"
 }

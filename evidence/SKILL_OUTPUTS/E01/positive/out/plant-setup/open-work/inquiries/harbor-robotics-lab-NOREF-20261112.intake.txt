@@ -1,0 +1,157 @@
+# Intake form (contract: shared/contracts/intake-form.md, version 7)
+# Emitted by customer-inquiry-intake, 2026-11-14. Record for quote-build. SYNTHETIC test data.
+# Source file abbreviation: EML = inputs/rfq_rebot_email.txt (single plain-text email, 15 lines; Lnn = line number)
+
+contract_version: 7
+site: null            # REQUIRED field not determinable: no plant profile on file this run; estimator to name the building site
+customer: "Harbor Robotics Lab"
+contact: { name: "Lena Okafor", email: "lena.okafor@harbor-robotics-lab.example", phone: null }
+rfq_reference: null   # no customer reference stated; subject line only
+received_at: 2026-11-12T11:20:00+00:00
+response_deadline: null
+supersedes_rfq: null  # no open-work page or prior inquiry available to check against; nothing in the email says revised/updated
+payment: null
+freight: null
+packaging: null
+liability: null
+source_documents:
+  - { name: "rfq_rebot_email.txt", type: email_text, pages: 1 }
+  # Referenced in the email but NOT in the package: reBot_B601_DM_v1.1_20260625.step ; "the project BOM"
+field_sources:
+  customer: "EML:L2 (From) and L15 (signature)"
+  contact: "EML:L2 (From)"
+  rfq_reference: "EML:L5 (Subject) - no reference number present"
+  received_at: "EML:L4 (Date header)"
+  response_deadline: "not stated anywhere in EML"
+  supersedes_rfq: "EML:L5 (Subject, no revised/updated marker)"
+  payment: "not stated anywhere in EML"
+  freight: "not stated anywhere in EML"
+  packaging: "not stated anywhere in EML"
+  liability: "not stated anywhere in EML"
+
+line_items:
+  - line_no: 1
+    part_number: null
+    part_number_verbatim: null
+    description: "CNC-machined aluminium parts for reBot B601 DM arm, quoted as a complete per-arm set (CNC parts only)"
+    revision: "v1.1"      # read from the STEP file name the customer gave; the file itself was not received
+    quantities:
+      - { qty: 20, uom: "set (one set per arm)" }   # single quantity, no breaks requested
+    material: "Aluminium 5052"   # temper not stated
+    specs: []   # no dimension or tolerance stated; customer: "tolerances are whatever the design needs". Nothing inferred.
+    finish: "No anodize (customer: 'Anodize not required'); any other finish not stated"
+    certifications_required: []   # none stated (not the same as none required - see missing register)
+    required_delivery: 2027-01-31
+    eau: null
+    geometry_inputs:
+      - { name: "reBot_B601_DM_v1.1_20260625.step", type: step, revision: "v1.1", source_ref: "EML:L9 - named only; file NOT in the package" }
+      - { name: "project BOM", type: text_spec, revision: null, source_ref: "EML:L11 - named only; NOT in the package" }
+    geometry_path: C1   # customer states the geometry is the STEP and "We have no 2D drawings" (EML:L12). STEP not yet received -> human review; STEP import is unverified
+    line_recommendation: bid      # provisional
+    line_bid_decision: draft
+    field_sources:
+      description: "EML:L9-L10"
+      revision: "EML:L9 (file name) and L5 (Subject '(v1.1 STEP)')"
+      quantities: "EML:L10 ('as complete per-arm sets, for 20 sets')"
+      material: "EML:L11 ('Material per the project BOM (Aluminium 5052)')"
+      specs: "EML:L12 ('tolerances are whatever the design needs')"
+      finish: "EML:L13 ('Anodize not required')"
+      required_delivery: "EML:L12 ('Delivery wanted by 31 Jan 2027')"
+      geometry_path: "EML:L9, L12"
+
+  - line_no: 2
+    part_number: null
+    part_number_verbatim: "MGN9-170 mm linear rail"
+    description: "MGN9 linear rail, 170 mm, one per arm - purchased component, quoted only 'if you can source it'"
+    revision: null
+    quantities:
+      - { qty: 20, uom: each }   # 1 per arm x 20 arms, both stated (EML:L10, L11)
+    material: null      # purchased item; material/grade not stated
+    specs:
+      - { characteristic: "rail size", nominal: "MGN9", tolerance: null, reading_basis: from_text, source_ref: "EML:L11" }
+      - { characteristic: "rail length", nominal: "170 mm", tolerance: null, reading_basis: from_text, source_ref: "EML:L11" }
+    finish: null
+    certifications_required: []
+    required_delivery: 2027-01-31   # one inquiry-level date, applied to both lines
+    eau: null
+    geometry_inputs:
+      - { name: "MGN9-170 mm linear rail", type: text_spec, revision: null, source_ref: "EML:L11" }
+    geometry_path: A    # written spec only; a catalogue purchased part, nothing to model. Any price is a ROM until the exact item is confirmed
+    line_recommendation: bid      # provisional
+    line_bid_decision: draft
+    field_sources:
+      description: "EML:L11 ('We also need the MGN9-170 mm linear rail, one per arm, if you can source it')"
+      quantities: "EML:L10-L11"
+      required_delivery: "EML:L12"
+      geometry_path: "EML:L11"
+
+missing_register:
+  - { line_no: 1, field: "geometry (STEP file)", why_it_matters: "The STEP is the only geometry; without it there is no part list, size, feature or envelope to check or quote.", should_have_come_from: "attachment to the RFQ email (named at L9, not attached)" }
+  - { line_no: 1, field: "part list / set composition", why_it_matters: "'Complete per-arm set' does not say how many parts or which ones; also which parts are CNC aluminium vs printed/purchased in the project.", should_have_come_from: "the project BOM (named at L11, not attached)" }
+  - { line_no: 1, field: "specs / tolerances", why_it_matters: "No dimension or tolerance is stated and there is no drawing; we never assign tolerances ourselves, so we need the customer to state which features are critical (bearing bores, rail mounting faces, motor mounts) and their limits, or accept a stated general tolerance.", should_have_come_from: "2D drawings or a tolerance note from the customer (L12 says none exist)" }
+  - { line_no: 1, field: "material temper / form", why_it_matters: "5052 is quoted per the BOM, but temper (e.g. H32) and stock form/thickness drive material cost and machinability.", should_have_come_from: "project BOM" }
+  - { line_no: 1, field: "finish (other than anodize)", why_it_matters: "Anodize is excluded, but deburr/edge break, bead blast or raw finish is not stated.", should_have_come_from: "RFQ text or BOM" }
+  - { line_no: 1, field: "certifications / material certs / inspection report", why_it_matters: "Not stated; affects paperwork and cost.", should_have_come_from: "RFQ text" }
+  - { line_no: 1, field: "quantity breaks", why_it_matters: "Only 20 sets asked; spares or a second batch would change setup amortisation.", should_have_come_from: "RFQ text" }
+  - { line_no: 1, field: "revision confirmation", why_it_matters: "v1.1 is read from a file name for an open-source design that may be updated; the quote must say which revision it is priced to.", should_have_come_from: "the STEP file itself / customer confirmation" }
+  - { line_no: 2, field: "rail specification (carriage count/type, preload, accuracy grade, brand or equivalents allowed)", why_it_matters: "'MGN9-170 mm' fixes size and length only; price and lead time depend on the rest.", should_have_come_from: "project BOM" }
+  - { line_no: 2, field: "whether line 2 is required or optional", why_it_matters: "'if you can source it' - need to know if the CNC sets are quoted with or without it.", should_have_come_from: "RFQ text" }
+  - { line_no: null, field: "rfq_reference", why_it_matters: "Needed to match the quote and answers to this request.", should_have_come_from: "RFQ email" }
+  - { line_no: null, field: "response_deadline", why_it_matters: "Sets when the quote is due; drives turnaround.", should_have_come_from: "RFQ email" }
+  - { line_no: null, field: "payment", why_it_matters: "Quote will otherwise assume the plant standard, listed as an assumption.", should_have_come_from: "customer terms" }
+  - { line_no: null, field: "freight / ship-to / incoterms", why_it_matters: "Delivery destination and who pays freight are unknown.", should_have_come_from: "customer terms" }
+  - { line_no: null, field: "packaging", why_it_matters: "Kitting per arm set and protection of unfinished aluminium are unpriced.", should_have_come_from: "customer terms" }
+  - { line_no: null, field: "liability", why_it_matters: "No terms stated; plant standard would apply.", should_have_come_from: "customer terms" }
+  - { line_no: null, field: "site", why_it_matters: "No plant profile on file this run, so the building site cannot be set.", should_have_come_from: "plant profile (onboarding)" }
+
+ambiguous_register: []   # nothing was stated two different ways in the email
+
+open_questions: |
+  Subject: RE: RFQ - CNC aluminium part sets for reBot B601 DM arm (v1.1 STEP)
+
+  Hi Lena,
+
+  Thanks for the RFQ for 20 sets of CNC-machined aluminium parts for the reBot B601 DM arm, delivery by 31 January 2027. To give you a firm quote we need a few things from you:
+
+  1. Files: the STEP file (reBot_B601_DM_v1.1_20260625.step) and the project BOM were mentioned but not attached. Could you send both? Please confirm v1.1 (25 June 2026) is the revision you want quoted, and tell us if you expect any design change before you order.
+  2. Part list: which parts make up one "complete per-arm set" of CNC aluminium parts (part names and quantity per arm)? If the BOM marks which parts are CNC aluminium versus 3D-printed or bought-in, that answers it.
+  3. Tolerances: with no 2D drawings, which features are critical (for example bearing bores, rail and motor mounting faces, shaft fits), and what tolerance do they need? For everything else, can we quote to a general tolerance you state?
+  4. Material and finish: is 5052 required in a particular temper (for example H32), or is an equivalent alloy acceptable? With no anodize, is a plain machined finish with deburred edges acceptable, or do you need bead blast or another finish?
+  5. Linear rail: for the MGN9 170 mm rail, how many carriages per rail, and what carriage type, preload and accuracy grade? Is a specific brand required, or are equivalents fine? Should we quote the part sets with and without the rail?
+  6. Quantity: is 20 sets firm, or would you like pricing for other quantities (for example spares or a second batch)?
+  7. Paperwork and delivery: do you need material certificates or an inspection report? Where should the parts ship, should each arm set be packed separately, and what payment terms do you expect?
+  8. Your reference: do you have an RFQ or PO reference we should quote against, and by when do you need our quote?
+
+  Thanks,
+  [estimator name]
+
+recommendation: bid
+recommendation_provisional: true
+recommendation_reasoning:
+  - "Constraint-free: no plant capability profile was on file, so manufacturability (materials, processes, envelope, tolerance capability, certifications) was NOT checked against this plant."
+  - "No cost history: no ERP closed-work-order actual cost and no prior-quote history were available, so there is no comparable; scored on what is stated and dates alone."
+  - "Nothing stated is a hard disqualifier: aluminium CNC parts, no anodize, no certifications stated. Everything that could disqualify (size, tolerances, part count) rests on the missing STEP/BOM, so it is a scoring input, not a stop."
+  - "Delivery 2027-01-31 is 80 calendar days after receipt (2026-11-12), across the holiday period; not checked against shop load (quote-build's step)."
+  - "Line 2 is a purchased catalogue part asked 'if you can source it'; bid provisionally, can be split out."
+constraint_violations: []   # none found; check not run against a profile (none on file)
+would_change_recommendation:
+  - { question: "Q1 STEP/BOM", line: 1, becomes: "no_bid if any part exceeds the plant's size envelope or needs a process the plant does not have (5-axis, turning etc.) - check once the STEP arrives and a profile exists" }
+  - { question: "Q3 tolerances", line: 1, becomes: "no_bid (or bid with exceptions) if a critical feature needs a tolerance below the plant's demonstrated capability" }
+  - { question: "Q2 part list", line: 1, becomes: "may move toward no_bid if the per-arm set is many small parts at 20 sets and 2027-01-31 cannot be met" }
+  - { question: "Q7 certifications", line: all, becomes: "no_bid if a certification the plant does not hold is required" }
+  - { question: "Q5 rail spec / with-and-without", line: 2, becomes: "no_bid for line 2 (inquiry becomes partial) if the plant does not resell purchased parts or cannot source the specified rail by 2027-01-31" }
+hard_disqualifier_stopped: false
+inquiry_state: open
+stale_since: null
+answers_received: []
+bid_decision_state: draft
+bid_decision_by: null
+bid_decision_at: null
+bid_decision_basis: null
+bid_decision_reset: null
+questions_sent_at: null
+questions_sent_by: null
+paused_at_step: 4
+waiting_on: "estimator: Gate 1, send the open questions"
+gates_passed: []
+# Stale clock: no send recorded, so it runs from received_at 2026-11-12. Default 5 business days (not plant-set; no MFG_RFQ_STALE_DAYS, no profile) -> stale_after 2026-11-19. Not stale as of 2026-11-14.

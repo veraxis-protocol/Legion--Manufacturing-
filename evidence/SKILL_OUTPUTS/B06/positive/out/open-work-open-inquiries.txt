@@ -1,0 +1,3 @@
+# Not saved to your Open work page: artifact tools are not permitted in this run. Block kept here; paste it back next time.
+## Open inquiries
+- MB-2040 (no customer RFQ ref) | Northwind Robotics | file: inquiries/northwind-robotics-MB-2040.intake.txt | paused_at_step: 5 | waiting_on: estimator Gate 1 (send Q1-Q8) and Gate 2; then customer answers to Q1-Q8 | stale_after: 2026-11-09 | bid_decision_state: draft

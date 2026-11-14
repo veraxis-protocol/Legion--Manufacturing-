@@ -1,0 +1,6 @@
+{
+  "db_path": "C:\\LMFG\\runs\\B02-negative\\work\\inputs\\connector\\cmms_synthetic.sqlite",
+  "exists": false,
+  "status": "Untested: not registered",
+  "reason": "database file not found at the given path; nothing was opened or created"
+}

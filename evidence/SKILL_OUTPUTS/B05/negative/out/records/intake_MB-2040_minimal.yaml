@@ -1,0 +1,69 @@
+# Minimal intake record built by quote-build (no intake form from customer-inquiry-intake was supplied).
+# Every field cites its source; nulls are on the missing register. SYNTHETIC test data.
+contract_version: 6
+site: null            # no plant profile on file
+customer: Northwind Robotics
+contact: {name: Dana Whitfield, email: dana.whitfield@northwind-robotics.example}
+rfq_reference: null
+received_at: "2026-11-02T09:14:00-05:00"
+response_deadline: null
+supersedes_rfq: null
+source_documents:
+  - {name: rfq_email.txt, type: email_thread, pages: 1}
+  - {name: MB-2040_spec_revC.md, type: text_spec, pages: 1}
+field_sources:
+  customer: "MB-2040_spec_revC.md line 4"
+  contact: "rfq_email.txt lines 2,7"
+  received_at: "rfq_email.txt line 4"
+commercial_terms: {payment: null, freight: null, packaging: null, liability: null}
+recommendation: null            # customer-inquiry-intake did not run
+bid_decision_state: draft
+inquiry_state: open
+recommendation_provisional: true
+line_items:
+  - line_no: 1
+    part_number: MB-2040
+    description: Motor bracket
+    revision: C
+    quantities: [{qty: 250, uom: each}, {qty: 500, uom: each}, {qty: 1000, uom: each}]
+    material: "Aluminium 6061-T6, plate, per ASTM B209"
+    specs:
+      - {characteristic: envelope, nominal: "120 x 80 x 12 mm", tolerance: "ISO 2768-m", reading_basis: from_text, source_ref: "spec lines 9, 13"}
+      - {characteristic: main bore, nominal: "dia 22.000 mm through", tolerance: "+0.021/-0.000 (H7)", reading_basis: from_text, source_ref: "spec line 10"}
+      - {characteristic: mounting holes, nominal: "4x M5x0.8 through on 100 x 60 mm", tolerance: "ISO 2768-m", reading_basis: from_text, source_ref: "spec lines 11, 13"}
+      - {characteristic: slot, nominal: "8 x 40 mm through", tolerance: "ISO 2768-m", reading_basis: from_text, source_ref: "spec lines 12, 13"}
+      - {characteristic: surface finish, nominal: "Ra 1.6 um bore; Ra 3.2 um elsewhere", tolerance: null, reading_basis: from_text, source_ref: "spec line 14"}
+      - {characteristic: edge break, nominal: "0.2-0.5 mm all edges", tolerance: null, reading_basis: from_text, source_ref: "spec line 16"}
+      - {characteristic: mounting face flatness, nominal: null, tolerance: null, reading_basis: from_text, source_ref: "spec line 17 (TBD); rfq_email.txt line 22"}
+    finish: "Type II sulfuric anodize, black, per MIL-A-8625"
+    certifications_required: ["Material cert with each lot (rfq_email.txt line 12)", "AS9102 FAI on first lot (spec line 19)"]
+    marking: "PN and lot code, laser etched, location per customer (spec line 18)"
+    required_delivery: "2027-01-15 (first articles); production monthly thereafter"
+    eau: "approx. 4,000 - stated 'not a commitment' (rfq_email.txt line 29)"
+    geometry_inputs:
+      - {name: MB-2040_spec_revC.md, type: text_spec, revision: C, source_ref: "spec sheet"}
+    geometry_path: A     # written specs only, no drawing in the package
+    line_bid_decision: draft
+    field_sources:
+      part_number: "spec line 4"
+      revision: "spec lines 2, 4"
+      quantities: "rfq_email.txt line 10"
+      material: "spec line 8"
+      finish: "spec line 15; rfq_email.txt line 11"
+      required_delivery: "rfq_email.txt line 10"
+missing_register:
+  - {line_no: 1, field: drawing, why_it_matters: "No drawing: geometry path A, any price is budgetary only", should_have_come_from: "customer RFQ package (rev C drawing)"}
+  - {line_no: 1, field: mounting face flatness, why_it_matters: "May add a finishing op / inspection; open in spec", should_have_come_from: "customer design team (rfq_email.txt line 22)"}
+  - {line_no: 1, field: marking location, why_it_matters: "Fixture / laser set-up", should_have_come_from: "customer"}
+  - {line_no: null, field: payment, why_it_matters: "commercial term", should_have_come_from: "customer RFQ"}
+  - {line_no: null, field: freight, why_it_matters: "commercial term", should_have_come_from: "customer RFQ"}
+  - {line_no: null, field: packaging, why_it_matters: "commercial term; anodized finish protection", should_have_come_from: "customer RFQ"}
+  - {line_no: null, field: liability, why_it_matters: "commercial term", should_have_come_from: "customer RFQ"}
+  - {line_no: null, field: response_deadline, why_it_matters: "quote turnaround", should_have_come_from: "customer RFQ"}
+ambiguous_register:
+  - line_no: 1
+    field: revision / hole pattern
+    values_found:
+      - {value: "Rev C - M5 pattern moved 2 mm outboard", source_ref: "spec line 11; rfq_email.txt line 21"}
+      - {value: "Rev B drawings circulated by procurement (to be ignored)", source_ref: "rfq_email.txt line 21"}
+    why_it_matters: "Priced to Rev C only; Rev B is superseded per customer engineering"

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redaction Diff Draft</title>
+<style>body{font-family:Arial,Helvetica,sans-serif;max-width:1100px;margin:0 auto;padding:16px;color:#111;background:#fff;line-height:1.4}
+table{border-collapse:collapse;width:100%;margin:8px 0 16px}td,th{border:1px solid #888;padding:4px 6px;vertical-align:top;font-size:13px}th{background:#eee;text-align:left}</style></head><body>
+<p><b>SYNTHETIC TEST DATA. INTERNAL. Gate 2 review item — the quality owner approves this diff, not the clean customer document.</b> Internal: 8D-internal_DRAFT-WO-8102-L-0412.html. Customer: 8D-customer-pack_DRAFT-WO-8102-L-0412.html. Approval state: <b>not approved</b>; approved by: [name as given]; date: [ ].</p>
+<h1>Redaction diff — DRAFT-WO-8102-L-0412</h1>
+<table><tr><th>Location</th><th>Internal</th><th>Customer version</th><th>Why</th></tr>
+<tr><td>Header</td><td>Approval by "Test Quality Owner (LEGION WO-LMFG-004 test operator)"</td><td>removed</td><td>Personnel / internal approval record</td></tr>
+<tr><td>D1</td><td>Names: Test Quality Owner, J. Ortiz, roles to be named</td><td>Roles only; "names on request"</td><td>Personnel</td></tr>
+<tr><td>D2</td><td>"J. Ortiz measured…"; "VMC-03 2nd shift 2026-11-10"; found time 10:05 with zone note</td><td>"At final inspection on 2026-11-11…"</td><td>Personnel; internal process detail (machine, shift)</td></tr>
+<tr><td>D2</td><td>Excess as % of band (61.9/47.6/38.1%)</td><td>Excess in mm (0.008 to 0.013)</td><td>Same facts; % of band is internal analysis. Quality owner may keep it</td></tr>
+<tr><td>D2</td><td>"L-0411 / WO-8101 (parts after seq 70) not ruled out, lot size and location unknown"</td><td>"The preceding lot of this part, L-0411, is not yet ruled out and is being evaluated"</td><td>Work order number internal. <b>Decision for quality owner:</b> L-0411's customer is not in the inputs; if L-0411 went to another customer, its lot number must come out of this pack</td></tr>
+<tr><td>D2</td><td>NCR-0219, CAPA-071 numbers, "insert wear beyond 900 parts", "600 parts"</td><td>"same condition (22.026 mm) occurred on MB-1880 in April 2026; corrective action (fixed insert-change interval) not verified effective"</td><td>Internal record numbers and interval values. <b>Recurrence itself stays in</b> — removing it is misrepresentation</td></tr>
+<tr><td>D3</td><td>FG-2 rack 14, VMC-03 queue, owners column, "planned, not confirmed done"</td><td>"our finished goods", "at our machine", status "planned, not yet confirmed"</td><td>Internal locations; the not-yet-confirmed status is kept (no softening)</td></tr>
+<tr><td>D3</td><td>Insert T7-0031 → T7-0032, maintenance log 06:40</td><td>"boring insert was replaced on 2026-11-11"</td><td>Internal tool IDs</td></tr>
+<tr><td>D4</td><td>Ranked table with operator-free evidence, slope 0.535 µm/h, r = 0.936, part counts (at least 211/510), coolant 6%→8%, NCR-0244 reference not present</td><td>Plain-language D4: not confirmed, two causes equally fitting, 10 consecutive increasing readings, reset to 22.007, coolant and gage less likely</td><td>Internal process detail (coolant settings, statistics); confidence and the tie are kept</td></tr>
+<tr><td>D4</td><td>"Why CAPA-071 did not hold (open)"</td><td>Covered by D2 recurrence statement and D7 reopening</td><td>Internal record numbers</td></tr>
+<tr><td>D5</td><td>Actions with "breaks link" mapping</td><td>Same actions, without link mapping</td><td>Internal analysis format; action content unchanged</td></tr>
+<tr><td>D5</td><td>Gage R&amp;R improvement note</td><td>removed</td><td>Improvement, not corrective action; internal</td></tr>
+<tr><td>D6 / D8</td><td>Empty structured placeholders</td><td>"Pending"</td><td>Not yet happened — no content invented either side</td></tr>
+<tr><td>D7</td><td>"CAPA-071 reopened"; "no CAPA on this plant closes…"</td><td>"April 2026 corrective action reopened; none closed without recorded effectiveness check"</td><td>Internal record numbers</td></tr>
+<tr><td>Appendix</td><td>Evidence appendix, figures block, operator IDs OP-11/OP-23, shift clustering, NCR-0244 (MB-1500)</td><td>not included</td><td>Internal analysis; personnel; unrelated finding from history search</td></tr>
+<tr><td>Unchanged</td><td>Requirement (rev B sheet 2 note 4), measurements, at least 300 affected, PS-5521 30 pcs, containment quantities, escape not ruled out, dates</td><td>unchanged</td><td>Must survive</td></tr></table>
+<h2>Removal requests</h2>
+<table><tr><th>Requested by</th><th>What</th><th>Decision</th><th>Why</th></tr>
+<tr><td>—</td><td>No removal requests received. "Nothing goes to the customer" was recorded as a hold/no-send instruction, not a removal request.</td><td>—</td><td>—</td></tr></table>
+<p>Check for the reviewer: no cost data, supplier identity or other customers' names appear in either version (none were in the inputs). Northwind Robotics is the addressee.</p>
+</body></html>

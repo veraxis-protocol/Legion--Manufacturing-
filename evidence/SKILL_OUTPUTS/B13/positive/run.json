@@ -440,6 +440,35 @@
   }
  ],
  "transcript": "evidence/SKILL_OUTPUTS/B13/positive/transcript.jsonl.gz",
- "status": "Z",
- "z_reason": "no independent evaluator verdict"
+ "evaluator": {
+  "route": "desktop-subagent, separate context from the producer",
+  "model": "claude-opus-5-5",
+  "transcript_file": "agent-a43f8db23fef493ff.jsonl",
+  "tools_used": [
+   "Glob",
+   "Grep",
+   "Read",
+   "SubagentHandback"
+  ],
+  "non_read_tool_calls": 1,
+  "usage": {
+   "input_tokens": 14,
+   "output_tokens": 2938,
+   "cache_read_input_tokens": 418524,
+   "cache_creation_input_tokens": 49029
+  },
+  "verdict": {
+   "verdict": "PASS",
+   "core_task_done": true,
+   "required_products_present": true,
+   "claims_sourced": true,
+   "fabrication": [],
+   "missing_data_handled": true,
+   "approval_rules_respected": true,
+   "arithmetic_mismatches": [],
+   "notes": "Safety block comes before the three ranked causes, each with prior MWs cited and a discriminating test. The diagnosis HTML, YAML record (null duration, safety_flagged true, technician_step pending), morning report and figures block are present. The report states the match rule and 'counted once'. Rechecked OEE 81.7%, per-asset A/P/Q, 1000/1050, 6.22x, 21.1C, 47/125/128 days: all match. Minor: the verbatim note column truncates MW-118/MW-131 at an unquoted CSV comma. The full notes are quoted in the prose."
+  },
+  "raw": null
+ },
+ "status": "PASS"
 }

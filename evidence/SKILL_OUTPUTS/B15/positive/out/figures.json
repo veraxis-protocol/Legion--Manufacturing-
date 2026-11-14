@@ -1,0 +1,487 @@
+{
+ "figures": [
+  {
+   "figure": "Inspection rows",
+   "value": 11,
+   "computed_from": "inspection_measurements.csv",
+   "filter": "all non-comment rows"
+  },
+  {
+   "figure": "Maintenance rows, VMC-03",
+   "value": 2,
+   "computed_from": "maintenance_log.csv",
+   "filter": "asset_id == \"VMC-03\""
+  },
+  {
+   "figure": "Inspection window",
+   "value": "2026-11-09T07:10:00-05:00 to 2026-11-11T07:05:00-05:00",
+   "computed_from": "inspection_measurements.csv",
+   "filter": "min/max timestamp"
+  },
+  {
+   "figure": "Maintenance window",
+   "value": "2026-11-08T16:00:00-05:00 to 2026-11-11T06:40:00-05:00",
+   "computed_from": "maintenance_log.csv",
+   "filter": "min/max timestamp"
+  },
+  {
+   "figure": "UTC offsets present (inspection + maintenance)",
+   "value": [
+    "-1 day, 19:00:00"
+   ],
+   "computed_from": "both CSVs",
+   "filter": "utcoffset() of every timestamp"
+  },
+  {
+   "figure": "Inspection rows out of spec (>22.021 or <22.000)",
+   "value": "3 of 11: L-0412 seq 1 = 22.022, L-0412 seq 90 = 22.029, L-0412 seq 180 = 22.034",
+   "computed_from": "inspection_measurements.csv",
+   "filter": "bore_dia_mm > 22.021 or < 22.000"
+  },
+  {
+   "figure": "SPC basis",
+   "value": "Individuals/moving-range (I-MR); limits from 7 points, lots L-0409, L-0410, L-0411 (WO-8099..WO-8101, insert T7-0031, 2026-11-09 07:10 to 2026-11-10 11:05 -05:00); L-0412 and L-0413 plotted against them",
+   "computed_from": "inspection_measurements.csv",
+   "filter": "lot in {L-0409,L-0410,L-0411}"
+  },
+  {
+   "figure": "SPC centreline (baseline)",
+   "value": 22.0136,
+   "computed_from": "same",
+   "filter": "mean of baseline points"
+  },
+  {
+   "figure": "SPC MR-bar (baseline)",
+   "value": 0.0018,
+   "computed_from": "same",
+   "filter": "mean moving range"
+  },
+  {
+   "figure": "SPC sigma estimate",
+   "value": 0.00163,
+   "computed_from": "same",
+   "filter": "MR-bar / 1.128"
+  },
+  {
+   "figure": "SPC UCL (baseline)",
+   "value": 22.0184,
+   "computed_from": "same",
+   "filter": "CL + 3 sigma"
+  },
+  {
+   "figure": "SPC LCL (baseline)",
+   "value": 22.0087,
+   "computed_from": "same",
+   "filter": "CL - 3 sigma"
+  },
+  {
+   "figure": "Points beyond baseline control limits",
+   "value": "6: L-0409 seq 1 22.008 (below LCL), L-0411 seq 70 22.019 (above UCL), L-0412 seq 1 22.022 (above UCL), L-0412 seq 90 22.029 (above UCL), L-0412 seq 180 22.034 (above UCL), L-0413 seq 1 22.007 (below LCL)",
+   "computed_from": "same",
+   "filter": "x > UCL or x < LCL"
+  },
+  {
+   "figure": "L-0412 seq 1: (measured - CL)/(UCL - CL)",
+   "value": 1.73,
+   "computed_from": "same",
+   "filter": "distance above CL in units of the CL-to-UCL band"
+  },
+  {
+   "figure": "L-0412 seq 90: (measured - CL)/(UCL - CL)",
+   "value": 3.16,
+   "computed_from": "same",
+   "filter": "distance above CL in units of the CL-to-UCL band"
+  },
+  {
+   "figure": "L-0412 seq 180: (measured - CL)/(UCL - CL)",
+   "value": 4.19,
+   "computed_from": "same",
+   "filter": "distance above CL in units of the CL-to-UCL band"
+  },
+  {
+   "figure": "Run rule checked",
+   "value": "Trend rule (Nelson rule 3): 6 or more consecutive points steadily increasing or decreasing; plus rule 1 (point beyond 3 sigma)",
+   "computed_from": "inspection_measurements.csv",
+   "filter": "time-ordered, all 11 points"
+  },
+  {
+   "figure": "Run rule result: longest strictly increasing run",
+   "value": "10 consecutive points (points 1 to 10 in time order, all on insert T7-0031): trend rule FIRES",
+   "computed_from": "same",
+   "filter": "x[i] > x[i-1]"
+  },
+  {
+   "figure": "Trend inside baseline alone",
+   "value": "7 baseline points strictly increasing: True. The baseline is itself not in control, so these limits are a reference, not a capability statement",
+   "computed_from": "same",
+   "filter": "baseline only"
+  },
+  {
+   "figure": "I-MR all 11 points: CL / UCL / LCL",
+   "value": "22.0170 / 22.0311 / 22.0029",
+   "computed_from": "same",
+   "filter": "all rows, time order (MR at the insert change inflates sigma)"
+  },
+  {
+   "figure": "T7-0031 points",
+   "value": 10,
+   "computed_from": "inspection_measurements.csv",
+   "filter": "tool_id == \"T7-0031\""
+  },
+  {
+   "figure": "Bore vs hours since first T7-0031 row: slope (mm/h)",
+   "value": 0.000535,
+   "computed_from": "same",
+   "filter": "OLS, T7-0031 rows"
+  },
+  {
+   "figure": "Bore vs hours: intercept (mm) / R^2",
+   "value": "22.0080 / 0.876",
+   "computed_from": "same",
+   "filter": "OLS, T7-0031 rows"
+  },
+  {
+   "figure": "Hours on T7-0031 at which fitted line reaches USL 22.021",
+   "value": 24.3,
+   "computed_from": "same",
+   "filter": "(22.021 - intercept)/slope"
+  },
+  {
+   "figure": "Clock time fitted line reaches USL",
+   "value": "2026-11-10T07:25-05:00",
+   "computed_from": "same",
+   "filter": "t0 + hours"
+  },
+  {
+   "figure": "Shift 1 residuals from time trend (mm): n / mean",
+   "value": "5 / -0.0012",
+   "computed_from": "same",
+   "filter": "shift == 1, T7-0031 rows"
+  },
+  {
+   "figure": "Shift 2 residuals from time trend (mm): n / mean",
+   "value": "5 / +0.0012",
+   "computed_from": "same",
+   "filter": "shift == 2, T7-0031 rows"
+  },
+  {
+   "figure": "L-0409 within-lot rise per 100 parts (mm)",
+   "value": 0.0051,
+   "computed_from": "same",
+   "filter": "(last-first)/(seq last - seq first)*100, lot L-0409"
+  },
+  {
+   "figure": "L-0410 within-lot rise per 100 parts (mm)",
+   "value": 0.0051,
+   "computed_from": "same",
+   "filter": "(last-first)/(seq last - seq first)*100, lot L-0410"
+  },
+  {
+   "figure": "L-0411 within-lot rise per 100 parts (mm)",
+   "value": 0.0029,
+   "computed_from": "same",
+   "filter": "(last-first)/(seq last - seq first)*100, lot L-0411"
+  },
+  {
+   "figure": "L-0412 within-lot rise per 100 parts (mm)",
+   "value": 0.0067,
+   "computed_from": "same",
+   "filter": "(last-first)/(seq last - seq first)*100, lot L-0412"
+  },
+  {
+   "figure": "Highest part_seq recorded per lot on T7-0031",
+   "value": {
+    "L-0409": 80,
+    "L-0410": 60,
+    "L-0411": 70,
+    "L-0412": 180
+   },
+   "computed_from": "same",
+   "filter": "max(part_seq) by lot"
+  },
+  {
+   "figure": "Minimum parts cut on T7-0031 before L-0412 started",
+   "value": "at least 210 (sum of highest recorded seq in L-0409/0410/0411; their lot sizes are not in the inputs)",
+   "computed_from": "same",
+   "filter": "sum of max seq, lots before L-0412"
+  },
+  {
+   "figure": "Minimum parts on T7-0031 when L-0412 seq 1 (22.022) was cut",
+   "value": "at least 211",
+   "computed_from": "same",
+   "filter": "floor"
+  },
+  {
+   "figure": "Minimum parts on T7-0031 at end of L-0412",
+   "value": "at least 510 (= 210 + lot size 300 from finding.txt)",
+   "computed_from": "inspection CSV + finding.txt",
+   "filter": "floor"
+  },
+  {
+   "figure": "Out-of-spec by shift: OOS/rows (rows as share of all 11)",
+   "value": {
+    "1": "0/6 (55%)",
+    "2": "3/5 (45%)"
+   },
+   "computed_from": "inspection_measurements.csv",
+   "filter": "group by shift"
+  },
+  {
+   "figure": "Out-of-spec by operator: OOS/rows (rows as share of all 11)",
+   "value": {
+    "OP-11": "0/6 (55%)",
+    "OP-23": "3/5 (45%)"
+   },
+   "computed_from": "inspection_measurements.csv",
+   "filter": "group by operator"
+  },
+  {
+   "figure": "Out-of-spec by lot: OOS/rows (rows as share of all 11)",
+   "value": {
+    "L-0409": "0/3 (27%)",
+    "L-0410": "0/2 (18%)",
+    "L-0411": "0/2 (18%)",
+    "L-0412": "3/3 (27%)",
+    "L-0413": "0/1 (9%)"
+   },
+   "computed_from": "inspection_measurements.csv",
+   "filter": "group by lot"
+  },
+  {
+   "figure": "Out-of-spec by tool_id: OOS/rows (rows as share of all 11)",
+   "value": {
+    "T7-0031": "3/10 (91%)",
+    "T7-0032": "0/1 (9%)"
+   },
+   "computed_from": "inspection_measurements.csv",
+   "filter": "group by tool_id"
+  },
+  {
+   "figure": "Out-of-spec by machine: OOS/rows (rows as share of all 11)",
+   "value": {
+    "VMC-03": "3/11 (100%)"
+   },
+   "computed_from": "inspection_measurements.csv",
+   "filter": "group by machine"
+  },
+  {
+   "figure": "Shift-operator pairs observed",
+   "value": [
+    [
+     "1",
+     "OP-11"
+    ],
+    [
+     "2",
+     "OP-23"
+    ]
+   ],
+   "computed_from": "same",
+   "filter": "distinct (shift, operator)"
+  },
+  {
+   "figure": "Rows with tool_change_since_last == yes",
+   "value": [
+    "2026-11-09T07:10:00-05:00 T7-0031 22.008",
+    "2026-11-11T07:05:00-05:00 T7-0032 22.007"
+   ],
+   "computed_from": "same",
+   "filter": "tool_change_since_last == \"yes\""
+  },
+  {
+   "figure": "Bore after insert change (T7-0032)",
+   "value": [
+    "L-0413 seq 1 22.007"
+   ],
+   "computed_from": "same",
+   "filter": "tool_id == \"T7-0032\""
+  },
+  {
+   "figure": "Step at insert change (last T7-0031 minus first T7-0032), mm",
+   "value": 0.027,
+   "computed_from": "same",
+   "filter": "L-0412 seq 180 minus L-0413 seq 1"
+  },
+  {
+   "figure": "Coolant adjustment (6% -> 8%) to first inspection row (h)",
+   "value": 15.17,
+   "computed_from": "both CSVs",
+   "filter": "first inspection ts - coolant event ts"
+  },
+  {
+   "figure": "Inspection rows before the coolant adjustment",
+   "value": 0,
+   "computed_from": "inspection_measurements.csv",
+   "filter": "timestamp < 2026-11-08T16:00-05:00"
+  },
+  {
+   "figure": "Anchor: insert-replaced log entry to first T7-0032 inspection row (min)",
+   "value": 25.0,
+   "computed_from": "both CSVs",
+   "filter": "L-0413 seq 1 ts - maintenance insert event ts"
+  },
+  {
+   "figure": "Maintenance events between first and last T7-0031 rows",
+   "value": 0,
+   "computed_from": "maintenance_log.csv",
+   "filter": "ts within [2026-11-09T07:10, 2026-11-10T21:50] -05:00"
+  },
+  {
+   "figure": "Finding: nonconforming of sampled",
+   "value": "3 of 5",
+   "computed_from": "finding.txt",
+   "filter": "as written by inspector"
+  },
+  {
+   "figure": "Finding values minus USL 22.021 (mm)",
+   "value": [
+    0.013,
+    0.01,
+    0.008
+   ],
+   "computed_from": "finding.txt",
+   "filter": "measured - 22.021"
+  },
+  {
+   "figure": "Finding values also present in inspection CSV",
+   "value": [
+    22.034,
+    22.029
+   ],
+   "computed_from": "both",
+   "filter": "exact value match (records may be different parts)"
+  },
+  {
+   "figure": "Containment quantities reported",
+   "value": "120 WIP + 150 FG + 30 shipped = 300 (lot size 300)",
+   "computed_from": "finding.txt",
+   "filter": "sum of stated locations"
+  },
+  {
+   "figure": "Prior NCRs, same part MB-1880",
+   "value": "1: NCR-0219 2026-04-14 'bore oversize 22.026' -> CAPA-071 insert change every 600 parts (effective: not verified)",
+   "computed_from": "prior_ncrs.csv",
+   "filter": "part == \"MB-1880\""
+  },
+  {
+   "figure": "Prior NCRs, other parts",
+   "value": "1: NCR-0244 MB-1500 'slot width undersize', cause 'wrong offset after tool change'",
+   "computed_from": "prior_ncrs.csv",
+   "filter": "part != \"MB-1880\""
+  },
+  {
+   "figure": "Prior NCRs naming machine VMC-03",
+   "value": 0,
+   "computed_from": "prior_ncrs.csv",
+   "filter": "any field contains \"VMC-03\" (file has no machine column)"
+  },
+  {
+   "figure": "Material heat/lot, supplier, PO or receipt fields in any input",
+   "value": 0,
+   "computed_from": "all 5 input files",
+   "filter": "searched columns and text; none present (L-04xx are production lots)"
+  }
+ ],
+ "spc": {
+  "cl": 22.013571428571428,
+  "ucl": 22.01844731509625,
+  "lcl": 22.008695542046606,
+  "usl": 22.021,
+  "lsl": 22.0
+ },
+ "points": [
+  {
+   "t": "2026-11-09T07:10:00-05:00",
+   "lot": "L-0409",
+   "shift": "1",
+   "tool": "T7-0031",
+   "seq": 1,
+   "x": 22.008
+  },
+  {
+   "t": "2026-11-09T09:40:00-05:00",
+   "lot": "L-0409",
+   "shift": "1",
+   "tool": "T7-0031",
+   "seq": 40,
+   "x": 22.01
+  },
+  {
+   "t": "2026-11-09T12:15:00-05:00",
+   "lot": "L-0409",
+   "shift": "1",
+   "tool": "T7-0031",
+   "seq": 80,
+   "x": 22.012
+  },
+  {
+   "t": "2026-11-09T15:30:00-05:00",
+   "lot": "L-0410",
+   "shift": "2",
+   "tool": "T7-0031",
+   "seq": 1,
+   "x": 22.013
+  },
+  {
+   "t": "2026-11-09T19:45:00-05:00",
+   "lot": "L-0410",
+   "shift": "2",
+   "tool": "T7-0031",
+   "seq": 60,
+   "x": 22.016
+  },
+  {
+   "t": "2026-11-10T07:20:00-05:00",
+   "lot": "L-0411",
+   "shift": "1",
+   "tool": "T7-0031",
+   "seq": 1,
+   "x": 22.017
+  },
+  {
+   "t": "2026-11-10T11:05:00-05:00",
+   "lot": "L-0411",
+   "shift": "1",
+   "tool": "T7-0031",
+   "seq": 70,
+   "x": 22.019
+  },
+  {
+   "t": "2026-11-10T15:10:00-05:00",
+   "lot": "L-0412",
+   "shift": "2",
+   "tool": "T7-0031",
+   "seq": 1,
+   "x": 22.022
+  },
+  {
+   "t": "2026-11-10T18:30:00-05:00",
+   "lot": "L-0412",
+   "shift": "2",
+   "tool": "T7-0031",
+   "seq": 90,
+   "x": 22.029
+  },
+  {
+   "t": "2026-11-10T21:50:00-05:00",
+   "lot": "L-0412",
+   "shift": "2",
+   "tool": "T7-0031",
+   "seq": 180,
+   "x": 22.034
+  },
+  {
+   "t": "2026-11-11T07:05:00-05:00",
+   "lot": "L-0413",
+   "shift": "1",
+   "tool": "T7-0032",
+   "seq": 1,
+   "x": 22.007
+  }
+ ],
+ "fit": {
+  "slope": 0.0005350976440821216,
+  "icpt": 22.008015969790836,
+  "t0": "2026-11-09T07:10:00-05:00"
+ }
+}

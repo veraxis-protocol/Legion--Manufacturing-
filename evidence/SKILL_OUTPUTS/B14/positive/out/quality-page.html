@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quality Register</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1A1D21;--paper:#F2F3F5;--paper-raised:#FFFFFF;--line:#D6D9DD;--accent:#1F5C8B;--accent-soft:#E4EDF4;--good:#2E7248;--good-soft:#E3EFE7;--warn:#A8641A;--warn-soft:#F7EBDA;--critical:#A93226;--critical-soft:#F9E9E7;--font-display:'IBM Plex Sans Condensed','Arial Narrow',sans-serif;--font-body:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,sans-serif;--font-mono:'IBM Plex Mono','SF Mono',Consolas,monospace;--text-xs:.75rem;--text-sm:.875rem;--text-base:1rem;--text-xl:1.375rem;--text-2xl:1.75rem;--text-3xl:2.25rem}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#E8EAEC;--paper:#15181B;--paper-raised:#1D2126;--line:#2E343A;--accent:#6BA8D4;--accent-soft:#1B2C39;--good:#6FBF88;--good-soft:#1B2E22;--warn:#D9A15C;--warn-soft:#33271A;--critical:#DE8378;--critical-soft:#35201E}}
+:root[data-theme="dark"]{--ink:#E8EAEC;--paper:#15181B;--paper-raised:#1D2126;--line:#2E343A;--accent:#6BA8D4;--accent-soft:#1B2C39;--good:#6FBF88;--good-soft:#1B2E22;--warn:#D9A15C;--warn-soft:#33271A;--critical:#DE8378;--critical-soft:#35201E}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 var(--text-base)/1.5 var(--font-body)}
+.page{display:flex;flex-direction:column;gap:1.25rem;max-width:900px;margin:0 auto;padding:2rem 1rem}
+.panel{background:var(--paper-raised);border:1px solid var(--line);border-radius:4px;padding:1.5rem}
+h1,h2{font-family:var(--font-display);font-weight:600;margin:0 0 .5rem}h1{font-size:var(--text-2xl)}h2{font-size:var(--text-xl)}
+.meta{font-size:var(--text-sm);margin:0}
+.table-scroll{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:var(--text-sm)}th,td{text-align:left;padding:.45rem .5rem;border-bottom:1px solid var(--line);vertical-align:top}
+.num,.id{font-family:var(--font-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.status{display:inline-block;padding:.15rem .55rem;border-radius:2px;font:600 var(--text-xs) var(--font-body);text-transform:uppercase;letter-spacing:.04em}
+.status--good{background:var(--good-soft);color:var(--good)}.status--warn{background:var(--warn-soft);color:var(--warn)}.status--critical{background:var(--critical-soft);color:var(--critical)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem}.stat-figure{font:500 var(--text-3xl) var(--font-mono)}.stat-context{font-size:var(--text-sm);margin:.25rem 0 0}
+footer{font-size:var(--text-xs)}
+</style>
+</head>
+<body>
+<main class="page">
+<header>
+  <h1>Quality Register (this NCR only)</h1>
+  <p class="meta">Site not on file · Generated 2026-11-14 · data as of finding 2026-11-11 10:05 (zone unresolved)</p>
+</header>
+
+<div class="panel">
+  <p><strong>Tracks NCRs run through this plugin since [date unknown: the register was not reachable this run]. Not your full quality library.</strong></p>
+  <p>The Quality Register was not updated: the artifact tools are not available in this session. This page could not read any other register rows, so it shows this NCR only and prints no open count.</p>
+</div>
+
+<div class="panel">
+  <h2>Sources</h2>
+  <div class="table-scroll"><table>
+    <thead><tr><th>Source</th><th>Last refreshed</th><th>Covers</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Inventory / ERP shipment records</td><td>not available</td><td>—</td><td><span class="status status--critical">Missing</span></td></tr>
+      <tr><td>Inspection export (gage, all 5 readings)</td><td>not available</td><td>—</td><td><span class="status status--warn">Finding text only</span></td></tr>
+      <tr><td>Inspector finding (finding.txt)</td><td class="num">2026-11-11 10:05</td><td>Lot L-0412</td><td><span class="status status--warn">Pasted, unverified</span></td></tr>
+      <tr><td>Drawing MB-1880 rev B notes</td><td>—</td><td>Sheet 2</td><td><span class="status status--good">Read</span></td></tr>
+      <tr><td>Prior NCRs (prior_ncrs.csv)</td><td>—</td><td class="num">2026-04-14 to 2026-08-02</td><td><span class="status status--warn">Partial: no machine/supplier columns</span></td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+<div class="panel">
+  <h2>This NCR</h2>
+  <div class="table-scroll"><table>
+    <thead><tr><th>NCR</th><th>Part</th><th>Lot</th><th>Status</th><th>8D step</th><th>Owner</th><th>Due</th><th>Escape clock</th><th>Age (days)</th></tr></thead>
+    <tbody><tr>
+      <td class="id">DRAFT-WO-8102-L-0412</td><td class="id">MB-1880</td><td class="id">L-0412</td>
+      <td><span class="status status--warn">Awaiting approval</span></td>
+      <td>not yet investigated</td><td>unassigned</td><td>no due date</td>
+      <td><span class="status status--critical">Window unknown</span> Northwind Robotics, escape possible</td>
+      <td class="num">3</td>
+    </tr></tbody>
+  </table></div>
+  <p>Bore A dia 22.029 to 22.034 mm against 22.021 max on 3 of 5 samples. Suspect: at least 300 (lot L-0412); 30 shipped on PS-5521. Containment: 5 of 5 locations addressed, none verified.</p>
+</div>
+
+<div class="panel">
+  <h2>Recurrence and supplier flags</h2>
+  <p><span class="status status--critical">Previous fix did not hold</span> NCR-0219 (2026-04-14): same part, same defect; CAPA-071 (insert change every 600 parts), effectiveness not verified.</p>
+  <p>Supplier-caused: not yet investigated.</p>
+</div>
+
+<div class="panel"><h2>Closed items</h2><p>None known: the register was not reachable this run.</p></div>
+
+<footer>Generated by <strong>ncr-writeup</strong> — Manufacturing. Internal: it lists customer names and notification deadlines. Check who you share it with. Offered page: save it where the Quality Register lives.</footer>
+</main>
+</body>
+</html>

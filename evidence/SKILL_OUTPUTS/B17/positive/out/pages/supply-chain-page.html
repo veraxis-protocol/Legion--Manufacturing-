@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Supply Chain Signal</title>
+<style>:root{--bg:#fff;--fg:#1a1a1a;--mut:#666;--line:#ddd;--warn:#a33}
+@media (prefers-color-scheme:dark){:root{--bg:#161616;--fg:#eee;--mut:#aaa;--line:#333;--warn:#f88}}
+body{background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,sans-serif;margin:0;padding:16px;max-width:900px}
+table{border-collapse:collapse;width:100%;margin:8px 0}td,th{border:1px solid var(--line);padding:6px;text-align:left;vertical-align:top}
+.b{border-left:4px solid var(--warn);padding:8px;margin:12px 0}</style></head><body>
+<h1>Supply Chain: BSH-1210 supplier signal (offered page, SYNTHETIC test data)</h1>
+<p class="b"><strong>Single-source risk:</strong> the approved list records only Alder Sintered Parts (fictitious), the implicated supplier, as a current source for BSH-1210. Birch Powder Metal (fictitious) is approved for the commodity but has no recorded qualification on this part. Its 2026-10 quote states no revision.</p>
+<h2>Supplier signal</h2>
+<table><tr><th>Field</th><th>Value</th></tr>
+<tr><td>Determination</td><td>supplier_caused, medium confidence, leading candidate</td></tr>
+<tr><td>Competing</td><td>Receiving hardness tester error (2nd); lot mix-up (3rd)</td></tr>
+<tr><td>Supplier / PO / lot</td><td>Alder Sintered Parts (fictitious) / PO-30655 / AS-7781, 1,000 each</td></tr>
+<tr><td>Approval</td><td>approved 2026-11-14T17:12-05:00 by Test Quality Owner (LEGION WO-LMFG-004 test operator), while the tester calibration check (C2) is pending</td></tr>
+<tr><td>escape_detected_at</td><td>null (no parts placed at a customer)</td></tr>
+<tr><td>determination_made_at</td><td>2026-11-14T17:02-05:00. The middle of the three; this cannot be reconstructed afterwards.</td></tr>
+<tr><td>rfq_issued_at</td><td>not issued</td></tr></table>
+<h2>RFQ package</h2>
+<p><strong>Drafted, not released.</strong> SRC-2026-11-14-BSH-1210. Rev A was confirmed by document control (test operator; no ERP). The package has the mandated response format and passed the outbound check. Quantities, due date, terms and the clause set are placeholders for the buyer. Emails to Birch and Cedar are HELD (no address, no due date; Cedar is not confirmed approved). Nothing has been sent. rfq_issued_at is not recorded.</p>
+<h2>Candidates</h2>
+<table><tr><th>Supplier</th><th>Status</th><th>Requalification</th></tr>
+<tr><td>Alder Sintered Parts (fictitious)</td><td>approved, incumbent, implicated</td><td>n/a. Invite back: the buyer's call</td></tr>
+<tr><td>Birch Powder Metal (fictitious)</td><td>approved (commodity)</td><td>part qualification not recorded; samples, FAI, PPAP: weeks to months</td></tr>
+<tr><td>Cedar Bearings Inc (fictitious)</td><td>conditional, not confirmed approved, audit overdue</td><td>audit plus FAI before production</td></tr></table>
+<h2>Missing for the package</h2>
+<p>ERP item-master revision; usage, open demand and forecast; first article date and schedule; standard quality clause set (unverified; only "C of C per lot" is on the drawing); commercial terms; response due date and contacts; vendor IDs and emails; RFQ template.</p>
+<p>Offered page: save it where your sourcing pages live. Nothing was written to any system.</p>
+</body></html>

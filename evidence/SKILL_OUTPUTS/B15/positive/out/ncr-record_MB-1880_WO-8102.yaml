@@ -1,0 +1,58 @@
+# SYNTHETIC test data. Contract: shared/contracts/ncr.md v4. Emitted by ncr-writeup, consumed by root-cause-capa. Not stored in any system of record.
+contract_version: 4
+ncr_ref: DRAFT-WO-8102-L-0412
+site: "EPW1 (test)"
+part_number: MB-1880
+part_number_verbatim: "MB-1880 rev B"
+part_revision: "B"
+production_wo: WO-8102
+production_wo_verbatim: "WO-8102"
+lot_number: L-0412
+lot_number_verbatim: "L-0412"
+operation: "final inspection"
+found_by: "J. Ortiz, final inspection"
+found_at: "2026-11-11 10:05 (zone unresolved: naive in finding.txt, no plant clock declaration)"
+disposition_pending: true
+condition_found: "Bore A diameter 22.034, 22.031, 22.029 mm on 3 of 5 sampled parts against 22.000 +0.021/-0.000 mm."
+measurements:
+  - { characteristic: "Bore A diameter", measured: "22.034", nominal: "22.000", tolerance: "+0.021/-0.000", uom: mm, gage: null, source_ref: "finding.txt" }
+  - { characteristic: "Bore A diameter", measured: "22.031", nominal: "22.000", tolerance: "+0.021/-0.000", uom: mm, gage: null, source_ref: "finding.txt" }
+  - { characteristic: "Bore A diameter", measured: "22.029", nominal: "22.000", tolerance: "+0.021/-0.000", uom: mm, gage: null, source_ref: "finding.txt" }
+is_subjective: false
+qty_found: 3
+qty_found_reason: null
+uom: each
+requirement_cited:
+  source: "drawing"
+  document: "MB-1880 drawing revision B, sheet 2 notes (MB-1880_drawing_revB_notes.md)"
+  locator: "note 4, Bore A"
+  characteristic: "diameter"
+  stated_value: "22.000 +0.021/-0.000 mm"
+requirement_not_locatable: false
+qty_suspect: 300
+qty_suspect_is_minimum: true
+scope_basis: production_window
+scope_reasoning: "Bore grew steadily on insert T7-0031 across L-0409..L-0412 with no tool change; L-0412 seq 1 already 22.022, so all 300 of L-0412 are suspect. Floor because L-0411 parts after seq 70 (last measured 22.019, rising) are unmeasured and the L-0411 lot size is not in the inputs."
+traceability_complete: false
+containment:
+  - { location: installed_at_customer, qty: 0, uom: each, checked: false, action: "Ask Northwind Robotics whether any of the 30 were installed or shipped on.", urgency: immediate, owner: null, customer: "Northwind Robotics", source_ref: "not verifiable from our records" }
+  - { location: at_customer, qty: 30, uom: each, checked: false, action: "Notify Northwind Robotics (draft); request quarantine of PS-5521 receipt.", urgency: immediate, owner: null, customer: "Northwind Robotics", source_ref: "finding.txt: shipped 2026-11-11 08:00, PS-5521; delivery not confirmed" }
+  - { location: in_transit, qty: 0, uom: each, checked: false, action: "Confirm PS-5521 delivery; intercept at carrier if not delivered.", urgency: immediate, owner: null, customer: "Northwind Robotics", source_ref: "no shipment record available" }
+  - { location: wip_at_machine, qty: 120, uom: each, checked: false, action: "Hold at VMC-03 queue, tag; no anodize.", urgency: immediate, owner: null, customer: null, source_ref: "finding.txt (no inventory export)" }
+  - { location: finished_goods, qty: 150, uom: each, checked: false, action: "Quarantine FG-2 rack 14, tag.", urgency: same_day, owner: null, customer: null, source_ref: "finding.txt (no inventory export)" }
+recurrence: recurrence_prior_capa_failed
+prior_ncrs_found: 1
+related_records:
+  - { ref: NCR-0219, date: 2026-04-14, what_matched: "same part, same defect (bore oversize 22.026)", fix_held: false, note: "CAPA-071 insert change every 600 parts; effectiveness not verified" }
+  - { ref: NCR-0244, date: 2026-08-02, what_matched: "possible same process class (offset after tool change); different part MB-1500; machine unknown - unverified, not counted", fix_held: true }
+history_searched: true
+escape_occurred: true
+escape_possible: false
+verify_shipment_action: "Confirm with shipping whether PS-5521 (30 pcs) has been delivered to Northwind Robotics."
+escape_detected_at: "2026-11-14T17:09:00-05:00"
+notification_drafted: true
+notification_deadline: null   # contractual window unknown - ask
+affected_customers: ["Northwind Robotics"]
+approval_state: approved
+approved_by: "Test Quality Owner (LEGION WO-LMFG-004 test operator)"
+approved_at: "2026-11-14T17:13:00-05:00"   # time this run received the approval

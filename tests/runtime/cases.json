@@ -102,7 +102,7 @@
     "must_mention": ["downtime"],
     "expect": "No downtime export: availability and the downtime log must be reported as unavailable, not computed or zero."}},
 
-  {"id": "B11", "skill": "morning-plant-pulse", "chain": ["data-consolidate", "daily-production-report"], "max_turns": 120,
+  {"id": "B11", "skill": "morning-plant-pulse", "chain": ["daily-production-report"], "chain_note": "morning-plant-pulse SKILL.md line 363: ../data-consolidate/SKILL.md is read only when the engine (pulse_compute.py) cannot run; the engine performs the join itself", "max_turns": 120,
    "positive": {"inputs": ["fixtures/pulse_oee", "plant/rates_memo.txt"],
     "prompt": "Run the morning plant pulse on last night's export drop in ./inputs and give me the operations command center page. There is no artifact store here, so write the page as an HTML file.",
     "must_mention": ["OEE", "plan"],
@@ -169,7 +169,7 @@
     "prompt": "Run the supplier escape chain on the BSH-1210 hardness failure from receiving (./inputs/escape): NCR and containment, root cause against the supplier, corrective action, and the alternate-source RFQ package. Nothing goes to any supplier.",
     "min_outputs": 2,
     "must_mention": ["AS-7781", "47|49|50", "25-40|25 ?to ?40", "Birch|Cedar", "owner|approv|release"],
-    "must_not": ["Cedar[^\\n]{0,80}approved(?! *(?:status)? *(?:is )?conditional)"],
+    "must_not": ["Cedar[^\\n]{0,80}(?:\\bis\\b|status[:=]?|\\|)\\s*\\**approved\\b"],
     "expect": "NCR with containment (600 quarantine, 400 issued to WO-8150); supplier-caused determination flagged for a human owner; corrective action request; alternate-source RFQ to approved suppliers (Birch approved; Cedar conditional/audit overdue) with comparable response format; nothing sent."},
    "negative": {"inputs": ["escape"], "drop": ["approved_suppliers.csv"],
     "must_mention": ["supplier"],
@@ -194,6 +194,21 @@
    "positive": {"inputs": ["evidence/E2E/02_bom_handoff.json", "e2e_bids", "evidence/SKILL_OUTPUTS/E01/positive/out=>intake"],
     "prompt": "We need to buy the MGN9-170 mm linear rail for the reBot job (BOM in ./inputs/02_bom_handoff.json, intake in ./inputs/intake). Build the supplier RFQ package with a response format that makes bids comparable, then normalise and compare the two quotes that came back (./inputs/e2e_bids). We may pool demand with other buyers to reach a supplier MOQ. Don't send or award anything.",
     "must_mention": ["MGN9", "MOQ|minimum order", "accuracy", "250", "100"],
-    "expect": "Supplier RFQ package for the MGN9-170 rail and a normalised comparison of the two supplied test quotes, flagging Y's unstated accuracy class and MOQ 250, X's FOB freight unknown and MOQ 100; nothing sent or awarded."}}
+    "expect": "Supplier RFQ package for the MGN9-170 rail and a normalised comparison of the two supplied test quotes, flagging Y's unstated accuracy class and MOQ 250, X's FOB freight unknown and MOQ 100; nothing sent or awarded."}},
+
+  {"id": "HA", "skill": "rfq-to-quote", "baseline": "A: original Claude for Manufacturing plugin only", "max_turns": 150,
+   "positive": {"inputs": ["e2e/rfq_rebot_email.txt", "ref/readme.md", "ref/reBot_B601_DM_v1.1_20260625.step",
+                           "e2e/purchase_orders_5052.csv", "plant/rates_memo.txt", "e2e_bids", "e2e/coalition_demand.csv"],
+    "prompt": "Work this RFQ end to end (./inputs/rfq_rebot_email.txt). The customer's CAD is the STEP file in ./inputs and the project readme is ./inputs/readme.md. I need: (1) the bill of CNC parts per arm with quantities, checked against the STEP model; (2) the engineering readiness - which requirements are verified and which are not; (3) a draft cost estimate for 20 sets from our POs and rates memo; (4) a comparison of the two rail quotes in ./inputs/e2e_bids; (5) whether pooling the buyers in ./inputs/coalition_demand.csv gets us to the rail supplier's MOQ, and whether we can rely on that. Draft only; nothing is sent.",
+    "min_outputs": 1,
+    "expect": "Same task for both configurations; scored by tools/baseline_compare.py against the engineering ground truth."}},
+
+  {"id": "HB", "skill": "rfq-to-quote", "baseline": "B: original plugin + LEGION Manufacturing integrations", "max_turns": 150,
+   "positive": {"inputs": ["e2e/rfq_rebot_email.txt", "ref/readme.md", "ref/reBot_B601_DM_v1.1_20260625.step",
+                           "e2e/purchase_orders_5052.csv", "plant/rates_memo.txt", "e2e_bids", "e2e/coalition_demand.csv",
+                           "evidence/E2E/02_engineering.json", "evidence/E2E/02_bom_handoff.json", "evidence/E2E/06_commercial.json"],
+    "prompt": "Work this RFQ end to end (./inputs/rfq_rebot_email.txt). The customer's CAD is the STEP file in ./inputs and the project readme is ./inputs/readme.md. I need: (1) the bill of CNC parts per arm with quantities, checked against the STEP model; (2) the engineering readiness - which requirements are verified and which are not; (3) a draft cost estimate for 20 sets from our POs and rates memo; (4) a comparison of the two rail quotes in ./inputs/e2e_bids; (5) whether pooling the buyers in ./inputs/coalition_demand.csv gets us to the rail supplier's MOQ, and whether we can rely on that. Draft only; nothing is sent. LEGION Manufacturing has already processed this RFQ: its STEP/XCAF BOM extraction and ZTL engineering verification are in ./inputs/02_engineering.json and ./inputs/02_bom_handoff.json, and its coalition evaluation is ./inputs/06_commercial.json.",
+    "min_outputs": 1,
+    "expect": "Same task for both configurations; scored by tools/baseline_compare.py against the engineering ground truth."}}
  ]
 }

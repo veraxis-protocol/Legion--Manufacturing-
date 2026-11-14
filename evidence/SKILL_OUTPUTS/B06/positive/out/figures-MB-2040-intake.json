@@ -1,0 +1,68 @@
+[
+ {
+  "figure": "WO-7702 age at run date (days)",
+  "value": 119,
+  "computed_from": "inputs/cost/closed_jobs.csv",
+  "filter": "work_order==WO-7702; 2026-11-14-2026-07-18"
+ },
+ {
+  "figure": "WO-7702 scrapped / (completed+scrapped)",
+  "value": "6/306 = 1.96%",
+  "computed_from": "inputs/cost/closed_jobs.csv",
+  "filter": "work_order==WO-7702"
+ },
+ {
+  "figure": "WO-7811 age at run date (days)",
+  "value": 49,
+  "computed_from": "inputs/cost/closed_jobs.csv",
+  "filter": "work_order==WO-7811; 2026-11-14-2026-09-26"
+ },
+ {
+  "figure": "WO-7811 scrapped / (completed+scrapped)",
+  "value": "9/509 = 1.77%",
+  "computed_from": "inputs/cost/closed_jobs.csv",
+  "filter": "work_order==WO-7811"
+ },
+ {
+  "figure": "Closed-job rows / distinct work orders",
+  "value": "4 / 2",
+  "computed_from": "inputs/cost/closed_jobs.csv",
+  "filter": "all rows; all MB-1880 rev B"
+ },
+ {
+  "figure": "Closed-job rows for MB-2040",
+  "value": 0,
+  "computed_from": "inputs/cost/closed_jobs.csv",
+  "filter": "part=='MB-2040' (returned nothing)"
+ },
+ {
+  "figure": "Routing rows for MB-2040",
+  "value": 0,
+  "computed_from": "inputs/cost/routings.csv",
+  "filter": "part=='MB-2040' (returned nothing)"
+ },
+ {
+  "figure": "Stale after (5 business days from received_at, default)",
+  "value": "2026-11-09T09:14:00-05:00",
+  "computed_from": "rfq_email.txt Date header",
+  "filter": "weekdays only; no holiday calendar on file"
+ },
+ {
+  "figure": "Business days since received_at to run date",
+  "value": 9,
+  "computed_from": "rfq_email.txt Date header",
+  "filter": "weekdays 2026-11-02..2026-11-14"
+ },
+ {
+  "figure": "Days from run date to first-article date 2027-01-15",
+  "value": 62,
+  "computed_from": "rfq_email.txt",
+  "filter": "calendar days"
+ },
+ {
+  "figure": "Quantity breaks requested",
+  "value": "3 (250, 500, 1000 each)",
+  "computed_from": "rfq_email.txt",
+  "filter": "not averaged"
+ }
+]

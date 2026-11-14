@@ -87,6 +87,8 @@ def _src(spec: str) -> Path:
         return FIXTURES / spec[len("fixtures/"):]
     if spec.startswith("evidence/"):        # an earlier stage's recorded artifact (E2E handoffs)
         return ROOT / spec
+    if spec.startswith("ref/"):             # reBot reference files fetched at run time (CERN-OHL-W; not committed)
+        return Path(os.environ.get("LMFG_REF", r"C:\LMFG\ref")) / spec[len("ref/"):]
     return INPUTS / spec
 
 
@@ -107,7 +109,9 @@ def stage_inputs(case: dict, variant: str, dest: Path) -> list:
             t = dest / rel
             t.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(f, t)
-            staged.append({"path": "inputs/" + rel.replace("\\", "/"), "source": str(f.relative_to(ROOT)).replace("\\", "/"),
+            src_name = (str(f.relative_to(ROOT)) if f.is_relative_to(ROOT) else
+                        "reBot-DevArm@22f002a (pinned reference, fetched at run time): " + f.name)
+            staged.append({"path": "inputs/" + rel.replace("\\", "/"), "source": src_name.replace("\\", "/"),
                            "sha256": sha256(f), "bytes": f.stat().st_size})
     return staged
 
@@ -469,6 +473,12 @@ def parse_session_jsonl(path: Path) -> dict:
                 m_cd = re.match(r"\s*cd\s+\S*skills/([\w-]+)/?\s*$", seg)
                 if m_cd:
                     cwd_skill = m_cd.group(1)
+                elif re.match(r"\s*cd\s+\S*/skills/?\s*$", seg):
+                    cwd_skill = "<skills>"          # `cd .../skills; cat <name>/SKILL.md`
+                if cwd_skill == "<skills>" and re.match(r"\s*(cat|Get-Content|type)\s", seg):
+                    for a in re.findall(r"(?:^|\s)([\w-]+)/SKILL\.md", seg):
+                        read.add(a)
+                        p["skill_files_read"].append(f"{a}/SKILL.md")
                 if re.match(r"\s*(cat|Get-Content|type)\b", seg):
                     read.update(re.findall(r"skills/([\w-]+)/SKILL\.md", seg))
                     if cwd_skill and re.search(r"(^|\s)(\./)?SKILL\.md\b", seg):

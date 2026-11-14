@@ -1,0 +1,44 @@
+# Supplier-caused flag per shared/contracts/supplier-caused-flag.md (contract version 2). SYNTHETIC test data.
+# Raised by root-cause-capa (Chain 5 step 2). Gate 1 APPROVED by the named test operator, 2026-11-14T17:12-05:00.
+contract_version: 2
+site: "not given"
+determination: supplier_caused
+confidence: medium
+is_leading_candidate: true
+competing_candidates:
+  - "C2 Receiving hardness measurement error (tester calibration, scale/load, test location), ranked second. Supported by the supplier C of C stating 32 HRF and by no gage ID or calibration being recorded; contradicted (weakly) by lots AS-7702 and AS-7744 passing the same incoming hardness check."
+  - "C3 Lot identity mix-up (parts received as AS-7781 are not the material the C of C covers), ranked third. Only support is the C of C / measurement disagreement; no evidence of mixed labels."
+ncr_ref: "NCR-UNASSIGNED"
+capa_ref: "8D-NCR-UNASSIGNED (draft)"   # drafted after NCR approval; D6/D8 placeholders
+
+part_number: BSH-1210
+part_number_verbatim: "BSH-1210 rev A bushings"
+part_revision: "A"
+lot_number: AS-7781
+lot_number_verbatim: "AS-7781"
+supplier_id: "Alder Sintered Parts (fictitious)"     # no vendor ID in the inputs; name used verbatim
+supplier_id_verbatim: "Alder Sintered Parts (fictitious)"
+supplier_name: "Alder Sintered Parts (fictitious)"
+purchase_order: PO-30655
+received_at: null                   # receipt RCV-9921 date/time not stated; inspection dated 2026-11-12
+qty_affected: 1000
+uom: each
+
+evidence_for:
+  - "5 of 5 incoming samples from lot AS-7781 measured 46-50 HRF (mean 48) against 25-40 HRF on drawing BSH-1210 rev A (incoming_finding.txt line 3; BSH-1210_drawing_revA.md notes)."
+  - "Parts were tested at receiving (RCV-9921) before any plant processing (incoming_finding.txt line 2)."
+  - "Lot clustering: 1 of 3 recorded lots from this supplier failed; AS-7702 (2026-09) and AS-7744 (2026-10) passed the incoming hardness check (incoming_finding.txt line 5). Small numbers: 3 lots."
+evidence_against:
+  - "Supplier C of C for lot AS-7781 states 32 HRF, inside spec (incoming_finding.txt line 4); the 16 HRF gap to our mean is equally explained by our tester reading high."
+  - "No gage ID, calibration date, test scale/load or test location recorded for the 5 readings (incoming_finding.txt)."
+  - "No mechanism evidence at the supplier: oil content not tested, no density or supplier process data."
+lot_clustering_observed: true
+recurrence: no_searchable_history
+escape_occurred: false
+
+escape_detected_at: null            # no parts placed at or past a customer
+determination_made_at: "2026-11-14T17:02-05:00"   # run host clock; plant timezone not confirmed. Middle of the three stamps; cannot be reconstructed afterwards.
+
+approved_by: "Test Quality Owner (LEGION WO-LMFG-004 test operator)"   # name as given; approves acting while the tester calibration check (C2) is pending
+approved_at: "2026-11-14T17:12-05:00"
+approval_state: approved

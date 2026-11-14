@@ -1,0 +1,47 @@
+Figure,Value,Computed from,Filter or arithmetic
+Files in inputs/cost,2,directory listing,os.listdir(inputs/cost)
+Purchase-order files found under inputs/,0,recursive walk of inputs/,filename token 'po' or contains 'purchase'
+"Routing rows, part MB-2040 (any rev)",0,routings.csv,part=='MB-2040'
+"Routing rows, part MB-1880 rev B",4,routings.csv,part=='MB-1880' and rev=='B'
+"Closed-job rows, part MB-2040",0,closed_jobs.csv,part=='MB-2040'
+"Closed work orders, MB-1880","2 (WO-7702, WO-7811)",closed_jobs.csv,distinct work_order where part=='MB-1880'
+Closed-date span,2026-07-18 to 2026-09-26,closed_jobs.csv,min/max closed_date
+Largest closed-job quantity (MB-1880),500,closed_jobs.csv,max qty_completed
+Scrap rate WO-7702 = scrapped/(completed+scrapped),1.96%,closed_jobs.csv,6/(300+6)
+Scrap rate WO-7811 = scrapped/(completed+scrapped),1.77%,closed_jobs.csv,9/(500+9)
+"MB-1880 routing setup, all ops",105 min = 1.750 h,routings.csv,"sum setup_min, ops 10-40"
+"MB-1880 routing run, all ops",12.8 min/pc = 0.2133 h/pc,routings.csv,"sum run_min_per_unit, ops 10-40"
+Op 10 closed-job rows,0,closed_jobs.csv,part=='MB-1880' and op=='10'
+Op 20 WO-7702 actual run min/pc,6.700,closed_jobs.csv,2010/300 (per completed pc)
+Op 20 WO-7702 setup variance vs MB-1880 routing,+15.6% FLAG,both files,(52-45)/45
+Op 20 WO-7702 run variance vs MB-1880 routing,+8.1%,both files,(6.700-6.2)/6.2
+Op 20 WO-7702 within 1% of routing (probable_standard test),no,both files,|setup var|<=1% and |run var|<=1%
+Op 20 WO-7811 actual run min/pc,6.480,closed_jobs.csv,3240/500 (per completed pc)
+Op 20 WO-7811 setup variance vs MB-1880 routing,+4.4%,both files,(47-45)/45
+Op 20 WO-7811 run variance vs MB-1880 routing,+4.5%,both files,(6.480-6.2)/6.2
+Op 20 WO-7811 within 1% of routing (probable_standard test),no,both files,|setup var|<=1% and |run var|<=1%
+Op 30 WO-7702 actual run min/pc,3.350,closed_jobs.csv,1005/300 (per completed pc)
+Op 30 WO-7702 setup variance vs MB-1880 routing,+13.3%,both files,(34-30)/30
+Op 30 WO-7702 run variance vs MB-1880 routing,+8.1%,both files,(3.350-3.1)/3.1
+Op 30 WO-7702 within 1% of routing (probable_standard test),no,both files,|setup var|<=1% and |run var|<=1%
+Op 30 WO-7811 actual run min/pc,3.180,closed_jobs.csv,1590/500 (per completed pc)
+Op 30 WO-7811 setup variance vs MB-1880 routing,-3.3%,both files,(29-30)/30
+Op 30 WO-7811 run variance vs MB-1880 routing,+2.6%,both files,(3.180-3.1)/3.1
+Op 30 WO-7811 within 1% of routing (probable_standard test),no,both files,|setup var|<=1% and |run var|<=1%
+Op 40 closed-job rows,0,closed_jobs.csv,part=='MB-1880' and op=='40'
+"Setup h per pc at 250 (MB-1880 routing, rung 4)",0.00700,routings.csv,1.750 h / 250
+"Run h per job at 250 (MB-1880 routing, rung 4)",53.33,routings.csv,12.8 min/pc x 250 / 60
+Total MILL-V+INSP work content at 250 (h),55.08,routings.csv,(105 + 12.8x250)/60
+MILL-V work content at 250 (h),46.58,routings.csv,(95 + 10.8x250)/60
+INSP work content at 250 (h),8.50,routings.csv,(10 + 2x250)/60
+"Setup h per pc at 500 (MB-1880 routing, rung 4)",0.00350,routings.csv,1.750 h / 500
+"Run h per job at 500 (MB-1880 routing, rung 4)",106.67,routings.csv,12.8 min/pc x 500 / 60
+Total MILL-V+INSP work content at 500 (h),108.42,routings.csv,(105 + 12.8x500)/60
+MILL-V work content at 500 (h),91.58,routings.csv,(95 + 10.8x500)/60
+INSP work content at 500 (h),16.83,routings.csv,(10 + 2x500)/60
+"Setup h per pc at 1000 (MB-1880 routing, rung 4)",0.00175,routings.csv,1.750 h / 1000
+"Run h per job at 1000 (MB-1880 routing, rung 4)",213.33,routings.csv,12.8 min/pc x 1000 / 60
+Total MILL-V+INSP work content at 1000 (h),215.08,routings.csv,(105 + 12.8x1000)/60
+MILL-V work content at 1000 (h),181.58,routings.csv,(95 + 10.8x1000)/60
+INSP work content at 1000 (h),33.50,routings.csv,(10 + 2x1000)/60
+"Requested qty 1,000 / largest closed-job qty",2.0x,rfq_email + closed_jobs.csv,1000/500

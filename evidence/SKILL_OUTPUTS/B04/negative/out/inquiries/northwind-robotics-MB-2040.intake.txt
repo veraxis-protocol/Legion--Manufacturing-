@@ -1,0 +1,145 @@
+# Intake form record - customer-inquiry-intake - contract_version 7
+# SYNTHETIC test data (fictitious plant and customer). Not stored on an Open work page: no artifact tools in this run.
+# Source file: inputs/rfq_emailonly/rfq_email.txt (one email thread, 3 messages; M1 = Dana Whitfield 2026-11-02, M2 = Raj Patel 2026-10-29, M3 = Dana Whitfield 2026-10-28)
+contract_version: 7
+site: null            # no plant profile found (plant_setup.py find: exists false); which plant builds it is unknown
+customer: "Northwind Robotics"
+contact:
+  name: "Dana Whitfield"
+  email: "dana.whitfield@northwind-robotics.example"
+  phone: null
+  other_contacts:
+    - { name: "Raj Patel", email: "raj.patel@northwind-robotics.example", role: "engineering note sender (role not stated)" }
+rfq_reference: null   # no customer RFQ number stated; subject line only: "RFQ - motor bracket MB-2040 rev C"
+received_at: 2026-11-02T09:14:00-05:00   # Date header of M1; actual inbox receipt time not available
+response_deadline: null
+supersedes_rfq: null
+payment: null
+freight: null
+packaging: null
+liability: null
+source_documents:
+  - { name: "rfq_email.txt", type: email_thread_text, pages: 1, note: "3 messages" }
+  - { name: "MB-2040_spec_revC.md", type: spec_sheet, pages: null, note: "REFERENCED in M1 as attached; NOT PRESENT in the package received" }
+field_sources:
+  customer: "rfq_email.txt: M1 From header (northwind-robotics.example), M2 sender domain"
+  contact: "rfq_email.txt: M1 From header and signature"
+  rfq_reference: "rfq_email.txt: M1 Subject line (no RFQ number given)"
+  received_at: "rfq_email.txt: M1 Date header"
+  response_deadline: "not stated anywhere in rfq_email.txt"
+  payment: "not stated"
+  freight: "not stated"
+  packaging: "not stated"
+  liability: "not stated"
+
+line_items:
+  - line_no: 1
+    part_number: "MB-2040"
+    part_number_verbatim: "MB-2040"
+    description: "Motor bracket"
+    revision: "C"     # see ambiguous_register: rev B drawings also circulated
+    quantities:
+      - { qty: 250, uom: pcs }
+      - { qty: 500, uom: pcs }
+      - { qty: 1000, uom: pcs }
+    quantities_structure: "price breaks as listed; not a range; whether each is a total order quantity is not stated"
+    material: null
+    specs:
+      - characteristic: "M5 hole pattern location (rev C change vs rev B)"
+        nominal: "moved 2 mm outboard of rev B position"
+        tolerance: null
+        reading_basis: from_text
+        source_ref: "rfq_email.txt: M2 (Raj Patel, 2026-10-29) 'rev C moved the M5 pattern 2 mm outboard'"
+    finish: "anodize per the spec (type, class, colour, thickness not stated; spec sheet not received)"
+    certifications_required: ["material cert with each lot"]
+    required_delivery: 2027-01-15   # first articles; production deliveries monthly after that, quantities/schedule not stated
+    delivery_schedule_verbatim: "first articles by 15 Jan 2027 and production deliveries monthly after that"
+    eau: 4000
+    eau_note: "roughly 4,000 pcs if the pilot goes well (not a commitment) - customer's words; not a repeat part"
+    geometry_inputs: []   # the package carries no geometry: the only geometry source named (MB-2040_spec_revC.md) did not arrive
+    geometry_path: none   # classified on what the package holds; reclassify (A if a text spec, C2 if a drawing) when the spec sheet arrives
+    line_recommendation: null
+    line_bid_decision: draft
+    field_sources:
+      part_number: "rfq_email.txt: M1 Subject; M3 Subject"
+      description: "rfq_email.txt: M1 Subject 'motor bracket MB-2040 rev C'"
+      revision: "rfq_email.txt: M1 Subject 'rev C'; M1 body 'MB-2040_spec_revC.md'; M2 body"
+      quantities: "rfq_email.txt: M1 body 'Quantities: 250, 500 and 1,000 pcs.'"
+      material: "not stated; would be in MB-2040_spec_revC.md (not received)"
+      finish: "rfq_email.txt: M1 body 'Please include anodize per the spec.'"
+      certifications_required: "rfq_email.txt: M1 body 'Material cert required with each lot.'"
+      required_delivery: "rfq_email.txt: M1 body 'first articles by 15 Jan 2027'"
+      eau: "rfq_email.txt: M3 body 'Annual volume is roughly 4,000 pcs if the pilot goes well (not a commitment).'"
+      geometry_path: "classification of source_documents: spec sheet absent"
+
+missing_register:
+  - { line_no: 1, field: "spec sheet MB-2040_spec_revC.md (all geometry and specs)", why_it_matters: "Referenced as attached but not received. Without it there is no geometry, no dimensions, no tolerances and no material; the line cannot be quoted or even classified beyond 'none'.", should_have_come_from: "attachment to M1 (2026-11-02)" }
+  - { line_no: 1, field: material, why_it_matters: "quote-build blocks a line with null material; material also drives anodize compatibility and the material cert content.", should_have_come_from: "MB-2040_spec_revC.md" }
+  - { line_no: 1, field: "dimensions and tolerances (specs)", why_it_matters: "No tolerance can be inferred; manufacturability cannot be checked; the M5 pattern change is only relative to an unseen rev B.", should_have_come_from: "MB-2040_spec_revC.md / rev C drawing" }
+  - { line_no: 1, field: "mounting-face flatness (PENDING CHANGE)", why_it_matters: "Customer states it is still being decided and will be confirmed separately - a risk to the rev C being quoted; flatness can change process and inspection.", should_have_come_from: "customer engineering; source: M2 'Flatness of the mounting face is still being decided by our design team; we will confirm it separately.'" }
+  - { line_no: 1, field: "finish detail (anodize type, class, colour, thickness, masking)", why_it_matters: "Different anodize specs price and source differently; 'per the spec' points to a document not received.", should_have_come_from: "MB-2040_spec_revC.md" }
+  - { line_no: 1, field: "production release quantities and schedule after FAI", why_it_matters: "'Monthly' with no quantity; unclear whether 250/500/1,000 are total order quantities or release sizes. Setup amortisation and shop load depend on it.", should_have_come_from: "M1 or a delivery schedule" }
+  - { line_no: 1, field: "first article quantity and inspection report requirement", why_it_matters: "FAI pieces and report format are unpriced if unknown.", should_have_come_from: "M1 or spec sheet" }
+  - { line_no: 1, field: "material cert content (mill cert vs certificate of conformance)", why_it_matters: "Determines what documentation per lot must be sourced and priced.", should_have_come_from: "M1 or customer quality terms" }
+  - { line_no: null, field: rfq_reference, why_it_matters: "No customer reference to quote against or link answers to.", should_have_come_from: "M1 subject/body" }
+  - { line_no: null, field: response_deadline, why_it_matters: "Inquiry is already 12 days old (received 2026-11-02, today 2026-11-14); a quote due date is unknown.", should_have_come_from: "M1" }
+  - { line_no: null, field: "payment, freight, packaging, liability", why_it_matters: "All commercial terms null; quote would rest on plant standard terms (not on file - no profile), named as assumptions. Anodized parts usually need a packaging spec.", should_have_come_from: "customer terms / M1" }
+  - { line_no: null, field: site, why_it_matters: "Internal gap: no plant profile available in this run, so building site and capability are unknown.", should_have_come_from: "plant profile (onboarding)" }
+
+ambiguous_register:
+  - line_no: 1
+    field: revision
+    values_found:
+      - { value: "C", source_ref: "rfq_email.txt: M1 Subject 'rev C'; M1 body 'MB-2040_spec_revC.md'; M2 'rev C moved the M5 pattern'" }
+      - { value: "B", source_ref: "rfq_email.txt: M2 'Ignore rev B drawings that procurement circulated last week' (rev B drawings exist in circulation); M3 subject has no revision" }
+    why_it_matters: "Customer engineering says to ignore rev B, but rev B drawings were circulated and the rev C spec was not received. If any rev B file reached us it must not be used; the quote must state it is priced to rev C. Not resolved by intake - estimator confirms."
+
+open_questions: |
+  Subject: RE: RFQ - motor bracket MB-2040 rev C - a few questions before we quote
+
+  Hi Dana,
+
+  Thanks for sending the MB-2040 motor bracket RFQ. Before we can put a price on it we need a few things:
+
+  1. The spec sheet. Your 2 Nov message mentions an attached spec sheet (MB-2040_spec_revC.md), but only the email thread reached us. Could you resend it, along with a rev C drawing if there is one?
+  2. Revision. Raj's 29 Oct note says rev C moved the M5 pattern 2 mm outboard and that the rev B drawings procurement circulated should be ignored. Can you confirm rev C is the released revision we should quote to?
+  3. Flatness. Raj also mentioned that flatness of the mounting face is still being decided. Do you have a date for that decision? Unless you tell us otherwise, we will quote rev C with flatness listed as an open item.
+  4. Material. Which alloy and temper is the bracket? (If it is on the spec sheet, the resend covers this.)
+  5. Anodize. Which anodize specification, type/class, colour and thickness, and are any surfaces to be masked?
+  6. Quantities and deliveries. Are 250, 500 and 1,000 pcs price breaks on a total order quantity? After first articles on 15 Jan 2027, roughly how many pieces per monthly delivery should we plan for?
+  7. First articles. How many first-article pieces do you need, and in what inspection report format?
+  8. Material certification. What should the cert with each lot contain: a mill certificate, a certificate of conformance, or both?
+  9. Commercial. When do you need our quote back, and do you have payment, freight, packaging or other terms you want us to quote to? If not, we will quote on our standard terms.
+
+  Thanks,
+  [estimator name]
+
+recommendation: null
+recommendation_reasoning:
+  - "Could not score. The only technical document named (MB-2040_spec_revC.md) was not received, so material, geometry, tolerances and anodize spec are all unknown."
+  - "Constraint-free: no plant capability profile was available (plant_setup.py find: profile does not exist; no artifact tools in this run), so manufacturability was not checked against any profile."
+  - "No cost history: no ERP or closed-work-order data in this session, so no actual-cost comparable was available. No prior quote history either; that is not evidence this is a new part."
+  - "Dates alone: first articles requested 2027-01-15, about 9 weeks after today (2026-11-14); shop load not available to assess it."
+constraint_violations: []   # none determinable from stated facts; check not run against a profile (none available)
+recommendation_provisional: true
+would_change_recommendation:
+  - { question: "Q1 spec sheet / Q4 material / Q5 anodize", line: 1, becomes: "scoreable: bid if material, envelope, tolerances and anodize sit inside plant capability; no_bid if any is outside it (capability profile also needed)" }
+  - { question: "Q3 flatness", line: 1, becomes: "a flatness tighter than demonstrated capability would move line 1 toward no_bid; quoting before it is set carries it as an exclusion" }
+  - { question: "Q6 release quantities", line: 1, becomes: "affects date feasibility of the 2027-01-15 FAI and monthly deliveries; does not alone decide bid/no_bid" }
+hard_disqualifier_stopped: false
+inquiry_state: stale
+stale_since: 2026-11-09T09:14:00-05:00   # default 5 business days (not plant-set; no MFG_RFQ_STALE_DAYS, no profile) from received_at, because no questions_sent_at is recorded
+answers_received: []
+bid_decision_state: draft
+bid_decision_by: null
+bid_decision_at: null
+bid_decision_basis: null
+bid_decision_reset: null
+questions_sent_at: null
+questions_sent_by: null
+paused_at_step: 4
+waiting_on: "estimator: Gate 1, review and send the open questions"
+gates_passed: []
+
+# Open inquiries line (not saved to an Open work page - no artifact tools in this run; paste into the page when available):
+# - (no RFQ ref) MB-2040 | Northwind Robotics | file: inquiries/northwind-robotics-MB-2040.intake.txt | paused_at_step: 4 | waiting_on: estimator: Gate 1, send the open questions | stale_after: 2026-11-09 | bid_decision_state: draft

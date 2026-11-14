@@ -1,0 +1,68 @@
+# Structured NCR per shared/contracts/ncr.md (contract version 4). SYNTHETIC test data.
+# Produced by ncr-writeup (Chain 5 step 1) on 2026-11-14T17:02-05:00 (run host clock).
+contract_version: 4
+ncr_ref: "NCR-UNASSIGNED"          # no NCR number in the inputs; to be assigned by the plant's quality system
+site: "not given"                   # no Plant context / site in the inputs; question recorded
+part_number: BSH-1210
+part_number_verbatim: "BSH-1210 rev A bushings"
+part_revision: "A"
+production_wo: null                 # purchased part found at receiving; WO-8150 is the consuming assembly WO, see containment
+production_wo_verbatim: null
+lot_number: AS-7781
+lot_number_verbatim: "AS-7781"
+operation: "receiving inspection (receipt RCV-9921, PO-30655)"
+found_by: "receiving inspection (inspector name not recorded in finding)"
+found_at: "2026-11-12 (time and timezone not recorded in incoming_finding.txt)"
+disposition_pending: true
+
+condition_found: "Hardness measured 47, 49, 46, 50, 48 HRF on 5 samples from lot AS-7781 against a 25-40 HRF requirement; all 5 above the upper limit. Supplier C of C for the lot states 32 HRF. Oil content not tested."
+measurements:
+  - { characteristic: "hardness", measured: "47", nominal: null, tolerance: "25-40 HRF", uom: HRF, gage: "not recorded", source_ref: "incoming_finding.txt line 3" }
+  - { characteristic: "hardness", measured: "49", nominal: null, tolerance: "25-40 HRF", uom: HRF, gage: "not recorded", source_ref: "incoming_finding.txt line 3" }
+  - { characteristic: "hardness", measured: "46", nominal: null, tolerance: "25-40 HRF", uom: HRF, gage: "not recorded", source_ref: "incoming_finding.txt line 3" }
+  - { characteristic: "hardness", measured: "50", nominal: null, tolerance: "25-40 HRF", uom: HRF, gage: "not recorded", source_ref: "incoming_finding.txt line 3" }
+  - { characteristic: "hardness", measured: "48", nominal: null, tolerance: "25-40 HRF", uom: HRF, gage: "not recorded", source_ref: "incoming_finding.txt line 3" }
+is_subjective: false
+qty_found: 5
+qty_found_reason: null
+uom: each
+
+requirement_cited:
+  source: "drawing"
+  document: "BSH-1210_drawing_revA.md (drawing revision A, 2025-06-02)"
+  locator: "drawing notes, final line: 'Hardness 25-40 HRF' (after Flange OD 22 x 2.0 thick)"
+  characteristic: "hardness"
+  stated_value: "25-40 HRF"
+requirement_not_locatable: false
+
+qty_suspect: 1000
+qty_suspect_is_minimum: false
+scope_basis: lot
+scope_reasoning: "The suspected mechanism is the material of purchased lot AS-7781 (or, competing, the receiving hardness test). Either way it applies to every piece received on RCV-9921: all 1,000 pieces of lot AS-7781 are suspect until sorted or dispositioned. The 5 found were an incoming sample, not a 100% inspection. Prior lots AS-7702 and AS-7744 passed incoming hardness and are not in scope on the evidence available."
+traceability_complete: true      # lot recorded on the receipt; lot identity on WO-8150 assemblies NOT verified
+
+containment:
+  - { location: installed_at_customer, qty: 0, uom: each, checked: false, action: "Confirm whether any WO-8150 assemblies containing BSH-1210 lot AS-7781 have shipped and been installed; no customer is identified in the inputs.", urgency: immediate, owner: null, customer: null, source_ref: "not verifiable from the inputs (no shipment records, no ERP)" }
+  - { location: at_customer, qty: 0, uom: each, checked: false, action: "Check shipment records for WO-8150 output since the 2026-11-12 issue; if any shipped, identify the customer and request quarantine.", urgency: immediate, owner: null, customer: null, source_ref: "not verifiable from the inputs (no shipment records, no ERP)" }
+  - { location: in_transit, qty: 0, uom: each, checked: false, action: "Check open shipments of WO-8150 output; intercept any carrying lot AS-7781 parts.", urgency: immediate, owner: null, customer: null, source_ref: "not verifiable from the inputs (no shipment records, no ERP)" }
+  - { location: wip_at_machine, qty: 400, uom: each, checked: true, action: "Stop consuming lot AS-7781 on assembly line 2 / WO-8150; hold loose parts and any assemblies built with them; count loose vs assembled; tag with the NCR reference.", urgency: immediate, owner: null, customer: null, source_ref: "incoming_finding.txt line 4: 400 pcs already issued to assembly line 2 (WO-8150) - issue record, not a physical count" }
+  - { location: finished_goods, qty: 600, uom: each, checked: true, action: "Keep 600 pcs in receiving quarantine Q-1 (receiving quarantine mapped to this location type); tag with the NCR reference. Separately check stores for any WO-8150 assemblies built with lot AS-7781 (not checked).", urgency: same_day, owner: null, customer: null, source_ref: "incoming_finding.txt line 4: 600 pcs in receiving quarantine Q-1" }
+
+recurrence: no_searchable_history
+prior_ncrs_found: 0                 # no quality document library supplied; nothing was searched
+related_records:
+  - { ref: "AS-7702", date: "2026-09", what_matched: "same supplier, same part; incoming hardness check PASSED (receipt, not an NCR)", fix_held: null }
+  - { ref: "AS-7744", date: "2026-10", what_matched: "same supplier, same part; incoming hardness check PASSED (receipt, not an NCR)", fix_held: null }
+history_searched: false
+
+escape_occurred: false
+escape_possible: false              # no order, shipment status or customer for WO-8150 output in the inputs; customer locations unchecked, NOT clear
+verify_shipment_action: null
+escape_detected_at: null
+notification_drafted: false
+notification_deadline: null
+affected_customers: []
+
+approval_state: approved
+approved_by: "Test Quality Owner (LEGION WO-LMFG-004 test operator)"   # name as given; approved as drafted
+approved_at: "2026-11-14T17:12-05:00"   # time approval was relayed to this run (run host clock)

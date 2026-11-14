@@ -1,0 +1,67 @@
+# Structured NCR per shared/contracts/ncr.md (contract version 4), for root-cause-capa.
+# SYNTHETIC test data. Placeholders are marked; nothing here was written to any system.
+contract_version: 4
+ncr_ref: "DRAFT-WO-8102-L-0412"          # placeholder: plant NCR number not assigned
+site: "not on file"                       # no plant profile available this run
+part_number: MB-1880
+part_number_verbatim: "MB-1880"
+part_revision: "B"
+production_wo: WO-8102
+production_wo_verbatim: "WO-8102"
+lot_number: L-0412
+lot_number_verbatim: "L-0412"
+operation: "final inspection"
+found_by: "J. Ortiz, inspector, final inspection"
+found_at: "2026-11-11T10:05 (zone unresolved: no plant clock declaration on file)"
+disposition_pending: true
+
+condition_found: "Bore A diameter oversize on 3 of 5 sampled parts: 22.034, 22.031, 22.029 mm against 22.000 +0.021/-0.000 mm (upper limit 22.021); 0.013, 0.010, 0.008 mm over."
+measurements:
+  - { characteristic: "Bore A diameter", measured: "22.034", nominal: "22.000", tolerance: "+0.021/-0.000", uom: mm, gage: null, source_ref: "inputs/finding.txt line 3" }
+  - { characteristic: "Bore A diameter", measured: "22.031", nominal: "22.000", tolerance: "+0.021/-0.000", uom: mm, gage: null, source_ref: "inputs/finding.txt line 3" }
+  - { characteristic: "Bore A diameter", measured: "22.029", nominal: "22.000", tolerance: "+0.021/-0.000", uom: mm, gage: null, source_ref: "inputs/finding.txt line 3" }
+# gage null: not recorded in the finding; calibration not checkable. Readings of the 2 conforming samples not recorded.
+is_subjective: false
+qty_found: 3
+qty_found_reason: null
+uom: each
+
+requirement_cited:
+  source: "drawing"
+  document: "MB-1880 drawing rev B, sheet 2 notes page (inputs/MB-1880_drawing_revB_notes.md)"
+  locator: "sheet 2, note 4"
+  characteristic: "Bore A diameter"
+  stated_value: "22.000 +0.021/-0.000 (unit not stated on the notes page; mm per finding)"
+requirement_not_locatable: false
+
+qty_suspect: 300
+qty_suspect_is_minimum: true
+scope_basis: lot
+scope_reasoning: "All 300 parts of lot L-0412 (WO-8102) were machined on VMC-03 on 2nd shift 2026-11-10; 3 of 5 samples are 0.008-0.013 mm over the limit, consistent with a systematic shift, so the whole lot is suspect until every bore is measured. It is a floor: the prior occurrence (NCR-0219) was attributed to boring insert wear, a drifting mechanism not bounded by lot, and no insert-change or VMC-03 production record is available to rule out other MB-1880 lots or work orders cut with the same insert."
+traceability_complete: false   # lot-level counts reconcile (120+150+30=300); tool/insert-level traceability absent
+
+containment:
+  - { location: installed_at_customer, qty: 0, uom: each, checked: false, action: "Ask Northwind Robotics whether any of the 30 parts on PS-5521 have been installed or shipped on.", urgency: immediate, owner: null, customer: "Northwind Robotics", source_ref: "not verifiable from our records" }
+  - { location: at_customer, qty: 0, uom: each, checked: false, action: "Confirm whether PS-5521 has been delivered; if so notify and request quarantine of the PS-5521 receipt.", urgency: immediate, owner: null, customer: "Northwind Robotics", source_ref: "inputs/finding.txt line 4 (shipped 2026-11-11 08:00, PS-5521); delivery status not in inputs" }
+  - { location: in_transit, qty: 30, uom: each, checked: false, action: "Check with shipping/carrier; intercept PS-5521 if still in transit.", urgency: immediate, owner: null, customer: "Northwind Robotics", source_ref: "inputs/finding.txt line 4 (inspector report, packing slip PS-5521; not verified against a shipment record)" }
+  - { location: wip_at_machine, qty: 120, uom: each, checked: false, action: "Hold at VMC-03 queue, tag with NCR, stop next operation (anodize, drawing note 5); no further MB-1880 bores on VMC-03 until first-piece bore verified.", urgency: immediate, owner: null, customer: null, source_ref: "inputs/finding.txt line 4 (inspector report; not verified against inventory/production output)" }
+  - { location: finished_goods, qty: 150, uom: each, checked: false, action: "Move FG-2 rack 14 stock to quarantine, tag with NCR; check FG for other MB-1880 lots cut on VMC-03.", urgency: same_day, owner: null, customer: null, source_ref: "inputs/finding.txt line 4 (inspector report; not verified against inventory)" }
+
+recurrence: recurrence_prior_capa_failed
+prior_ncrs_found: 1
+related_records:
+  - { ref: NCR-0219, date: 2026-04-14, what_matched: "same part MB-1880, same defect (bore oversize, 22.026); cause boring insert wear; CAPA-071 insert change every 600 parts, effectiveness not verified", fix_held: false, source_ref: "inputs/prior_ncrs.csv row NCR-0219" }
+history_searched: true
+# Searched by part and by defect in inputs/prior_ncrs.csv (2 rows). Same machine/cell and same supplier/material lot not searchable (no such columns).
+
+escape_occurred: false
+escape_possible: true
+verify_shipment_action: "Confirm with shipping or the carrier whether PS-5521 (30 pcs MB-1880 rev B, lot L-0412, WO-8102, shipped 2026-11-11 08:00) has been delivered to Northwind Robotics; if not, intercept it."
+escape_detected_at: null
+notification_drafted: true
+notification_deadline: null     # contractual window unknown; not guessed
+affected_customers: ["Northwind Robotics"]
+
+approval_state: draft
+approved_by: null
+approved_at: null

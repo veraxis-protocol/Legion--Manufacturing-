@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CMMS Connection Plan</title>
+<style>
+:root{--ink:#1A1D21;--paper:#F2F3F5;--paper-raised:#FFFFFF;--line:#D6D9DD;--accent:#1F5C8B;--accent-soft:#E4EDF4;--good:#2E7248;--good-soft:#E3EFE7;--warn:#A8641A;--warn-soft:#F7EBDA;--critical:#A93226;--critical-soft:#F9E9E7;
+--font-display:'IBM Plex Sans Condensed','Arial Narrow',sans-serif;--font-body:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,sans-serif;--font-mono:'IBM Plex Mono','SF Mono',Consolas,monospace}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-body);margin:0;padding:24px 16px;line-height:1.45}
+main{max-width:1000px;margin:0 auto}
+h1,h2{font-family:var(--font-display);color:var(--accent)}
+section{background:var(--paper-raised);border:1px solid var(--line);border-radius:4px;padding:12px 16px;margin:12px 0;overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid var(--line);padding:5px 7px;text-align:left;vertical-align:top}th{background:var(--accent-soft)}
+.crit{background:var(--critical-soft);border-left:4px solid var(--critical)}.warn{background:var(--warn-soft);border-left:4px solid var(--warn)}
+code,pre{font-family:var(--font-mono);font-size:13px}pre{background:var(--paper);padding:8px;overflow-x:auto}
+</style></head><body><main>
+<h1>Connection plan: synthetic CMMS (SQLite) — internal</h1>
+<p>Run date 2026-11-14. Skill: <code>custom-connector</code>. All inputs are synthetic test data for a fictitious plant. Saved over any previous run of this file.</p>
+
+<section class="crit"><h2>Status: Untested: not registered</h2>
+<p>The target file <code>C:/LMFG/runs/B02-negative/work/inputs/connector/cmms_synthetic.sqlite</code> does not exist. The only file in <code>inputs/connector/</code> is <code>README.txt</code>. The read-only probe (<code>out/scripts/cmms_readonly_probe.py</code>) checked the path, did not open or create anything, and exited with code 2 (result in <code>out/connector-output/test-run-result.json</code>). No records were read, so no mapping is confirmed and the connector is not registered (Step 10 and Step 11 wait).</p></section>
+
+<section><h2>1. System identity (Step 1)</h2>
+<table><tr><th>Item</th><th>Known</th><th>Source</th></tr>
+<tr><td>Vendor / product / version</td><td>Not stated. Described only as "a local, synthetic CMMS database (SQLite)"</td><td>README.txt</td></tr>
+<tr><td>Deployment</td><td>Local file, on this machine</td><td>User request, README.txt</td></tr>
+<tr><td>Objects named</td><td>Tables <code>meta</code>, <code>assets</code>, <code>work_orders</code>; view <code>v_open_work_orders</code></td><td>README.txt (not verified: file absent)</td></tr>
+<tr><td>Credentials</td><td>"No credentials are needed"</td><td>README.txt</td></tr>
+<tr><td>Administrator</td><td>Not stated</td><td>—</td></tr></table></section>
+
+<section><h2>2. Scoped need (Step 2)</h2>
+<p>The request is "get the plugin talking to our CMMS database". No specific data flow or consuming skill was named. Proposed scope, pending the user's yes: <b>read assets and maintenance work orders (open ones via <code>v_open_work_orders</code>)</b>, to serve <code>breakdown-diagnosis</code>, <code>daily-production-report</code> and <code>data-consolidate</code>. Read-only. Freshness: near-real-time at Tier 4 (the file as it stands when read); no cadence is promised.</p></section>
+
+<section><h2>3. Tier decision record (Steps 3 and 5)</h2>
+<table><tr><th>Tier</th><th>Checked by</th><th>Finding</th></tr>
+<tr><td>1 Vendor MCP</td><td>Not checked: vendor/product unknown, and web/registry search is not permitted in this run</td><td>The plugin's registry (<code>reference/known-systems.md</code>) lists Limble as a vendor-MCP CMMS; nothing says this database is Limble</td></tr>
+<tr><td>2 Community MCP</td><td>Not checked: no web or registry search tool permitted in this run</td><td>—</td></tr>
+<tr><td>3 API wrapper</td><td>Read README.txt</td><td>No API documented; the system is a database file</td></tr>
+<tr><td><b>4 Read-only DB view</b></td><td>Path check by the probe script</td><td><b>Selected tier.</b> A view (<code>v_open_work_orders</code>) is said to exist and no credentials are needed. Blocked: the file is absent</td></tr>
+<tr><td>5 Zapier</td><td>Not applicable</td><td>Local file, no Zapier connector</td></tr>
+<tr><td>6 RPA</td><td>Ruled out</td><td>Recommended against by default; no UI involved</td></tr>
+<tr><td>7 Export contract</td><td>Fallback</td><td>If the database cannot be supplied, a scheduled CSV export of assets and work orders is the floor</td></tr></table>
+<p>Given up by not being Tier 1: vendor-maintained schema, live API. Ruled-out tiers 1 and 2 were not actually checked; re-check them once the CMMS product is named.</p></section>
+
+<section><h2>4. Proposed field mapping (Step 9) — proposed, unverified</h2>
+<p>Column-level mapping cannot be written: the file was not available, so no column names are known. Entity-level only:</p>
+<table><tr><th>Source object</th><th>Destination tab</th><th>Key pair</th><th>Status</th><th>Confirms</th><th>Open question</th></tr>
+<tr><td><code>assets</code></td><td><code>assets</code></td><td><code>asset_id</code> / <code>asset_id_verbatim</code></td><td>proposed</td><td>CMMS administrator</td><td>Which column is the asset ID; is there a location column</td></tr>
+<tr><td><code>work_orders</code></td><td><code>maintenance_work_orders</code> (column <code>maintenance_wo</code>, never <code>work_order</code>)</td><td><code>asset_id</code> / <code>asset_id_verbatim</code></td><td>proposed</td><td>CMMS administrator</td><td>Are these maintenance tickets only; date columns and their time zone; close-out notes column</td></tr>
+<tr><td><code>v_open_work_orders</code></td><td>Subset of <code>maintenance_work_orders</code></td><td>as above</td><td>proposed</td><td>CMMS administrator</td><td>View definition (what "open" means)</td></tr>
+<tr><td><code>meta</code></td><td>No tab; candidate source for <code>as_of</code>/<code>site</code></td><td>—</td><td>unmapped</td><td>CMMS administrator</td><td>Contents unknown</td></tr></table>
+<p>Every mapped row will carry <code>site</code>, <code>source_system</code> = <code>cmms</code>, <code>source_ref</code> (table + row id), <code>as_of</code>, <code>join_status</code>. A field with no home in contract version 6 stays out.</p></section>
+
+<section><h2>5. Draft read-only view (for whoever owns the database)</h2>
+<p>Column names below are placeholders, not values from the database; they must be replaced from the real schema.</p>
+<pre>-- DRAFT, unverified: replace every &lt;...&gt; from the real schema
+CREATE VIEW v_claude_maintenance_work_orders AS
+SELECT
+  &lt;work order id column&gt;  AS maintenance_wo,     -- maintenance_work_orders.maintenance_wo
+  &lt;asset id column&gt;       AS asset_id_verbatim,  -- asset_id_verbatim (normalized later)
+  &lt;opened date column&gt;    AS opened_at,          -- dates
+  &lt;closed date column&gt;    AS closed_at,          -- dates
+  &lt;close-out notes column&gt; AS close_out_notes    -- close-out notes
+FROM work_orders;</pre></section>
+
+<section><h2>6. Credential and scope record</h2>
+<table><tr><th>Access</th><th>Target</th><th>Mode</th><th>Credential</th><th>Status</th></tr>
+<tr><td>File read via SQLite URI <code>mode=ro</code> + <code>PRAGMA query_only</code></td><td><code>cmms_synthetic.sqlite</code></td><td>Read-only. No write path proposed</td><td>None needed (README.txt)</td><td>Untested: not registered</td></tr></table></section>
+
+<section class="warn"><h2>7. How it will break (Step 12)</h2>
+<ul><li><b>Schema drift:</b> a CMMS upgrade renames a column; the query returns wrong or empty data with no error. Probe re-run on every change; owner: CMMS/database administrator (role).</li>
+<li><b>File moved or replaced:</b> path breaks — exactly what happened in this run. Detection: probe exit code 2.</li>
+<li><b>Lock contention:</b> reading a file the CMMS is writing may return a busy error.</li>
+<li><b>Staleness:</b> if this is a copy rather than the live database, freshness is whenever it was copied; <code>data-consolidate</code>'s freshness check applies.</li></ul></section>
+
+<section><h2>Sources</h2><p><code>inputs/connector/README.txt</code>; plugin <code>skills/custom-connector/SKILL.md</code> and its <code>reference/</code> files; <code>shared/contracts/consolidated-dataset.md</code> (v6). No links opened.</p></section>
+</main></body></html>

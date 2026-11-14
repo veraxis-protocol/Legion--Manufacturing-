@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MB-1880 L-0412 Quality Chain</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;max-width:1000px;margin:0 auto;padding:16px;color:#111;background:#fff;line-height:1.4}
+table{border-collapse:collapse;width:100%;margin:8px 0 16px}td,th{border:1px solid #888;padding:4px 6px;vertical-align:top;font-size:13px}th{background:#eee;text-align:left}
+.box{border:2px solid #000;padding:8px 12px;margin:12px 0}.warn{border-color:#b00}h2{border-bottom:2px solid #000;margin-top:32px}code{font-family:Consolas,monospace}
+</style></head><body>
+<p><b>SYNTHETIC TEST DATA — fictitious plant. Internal working draft. Nothing in this file has been sent to any customer, supplier or system.</b></p>
+<h1>Inspection to CAPA (Chain 2) — MB-1880 rev B, WO-8102, lot L-0412, Bore A oversize</h1>
+
+<div class="box"><b>UPDATE 2026-11-14: Gate 1 passed</b> (NCR approved as drafted by Test Quality Owner (LEGION WO-LMFG-004 test operator); NCR DRAFT-WO-8102-L-0412, site EPW1 (test)). Steps 6-7 now drafted: 8D-internal_DRAFT-WO-8102-L-0412.html, 8D-customer-pack_DRAFT-WO-8102-L-0412.html, redaction-diff_DRAFT-WO-8102-L-0412.html. <b>Chain now paused at Gate 2, after step 7</b>: nothing customer-facing leaves until the quality owner reviews the redaction diff. Sections below record the state at the first pause.</div>
+<div class="box warn"><b>Earlier state — where the chain stopped: Paused at Gate 1, after step 2.</b> The NCR is a draft. A quality owner confirms four things before step 4 — the finding, the cited requirement, the suspect scope, and the containment plan. The history search (step 3) ran at write time. The root-cause investigation was carried as a <b>draft</b> (ranked candidates and evidence appendix, which root-cause-capa permits before approval); the <b>8D, the customer pack and the redaction diff are blocked</b> because the NCR's <code>approval_state</code> is <code>draft</code>. Gate 2 (redaction diff review) has not been reached. Nothing goes to the customer, per your instruction and per both gates.</div>
+
+<h3>Summary</h3>
+<ul>
+<li><b>Found:</b> Bore A 22.034 / 22.031 / 22.029 mm on 3 of 5 sampled parts vs 22.000 +0.021/-0.000 (max 22.021), MB-1880 rev B sheet 2 note 4.</li>
+<li><b>Suspect:</b> at least 300 — all of L-0412 / WO-8102; L-0411 / WO-8101 not ruled out (lot size and locations not in the inputs).</li>
+<li><b>Escape possible:</b> 30 pcs shipped to Northwind Robotics 2026-11-11 08:00 on PS-5521; delivery not confirmed. Conditional notification drafted, <b>not sent</b>; contractual window not on file.</li>
+<li><b>Recurrence after a CAPA that did not hold:</b> NCR-0219 (2026-04-14), same part, same defect; CAPA-071 (insert change every 600 parts) was never verified effective.</li>
+<li><b>Leading candidate (not a verdict):</b> progressive change at boring insert T7-0031 over its life, closely followed by boring-head setting/offset drift. Cheapest discriminating test: examine the removed T7-0031 insert and read the VMC-03 T7 offset history for 2026-11-09..11.</li>
+<li><b>Date discrepancy:</b> you called this "this morning's" finding; finding.txt stamps it 2026-11-11 10:05; the session date is 2026-11-14 (3 calendar days later). The NCR uses the file's timestamp. Please confirm.</li>
+</ul>
+
+<h2>1. Nonconformance Report (DRAFT)</h2>
+<p><i>Controlled template not available: no plant profile / NCR template on file (plant_setup.py find: profile does not exist). Neutral NCR structure covering the four questions is used.</i></p>
+<table>
+<tr><th>NCR reference</th><td>UNASSIGNED (not in inputs — quality owner to assign)</td><th>Site</th><td>Not on file</td></tr>
+<tr><th>Part / revision</th><td>MB-1880 rev B</td><th>Production work order</th><td>WO-8102</td></tr>
+<tr><th>Lot</th><td>L-0412 (lot size 300)</td><th>Operation</th><td>Found at final inspection; Bore A machined on VMC-03, boring head T7 (insert T7-0031), 2nd shift 2026-11-10</td></tr>
+<tr><th>Found by</th><td>J. Ortiz, final inspection</td><th>Found at</th><td>2026-11-11 10:05 (zone not stated in the finding; -05:00 assumed from the inspection export — unverified)</td></tr>
+<tr><th>Disposition</th><td colspan="3">PENDING — no disposition decided</td></tr>
+<tr><th>Approval</th><td colspan="3">DRAFT — approved_by: not given; approved_at: —</td></tr>
+</table>
+<h3>Q1. What was found</h3>
+<table><tr><th>Characteristic</th><th>Measured (mm)</th><th>Nominal</th><th>Tolerance</th><th>Over max by</th><th>Gage</th><th>Source</th></tr>
+<tr><td>Bore A diameter</td><td>22.034</td><td>22.000</td><td>+0.021/-0.000</td><td>0.013 mm (61.9% of band)</td><td>not recorded</td><td>finding.txt</td></tr>
+<tr><td>Bore A diameter</td><td>22.031</td><td>22.000</td><td>+0.021/-0.000</td><td>0.010 mm (47.6% of band)</td><td>not recorded</td><td>finding.txt</td></tr>
+<tr><td>Bore A diameter</td><td>22.029</td><td>22.000</td><td>+0.021/-0.000</td><td>0.008 mm (38.1% of band)</td><td>not recorded</td><td>finding.txt</td></tr></table>
+<p>3 of 5 sampled parts nonconforming (qty found 3, each). The other 2 sampled values are not recorded in the finding. Gage ID and calibration date are not recorded — a lapsed gage would be a finding of its own; check it.</p>
+<h3>Q2. Requirement violated</h3>
+<p><b>MB-1880 drawing revision B, sheet 2 (notes page), note 4 — Bore A: dia 22.000 +0.021/-0.000 mm, Ra 1.6.</b> The finding cites the same revision (rev B) the parts were built to; only rev B is in the inputs, so no revision conflict was found (no other revision was available to compare). Note 5 (anodize Type II after machining, bore masked) is relevant to disposition: masked bore means anodize does not change the bore diameter.</p>
+<h3>Q3. How many parts are suspect — at least 300</h3>
+<p><b>Scope basis: production window; traceability incomplete; the number is a floor.</b> The suspected mechanism is a progressive change on boring insert T7-0031, which cut every measured part from L-0409 (2026-11-09 07:10) through L-0412 with no tool change until 2026-11-11 06:40. All 300 of L-0412 are suspect: the inspection export's first L-0412 part (seq 1) is already 22.022, above the 22.021 limit, so there is no in-spec boundary inside the lot. <b>L-0411 / WO-8101 (1st shift 2026-11-10) is not ruled out:</b> its last measured part (seq 70) was 22.019, in spec but 0.002 below the limit; the computed trend crosses 22.021 at about 2026-11-10 07:26 (a fit, not an observation); parts after seq 70 were not measured; its lot size and locations are not in the inputs. L-0409 and L-0410 measured at most 22.016 (lower risk, sampled only). The scope is not narrowed to the 3 found.</p>
+<h3>Q4. Where they are — containment plan (customer side first, ordered by urgency; owners blank)</h3>
+<table><tr><th>Location</th><th>Suspect qty (L-0412)</th><th>Action</th><th>Urgency</th><th>Owner</th><th>Source</th></tr>
+<tr><td>Installed at customer — Northwind Robotics</td><td><b>not checked</b></td><td>Ask Northwind whether any of the 30 on PS-5521 have been installed or shipped on</td><td>immediate</td><td></td><td>not verifiable from our records</td></tr>
+<tr><td>At customer — Northwind Robotics</td><td><b>not checked</b></td><td>Confirm whether PS-5521 has been delivered; if delivered, request quarantine of the receipt</td><td>immediate</td><td></td><td>finding.txt; no ERP delivery record this run</td></tr>
+<tr><td>In transit — Northwind Robotics</td><td>30 (shipped 2026-11-11 08:00, PS-5521; delivery status unconfirmed)</td><td>Intercept at carrier if not yet delivered; return to quarantine, tag NCR</td><td>immediate</td><td></td><td>finding.txt (inspector statement)</td></tr>
+<tr><td>WIP at machine — VMC-03 queue</td><td>120</td><td>Hold; stop further operations incl. anodize; tag NCR</td><td>immediate</td><td></td><td>finding.txt (inspector statement; no inventory tab)</td></tr>
+<tr><td>Finished goods — FG-2 rack 14</td><td>150</td><td>Move to quarantine; tag NCR; block picking</td><td>same day</td><td></td><td>finding.txt (inspector statement; no inventory tab)</td></tr>
+<tr><td>Scope extension — L-0411 / WO-8101 (parts after seq 70)</td><td><b>not checked</b> (lot size unknown)</td><td>Find lot size and location of every L-0411 part across all five locations, including any shipments</td><td>immediate</td><td></td><td>not in inputs</td></tr>
+</table>
+<p>L-0412 quantities reconcile: 120 + 150 + 30 = 300. The on-hand figures are the inspector's statement; no inventory tab or ERP was available to cross-check them, so treat them as unverified until someone counts.</p>
+<h3>Recurrence finding (searched at write time)</h3>
+<p><b>Recurrence after a CAPA that did not hold (<code>recurrence_prior_capa_failed</code>).</b> NCR-0219 (2026-04-14): same part MB-1880, same defect (bore oversize, 22.026 = 0.005 over max), attributed to boring insert wear beyond 900 parts. CAPA-071 set "insert change every 600 parts" and its effectiveness is recorded as <b>not verified</b>. The same defect is back. Whether that is because the 600-part interval was not followed on T7-0031 or because 600 parts is too long cannot be told from the inputs: the insert had cut at least 510 parts by the end of L-0412, and at least 211 when the first above-limit part appeared (lower bounds — lot sizes of L-0409..L-0411 are not in the inputs).<br>Also searched: NCR-0244 (MB-1500, slot width undersize, wrong offset after tool change, CAPA-080 verified 2026-09-01) — not the same part or defect; whether it shares the process/machine cannot be determined (no machine column). Searched source: prior_ncrs.csv only (2 rows); no quality document library was available, so this is not a full history search. Prior NCRs found: 1.</p>
+
+<h2>2. Escape notification — DRAFT, CONDITIONAL, NOT SENT</h2>
+<div class="box"><b>Contractual clock: UNKNOWN.</b> Northwind Robotics' notification window is not on file — where are their terms recorded? No deadline has been guessed. Note: if the finding time of 2026-11-11 10:05 is right, 3 calendar days have passed by the session date (2026-11-14); check the window now.<br><b>Sends only if</b> the shipment check finds PS-5521 delivered (or not interceptable). If the carrier intercepts all 30, this notice is not needed for L-0412. Who sends it, and when, is the quality owner's decision; nothing has been sent.</div>
+<p>To: Northwind Robotics, Supplier Quality (contact to be filled in)<br>Subject: Nonconformance notification — MB-1880 rev B, lot L-0412, packing slip PS-5521 — [NCR reference]</p>
+<p>We are notifying you of a nonconformance affecting parts shipped to you.</p>
+<ul><li><b>Part:</b> MB-1880 revision B, lot L-0412.</li>
+<li><b>Shipment:</b> 30 pieces, shipped 2026-11-11 on packing slip PS-5521.</li>
+<li><b>Nonconformance:</b> Bore A diameter measured 22.029 to 22.034 mm on sampled parts from this lot, against the drawing requirement of 22.000 +0.021/-0.000 mm (MB-1880 rev B, sheet 2, note 4). All parts in lot L-0412 are treated as suspect.</li>
+<li><b>What we ask:</b> please quarantine the PS-5521 receipt and tell us whether any of these parts have been installed or shipped onward.</li>
+<li><b>What we are doing:</b> all remaining parts of the lot are on hold at our facility; we are investigating the cause, including a previous occurrence of the same condition on this part number (April 2026), and will provide an 8D corrective action report.</li>
+<li><b>Next update:</b> [date — quality owner to set].</li>
+<li><b>Reference:</b> [NCR reference].</li></ul>
+<p>[Name, title — quality owner]</p>
+
+<h2>3. Root cause investigation — DRAFT (pre-Gate-1)</h2>
+<p><i>Chain status: paused at Gate 1. This section is evidence work only. It is not the 8D and is not customer-facing.</i></p>
+<h3>Time alignment (verified before correlating)</h3>
+<p>All three timed sources carry zone-aware timestamps at UTC-05:00 (inspection export, maintenance log); the finding has no zone. No plant clock/skew profile is on file. Anchor event in two sources: insert replacement logged 2026-11-11 06:40 (maintenance) and first T7-0032 part 07:05 with tool_change = yes (inspection) — order consistent, 25 min apart. <b>Aligned to within about 25 minutes, ordering consistent</b>; that residual is small against the hours-scale gaps reasoned over below, so the maintenance correlation check was allowed to run. Shift-boundary rule: not on file; shift taken as recorded in the export (no cross-midnight rows in the data). Maintenance is <b>export-sourced</b> (maintenance_log.csv, no CMMS connector); a repair logged after the export will not be on this timeline.</p>
+<h3>Ranked candidate causal chains</h3>
+<p><b>Candidate 1 (leading) — progressive change at insert T7-0031 over its life, tool-life control not working</b><br>
+<code>CAPA-071 interval not controlling T7 life</code> → <code>insert T7-0031 cuts L-0409..L-0412 with no change (at least 510 parts)</code> → <code>edge condition changes progressively</code> → <code>Bore A grows ~0.5 µm/h until it passes 22.021</code></p>
+<table><tr><th>Link</th><th>For</th><th>Against</th></tr>
+<tr><td>1. Tool-life interval not controlling</td><td>NCR-0219 / CAPA-071 "not verified" (prior_ncrs.csv); defect recurred</td><td>Parts on insert at the first above-limit part: at least 211 — lower bound; true count unknown, so it is not shown that 600 was exceeded (inspection_measurements.csv + missing lot sizes). <b>Weak point: nothing in the data shows the interval was or was not followed.</b></td></tr>
+<tr><td>2. One insert across four lots, no change</td><td>tool_id T7-0031 on all 10 rows L-0409..L-0412, tool_change_since_last = no after the first (inspection_measurements.csv)</td><td>None found</td></tr>
+<tr><td>3. Edge condition changes progressively</td><td>Nelson trend rule fired: 10 consecutive increases; r = 0.936 vs time (figures block)</td><td>No insert-wear measurement exists. Flank wear on a boring edge usually reduces bore diameter; growth needs another mechanism (built-up edge, chipping geometry) — <b>this link has no direct evidence</b></td></tr>
+<tr><td>4. Bore passes 22.021</td><td>L-0412 seq 1/90/180 = 22.022/22.029/22.034; reset to 22.007 on new insert T7-0032 (inspection_measurements.csv, maintenance_log.csv)</td><td>The reset also coincides with any boring-head re-set done at the insert change (see Candidate 2)</td></tr></table>
+<p><b>Confirm:</b> examine the removed T7-0031 insert (wear land, built-up edge, chipping) and get WO-8099/8100/8101 quantities to count parts on the insert against 600.<br><b>Kill:</b> T7-0031 shows no meaningful edge change, or the bore grows again on T7-0032 at a similar rate well before 600 parts with no offset change.</p>
+
+<p><b>Candidate 2 (close second) — boring-head diameter setting or T7 wear offset drifted/was adjusted during the run</b><br>
+<code>head adjustment creeps, or offset changes entered on T7</code> → <code>effective cutting diameter increases</code> → <code>Bore A grows until it passes 22.021</code> → <code>reset when the head was re-set at insert change</code></p>
+<table><tr><th>Link</th><th>For</th><th>Against</th></tr>
+<tr><td>1. Head creep / offset change</td><td>Plant history includes an offset error after tool change (NCR-0244, different part, prior_ncrs.csv)</td><td><b>Weak point: no offset log or head-setting record is in the inputs</b></td></tr>
+<tr><td>2. Diameter increases</td><td>Direction of change is growth, which a setting change explains directly (inspection export)</td><td>None in data</td></tr>
+<tr><td>3. Passes 22.021</td><td>As Candidate 1 link 4</td><td>—</td></tr>
+<tr><td>4. Reset at insert change</td><td>22.007 after 06:40 change (maintenance_log.csv, inspection export)</td><td>Equally explained by Candidate 1</td></tr></table>
+<p><b>Confirm:</b> VMC-03 controller offset history for T7 shows changes 2026-11-09..11, or the head setting found off when checked against the setup sheet.<br><b>Kill:</b> offset history flat for T7 over the window and head setting verified at setup value.</p>
+<p><b>Candidates 1 and 2 are close to a tie on this evidence.</b> The data cannot separate them; Candidate 1 ranks first only on the prior NCR-0219 attribution.</p>
+
+<p><b>Candidate 3 (weak) — coolant concentration change 6% → 8% on 2026-11-08 16:00</b><br>
+<code>coolant change</code> → <code>altered cutting/thermal behaviour</code> → <code>bore growth</code></p>
+<table><tr><th>Link</th><th>For</th><th>Against</th></tr>
+<tr><td>1. Coolant change</td><td>Logged 15.2 h before the first export measurement (maintenance_log.csv)</td><td>No measurements before the change exist in the export, so no before/after comparison is possible</td></tr>
+<tr><td>2. Behaviour change → growth</td><td><b>Weak point: no evidence</b></td><td>Growth is a steady trend over two days, not a step; bore returned to 22.007 after the insert change with no coolant reversal logged</td></tr></table>
+<p><b>Confirm:</b> bore grows again on T7-0032 at 8% and stays nominal on a trial at 6%.<br><b>Kill:</b> T7-0032 holds near 22.007 over a comparable part count at 8%.</p>
+
+<p><b>Candidate 4 (weak) — measurement system (gage drift)</b>: For: gage ID/calibration not recorded. Against: the reset to 22.007 coincides with the insert change, which a gage drift would not follow.<br><b>Confirm:</b> gage fails a check against a ring master. <b>Kill:</b> gage passes calibration check and re-measures retained L-0412 parts with the same results.</p>
+
+<p><b>Cheapest discriminating test:</b> inspect the removed T7-0031 insert under magnification and pull the VMC-03 tool-offset history for T7 for 2026-11-09 to 2026-11-11 — one bench look and one controller screen, and together they separate Candidate 1 from Candidate 2 (and, if both are clean, push Candidates 3 and 4 up).</p>
+
+<p><b>Supplier-caused flag: not raised.</b> No candidate points at purchased material, and no material lot or receipt data is in the inputs, so lot-to-material clustering could not run.</p>
+
+<h3>8D — BLOCKED</h3>
+<p>The 8D is blocked because the source NCR's <code>approval_state</code> is <code>draft</code> (condition 2 of root-cause-capa step 5). The requirement is cited, so condition 1 does not apply. Once a named quality owner approves the NCR, D1–D5 and D7 are drafted from this evidence (D4 keeping its ranking and the tie, D7 addressing why CAPA-071 did not hold), with D6 and D8 left as empty placeholders.</p>
+<h3>Customer pack and redaction diff — BLOCKED</h3>
+<p>Blocked for the same reason, and Gate 2 has not been reached. <b>Pending redaction log</b> (nothing has been removed yet; nothing goes to the customer):</p>
+<table><tr><th>Item</th><th>Planned treatment</th><th>Why</th></tr>
+<tr><td>Inspector, operator IDs (J. Ortiz, OP-11, OP-23)</td><td>remove by default</td><td>Personnel</td></tr>
+<tr><td>NCR-0244 (MB-1500)</td><td>remove</td><td>Unrelated finding from the history search</td></tr>
+<tr><td>NCR-0219 / CAPA-071 recurrence</td><td><b>stays in</b></td><td>Removing a recurrence is misrepresentation, not redaction</td></tr>
+<tr><td>Removal requests received</td><td>none so far</td><td>"Nothing goes to the customer" is a no-send instruction, not a removal request</td></tr></table>
+
+<h2>4. Evidence appendix (internal)</h2>
+<h3>Sources and coverage</h3>
+<table><tr><th>Source</th><th>Coverage</th><th>Notes</th></tr>
+<tr><td>finding.txt</td><td>2026-11-11 10:05</td><td>no timezone; inspector statement of locations</td></tr>
+<tr><td>inspection_measurements.csv</td><td>2026-11-09 07:10 to 2026-11-11 07:05 -05:00, 11 rows</td><td>in-process samples; does not include the 10:05 final-inspection sample; gage not recorded</td></tr>
+<tr><td>maintenance_log.csv</td><td>2026-11-08 16:00 to 2026-11-11 06:40 -05:00, 2 rows</td><td>export-sourced, not live CMMS</td></tr>
+<tr><td>prior_ncrs.csv</td><td>2 NCRs (2026-04-14, 2026-08-02)</td><td>not a full quality library</td></tr>
+<tr><td>MB-1880_drawing_revB_notes.md</td><td>rev B sheet 2</td><td>only revision available</td></tr>
+<tr><td>Historian / sensor export</td><td>not available</td><td>no sensor evidence</td></tr>
+<tr><td>ERP (lots, shipments, material receipts)</td><td>not available</td><td>delivery status and material lot unknown</td></tr></table>
+<h3>Checks</h3>
+<p><b>Triggered:</b> SPC trend rule (10 consecutive increases); 2 points beyond the n=10 UCL; 4 of 5 later points beyond the phase-I UCL; all 3 above-limit export rows in L-0412 / insert T7-0031.<br>
+<b>Ran, clean / not meaningful:</b> shift and operator — all 3 above-limit rows are shift 2 / OP-23 (5 of 11 rows), but shift 2 on 2026-11-09 (L-0410) measured 22.013 and 22.016, in spec, and shift and operator are fully confounded (OP-11 only shift 1, OP-23 only shift 2); 3 points is a small number and the pattern is explained by time on the insert. Named as a pattern, not a person. Machine — single machine (VMC-03), no comparison possible. Maintenance correlation — coolant change precedes all data (no before/after), insert change followed by return to 22.007.<br>
+<b>Could not run:</b> material-lot clustering (no material lot data); sensor correlation (no historian export); gage/measurement-system check (no gage data); same-process/same-supplier recurrence search (no columns).<br>
+<b>Control limits vs specification limits:</b> the n=10 UCL (22.0257) is above the specification max (22.021); both are reported and labelled separately.</p>
+<h3>Figures block (computed by scripts/figures.py from the input files; prose quotes these values)</h3>
+<table><tr><th>Figure</th><th>Value</th><th>Computed from</th><th>Filter or query</th></tr>
+<tr><td>Finding: parts sampled / failed</td><td>5 sampled, 3 failed (as stated by inspector)</td><td>finding.txt</td><td>text line 3</td></tr>
+<tr><td>Finding 22.034: excess over USL 22.021</td><td>0.013 mm = 61.9% of the 0.021 tolerance band</td><td>finding.txt + drawing note 4</td><td>measured - 22.021</td></tr>
+<tr><td>Finding 22.031: excess over USL 22.021</td><td>0.010 mm = 47.6% of the 0.021 tolerance band</td><td>finding.txt + drawing note 4</td><td>measured - 22.021</td></tr>
+<tr><td>Finding 22.029: excess over USL 22.021</td><td>0.008 mm = 38.1% of the 0.021 tolerance band</td><td>finding.txt + drawing note 4</td><td>measured - 22.021</td></tr>
+<tr><td>Tolerance band width</td><td>0.021 mm</td><td>MB-1880 rev B notes, note 4</td><td>+0.021 - (-0.000)</td></tr>
+<tr><td>Inspection export rows</td><td>11</td><td>inspection_measurements.csv</td><td>all data rows</td></tr>
+<tr><td>Inspection export coverage</td><td>2026-11-09T07:10:00-05:00 to 2026-11-11T07:05:00-05:00</td><td>inspection_measurements.csv</td><td>min/max timestamp</td></tr>
+<tr><td>Measurements on insert T7-0031</td><td>10</td><td>inspection_measurements.csv</td><td>tool_id == T7-0031</td></tr>
+<tr><td>Export rows above USL 22.021</td><td>3 (L-0412 seq 1 = 22.022, L-0412 seq 90 = 22.029, L-0412 seq 180 = 22.034)</td><td>inspection_measurements.csv</td><td>bore_dia_mm &gt; 22.021</td></tr>
+<tr><td>Export rows below LSL 22.000</td><td>0</td><td>inspection_measurements.csv</td><td>bore_dia_mm &lt; 22.000</td></tr>
+<tr><td>SPC centreline (I chart, T7-0031, n=10)</td><td>22.0180 mm</td><td>inspection_measurements.csv</td><td>mean of 10 T7-0031 points, L-0409..L-0412</td></tr>
+<tr><td>SPC UCL (I chart, n=10)</td><td>22.0257 mm</td><td>same</td><td>CL + 2.66 x MRbar; MRbar = 0.0029</td></tr>
+<tr><td>SPC LCL (I chart, n=10)</td><td>22.0103 mm</td><td>same</td><td>CL - 2.66 x MRbar</td></tr>
+<tr><td>SPC basis</td><td>Individuals/moving-range chart, 10 points, lots L-0409, L-0410, L-0411, L-0412 (insert T7-0031); these limits are inflated by the trend itself, so a phase-I baseline is also shown</td><td>inspection_measurements.csv</td><td>tool_id == T7-0031, time order</td></tr>
+<tr><td>Points beyond UCL (n=10 limits)</td><td>2 [22.029, 22.034]</td><td>same</td><td>value &gt; UCL</td></tr>
+<tr><td>Run rule checked: trend (6+ points steadily increasing, Nelson rule 3)</td><td>FIRED: 10 consecutive points strictly increasing (all 10 T7-0031 points)</td><td>same</td><td>longest strictly increasing run</td></tr>
+<tr><td>Phase-I baseline (L-0409 + L-0410, first 5 points): CL / UCL / LCL</td><td>22.0118 / 22.0171 / 22.0065 mm (MRbar 0.0020)</td><td>same</td><td>first 5 T7-0031 points</td></tr>
+<tr><td>Later T7-0031 points beyond phase-I UCL</td><td>4 of 5: L-0411 seq 70 22.019, L-0412 seq 1 22.022, L-0412 seq 90 22.029, L-0412 seq 180 22.034</td><td>same</td><td>points 6-10 &gt; baseline UCL</td></tr>
+<tr><td>UCL vs USL (n=10 chart)</td><td>UCL 22.0257 is above USL 22.021 by 0.0047 mm</td><td>same</td><td>control limit vs specification limit, labelled separately</td></tr>
+<tr><td>Linear trend, bore vs hours since first T7-0031 measurement</td><td>slope 0.535 um/h, intercept 22.0080 mm, r = 0.936</td><td>same</td><td>least squares, 10 points</td></tr>
+<tr><td>Fitted USL crossing</td><td>24.3 h after 2026-11-09T07:10-05:00 = 2026-11-10T07:25:53.232200-05:00</td><td>same</td><td>(22.021 - intercept)/slope; a fit, not an observation</td></tr>
+<tr><td>Fit residuals, last 3 points (L-0412)</td><td>-3.1 um, +2.1 um, +5.3 um</td><td>same</td><td>observed - fitted</td></tr>
+<tr><td>Max part_seq measured per lot on T7-0031</td><td>{&quot;L-0409&quot;: 80, &quot;L-0410&quot;: 60, &quot;L-0411&quot;: 70, &quot;L-0412&quot;: 180}</td><td>same</td><td>max(part_seq) by lot</td></tr>
+<tr><td>Parts cut on T7-0031 by the 22.034 measurement, lower bound</td><td>at least 390 (sum of max part_seq; lot sizes of L-0409/L-0410/L-0411 not in inputs)</td><td>same</td><td>sum of max part_seq</td></tr>
+<tr><td>Parts cut on T7-0031 by end of L-0412, lower bound</td><td>at least 510 (80+60+70 measured seqs + L-0412 lot size 300)</td><td>same + finding.txt lot size</td><td>lower bound only</td></tr>
+<tr><td>Cumulative part count at first export point above USL (L-0412 seq 1), lower bound</td><td>at least 211</td><td>same</td><td>80+60+70+1</td></tr>
+<tr><td>Clustering by shift: rows / above USL</td><td>1: 6 rows (55% of rows), 0 above USL; 2: 5 rows (45% of rows), 3 above USL</td><td>inspection_measurements.csv</td><td>group by shift</td></tr>
+<tr><td>Clustering by operator: rows / above USL</td><td>OP-11: 6 rows (55% of rows), 0 above USL; OP-23: 5 rows (45% of rows), 3 above USL</td><td>inspection_measurements.csv</td><td>group by operator</td></tr>
+<tr><td>Clustering by machine: rows / above USL</td><td>VMC-03: 11 rows (100% of rows), 3 above USL</td><td>inspection_measurements.csv</td><td>group by machine</td></tr>
+<tr><td>Clustering by lot: rows / above USL</td><td>L-0409: 3 rows (27% of rows), 0 above USL; L-0410: 2 rows (18% of rows), 0 above USL; L-0411: 2 rows (18% of rows), 0 above USL; L-0412: 3 rows (27% of rows), 3 above USL; L-0413: 1 rows (9% of rows), 0 above USL</td><td>inspection_measurements.csv</td><td>group by lot</td></tr>
+<tr><td>Clustering by tool_id: rows / above USL</td><td>T7-0031: 10 rows (91% of rows), 3 above USL; T7-0032: 1 rows (9% of rows), 0 above USL</td><td>inspection_measurements.csv</td><td>group by tool_id</td></tr>
+<tr><td>Shift 2 on 2026-11-09 (L-0410), values</td><td>[22.013, 22.016] (in spec)</td><td>same</td><td>shift==2 and lot==L-0410</td></tr>
+<tr><td>Shift x operator combinations present</td><td>[(&#x27;1&#x27;, &#x27;OP-11&#x27;), (&#x27;2&#x27;, &#x27;OP-23&#x27;)]</td><td>same</td><td>distinct (shift, operator)</td></tr>
+<tr><td>Maintenance log rows</td><td>2</td><td>maintenance_log.csv</td><td>all data rows</td></tr>
+<tr><td>Maintenance log coverage</td><td>2026-11-08T16:00:00-05:00 to 2026-11-11T06:40:00-05:00</td><td>maintenance_log.csv</td><td>min/max timestamp</td></tr>
+<tr><td>Coolant change to first export measurement</td><td>15.2 h (coolant change precedes all 11 measurements; no pre-change measurements in export)</td><td>both</td><td>first inspection ts - coolant ts</td></tr>
+<tr><td>Clock anchor: insert replacement (maintenance) to first T7-0032 part (inspection)</td><td>25 min, order consistent (replacement logged before first new-insert part)</td><td>both</td><td>06:40 vs 07:05, both -05:00</td></tr>
+<tr><td>Post-change measurement (T7-0032, L-0413 seq 1)</td><td>22.007 mm, 0.014 mm below USL</td><td>inspection_measurements.csv</td><td>tool_id == T7-0032</td></tr>
+<tr><td>Maintenance rows on VMC-03 in log</td><td>2</td><td>maintenance_log.csv</td><td>asset_id == VMC-03</td></tr>
+<tr><td>Containment quantities reconcile to lot size</td><td>120 + 150 + 30 = 300 vs lot 300: reconciles</td><td>finding.txt</td><td>sum of stated locations</td></tr>
+<tr><td>Prior NCRs in file</td><td>2</td><td>prior_ncrs.csv</td><td>all data rows</td></tr>
+<tr><td>Prior NCRs, same part MB-1880</td><td>1 (NCR-0219)</td><td>prior_ncrs.csv</td><td>part == MB-1880</td></tr>
+<tr><td>Prior NCRs, same defect (bore)</td><td>1 (NCR-0219)</td><td>prior_ncrs.csv</td><td>defect contains &#x27;bore&#x27;</td></tr>
+<tr><td>Prior NCRs, same process/machine</td><td>not determinable: prior_ncrs.csv has no machine/operation column</td><td>prior_ncrs.csv</td><td>no column</td></tr>
+<tr><td>Prior NCRs, same supplier/material lot</td><td>not determinable: no supplier/material column; no material lot in inputs</td><td>prior_ncrs.csv</td><td>no column</td></tr>
+<tr><td>NCR-0219 measured vs USL</td><td>22.026 = 0.005 mm over USL</td><td>prior_ncrs.csv</td><td>defect text</td></tr>
+<tr><td>Calendar days from found_at (2026-11-11) to session date 2026-11-14</td><td>3</td><td>finding.txt + session date</td><td>date difference</td></tr>
+</table>
+
+<h2>5. Quality Register</h2>
+<p>The Quality Register was not updated: artifact tools are not available in this run. The register row was written to file and is <b>not stored</b> (see quality_page.html and quality-register-row_MB-1880_L-0412.yaml).</p>
+
+<h2>6. Open questions (recorded instead of asked)</h2>
+<ol>
+<li>Who should be recorded as approving this NCR (Gate 1)? Name as you give it.</li>
+<li>What NCR reference number and site name should this carry?</li>
+<li>Found-at time: you said "this morning"; the finding says 2026-11-11 10:05 with no time zone. Which is right, and which zone?</li>
+<li>Where are Northwind Robotics' contractual notification terms recorded (window in hours)?</li>
+<li>Has PS-5521 been delivered to Northwind? Did any L-0411 / WO-8101 parts ship, and to whom?</li>
+<li>What are the lot sizes of L-0409, L-0410, L-0411 (WO-8099/8100/8101), and where are the L-0411 parts now?</li>
+<li>Which gage measured the bores, and is its calibration current? What were the other 2 sampled values?</li>
+<li>Was CAPA-071's 600-part insert change in force on VMC-03, and is there a tool-change/counter record for T7?</li>
+<li>Where are the plant's controlled NCR and 8D templates?</li>
+</ol>
+</body></html>
