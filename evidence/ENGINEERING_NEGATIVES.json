@@ -1,0 +1,662 @@
+{
+  "source_commit": "27a207d3121bbf91ecfc968260ce0a4239405c6f",
+  "executed_at_utc": "2026-11-14T01:30:15+00:00",
+  "environment": {
+    "python": "3.12.3",
+    "implementation": "CPython",
+    "platform": "Linux-6.18.58.1-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "os_name": "posix",
+    "ci": false,
+    "github_run_id": null,
+    "github_workflow": null,
+    "github_job": null
+  },
+  "command": "python -I tools/d02_run.py --out evidence --stand-suite --regressions",
+  "inputs": {
+    "tests": "tests/engineering/test_d02_*.py"
+  },
+  "status": "PASS",
+  "counts": {
+    "tests": 18,
+    "PASS": 18,
+    "FAIL": 0,
+    "ERROR": 0,
+    "NOT_RUN": 0,
+    "BLOCKED": 0
+  },
+  "execution_state": {
+    "supplier_orders": 0,
+    "paypal_calls": 0,
+    "procurement_authorized": false,
+    "manufacturing_release": false
+  },
+  "missing_tolerance": {
+    "predicate": {
+      "predicate_id": "rail_length_tolerance",
+      "requirement": "MGN9-170 rail length within its manufacturing tolerance",
+      "mandatory": true,
+      "scope": "nominal CAD length of the purchased rail against its purchase specification",
+      "assumptions": [],
+      "controlled_case": false,
+      "origin": "Deal-Rescue cad027_review.production_predicates / rail_length_brick @6d5563a",
+      "binding": {
+        "source_repository": "LEGION-Deal-Rescue tests/test_cad027_demo.py (fixture)",
+        "source_commit": "6d5563af9a0eb838297933a8ae6b128defa9f69e",
+        "source_file": "mini.step",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "drawing_revision": null,
+        "spec_digest": "9c9a2f2a2b0f7cc3efd14f931bd43f198b125261151066290ecb574ff0dc300e",
+        "requirements_digest": "b57e2013bd618ccd39f16b34291484d49dceec6a5bf4a118270eeb75a6edf463",
+        "policy_sha256": "4ba01ca8b33e398462ca3f38f37fb92a85c2771b48e33b848aff3b136f807f47",
+        "part_id": "RAIL-170 (MGN9-170mm, purchased)",
+        "predicate_id": "rail_length_tolerance",
+        "predicate_inputs": {
+          "L_spec": {
+            "value": "170 mm",
+            "source": "readme.md line 25"
+          },
+          "L_cad": {
+            "value": "170.000 mm",
+            "source": "STEP XCAF bbox (nominal model; 0.001 mm is representation rounding, not manufacturing precision)"
+          }
+        },
+        "units": {
+          "L_cad": "mm",
+          "L_spec": "mm",
+          "dL": "mm"
+        },
+        "tolerances": null,
+        "tolerance_sources": null,
+        "brick_sha256": null,
+        "ztl_engineer_commit": "91d11672cb1986a7fb185d3ae5110d7209b36b97",
+        "ztl_stand_commit": "0b4d718fa3bd3105ea002105e0d89cdd76b7b573",
+        "ztl_commit": "2ba7c209371e90058df4666bb949fc253fe6cc27",
+        "stand_verdict": null,
+        "checker_result": null,
+        "execution_timestamp": null
+      },
+      "missing_blocks_stand_call": [
+        "tolerances",
+        "tolerance_sources",
+        "manufacturer length tolerance for MGN9-170 rail (datasheet)",
+        "RAIL_TOLERANCE=Z: no source states a tolerance for the purchased MGN9 rail",
+        "brick (no sourced engineering problem can be written)"
+      ],
+      "missing_blocks_admission": [
+        "drawing_revision"
+      ],
+      "verdict": "Z",
+      "why": "MISSING_EVIDENCE",
+      "stand_called": false,
+      "stand_verdict": null,
+      "checker_result": null,
+      "mcp": null,
+      "execution_timestamp": null
+    },
+    "deal_rescue_tolerance_finding": {
+      "part": "MGN9-170mm linear rail (purchased)",
+      "verdict": "Z",
+      "rail_source": {
+        "document": "hardware/reBot_B601_DM/readme.md",
+        "line": 25,
+        "text": "| Linear rail | MGN9-170mm | 1 | 23 $/unit | x |"
+      },
+      "only_tolerance_in_sources": {
+        "document": "hardware/reBot_B601_DM/readme.md",
+        "line": 19,
+        "text": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+        "section": "CNC Machined Metal Parts (line 12)",
+        "applies_to": "CNC machined metal parts",
+        "applies_to_purchased_rail": false,
+        "why": "the rail is listed under Purchased Parts (line 21), outside the section the tolerance belongs to"
+      },
+      "missing": [
+        "manufacturer length tolerance for MGN9-170 rail (datasheet)"
+      ]
+    }
+  },
+  "missing_material": {
+    "cnc_material_evidence": {
+      "predicate_id": "cnc_material_evidence",
+      "requirement": "each CNC part's material grade is evidenced (certificate or datasheet) for the stated alloy",
+      "mandatory": true,
+      "scope": "material evidence, not geometry",
+      "assumptions": [],
+      "controlled_case": false,
+      "origin": "step_intake stage requirements (readme lines)",
+      "binding": {
+        "source_repository": "LEGION-Deal-Rescue tests/test_cad027_demo.py (fixture)",
+        "source_commit": "6d5563af9a0eb838297933a8ae6b128defa9f69e",
+        "source_file": "mini.step",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "drawing_revision": null,
+        "spec_digest": "9c9a2f2a2b0f7cc3efd14f931bd43f198b125261151066290ecb574ff0dc300e",
+        "requirements_digest": "b57e2013bd618ccd39f16b34291484d49dceec6a5bf4a118270eeb75a6edf463",
+        "policy_sha256": "4ba01ca8b33e398462ca3f38f37fb92a85c2771b48e33b848aff3b136f807f47",
+        "part_id": "1 CNC machined parts",
+        "predicate_id": "cnc_material_evidence",
+        "predicate_inputs": {
+          "02_RACK": {
+            "value": "Aluminum Alloy 5052",
+            "source": "readme.md line 16"
+          }
+        },
+        "units": null,
+        "tolerances": {
+          "02_RACK": "- Key dimension tolerance: ±0.02 mm GB/T1840-M"
+        },
+        "tolerance_sources": {
+          "02_RACK": "readme.md line 19"
+        },
+        "brick_sha256": null,
+        "ztl_engineer_commit": "91d11672cb1986a7fb185d3ae5110d7209b36b97",
+        "ztl_stand_commit": "0b4d718fa3bd3105ea002105e0d89cdd76b7b573",
+        "ztl_commit": "2ba7c209371e90058df4666bb949fc253fe6cc27",
+        "stand_verdict": null,
+        "checker_result": null,
+        "execution_timestamp": null
+      },
+      "missing_blocks_stand_call": [
+        "units",
+        "material grade certificates (no certificate or datasheet in the sources)",
+        "brick (no sourced engineering problem can be written)"
+      ],
+      "missing_blocks_admission": [
+        "drawing_revision"
+      ],
+      "verdict": "Z",
+      "why": "MISSING_EVIDENCE",
+      "stand_called": false,
+      "stand_verdict": null,
+      "checker_result": null,
+      "mcp": null,
+      "execution_timestamp": null
+    },
+    "material_input_removed": {
+      "predicate_id": "material_input_removed",
+      "requirement": "material evidenced",
+      "mandatory": true,
+      "scope": "negative: material absent",
+      "assumptions": [],
+      "controlled_case": false,
+      "origin": "",
+      "binding": {
+        "source_repository": "LEGION-Deal-Rescue tests/test_cad027_demo.py (fixture)",
+        "source_commit": "6d5563af9a0eb838297933a8ae6b128defa9f69e",
+        "source_file": "mini.step",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "drawing_revision": null,
+        "spec_digest": "9c9a2f2a2b0f7cc3efd14f931bd43f198b125261151066290ecb574ff0dc300e",
+        "requirements_digest": "b57e2013bd618ccd39f16b34291484d49dceec6a5bf4a118270eeb75a6edf463",
+        "policy_sha256": "4ba01ca8b33e398462ca3f38f37fb92a85c2771b48e33b848aff3b136f807f47",
+        "part_id": "CNC part",
+        "predicate_id": "material_input_removed",
+        "predicate_inputs": {
+          "material": {
+            "value": null,
+            "source": null
+          }
+        },
+        "units": {
+          "material": "-"
+        },
+        "tolerances": {
+          "-": "-"
+        },
+        "tolerance_sources": {
+          "-": "-"
+        },
+        "brick_sha256": "cf7962dbc002e269092ff7baae796221bb6138e0df310bdd148de9a477e14bd6",
+        "ztl_engineer_commit": "91d11672cb1986a7fb185d3ae5110d7209b36b97",
+        "ztl_stand_commit": "0b4d718fa3bd3105ea002105e0d89cdd76b7b573",
+        "ztl_commit": "2ba7c209371e90058df4666bb949fc253fe6cc27",
+        "stand_verdict": null,
+        "checker_result": null,
+        "execution_timestamp": null
+      },
+      "missing_blocks_stand_call": [
+        "input material"
+      ],
+      "missing_blocks_admission": [
+        "drawing_revision"
+      ],
+      "verdict": "Z",
+      "why": "MISSING_EVIDENCE",
+      "stand_called": false,
+      "stand_verdict": null,
+      "checker_result": null,
+      "mcp": null,
+      "execution_timestamp": null
+    }
+  },
+  "malformed_bricks": [
+    {
+      "case": "quantities is not an object",
+      "brick": {
+        "stand": "ztl-stand/1",
+        "quantities": "garbage"
+      },
+      "status": "OK",
+      "stand_verdict": "BRICK ERROR",
+      "tool_error": null,
+      "legion_verdict": "Z",
+      "why": "STAND_BRICK_ERROR",
+      "stand_why": "BrickError: quantities: must be a non-empty object of named quantities"
+    },
+    {
+      "case": "law references an unknown quantity",
+      "brick": {
+        "stand": "ztl-stand/1",
+        "quantities": {
+          "x": {
+            "role": "given",
+            "value": "1",
+            "unit": "mm"
+          }
+        },
+        "slots": {},
+        "catalog": {},
+        "laws": [
+          {
+            "zfl": "y == x + q"
+          }
+        ],
+        "requirements": [
+          {
+            "quantity": "y",
+            "op": "<=",
+            "value": "2"
+          }
+        ]
+      },
+      "status": "OK",
+      "stand_verdict": "BRICK ERROR",
+      "tool_error": null,
+      "legion_verdict": "Z",
+      "why": "STAND_BRICK_ERROR",
+      "stand_why": "BrickError: laws[0]: 'y' is not a quantity, a define or a slot.field"
+    },
+    {
+      "case": "empty object",
+      "brick": {},
+      "status": "OK",
+      "stand_verdict": "BRICK ERROR",
+      "tool_error": null,
+      "legion_verdict": "Z",
+      "why": "STAND_BRICK_ERROR",
+      "stand_why": "BrickError: quantities: must be a non-empty object of named quantities"
+    },
+    {
+      "case": "brick is a list",
+      "status": "MCP_TOOL_ERROR",
+      "tool_error": "ValueError: brick must be a JSON object",
+      "legion_verdict": "Z"
+    }
+  ],
+  "transport_fault_injection": [
+    {
+      "case": "garbage on stdout",
+      "label": "TRANSPORT_FAULT_INJECTION",
+      "status": "MCP_MALFORMED",
+      "legion_verdict": "Z"
+    },
+    {
+      "case": "json-rpc error",
+      "label": "TRANSPORT_FAULT_INJECTION",
+      "status": "MCP_ERROR",
+      "legion_verdict": "Z"
+    },
+    {
+      "case": "result without content",
+      "label": "TRANSPORT_FAULT_INJECTION",
+      "status": "MCP_MALFORMED",
+      "legion_verdict": "Z"
+    },
+    {
+      "case": "content text not json",
+      "label": "TRANSPORT_FAULT_INJECTION",
+      "status": "MCP_MALFORMED",
+      "legion_verdict": "Z"
+    },
+    {
+      "case": "reply for another id",
+      "label": "TRANSPORT_FAULT_INJECTION",
+      "status": "MCP_MALFORMED",
+      "legion_verdict": "Z"
+    },
+    {
+      "case": "empty stdout",
+      "label": "TRANSPORT_FAULT_INJECTION",
+      "status": "MCP_MALFORMED",
+      "legion_verdict": "Z"
+    }
+  ],
+  "server_unavailable": {
+    "check_design_status": "MCP_UNAVAILABLE",
+    "initialize_status": "MCP_UNAVAILABLE",
+    "legion_verdict": "Z",
+    "server_crashes_on_start": {
+      "status": "MCP_SERVER_EXITED",
+      "legion_verdict": "Z",
+      "stderr_tail": "ineer import runner  # noqa: E402  (puts ztl-stand on the path)\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/administrator/lmfg-d02/_deps/ztl-engineer/ztl_engineer/runner.py\", line 26, in <module>\n    from ustand import stand as S          # noqa: E402  (pre-existing dependency: github.com/inventor1975/ztl-stand)\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nModuleNotFoundError: No module named 'ustand'\n"
+    }
+  },
+  "timeout": {
+    "status": "MCP_TIMEOUT",
+    "legion_verdict": "Z",
+    "transport": {
+      "status": "MCP_TIMEOUT",
+      "why": "no complete reply within 0.05 s",
+      "seconds": 0.05
+    }
+  },
+  "partial_proof": {
+    "T_plus_Z": {
+      "schema": "legion.engineering.verdict.v1",
+      "policy_sha256": "4ba01ca8b33e398462ca3f38f37fb92a85c2771b48e33b848aff3b136f807f47",
+      "mandatory_predicates": {
+        "rail_within_assumed_window": "T",
+        "rail_manufacturing_tolerance": "Z"
+      },
+      "stale_proofs": {},
+      "predicate_layer_verdict": "Z",
+      "receipt_layer": {
+        "verdict": "Z",
+        "code": "NO_RECEIPT"
+      },
+      "ENGINEERING_VERDICT": "Z",
+      "blocking": [
+        "rail_manufacturing_tolerance=Z",
+        "authenticated_receipt=Z (NO_RECEIPT)",
+        "context field missing: drawing_revision",
+        "context field missing: spec_digest"
+      ],
+      "production_admission": {
+        "verdict": "Z",
+        "why": "CONTEXT_MISSING",
+        "engineering_input": "Z",
+        "missing": null,
+        "execute_supplier_order": false,
+        "execute_paypal": false,
+        "module": "deal_rescue.industrial.admission.decide"
+      },
+      "procurement_authorized": false,
+      "payment_authorized": false,
+      "manufacturing_release": false,
+      "supplier_requests_sent": 0,
+      "paypal_calls": 0
+    },
+    "T_plus_F": {
+      "schema": "legion.engineering.verdict.v1",
+      "policy_sha256": "4ba01ca8b33e398462ca3f38f37fb92a85c2771b48e33b848aff3b136f807f47",
+      "mandatory_predicates": {
+        "rail_within_assumed_window": "T",
+        "rail_offset_window_violated": "F"
+      },
+      "stale_proofs": {},
+      "predicate_layer_verdict": "F",
+      "receipt_layer": {
+        "verdict": "Z",
+        "code": "NO_RECEIPT"
+      },
+      "ENGINEERING_VERDICT": "F",
+      "blocking": [
+        "rail_offset_window_violated=F",
+        "authenticated_receipt=Z (NO_RECEIPT)",
+        "context field missing: drawing_revision",
+        "context field missing: spec_digest"
+      ],
+      "production_admission": {
+        "verdict": "Z",
+        "why": "CONTEXT_MISSING",
+        "engineering_input": "F",
+        "missing": null,
+        "execute_supplier_order": false,
+        "execute_paypal": false,
+        "module": "deal_rescue.industrial.admission.decide"
+      },
+      "procurement_authorized": false,
+      "payment_authorized": false,
+      "manufacturing_release": false,
+      "supplier_requests_sent": 0,
+      "paypal_calls": 0
+    },
+    "deal_rescue_ztl_review_demonstration": {
+      "deal_rescue_production_verdict": "EARNED",
+      "predicates": [
+        "EARNED",
+        "OPEN"
+      ],
+      "label": "DEMONSTRATION: inner calls replaced; shows why this aggregation is not used for admission"
+    }
+  },
+  "receipts": {
+    "no_verifier_configured": {
+      "verdict": "Z",
+      "code": "TRUSTED_ZTL_SERVICE_NOT_CONFIGURED",
+      "refused": false,
+      "gate": "deal_rescue.industrial.ztl_gate",
+      "admitted": false
+    },
+    "no_verifier_configured_partial_env": {
+      "verdict": "Z",
+      "code": "TRUSTED_ZTL_SERVICE_NOT_CONFIGURED",
+      "refused": false,
+      "gate": "deal_rescue.industrial.ztl_gate",
+      "admitted": false
+    },
+    "unsigned_receipt": {
+      "verdict": "Z",
+      "code": "CERTIFICATE_MISSING",
+      "refused": true,
+      "gate": "deal_rescue.industrial.ztl_gate",
+      "admitted": false
+    },
+    "local_mcp_result_as_receipt": {
+      "verdict": "Z",
+      "code": "CERTIFICATE_FORMAT_INVALID",
+      "refused": true,
+      "gate": "deal_rescue.industrial.ztl_gate",
+      "admitted": false
+    },
+    "three_part_garbage": {
+      "verdict": "Z",
+      "code": "CERTIFICATE_UNREADABLE",
+      "refused": true,
+      "gate": "deal_rescue.industrial.ztl_gate",
+      "admitted": false
+    },
+    "fresh_test_signed_receipt_POSITIVE_CONTROL": {
+      "verdict": "T",
+      "code": "ATTESTATION_VERIFIED",
+      "gate": "deal_rescue.industrial.ztl_gate",
+      "detail": {
+        "verdict": "T",
+        "engineering_scope": "MANUFACTURING_REQUIREMENTS",
+        "spec_digest": "cbafa460199fb8c604a9d1f22080443b9c66daf167feaedd68de5a7caa5e5f09",
+        "certificate_sha256": "e1492f92f5506aaa71488b0679b56aa95ab6b3027aef80219ac6ec59659a2144",
+        "verified_parts": 1,
+        "verified_checks": 6,
+        "ztl_commit": "dddddddddddddddddddddddddddddddddddddddd",
+        "epoch": "epoch_2",
+        "expires_at": 1794621015,
+        "procurement_authorized": false,
+        "payment_authorized": false
+      }
+    },
+    "replayed_from_previous_epoch": {
+      "verdict": "Z",
+      "code": "CERTIFICATE_EPOCH_INVALID",
+      "refused": true,
+      "gate": "deal_rescue.industrial.ztl_gate",
+      "admitted": false
+    },
+    "replayed_after_expiry": {
+      "verdict": "Z",
+      "code": "CERTIFICATE_EXPIRED_OR_INVALID",
+      "refused": true,
+      "gate": "deal_rescue.industrial.ztl_gate",
+      "admitted": false
+    },
+    "replayed_onto_changed_spec": {
+      "verdict": "Z",
+      "code": "CERTIFICATE_BINDING_MISMATCH",
+      "refused": true,
+      "gate": "deal_rescue.industrial.ztl_gate",
+      "admitted": false
+    },
+    "signed_by_untrusted_key": {
+      "verdict": "Z",
+      "code": "CERTIFICATE_SIGNATURE_INVALID",
+      "refused": true,
+      "gate": "deal_rescue.industrial.ztl_gate",
+      "admitted": false
+    }
+  },
+  "tests": [
+    {
+      "id": "tests.engineering.test_d02_binding.D02Binding.test_d02_08_altered_source_sha256_rejects_binding",
+      "module": "test_d02_binding",
+      "class": "D02Binding",
+      "test": "test_d02_08_altered_source_sha256_rejects_binding",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_binding.D02Binding.test_d02_08_proof_under_altered_source_is_not_used",
+      "module": "test_d02_binding",
+      "class": "D02Binding",
+      "test": "test_d02_08_proof_under_altered_source_is_not_used",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_binding.D02Binding.test_d02_09_changed_revision_invalidates_old_proof",
+      "module": "test_d02_binding",
+      "class": "D02Binding",
+      "test": "test_d02_09_changed_revision_invalidates_old_proof",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_binding.D02Binding.test_d02_10_altered_requirement_digest_invalidates_old_proof",
+      "module": "test_d02_binding",
+      "class": "D02Binding",
+      "test": "test_d02_10_altered_requirement_digest_invalidates_old_proof",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_binding.D02Binding.test_d02_10_changed_policy_or_brick_invalidates_old_proof",
+      "module": "test_d02_binding",
+      "class": "D02Binding",
+      "test": "test_d02_10_changed_policy_or_brick_invalidates_old_proof",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_mcp.D02Mcp.test_d02_11_malformed_brick_is_Z",
+      "module": "test_d02_mcp",
+      "class": "D02Mcp",
+      "test": "test_d02_11_malformed_brick_is_Z",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_mcp.D02Mcp.test_d02_12_malformed_mcp_response_is_Z_TRANSPORT_FAULT_INJECTION",
+      "module": "test_d02_mcp",
+      "class": "D02Mcp",
+      "test": "test_d02_12_malformed_mcp_response_is_Z_TRANSPORT_FAULT_INJECTION",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_mcp.D02Mcp.test_d02_13_evaluate_with_unavailable_server_never_F",
+      "module": "test_d02_mcp",
+      "class": "D02Mcp",
+      "test": "test_d02_13_evaluate_with_unavailable_server_never_F",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_mcp.D02Mcp.test_d02_13_server_unavailable_is_Z",
+      "module": "test_d02_mcp",
+      "class": "D02Mcp",
+      "test": "test_d02_13_server_unavailable_is_Z",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_mcp.D02Mcp.test_d02_14_timeout_is_Z",
+      "module": "test_d02_mcp",
+      "class": "D02Mcp",
+      "test": "test_d02_14_timeout_is_Z",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_negatives.D02Aggregation.test_d02_15_one_T_one_Z_is_global_Z",
+      "module": "test_d02_negatives",
+      "class": "D02Aggregation",
+      "test": "test_d02_15_one_T_one_Z_is_global_Z",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_negatives.D02Aggregation.test_d02_16_one_T_one_F_is_global_F",
+      "module": "test_d02_negatives",
+      "class": "D02Aggregation",
+      "test": "test_d02_16_one_T_one_F_is_global_F",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_negatives.D02Aggregation.test_d02_d_all_T_without_authenticated_receipt_is_Z",
+      "module": "test_d02_negatives",
+      "class": "D02Aggregation",
+      "test": "test_d02_d_all_T_without_authenticated_receipt_is_Z",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_negatives.D02Aggregation.test_d02_d_deal_rescue_partial_aggregation_is_not_used",
+      "module": "test_d02_negatives",
+      "class": "D02Aggregation",
+      "test": "test_d02_d_deal_rescue_partial_aggregation_is_not_used",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_negatives.D02Missing.test_d02_06_missing_manufacturing_tolerance_is_Z",
+      "module": "test_d02_negatives",
+      "class": "D02Missing",
+      "test": "test_d02_06_missing_manufacturing_tolerance_is_Z",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_negatives.D02Missing.test_d02_07_missing_material_evidence_is_Z",
+      "module": "test_d02_negatives",
+      "class": "D02Missing",
+      "test": "test_d02_07_missing_material_evidence_is_Z",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_negatives.D02Receipts.test_d02_17_no_or_unauthenticated_receipt_is_not_admitted",
+      "module": "test_d02_negatives",
+      "class": "D02Receipts",
+      "test": "test_d02_17_no_or_unauthenticated_receipt_is_not_admitted",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_negatives.D02Receipts.test_d02_17_replayed_signed_receipts_are_refused",
+      "module": "test_d02_negatives",
+      "class": "D02Receipts",
+      "test": "test_d02_17_replayed_signed_receipts_are_refused",
+      "status": "PASS",
+      "detail": ""
+    }
+  ]
+}

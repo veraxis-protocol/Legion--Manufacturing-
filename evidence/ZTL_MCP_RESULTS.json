@@ -1,0 +1,1495 @@
+{
+  "source_commit": "27a207d3121bbf91ecfc968260ce0a4239405c6f",
+  "executed_at_utc": "2026-11-14T01:30:15+00:00",
+  "environment": {
+    "python": "3.12.3",
+    "implementation": "CPython",
+    "platform": "Linux-6.18.58.1-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "os_name": "posix",
+    "ci": false,
+    "github_run_id": null,
+    "github_workflow": null,
+    "github_job": null
+  },
+  "command": "python -I tools/d02_run.py --out evidence --stand-suite --regressions",
+  "inputs": {
+    "server": "_deps/ztl-engineer/mcp_server.py",
+    "tool": "check_design"
+  },
+  "status": "PASS",
+  "counts": {
+    "check_design_calls": 15,
+    "reached_the_stand": 14,
+    "stand_EARNED": 7,
+    "stand_REFUTED": 4,
+    "stand_BRICK_ERROR": 3,
+    "independent_checker_runs": 11
+  },
+  "secrets": "none: the server needs no credential for check_design; ask_engineer (paid API) never called",
+  "initialize": {
+    "requests": [
+      {
+        "jsonrpc": "2.0",
+        "id": 0,
+        "method": "initialize",
+        "params": {
+          "protocolVersion": "2025-06-18"
+        }
+      },
+      {
+        "jsonrpc": "2.0",
+        "method": "notifications/initialized"
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/list"
+      }
+    ],
+    "responses": [
+      {
+        "jsonrpc": "2.0",
+        "id": 0,
+        "result": {
+          "protocolVersion": "2025-06-18",
+          "capabilities": {
+            "tools": {}
+          },
+          "serverInfo": {
+            "name": "ztl-engineer",
+            "version": "0.1"
+          },
+          "instructions": "Independent engineering checks: Muse Spark reads, the ZTL stand proves. Call check_design before telling a person a design will work."
+        }
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "tools": [
+            {
+              "name": "brick_format",
+              "description": "The ZTL stand's brick format (BRICKS.md): how to write an engineering problem — quantities with tolerances or ranges, laws, requirements, optional catalogue slots and an objective — so that check_design can judge it. Read this before writing a brick.",
+              "inputSchema": {
+                "type": "object",
+                "properties": {}
+              }
+            },
+            {
+              "name": "check_design",
+              "description": "Independent check of an engineering design by the ZTL stand, with no AI involved. Give a brick (JSON object, see brick_format). Answers EARNED (proved for every value the tolerances allow), REFUTED (with a concrete failing point), or OPEN (cannot vouch either way), plus what it proved (guaranteed ranges, the chosen design, an optimum). Free: runs locally.",
+              "inputSchema": {
+                "type": "object",
+                "required": [
+                  "brick"
+                ],
+                "properties": {
+                  "brick": {
+                    "type": "object",
+                    "description": "the problem as a ZTL stand brick"
+                  },
+                  "time_limit_s": {
+                    "type": "number",
+                    "description": "stop after this many seconds (default 300, at most 1800)"
+                  }
+                }
+              }
+            },
+            {
+              "name": "ask_engineer",
+              "description": "Ask ZTL Engineer in plain words, in any language, optionally with files (a nameplate photo, a datasheet PDF, a SPICE netlist + BOM, a truss deck). Meta's Muse Spark reads them and writes the brick; the ZTL stand judges it. Returns the verdict, the values the AI read (check them) and where the report is. Spends Meta Model API credit.",
+              "inputSchema": {
+                "type": "object",
+                "required": [
+                  "question"
+                ],
+                "properties": {
+                  "question": {
+                    "type": "string"
+                  },
+                  "files": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "paths of local files to attach"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "status": "OK",
+    "server_info": {
+      "name": "ztl-engineer",
+      "version": "0.1"
+    },
+    "tools": [
+      "brick_format",
+      "check_design",
+      "ask_engineer"
+    ]
+  },
+  "calls": [
+    {
+      "status": "OK",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/call",
+        "params": {
+          "name": "check_design",
+          "arguments": {
+            "brick": {
+              "stand": "universal-stand/1",
+              "quantities": {
+                "Vin": {
+                  "role": "given",
+                  "value": "5",
+                  "unit": "V",
+                  "ground": "psu"
+                },
+                "I": {
+                  "role": "derived",
+                  "unit": "A"
+                },
+                "Vout": {
+                  "role": "derived",
+                  "unit": "V"
+                }
+              },
+              "slots": {
+                "R1": {
+                  "from": [
+                    "res_1pct_quarterW"
+                  ]
+                },
+                "R2": {
+                  "from": [
+                    "res_1pct_quarterW"
+                  ]
+                }
+              },
+              "laws": [
+                {
+                  "zfl": "Vin - Vout == I*R1.R",
+                  "source": "Ohm's law, R1"
+                },
+                {
+                  "zfl": "Vout == I*R2.R",
+                  "source": "Ohm's law, R2"
+                }
+              ],
+              "requirements": [
+                {
+                  "quantity": "Vout",
+                  "op": "within",
+                  "value": [
+                    "2.475",
+                    "2.525"
+                  ],
+                  "why": "2.5 V +-1%"
+                }
+              ],
+              "catalog": {
+                "res_1pct_quarterW": {
+                  "series": "E24",
+                  "decades": [
+                    1000,
+                    10000
+                  ],
+                  "ground": "datasheet",
+                  "fields": {
+                    "R": {
+                      "series": true,
+                      "tolerance": "0.01",
+                      "unit": "ohm"
+                    },
+                    "P": {
+                      "value": "0.25",
+                      "unit": "W",
+                      "why": "power rating"
+                    }
+                  }
+                }
+              }
+            },
+            "time_limit_s": 120
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n \"stand\": \"ztl-stand/1\",\n \"judge\": \"ZTL 2ba7c20\",\n \"designs_tried\": 1,\n \"failed_at_nominal\": 0,\n \"judged\": 1,\n \"undecided\": 0,\n \"units\": \"checked: every law's dimensions agree\",\n \"refuted_by_groups\": 432,\n \"groups_pruned\": 2,\n \"groups_read\": 29,\n \"designs\": [\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=10000, P=1/4) .. res_1pct_quarterW(R=30000, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4) .. res_1pct_quarterW(R=3000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-1%\",\n   \"group\": \"144 designs\",\n   \"how\": \"refuted as a GROUP: ZTL's reading and the checker's own both put the quantity past its bound over the whole group\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=33000, P=1/4) .. res_1pct_quarterW(R=91000, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4) .. res_1pct_quarterW(R=9100, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-1%\",\n   \"group\": \"288 designs\",\n   \"how\": \"refuted as a GROUP: ZTL's reading and the checker's own both put the quantity past its bound over the whole group\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4)\",\n   \"verdict\": \"EARNED\",\n   \"guaranteed\": {\n    \"Vout\": [\n     \"99/40 (~2.475)\",\n     \"101/40 (~2.525)\"\n    ]\n   }\n  }\n ],\n \"designs_count\": {\n  \"REFUTED\": 2,\n  \"EARNED\": 1\n },\n \"designs_by\": \"'by_at_witness' is the overshoot at the witness point the stand found (the nominal point or a corner), in the quantity's own unit — the worst case may be larger\",\n \"verdict\": \"EARNED\",\n \"design\": {\n  \"R1\": {\n   \"catalog\": \"res_1pct_quarterW\",\n   \"R\": {\n    \"nominal\": \"1000\",\n    \"tolerance\": \"1/100 (~0.01)\"\n   },\n   \"P\": {\n    \"nominal\": \"1/4 (~0.25)\",\n    \"tolerance\": \"0\"\n   }\n  },\n  \"R2\": {\n   \"catalog\": \"res_1pct_quarterW\",\n   \"R\": {\n    \"nominal\": \"1000\",\n    \"tolerance\": \"1/100 (~0.01)\"\n   },\n   \"P\": {\n    \"nominal\": \"1/4 (~0.25)\",\n    \"tolerance\": \"0\"\n   }\n  }\n },\n \"guaranteed\": {\n  \"Vout\": [\n   \"99/40 (~2.475)\",\n   \"101/40 (~2.525)\"\n  ]\n },\n \"guaranteed_unit\": {\n  \"Vout\": \"V\"\n },\n \"how\": {\n  \"Vout\": \"ZTL, exact at the corners\"\n },\n \"requirements\": [\n  {\n   \"quantity\": \"Vout\",\n   \"op\": \"within\",\n   \"value\": [\n    \"2.475\",\n    \"2.525\"\n   ],\n   \"why\": \"2.5 V +-1%\"\n  }\n ],\n \"rests_on\": \"ZTL disposition ON CREDIT: the tolerances and ranges are the brick's data (the given quantities and the catalog's datasheet values) — taken as stated, not verified\",\n \"checker\": \"not run (work mode: ZTL's verdict; --dev runs the independent checker)\",\n \"judge_log\": [\n  \"I -> [1/404, 1/396] by the system over its parameters, exact at the corners (credit)\",\n  \"Vout -> [99/40, 101/40] by the system over its parameters, exact at the corners (credit)\"\n ],\n \"checked_by\": \"ZTL (work mode; a refutation's witness recomputed exactly; --dev adds the independent checker on every design)\"\n}"
+            }
+          ]
+        }
+      },
+      "transport": {
+        "status": "EXITED",
+        "returncode": 0,
+        "stderr_tail": "",
+        "seconds": 0.75
+      },
+      "brick_sha256": "92cea4e20a3ced95d6d49d8abb35e6f1b6230790b79e117b06392de3b0502e65",
+      "stand_verdict": "EARNED",
+      "stand_called": true,
+      "tool_error": null,
+      "malformed_lines": null
+    },
+    {
+      "status": "OK",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/call",
+        "params": {
+          "name": "check_design",
+          "arguments": {
+            "brick": {
+              "stand": "universal-stand/1",
+              "quantities": {
+                "Vin": {
+                  "role": "given",
+                  "value": "5",
+                  "unit": "V",
+                  "ground": "psu"
+                },
+                "I": {
+                  "role": "derived",
+                  "unit": "A"
+                },
+                "Vout": {
+                  "role": "derived",
+                  "unit": "V"
+                }
+              },
+              "slots": {
+                "R1": {
+                  "from": [
+                    "res_1pct_quarterW"
+                  ]
+                },
+                "R2": {
+                  "from": [
+                    "res_1pct_quarterW"
+                  ]
+                }
+              },
+              "laws": [
+                {
+                  "zfl": "Vin - Vout == I*R1.R",
+                  "source": "Ohm's law, R1"
+                },
+                {
+                  "zfl": "Vout == I*R2.R",
+                  "source": "Ohm's law, R2"
+                }
+              ],
+              "requirements": [
+                {
+                  "quantity": "Vout",
+                  "op": "within",
+                  "value": [
+                    "2.4875",
+                    "2.5125"
+                  ],
+                  "why": "2.5 V +-0.5%"
+                }
+              ],
+              "catalog": {
+                "res_1pct_quarterW": {
+                  "series": "E24",
+                  "decades": [
+                    1000,
+                    10000
+                  ],
+                  "ground": "datasheet",
+                  "fields": {
+                    "R": {
+                      "series": true,
+                      "tolerance": "0.01",
+                      "unit": "ohm"
+                    },
+                    "P": {
+                      "value": "0.25",
+                      "unit": "W",
+                      "why": "power rating"
+                    }
+                  }
+                }
+              }
+            },
+            "time_limit_s": 120
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n \"stand\": \"ztl-stand/1\",\n \"judge\": \"ZTL 2ba7c20\",\n \"designs_tried\": 1872,\n \"failed_at_nominal\": 1824,\n \"judged\": 48,\n \"undecided\": 0,\n \"units\": \"checked: every law's dimensions agree\",\n \"refuted_by_groups\": 432,\n \"groups_pruned\": 2,\n \"groups_read\": 29,\n \"designs\": [\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=10000, P=1/4) .. res_1pct_quarterW(R=30000, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4) .. res_1pct_quarterW(R=3000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"group\": \"144 designs\",\n   \"how\": \"refuted as a GROUP: ZTL's reading and the checker's own both put the quantity past its bound over the whole group\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=33000, P=1/4) .. res_1pct_quarterW(R=91000, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4) .. res_1pct_quarterW(R=9100, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"group\": \"288 designs\",\n   \"how\": \"refuted as a GROUP: ZTL's reading and the checker's own both put the quantity past its bound over the whole group\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1/80 (~0.0125)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=1100, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"179/1680 (~0.106548)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=1200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"189/880 (~0.214773)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=1300, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"577/1840 (~0.313587)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=1500, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"39/80 (~0.4875)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=1600, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"587/1040 (~0.564423)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=1800, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"393/560 (~0.701786)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=2000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"197/240 (~0.820833)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=2200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"37/40 (~0.925)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=2400, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1383/1360 (~1.01691)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=2700, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"3363/2960 (~1.13615)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=3000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"99/80 (~1.2375)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"179/1680 (~0.106548)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=1100, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1/80 (~0.0125)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=1200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"177/1840 (~0.0961957)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=1300, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"47/240 (~0.195833)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=1500, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"387/1040 (~0.372115)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=1600, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"973/2160 (~0.450463)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=1800, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1371/2320 (~0.590948)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=2000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1769/2480 (~0.713306)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=2200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"197/240 (~0.820833)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=2400, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"513/560 (~0.916071)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=2700, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1581/1520 (~1.04013)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=3000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"3759/3280 (~1.14604)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"189/880 (~0.214773)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=1100, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"177/1840 (~0.0961957)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=1200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1/80 (~0.0125)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=1300, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"7/80 (~0.0875)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=1500, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"191/720 (~0.265278)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=1600, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"193/560 (~0.344643)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=1800, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"39/80 (~0.4875)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=2000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"49/80 (~0.6125)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=2200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"983/1360 (~0.722794)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=2400, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"197/240 (~0.820833)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=2700, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"987/1040 (~0.949038)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=3000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"593/560 (~1.05893)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"577/1840 (~0.313587)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=1100, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"47/240 (~0.195833)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=1200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"7/80 (~0.0875)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=1300, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1/80 (~0.0125)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=1500, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"93/560 (~0.166071)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=1600, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"571/2320 (~0.246121)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=1800, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"969/2480 (~0.390726)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=2000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1367/2640 (~0.517803)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=2200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"353/560 (~0.630357)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=2400, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"2163/2960 (~0.730743)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=2700, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"69/80 (~0.8625)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=3000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"3357/3440 (~0.975872)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"39/80 (~0.4875)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=1100, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"387/1040 (~0.372115)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=1200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"191/720 (~0.265278)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=1300, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"93/560 (~0.166071)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=1500, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1/80 (~0.0125)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=1600, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"169/2480 (~0.0681452)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=1800, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"189/880 (~0.214773)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=2000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"193/560 (~0.344643)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=2200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1363/2960 (~0.460473)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=2400, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"587/1040 (~0.564423)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=2700, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"393/560 (~0.701786)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=3000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"197/240 (~0.820833)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1600, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"587/1040 (~0.564423)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1600, P=1/4); R2=res_1pct_quarterW(R=1100, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"973/2160 (~0.450463)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1600, P=1/4); R2=res_1pct_quarterW(R=1200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"193/560 (~0.344643)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1600, P=1/4); R2=res_1pct_quarterW(R=1300, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"571/2320 (~0.246121)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1600, P=1/4); R2=res_1pct_quarterW(R=1500, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"169/2480 (~0.0681452)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1600, P=1/4); R2=res_1pct_quarterW(R=1600, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1/80 (~0.0125)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1600, P=1/4); R2=res_1pct_quarterW(R=1800, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"183/1360 (~0.134559)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1600, P=1/4); R2=res_1pct_quarterW(R=2000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"191/720 (~0.265278)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1600, P=1/4); R2=res_1pct_quarterW(R=2200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"581/1520 (~0.382237)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1600, P=1/4); R2=res_1pct_quarterW(R=2400, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"39/80 (~0.4875)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1600, P=1/4); R2=res_1pct_quarterW(R=2700, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"2157/3440 (~0.627035)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1600, P=1/4); R2=res_1pct_quarterW(R=3000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1377/1840 (~0.74837)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1800, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"393/560 (~0.701786)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1800, P=1/4); R2=res_1pct_quarterW(R=1100, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1371/2320 (~0.590948)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1800, P=1/4); R2=res_1pct_quarterW(R=1200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"39/80 (~0.4875)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1800, P=1/4); R2=res_1pct_quarterW(R=1300, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"969/2480 (~0.390726)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1800, P=1/4); R2=res_1pct_quarterW(R=1500, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"189/880 (~0.214773)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1800, P=1/4); R2=res_1pct_quarterW(R=1600, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"183/1360 (~0.134559)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1800, P=1/4); R2=res_1pct_quarterW(R=1800, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1/80 (~0.0125)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1800, P=1/4); R2=res_1pct_quarterW(R=2000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"181/1520 (~0.119079)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1800, P=1/4); R2=res_1pct_quarterW(R=2200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"19/80 (~0.2375)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1800, P=1/4); R2=res_1pct_quarterW(R=2400, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"193/560 (~0.344643)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1800, P=1/4); R2=res_1pct_quarterW(R=2700, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"39/80 (~0.4875)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1800, P=1/4); R2=res_1pct_quarterW(R=3000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"49/80 (~0.6125)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2000, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"197/240 (~0.820833)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2000, P=1/4); R2=res_1pct_quarterW(R=1100, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1769/2480 (~0.713306)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2000, P=1/4); R2=res_1pct_quarterW(R=1200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"49/80 (~0.6125)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2000, P=1/4); R2=res_1pct_quarterW(R=1300, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1367/2640 (~0.517803)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2000, P=1/4); R2=res_1pct_quarterW(R=1500, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"193/560 (~0.344643)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2000, P=1/4); R2=res_1pct_quarterW(R=1600, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"191/720 (~0.265278)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2000, P=1/4); R2=res_1pct_quarterW(R=1800, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"181/1520 (~0.119079)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2000, P=1/4); R2=res_1pct_quarterW(R=2000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1/80 (~0.0125)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2000, P=1/4); R2=res_1pct_quarterW(R=2200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"179/1680 (~0.106548)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2000, P=1/4); R2=res_1pct_quarterW(R=2400, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"189/880 (~0.214773)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2000, P=1/4); R2=res_1pct_quarterW(R=2700, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1353/3760 (~0.35984)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2000, P=1/4); R2=res_1pct_quarterW(R=3000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"39/80 (~0.4875)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2200, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"37/40 (~0.925)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2200, P=1/4); R2=res_1pct_quarterW(R=1100, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"197/240 (~0.820833)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2200, P=1/4); R2=res_1pct_quarterW(R=1200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"983/1360 (~0.722794)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2200, P=1/4); R2=res_1pct_quarterW(R=1300, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"353/560 (~0.630357)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2200, P=1/4); R2=res_1pct_quarterW(R=1500, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1363/2960 (~0.460473)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2200, P=1/4); R2=res_1pct_quarterW(R=1600, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"581/1520 (~0.382237)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2200, P=1/4); R2=res_1pct_quarterW(R=1800, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"19/80 (~0.2375)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2200, P=1/4); R2=res_1pct_quarterW(R=2000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"179/1680 (~0.106548)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2200, P=1/4); R2=res_1pct_quarterW(R=2200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1/80 (~0.0125)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2200, P=1/4); R2=res_1pct_quarterW(R=2400, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"177/1840 (~0.0961957)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2200, P=1/4); R2=res_1pct_quarterW(R=2700, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"951/3920 (~0.242602)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2200, P=1/4); R2=res_1pct_quarterW(R=3000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"387/1040 (~0.372115)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2400, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1383/1360 (~1.01691)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2400, P=1/4); R2=res_1pct_quarterW(R=1100, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"513/560 (~0.916071)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2400, P=1/4); R2=res_1pct_quarterW(R=1200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"197/240 (~0.820833)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2400, P=1/4); R2=res_1pct_quarterW(R=1300, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"2163/2960 (~0.730743)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2400, P=1/4); R2=res_1pct_quarterW(R=1500, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"587/1040 (~0.564423)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2400, P=1/4); R2=res_1pct_quarterW(R=1600, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"39/80 (~0.4875)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2400, P=1/4); R2=res_1pct_quarterW(R=1800, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"193/560 (~0.344643)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2400, P=1/4); R2=res_1pct_quarterW(R=2000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"189/880 (~0.214773)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2400, P=1/4); R2=res_1pct_quarterW(R=2200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"177/1840 (~0.0961957)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2400, P=1/4); R2=res_1pct_quarterW(R=2400, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1/80 (~0.0125)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2400, P=1/4); R2=res_1pct_quarterW(R=2700, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"183/1360 (~0.134559)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2400, P=1/4); R2=res_1pct_quarterW(R=3000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"191/720 (~0.265278)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2700, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"3363/2960 (~1.13615)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2700, P=1/4); R2=res_1pct_quarterW(R=1100, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1581/1520 (~1.04013)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2700, P=1/4); R2=res_1pct_quarterW(R=1200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"987/1040 (~0.949038)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2700, P=1/4); R2=res_1pct_quarterW(R=1300, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"69/80 (~0.8625)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2700, P=1/4); R2=res_1pct_quarterW(R=1500, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"393/560 (~0.701786)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2700, P=1/4); R2=res_1pct_quarterW(R=1600, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"2157/3440 (~0.627035)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2700, P=1/4); R2=res_1pct_quarterW(R=1800, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"39/80 (~0.4875)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2700, P=1/4); R2=res_1pct_quarterW(R=2000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1353/3760 (~0.35984)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2700, P=1/4); R2=res_1pct_quarterW(R=2200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"951/3920 (~0.242602)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2700, P=1/4); R2=res_1pct_quarterW(R=2400, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"183/1360 (~0.134559)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2700, P=1/4); R2=res_1pct_quarterW(R=2700, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1/80 (~0.0125)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=2700, P=1/4); R2=res_1pct_quarterW(R=3000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"181/1520 (~0.119079)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=3000, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"99/80 (~1.2375)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=3000, P=1/4); R2=res_1pct_quarterW(R=1100, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"3759/3280 (~1.14604)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=3000, P=1/4); R2=res_1pct_quarterW(R=1200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"593/560 (~1.05893)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=3000, P=1/4); R2=res_1pct_quarterW(R=1300, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"3357/3440 (~0.975872)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=3000, P=1/4); R2=res_1pct_quarterW(R=1500, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"197/240 (~0.820833)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=3000, P=1/4); R2=res_1pct_quarterW(R=1600, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1377/1840 (~0.74837)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=3000, P=1/4); R2=res_1pct_quarterW(R=1800, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"49/80 (~0.6125)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=3000, P=1/4); R2=res_1pct_quarterW(R=2000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"39/80 (~0.4875)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=3000, P=1/4); R2=res_1pct_quarterW(R=2200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"387/1040 (~0.372115)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=3000, P=1/4); R2=res_1pct_quarterW(R=2400, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"191/720 (~0.265278)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=3000, P=1/4); R2=res_1pct_quarterW(R=2700, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"181/1520 (~0.119079)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=3000, P=1/4); R2=res_1pct_quarterW(R=3000, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1/80 (~0.0125)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=3300, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"4557/3440 (~1.32471)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=3600, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"2577/1840 (~1.40054)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=3900, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"5751/3920 (~1.46709)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=4300, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"6547/4240 (~1.5441)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=4700, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"7343/4560 (~1.61031)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=5100, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"8139/4880 (~1.66783)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=5600, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"4567/2640 (~1.72992)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=6200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1291/720 (~1.79306)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=6800, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"5761/3120 (~1.84647)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=7500, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"2583/1360 (~1.89926)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=8200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"3577/1840 (~1.94402)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=9100, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"16099/8080 (~1.99245)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=3300, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"99/80 (~1.2375)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=3600, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"4953/3760 (~1.31729)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=3900, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"111/80 (~1.3875)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=4300, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"3173/2160 (~1.46898)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=4700, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"3571/2320 (~1.53922)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=5100, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"3969/2480 (~1.6004)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=5600, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"8933/5360 (~1.6666)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=6200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"10127/5840 (~1.73408)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=6800, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"11321/6320 (~1.7913)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=7500, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"6357/3440 (~1.84797)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=8200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"14107/7440 (~1.8961)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=9100, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"7949/4080 (~1.94828)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=3300, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"277/240 (~1.15417)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=3600, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"99/80 (~1.2375)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=3900, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1783/1360 (~1.31103)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=4300, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1229/880 (~1.39659)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=4700, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"6941/4720 (~1.47055)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=5100, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"2579/1680 (~1.53512)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=5600, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"2183/1360 (~1.60515)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=6200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"4963/2960 (~1.67669)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=6800, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"139/80 (~1.7375)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=7500, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"4171/2320 (~1.79784)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=8200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"6953/3760 (~1.8492)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=9100, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"15697/8240 (~1.90498)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=3300, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1977/1840 (~1.07446)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=3600, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"4551/3920 (~1.16097)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=3900, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"99/80 (~1.2375)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=4300, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"743/560 (~1.32679)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=4700, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"337/240 (~1.40417)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=5100, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"471/320 (~1.47188)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=5600, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"8531/5520 (~1.54547)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=6200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"389/240 (~1.62083)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=6800, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"10919/6480 (~1.68503)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=7500, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1539/880 (~1.74886)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=8200, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"2741/1520 (~1.80329)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=9100, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"149/80 (~1.8625)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=3300, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"37/40 (~0.925)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=3600, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1383/1360 (~1.01691)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=3900, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"791/720 (~1.09861)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=4300, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"2771/2320 (~1.1944)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=4700, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"3169/2480 (~1.27782)\",\n   \"unit\": \"V\"\n  },\n  {\n   \"design\": \"R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=5100, P=1/4)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"2.5 V +-0.5%\",\n   \"by_at_witness\": \"1189/880 (~1.35114)\",\n   \"unit\": \"V\"\n  }\n ],\n \"designs_count\": {\n  \"REFUTED\": 1874\n },\n \"designs_by\": \"'by_at_witness' is the overshoot at the witness point the stand found (the nominal point or a corner), in the quantity's own unit — the worst case may be larger\",\n \"designs_not_listed\": 1674,\n \"listing\": \"earned first, then open, then refuted\",\n \"verdict\": \"REFUTED\",\n \"why\": \"every design in the catalog violates a requirement at a concrete point\",\n \"closest_design\": {\n  \"R1\": {\n   \"catalog\": \"res_1pct_quarterW\",\n   \"R\": {\n    \"nominal\": \"1000\",\n    \"tolerance\": \"1/100 (~0.01)\"\n   },\n   \"P\": {\n    \"nominal\": \"1/4 (~0.25)\",\n    \"tolerance\": \"0\"\n   }\n  },\n  \"R2\": {\n   \"catalog\": \"res_1pct_quarterW\",\n   \"R\": {\n    \"nominal\": \"1000\",\n    \"tolerance\": \"1/100 (~0.01)\"\n   },\n   \"P\": {\n    \"nominal\": \"1/4 (~0.25)\",\n    \"tolerance\": \"0\"\n   }\n  }\n },\n \"closest_by\": \"the smallest overshoot found, each in its own requirement's unit — overshoots of different requirements are not comparable (blind test 4, c11)\",\n \"its_violating_point\": {\n  \"R1.R\": \"1010\",\n  \"R2.R\": \"990\"\n },\n \"point_units\": {\n  \"R1.R\": \"ohm\",\n  \"R2.R\": \"ohm\"\n },\n \"value_there\": {\n  \"Vout\": \"99/40 (~2.475)\"\n },\n \"unit\": \"V\",\n \"requirement\": {\n  \"quantity\": \"Vout\",\n  \"op\": \"within\",\n  \"value\": [\n   \"2.4875\",\n   \"2.5125\"\n  ],\n  \"why\": \"2.5 V +-0.5%\"\n },\n \"overshoot\": \"1/80 (~0.0125)\",\n \"reasons\": {\n  \"spread_over_tolerances\": [\n   \"99/40 (~2.475)\",\n   \"101/40 (~2.525)\"\n  ],\n  \"window\": [\n   \"199/80 (~2.4875)\",\n   \"201/80 (~2.5125)\"\n  ],\n  \"verdict_on_window\": \"for this design the spread over its tolerances alone is wider than the window: centring cannot fix it, only tighter tolerances or another design\",\n  \"largest_contributors\": [\n   {\n    \"quantity\": \"R2.R\",\n    \"moves_it_by\": \"1/40 (~0.025)\"\n   },\n   {\n    \"quantity\": \"R1.R\",\n    \"moves_it_by\": \"1/40 (~0.025)\"\n   }\n  ]\n },\n \"checker\": \"the violating point recomputed exactly (rational arithmetic, no judge code)\",\n \"_core\": [\n  0\n ],\n \"minimal_conflicts\": {\n  \"sets\": [\n   [\n    \"2.5 V +-0.5%\"\n   ]\n  ],\n  \"undecided_sets\": [],\n  \"complete\": true,\n  \"subset_runs\": 0,\n  \"subsets_inferred\": 0,\n  \"how\": \"first one minimal set by deletion (each requirement dropped in turn while the rest stays refuted), then every subset by size, smallest first; a subset of an EARNED set is EARNED and a superset of a REFUTED one REFUTED without a run (monotone: one design holds the smaller set), within a budget of 24 subset runs\"\n },\n \"checked_by\": \"ZTL (work mode; a refutation's witness recomputed exactly; --dev adds the independent checker on every design)\"\n}"
+            }
+          ]
+        }
+      },
+      "transport": {
+        "status": "EXITED",
+        "returncode": 0,
+        "stderr_tail": "",
+        "seconds": 1.15
+      },
+      "brick_sha256": "6bf0e1ce5d620996bb7b53f92509958317a9599dee7f8616bde6c174f2e1e3b9",
+      "stand_verdict": "REFUTED",
+      "stand_called": true,
+      "tool_error": null,
+      "malformed_lines": null
+    },
+    {
+      "status": "OK",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/call",
+        "params": {
+          "name": "check_design",
+          "arguments": {
+            "brick": {
+              "stand": "universal-stand/1",
+              "quantities": {
+                "Ta": {
+                  "role": "given",
+                  "range": [
+                    "20",
+                    "45"
+                  ],
+                  "unit": "C",
+                  "why": "ambient air"
+                },
+                "P": {
+                  "role": "given",
+                  "value": "20",
+                  "tolerance": "0.1",
+                  "unit": "W",
+                  "why": "dissipation"
+                },
+                "Rjc": {
+                  "role": "given",
+                  "value": "0.5",
+                  "tolerance": "0.2",
+                  "unit": "C/W",
+                  "ground": "device datasheet"
+                },
+                "Tj": {
+                  "role": "derived",
+                  "unit": "C"
+                }
+              },
+              "slots": {
+                "HS": {
+                  "from": [
+                    "heatsinks"
+                  ]
+                },
+                "PAD": {
+                  "from": [
+                    "pads"
+                  ]
+                }
+              },
+              "laws": [
+                {
+                  "zfl": "Tj == Ta + P*(Rjc + PAD.R + HS.R)",
+                  "source": "series thermal resistances"
+                }
+              ],
+              "requirements": [
+                {
+                  "quantity": "Tj",
+                  "op": "<=",
+                  "value": "125",
+                  "why": "max junction temperature"
+                }
+              ],
+              "catalog": {
+                "heatsinks": {
+                  "items": [
+                    {
+                      "R": {
+                        "value": "5",
+                        "tolerance": "0.1"
+                      },
+                      "price": "1"
+                    },
+                    {
+                      "R": {
+                        "value": "3",
+                        "tolerance": "0.1"
+                      },
+                      "price": "2"
+                    },
+                    {
+                      "R": {
+                        "value": "2",
+                        "tolerance": "0.1"
+                      },
+                      "price": "4"
+                    },
+                    {
+                      "R": {
+                        "value": "1.2",
+                        "tolerance": "0.1"
+                      },
+                      "price": "7"
+                    }
+                  ],
+                  "ground": "vendor datasheet",
+                  "fields": {
+                    "R": {
+                      "unit": "C/W"
+                    },
+                    "price": {
+                      "unit": "USD"
+                    }
+                  }
+                },
+                "pads": {
+                  "items": [
+                    {
+                      "R": {
+                        "value": "0.5",
+                        "tolerance": "0.2"
+                      },
+                      "price": "0.1"
+                    },
+                    {
+                      "R": {
+                        "value": "0.2",
+                        "tolerance": "0.2"
+                      },
+                      "price": "0.5"
+                    }
+                  ],
+                  "ground": "vendor datasheet",
+                  "fields": {
+                    "R": {
+                      "unit": "C/W"
+                    },
+                    "price": {
+                      "unit": "USD"
+                    }
+                  }
+                }
+              },
+              "objective": {
+                "minimize": "HS.price + PAD.price",
+                "why": "cheapest parts that hold Tj"
+              }
+            },
+            "time_limit_s": 120
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n \"stand\": \"ztl-stand/1\",\n \"judge\": \"ZTL 2ba7c20\",\n \"designs_tried\": 5,\n \"failed_at_nominal\": 2,\n \"judged\": 3,\n \"undecided\": 0,\n \"units\": \"checked: every law's dimensions agree\",\n \"designs\": [\n  {\n   \"design\": \"HS=heatsinks(R=5, price=1); PAD=pads(R=1/2, price=1/10)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"max junction temperature\",\n   \"by_at_witness\": \"55/2 (~27.5)\",\n   \"unit\": \"C\"\n  },\n  {\n   \"design\": \"HS=heatsinks(R=5, price=1); PAD=pads(R=1/5, price=1/2)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"max junction temperature\",\n   \"by_at_witness\": \"43/2 (~21.5)\",\n   \"unit\": \"C\"\n  },\n  {\n   \"design\": \"HS=heatsinks(R=3, price=2); PAD=pads(R=1/2, price=1/10)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"max junction temperature\",\n   \"by_at_witness\": \"19\",\n   \"unit\": \"C\"\n  },\n  {\n   \"design\": \"HS=heatsinks(R=3, price=2); PAD=pads(R=1/5, price=1/2)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"max junction temperature\",\n   \"by_at_witness\": \"277/25 (~11.08)\",\n   \"unit\": \"C\"\n  },\n  {\n   \"design\": \"HS=heatsinks(R=2, price=4); PAD=pads(R=1/2, price=1/10)\",\n   \"verdict\": \"EARNED\",\n   \"guaranteed\": {\n    \"Tj\": [\n     \"334/5 (~66.8)\",\n     \"599/5 (~119.8)\"\n    ]\n   }\n  }\n ],\n \"designs_count\": {\n  \"REFUTED\": 4,\n  \"EARNED\": 1\n },\n \"designs_by\": \"'by_at_witness' is the overshoot at the witness point the stand found (the nominal point or a corner), in the quantity's own unit — the worst case may be larger\",\n \"objective\": {\n  \"minimize\": \"HS.price + PAD.price\",\n  \"value\": \"41/10 (~4.1)\",\n  \"unit\": \"USD\",\n  \"unit_from\": \"the unit of the prices in the objective (no objective \\\"unit\\\" given)\",\n  \"optimal\": true,\n  \"note\": \"every cheaper design was refuted\"\n },\n \"verdict\": \"EARNED\",\n \"design\": {\n  \"HS\": {\n   \"catalog\": \"heatsinks\",\n   \"R\": {\n    \"nominal\": \"2\",\n    \"tolerance\": \"1/10 (~0.1)\"\n   },\n   \"price\": {\n    \"nominal\": \"4\",\n    \"tolerance\": \"0\"\n   }\n  },\n  \"PAD\": {\n   \"catalog\": \"pads\",\n   \"R\": {\n    \"nominal\": \"1/2 (~0.5)\",\n    \"tolerance\": \"1/5 (~0.2)\"\n   },\n   \"price\": {\n    \"nominal\": \"1/10 (~0.1)\",\n    \"tolerance\": \"0\"\n   }\n  }\n },\n \"guaranteed\": {\n  \"Tj\": [\n   \"334/5 (~66.8)\",\n   \"599/5 (~119.8)\"\n  ]\n },\n \"guaranteed_unit\": {\n  \"Tj\": \"C\"\n },\n \"how\": {\n  \"Tj\": \"ZTL, exact at the corners\"\n },\n \"requirements\": [\n  {\n   \"quantity\": \"Tj\",\n   \"op\": \"<=\",\n   \"value\": \"125\",\n   \"why\": \"max junction temperature\"\n  }\n ],\n \"rests_on\": \"ZTL disposition ON CREDIT: the tolerances and ranges are the brick's data (the given quantities and the catalog's datasheet values) — taken as stated, not verified\",\n \"checker\": \"not run (work mode: ZTL's verdict; --dev runs the independent checker)\",\n \"judge_log\": [\n  \"Tj -> [334/5, 599/5] by [Tj == Ta + P*(Rjc + PAD__R + HS__R)], multilinear, exact at the corners (credit)\"\n ],\n \"checked_by\": \"ZTL (work mode; a refutation's witness recomputed exactly; --dev adds the independent checker on every design)\"\n}"
+            }
+          ]
+        }
+      },
+      "transport": {
+        "status": "EXITED",
+        "returncode": 0,
+        "stderr_tail": "",
+        "seconds": 0.61
+      },
+      "brick_sha256": "bd9ab17984f19456a9f14559eecfdeaf060700cdd8204537ee04bfaccf5e2fcf",
+      "stand_verdict": "EARNED",
+      "stand_called": true,
+      "tool_error": null,
+      "malformed_lines": null
+    },
+    {
+      "status": "OK",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/call",
+        "params": {
+          "name": "check_design",
+          "arguments": {
+            "brick": {
+              "stand": "universal-stand/1",
+              "quantities": {
+                "L1": {
+                  "role": "given",
+                  "value": "3",
+                  "unit": "m"
+                },
+                "L2": {
+                  "role": "given",
+                  "value": "4",
+                  "unit": "m"
+                },
+                "L3": {
+                  "role": "given",
+                  "value": "5",
+                  "unit": "m"
+                },
+                "Fx": {
+                  "role": "given",
+                  "value": "5",
+                  "tolerance": "0.1",
+                  "unit": "kN",
+                  "why": "horizontal load"
+                },
+                "Fy": {
+                  "role": "given",
+                  "value": "-20",
+                  "tolerance": "0.1",
+                  "unit": "kN",
+                  "why": "vertical load (down)"
+                },
+                "E1": {
+                  "role": "given",
+                  "value": "200",
+                  "tolerance": "0.05",
+                  "unit": "GPa",
+                  "why": "bar 1 steel"
+                },
+                "E2": {
+                  "role": "given",
+                  "value": "200",
+                  "tolerance": "0.05",
+                  "unit": "GPa",
+                  "why": "bar 2 steel"
+                },
+                "E3": {
+                  "role": "given",
+                  "value": "200",
+                  "tolerance": "0.05",
+                  "unit": "GPa",
+                  "why": "bar 3 steel"
+                },
+                "ux": {
+                  "role": "derived",
+                  "unit": "mm"
+                },
+                "uy": {
+                  "role": "derived",
+                  "unit": "mm"
+                },
+                "N1": {
+                  "role": "derived",
+                  "unit": "kN"
+                },
+                "N2": {
+                  "role": "derived",
+                  "unit": "kN"
+                },
+                "N3": {
+                  "role": "derived",
+                  "unit": "kN"
+                },
+                "s1": {
+                  "role": "derived",
+                  "unit": "MPa"
+                },
+                "s2": {
+                  "role": "derived",
+                  "unit": "MPa"
+                },
+                "s3": {
+                  "role": "derived",
+                  "unit": "MPa"
+                }
+              },
+              "slots": {
+                "B1": {
+                  "from": [
+                    "sections"
+                  ]
+                },
+                "B2": {
+                  "from": [
+                    "sections"
+                  ]
+                },
+                "B3": {
+                  "from": [
+                    "sections"
+                  ]
+                }
+              },
+              "define": {
+                "k1": "E1*B1.A/L1",
+                "k2": "E2*B2.A/L2",
+                "k3": "E3*B3.A/L3",
+                "Kxx": "k1 + k3*9/25",
+                "Kxy": "k3*12/25",
+                "Kyy": "k2 + k3*16/25"
+              },
+              "laws": [
+                {
+                  "zfl": "Kxx*ux + Kxy*uy == Fx",
+                  "source": "node equilibrium, x (stiffness method)"
+                },
+                {
+                  "zfl": "Kxy*ux + Kyy*uy == Fy",
+                  "source": "node equilibrium, y"
+                },
+                {
+                  "zfl": "N1 == -k1*ux",
+                  "source": "bar 1 along (1,0): N = -k a.u (tension +)"
+                },
+                {
+                  "zfl": "N2 == -k2*uy",
+                  "source": "bar 2 along (0,1)"
+                },
+                {
+                  "zfl": "N3 == -k3*(3/5*ux + 4/5*uy)",
+                  "source": "bar 3 along (3/5,4/5)"
+                },
+                {
+                  "zfl": "s1 == N1/B1.A",
+                  "source": "stress"
+                },
+                {
+                  "zfl": "s2 == N2/B2.A",
+                  "source": "stress"
+                },
+                {
+                  "zfl": "s3 == N3/B3.A",
+                  "source": "stress"
+                }
+              ],
+              "requirements": [
+                {
+                  "quantity": "uy",
+                  "op": ">=",
+                  "value": "-2.5",
+                  "why": "deflection at most 2.5 mm down"
+                },
+                {
+                  "quantity": "s1",
+                  "op": "within",
+                  "value": [
+                    "-160",
+                    "160"
+                  ],
+                  "why": "bar 1 stress within allowable"
+                },
+                {
+                  "quantity": "s2",
+                  "op": "within",
+                  "value": [
+                    "-160",
+                    "160"
+                  ],
+                  "why": "bar 2 stress within allowable"
+                },
+                {
+                  "quantity": "s3",
+                  "op": "within",
+                  "value": [
+                    "-160",
+                    "160"
+                  ],
+                  "why": "bar 3 stress within allowable"
+                }
+              ],
+              "objective": {
+                "minimize": "B1.A*L1 + B2.A*L2 + B3.A*L3",
+                "why": "least steel (volume)"
+              },
+              "catalog": {
+                "sections": {
+                  "items": [
+                    {
+                      "A": "100"
+                    },
+                    {
+                      "A": "150"
+                    },
+                    {
+                      "A": "200"
+                    },
+                    {
+                      "A": "300"
+                    }
+                  ],
+                  "fields": {
+                    "A": {
+                      "unit": "mm^2"
+                    }
+                  }
+                }
+              }
+            },
+            "time_limit_s": 120
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n \"stand\": \"ztl-stand/1\",\n \"judge\": \"ZTL 2ba7c20\",\n \"designs_tried\": 6,\n \"failed_at_nominal\": 4,\n \"judged\": 2,\n \"undecided\": 0,\n \"units\": \"checked: every law's dimensions agree\",\n \"designs\": [\n  {\n   \"design\": \"B1=sections(A=100); B2=sections(A=100); B3=sections(A=100)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"deflection at most 2.5 mm down\",\n   \"by_at_witness\": \"13/27 (~0.481481)\",\n   \"unit\": \"mm\"\n  },\n  {\n   \"design\": \"B1=sections(A=150); B2=sections(A=100); B3=sections(A=100)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"deflection at most 2.5 mm down\",\n   \"by_at_witness\": \"157/414 (~0.379227)\",\n   \"unit\": \"mm\"\n  },\n  {\n   \"design\": \"B1=sections(A=100); B2=sections(A=150); B3=sections(A=100)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"deflection at most 2.5 mm down\",\n   \"by_at_witness\": \"149/2774 (~0.053713)\",\n   \"unit\": \"mm\"\n  },\n  {\n   \"design\": \"B1=sections(A=100); B2=sections(A=100); B3=sections(A=150)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"deflection at most 2.5 mm down\",\n   \"by_at_witness\": \"249/1046 (~0.23805)\",\n   \"unit\": \"mm\"\n  },\n  {\n   \"design\": \"B1=sections(A=200); B2=sections(A=100); B3=sections(A=100)\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"deflection at most 2.5 mm down\",\n   \"by_at_witness\": \"263/810 (~0.324691)\",\n   \"unit\": \"mm\"\n  },\n  {\n   \"design\": \"B1=sections(A=150); B2=sections(A=150); B3=sections(A=100)\",\n   \"verdict\": \"EARNED\",\n   \"guaranteed\": {\n    \"uy\": [\n     \"-26224/10583 (~-2.47794)\",\n     \"-7152/3899 (~-1.83432)\"\n    ],\n    \"s1\": [\n     \"-655490/10839 (~-60.4751)\",\n     \"-528090/11441 (~-46.1577)\"\n    ],\n    \"s2\": [\n     \"339720/3613 (~94.0271)\",\n     \"1376760/11441 (~120.336)\"\n    ],\n    \"s3\": [\n     \"443250/11441 (~38.7422)\",\n     \"220750/3613 (~61.0988)\"\n    ]\n   }\n  }\n ],\n \"designs_count\": {\n  \"REFUTED\": 5,\n  \"EARNED\": 1\n },\n \"designs_by\": \"'by_at_witness' is the overshoot at the witness point the stand found (the nominal point or a corner), in the quantity's own unit — the worst case may be larger\",\n \"objective\": {\n  \"minimize\": \"B1.A*L1 + B2.A*L2 + B3.A*L3\",\n  \"value\": \"31/20000 (~0.00155)\",\n  \"optimal\": true,\n  \"note\": \"every cheaper design was refuted\"\n },\n \"verdict\": \"EARNED\",\n \"design\": {\n  \"B1\": {\n   \"catalog\": \"sections\",\n   \"A\": {\n    \"nominal\": \"150\",\n    \"tolerance\": \"0\"\n   }\n  },\n  \"B2\": {\n   \"catalog\": \"sections\",\n   \"A\": {\n    \"nominal\": \"150\",\n    \"tolerance\": \"0\"\n   }\n  },\n  \"B3\": {\n   \"catalog\": \"sections\",\n   \"A\": {\n    \"nominal\": \"100\",\n    \"tolerance\": \"0\"\n   }\n  }\n },\n \"guaranteed\": {\n  \"uy\": [\n   \"-26224/10583 (~-2.47794)\",\n   \"-7152/3899 (~-1.83432)\"\n  ],\n  \"s1\": [\n   \"-655490/10839 (~-60.4751)\",\n   \"-528090/11441 (~-46.1577)\"\n  ],\n  \"s2\": [\n   \"339720/3613 (~94.0271)\",\n   \"1376760/11441 (~120.336)\"\n  ],\n  \"s3\": [\n   \"443250/11441 (~38.7422)\",\n   \"220750/3613 (~61.0988)\"\n  ]\n },\n \"guaranteed_unit\": {\n  \"uy\": \"mm\",\n  \"s1\": \"MPa\",\n  \"s2\": \"MPa\",\n  \"s3\": \"MPa\"\n },\n \"how\": {\n  \"uy\": \"ZTL, exact at the corners\",\n  \"s1\": \"ZTL, exact at the corners\",\n  \"s2\": \"ZTL, exact at the corners\",\n  \"s3\": \"ZTL, exact at the corners\"\n },\n \"requirements\": [\n  {\n   \"quantity\": \"uy\",\n   \"op\": \">=\",\n   \"value\": \"-2.5\",\n   \"why\": \"deflection at most 2.5 mm down\"\n  },\n  {\n   \"quantity\": \"s1\",\n   \"op\": \"within\",\n   \"value\": [\n    \"-160\",\n    \"160\"\n   ],\n   \"why\": \"bar 1 stress within allowable\"\n  },\n  {\n   \"quantity\": \"s2\",\n   \"op\": \"within\",\n   \"value\": [\n    \"-160\",\n    \"160\"\n   ],\n   \"why\": \"bar 2 stress within allowable\"\n  },\n  {\n   \"quantity\": \"s3\",\n   \"op\": \"within\",\n   \"value\": [\n    \"-160\",\n    \"160\"\n   ],\n   \"why\": \"bar 3 stress within allowable\"\n  }\n ],\n \"rests_on\": \"ZTL disposition ON CREDIT: the tolerances and ranges are the brick's data (the given quantities and the catalog's datasheet values) — taken as stated, not verified\",\n \"checker\": \"not run (work mode: ZTL's verdict; --dev runs the independent checker)\",\n \"judge_log\": [\n  \"N1 -> [-32774500/3613, -79213500/11441] by the system over its parameters, exact at the corners (credit)\",\n  \"N2 -> [50958000/3613, 206514000/11441] by the system over its parameters, exact at the corners (credit)\",\n  \"N3 -> [44325000/11441, 22075000/3613] by the system over its parameters, exact at the corners (credit)\",\n  \"s1 -> [-655490000000/10839, -528090000000/11441] by the system over its parameters, exact at the corners (credit)\",\n  \"s2 -> [339720000000/3613, 1376760000000/11441] by the system over its parameters, exact at the corners (credit)\",\n  \"s3 -> [443250000000/11441, 220750000000/3613] by the system over its parameters, exact at the corners (credit)\"\n ],\n \"checked_by\": \"ZTL (work mode; a refutation's witness recomputed exactly; --dev adds the independent checker on every design)\"\n}"
+            }
+          ]
+        }
+      },
+      "transport": {
+        "status": "EXITED",
+        "returncode": 0,
+        "stderr_tail": "",
+        "seconds": 0.73
+      },
+      "brick_sha256": "f4a7f1a5a10dd4cc1c92f6a230b70ab03b557d5656fc916ad7e68e089fee49d5",
+      "stand_verdict": "EARNED",
+      "stand_called": true,
+      "tool_error": null,
+      "malformed_lines": null
+    },
+    {
+      "status": "OK",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/call",
+        "params": {
+          "name": "check_design",
+          "arguments": {
+            "brick": {
+              "stand": "ztl-stand/1",
+              "quantities": {
+                "L_cad": {
+                  "role": "given",
+                  "value": "170.000",
+                  "unit": "mm",
+                  "ground": "STEP nominal model, XCAF bbox of RAIL-170 in mini.step"
+                },
+                "L_spec": {
+                  "role": "given",
+                  "value": "170",
+                  "unit": "mm",
+                  "ground": "readme.md purchased parts: Linear rail MGN9-170mm"
+                },
+                "dL": {
+                  "role": "derived",
+                  "unit": "mm"
+                }
+              },
+              "slots": {},
+              "catalog": {},
+              "laws": [
+                {
+                  "zfl": "dL == L_cad - L_spec",
+                  "source": "deviation of the modelled rail length from the purchase spec"
+                }
+              ],
+              "requirements": [
+                {
+                  "quantity": "dL",
+                  "op": "within",
+                  "value": [
+                    "-0.02",
+                    "0.02"
+                  ],
+                  "why": "TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)"
+                }
+              ]
+            },
+            "time_limit_s": 120
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n \"stand\": \"ztl-stand/1\",\n \"judge\": \"ZTL 2ba7c20\",\n \"designs_tried\": 1,\n \"failed_at_nominal\": 0,\n \"judged\": 1,\n \"undecided\": 0,\n \"units\": \"checked: every law's dimensions agree\",\n \"designs\": [\n  {\n   \"design\": \"\",\n   \"verdict\": \"EARNED\",\n   \"guaranteed\": {\n    \"dL\": [\n     \"0\",\n     \"0\"\n    ]\n   }\n  }\n ],\n \"designs_count\": {\n  \"EARNED\": 1\n },\n \"verdict\": \"EARNED\",\n \"design\": {},\n \"guaranteed\": {\n  \"dL\": [\n   \"0\",\n   \"0\"\n  ]\n },\n \"guaranteed_unit\": {\n  \"dL\": \"mm\"\n },\n \"how\": {\n  \"dL\": \"ZTL, outer range\"\n },\n \"requirements\": [\n  {\n   \"quantity\": \"dL\",\n   \"op\": \"within\",\n   \"value\": [\n    \"-0.02\",\n    \"0.02\"\n   ],\n   \"why\": \"TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)\"\n  }\n ],\n \"rests_on\": \"ZTL disposition EARNED: the tolerances and ranges are the brick's data (the given quantities and the catalog's datasheet values) — taken as stated, not verified\",\n \"checker\": \"not run (work mode: ZTL's verdict; --dev runs the independent checker)\",\n \"judge_log\": [\n  \"dL = 0 by exact elimination (earned)\"\n ],\n \"checked_by\": \"ZTL (work mode; a refutation's witness recomputed exactly; --dev adds the independent checker on every design)\"\n}"
+            }
+          ]
+        }
+      },
+      "transport": {
+        "status": "EXITED",
+        "returncode": 0,
+        "stderr_tail": "",
+        "seconds": 0.66
+      },
+      "brick_sha256": "b73cfb250e576c6728c3f61117f7e7cc3db960d074e66263619c618ed5ae1331",
+      "stand_verdict": "EARNED",
+      "stand_called": true,
+      "tool_error": null,
+      "malformed_lines": null
+    },
+    {
+      "status": "OK",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/call",
+        "params": {
+          "name": "check_design",
+          "arguments": {
+            "brick": {
+              "stand": "ztl-stand/1",
+              "quantities": {
+                "L_cad": {
+                  "role": "given",
+                  "value": "170.000",
+                  "unit": "mm",
+                  "ground": "STEP nominal model, XCAF bbox of RAIL-170 in mini.step"
+                },
+                "L_spec": {
+                  "role": "given",
+                  "value": "150",
+                  "unit": "mm",
+                  "ground": "readme.md purchased parts: Linear rail MGN9-150mm"
+                },
+                "dL": {
+                  "role": "derived",
+                  "unit": "mm"
+                }
+              },
+              "slots": {},
+              "catalog": {},
+              "laws": [
+                {
+                  "zfl": "dL == L_cad - L_spec",
+                  "source": "deviation of the modelled rail length from the purchase spec"
+                }
+              ],
+              "requirements": [
+                {
+                  "quantity": "dL",
+                  "op": "within",
+                  "value": [
+                    "-0.02",
+                    "0.02"
+                  ],
+                  "why": "TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)"
+                }
+              ]
+            },
+            "time_limit_s": 120
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n \"stand\": \"ztl-stand/1\",\n \"judge\": \"ZTL 2ba7c20\",\n \"designs_tried\": 1,\n \"failed_at_nominal\": 1,\n \"judged\": 0,\n \"undecided\": 0,\n \"units\": \"checked: every law's dimensions agree\",\n \"designs\": [\n  {\n   \"design\": \"\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)\",\n   \"by_at_witness\": \"999/50 (~19.98)\",\n   \"unit\": \"mm\"\n  }\n ],\n \"designs_count\": {\n  \"REFUTED\": 1\n },\n \"designs_by\": \"'by_at_witness' is the overshoot at the witness point the stand found (the nominal point or a corner), in the quantity's own unit — the worst case may be larger\",\n \"verdict\": \"REFUTED\",\n \"why\": \"every design in the catalog violates a requirement at a concrete point\",\n \"closest_design\": {},\n \"closest_by\": \"the smallest overshoot found, each in its own requirement's unit — overshoots of different requirements are not comparable (blind test 4, c11)\",\n \"its_violating_point\": {},\n \"point_units\": {},\n \"value_there\": {\n  \"dL\": \"20\"\n },\n \"unit\": \"mm\",\n \"requirement\": {\n  \"quantity\": \"dL\",\n  \"op\": \"within\",\n  \"value\": [\n   \"-0.02\",\n   \"0.02\"\n  ],\n  \"why\": \"TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)\"\n },\n \"overshoot\": \"999/50 (~19.98)\",\n \"reasons\": {\n  \"spread_over_tolerances\": [\n   \"20\",\n   \"20\"\n  ],\n  \"window\": [\n   \"-1/50 (~-0.02)\",\n   \"1/50 (~0.02)\"\n  ],\n  \"largest_contributors\": []\n },\n \"checker\": \"the violating point recomputed exactly (rational arithmetic, no judge code)\",\n \"_core\": [\n  0\n ],\n \"minimal_conflicts\": {\n  \"sets\": [\n   [\n    \"TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)\"\n   ]\n  ],\n  \"undecided_sets\": [],\n  \"complete\": true,\n  \"subset_runs\": 0,\n  \"subsets_inferred\": 0,\n  \"how\": \"first one minimal set by deletion (each requirement dropped in turn while the rest stays refuted), then every subset by size, smallest first; a subset of an EARNED set is EARNED and a superset of a REFUTED one REFUTED without a run (monotone: one design holds the smaller set), within a budget of 24 subset runs\"\n },\n \"checked_by\": \"ZTL (work mode; a refutation's witness recomputed exactly; --dev adds the independent checker on every design)\"\n}"
+            }
+          ]
+        }
+      },
+      "transport": {
+        "status": "EXITED",
+        "returncode": 0,
+        "stderr_tail": "",
+        "seconds": 0.74
+      },
+      "brick_sha256": "b158aec5c7ddf1392e7af6b8008c23b168a4d8dc238731dc03a275b558089a5b",
+      "stand_verdict": "REFUTED",
+      "stand_called": true,
+      "tool_error": null,
+      "malformed_lines": null
+    },
+    {
+      "status": "OK",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/call",
+        "params": {
+          "name": "check_design",
+          "arguments": {
+            "brick": {
+              "stand": "ztl-stand/1",
+              "quantities": {
+                "L_cad": {
+                  "role": "given",
+                  "value": "170.000",
+                  "unit": "mm",
+                  "ground": "STEP nominal model, XCAF bbox of RAIL-170 in reBot_B601_DM_v1.1_20260625.step"
+                },
+                "L_spec": {
+                  "role": "given",
+                  "value": "170",
+                  "unit": "mm",
+                  "ground": "readme.md purchased parts: Linear rail MGN9-170mm"
+                },
+                "dL": {
+                  "role": "derived",
+                  "unit": "mm"
+                }
+              },
+              "slots": {},
+              "catalog": {},
+              "laws": [
+                {
+                  "zfl": "dL == L_cad - L_spec",
+                  "source": "deviation of the modelled rail length from the purchase spec"
+                }
+              ],
+              "requirements": [
+                {
+                  "quantity": "dL",
+                  "op": "within",
+                  "value": [
+                    "-0.02",
+                    "0.02"
+                  ],
+                  "why": "TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)"
+                }
+              ]
+            },
+            "time_limit_s": 120
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n \"stand\": \"ztl-stand/1\",\n \"judge\": \"ZTL 2ba7c20\",\n \"designs_tried\": 1,\n \"failed_at_nominal\": 0,\n \"judged\": 1,\n \"undecided\": 0,\n \"units\": \"checked: every law's dimensions agree\",\n \"designs\": [\n  {\n   \"design\": \"\",\n   \"verdict\": \"EARNED\",\n   \"guaranteed\": {\n    \"dL\": [\n     \"0\",\n     \"0\"\n    ]\n   }\n  }\n ],\n \"designs_count\": {\n  \"EARNED\": 1\n },\n \"verdict\": \"EARNED\",\n \"design\": {},\n \"guaranteed\": {\n  \"dL\": [\n   \"0\",\n   \"0\"\n  ]\n },\n \"guaranteed_unit\": {\n  \"dL\": \"mm\"\n },\n \"how\": {\n  \"dL\": \"ZTL, outer range\"\n },\n \"requirements\": [\n  {\n   \"quantity\": \"dL\",\n   \"op\": \"within\",\n   \"value\": [\n    \"-0.02\",\n    \"0.02\"\n   ],\n   \"why\": \"TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)\"\n  }\n ],\n \"rests_on\": \"ZTL disposition EARNED: the tolerances and ranges are the brick's data (the given quantities and the catalog's datasheet values) — taken as stated, not verified\",\n \"checker\": \"not run (work mode: ZTL's verdict; --dev runs the independent checker)\",\n \"judge_log\": [\n  \"dL = 0 by exact elimination (earned)\"\n ],\n \"checked_by\": \"ZTL (work mode; a refutation's witness recomputed exactly; --dev adds the independent checker on every design)\"\n}"
+            }
+          ]
+        }
+      },
+      "transport": {
+        "status": "EXITED",
+        "returncode": 0,
+        "stderr_tail": "",
+        "seconds": 0.63
+      },
+      "brick_sha256": "61bf8eae7b843245ca778e4386875afae2d78a270dd378f3c18aae7b063d661d",
+      "stand_verdict": "EARNED",
+      "stand_called": true,
+      "tool_error": null,
+      "malformed_lines": null
+    },
+    {
+      "status": "OK",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/call",
+        "params": {
+          "name": "check_design",
+          "arguments": {
+            "brick": {
+              "stand": "ztl-stand/1",
+              "quantities": {
+                "L_cad": {
+                  "role": "given",
+                  "value": "170.000",
+                  "unit": "mm",
+                  "ground": "STEP nominal model, XCAF bbox of RAIL-170 in reBot_B601_DM_v1.1_20260625.step"
+                },
+                "L_spec": {
+                  "role": "given",
+                  "value": "150",
+                  "unit": "mm",
+                  "ground": "readme.md purchased parts: Linear rail MGN9-150mm"
+                },
+                "dL": {
+                  "role": "derived",
+                  "unit": "mm"
+                }
+              },
+              "slots": {},
+              "catalog": {},
+              "laws": [
+                {
+                  "zfl": "dL == L_cad - L_spec",
+                  "source": "deviation of the modelled rail length from the purchase spec"
+                }
+              ],
+              "requirements": [
+                {
+                  "quantity": "dL",
+                  "op": "within",
+                  "value": [
+                    "-0.02",
+                    "0.02"
+                  ],
+                  "why": "TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)"
+                }
+              ]
+            },
+            "time_limit_s": 120
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n \"stand\": \"ztl-stand/1\",\n \"judge\": \"ZTL 2ba7c20\",\n \"designs_tried\": 1,\n \"failed_at_nominal\": 1,\n \"judged\": 0,\n \"undecided\": 0,\n \"units\": \"checked: every law's dimensions agree\",\n \"designs\": [\n  {\n   \"design\": \"\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)\",\n   \"by_at_witness\": \"999/50 (~19.98)\",\n   \"unit\": \"mm\"\n  }\n ],\n \"designs_count\": {\n  \"REFUTED\": 1\n },\n \"designs_by\": \"'by_at_witness' is the overshoot at the witness point the stand found (the nominal point or a corner), in the quantity's own unit — the worst case may be larger\",\n \"verdict\": \"REFUTED\",\n \"why\": \"every design in the catalog violates a requirement at a concrete point\",\n \"closest_design\": {},\n \"closest_by\": \"the smallest overshoot found, each in its own requirement's unit — overshoots of different requirements are not comparable (blind test 4, c11)\",\n \"its_violating_point\": {},\n \"point_units\": {},\n \"value_there\": {\n  \"dL\": \"20\"\n },\n \"unit\": \"mm\",\n \"requirement\": {\n  \"quantity\": \"dL\",\n  \"op\": \"within\",\n  \"value\": [\n   \"-0.02\",\n   \"0.02\"\n  ],\n  \"why\": \"TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)\"\n },\n \"overshoot\": \"999/50 (~19.98)\",\n \"reasons\": {\n  \"spread_over_tolerances\": [\n   \"20\",\n   \"20\"\n  ],\n  \"window\": [\n   \"-1/50 (~-0.02)\",\n   \"1/50 (~0.02)\"\n  ],\n  \"largest_contributors\": []\n },\n \"checker\": \"the violating point recomputed exactly (rational arithmetic, no judge code)\",\n \"_core\": [\n  0\n ],\n \"minimal_conflicts\": {\n  \"sets\": [\n   [\n    \"TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)\"\n   ]\n  ],\n  \"undecided_sets\": [],\n  \"complete\": true,\n  \"subset_runs\": 0,\n  \"subsets_inferred\": 0,\n  \"how\": \"first one minimal set by deletion (each requirement dropped in turn while the rest stays refuted), then every subset by size, smallest first; a subset of an EARNED set is EARNED and a superset of a REFUTED one REFUTED without a run (monotone: one design holds the smaller set), within a budget of 24 subset runs\"\n },\n \"checked_by\": \"ZTL (work mode; a refutation's witness recomputed exactly; --dev adds the independent checker on every design)\"\n}"
+            }
+          ]
+        }
+      },
+      "transport": {
+        "status": "EXITED",
+        "returncode": 0,
+        "stderr_tail": "",
+        "seconds": 0.61
+      },
+      "brick_sha256": "2fb51bb92226870fbb4faf3b767dd2f934bc5dd2e8528658d08ffb82090996eb",
+      "stand_verdict": "REFUTED",
+      "stand_called": true,
+      "tool_error": null,
+      "malformed_lines": null
+    },
+    {
+      "status": "OK",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/call",
+        "params": {
+          "name": "check_design",
+          "arguments": {
+            "brick": {
+              "stand": "ztl-stand/1",
+              "quantities": {
+                "L_cad": {
+                  "role": "given",
+                  "value": "170.000",
+                  "unit": "mm",
+                  "ground": "STEP nominal model, XCAF bbox of RAIL-170 in mini.step"
+                },
+                "L_spec": {
+                  "role": "given",
+                  "value": "170",
+                  "unit": "mm",
+                  "ground": "readme.md purchased parts: Linear rail MGN9-170mm"
+                },
+                "dL": {
+                  "role": "derived",
+                  "unit": "mm"
+                }
+              },
+              "slots": {},
+              "catalog": {},
+              "laws": [
+                {
+                  "zfl": "dL == L_cad - L_spec",
+                  "source": "deviation of the modelled rail length from the purchase spec"
+                }
+              ],
+              "requirements": [
+                {
+                  "quantity": "dL",
+                  "op": "within",
+                  "value": [
+                    "-0.02",
+                    "0.02"
+                  ],
+                  "why": "TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)"
+                }
+              ]
+            },
+            "time_limit_s": 120
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n \"stand\": \"ztl-stand/1\",\n \"judge\": \"ZTL 2ba7c20\",\n \"designs_tried\": 1,\n \"failed_at_nominal\": 0,\n \"judged\": 1,\n \"undecided\": 0,\n \"units\": \"checked: every law's dimensions agree\",\n \"designs\": [\n  {\n   \"design\": \"\",\n   \"verdict\": \"EARNED\",\n   \"guaranteed\": {\n    \"dL\": [\n     \"0\",\n     \"0\"\n    ]\n   }\n  }\n ],\n \"designs_count\": {\n  \"EARNED\": 1\n },\n \"verdict\": \"EARNED\",\n \"design\": {},\n \"guaranteed\": {\n  \"dL\": [\n   \"0\",\n   \"0\"\n  ]\n },\n \"guaranteed_unit\": {\n  \"dL\": \"mm\"\n },\n \"how\": {\n  \"dL\": \"ZTL, outer range\"\n },\n \"requirements\": [\n  {\n   \"quantity\": \"dL\",\n   \"op\": \"within\",\n   \"value\": [\n    \"-0.02\",\n    \"0.02\"\n   ],\n   \"why\": \"TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)\"\n  }\n ],\n \"rests_on\": \"ZTL disposition EARNED: the tolerances and ranges are the brick's data (the given quantities and the catalog's datasheet values) — taken as stated, not verified\",\n \"checker\": \"not run (work mode: ZTL's verdict; --dev runs the independent checker)\",\n \"judge_log\": [\n  \"dL = 0 by exact elimination (earned)\"\n ],\n \"checked_by\": \"ZTL (work mode; a refutation's witness recomputed exactly; --dev adds the independent checker on every design)\"\n}"
+            }
+          ]
+        }
+      },
+      "transport": {
+        "status": "EXITED",
+        "returncode": 0,
+        "stderr_tail": "",
+        "seconds": 0.65
+      },
+      "brick_sha256": "b73cfb250e576c6728c3f61117f7e7cc3db960d074e66263619c618ed5ae1331",
+      "stand_verdict": "EARNED",
+      "stand_called": true,
+      "tool_error": null,
+      "malformed_lines": null
+    },
+    {
+      "status": "OK",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/call",
+        "params": {
+          "name": "check_design",
+          "arguments": {
+            "brick": {
+              "stand": "ztl-stand/1",
+              "quantities": {
+                "L_cad": {
+                  "role": "given",
+                  "value": "170.000",
+                  "unit": "mm",
+                  "ground": "STEP nominal model, XCAF bbox of RAIL-170 in mini.step"
+                },
+                "L_spec": {
+                  "role": "given",
+                  "value": "170",
+                  "unit": "mm",
+                  "ground": "readme.md purchased parts: Linear rail MGN9-170mm"
+                },
+                "dL": {
+                  "role": "derived",
+                  "unit": "mm"
+                }
+              },
+              "slots": {},
+              "catalog": {},
+              "laws": [
+                {
+                  "zfl": "dL == L_cad - L_spec",
+                  "source": "deviation of the modelled rail length from the purchase spec"
+                }
+              ],
+              "requirements": [
+                {
+                  "quantity": "dL",
+                  "op": "within",
+                  "value": [
+                    "-0.02",
+                    "0.02"
+                  ],
+                  "why": "TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)"
+                }
+              ]
+            },
+            "time_limit_s": 120
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n \"stand\": \"ztl-stand/1\",\n \"judge\": \"ZTL 2ba7c20\",\n \"designs_tried\": 1,\n \"failed_at_nominal\": 0,\n \"judged\": 1,\n \"undecided\": 0,\n \"units\": \"checked: every law's dimensions agree\",\n \"designs\": [\n  {\n   \"design\": \"\",\n   \"verdict\": \"EARNED\",\n   \"guaranteed\": {\n    \"dL\": [\n     \"0\",\n     \"0\"\n    ]\n   }\n  }\n ],\n \"designs_count\": {\n  \"EARNED\": 1\n },\n \"verdict\": \"EARNED\",\n \"design\": {},\n \"guaranteed\": {\n  \"dL\": [\n   \"0\",\n   \"0\"\n  ]\n },\n \"guaranteed_unit\": {\n  \"dL\": \"mm\"\n },\n \"how\": {\n  \"dL\": \"ZTL, outer range\"\n },\n \"requirements\": [\n  {\n   \"quantity\": \"dL\",\n   \"op\": \"within\",\n   \"value\": [\n    \"-0.02\",\n    \"0.02\"\n   ],\n   \"why\": \"TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)\"\n  }\n ],\n \"rests_on\": \"ZTL disposition EARNED: the tolerances and ranges are the brick's data (the given quantities and the catalog's datasheet values) — taken as stated, not verified\",\n \"checker\": \"not run (work mode: ZTL's verdict; --dev runs the independent checker)\",\n \"judge_log\": [\n  \"dL = 0 by exact elimination (earned)\"\n ],\n \"checked_by\": \"ZTL (work mode; a refutation's witness recomputed exactly; --dev adds the independent checker on every design)\"\n}"
+            }
+          ]
+        }
+      },
+      "transport": {
+        "status": "EXITED",
+        "returncode": 0,
+        "stderr_tail": "",
+        "seconds": 0.6
+      },
+      "brick_sha256": "b73cfb250e576c6728c3f61117f7e7cc3db960d074e66263619c618ed5ae1331",
+      "stand_verdict": "EARNED",
+      "stand_called": true,
+      "tool_error": null,
+      "malformed_lines": null
+    },
+    {
+      "status": "OK",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/call",
+        "params": {
+          "name": "check_design",
+          "arguments": {
+            "brick": {
+              "stand": "ztl-stand/1",
+              "quantities": {
+                "L_cad": {
+                  "role": "given",
+                  "value": "170.000",
+                  "unit": "mm",
+                  "ground": "STEP nominal model, XCAF bbox of RAIL-170 in mini.step"
+                },
+                "L_spec": {
+                  "role": "given",
+                  "value": "170",
+                  "unit": "mm",
+                  "ground": "readme.md purchased parts: Linear rail MGN9-170mm"
+                },
+                "dL": {
+                  "role": "derived",
+                  "unit": "mm"
+                }
+              },
+              "slots": {},
+              "catalog": {},
+              "laws": [
+                {
+                  "zfl": "dL == L_cad - L_spec",
+                  "source": "deviation of the modelled rail length from the purchase spec"
+                }
+              ],
+              "requirements": [
+                {
+                  "quantity": "dL",
+                  "op": "within",
+                  "value": [
+                    "0.01",
+                    "0.02"
+                  ],
+                  "why": "WO-LMFG-003 D02-16: window deliberately excludes dL = 0"
+                }
+              ]
+            },
+            "time_limit_s": 120
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n \"stand\": \"ztl-stand/1\",\n \"judge\": \"ZTL 2ba7c20\",\n \"designs_tried\": 1,\n \"failed_at_nominal\": 1,\n \"judged\": 0,\n \"undecided\": 0,\n \"units\": \"checked: every law's dimensions agree\",\n \"designs\": [\n  {\n   \"design\": \"\",\n   \"verdict\": \"REFUTED\",\n   \"fails\": \"WO-LMFG-003 D02-16: window deliberately excludes dL = 0\",\n   \"by_at_witness\": \"1/100 (~0.01)\",\n   \"unit\": \"mm\"\n  }\n ],\n \"designs_count\": {\n  \"REFUTED\": 1\n },\n \"designs_by\": \"'by_at_witness' is the overshoot at the witness point the stand found (the nominal point or a corner), in the quantity's own unit — the worst case may be larger\",\n \"verdict\": \"REFUTED\",\n \"why\": \"every design in the catalog violates a requirement at a concrete point\",\n \"closest_design\": {},\n \"closest_by\": \"the smallest overshoot found, each in its own requirement's unit — overshoots of different requirements are not comparable (blind test 4, c11)\",\n \"its_violating_point\": {},\n \"point_units\": {},\n \"value_there\": {\n  \"dL\": \"0\"\n },\n \"unit\": \"mm\",\n \"requirement\": {\n  \"quantity\": \"dL\",\n  \"op\": \"within\",\n  \"value\": [\n   \"0.01\",\n   \"0.02\"\n  ],\n  \"why\": \"WO-LMFG-003 D02-16: window deliberately excludes dL = 0\"\n },\n \"overshoot\": \"1/100 (~0.01)\",\n \"reasons\": {\n  \"spread_over_tolerances\": [\n   \"0\",\n   \"0\"\n  ],\n  \"window\": [\n   \"1/100 (~0.01)\",\n   \"1/50 (~0.02)\"\n  ],\n  \"largest_contributors\": []\n },\n \"checker\": \"the violating point recomputed exactly (rational arithmetic, no judge code)\",\n \"_core\": [\n  0\n ],\n \"minimal_conflicts\": {\n  \"sets\": [\n   [\n    \"WO-LMFG-003 D02-16: window deliberately excludes dL = 0\"\n   ]\n  ],\n  \"undecided_sets\": [],\n  \"complete\": true,\n  \"subset_runs\": 0,\n  \"subsets_inferred\": 0,\n  \"how\": \"first one minimal set by deletion (each requirement dropped in turn while the rest stays refuted), then every subset by size, smallest first; a subset of an EARNED set is EARNED and a superset of a REFUTED one REFUTED without a run (monotone: one design holds the smaller set), within a budget of 24 subset runs\"\n },\n \"checked_by\": \"ZTL (work mode; a refutation's witness recomputed exactly; --dev adds the independent checker on every design)\"\n}"
+            }
+          ]
+        }
+      },
+      "transport": {
+        "status": "EXITED",
+        "returncode": 0,
+        "stderr_tail": "",
+        "seconds": 0.6
+      },
+      "brick_sha256": "379060159e2092fd61fa754a6b85244062e5dcde55ca74f680e709526bac226e",
+      "stand_verdict": "REFUTED",
+      "stand_called": true,
+      "tool_error": null,
+      "malformed_lines": null
+    },
+    {
+      "status": "OK",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/call",
+        "params": {
+          "name": "check_design",
+          "arguments": {
+            "brick": {
+              "stand": "ztl-stand/1",
+              "quantities": "garbage"
+            },
+            "time_limit_s": 120
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n \"verdict\": \"BRICK ERROR\",\n \"why\": \"BrickError: quantities: must be a non-empty object of named quantities\"\n}"
+            }
+          ]
+        }
+      },
+      "transport": {
+        "status": "EXITED",
+        "returncode": 0,
+        "stderr_tail": "",
+        "seconds": 0.6
+      },
+      "brick_sha256": "d26a4a631897e09a8c86c1b108bb3cb105f1145ee77d5c822bbfb941083f1c06",
+      "stand_verdict": "BRICK ERROR",
+      "stand_called": true,
+      "tool_error": null,
+      "malformed_lines": null
+    },
+    {
+      "status": "OK",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/call",
+        "params": {
+          "name": "check_design",
+          "arguments": {
+            "brick": {
+              "stand": "ztl-stand/1",
+              "quantities": {
+                "x": {
+                  "role": "given",
+                  "value": "1",
+                  "unit": "mm"
+                }
+              },
+              "slots": {},
+              "catalog": {},
+              "laws": [
+                {
+                  "zfl": "y == x + q"
+                }
+              ],
+              "requirements": [
+                {
+                  "quantity": "y",
+                  "op": "<=",
+                  "value": "2"
+                }
+              ]
+            },
+            "time_limit_s": 120
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n \"verdict\": \"BRICK ERROR\",\n \"why\": \"BrickError: laws[0]: 'y' is not a quantity, a define or a slot.field\"\n}"
+            }
+          ]
+        }
+      },
+      "transport": {
+        "status": "EXITED",
+        "returncode": 0,
+        "stderr_tail": "",
+        "seconds": 0.59
+      },
+      "brick_sha256": "8bb31f37962c7ef9c00bf392b205c0282f342fbf7ed3d66c9b8a295012c6968e",
+      "stand_verdict": "BRICK ERROR",
+      "stand_called": true,
+      "tool_error": null,
+      "malformed_lines": null
+    },
+    {
+      "status": "OK",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/call",
+        "params": {
+          "name": "check_design",
+          "arguments": {
+            "brick": {},
+            "time_limit_s": 120
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n \"verdict\": \"BRICK ERROR\",\n \"why\": \"BrickError: quantities: must be a non-empty object of named quantities\"\n}"
+            }
+          ]
+        }
+      },
+      "transport": {
+        "status": "EXITED",
+        "returncode": 0,
+        "stderr_tail": "",
+        "seconds": 0.59
+      },
+      "brick_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "stand_verdict": "BRICK ERROR",
+      "stand_called": true,
+      "tool_error": null,
+      "malformed_lines": null
+    },
+    {
+      "status": "MCP_TOOL_ERROR",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/call",
+        "params": {
+          "name": "check_design",
+          "arguments": {
+            "brick": [
+              "not",
+              "an",
+              "object"
+            ],
+            "time_limit_s": 120
+          }
+        }
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "ValueError: brick must be a JSON object"
+            }
+          ],
+          "isError": true
+        }
+      },
+      "transport": {
+        "status": "EXITED",
+        "returncode": 0,
+        "stderr_tail": "",
+        "seconds": 0.31
+      },
+      "brick_sha256": "da4030d94d7e021763a73475c7e0f434f7ce361882886e3c02ca576b275047d5",
+      "stand_verdict": null,
+      "stand_called": null,
+      "tool_error": "ValueError: brick must be a JSON object",
+      "malformed_lines": null
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
-  "source_commit": "7b494139f93544e5f78a02588ed676ad0ebe7f42",
-  "executed_at_utc": "2026-11-14T00:11:33+00:00",
+  "source_commit": "27a207d3121bbf91ecfc968260ce0a4239405c6f",
+  "executed_at_utc": "2026-11-14T01:44:44+00:00",
   "environment": {
     "python": "3.14.7",
     "implementation": "CPython",
@@ -31,6 +31,18 @@
       "sha256": "f63c6f54f4363f1916dadacf6936c5a45f711afce5a7d2c4cd3675b623110346"
     },
     {
+      "path": "evidence/D02_GO_NO_GO.json",
+      "sha256": "fe2415c758e19b0a1fe86057384c0dde94becfafa06a6382fbfc5a6e81ab589e"
+    },
+    {
+      "path": "evidence/ENGINEERING_NEGATIVES.json",
+      "sha256": "fccf52701b0d0858795d00d0e10b5ba3e98889c438ce63d42b6543080441bf9b"
+    },
+    {
+      "path": "evidence/ENGINEERING_VERDICTS.json",
+      "sha256": "472fb894e326ef913d0fa02eed9470bc232e580ed89c379c76c16329fe8d9e65"
+    },
+    {
       "path": "evidence/LICENSE_REPORT.json",
       "sha256": "4b7d14b14c06aca76c9997deaa76a521f140aee2e8f9cf47c533ccbffcaa9afc"
     },
@@ -49,6 +61,14 @@
     {
       "path": "evidence/UPSTREAM_BASELINE.windows-local.json",
       "sha256": "cd44dfec013d3edd4011c3edc1a23af568619217901cad9fcff43fbd10abbc55"
+    },
+    {
+      "path": "evidence/ZTL_MCP_RESULTS.json",
+      "sha256": "4e20829499fcc92f595de72c03bf74b221f692a7800845fd89e4c9407e78e3b2"
+    },
+    {
+      "path": "evidence/ZTL_STAND_BASELINE.json",
+      "sha256": "99478c313089819625bddb82b1530455d3661d25e277537a01456baaa4a151e9"
     },
     {
       "path": "manifests/UPSTREAM_MANIFEST.json",

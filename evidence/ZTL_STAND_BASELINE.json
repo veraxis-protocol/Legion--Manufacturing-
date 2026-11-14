@@ -1,0 +1,2099 @@
+{
+  "source_commit": "27a207d3121bbf91ecfc968260ce0a4239405c6f",
+  "executed_at_utc": "2026-11-14T01:30:13+00:00",
+  "environment": {
+    "python": "3.12.3",
+    "implementation": "CPython",
+    "platform": "Linux-6.18.58.1-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "os_name": "posix",
+    "ci": false,
+    "github_run_id": null,
+    "github_workflow": null,
+    "github_job": null
+  },
+  "command": "python -I tools/d02_run.py --out evidence --stand-suite --regressions",
+  "inputs": {
+    "pins": "manifests/ZTL_SOURCE_PINS.json",
+    "examples": [
+      "examples/divider-1pct-req-1pct.json",
+      "examples/divider-1pct-req-0.5pct.json",
+      "examples/tasks/t1-thermal-heatsink.json",
+      "examples/tasks/t6-truss-three-bars.json"
+    ]
+  },
+  "status": "PASS",
+  "counts": {
+    "mcp_examples": 4,
+    "stand_self_checks_ok": 437,
+    "stand_self_checks_failed": 3,
+    "stand_self_checks_blocked": 3,
+    "stand_suite": "PASS_EXCEPT_BLOCKED"
+  },
+  "solvers": {
+    "ztl-engineer": {
+      "repository": "https://github.com/inventor1975/ztl-engineer",
+      "commit": "91d11672cb1986a7fb185d3ae5110d7209b36b97",
+      "head": "91d11672cb1986a7fb185d3ae5110d7209b36b97",
+      "files_verified": 14,
+      "license": "Apache-2.0",
+      "not_representable_on_this_file_system": []
+    },
+    "ztl-stand": {
+      "repository": "https://github.com/inventor1975/ztl-stand",
+      "commit": "0b4d718fa3bd3105ea002105e0d89cdd76b7b573",
+      "head": "0b4d718fa3bd3105ea002105e0d89cdd76b7b573",
+      "files_verified": 1987,
+      "license": "Apache-2.0 OR MIT",
+      "not_representable_on_this_file_system": []
+    },
+    "ZTL": {
+      "repository": "https://github.com/inventor1975/ZTL",
+      "commit": "2ba7c209371e90058df4666bb949fc253fe6cc27",
+      "head": "2ba7c209371e90058df4666bb949fc253fe6cc27",
+      "files_verified": 171,
+      "license": "Apache-2.0 OR MIT",
+      "not_representable_on_this_file_system": []
+    }
+  },
+  "deal_rescue": {
+    "repository": "https://github.com/veraxis-protocol/LEGION-Deal-Rescue",
+    "commit": "6d5563af9a0eb838297933a8ae6b128defa9f69e",
+    "dest": "/home/administrator/lmfg-d02/_deps/deal-rescue",
+    "license": "Apache-2.0"
+  },
+  "sources_unchanged_after_use": {
+    "ztl-engineer": [],
+    "ztl-stand": [],
+    "ZTL": []
+  },
+  "judge_reported_by_stand": "ZTL 2ba7c20",
+  "mcp_server_start": {
+    "status": "OK",
+    "server_info": {
+      "name": "ztl-engineer",
+      "version": "0.1"
+    },
+    "tools": [
+      "brick_format",
+      "check_design",
+      "ask_engineer"
+    ],
+    "transport": {
+      "status": "EXITED",
+      "returncode": 0,
+      "stderr_tail": "",
+      "seconds": 0.31
+    }
+  },
+  "examples": [
+    {
+      "example": "examples/divider-1pct-req-1pct.json",
+      "source_sha256": "e43ec13dc2945705d9af64fd43b240d047d241f9cb74f8e0e1f8cad8877723d5",
+      "brick_sha256": "92cea4e20a3ced95d6d49d8abb35e6f1b6230790b79e117b06392de3b0502e65",
+      "stand_verdict": "EARNED",
+      "independent_checker": {
+        "status": "OK",
+        "verdict": "EARNED",
+        "checked_by": "ZTL + the independent checker (dev mode)",
+        "checker": "every corner of the tolerance box recomputed exactly and inside; exact ranges equal; definitions bounded by the checker's own interval arithmetic",
+        "judge": "ZTL 2ba7c20",
+        "command": "python -m ustand.stand brick.json --dev",
+        "seconds": 0.41
+      },
+      "legion_verdict": "T",
+      "why": "CONFIRMED: MCP check_design and the stand's independent checker (--dev) agree",
+      "scope": "ztl-stand's own example problem: integration health only, says nothing about reBot",
+      "stand_result": {
+        "stand": "ztl-stand/1",
+        "judge": "ZTL 2ba7c20",
+        "designs_tried": 1,
+        "failed_at_nominal": 0,
+        "judged": 1,
+        "undecided": 0,
+        "units": "checked: every law's dimensions agree",
+        "refuted_by_groups": 432,
+        "groups_pruned": 2,
+        "groups_read": 29,
+        "designs": [
+          {
+            "design": "R1=res_1pct_quarterW(R=10000, P=1/4) .. res_1pct_quarterW(R=30000, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4) .. res_1pct_quarterW(R=3000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-1%",
+            "group": "144 designs",
+            "how": "refuted as a GROUP: ZTL's reading and the checker's own both put the quantity past its bound over the whole group"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=33000, P=1/4) .. res_1pct_quarterW(R=91000, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4) .. res_1pct_quarterW(R=9100, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-1%",
+            "group": "288 designs",
+            "how": "refuted as a GROUP: ZTL's reading and the checker's own both put the quantity past its bound over the whole group"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4)",
+            "verdict": "EARNED",
+            "guaranteed": {
+              "Vout": [
+                "99/40 (~2.475)",
+                "101/40 (~2.525)"
+              ]
+            }
+          }
+        ],
+        "designs_count": {
+          "REFUTED": 2,
+          "EARNED": 1
+        },
+        "designs_by": "'by_at_witness' is the overshoot at the witness point the stand found (the nominal point or a corner), in the quantity's own unit — the worst case may be larger",
+        "verdict": "EARNED",
+        "design": {
+          "R1": {
+            "catalog": "res_1pct_quarterW",
+            "R": {
+              "nominal": "1000",
+              "tolerance": "1/100 (~0.01)"
+            },
+            "P": {
+              "nominal": "1/4 (~0.25)",
+              "tolerance": "0"
+            }
+          },
+          "R2": {
+            "catalog": "res_1pct_quarterW",
+            "R": {
+              "nominal": "1000",
+              "tolerance": "1/100 (~0.01)"
+            },
+            "P": {
+              "nominal": "1/4 (~0.25)",
+              "tolerance": "0"
+            }
+          }
+        },
+        "guaranteed": {
+          "Vout": [
+            "99/40 (~2.475)",
+            "101/40 (~2.525)"
+          ]
+        },
+        "guaranteed_unit": {
+          "Vout": "V"
+        },
+        "how": {
+          "Vout": "ZTL, exact at the corners"
+        },
+        "requirements": [
+          {
+            "quantity": "Vout",
+            "op": "within",
+            "value": [
+              "2.475",
+              "2.525"
+            ],
+            "why": "2.5 V +-1%"
+          }
+        ],
+        "rests_on": "ZTL disposition ON CREDIT: the tolerances and ranges are the brick's data (the given quantities and the catalog's datasheet values) — taken as stated, not verified",
+        "checker": "not run (work mode: ZTL's verdict; --dev runs the independent checker)",
+        "judge_log": [
+          "I -> [1/404, 1/396] by the system over its parameters, exact at the corners (credit)",
+          "Vout -> [99/40, 101/40] by the system over its parameters, exact at the corners (credit)"
+        ],
+        "checked_by": "ZTL (work mode; a refutation's witness recomputed exactly; --dev adds the independent checker on every design)"
+      }
+    },
+    {
+      "example": "examples/divider-1pct-req-0.5pct.json",
+      "source_sha256": "101578935e3474ef83abff3a074451e2fab19eb2544e786f9f639e953f19f0e9",
+      "brick_sha256": "6bf0e1ce5d620996bb7b53f92509958317a9599dee7f8616bde6c174f2e1e3b9",
+      "stand_verdict": "REFUTED",
+      "independent_checker": {
+        "status": "OK",
+        "verdict": "REFUTED",
+        "checked_by": "ZTL + the independent checker (dev mode)",
+        "checker": "the violating point recomputed exactly (rational arithmetic, no judge code)",
+        "judge": "ZTL 2ba7c20",
+        "command": "python -m ustand.stand brick.json --dev",
+        "seconds": 0.75
+      },
+      "legion_verdict": "F",
+      "why": "CONFIRMED: MCP check_design and the stand's independent checker (--dev) agree",
+      "scope": "ztl-stand's own example problem: integration health only, says nothing about reBot",
+      "stand_result": {
+        "stand": "ztl-stand/1",
+        "judge": "ZTL 2ba7c20",
+        "designs_tried": 1872,
+        "failed_at_nominal": 1824,
+        "judged": 48,
+        "undecided": 0,
+        "units": "checked: every law's dimensions agree",
+        "refuted_by_groups": 432,
+        "groups_pruned": 2,
+        "groups_read": 29,
+        "designs": [
+          {
+            "design": "R1=res_1pct_quarterW(R=10000, P=1/4) .. res_1pct_quarterW(R=30000, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4) .. res_1pct_quarterW(R=3000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "group": "144 designs",
+            "how": "refuted as a GROUP: ZTL's reading and the checker's own both put the quantity past its bound over the whole group"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=33000, P=1/4) .. res_1pct_quarterW(R=91000, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4) .. res_1pct_quarterW(R=9100, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "group": "288 designs",
+            "how": "refuted as a GROUP: ZTL's reading and the checker's own both put the quantity past its bound over the whole group"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1/80 (~0.0125)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=1100, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "179/1680 (~0.106548)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=1200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "189/880 (~0.214773)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=1300, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "577/1840 (~0.313587)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=1500, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "39/80 (~0.4875)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=1600, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "587/1040 (~0.564423)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=1800, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "393/560 (~0.701786)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=2000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "197/240 (~0.820833)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=2200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "37/40 (~0.925)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=2400, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1383/1360 (~1.01691)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=2700, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "3363/2960 (~1.13615)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=3000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "99/80 (~1.2375)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "179/1680 (~0.106548)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=1100, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1/80 (~0.0125)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=1200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "177/1840 (~0.0961957)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=1300, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "47/240 (~0.195833)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=1500, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "387/1040 (~0.372115)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=1600, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "973/2160 (~0.450463)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=1800, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1371/2320 (~0.590948)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=2000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1769/2480 (~0.713306)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=2200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "197/240 (~0.820833)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=2400, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "513/560 (~0.916071)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=2700, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1581/1520 (~1.04013)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=3000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "3759/3280 (~1.14604)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "189/880 (~0.214773)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=1100, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "177/1840 (~0.0961957)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=1200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1/80 (~0.0125)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=1300, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "7/80 (~0.0875)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=1500, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "191/720 (~0.265278)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=1600, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "193/560 (~0.344643)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=1800, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "39/80 (~0.4875)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=2000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "49/80 (~0.6125)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=2200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "983/1360 (~0.722794)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=2400, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "197/240 (~0.820833)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=2700, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "987/1040 (~0.949038)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=3000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "593/560 (~1.05893)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "577/1840 (~0.313587)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=1100, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "47/240 (~0.195833)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=1200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "7/80 (~0.0875)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=1300, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1/80 (~0.0125)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=1500, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "93/560 (~0.166071)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=1600, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "571/2320 (~0.246121)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=1800, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "969/2480 (~0.390726)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=2000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1367/2640 (~0.517803)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=2200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "353/560 (~0.630357)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=2400, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "2163/2960 (~0.730743)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=2700, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "69/80 (~0.8625)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=3000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "3357/3440 (~0.975872)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "39/80 (~0.4875)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=1100, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "387/1040 (~0.372115)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=1200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "191/720 (~0.265278)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=1300, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "93/560 (~0.166071)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=1500, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1/80 (~0.0125)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=1600, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "169/2480 (~0.0681452)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=1800, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "189/880 (~0.214773)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=2000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "193/560 (~0.344643)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=2200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1363/2960 (~0.460473)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=2400, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "587/1040 (~0.564423)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=2700, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "393/560 (~0.701786)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=3000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "197/240 (~0.820833)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1600, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "587/1040 (~0.564423)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1600, P=1/4); R2=res_1pct_quarterW(R=1100, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "973/2160 (~0.450463)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1600, P=1/4); R2=res_1pct_quarterW(R=1200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "193/560 (~0.344643)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1600, P=1/4); R2=res_1pct_quarterW(R=1300, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "571/2320 (~0.246121)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1600, P=1/4); R2=res_1pct_quarterW(R=1500, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "169/2480 (~0.0681452)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1600, P=1/4); R2=res_1pct_quarterW(R=1600, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1/80 (~0.0125)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1600, P=1/4); R2=res_1pct_quarterW(R=1800, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "183/1360 (~0.134559)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1600, P=1/4); R2=res_1pct_quarterW(R=2000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "191/720 (~0.265278)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1600, P=1/4); R2=res_1pct_quarterW(R=2200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "581/1520 (~0.382237)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1600, P=1/4); R2=res_1pct_quarterW(R=2400, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "39/80 (~0.4875)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1600, P=1/4); R2=res_1pct_quarterW(R=2700, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "2157/3440 (~0.627035)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1600, P=1/4); R2=res_1pct_quarterW(R=3000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1377/1840 (~0.74837)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1800, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "393/560 (~0.701786)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1800, P=1/4); R2=res_1pct_quarterW(R=1100, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1371/2320 (~0.590948)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1800, P=1/4); R2=res_1pct_quarterW(R=1200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "39/80 (~0.4875)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1800, P=1/4); R2=res_1pct_quarterW(R=1300, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "969/2480 (~0.390726)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1800, P=1/4); R2=res_1pct_quarterW(R=1500, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "189/880 (~0.214773)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1800, P=1/4); R2=res_1pct_quarterW(R=1600, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "183/1360 (~0.134559)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1800, P=1/4); R2=res_1pct_quarterW(R=1800, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1/80 (~0.0125)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1800, P=1/4); R2=res_1pct_quarterW(R=2000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "181/1520 (~0.119079)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1800, P=1/4); R2=res_1pct_quarterW(R=2200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "19/80 (~0.2375)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1800, P=1/4); R2=res_1pct_quarterW(R=2400, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "193/560 (~0.344643)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1800, P=1/4); R2=res_1pct_quarterW(R=2700, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "39/80 (~0.4875)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1800, P=1/4); R2=res_1pct_quarterW(R=3000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "49/80 (~0.6125)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2000, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "197/240 (~0.820833)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2000, P=1/4); R2=res_1pct_quarterW(R=1100, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1769/2480 (~0.713306)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2000, P=1/4); R2=res_1pct_quarterW(R=1200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "49/80 (~0.6125)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2000, P=1/4); R2=res_1pct_quarterW(R=1300, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1367/2640 (~0.517803)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2000, P=1/4); R2=res_1pct_quarterW(R=1500, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "193/560 (~0.344643)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2000, P=1/4); R2=res_1pct_quarterW(R=1600, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "191/720 (~0.265278)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2000, P=1/4); R2=res_1pct_quarterW(R=1800, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "181/1520 (~0.119079)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2000, P=1/4); R2=res_1pct_quarterW(R=2000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1/80 (~0.0125)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2000, P=1/4); R2=res_1pct_quarterW(R=2200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "179/1680 (~0.106548)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2000, P=1/4); R2=res_1pct_quarterW(R=2400, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "189/880 (~0.214773)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2000, P=1/4); R2=res_1pct_quarterW(R=2700, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1353/3760 (~0.35984)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2000, P=1/4); R2=res_1pct_quarterW(R=3000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "39/80 (~0.4875)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2200, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "37/40 (~0.925)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2200, P=1/4); R2=res_1pct_quarterW(R=1100, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "197/240 (~0.820833)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2200, P=1/4); R2=res_1pct_quarterW(R=1200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "983/1360 (~0.722794)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2200, P=1/4); R2=res_1pct_quarterW(R=1300, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "353/560 (~0.630357)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2200, P=1/4); R2=res_1pct_quarterW(R=1500, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1363/2960 (~0.460473)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2200, P=1/4); R2=res_1pct_quarterW(R=1600, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "581/1520 (~0.382237)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2200, P=1/4); R2=res_1pct_quarterW(R=1800, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "19/80 (~0.2375)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2200, P=1/4); R2=res_1pct_quarterW(R=2000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "179/1680 (~0.106548)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2200, P=1/4); R2=res_1pct_quarterW(R=2200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1/80 (~0.0125)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2200, P=1/4); R2=res_1pct_quarterW(R=2400, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "177/1840 (~0.0961957)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2200, P=1/4); R2=res_1pct_quarterW(R=2700, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "951/3920 (~0.242602)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2200, P=1/4); R2=res_1pct_quarterW(R=3000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "387/1040 (~0.372115)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2400, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1383/1360 (~1.01691)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2400, P=1/4); R2=res_1pct_quarterW(R=1100, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "513/560 (~0.916071)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2400, P=1/4); R2=res_1pct_quarterW(R=1200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "197/240 (~0.820833)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2400, P=1/4); R2=res_1pct_quarterW(R=1300, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "2163/2960 (~0.730743)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2400, P=1/4); R2=res_1pct_quarterW(R=1500, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "587/1040 (~0.564423)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2400, P=1/4); R2=res_1pct_quarterW(R=1600, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "39/80 (~0.4875)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2400, P=1/4); R2=res_1pct_quarterW(R=1800, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "193/560 (~0.344643)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2400, P=1/4); R2=res_1pct_quarterW(R=2000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "189/880 (~0.214773)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2400, P=1/4); R2=res_1pct_quarterW(R=2200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "177/1840 (~0.0961957)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2400, P=1/4); R2=res_1pct_quarterW(R=2400, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1/80 (~0.0125)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2400, P=1/4); R2=res_1pct_quarterW(R=2700, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "183/1360 (~0.134559)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2400, P=1/4); R2=res_1pct_quarterW(R=3000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "191/720 (~0.265278)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2700, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "3363/2960 (~1.13615)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2700, P=1/4); R2=res_1pct_quarterW(R=1100, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1581/1520 (~1.04013)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2700, P=1/4); R2=res_1pct_quarterW(R=1200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "987/1040 (~0.949038)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2700, P=1/4); R2=res_1pct_quarterW(R=1300, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "69/80 (~0.8625)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2700, P=1/4); R2=res_1pct_quarterW(R=1500, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "393/560 (~0.701786)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2700, P=1/4); R2=res_1pct_quarterW(R=1600, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "2157/3440 (~0.627035)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2700, P=1/4); R2=res_1pct_quarterW(R=1800, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "39/80 (~0.4875)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2700, P=1/4); R2=res_1pct_quarterW(R=2000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1353/3760 (~0.35984)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2700, P=1/4); R2=res_1pct_quarterW(R=2200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "951/3920 (~0.242602)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2700, P=1/4); R2=res_1pct_quarterW(R=2400, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "183/1360 (~0.134559)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2700, P=1/4); R2=res_1pct_quarterW(R=2700, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1/80 (~0.0125)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=2700, P=1/4); R2=res_1pct_quarterW(R=3000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "181/1520 (~0.119079)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=3000, P=1/4); R2=res_1pct_quarterW(R=1000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "99/80 (~1.2375)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=3000, P=1/4); R2=res_1pct_quarterW(R=1100, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "3759/3280 (~1.14604)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=3000, P=1/4); R2=res_1pct_quarterW(R=1200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "593/560 (~1.05893)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=3000, P=1/4); R2=res_1pct_quarterW(R=1300, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "3357/3440 (~0.975872)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=3000, P=1/4); R2=res_1pct_quarterW(R=1500, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "197/240 (~0.820833)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=3000, P=1/4); R2=res_1pct_quarterW(R=1600, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1377/1840 (~0.74837)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=3000, P=1/4); R2=res_1pct_quarterW(R=1800, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "49/80 (~0.6125)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=3000, P=1/4); R2=res_1pct_quarterW(R=2000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "39/80 (~0.4875)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=3000, P=1/4); R2=res_1pct_quarterW(R=2200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "387/1040 (~0.372115)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=3000, P=1/4); R2=res_1pct_quarterW(R=2400, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "191/720 (~0.265278)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=3000, P=1/4); R2=res_1pct_quarterW(R=2700, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "181/1520 (~0.119079)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=3000, P=1/4); R2=res_1pct_quarterW(R=3000, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1/80 (~0.0125)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=3300, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "4557/3440 (~1.32471)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=3600, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "2577/1840 (~1.40054)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=3900, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "5751/3920 (~1.46709)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=4300, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "6547/4240 (~1.5441)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=4700, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "7343/4560 (~1.61031)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=5100, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "8139/4880 (~1.66783)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=5600, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "4567/2640 (~1.72992)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=6200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1291/720 (~1.79306)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=6800, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "5761/3120 (~1.84647)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=7500, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "2583/1360 (~1.89926)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=8200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "3577/1840 (~1.94402)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1000, P=1/4); R2=res_1pct_quarterW(R=9100, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "16099/8080 (~1.99245)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=3300, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "99/80 (~1.2375)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=3600, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "4953/3760 (~1.31729)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=3900, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "111/80 (~1.3875)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=4300, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "3173/2160 (~1.46898)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=4700, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "3571/2320 (~1.53922)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=5100, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "3969/2480 (~1.6004)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=5600, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "8933/5360 (~1.6666)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=6200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "10127/5840 (~1.73408)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=6800, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "11321/6320 (~1.7913)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=7500, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "6357/3440 (~1.84797)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=8200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "14107/7440 (~1.8961)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1100, P=1/4); R2=res_1pct_quarterW(R=9100, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "7949/4080 (~1.94828)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=3300, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "277/240 (~1.15417)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=3600, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "99/80 (~1.2375)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=3900, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1783/1360 (~1.31103)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=4300, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1229/880 (~1.39659)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=4700, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "6941/4720 (~1.47055)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=5100, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "2579/1680 (~1.53512)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=5600, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "2183/1360 (~1.60515)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=6200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "4963/2960 (~1.67669)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=6800, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "139/80 (~1.7375)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=7500, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "4171/2320 (~1.79784)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=8200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "6953/3760 (~1.8492)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1200, P=1/4); R2=res_1pct_quarterW(R=9100, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "15697/8240 (~1.90498)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=3300, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1977/1840 (~1.07446)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=3600, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "4551/3920 (~1.16097)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=3900, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "99/80 (~1.2375)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=4300, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "743/560 (~1.32679)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=4700, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "337/240 (~1.40417)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=5100, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "471/320 (~1.47188)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=5600, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "8531/5520 (~1.54547)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=6200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "389/240 (~1.62083)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=6800, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "10919/6480 (~1.68503)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=7500, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1539/880 (~1.74886)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=8200, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "2741/1520 (~1.80329)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1300, P=1/4); R2=res_1pct_quarterW(R=9100, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "149/80 (~1.8625)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=3300, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "37/40 (~0.925)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=3600, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1383/1360 (~1.01691)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=3900, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "791/720 (~1.09861)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=4300, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "2771/2320 (~1.1944)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=4700, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "3169/2480 (~1.27782)",
+            "unit": "V"
+          },
+          {
+            "design": "R1=res_1pct_quarterW(R=1500, P=1/4); R2=res_1pct_quarterW(R=5100, P=1/4)",
+            "verdict": "REFUTED",
+            "fails": "2.5 V +-0.5%",
+            "by_at_witness": "1189/880 (~1.35114)",
+            "unit": "V"
+          }
+        ],
+        "designs_count": {
+          "REFUTED": 1874
+        },
+        "designs_by": "'by_at_witness' is the overshoot at the witness point the stand found (the nominal point or a corner), in the quantity's own unit — the worst case may be larger",
+        "designs_not_listed": 1674,
+        "listing": "earned first, then open, then refuted",
+        "verdict": "REFUTED",
+        "why": "every design in the catalog violates a requirement at a concrete point",
+        "closest_design": {
+          "R1": {
+            "catalog": "res_1pct_quarterW",
+            "R": {
+              "nominal": "1000",
+              "tolerance": "1/100 (~0.01)"
+            },
+            "P": {
+              "nominal": "1/4 (~0.25)",
+              "tolerance": "0"
+            }
+          },
+          "R2": {
+            "catalog": "res_1pct_quarterW",
+            "R": {
+              "nominal": "1000",
+              "tolerance": "1/100 (~0.01)"
+            },
+            "P": {
+              "nominal": "1/4 (~0.25)",
+              "tolerance": "0"
+            }
+          }
+        },
+        "closest_by": "the smallest overshoot found, each in its own requirement's unit — overshoots of different requirements are not comparable (blind test 4, c11)",
+        "its_violating_point": {
+          "R1.R": "1010",
+          "R2.R": "990"
+        },
+        "point_units": {
+          "R1.R": "ohm",
+          "R2.R": "ohm"
+        },
+        "value_there": {
+          "Vout": "99/40 (~2.475)"
+        },
+        "unit": "V",
+        "requirement": {
+          "quantity": "Vout",
+          "op": "within",
+          "value": [
+            "2.4875",
+            "2.5125"
+          ],
+          "why": "2.5 V +-0.5%"
+        },
+        "overshoot": "1/80 (~0.0125)",
+        "reasons": {
+          "spread_over_tolerances": [
+            "99/40 (~2.475)",
+            "101/40 (~2.525)"
+          ],
+          "window": [
+            "199/80 (~2.4875)",
+            "201/80 (~2.5125)"
+          ],
+          "verdict_on_window": "for this design the spread over its tolerances alone is wider than the window: centring cannot fix it, only tighter tolerances or another design",
+          "largest_contributors": [
+            {
+              "quantity": "R2.R",
+              "moves_it_by": "1/40 (~0.025)"
+            },
+            {
+              "quantity": "R1.R",
+              "moves_it_by": "1/40 (~0.025)"
+            }
+          ]
+        },
+        "checker": "the violating point recomputed exactly (rational arithmetic, no judge code)",
+        "_core": [
+          0
+        ],
+        "minimal_conflicts": {
+          "sets": [
+            [
+              "2.5 V +-0.5%"
+            ]
+          ],
+          "undecided_sets": [],
+          "complete": true,
+          "subset_runs": 0,
+          "subsets_inferred": 0,
+          "how": "first one minimal set by deletion (each requirement dropped in turn while the rest stays refuted), then every subset by size, smallest first; a subset of an EARNED set is EARNED and a superset of a REFUTED one REFUTED without a run (monotone: one design holds the smaller set), within a budget of 24 subset runs"
+        },
+        "checked_by": "ZTL (work mode; a refutation's witness recomputed exactly; --dev adds the independent checker on every design)"
+      }
+    },
+    {
+      "example": "examples/tasks/t1-thermal-heatsink.json",
+      "source_sha256": "587d8de63ef17b9e57498da0ddec5145f261abbb7ee3e4ffe0a45f1047812431",
+      "brick_sha256": "bd9ab17984f19456a9f14559eecfdeaf060700cdd8204537ee04bfaccf5e2fcf",
+      "stand_verdict": "EARNED",
+      "independent_checker": {
+        "status": "OK",
+        "verdict": "EARNED",
+        "checked_by": "ZTL + the independent checker (dev mode)",
+        "checker": "every corner of the tolerance box recomputed exactly and inside; exact ranges equal; definitions bounded by the checker's own interval arithmetic",
+        "judge": "ZTL 2ba7c20",
+        "command": "python -m ustand.stand brick.json --dev",
+        "seconds": 0.3
+      },
+      "legion_verdict": "T",
+      "why": "CONFIRMED: MCP check_design and the stand's independent checker (--dev) agree",
+      "scope": "ztl-stand's own example problem: integration health only, says nothing about reBot",
+      "stand_result": {
+        "stand": "ztl-stand/1",
+        "judge": "ZTL 2ba7c20",
+        "designs_tried": 5,
+        "failed_at_nominal": 2,
+        "judged": 3,
+        "undecided": 0,
+        "units": "checked: every law's dimensions agree",
+        "designs": [
+          {
+            "design": "HS=heatsinks(R=5, price=1); PAD=pads(R=1/2, price=1/10)",
+            "verdict": "REFUTED",
+            "fails": "max junction temperature",
+            "by_at_witness": "55/2 (~27.5)",
+            "unit": "C"
+          },
+          {
+            "design": "HS=heatsinks(R=5, price=1); PAD=pads(R=1/5, price=1/2)",
+            "verdict": "REFUTED",
+            "fails": "max junction temperature",
+            "by_at_witness": "43/2 (~21.5)",
+            "unit": "C"
+          },
+          {
+            "design": "HS=heatsinks(R=3, price=2); PAD=pads(R=1/2, price=1/10)",
+            "verdict": "REFUTED",
+            "fails": "max junction temperature",
+            "by_at_witness": "19",
+            "unit": "C"
+          },
+          {
+            "design": "HS=heatsinks(R=3, price=2); PAD=pads(R=1/5, price=1/2)",
+            "verdict": "REFUTED",
+            "fails": "max junction temperature",
+            "by_at_witness": "277/25 (~11.08)",
+            "unit": "C"
+          },
+          {
+            "design": "HS=heatsinks(R=2, price=4); PAD=pads(R=1/2, price=1/10)",
+            "verdict": "EARNED",
+            "guaranteed": {
+              "Tj": [
+                "334/5 (~66.8)",
+                "599/5 (~119.8)"
+              ]
+            }
+          }
+        ],
+        "designs_count": {
+          "REFUTED": 4,
+          "EARNED": 1
+        },
+        "designs_by": "'by_at_witness' is the overshoot at the witness point the stand found (the nominal point or a corner), in the quantity's own unit — the worst case may be larger",
+        "objective": {
+          "minimize": "HS.price + PAD.price",
+          "value": "41/10 (~4.1)",
+          "unit": "USD",
+          "unit_from": "the unit of the prices in the objective (no objective \"unit\" given)",
+          "optimal": true,
+          "note": "every cheaper design was refuted"
+        },
+        "verdict": "EARNED",
+        "design": {
+          "HS": {
+            "catalog": "heatsinks",
+            "R": {
+              "nominal": "2",
+              "tolerance": "1/10 (~0.1)"
+            },
+            "price": {
+              "nominal": "4",
+              "tolerance": "0"
+            }
+          },
+          "PAD": {
+            "catalog": "pads",
+            "R": {
+              "nominal": "1/2 (~0.5)",
+              "tolerance": "1/5 (~0.2)"
+            },
+            "price": {
+              "nominal": "1/10 (~0.1)",
+              "tolerance": "0"
+            }
+          }
+        },
+        "guaranteed": {
+          "Tj": [
+            "334/5 (~66.8)",
+            "599/5 (~119.8)"
+          ]
+        },
+        "guaranteed_unit": {
+          "Tj": "C"
+        },
+        "how": {
+          "Tj": "ZTL, exact at the corners"
+        },
+        "requirements": [
+          {
+            "quantity": "Tj",
+            "op": "<=",
+            "value": "125",
+            "why": "max junction temperature"
+          }
+        ],
+        "rests_on": "ZTL disposition ON CREDIT: the tolerances and ranges are the brick's data (the given quantities and the catalog's datasheet values) — taken as stated, not verified",
+        "checker": "not run (work mode: ZTL's verdict; --dev runs the independent checker)",
+        "judge_log": [
+          "Tj -> [334/5, 599/5] by [Tj == Ta + P*(Rjc + PAD__R + HS__R)], multilinear, exact at the corners (credit)"
+        ],
+        "checked_by": "ZTL (work mode; a refutation's witness recomputed exactly; --dev adds the independent checker on every design)"
+      }
+    },
+    {
+      "example": "examples/tasks/t6-truss-three-bars.json",
+      "source_sha256": "3d90015f835ebf7d47759d55ce00d5b2c26877bae4edebd4daa7c235d4b1236a",
+      "brick_sha256": "f4a7f1a5a10dd4cc1c92f6a230b70ab03b557d5656fc916ad7e68e089fee49d5",
+      "stand_verdict": "EARNED",
+      "independent_checker": {
+        "status": "OK",
+        "verdict": "EARNED",
+        "checked_by": "ZTL + the independent checker (dev mode)",
+        "checker": "every corner of the tolerance box recomputed exactly and inside; exact ranges equal; definitions bounded by the checker's own interval arithmetic",
+        "judge": "ZTL 2ba7c20",
+        "command": "python -m ustand.stand brick.json --dev",
+        "seconds": 0.36
+      },
+      "legion_verdict": "T",
+      "why": "CONFIRMED: MCP check_design and the stand's independent checker (--dev) agree",
+      "scope": "ztl-stand's own example problem: integration health only, says nothing about reBot",
+      "stand_result": {
+        "stand": "ztl-stand/1",
+        "judge": "ZTL 2ba7c20",
+        "designs_tried": 6,
+        "failed_at_nominal": 4,
+        "judged": 2,
+        "undecided": 0,
+        "units": "checked: every law's dimensions agree",
+        "designs": [
+          {
+            "design": "B1=sections(A=100); B2=sections(A=100); B3=sections(A=100)",
+            "verdict": "REFUTED",
+            "fails": "deflection at most 2.5 mm down",
+            "by_at_witness": "13/27 (~0.481481)",
+            "unit": "mm"
+          },
+          {
+            "design": "B1=sections(A=150); B2=sections(A=100); B3=sections(A=100)",
+            "verdict": "REFUTED",
+            "fails": "deflection at most 2.5 mm down",
+            "by_at_witness": "157/414 (~0.379227)",
+            "unit": "mm"
+          },
+          {
+            "design": "B1=sections(A=100); B2=sections(A=150); B3=sections(A=100)",
+            "verdict": "REFUTED",
+            "fails": "deflection at most 2.5 mm down",
+            "by_at_witness": "149/2774 (~0.053713)",
+            "unit": "mm"
+          },
+          {
+            "design": "B1=sections(A=100); B2=sections(A=100); B3=sections(A=150)",
+            "verdict": "REFUTED",
+            "fails": "deflection at most 2.5 mm down",
+            "by_at_witness": "249/1046 (~0.23805)",
+            "unit": "mm"
+          },
+          {
+            "design": "B1=sections(A=200); B2=sections(A=100); B3=sections(A=100)",
+            "verdict": "REFUTED",
+            "fails": "deflection at most 2.5 mm down",
+            "by_at_witness": "263/810 (~0.324691)",
+            "unit": "mm"
+          },
+          {
+            "design": "B1=sections(A=150); B2=sections(A=150); B3=sections(A=100)",
+            "verdict": "EARNED",
+            "guaranteed": {
+              "uy": [
+                "-26224/10583 (~-2.47794)",
+                "-7152/3899 (~-1.83432)"
+              ],
+              "s1": [
+                "-655490/10839 (~-60.4751)",
+                "-528090/11441 (~-46.1577)"
+              ],
+              "s2": [
+                "339720/3613 (~94.0271)",
+                "1376760/11441 (~120.336)"
+              ],
+              "s3": [
+                "443250/11441 (~38.7422)",
+                "220750/3613 (~61.0988)"
+              ]
+            }
+          }
+        ],
+        "designs_count": {
+          "REFUTED": 5,
+          "EARNED": 1
+        },
+        "designs_by": "'by_at_witness' is the overshoot at the witness point the stand found (the nominal point or a corner), in the quantity's own unit — the worst case may be larger",
+        "objective": {
+          "minimize": "B1.A*L1 + B2.A*L2 + B3.A*L3",
+          "value": "31/20000 (~0.00155)",
+          "optimal": true,
+          "note": "every cheaper design was refuted"
+        },
+        "verdict": "EARNED",
+        "design": {
+          "B1": {
+            "catalog": "sections",
+            "A": {
+              "nominal": "150",
+              "tolerance": "0"
+            }
+          },
+          "B2": {
+            "catalog": "sections",
+            "A": {
+              "nominal": "150",
+              "tolerance": "0"
+            }
+          },
+          "B3": {
+            "catalog": "sections",
+            "A": {
+              "nominal": "100",
+              "tolerance": "0"
+            }
+          }
+        },
+        "guaranteed": {
+          "uy": [
+            "-26224/10583 (~-2.47794)",
+            "-7152/3899 (~-1.83432)"
+          ],
+          "s1": [
+            "-655490/10839 (~-60.4751)",
+            "-528090/11441 (~-46.1577)"
+          ],
+          "s2": [
+            "339720/3613 (~94.0271)",
+            "1376760/11441 (~120.336)"
+          ],
+          "s3": [
+            "443250/11441 (~38.7422)",
+            "220750/3613 (~61.0988)"
+          ]
+        },
+        "guaranteed_unit": {
+          "uy": "mm",
+          "s1": "MPa",
+          "s2": "MPa",
+          "s3": "MPa"
+        },
+        "how": {
+          "uy": "ZTL, exact at the corners",
+          "s1": "ZTL, exact at the corners",
+          "s2": "ZTL, exact at the corners",
+          "s3": "ZTL, exact at the corners"
+        },
+        "requirements": [
+          {
+            "quantity": "uy",
+            "op": ">=",
+            "value": "-2.5",
+            "why": "deflection at most 2.5 mm down"
+          },
+          {
+            "quantity": "s1",
+            "op": "within",
+            "value": [
+              "-160",
+              "160"
+            ],
+            "why": "bar 1 stress within allowable"
+          },
+          {
+            "quantity": "s2",
+            "op": "within",
+            "value": [
+              "-160",
+              "160"
+            ],
+            "why": "bar 2 stress within allowable"
+          },
+          {
+            "quantity": "s3",
+            "op": "within",
+            "value": [
+              "-160",
+              "160"
+            ],
+            "why": "bar 3 stress within allowable"
+          }
+        ],
+        "rests_on": "ZTL disposition ON CREDIT: the tolerances and ranges are the brick's data (the given quantities and the catalog's datasheet values) — taken as stated, not verified",
+        "checker": "not run (work mode: ZTL's verdict; --dev runs the independent checker)",
+        "judge_log": [
+          "N1 -> [-32774500/3613, -79213500/11441] by the system over its parameters, exact at the corners (credit)",
+          "N2 -> [50958000/3613, 206514000/11441] by the system over its parameters, exact at the corners (credit)",
+          "N3 -> [44325000/11441, 22075000/3613] by the system over its parameters, exact at the corners (credit)",
+          "s1 -> [-655490000000/10839, -528090000000/11441] by the system over its parameters, exact at the corners (credit)",
+          "s2 -> [339720000000/3613, 1376760000000/11441] by the system over its parameters, exact at the corners (credit)",
+          "s3 -> [443250000000/11441, 220750000000/3613] by the system over its parameters, exact at the corners (credit)"
+        ],
+        "checked_by": "ZTL (work mode; a refutation's witness recomputed exactly; --dev adds the independent checker on every design)"
+      }
+    }
+  ],
+  "ztl_stand_own_test_suite": {
+    "command": "python -m tests.test_stand (cwd _deps/ztl-stand, USTAND_ZTL=_deps/ZTL)",
+    "returncode": 0,
+    "summary_line": "ztl-stand: 437 ok, 3 failed",
+    "ok": 437,
+    "failed": 3,
+    "completed": true,
+    "verdict_line": "USTAND RED",
+    "fail_lines": [
+      "FAIL --prove: the divider's +-1 % requirement is a Lean THEOREM (1 of 1, zero axioms); a REFUTED verdict carries no proof; a judge lying narrow in work mode EARNS +-0.5 % falsely, and the proof refuses it (0 of 1); the 27 ohm divider with its powers P = I*I*R against the 1/4 W rating: 4 of 4 (non-dy",
+      "FAIL --prove on a TABLE (real3/s07, 5 branches): a theorem branch by branch — the 'about' says so and the branch theorems are named (2026-11-09; was 'not translated (yet): ifpos') — null",
+      "FAIL --prove on a 'smallest' find (blind7 c10b): the PROVED RANGE carries its own proof (1 of 1, 'every eta in [0.5392, 0.8]'), though the decision — the brick as written — is refuted at its own value (2026-11-09) — {\"verdict\": \"EARNED\", \"proof_covers\": null}"
+    ],
+    "stderr_tail": "<law>:1: RuntimeWarning: divide by zero encountered in scalar divide\n<law>:1: RuntimeWarning: divide by zero encountered in scalar divide\n<law>:1: RuntimeWarning: divide by zero encountered in scalar divide\n<law>:1: RuntimeWarning: divide by zero encountered in scalar divide\n<law>:1: RuntimeWarning: divide by zero encountered in scalar divide\n<law>:1: RuntimeWarning: divide by zero encountered in scalar divide\n<law>:1: RuntimeWarning: divide by zero encountered in scalar divide\n<law>:1: RuntimeWarning: divide by zero encountered in scalar divide\n<law>:1: RuntimeWarning: divide by zero encountered in scalar divide\n<law>:1: RuntimeWarning: divide by zero encountered in scalar divide\n<law>:1: RuntimeWarning: divide by zero encountered in scalar divide\n<law>:1: RuntimeWarning: divide by zero encountered in scalar divide\n",
+    "blocked": [
+      {
+        "check": "FAIL --prove: the divider's +-1 % requirement is a Lean THEOREM (1 of 1, zero axioms); a REFUTED verdict carries no proof; a judge lying narrow in work mode EARNS +-0.5 % falsely, and the proof refuses it (0 of 1); the 27 ohm divider with its powers P = I*I*R against the 1/4 W rating: 4 of 4 (non-dy",
+        "status": "BLOCKED",
+        "reason": "Lean 4 toolchain (`lake`) not installed; the --prove feature (Lean theorems via ZTL tools/zbound2lean.py) is not used by check_design or by this work order"
+      },
+      {
+        "check": "FAIL --prove on a TABLE (real3/s07, 5 branches): a theorem branch by branch — the 'about' says so and the branch theorems are named (2026-11-09; was 'not translated (yet): ifpos') — null",
+        "status": "BLOCKED",
+        "reason": "Lean 4 toolchain (`lake`) not installed; the --prove feature (Lean theorems via ZTL tools/zbound2lean.py) is not used by check_design or by this work order"
+      },
+      {
+        "check": "FAIL --prove on a 'smallest' find (blind7 c10b): the PROVED RANGE carries its own proof (1 of 1, 'every eta in [0.5392, 0.8]'), though the decision — the brick as written — is refuted at its own value (2026-11-09) — {\"verdict\": \"EARNED\", \"proof_covers\": null}",
+        "status": "BLOCKED",
+        "reason": "Lean 4 toolchain (`lake`) not installed; the --prove feature (Lean theorems via ZTL tools/zbound2lean.py) is not used by check_design or by this work order"
+      }
+    ],
+    "lake_on_path": null,
+    "status": "PASS_EXCEPT_BLOCKED"
+  },
+  "deal_rescue_reference_parity": {
+    "deal_rescue_verdict": "EARNED",
+    "legion_adapter_verdict": "EARNED",
+    "deal_rescue_judge": "ZTL 2ba7c20",
+    "legion_judge": "ZTL 2ba7c20"
+  }
+}

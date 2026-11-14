@@ -1,0 +1,1495 @@
+{
+  "source_commit": "27a207d3121bbf91ecfc968260ce0a4239405c6f",
+  "executed_at_utc": "2026-11-14T01:30:15+00:00",
+  "environment": {
+    "python": "3.12.3",
+    "implementation": "CPython",
+    "platform": "Linux-6.18.58.1-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "os_name": "posix",
+    "ci": false,
+    "github_run_id": null,
+    "github_workflow": null,
+    "github_job": null
+  },
+  "command": "python -I tools/d02_run.py --out evidence --stand-suite --regressions",
+  "inputs": {
+    "policy": {
+      "schema": "legion.engineering.ztl-policy.v1",
+      "verdict_map": {
+        "EARNED": "T",
+        "REFUTED": "F",
+        "OPEN": "Z",
+        "BRICK ERROR": "Z",
+        "STAND ERROR": "Z",
+        "STAND FAULT": "Z",
+        "MCP_TIMEOUT": "Z",
+        "MCP_UNAVAILABLE": "Z",
+        "MCP_SERVER_EXITED": "Z",
+        "MCP_ERROR": "Z",
+        "MCP_MALFORMED": "Z",
+        "MCP_TOOL_ERROR": "Z",
+        "UNKNOWN": "Z"
+      },
+      "aggregation": "any mandatory F -> F; all mandatory T + valid bindings + authenticated receipt -> T; else Z",
+      "proof_validity": "same source_sha256, source_commit, drawing_revision, spec_digest, requirements_digest, policy_sha256 and brick_sha256 as when the stand was called",
+      "mcp_tool": "check_design",
+      "ask_engineer": "never called (paid model API)"
+    }
+  },
+  "status": "PASS",
+  "policy_sha256": "4ba01ca8b33e398462ca3f38f37fb92a85c2771b48e33b848aff3b136f807f47",
+  "counts": {
+    "EARNED": 7,
+    "REFUTED": 4,
+    "OPEN_or_ERROR": 3
+  },
+  "stand_examples": [
+    {
+      "example": "examples/divider-1pct-req-1pct.json",
+      "stand_verdict": "EARNED",
+      "legion_verdict": "T",
+      "why": "CONFIRMED: MCP check_design and the stand's independent checker (--dev) agree",
+      "scope": "ztl-stand's own example problem: integration health only, says nothing about reBot"
+    },
+    {
+      "example": "examples/divider-1pct-req-0.5pct.json",
+      "stand_verdict": "REFUTED",
+      "legion_verdict": "F",
+      "why": "CONFIRMED: MCP check_design and the stand's independent checker (--dev) agree",
+      "scope": "ztl-stand's own example problem: integration health only, says nothing about reBot"
+    },
+    {
+      "example": "examples/tasks/t1-thermal-heatsink.json",
+      "stand_verdict": "EARNED",
+      "legion_verdict": "T",
+      "why": "CONFIRMED: MCP check_design and the stand's independent checker (--dev) agree",
+      "scope": "ztl-stand's own example problem: integration health only, says nothing about reBot"
+    },
+    {
+      "example": "examples/tasks/t6-truss-three-bars.json",
+      "stand_verdict": "EARNED",
+      "legion_verdict": "T",
+      "why": "CONFIRMED: MCP check_design and the stand's independent checker (--dev) agree",
+      "scope": "ztl-stand's own example problem: integration health only, says nothing about reBot"
+    }
+  ],
+  "controlled_cases_fixture": [
+    {
+      "predicate_id": "rail_length_controlled_positive",
+      "requirement": "dL = L_cad - L_spec within [-0.02, 0.02] mm",
+      "mandatory": true,
+      "scope": "controlled verification case: nominal CAD rail length vs purchase spec under an assumed window",
+      "assumptions": [
+        "tolerance window (-0.02, 0.02) mm: TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)",
+        "STEP length is the nominal model value"
+      ],
+      "controlled_case": true,
+      "origin": "Deal-Rescue cad027_review.rail_length_brick @6d5563a",
+      "binding": {
+        "source_repository": "LEGION-Deal-Rescue tests/test_cad027_demo.py (fixture)",
+        "source_commit": "6d5563af9a0eb838297933a8ae6b128defa9f69e",
+        "source_file": "mini.step",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "drawing_revision": null,
+        "spec_digest": null,
+        "requirements_digest": "b57e2013bd618ccd39f16b34291484d49dceec6a5bf4a118270eeb75a6edf463",
+        "policy_sha256": "4ba01ca8b33e398462ca3f38f37fb92a85c2771b48e33b848aff3b136f807f47",
+        "part_id": "RAIL-170 (MGN9, purchased)",
+        "predicate_id": "rail_length_controlled_positive",
+        "predicate_inputs": {
+          "L_cad": {
+            "value": "170.000",
+            "source": "STEP nominal model, XCAF bbox of RAIL-170 in mini.step"
+          },
+          "L_spec": {
+            "value": "170",
+            "source": "readme.md purchased parts: Linear rail MGN9-170mm"
+          }
+        },
+        "units": {
+          "L_cad": "mm",
+          "L_spec": "mm",
+          "dL": "mm"
+        },
+        "tolerances": {
+          "dL": [
+            -0.02,
+            0.02
+          ]
+        },
+        "tolerance_sources": {
+          "dL": "TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)"
+        },
+        "brick_sha256": "b73cfb250e576c6728c3f61117f7e7cc3db960d074e66263619c618ed5ae1331",
+        "ztl_engineer_commit": "91d11672cb1986a7fb185d3ae5110d7209b36b97",
+        "ztl_stand_commit": "0b4d718fa3bd3105ea002105e0d89cdd76b7b573",
+        "ztl_commit": "2ba7c209371e90058df4666bb949fc253fe6cc27",
+        "stand_verdict": "EARNED",
+        "checker_result": {
+          "mcp_work_mode": {
+            "checker": "not run (work mode: ZTL's verdict; --dev runs the independent checker)",
+            "checked_by": "ZTL (work mode; a refutation's witness recomputed exactly; --dev adds the independent checker on every design)",
+            "judge": "ZTL 2ba7c20",
+            "how": {
+              "dL": "ZTL, outer range"
+            },
+            "rests_on": "ZTL disposition EARNED: the tolerances and ranges are the brick's data (the given quantities and the catalog's datasheet values) — taken as stated, not verified",
+            "guaranteed": {
+              "dL": [
+                "0",
+                "0"
+              ]
+            },
+            "guaranteed_unit": {
+              "dL": "mm"
+            },
+            "requirements": [
+              {
+                "quantity": "dL",
+                "op": "within",
+                "value": [
+                  "-0.02",
+                  "0.02"
+                ],
+                "why": "TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)"
+              }
+            ],
+            "undecided": 0,
+            "stand": "ztl-stand/1"
+          },
+          "independent_checker_dev_mode": {
+            "status": "OK",
+            "verdict": "EARNED",
+            "checked_by": "ZTL + the independent checker (dev mode)",
+            "checker": "every corner of the tolerance box recomputed exactly and inside; exact ranges equal; definitions bounded by the checker's own interval arithmetic",
+            "judge": "ZTL 2ba7c20",
+            "command": "python -m ustand.stand brick.json --dev",
+            "seconds": 0.3
+          }
+        },
+        "execution_timestamp": "2026-11-14T00:53:41+00:00"
+      },
+      "missing_blocks_stand_call": [],
+      "missing_blocks_admission": [
+        "drawing_revision",
+        "spec_digest"
+      ],
+      "verdict": "T",
+      "why": "CONFIRMED: MCP check_design and the stand's independent checker (--dev) agree",
+      "stand_called": true,
+      "stand_verdict": "EARNED",
+      "checker_result": {
+        "mcp_work_mode": {
+          "checker": "not run (work mode: ZTL's verdict; --dev runs the independent checker)",
+          "checked_by": "ZTL (work mode; a refutation's witness recomputed exactly; --dev adds the independent checker on every design)",
+          "judge": "ZTL 2ba7c20",
+          "how": {
+            "dL": "ZTL, outer range"
+          },
+          "rests_on": "ZTL disposition EARNED: the tolerances and ranges are the brick's data (the given quantities and the catalog's datasheet values) — taken as stated, not verified",
+          "guaranteed": {
+            "dL": [
+              "0",
+              "0"
+            ]
+          },
+          "guaranteed_unit": {
+            "dL": "mm"
+          },
+          "requirements": [
+            {
+              "quantity": "dL",
+              "op": "within",
+              "value": [
+                "-0.02",
+                "0.02"
+              ],
+              "why": "TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)"
+            }
+          ],
+          "undecided": 0,
+          "stand": "ztl-stand/1"
+        },
+        "independent_checker_dev_mode": {
+          "status": "OK",
+          "verdict": "EARNED",
+          "checked_by": "ZTL + the independent checker (dev mode)",
+          "checker": "every corner of the tolerance box recomputed exactly and inside; exact ranges equal; definitions bounded by the checker's own interval arithmetic",
+          "judge": "ZTL 2ba7c20",
+          "command": "python -m ustand.stand brick.json --dev",
+          "seconds": 0.3
+        }
+      },
+      "execution_timestamp": "2026-11-14T00:53:41+00:00",
+      "proof_id": "14b71d28390b43d6b21f4bebba6cc2fb08f8e2522c4090e9739267e62c905be2",
+      "deliberate_change": null,
+      "admissible_for_rebot": false,
+      "input_basis": "Deal-Rescue's offline CAD-027 fixture (MINI_XCAF / MINI_README), not the real STEP"
+    },
+    {
+      "predicate_id": "rail_length_controlled_negative",
+      "requirement": "dL = L_cad - L_spec within [-0.02, 0.02] mm",
+      "mandatory": true,
+      "scope": "controlled verification case: nominal CAD rail length vs purchase spec under an assumed window",
+      "assumptions": [
+        "tolerance window (-0.02, 0.02) mm: TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)",
+        "STEP length is the nominal model value"
+      ],
+      "controlled_case": true,
+      "origin": "Deal-Rescue cad027_review.rail_length_brick @6d5563a",
+      "binding": {
+        "source_repository": "LEGION-Deal-Rescue tests/test_cad027_demo.py (fixture)",
+        "source_commit": "6d5563af9a0eb838297933a8ae6b128defa9f69e",
+        "source_file": "mini.step",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "drawing_revision": null,
+        "spec_digest": null,
+        "requirements_digest": "1013563bc7c35e46400c3336a50739ac7d0104a8d1e0580842592c61dcde2c6a",
+        "policy_sha256": "4ba01ca8b33e398462ca3f38f37fb92a85c2771b48e33b848aff3b136f807f47",
+        "part_id": "RAIL-170 (MGN9, purchased)",
+        "predicate_id": "rail_length_controlled_negative",
+        "predicate_inputs": {
+          "L_cad": {
+            "value": "170.000",
+            "source": "STEP nominal model, XCAF bbox of RAIL-170 in mini.step"
+          },
+          "L_spec": {
+            "value": "150",
+            "source": "readme.md purchased parts: Linear rail MGN9-150mm"
+          }
+        },
+        "units": {
+          "L_cad": "mm",
+          "L_spec": "mm",
+          "dL": "mm"
+        },
+        "tolerances": {
+          "dL": [
+            -0.02,
+            0.02
+          ]
+        },
+        "tolerance_sources": {
+          "dL": "TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)"
+        },
+        "brick_sha256": "b158aec5c7ddf1392e7af6b8008c23b168a4d8dc238731dc03a275b558089a5b",
+        "ztl_engineer_commit": "91d11672cb1986a7fb185d3ae5110d7209b36b97",
+        "ztl_stand_commit": "0b4d718fa3bd3105ea002105e0d89cdd76b7b573",
+        "ztl_commit": "2ba7c209371e90058df4666bb949fc253fe6cc27",
+        "stand_verdict": "REFUTED",
+        "checker_result": {
+          "mcp_work_mode": {
+            "checker": "the violating point recomputed exactly (rational arithmetic, no judge code)",
+            "checked_by": "ZTL (work mode; a refutation's witness recomputed exactly; --dev adds the independent checker on every design)",
+            "judge": "ZTL 2ba7c20",
+            "its_violating_point": {},
+            "value_there": {
+              "dL": "20"
+            },
+            "requirement": {
+              "quantity": "dL",
+              "op": "within",
+              "value": [
+                "-0.02",
+                "0.02"
+              ],
+              "why": "TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)"
+            },
+            "why": "every design in the catalog violates a requirement at a concrete point",
+            "reasons": {
+              "spread_over_tolerances": [
+                "20",
+                "20"
+              ],
+              "window": [
+                "-1/50 (~-0.02)",
+                "1/50 (~0.02)"
+              ],
+              "largest_contributors": []
+            },
+            "undecided": 0,
+            "stand": "ztl-stand/1"
+          },
+          "independent_checker_dev_mode": {
+            "status": "OK",
+            "verdict": "REFUTED",
+            "checked_by": "ZTL + the independent checker (dev mode)",
+            "checker": "the violating point recomputed exactly (rational arithmetic, no judge code)",
+            "judge": "ZTL 2ba7c20",
+            "command": "python -m ustand.stand brick.json --dev",
+            "seconds": 0.31
+          }
+        },
+        "execution_timestamp": "2026-11-14T00:53:42+00:00"
+      },
+      "missing_blocks_stand_call": [],
+      "missing_blocks_admission": [
+        "drawing_revision",
+        "spec_digest"
+      ],
+      "verdict": "F",
+      "why": "CONFIRMED: MCP check_design and the stand's independent checker (--dev) agree",
+      "stand_called": true,
+      "stand_verdict": "REFUTED",
+      "checker_result": {
+        "mcp_work_mode": {
+          "checker": "the violating point recomputed exactly (rational arithmetic, no judge code)",
+          "checked_by": "ZTL (work mode; a refutation's witness recomputed exactly; --dev adds the independent checker on every design)",
+          "judge": "ZTL 2ba7c20",
+          "its_violating_point": {},
+          "value_there": {
+            "dL": "20"
+          },
+          "requirement": {
+            "quantity": "dL",
+            "op": "within",
+            "value": [
+              "-0.02",
+              "0.02"
+            ],
+            "why": "TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)"
+          },
+          "why": "every design in the catalog violates a requirement at a concrete point",
+          "reasons": {
+            "spread_over_tolerances": [
+              "20",
+              "20"
+            ],
+            "window": [
+              "-1/50 (~-0.02)",
+              "1/50 (~0.02)"
+            ],
+            "largest_contributors": []
+          },
+          "undecided": 0,
+          "stand": "ztl-stand/1"
+        },
+        "independent_checker_dev_mode": {
+          "status": "OK",
+          "verdict": "REFUTED",
+          "checked_by": "ZTL + the independent checker (dev mode)",
+          "checker": "the violating point recomputed exactly (rational arithmetic, no judge code)",
+          "judge": "ZTL 2ba7c20",
+          "command": "python -m ustand.stand brick.json --dev",
+          "seconds": 0.31
+        }
+      },
+      "execution_timestamp": "2026-11-14T00:53:42+00:00",
+      "proof_id": "831dcb0cf5a67fc6a44bd1be704cf4651aec44349e3ad86b2eaeef02c52461e7",
+      "deliberate_change": "readme purchase spec MGN9-170mm replaced by MGN9-150mm; expected: the stand refutes dL within the window, dL = 20 mm",
+      "admissible_for_rebot": false,
+      "input_basis": "Deal-Rescue's offline CAD-027 fixture (MINI_XCAF / MINI_README), not the real STEP"
+    }
+  ],
+  "controlled_cases_real_step": [
+    {
+      "predicate_id": "rail_length_controlled_positive",
+      "requirement": "dL = L_cad - L_spec within [-0.02, 0.02] mm",
+      "mandatory": true,
+      "scope": "controlled verification case: nominal CAD rail length vs purchase spec under an assumed window",
+      "assumptions": [
+        "tolerance window (-0.02, 0.02) mm: TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)",
+        "STEP length is the nominal model value"
+      ],
+      "controlled_case": true,
+      "origin": "Deal-Rescue cad027_review.rail_length_brick @6d5563a",
+      "binding": {
+        "source_repository": "https://github.com/Seeed-Projects/reBot-DevArm",
+        "source_commit": "22f002a230670f96abcd3805e0daa63bdf42f354",
+        "source_file": "hardware/reBot_B601_DM/reBot_B601_DM_v1.1_20260625.step",
+        "source_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+        "drawing_revision": null,
+        "spec_digest": null,
+        "requirements_digest": "3b4c598ea0f0b9e8b6a9049294b7160b0ee0d2a6f81a5e7b0fe86f917915fd9e",
+        "policy_sha256": "4ba01ca8b33e398462ca3f38f37fb92a85c2771b48e33b848aff3b136f807f47",
+        "part_id": "RAIL-170 (MGN9, purchased)",
+        "predicate_id": "rail_length_controlled_positive",
+        "predicate_inputs": {
+          "L_cad": {
+            "value": "170.000",
+            "source": "STEP nominal model, XCAF bbox of RAIL-170 in reBot_B601_DM_v1.1_20260625.step"
+          },
+          "L_spec": {
+            "value": "170",
+            "source": "readme.md purchased parts: Linear rail MGN9-170mm"
+          }
+        },
+        "units": {
+          "L_cad": "mm",
+          "L_spec": "mm",
+          "dL": "mm"
+        },
+        "tolerances": {
+          "dL": [
+            -0.02,
+            0.02
+          ]
+        },
+        "tolerance_sources": {
+          "dL": "TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)"
+        },
+        "brick_sha256": "61bf8eae7b843245ca778e4386875afae2d78a270dd378f3c18aae7b063d661d",
+        "ztl_engineer_commit": "91d11672cb1986a7fb185d3ae5110d7209b36b97",
+        "ztl_stand_commit": "0b4d718fa3bd3105ea002105e0d89cdd76b7b573",
+        "ztl_commit": "2ba7c209371e90058df4666bb949fc253fe6cc27",
+        "stand_verdict": "EARNED",
+        "checker_result": {
+          "mcp_work_mode": {
+            "checker": "not run (work mode: ZTL's verdict; --dev runs the independent checker)",
+            "checked_by": "ZTL (work mode; a refutation's witness recomputed exactly; --dev adds the independent checker on every design)",
+            "judge": "ZTL 2ba7c20",
+            "how": {
+              "dL": "ZTL, outer range"
+            },
+            "rests_on": "ZTL disposition EARNED: the tolerances and ranges are the brick's data (the given quantities and the catalog's datasheet values) — taken as stated, not verified",
+            "guaranteed": {
+              "dL": [
+                "0",
+                "0"
+              ]
+            },
+            "guaranteed_unit": {
+              "dL": "mm"
+            },
+            "requirements": [
+              {
+                "quantity": "dL",
+                "op": "within",
+                "value": [
+                  "-0.02",
+                  "0.02"
+                ],
+                "why": "TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)"
+              }
+            ],
+            "undecided": 0,
+            "stand": "ztl-stand/1"
+          },
+          "independent_checker_dev_mode": {
+            "status": "OK",
+            "verdict": "EARNED",
+            "checked_by": "ZTL + the independent checker (dev mode)",
+            "checker": "every corner of the tolerance box recomputed exactly and inside; exact ranges equal; definitions bounded by the checker's own interval arithmetic",
+            "judge": "ZTL 2ba7c20",
+            "command": "python -m ustand.stand brick.json --dev",
+            "seconds": 0.27
+          }
+        },
+        "execution_timestamp": "2026-11-14T00:54:15+00:00"
+      },
+      "missing_blocks_stand_call": [],
+      "missing_blocks_admission": [
+        "drawing_revision",
+        "spec_digest"
+      ],
+      "verdict": "T",
+      "why": "CONFIRMED: MCP check_design and the stand's independent checker (--dev) agree",
+      "stand_called": true,
+      "stand_verdict": "EARNED",
+      "checker_result": {
+        "mcp_work_mode": {
+          "checker": "not run (work mode: ZTL's verdict; --dev runs the independent checker)",
+          "checked_by": "ZTL (work mode; a refutation's witness recomputed exactly; --dev adds the independent checker on every design)",
+          "judge": "ZTL 2ba7c20",
+          "how": {
+            "dL": "ZTL, outer range"
+          },
+          "rests_on": "ZTL disposition EARNED: the tolerances and ranges are the brick's data (the given quantities and the catalog's datasheet values) — taken as stated, not verified",
+          "guaranteed": {
+            "dL": [
+              "0",
+              "0"
+            ]
+          },
+          "guaranteed_unit": {
+            "dL": "mm"
+          },
+          "requirements": [
+            {
+              "quantity": "dL",
+              "op": "within",
+              "value": [
+                "-0.02",
+                "0.02"
+              ],
+              "why": "TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)"
+            }
+          ],
+          "undecided": 0,
+          "stand": "ztl-stand/1"
+        },
+        "independent_checker_dev_mode": {
+          "status": "OK",
+          "verdict": "EARNED",
+          "checked_by": "ZTL + the independent checker (dev mode)",
+          "checker": "every corner of the tolerance box recomputed exactly and inside; exact ranges equal; definitions bounded by the checker's own interval arithmetic",
+          "judge": "ZTL 2ba7c20",
+          "command": "python -m ustand.stand brick.json --dev",
+          "seconds": 0.27
+        }
+      },
+      "execution_timestamp": "2026-11-14T00:54:15+00:00",
+      "proof_id": "c9da550ff87f23fbadb0f76ae8e4485ca85052f4b661a6b357264710165e71f8",
+      "deliberate_change": null,
+      "admissible_for_rebot": false,
+      "input_basis": "the pinned reBot STEP (OpenCascade XCAF) and readme"
+    },
+    {
+      "predicate_id": "rail_length_controlled_negative",
+      "requirement": "dL = L_cad - L_spec within [-0.02, 0.02] mm",
+      "mandatory": true,
+      "scope": "controlled verification case: nominal CAD rail length vs purchase spec under an assumed window",
+      "assumptions": [
+        "tolerance window (-0.02, 0.02) mm: TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)",
+        "STEP length is the nominal model value"
+      ],
+      "controlled_case": true,
+      "origin": "Deal-Rescue cad027_review.rail_length_brick @6d5563a",
+      "binding": {
+        "source_repository": "https://github.com/Seeed-Projects/reBot-DevArm",
+        "source_commit": "22f002a230670f96abcd3805e0daa63bdf42f354",
+        "source_file": "hardware/reBot_B601_DM/reBot_B601_DM_v1.1_20260625.step",
+        "source_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+        "drawing_revision": null,
+        "spec_digest": null,
+        "requirements_digest": "1013563bc7c35e46400c3336a50739ac7d0104a8d1e0580842592c61dcde2c6a",
+        "policy_sha256": "4ba01ca8b33e398462ca3f38f37fb92a85c2771b48e33b848aff3b136f807f47",
+        "part_id": "RAIL-170 (MGN9, purchased)",
+        "predicate_id": "rail_length_controlled_negative",
+        "predicate_inputs": {
+          "L_cad": {
+            "value": "170.000",
+            "source": "STEP nominal model, XCAF bbox of RAIL-170 in reBot_B601_DM_v1.1_20260625.step"
+          },
+          "L_spec": {
+            "value": "150",
+            "source": "readme.md purchased parts: Linear rail MGN9-150mm"
+          }
+        },
+        "units": {
+          "L_cad": "mm",
+          "L_spec": "mm",
+          "dL": "mm"
+        },
+        "tolerances": {
+          "dL": [
+            -0.02,
+            0.02
+          ]
+        },
+        "tolerance_sources": {
+          "dL": "TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)"
+        },
+        "brick_sha256": "2fb51bb92226870fbb4faf3b767dd2f934bc5dd2e8528658d08ffb82090996eb",
+        "ztl_engineer_commit": "91d11672cb1986a7fb185d3ae5110d7209b36b97",
+        "ztl_stand_commit": "0b4d718fa3bd3105ea002105e0d89cdd76b7b573",
+        "ztl_commit": "2ba7c209371e90058df4666bb949fc253fe6cc27",
+        "stand_verdict": "REFUTED",
+        "checker_result": {
+          "mcp_work_mode": {
+            "checker": "the violating point recomputed exactly (rational arithmetic, no judge code)",
+            "checked_by": "ZTL (work mode; a refutation's witness recomputed exactly; --dev adds the independent checker on every design)",
+            "judge": "ZTL 2ba7c20",
+            "its_violating_point": {},
+            "value_there": {
+              "dL": "20"
+            },
+            "requirement": {
+              "quantity": "dL",
+              "op": "within",
+              "value": [
+                "-0.02",
+                "0.02"
+              ],
+              "why": "TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)"
+            },
+            "why": "every design in the catalog violates a requirement at a concrete point",
+            "reasons": {
+              "spread_over_tolerances": [
+                "20",
+                "20"
+              ],
+              "window": [
+                "-1/50 (~-0.02)",
+                "1/50 (~0.02)"
+              ],
+              "largest_contributors": []
+            },
+            "undecided": 0,
+            "stand": "ztl-stand/1"
+          },
+          "independent_checker_dev_mode": {
+            "status": "OK",
+            "verdict": "REFUTED",
+            "checked_by": "ZTL + the independent checker (dev mode)",
+            "checker": "the violating point recomputed exactly (rational arithmetic, no judge code)",
+            "judge": "ZTL 2ba7c20",
+            "command": "python -m ustand.stand brick.json --dev",
+            "seconds": 0.26
+          }
+        },
+        "execution_timestamp": "2026-11-14T00:54:15+00:00"
+      },
+      "missing_blocks_stand_call": [],
+      "missing_blocks_admission": [
+        "drawing_revision",
+        "spec_digest"
+      ],
+      "verdict": "F",
+      "why": "CONFIRMED: MCP check_design and the stand's independent checker (--dev) agree",
+      "stand_called": true,
+      "stand_verdict": "REFUTED",
+      "checker_result": {
+        "mcp_work_mode": {
+          "checker": "the violating point recomputed exactly (rational arithmetic, no judge code)",
+          "checked_by": "ZTL (work mode; a refutation's witness recomputed exactly; --dev adds the independent checker on every design)",
+          "judge": "ZTL 2ba7c20",
+          "its_violating_point": {},
+          "value_there": {
+            "dL": "20"
+          },
+          "requirement": {
+            "quantity": "dL",
+            "op": "within",
+            "value": [
+              "-0.02",
+              "0.02"
+            ],
+            "why": "TEST SCENARIO ONLY: synthetic tolerance, not a reBot source (LEGION-Deal-Rescue tests/test_cad027_demo.py TEST_ONLY_TOL @6d5563a)"
+          },
+          "why": "every design in the catalog violates a requirement at a concrete point",
+          "reasons": {
+            "spread_over_tolerances": [
+              "20",
+              "20"
+            ],
+            "window": [
+              "-1/50 (~-0.02)",
+              "1/50 (~0.02)"
+            ],
+            "largest_contributors": []
+          },
+          "undecided": 0,
+          "stand": "ztl-stand/1"
+        },
+        "independent_checker_dev_mode": {
+          "status": "OK",
+          "verdict": "REFUTED",
+          "checked_by": "ZTL + the independent checker (dev mode)",
+          "checker": "the violating point recomputed exactly (rational arithmetic, no judge code)",
+          "judge": "ZTL 2ba7c20",
+          "command": "python -m ustand.stand brick.json --dev",
+          "seconds": 0.26
+        }
+      },
+      "execution_timestamp": "2026-11-14T00:54:15+00:00",
+      "proof_id": "9bacef92dbbfd5e3d26f24d16a4335965dd7654254ef280c3ab73789105e9450",
+      "deliberate_change": "readme purchase spec MGN9-170mm replaced by MGN9-150mm; expected: the stand refutes dL within the window, dL = 20 mm",
+      "admissible_for_rebot": false,
+      "input_basis": "the pinned reBot STEP (OpenCascade XCAF) and readme"
+    }
+  ],
+  "rebot_fixture": {
+    "input_basis": "Deal-Rescue's offline CAD-027 fixture (MINI_XCAF / MINI_README)",
+    "engineering_verdict": "Z",
+    "verification": {
+      "status": "Z",
+      "scope": "the pinned reBot B601-DM STEP and readme as emitted by step_intake (WO-D01); predicates whose inputs and requirement are not stated by those sources stay Z and are never sent to the stand",
+      "context": {
+        "source_repository": "LEGION-Deal-Rescue tests/test_cad027_demo.py (fixture)",
+        "source_commit": "6d5563af9a0eb838297933a8ae6b128defa9f69e",
+        "source_file": "mini.step",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "drawing_revision": null,
+        "spec_digest": "9c9a2f2a2b0f7cc3efd14f931bd43f198b125261151066290ecb574ff0dc300e",
+        "requirements_digest": "b57e2013bd618ccd39f16b34291484d49dceec6a5bf4a118270eeb75a6edf463",
+        "policy_sha256": "4ba01ca8b33e398462ca3f38f37fb92a85c2771b48e33b848aff3b136f807f47"
+      },
+      "predicates": [
+        {
+          "predicate_id": "cad_bom_extraction",
+          "requirement": "every mandatory BOM position and instance of the readme is present in the STEP (Deal-Rescue cad027_review.reconcile)",
+          "mandatory": true,
+          "verdict": "T",
+          "why": "WO-D01 reconciliation (OpenCascade XCAF vs readme); not a ZTL proof",
+          "stand_called": false,
+          "binding": {
+            "source_repository": "LEGION-Deal-Rescue tests/test_cad027_demo.py (fixture)",
+            "source_commit": "6d5563af9a0eb838297933a8ae6b128defa9f69e",
+            "source_file": "mini.step",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "drawing_revision": null,
+            "spec_digest": "9c9a2f2a2b0f7cc3efd14f931bd43f198b125261151066290ecb574ff0dc300e",
+            "requirements_digest": "b57e2013bd618ccd39f16b34291484d49dceec6a5bf4a118270eeb75a6edf463",
+            "policy_sha256": "4ba01ca8b33e398462ca3f38f37fb92a85c2771b48e33b848aff3b136f807f47",
+            "part_id": "reBot B601-DM assembly",
+            "predicate_id": "cad_bom_extraction",
+            "predicate_inputs": {
+              "mandatory_positions": 2,
+              "mandatory_positions_matched": 2,
+              "mandatory_instances_readme": 4,
+              "mandatory_instances_step": 4
+            },
+            "units": null,
+            "tolerances": null,
+            "tolerance_sources": null,
+            "brick_sha256": null,
+            "stand_verdict": null,
+            "checker_result": null,
+            "execution_timestamp": null
+          },
+          "missing_blocks_stand_call": [],
+          "missing_blocks_admission": [
+            "drawing_revision"
+          ],
+          "origin": "legion/engineering/step_intake.py stage bom",
+          "scope": "structure only",
+          "assumptions": [],
+          "controlled_case": false
+        },
+        {
+          "predicate_id": "rail_length_tolerance",
+          "requirement": "MGN9-170 rail length within its manufacturing tolerance",
+          "mandatory": true,
+          "scope": "nominal CAD length of the purchased rail against its purchase specification",
+          "assumptions": [],
+          "controlled_case": false,
+          "origin": "Deal-Rescue cad027_review.production_predicates / rail_length_brick @6d5563a",
+          "binding": {
+            "source_repository": "LEGION-Deal-Rescue tests/test_cad027_demo.py (fixture)",
+            "source_commit": "6d5563af9a0eb838297933a8ae6b128defa9f69e",
+            "source_file": "mini.step",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "drawing_revision": null,
+            "spec_digest": "9c9a2f2a2b0f7cc3efd14f931bd43f198b125261151066290ecb574ff0dc300e",
+            "requirements_digest": "b57e2013bd618ccd39f16b34291484d49dceec6a5bf4a118270eeb75a6edf463",
+            "policy_sha256": "4ba01ca8b33e398462ca3f38f37fb92a85c2771b48e33b848aff3b136f807f47",
+            "part_id": "RAIL-170 (MGN9-170mm, purchased)",
+            "predicate_id": "rail_length_tolerance",
+            "predicate_inputs": {
+              "L_spec": {
+                "value": "170 mm",
+                "source": "readme.md line 25"
+              },
+              "L_cad": {
+                "value": "170.000 mm",
+                "source": "STEP XCAF bbox (nominal model; 0.001 mm is representation rounding, not manufacturing precision)"
+              }
+            },
+            "units": {
+              "L_cad": "mm",
+              "L_spec": "mm",
+              "dL": "mm"
+            },
+            "tolerances": null,
+            "tolerance_sources": null,
+            "brick_sha256": null,
+            "ztl_engineer_commit": "91d11672cb1986a7fb185d3ae5110d7209b36b97",
+            "ztl_stand_commit": "0b4d718fa3bd3105ea002105e0d89cdd76b7b573",
+            "ztl_commit": "2ba7c209371e90058df4666bb949fc253fe6cc27",
+            "stand_verdict": null,
+            "checker_result": null,
+            "execution_timestamp": null
+          },
+          "missing_blocks_stand_call": [
+            "tolerances",
+            "tolerance_sources",
+            "manufacturer length tolerance for MGN9-170 rail (datasheet)",
+            "RAIL_TOLERANCE=Z: no source states a tolerance for the purchased MGN9 rail",
+            "brick (no sourced engineering problem can be written)"
+          ],
+          "missing_blocks_admission": [
+            "drawing_revision"
+          ],
+          "verdict": "Z",
+          "why": "MISSING_EVIDENCE",
+          "stand_called": false,
+          "stand_verdict": null,
+          "checker_result": null,
+          "mcp": null,
+          "execution_timestamp": null
+        },
+        {
+          "predicate_id": "joint2_load_torque",
+          "requirement": "joint 2 holding torque at the recommended load stays within its motor rating",
+          "mandatory": true,
+          "scope": "holding torque at the recommended load",
+          "assumptions": [],
+          "controlled_case": false,
+          "origin": "Deal-Rescue cad027_review.production_predicates",
+          "binding": {
+            "source_repository": "LEGION-Deal-Rescue tests/test_cad027_demo.py (fixture)",
+            "source_commit": "6d5563af9a0eb838297933a8ae6b128defa9f69e",
+            "source_file": "mini.step",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "drawing_revision": null,
+            "spec_digest": "9c9a2f2a2b0f7cc3efd14f931bd43f198b125261151066290ecb574ff0dc300e",
+            "requirements_digest": "b57e2013bd618ccd39f16b34291484d49dceec6a5bf4a118270eeb75a6edf463",
+            "policy_sha256": "4ba01ca8b33e398462ca3f38f37fb92a85c2771b48e33b848aff3b136f807f47",
+            "part_id": "joint 2 motor",
+            "predicate_id": "joint2_load_torque",
+            "predicate_inputs": null,
+            "units": null,
+            "tolerances": null,
+            "tolerance_sources": null,
+            "brick_sha256": null,
+            "ztl_engineer_commit": "91d11672cb1986a7fb185d3ae5110d7209b36b97",
+            "ztl_stand_commit": "0b4d718fa3bd3105ea002105e0d89cdd76b7b573",
+            "ztl_commit": "2ba7c209371e90058df4666bb949fc253fe6cc27",
+            "stand_verdict": null,
+            "checker_result": null,
+            "execution_timestamp": null
+          },
+          "missing_blocks_stand_call": [
+            "predicate_inputs",
+            "units",
+            "tolerances",
+            "tolerance_sources",
+            "Performance_Testing.md not supplied",
+            "brick (no sourced engineering problem can be written)"
+          ],
+          "missing_blocks_admission": [
+            "drawing_revision"
+          ],
+          "verdict": "Z",
+          "why": "MISSING_EVIDENCE",
+          "stand_called": false,
+          "stand_verdict": null,
+          "checker_result": null,
+          "mcp": null,
+          "execution_timestamp": null
+        },
+        {
+          "predicate_id": "cnc_material_evidence",
+          "requirement": "each CNC part's material grade is evidenced (certificate or datasheet) for the stated alloy",
+          "mandatory": true,
+          "scope": "material evidence, not geometry",
+          "assumptions": [],
+          "controlled_case": false,
+          "origin": "step_intake stage requirements (readme lines)",
+          "binding": {
+            "source_repository": "LEGION-Deal-Rescue tests/test_cad027_demo.py (fixture)",
+            "source_commit": "6d5563af9a0eb838297933a8ae6b128defa9f69e",
+            "source_file": "mini.step",
+            "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "drawing_revision": null,
+            "spec_digest": "9c9a2f2a2b0f7cc3efd14f931bd43f198b125261151066290ecb574ff0dc300e",
+            "requirements_digest": "b57e2013bd618ccd39f16b34291484d49dceec6a5bf4a118270eeb75a6edf463",
+            "policy_sha256": "4ba01ca8b33e398462ca3f38f37fb92a85c2771b48e33b848aff3b136f807f47",
+            "part_id": "1 CNC machined parts",
+            "predicate_id": "cnc_material_evidence",
+            "predicate_inputs": {
+              "02_RACK": {
+                "value": "Aluminum Alloy 5052",
+                "source": "readme.md line 16"
+              }
+            },
+            "units": null,
+            "tolerances": {
+              "02_RACK": "- Key dimension tolerance: ±0.02 mm GB/T1840-M"
+            },
+            "tolerance_sources": {
+              "02_RACK": "readme.md line 19"
+            },
+            "brick_sha256": null,
+            "ztl_engineer_commit": "91d11672cb1986a7fb185d3ae5110d7209b36b97",
+            "ztl_stand_commit": "0b4d718fa3bd3105ea002105e0d89cdd76b7b573",
+            "ztl_commit": "2ba7c209371e90058df4666bb949fc253fe6cc27",
+            "stand_verdict": null,
+            "checker_result": null,
+            "execution_timestamp": null
+          },
+          "missing_blocks_stand_call": [
+            "units",
+            "material grade certificates (no certificate or datasheet in the sources)",
+            "brick (no sourced engineering problem can be written)"
+          ],
+          "missing_blocks_admission": [
+            "drawing_revision"
+          ],
+          "verdict": "Z",
+          "why": "MISSING_EVIDENCE",
+          "stand_called": false,
+          "stand_verdict": null,
+          "checker_result": null,
+          "mcp": null,
+          "execution_timestamp": null
+        }
+      ],
+      "verdict": {
+        "schema": "legion.engineering.verdict.v1",
+        "policy_sha256": "4ba01ca8b33e398462ca3f38f37fb92a85c2771b48e33b848aff3b136f807f47",
+        "mandatory_predicates": {
+          "cad_bom_extraction": "T",
+          "rail_length_tolerance": "Z",
+          "joint2_load_torque": "Z",
+          "cnc_material_evidence": "Z"
+        },
+        "stale_proofs": {},
+        "predicate_layer_verdict": "Z",
+        "receipt_layer": {
+          "verdict": "Z",
+          "code": "PART_FIELD_MISSING_MATERIAL_GRADE",
+          "refused": true,
+          "gate": "deal_rescue.industrial.ztl_gate",
+          "admitted": false
+        },
+        "ENGINEERING_VERDICT": "Z",
+        "blocking": [
+          "rail_length_tolerance=Z",
+          "joint2_load_torque=Z",
+          "cnc_material_evidence=Z",
+          "authenticated_receipt=Z (PART_FIELD_MISSING_MATERIAL_GRADE)",
+          "context field missing: drawing_revision"
+        ],
+        "production_admission": {
+          "verdict": "Z",
+          "why": "CONTEXT_MISSING",
+          "engineering_input": "Z",
+          "missing": null,
+          "execute_supplier_order": false,
+          "execute_paypal": false,
+          "module": "deal_rescue.industrial.admission.decide"
+        },
+        "procurement_authorized": false,
+        "payment_authorized": false,
+        "manufacturing_release": false,
+        "supplier_requests_sent": 0,
+        "paypal_calls": 0
+      },
+      "missing_for_engineering_T": [
+        "per-part dimensional requirements and tolerances for printed parts",
+        "manufacturer tolerance for the purchased MGN9-170 rail",
+        "material grade certificates",
+        "surface finish per part",
+        "inspection requirements",
+        "functional requirements",
+        "independent Ed25519 attestation (CAD-025)"
+      ]
+    }
+  },
+  "rebot_real_step": {
+    "input_basis": "the pinned reBot STEP and readme",
+    "engineering_verdict": "Z",
+    "intake": {
+      "status": "T",
+      "file": "reBot_B601_DM_v1.1_20260625.step",
+      "sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+      "bytes": 34840241,
+      "length_unit": "mm",
+      "assemblies": 33,
+      "leaf_definitions": 64,
+      "leaf_instances": 326,
+      "inferred_fields": []
+    },
+    "bom": {
+      "status": "T",
+      "mandatory_positions": 40,
+      "mandatory_positions_matched": 40,
+      "mandatory_instances_readme": 53,
+      "mandatory_instances_step": 53
+    },
+    "verification": {
+      "status": "Z",
+      "scope": "the pinned reBot B601-DM STEP and readme as emitted by step_intake (WO-D01); predicates whose inputs and requirement are not stated by those sources stay Z and are never sent to the stand",
+      "context": {
+        "source_repository": "https://github.com/Seeed-Projects/reBot-DevArm",
+        "source_commit": "22f002a230670f96abcd3805e0daa63bdf42f354",
+        "source_file": "hardware/reBot_B601_DM/reBot_B601_DM_v1.1_20260625.step",
+        "source_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+        "drawing_revision": null,
+        "spec_digest": "10662d6790932c5317810aab5ba78931a6f5d873d3338e016b671c8e92c2c85e",
+        "requirements_digest": "3b4c598ea0f0b9e8b6a9049294b7160b0ee0d2a6f81a5e7b0fe86f917915fd9e",
+        "policy_sha256": "4ba01ca8b33e398462ca3f38f37fb92a85c2771b48e33b848aff3b136f807f47"
+      },
+      "predicates": [
+        {
+          "predicate_id": "cad_bom_extraction",
+          "requirement": "every mandatory BOM position and instance of the readme is present in the STEP (Deal-Rescue cad027_review.reconcile)",
+          "mandatory": true,
+          "verdict": "T",
+          "why": "WO-D01 reconciliation (OpenCascade XCAF vs readme); not a ZTL proof",
+          "stand_called": false,
+          "binding": {
+            "source_repository": "https://github.com/Seeed-Projects/reBot-DevArm",
+            "source_commit": "22f002a230670f96abcd3805e0daa63bdf42f354",
+            "source_file": "hardware/reBot_B601_DM/reBot_B601_DM_v1.1_20260625.step",
+            "source_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+            "drawing_revision": null,
+            "spec_digest": "10662d6790932c5317810aab5ba78931a6f5d873d3338e016b671c8e92c2c85e",
+            "requirements_digest": "3b4c598ea0f0b9e8b6a9049294b7160b0ee0d2a6f81a5e7b0fe86f917915fd9e",
+            "policy_sha256": "4ba01ca8b33e398462ca3f38f37fb92a85c2771b48e33b848aff3b136f807f47",
+            "part_id": "reBot B601-DM assembly",
+            "predicate_id": "cad_bom_extraction",
+            "predicate_inputs": {
+              "mandatory_positions": 40,
+              "mandatory_positions_matched": 40,
+              "mandatory_instances_readme": 53,
+              "mandatory_instances_step": 53
+            },
+            "units": null,
+            "tolerances": null,
+            "tolerance_sources": null,
+            "brick_sha256": null,
+            "stand_verdict": null,
+            "checker_result": null,
+            "execution_timestamp": null
+          },
+          "missing_blocks_stand_call": [],
+          "missing_blocks_admission": [
+            "drawing_revision"
+          ],
+          "origin": "legion/engineering/step_intake.py stage bom",
+          "scope": "structure only",
+          "assumptions": [],
+          "controlled_case": false
+        },
+        {
+          "predicate_id": "rail_length_tolerance",
+          "requirement": "MGN9-170 rail length within its manufacturing tolerance",
+          "mandatory": true,
+          "scope": "nominal CAD length of the purchased rail against its purchase specification",
+          "assumptions": [],
+          "controlled_case": false,
+          "origin": "Deal-Rescue cad027_review.production_predicates / rail_length_brick @6d5563a",
+          "binding": {
+            "source_repository": "https://github.com/Seeed-Projects/reBot-DevArm",
+            "source_commit": "22f002a230670f96abcd3805e0daa63bdf42f354",
+            "source_file": "hardware/reBot_B601_DM/reBot_B601_DM_v1.1_20260625.step",
+            "source_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+            "drawing_revision": null,
+            "spec_digest": "10662d6790932c5317810aab5ba78931a6f5d873d3338e016b671c8e92c2c85e",
+            "requirements_digest": "3b4c598ea0f0b9e8b6a9049294b7160b0ee0d2a6f81a5e7b0fe86f917915fd9e",
+            "policy_sha256": "4ba01ca8b33e398462ca3f38f37fb92a85c2771b48e33b848aff3b136f807f47",
+            "part_id": "RAIL-170 (MGN9-170mm, purchased)",
+            "predicate_id": "rail_length_tolerance",
+            "predicate_inputs": {
+              "L_spec": {
+                "value": "170 mm",
+                "source": "readme.md line 150"
+              },
+              "L_cad": {
+                "value": "170.000 mm",
+                "source": "STEP XCAF bbox (nominal model; 0.001 mm is representation rounding, not manufacturing precision)"
+              }
+            },
+            "units": {
+              "L_cad": "mm",
+              "L_spec": "mm",
+              "dL": "mm"
+            },
+            "tolerances": null,
+            "tolerance_sources": null,
+            "brick_sha256": null,
+            "ztl_engineer_commit": "91d11672cb1986a7fb185d3ae5110d7209b36b97",
+            "ztl_stand_commit": "0b4d718fa3bd3105ea002105e0d89cdd76b7b573",
+            "ztl_commit": "2ba7c209371e90058df4666bb949fc253fe6cc27",
+            "stand_verdict": null,
+            "checker_result": null,
+            "execution_timestamp": null
+          },
+          "missing_blocks_stand_call": [
+            "tolerances",
+            "tolerance_sources",
+            "manufacturer length tolerance for MGN9-170 rail (datasheet)",
+            "RAIL_TOLERANCE=Z: no source states a tolerance for the purchased MGN9 rail",
+            "brick (no sourced engineering problem can be written)"
+          ],
+          "missing_blocks_admission": [
+            "drawing_revision"
+          ],
+          "verdict": "Z",
+          "why": "MISSING_EVIDENCE",
+          "stand_called": false,
+          "stand_verdict": null,
+          "checker_result": null,
+          "mcp": null,
+          "execution_timestamp": null
+        },
+        {
+          "predicate_id": "joint2_load_torque",
+          "requirement": "joint 2 holding torque at the recommended load stays within its motor rating",
+          "mandatory": true,
+          "scope": "holding torque at the recommended load",
+          "assumptions": [],
+          "controlled_case": false,
+          "origin": "Deal-Rescue cad027_review.production_predicates",
+          "binding": {
+            "source_repository": "https://github.com/Seeed-Projects/reBot-DevArm",
+            "source_commit": "22f002a230670f96abcd3805e0daa63bdf42f354",
+            "source_file": "hardware/reBot_B601_DM/reBot_B601_DM_v1.1_20260625.step",
+            "source_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+            "drawing_revision": null,
+            "spec_digest": "10662d6790932c5317810aab5ba78931a6f5d873d3338e016b671c8e92c2c85e",
+            "requirements_digest": "3b4c598ea0f0b9e8b6a9049294b7160b0ee0d2a6f81a5e7b0fe86f917915fd9e",
+            "policy_sha256": "4ba01ca8b33e398462ca3f38f37fb92a85c2771b48e33b848aff3b136f807f47",
+            "part_id": "joint 2 motor",
+            "predicate_id": "joint2_load_torque",
+            "predicate_inputs": null,
+            "units": null,
+            "tolerances": null,
+            "tolerance_sources": null,
+            "brick_sha256": null,
+            "ztl_engineer_commit": "91d11672cb1986a7fb185d3ae5110d7209b36b97",
+            "ztl_stand_commit": "0b4d718fa3bd3105ea002105e0d89cdd76b7b573",
+            "ztl_commit": "2ba7c209371e90058df4666bb949fc253fe6cc27",
+            "stand_verdict": null,
+            "checker_result": null,
+            "execution_timestamp": null
+          },
+          "missing_blocks_stand_call": [
+            "predicate_inputs",
+            "units",
+            "tolerances",
+            "tolerance_sources",
+            "Performance_Testing.md not supplied",
+            "brick (no sourced engineering problem can be written)"
+          ],
+          "missing_blocks_admission": [
+            "drawing_revision"
+          ],
+          "verdict": "Z",
+          "why": "MISSING_EVIDENCE",
+          "stand_called": false,
+          "stand_verdict": null,
+          "checker_result": null,
+          "mcp": null,
+          "execution_timestamp": null
+        },
+        {
+          "predicate_id": "cnc_material_evidence",
+          "requirement": "each CNC part's material grade is evidenced (certificate or datasheet) for the stated alloy",
+          "mandatory": true,
+          "scope": "material evidence, not geometry",
+          "assumptions": [],
+          "controlled_case": false,
+          "origin": "step_intake stage requirements (readme lines)",
+          "binding": {
+            "source_repository": "https://github.com/Seeed-Projects/reBot-DevArm",
+            "source_commit": "22f002a230670f96abcd3805e0daa63bdf42f354",
+            "source_file": "hardware/reBot_B601_DM/reBot_B601_DM_v1.1_20260625.step",
+            "source_sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2",
+            "drawing_revision": null,
+            "spec_digest": "10662d6790932c5317810aab5ba78931a6f5d873d3338e016b671c8e92c2c85e",
+            "requirements_digest": "3b4c598ea0f0b9e8b6a9049294b7160b0ee0d2a6f81a5e7b0fe86f917915fd9e",
+            "policy_sha256": "4ba01ca8b33e398462ca3f38f37fb92a85c2771b48e33b848aff3b136f807f47",
+            "part_id": "21 CNC machined parts",
+            "predicate_id": "cnc_material_evidence",
+            "predicate_inputs": {
+              "02_BASE_REINFORCEMENT_PART": {
+                "value": "Aluminum Alloy 5052",
+                "source": "readme.md line 105"
+              },
+              "02_ARM_YAW_LIMIT": {
+                "value": "Aluminum Alloy 5052",
+                "source": "readme.md line 106"
+              },
+              "02_MOTOR_FRONT_SPACER": {
+                "value": "Aluminum Alloy 5052",
+                "source": "readme.md line 107"
+              },
+              "02_MOTOR_BACK_SPACER": {
+                "value": "Aluminum Alloy 5052",
+                "source": "readme.md line 108"
+              },
+              "02_FLANGE": {
+                "value": "Aluminum Alloy 5052",
+                "source": "readme.md line 109"
+              },
+              "02_WRIST_BRACKET": {
+                "value": "Aluminum Alloy 5052",
+                "source": "readme.md line 110"
+              },
+              "02_GRIPPER_CONNECTOR_A": {
+                "value": "Aluminum Alloy 5052",
+                "source": "readme.md line 111"
+              },
+              "02_GRIPPER_CONNECTOR_B": {
+                "value": "Aluminum Alloy 5052",
+                "source": "readme.md line 112"
+              },
+              "02_SLIDER_BRACKET": {
+                "value": "Aluminum Alloy 5052",
+                "source": "readme.md line 113"
+              },
+              "02_SLIDER_EXTENSION": {
+                "value": "Aluminum Alloy 5052",
+                "source": "readme.md line 114"
+              },
+              "02_LOWER_UPPER_LINK_L": {
+                "value": "Aluminum Alloy 5052",
+                "source": "readme.md line 115"
+              },
+              "02_LOWER_UPPER_LINK_R": {
+                "value": "Aluminum Alloy 5052",
+                "source": "readme.md line 116"
+              },
+              "02_LOWER_WRIST_LINK_L": {
+                "value": "Aluminum Alloy 5052",
+                "source": "readme.md line 117"
+              },
+              "02_LOWER_WRIST_LINK_R": {
+                "value": "Aluminum Alloy 5052",
+                "source": "readme.md line 118"
+              },
+              "02_GEAR_CONNECTOR": {
+                "value": "Aluminum Alloy 5052",
+                "source": "readme.md line 119"
+              },
+              "02_RACK": {
+                "value": "Aluminum Alloy 5052",
+                "source": "readme.md line 120"
+              },
+              "03_LINK1": {
+                "value": "Aluminum Alloy 5052",
+                "source": "readme.md line 121"
+              },
+              "03_LINK2": {
+                "value": "Aluminum Alloy 5052",
+                "source": "readme.md line 122"
+              },
+              "03_LINK3_L": {
+                "value": "Aluminum Alloy 5052",
+                "source": "readme.md line 123"
+              },
+              "03_LINK3_R": {
+                "value": "Aluminum Alloy 5052",
+                "source": "readme.md line 124"
+              },
+              "03_LINK5": {
+                "value": "Aluminum Alloy 5052",
+                "source": "readme.md line 125"
+              }
+            },
+            "units": null,
+            "tolerances": {
+              "02_BASE_REINFORCEMENT_PART": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+              "02_ARM_YAW_LIMIT": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+              "02_MOTOR_FRONT_SPACER": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+              "02_MOTOR_BACK_SPACER": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+              "02_FLANGE": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+              "02_WRIST_BRACKET": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+              "02_GRIPPER_CONNECTOR_A": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+              "02_GRIPPER_CONNECTOR_B": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+              "02_SLIDER_BRACKET": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+              "02_SLIDER_EXTENSION": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+              "02_LOWER_UPPER_LINK_L": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+              "02_LOWER_UPPER_LINK_R": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+              "02_LOWER_WRIST_LINK_L": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+              "02_LOWER_WRIST_LINK_R": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+              "02_GEAR_CONNECTOR": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+              "02_RACK": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+              "03_LINK1": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+              "03_LINK2": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+              "03_LINK3_L": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+              "03_LINK3_R": "- Key dimension tolerance: ±0.02 mm GB/T1840-M",
+              "03_LINK5": "- Key dimension tolerance: ±0.02 mm GB/T1840-M"
+            },
+            "tolerance_sources": {
+              "02_BASE_REINFORCEMENT_PART": "readme.md line 129",
+              "02_ARM_YAW_LIMIT": "readme.md line 129",
+              "02_MOTOR_FRONT_SPACER": "readme.md line 129",
+              "02_MOTOR_BACK_SPACER": "readme.md line 129",
+              "02_FLANGE": "readme.md line 129",
+              "02_WRIST_BRACKET": "readme.md line 129",
+              "02_GRIPPER_CONNECTOR_A": "readme.md line 129",
+              "02_GRIPPER_CONNECTOR_B": "readme.md line 129",
+              "02_SLIDER_BRACKET": "readme.md line 129",
+              "02_SLIDER_EXTENSION": "readme.md line 129",
+              "02_LOWER_UPPER_LINK_L": "readme.md line 129",
+              "02_LOWER_UPPER_LINK_R": "readme.md line 129",
+              "02_LOWER_WRIST_LINK_L": "readme.md line 129",
+              "02_LOWER_WRIST_LINK_R": "readme.md line 129",
+              "02_GEAR_CONNECTOR": "readme.md line 129",
+              "02_RACK": "readme.md line 129",
+              "03_LINK1": "readme.md line 129",
+              "03_LINK2": "readme.md line 129",
+              "03_LINK3_L": "readme.md line 129",
+              "03_LINK3_R": "readme.md line 129",
+              "03_LINK5": "readme.md line 129"
+            },
+            "brick_sha256": null,
+            "ztl_engineer_commit": "91d11672cb1986a7fb185d3ae5110d7209b36b97",
+            "ztl_stand_commit": "0b4d718fa3bd3105ea002105e0d89cdd76b7b573",
+            "ztl_commit": "2ba7c209371e90058df4666bb949fc253fe6cc27",
+            "stand_verdict": null,
+            "checker_result": null,
+            "execution_timestamp": null
+          },
+          "missing_blocks_stand_call": [
+            "units",
+            "material grade certificates (no certificate or datasheet in the sources)",
+            "brick (no sourced engineering problem can be written)"
+          ],
+          "missing_blocks_admission": [
+            "drawing_revision"
+          ],
+          "verdict": "Z",
+          "why": "MISSING_EVIDENCE",
+          "stand_called": false,
+          "stand_verdict": null,
+          "checker_result": null,
+          "mcp": null,
+          "execution_timestamp": null
+        }
+      ],
+      "verdict": {
+        "schema": "legion.engineering.verdict.v1",
+        "policy_sha256": "4ba01ca8b33e398462ca3f38f37fb92a85c2771b48e33b848aff3b136f807f47",
+        "mandatory_predicates": {
+          "cad_bom_extraction": "T",
+          "rail_length_tolerance": "Z",
+          "joint2_load_torque": "Z",
+          "cnc_material_evidence": "Z"
+        },
+        "stale_proofs": {},
+        "predicate_layer_verdict": "Z",
+        "receipt_layer": {
+          "verdict": "Z",
+          "code": "PART_FIELD_MISSING_MATERIAL_GRADE",
+          "refused": true,
+          "gate": "deal_rescue.industrial.ztl_gate",
+          "admitted": false
+        },
+        "ENGINEERING_VERDICT": "Z",
+        "blocking": [
+          "rail_length_tolerance=Z",
+          "joint2_load_torque=Z",
+          "cnc_material_evidence=Z",
+          "authenticated_receipt=Z (PART_FIELD_MISSING_MATERIAL_GRADE)",
+          "context field missing: drawing_revision"
+        ],
+        "production_admission": {
+          "verdict": "Z",
+          "why": "CONTEXT_MISSING",
+          "engineering_input": "Z",
+          "missing": null,
+          "execute_supplier_order": false,
+          "execute_paypal": false,
+          "module": "deal_rescue.industrial.admission.decide"
+        },
+        "procurement_authorized": false,
+        "payment_authorized": false,
+        "manufacturing_release": false,
+        "supplier_requests_sent": 0,
+        "paypal_calls": 0
+      },
+      "missing_for_engineering_T": [
+        "per-part dimensional requirements and tolerances for printed parts",
+        "manufacturer tolerance for the purchased MGN9-170 rail",
+        "material grade certificates",
+        "surface finish per part",
+        "inspection requirements",
+        "functional requirements",
+        "independent Ed25519 attestation (CAD-025)"
+      ]
+    }
+  },
+  "aggregation_cases": {
+    "T_plus_Z": {
+      "schema": "legion.engineering.verdict.v1",
+      "policy_sha256": "4ba01ca8b33e398462ca3f38f37fb92a85c2771b48e33b848aff3b136f807f47",
+      "mandatory_predicates": {
+        "rail_within_assumed_window": "T",
+        "rail_manufacturing_tolerance": "Z"
+      },
+      "stale_proofs": {},
+      "predicate_layer_verdict": "Z",
+      "receipt_layer": {
+        "verdict": "Z",
+        "code": "NO_RECEIPT"
+      },
+      "ENGINEERING_VERDICT": "Z",
+      "blocking": [
+        "rail_manufacturing_tolerance=Z",
+        "authenticated_receipt=Z (NO_RECEIPT)",
+        "context field missing: drawing_revision",
+        "context field missing: spec_digest"
+      ],
+      "production_admission": {
+        "verdict": "Z",
+        "why": "CONTEXT_MISSING",
+        "engineering_input": "Z",
+        "missing": null,
+        "execute_supplier_order": false,
+        "execute_paypal": false,
+        "module": "deal_rescue.industrial.admission.decide"
+      },
+      "procurement_authorized": false,
+      "payment_authorized": false,
+      "manufacturing_release": false,
+      "supplier_requests_sent": 0,
+      "paypal_calls": 0
+    },
+    "T_plus_F": {
+      "schema": "legion.engineering.verdict.v1",
+      "policy_sha256": "4ba01ca8b33e398462ca3f38f37fb92a85c2771b48e33b848aff3b136f807f47",
+      "mandatory_predicates": {
+        "rail_within_assumed_window": "T",
+        "rail_offset_window_violated": "F"
+      },
+      "stale_proofs": {},
+      "predicate_layer_verdict": "F",
+      "receipt_layer": {
+        "verdict": "Z",
+        "code": "NO_RECEIPT"
+      },
+      "ENGINEERING_VERDICT": "F",
+      "blocking": [
+        "rail_offset_window_violated=F",
+        "authenticated_receipt=Z (NO_RECEIPT)",
+        "context field missing: drawing_revision",
+        "context field missing: spec_digest"
+      ],
+      "production_admission": {
+        "verdict": "Z",
+        "why": "CONTEXT_MISSING",
+        "engineering_input": "F",
+        "missing": null,
+        "execute_supplier_order": false,
+        "execute_paypal": false,
+        "module": "deal_rescue.industrial.admission.decide"
+      },
+      "procurement_authorized": false,
+      "payment_authorized": false,
+      "manufacturing_release": false,
+      "supplier_requests_sent": 0,
+      "paypal_calls": 0
+    },
+    "T_plus_Z_with_synthetic_receipt_claim": {
+      "schema": "legion.engineering.verdict.v1",
+      "policy_sha256": "4ba01ca8b33e398462ca3f38f37fb92a85c2771b48e33b848aff3b136f807f47",
+      "mandatory_predicates": {
+        "rail_within_assumed_window": "T",
+        "rail_manufacturing_tolerance": "Z"
+      },
+      "stale_proofs": {},
+      "predicate_layer_verdict": "Z",
+      "receipt_layer": {
+        "verdict": "T",
+        "code": "SYNTHETIC_CLAIM_FOR_TEST"
+      },
+      "ENGINEERING_VERDICT": "Z",
+      "blocking": [
+        "rail_manufacturing_tolerance=Z",
+        "context field missing: drawing_revision",
+        "context field missing: spec_digest"
+      ],
+      "production_admission": {
+        "verdict": "Z",
+        "why": "CONTEXT_MISSING",
+        "engineering_input": "Z",
+        "missing": null,
+        "execute_supplier_order": false,
+        "execute_paypal": false,
+        "module": "deal_rescue.industrial.admission.decide"
+      },
+      "procurement_authorized": false,
+      "payment_authorized": false,
+      "manufacturing_release": false,
+      "supplier_requests_sent": 0,
+      "paypal_calls": 0
+    }
+  },
+  "counts_note": "counts are the stand verdicts of the real MCP calls made while writing this evidence"
+}

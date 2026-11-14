@@ -1,0 +1,700 @@
+{
+  "source_commit": "27a207d3121bbf91ecfc968260ce0a4239405c6f",
+  "executed_at_utc": "2026-11-14T01:30:15+00:00",
+  "environment": {
+    "python": "3.12.3",
+    "implementation": "CPython",
+    "platform": "Linux-6.18.58.1-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "os_name": "posix",
+    "ci": false,
+    "github_run_id": null,
+    "github_workflow": null,
+    "github_job": null
+  },
+  "command": "python -I tools/d02_run.py --out evidence --stand-suite --regressions",
+  "inputs": {
+    "obligations": 22
+  },
+  "status": "PASS",
+  "gate_d02": "T",
+  "gate_meaning": "T = the integration acceptance obligations hold in this environment. It is NOT an engineering admission: the reBot engineering verdict is Z and no production use is authorized.",
+  "counts": {
+    "obligations": 22,
+    "PASS": 22,
+    "FAIL": 0,
+    "NOT_RUN": 0,
+    "d02_tests": 36,
+    "d02_PASS": 36,
+    "d02_FAIL": 0,
+    "d02_NOT_RUN": 0,
+    "actual_ztl_calls": 14,
+    "EARNED": 7,
+    "REFUTED": 4,
+    "OPEN_or_ERROR": 3,
+    "stand_self_checks_ok": 437,
+    "stand_self_checks_blocked": 3
+  },
+  "blocked_items": [
+    {
+      "check": "FAIL --prove: the divider's +-1 % requirement is a Lean THEOREM (1 of 1, zero axioms); a REFUTED verdict carries no proof; a judge lying narrow in work mode EARNS +-0.5 % falsely, and the proof refuses it (0 of 1); the 27 ohm divider with its powers P = I*I*R against the 1/4 W rating: 4 of 4 (non-dy",
+      "status": "BLOCKED",
+      "reason": "Lean 4 toolchain (`lake`) not installed; the --prove feature (Lean theorems via ZTL tools/zbound2lean.py) is not used by check_design or by this work order"
+    },
+    {
+      "check": "FAIL --prove on a TABLE (real3/s07, 5 branches): a theorem branch by branch — the 'about' says so and the branch theorems are named (2026-11-09; was 'not translated (yet): ifpos') — null",
+      "status": "BLOCKED",
+      "reason": "Lean 4 toolchain (`lake`) not installed; the --prove feature (Lean theorems via ZTL tools/zbound2lean.py) is not used by check_design or by this work order"
+    },
+    {
+      "check": "FAIL --prove on a 'smallest' find (blind7 c10b): the PROVED RANGE carries its own proof (1 of 1, 'every eta in [0.5392, 0.8]'), though the decision — the brick as written — is refuted at its own value (2026-11-09) — {\"verdict\": \"EARNED\", \"proof_covers\": null}",
+      "status": "BLOCKED",
+      "reason": "Lean 4 toolchain (`lake`) not installed; the --prove feature (Lean theorems via ZTL tools/zbound2lean.py) is not used by check_design or by this work order"
+    }
+  ],
+  "rebot_engineering_verdict": "Z",
+  "rebot_basis": "the pinned reBot STEP and readme",
+  "obligations": [
+    {
+      "id": "D02-01",
+      "condition": "Pinned ZTL source integrity",
+      "required_result": "PASS",
+      "status": "PASS",
+      "evidence": [
+        "tests.engineering.test_d02_mcp.D02Sources.test_d02_01_pinned_ztl_sources_verified",
+        "tests.engineering.test_d02_mcp.D02Sources.test_d02_01_stand_reports_the_pinned_judge",
+        "tests.engineering.test_d02_mcp.D02Sources.test_d02_01_tampered_pin_is_refused"
+      ]
+    },
+    {
+      "id": "D02-02",
+      "condition": "Real MCP initializes",
+      "required_result": "PASS",
+      "status": "PASS",
+      "evidence": [
+        "tests.engineering.test_d02_mcp.D02Mcp.test_d02_02_real_mcp_initializes"
+      ]
+    },
+    {
+      "id": "D02-03",
+      "condition": "Real check_design tool executes (and ztl-stand's own suite passes)",
+      "required_result": "PASS",
+      "status": "PASS",
+      "evidence": [
+        "tests.engineering.test_d02_mcp.D02Mcp.test_d02_03_real_check_design_executes",
+        "tests.engineering.test_d02_mcp.D02Mcp.test_d02_03_same_result_as_the_deal_rescue_reference",
+        "@stand_suite"
+      ]
+    },
+    {
+      "id": "D02-04",
+      "condition": "Fully supported positive predicate",
+      "required_result": "Scoped T",
+      "status": "PASS",
+      "evidence": [
+        "tests.engineering.test_d02_proofs.D02ProofsFixture.test_d02_04_positive_predicate_is_scoped_T",
+        "tests.engineering.test_d02_proofs.D02ProofsRealStep.test_d02_04_input_is_the_real_step",
+        "tests.engineering.test_d02_proofs.D02ProofsRealStep.test_d02_04_positive_predicate_is_scoped_T"
+      ],
+      "needs": "the real STEP (LMFG_REAL_CAD=1)"
+    },
+    {
+      "id": "D02-05",
+      "condition": "Violated engineering predicate",
+      "required_result": "Scoped F",
+      "status": "PASS",
+      "evidence": [
+        "tests.engineering.test_d02_proofs.D02ProofsFixture.test_d02_05_violated_predicate_is_scoped_F",
+        "tests.engineering.test_d02_proofs.D02ProofsRealStep.test_d02_05_violated_predicate_is_scoped_F"
+      ],
+      "needs": "the real STEP (LMFG_REAL_CAD=1)"
+    },
+    {
+      "id": "D02-06",
+      "condition": "Missing manufacturing tolerance",
+      "required_result": "Z",
+      "status": "PASS",
+      "evidence": [
+        "tests.engineering.test_d02_negatives.D02Missing.test_d02_06_missing_manufacturing_tolerance_is_Z"
+      ]
+    },
+    {
+      "id": "D02-07",
+      "condition": "Missing material evidence",
+      "required_result": "Z",
+      "status": "PASS",
+      "evidence": [
+        "tests.engineering.test_d02_negatives.D02Missing.test_d02_07_missing_material_evidence_is_Z"
+      ]
+    },
+    {
+      "id": "D02-08",
+      "condition": "Altered source SHA-256",
+      "required_result": "Reject binding",
+      "status": "PASS",
+      "evidence": [
+        "tests.engineering.test_d02_binding.D02Binding.test_d02_08_altered_source_sha256_rejects_binding",
+        "tests.engineering.test_d02_binding.D02Binding.test_d02_08_proof_under_altered_source_is_not_used"
+      ]
+    },
+    {
+      "id": "D02-09",
+      "condition": "Changed engineering revision",
+      "required_result": "Old proof invalid",
+      "status": "PASS",
+      "evidence": [
+        "tests.engineering.test_d02_binding.D02Binding.test_d02_09_changed_revision_invalidates_old_proof"
+      ]
+    },
+    {
+      "id": "D02-10",
+      "condition": "Altered requirement digest",
+      "required_result": "Old proof invalid",
+      "status": "PASS",
+      "evidence": [
+        "tests.engineering.test_d02_binding.D02Binding.test_d02_10_altered_requirement_digest_invalidates_old_proof",
+        "tests.engineering.test_d02_binding.D02Binding.test_d02_10_changed_policy_or_brick_invalidates_old_proof"
+      ]
+    },
+    {
+      "id": "D02-11",
+      "condition": "Malformed ZTL brick",
+      "required_result": "Z",
+      "status": "PASS",
+      "evidence": [
+        "tests.engineering.test_d02_mcp.D02Mcp.test_d02_11_malformed_brick_is_Z"
+      ]
+    },
+    {
+      "id": "D02-12",
+      "condition": "Malformed MCP response",
+      "required_result": "Z",
+      "status": "PASS",
+      "evidence": [
+        "tests.engineering.test_d02_mcp.D02Mcp.test_d02_12_malformed_mcp_response_is_Z_TRANSPORT_FAULT_INJECTION"
+      ]
+    },
+    {
+      "id": "D02-13",
+      "condition": "MCP server unavailable",
+      "required_result": "Z",
+      "status": "PASS",
+      "evidence": [
+        "tests.engineering.test_d02_mcp.D02Mcp.test_d02_13_evaluate_with_unavailable_server_never_F",
+        "tests.engineering.test_d02_mcp.D02Mcp.test_d02_13_server_unavailable_is_Z"
+      ]
+    },
+    {
+      "id": "D02-14",
+      "condition": "Verification timeout",
+      "required_result": "Z",
+      "status": "PASS",
+      "evidence": [
+        "tests.engineering.test_d02_mcp.D02Mcp.test_d02_14_timeout_is_Z"
+      ]
+    },
+    {
+      "id": "D02-15",
+      "condition": "One mandatory T, one mandatory Z",
+      "required_result": "Global Z",
+      "status": "PASS",
+      "evidence": [
+        "tests.engineering.test_d02_negatives.D02Aggregation.test_d02_15_one_T_one_Z_is_global_Z",
+        "tests.engineering.test_d02_negatives.D02Aggregation.test_d02_d_all_T_without_authenticated_receipt_is_Z",
+        "tests.engineering.test_d02_negatives.D02Aggregation.test_d02_d_deal_rescue_partial_aggregation_is_not_used"
+      ]
+    },
+    {
+      "id": "D02-16",
+      "condition": "One mandatory T, one mandatory F",
+      "required_result": "Global F",
+      "status": "PASS",
+      "evidence": [
+        "tests.engineering.test_d02_negatives.D02Aggregation.test_d02_16_one_T_one_F_is_global_F"
+      ]
+    },
+    {
+      "id": "D02-17",
+      "condition": "Replayed or unauthenticated receipt",
+      "required_result": "No admission",
+      "status": "PASS",
+      "evidence": [
+        "tests.engineering.test_d02_negatives.D02Receipts.test_d02_17_no_or_unauthenticated_receipt_is_not_admitted",
+        "tests.engineering.test_d02_negatives.D02Receipts.test_d02_17_replayed_signed_receipts_are_refused"
+      ]
+    },
+    {
+      "id": "D02-18",
+      "condition": "Real reBot reference case",
+      "required_result": "Engineering Z",
+      "status": "PASS",
+      "evidence": [
+        "tests.engineering.test_d02_negatives.D02RebotFixture.test_d02_18_rebot_engineering_is_Z",
+        "tests.engineering.test_d02_negatives.D02RebotRealStep.test_d02_18_real_step_baseline_unchanged",
+        "tests.engineering.test_d02_negatives.D02RebotRealStep.test_d02_18_rebot_engineering_is_Z"
+      ],
+      "needs": "the real STEP (LMFG_REAL_CAD=1)"
+    },
+    {
+      "id": "D02-19",
+      "condition": "Existing CAD-D01 regression",
+      "required_result": "No regression",
+      "status": "PASS",
+      "evidence": [
+        "@d01"
+      ],
+      "needs": "the real STEP (LMFG_REAL_CAD=1)"
+    },
+    {
+      "id": "D02-20",
+      "condition": "Existing Anthropic and connector tests",
+      "required_result": "No regression",
+      "status": "PASS",
+      "evidence": [
+        "@others"
+      ]
+    },
+    {
+      "id": "D02-21",
+      "condition": "Protected repositories",
+      "required_result": "No modifications",
+      "status": "PASS",
+      "evidence": [
+        "@protected"
+      ]
+    },
+    {
+      "id": "D02-22",
+      "condition": "Evidence manifest and source hashes",
+      "required_result": "Verified",
+      "status": "PASS",
+      "evidence": [
+        "@manifest",
+        "tests.engineering.test_d02_mcp.D02Sources.test_d02_01_pinned_ztl_sources_verified",
+        "tests.engineering.test_d02_mcp.D02Sources.test_d02_01_stand_reports_the_pinned_judge",
+        "tests.engineering.test_d02_mcp.D02Sources.test_d02_01_tampered_pin_is_refused"
+      ]
+    }
+  ],
+  "regression_and_policy_checks": {
+    "@manifest": {
+      "command": "python -I tools/evidence_manifest.py --check",
+      "returncode": 0,
+      "stdout_tail": "SHA256SUMS verified: 14 files\n",
+      "stderr_tail": "",
+      "status": "PASS"
+    },
+    "@d01": {
+      "tests": 13,
+      "PASS": 13,
+      "FAIL": 0,
+      "ERROR": 0,
+      "NOT_RUN": 0,
+      "BLOCKED": 0,
+      "status": "PASS"
+    },
+    "@others": {
+      "tests": 290,
+      "PASS": 268,
+      "FAIL": 0,
+      "ERROR": 0,
+      "NOT_RUN": 20,
+      "BLOCKED": 2,
+      "status": "PASS"
+    },
+    "@protected": {
+      "command": "python -I tools/protected_pins.py --evidence /tmp/tmphk0dwe2o/p.json",
+      "returncode": 0,
+      "stdout_tail": "PASS   veraxis-protocol/LEGION-Deal-Rescue pinned=6d5563af9a0e head=6d5563af9a0e\nPASS   veraxis-protocol/LEGION-Commerce pinned=94a3e93822bb head=94a3e93822bb\nPASS   veraxis-protocol/LEGION-Marketplace pinned=0321386852b2 head=0321386852b2\nPASS   veraxis-protocol/LEGION-Federation pinned=622a08964395 head=622a08964395\nPASS   veraxis-protocol/LEGION-Formal-Core pinned=fa1f30828028 head=fa1f30828028\nPASS   inventor1975/ztl-engineer pinned=91d11672cb19 head=91d11672cb19\nMOVED  anthropics/claude-plugins-official pinned=099387b7a2ea head=b5b01ac4f889 (upstream, informational)\nPASS   inventor1975/ztl-stand pinned=0b4d718fa3bd head=0b4d718fa3bd (upstream, informational)\nPASS   inventor1975/ZTL pinned=2ba7c209371e head=2ba7c209371e (upstream, informational)\n",
+      "stderr_tail": "",
+      "status": "PASS",
+      "repositories": [
+        {
+          "repository": "veraxis-protocol/LEGION-Deal-Rescue",
+          "status": "PASS",
+          "pinned": "6d5563af9a0eb838297933a8ae6b128defa9f69e",
+          "remote_head": "6d5563af9a0eb838297933a8ae6b128defa9f69e",
+          "protected": true
+        },
+        {
+          "repository": "veraxis-protocol/LEGION-Commerce",
+          "status": "PASS",
+          "pinned": "94a3e93822bb88a2a5d4cbe7c17dd2846309afe0",
+          "remote_head": "94a3e93822bb88a2a5d4cbe7c17dd2846309afe0",
+          "protected": true
+        },
+        {
+          "repository": "veraxis-protocol/LEGION-Marketplace",
+          "status": "PASS",
+          "pinned": "0321386852b26bac6f67e2d3a28f5f01101a1e9c",
+          "remote_head": "0321386852b26bac6f67e2d3a28f5f01101a1e9c",
+          "protected": true
+        },
+        {
+          "repository": "veraxis-protocol/LEGION-Federation",
+          "status": "PASS",
+          "pinned": "622a0896439560cfebbc3c51e1904fe5bcb9a332",
+          "remote_head": "622a0896439560cfebbc3c51e1904fe5bcb9a332",
+          "protected": true
+        },
+        {
+          "repository": "veraxis-protocol/LEGION-Formal-Core",
+          "status": "PASS",
+          "pinned": "fa1f30828028079bf6efe6a9fdafe164b0be90b5",
+          "remote_head": "fa1f30828028079bf6efe6a9fdafe164b0be90b5",
+          "protected": true
+        },
+        {
+          "repository": "inventor1975/ztl-engineer",
+          "status": "PASS",
+          "pinned": "91d11672cb1986a7fb185d3ae5110d7209b36b97",
+          "remote_head": "91d11672cb1986a7fb185d3ae5110d7209b36b97",
+          "protected": true
+        },
+        {
+          "repository": "anthropics/claude-plugins-official",
+          "status": "MOVED",
+          "pinned": "099387b7a2ea02022bb850becca750246ae12562",
+          "remote_head": "b5b01ac4f889fec0c4c6bb89f27ca7c8574473f6",
+          "protected": false
+        },
+        {
+          "repository": "inventor1975/ztl-stand",
+          "status": "PASS",
+          "pinned": "0b4d718fa3bd3105ea002105e0d89cdd76b7b573",
+          "remote_head": "0b4d718fa3bd3105ea002105e0d89cdd76b7b573",
+          "protected": false
+        },
+        {
+          "repository": "inventor1975/ZTL",
+          "status": "PASS",
+          "pinned": "2ba7c209371e90058df4666bb949fc253fe6cc27",
+          "remote_head": "2ba7c209371e90058df4666bb949fc253fe6cc27",
+          "protected": false
+        }
+      ],
+      "modified": 0
+    },
+    "@stand_suite": {
+      "status": "PASS_EXCEPT_BLOCKED",
+      "ok": 437,
+      "failed": 3,
+      "completed": true,
+      "summary_line": "ztl-stand: 437 ok, 3 failed",
+      "blocked": [
+        {
+          "check": "FAIL --prove: the divider's +-1 % requirement is a Lean THEOREM (1 of 1, zero axioms); a REFUTED verdict carries no proof; a judge lying narrow in work mode EARNS +-0.5 % falsely, and the proof refuses it (0 of 1); the 27 ohm divider with its powers P = I*I*R against the 1/4 W rating: 4 of 4 (non-dy",
+          "status": "BLOCKED",
+          "reason": "Lean 4 toolchain (`lake`) not installed; the --prove feature (Lean theorems via ZTL tools/zbound2lean.py) is not used by check_design or by this work order"
+        },
+        {
+          "check": "FAIL --prove on a TABLE (real3/s07, 5 branches): a theorem branch by branch — the 'about' says so and the branch theorems are named (2026-11-09; was 'not translated (yet): ifpos') — null",
+          "status": "BLOCKED",
+          "reason": "Lean 4 toolchain (`lake`) not installed; the --prove feature (Lean theorems via ZTL tools/zbound2lean.py) is not used by check_design or by this work order"
+        },
+        {
+          "check": "FAIL --prove on a 'smallest' find (blind7 c10b): the PROVED RANGE carries its own proof (1 of 1, 'every eta in [0.5392, 0.8]'), though the decision — the brick as written — is refuted at its own value (2026-11-09) — {\"verdict\": \"EARNED\", \"proof_covers\": null}",
+          "status": "BLOCKED",
+          "reason": "Lean 4 toolchain (`lake`) not installed; the --prove feature (Lean theorems via ZTL tools/zbound2lean.py) is not used by check_design or by this work order"
+        }
+      ]
+    }
+  },
+  "remaining_obligations_for_engineering_T": [
+    "rail_length_tolerance=Z",
+    "joint2_load_torque=Z",
+    "cnc_material_evidence=Z",
+    "authenticated_receipt=Z (PART_FIELD_MISSING_MATERIAL_GRADE)",
+    "context field missing: drawing_revision"
+  ],
+  "next_blocking_dependency": "an independently supported tolerance for the purchased MGN9-170 rail (manufacturer datasheet), arm mass properties and the joint-2 motor rating, material certificates, and a configured independent ZTL attestation service (Ed25519 key, epoch, policy pin: Deal-Rescue ztl_gate CAD-025)",
+  "tests": [
+    {
+      "id": "tests.engineering.test_d02_binding.D02Binding.test_d02_08_altered_source_sha256_rejects_binding",
+      "module": "test_d02_binding",
+      "class": "D02Binding",
+      "test": "test_d02_08_altered_source_sha256_rejects_binding",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_binding.D02Binding.test_d02_08_proof_under_altered_source_is_not_used",
+      "module": "test_d02_binding",
+      "class": "D02Binding",
+      "test": "test_d02_08_proof_under_altered_source_is_not_used",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_binding.D02Binding.test_d02_09_changed_revision_invalidates_old_proof",
+      "module": "test_d02_binding",
+      "class": "D02Binding",
+      "test": "test_d02_09_changed_revision_invalidates_old_proof",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_binding.D02Binding.test_d02_10_altered_requirement_digest_invalidates_old_proof",
+      "module": "test_d02_binding",
+      "class": "D02Binding",
+      "test": "test_d02_10_altered_requirement_digest_invalidates_old_proof",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_binding.D02Binding.test_d02_10_changed_policy_or_brick_invalidates_old_proof",
+      "module": "test_d02_binding",
+      "class": "D02Binding",
+      "test": "test_d02_10_changed_policy_or_brick_invalidates_old_proof",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_binding.D02Binding.test_d02_c_every_binding_field_is_recorded_or_declared_missing",
+      "module": "test_d02_binding",
+      "class": "D02Binding",
+      "test": "test_d02_c_every_binding_field_is_recorded_or_declared_missing",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_binding.D02Binding.test_d02_c_same_context_keeps_the_proof",
+      "module": "test_d02_binding",
+      "class": "D02Binding",
+      "test": "test_d02_c_same_context_keeps_the_proof",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_mcp.D02Mcp.test_d02_02_real_mcp_initializes",
+      "module": "test_d02_mcp",
+      "class": "D02Mcp",
+      "test": "test_d02_02_real_mcp_initializes",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_mcp.D02Mcp.test_d02_03_real_check_design_executes",
+      "module": "test_d02_mcp",
+      "class": "D02Mcp",
+      "test": "test_d02_03_real_check_design_executes",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_mcp.D02Mcp.test_d02_03_same_result_as_the_deal_rescue_reference",
+      "module": "test_d02_mcp",
+      "class": "D02Mcp",
+      "test": "test_d02_03_same_result_as_the_deal_rescue_reference",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_mcp.D02Mcp.test_d02_11_malformed_brick_is_Z",
+      "module": "test_d02_mcp",
+      "class": "D02Mcp",
+      "test": "test_d02_11_malformed_brick_is_Z",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_mcp.D02Mcp.test_d02_12_malformed_mcp_response_is_Z_TRANSPORT_FAULT_INJECTION",
+      "module": "test_d02_mcp",
+      "class": "D02Mcp",
+      "test": "test_d02_12_malformed_mcp_response_is_Z_TRANSPORT_FAULT_INJECTION",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_mcp.D02Mcp.test_d02_13_evaluate_with_unavailable_server_never_F",
+      "module": "test_d02_mcp",
+      "class": "D02Mcp",
+      "test": "test_d02_13_evaluate_with_unavailable_server_never_F",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_mcp.D02Mcp.test_d02_13_server_unavailable_is_Z",
+      "module": "test_d02_mcp",
+      "class": "D02Mcp",
+      "test": "test_d02_13_server_unavailable_is_Z",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_mcp.D02Mcp.test_d02_14_timeout_is_Z",
+      "module": "test_d02_mcp",
+      "class": "D02Mcp",
+      "test": "test_d02_14_timeout_is_Z",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_mcp.D02Sources.test_d02_01_pinned_ztl_sources_verified",
+      "module": "test_d02_mcp",
+      "class": "D02Sources",
+      "test": "test_d02_01_pinned_ztl_sources_verified",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_mcp.D02Sources.test_d02_01_stand_reports_the_pinned_judge",
+      "module": "test_d02_mcp",
+      "class": "D02Sources",
+      "test": "test_d02_01_stand_reports_the_pinned_judge",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_mcp.D02Sources.test_d02_01_tampered_pin_is_refused",
+      "module": "test_d02_mcp",
+      "class": "D02Sources",
+      "test": "test_d02_01_tampered_pin_is_refused",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_negatives.D02Aggregation.test_d02_15_one_T_one_Z_is_global_Z",
+      "module": "test_d02_negatives",
+      "class": "D02Aggregation",
+      "test": "test_d02_15_one_T_one_Z_is_global_Z",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_negatives.D02Aggregation.test_d02_16_one_T_one_F_is_global_F",
+      "module": "test_d02_negatives",
+      "class": "D02Aggregation",
+      "test": "test_d02_16_one_T_one_F_is_global_F",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_negatives.D02Aggregation.test_d02_d_all_T_without_authenticated_receipt_is_Z",
+      "module": "test_d02_negatives",
+      "class": "D02Aggregation",
+      "test": "test_d02_d_all_T_without_authenticated_receipt_is_Z",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_negatives.D02Aggregation.test_d02_d_deal_rescue_partial_aggregation_is_not_used",
+      "module": "test_d02_negatives",
+      "class": "D02Aggregation",
+      "test": "test_d02_d_deal_rescue_partial_aggregation_is_not_used",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_negatives.D02Missing.test_d02_06_missing_manufacturing_tolerance_is_Z",
+      "module": "test_d02_negatives",
+      "class": "D02Missing",
+      "test": "test_d02_06_missing_manufacturing_tolerance_is_Z",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_negatives.D02Missing.test_d02_07_missing_material_evidence_is_Z",
+      "module": "test_d02_negatives",
+      "class": "D02Missing",
+      "test": "test_d02_07_missing_material_evidence_is_Z",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_negatives.D02RebotFixture.test_d02_18_rebot_engineering_is_Z",
+      "module": "test_d02_negatives",
+      "class": "D02RebotFixture",
+      "test": "test_d02_18_rebot_engineering_is_Z",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_negatives.D02RebotRealStep.test_d02_18_real_step_baseline_unchanged",
+      "module": "test_d02_negatives",
+      "class": "D02RebotRealStep",
+      "test": "test_d02_18_real_step_baseline_unchanged",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_negatives.D02RebotRealStep.test_d02_18_rebot_engineering_is_Z",
+      "module": "test_d02_negatives",
+      "class": "D02RebotRealStep",
+      "test": "test_d02_18_rebot_engineering_is_Z",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_negatives.D02Receipts.test_d02_17_no_or_unauthenticated_receipt_is_not_admitted",
+      "module": "test_d02_negatives",
+      "class": "D02Receipts",
+      "test": "test_d02_17_no_or_unauthenticated_receipt_is_not_admitted",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_negatives.D02Receipts.test_d02_17_replayed_signed_receipts_are_refused",
+      "module": "test_d02_negatives",
+      "class": "D02Receipts",
+      "test": "test_d02_17_replayed_signed_receipts_are_refused",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_proofs.D02ProofsFixture.test_d02_04_positive_predicate_is_scoped_T",
+      "module": "test_d02_proofs",
+      "class": "D02ProofsFixture",
+      "test": "test_d02_04_positive_predicate_is_scoped_T",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_proofs.D02ProofsFixture.test_d02_05_violated_predicate_is_scoped_F",
+      "module": "test_d02_proofs",
+      "class": "D02ProofsFixture",
+      "test": "test_d02_05_violated_predicate_is_scoped_F",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_proofs.D02ProofsFixture.test_d02_e_positive_and_negative_bound_to_different_requirements",
+      "module": "test_d02_proofs",
+      "class": "D02ProofsFixture",
+      "test": "test_d02_e_positive_and_negative_bound_to_different_requirements",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_proofs.D02ProofsRealStep.test_d02_04_input_is_the_real_step",
+      "module": "test_d02_proofs",
+      "class": "D02ProofsRealStep",
+      "test": "test_d02_04_input_is_the_real_step",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_proofs.D02ProofsRealStep.test_d02_04_positive_predicate_is_scoped_T",
+      "module": "test_d02_proofs",
+      "class": "D02ProofsRealStep",
+      "test": "test_d02_04_positive_predicate_is_scoped_T",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_proofs.D02ProofsRealStep.test_d02_05_violated_predicate_is_scoped_F",
+      "module": "test_d02_proofs",
+      "class": "D02ProofsRealStep",
+      "test": "test_d02_05_violated_predicate_is_scoped_F",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "tests.engineering.test_d02_proofs.D02ProofsRealStep.test_d02_e_positive_and_negative_bound_to_different_requirements",
+      "module": "test_d02_proofs",
+      "class": "D02ProofsRealStep",
+      "test": "test_d02_e_positive_and_negative_bound_to_different_requirements",
+      "status": "PASS",
+      "detail": ""
+    }
+  ]
+}
