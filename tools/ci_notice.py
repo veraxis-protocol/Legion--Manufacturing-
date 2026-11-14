@@ -20,6 +20,11 @@ def main(path: str) -> int:
     gate = f" gate_d02={d['gate_d02']}" if "gate_d02" in d else ""
     print(f"::notice title={p.name}::status={d.get('status')}{gate} {counts} sha256={sha} "
           f"source_commit={d.get('source_commit')}")
+    suite = d.get("ztl_stand_own_test_suite") or {}
+    for line in suite.get("fail_lines") or []:          # each failing ztl-stand self-check, public (logs are not)
+        print(f"::warning title=ztl-stand self-check ({p.name})::{line[:240]}")
+    for b in d.get("blocked_items") or []:
+        print(f"::warning title=BLOCKED ({p.name})::{b['check'][:160]} | {b['reason'][:160]}")
     return 0
 
 
