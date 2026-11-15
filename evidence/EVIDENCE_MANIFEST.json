@@ -1,6 +1,6 @@
 {
-  "source_commit": "06355fc97489fff982fbddb763400c30eac2fb57",
-  "executed_at_utc": "2026-11-15T23:25:12+00:00",
+  "source_commit": "683d41c60ccc5ce9c753bc3c12a7c5810b69bbbe",
+  "executed_at_utc": "2026-11-15T23:57:59+00:00",
   "environment": {
     "python": "3.14.7",
     "implementation": "CPython",
@@ -96,7 +96,7 @@
     },
     {
       "path": "evidence/WO_LMFG_004_GO_NO_GO.json",
-      "sha256": "96d29eced8b102e5d1970ae9a4bf7c6e28ec936a12e560ba44ba3e1f858a898a"
+      "sha256": "e546ac1deddad2ce358aa7f305b14a994ef7a1b6a4c22dc410a159182a6db06e"
     },
     {
       "path": "evidence/ZTL_MCP_RESULTS.json",

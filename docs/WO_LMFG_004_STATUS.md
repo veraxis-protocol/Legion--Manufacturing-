@@ -145,9 +145,9 @@ No mock was used to satisfy any live criterion.
 | 4–7 | Microsoft 365 / Fusion / NetSuite / Infor M3 live | Z ×4 (BLOCKED) |
 | 8 | Integrated E2E workflow | T |
 | 9 | Measured LEGION capability beyond baseline | T (2 measured differences, 5 equal metrics) |
-| 10 | No critical regressions | T — CI run 43677093238 on 598b787 green 11/11 (skills 198 PASS / 0 FAIL / 20 NOT RUN / 2 BLOCKED; connectors 51/51; D01; D02 incl. ztl-stand suite; runtime 5/5; upstream 94/94) |
+| 10 | No critical regressions | T — CI run 43774729539 on 683d41c green 11/11 (skills 198 PASS / 0 FAIL / 20 NOT RUN / 2 BLOCKED; connectors 51/51; D01; D02 incl. ztl-stand suite; runtime 6/6; upstream 94/94) |
 | 11 | No unauthorised consequential actions | T |
-| 12 | GitHub CI PASS on the final commit | T — https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43677093238 (598b787); the evidence-only follow-up commit is re-verified by its own run |
+| 12 | GitHub CI PASS on the final commit | T — https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43774729539 (683d41c); the evidence-only follow-up commit is re-verified by its own run |
 | 13 | Reproducible evidence published | T — evidence/SHA256SUMS + EVIDENCE_MANIFEST.json (31 files) verified in CI; every skill output hash-checked by the runtime-evidence job |
 
 Protected repository modifications: 0 (Deal-Rescue, ZTL repos, Marketplace, Federation, Commerce, Formal-Core read only).

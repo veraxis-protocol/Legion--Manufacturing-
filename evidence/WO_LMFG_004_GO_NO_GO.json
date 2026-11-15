@@ -1,6 +1,6 @@
 {
-  "source_commit": "06355fc97489fff982fbddb763400c30eac2fb57",
-  "executed_at_utc": "2026-11-15T23:24:39+00:00",
+  "source_commit": "683d41c60ccc5ce9c753bc3c12a7c5810b69bbbe",
+  "executed_at_utc": "2026-11-15T23:57:59+00:00",
   "environment": {
     "python": "3.14.7",
     "implementation": "CPython",
@@ -75,7 +75,7 @@
       "id": 10,
       "criterion": "No critical regressions",
       "verdict": "T",
-      "evidence": "CI regression jobs green on the final commit; 43679323815"
+      "evidence": "CI regression jobs green on the final commit; 43774729539"
     },
     {
       "id": 11,
@@ -87,7 +87,7 @@
       "id": 12,
       "criterion": "GitHub CI PASS on the final commit",
       "verdict": "T",
-      "evidence": "43679323815"
+      "evidence": "43774729539"
     },
     {
       "id": 13,
