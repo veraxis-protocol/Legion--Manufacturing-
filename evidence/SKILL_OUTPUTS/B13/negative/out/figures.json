@@ -1,0 +1,258 @@
+{
+ "figures": [
+  {
+   "figure": "Maintenance records, all assets",
+   "value": 5,
+   "source": "maintenance_history.csv",
+   "filter": "all rows"
+  },
+  {
+   "figure": "Maintenance records, VMC-02",
+   "value": "4 (MW-118, MW-131, MW-140, MW-160)",
+   "source": "maintenance_history.csv",
+   "filter": "asset_id == \"VMC-02\""
+  },
+  {
+   "figure": "VMC-02 records with usable close-out notes",
+   "value": "4 of 4",
+   "source": "maintenance_history.csv",
+   "filter": "asset_id == \"VMC-02\" and note not empty and not terse-only (fixed/repaired/ok now/done)"
+  },
+  {
+   "figure": "Latest maintenance record date in export",
+   "value": "2026-09-24",
+   "source": "maintenance_history.csv",
+   "filter": "max(closed)"
+  },
+  {
+   "figure": "Sibling records (asset_id starts VMC, not VMC-02)",
+   "value": "1 (MW-152/VMC-03)",
+   "source": "maintenance_history.csv",
+   "filter": "asset_id prefix VMC; model inferred from asset name (no model column)"
+  },
+  {
+   "figure": "Sibling records matching symptom words",
+   "value": "0 - query returned empty",
+   "source": "maintenance_history.csv",
+   "filter": "sibling rows, note contains any of ['spindle', 'bearing', 'vib', 'rough', 'grind', 'hot', 'temp', 'chiller', 'drawbar', 'clamp']"
+  },
+  {
+   "figure": "VMC-02 notes mentioning bearing/noise/vibration",
+   "value": "2 (MW-118, MW-140)",
+   "source": "maintenance_history.csv",
+   "filter": "asset_id == \"VMC-02\", note contains any of ['rough', 'vib', 'bearing', 'grind']"
+  },
+  {
+   "figure": "VMC-02 notes mentioning heat/chiller",
+   "value": "1 (MW-160)",
+   "source": "maintenance_history.csv",
+   "filter": "asset_id == \"VMC-02\", note contains any of ['hot', 'temp', 'chiller']"
+  },
+  {
+   "figure": "VMC-02 notes mentioning drawbar/clamp",
+   "value": "1 (MW-131)",
+   "source": "maintenance_history.csv",
+   "filter": "asset_id == \"VMC-02\", note contains any of ['drawbar', 'clamp', 'belleville']"
+  },
+  {
+   "figure": "Template check: notes grouped by exact text",
+   "value": "5 distinct texts over 5 records; max assets sharing one text = 1; templates found = 0",
+   "source": "maintenance_history.csv",
+   "filter": "group by exact close_out_note, count distinct asset_id (model from asset name)"
+  },
+  {
+   "figure": "Production days covered by plan/output/downtime exports",
+   "value": "2026-11-12",
+   "source": "plan/output/downtime",
+   "filter": "distinct dates"
+  },
+  {
+   "figure": "Shifts in output, per asset",
+   "value": "CNC-01: ['1', '2']; CNC-02: ['1']",
+   "source": "output.csv",
+   "filter": "distinct shift by asset_id"
+  },
+  {
+   "figure": "Assets in exports",
+   "value": "CNC-01, CNC-02",
+   "source": "plan/output/downtime",
+   "filter": "distinct asset_id"
+  },
+  {
+   "figure": "Rows for VMC-02 in plan / output / downtime",
+   "value": "0 / 0 / 0",
+   "source": "plan/output/downtime",
+   "filter": "asset_id == \"VMC-02\""
+  },
+  {
+   "figure": "WO-8120 rows in work_orders / output",
+   "value": "0 / 0",
+   "source": "work_orders/output",
+   "filter": "work_order == \"WO-8120\""
+  },
+  {
+   "figure": "MB-1880 rows in plan / output / routing / work_orders",
+   "value": "0 / 0 / 0 / 0",
+   "source": "exports",
+   "filter": "part_number == \"MB-1880\""
+  },
+  {
+   "figure": "MES downtime rows matching the diagnosis on asset plus start time",
+   "value": 0,
+   "source": "downtime.csv",
+   "filter": "asset_id == VMC-02 and started_at on 2026-11-10 (shift pattern not on file, so same calendar day used)"
+  },
+  {
+   "figure": "Output work orders not in work_orders export",
+   "value": "0 - query returned empty",
+   "source": "output/work_orders",
+   "filter": "set difference"
+  },
+  {
+   "figure": "Plan parts not in output / output parts not in plan",
+   "value": "none / none",
+   "source": "plan/output",
+   "filter": "exact match, no normalization needed"
+  },
+  {
+   "figure": "sales_order column in work_orders export",
+   "value": "absent",
+   "source": "work_orders.csv",
+   "filter": "header check"
+  },
+  {
+   "figure": "Output vs plan CNC-01 PN-100",
+   "value": "780 good vs 800 planned, variance -20 (-2.5%); total 792 incl 12 scrap",
+   "source": "plan/output",
+   "filter": "asset_id == CNC-01, day 2026-11-12"
+  },
+  {
+   "figure": "OEE CNC-01",
+   "value": "A 95.3% x P 86.6% x Q 98.5% = 81.2%",
+   "source": "plan/output/downtime/routing",
+   "filter": "planned 960 min (planned_hours), downtime 45 min, run 915 min, ideal 1.0 min/unit"
+  },
+  {
+   "figure": "Output vs plan CNC-02 PN-200",
+   "value": "220 good vs 250 planned, variance -30 (-12.0%); total 223 incl 3 scrap",
+   "source": "plan/output",
+   "filter": "asset_id == CNC-02, day 2026-11-12"
+  },
+  {
+   "figure": "OEE CNC-02",
+   "value": "A 95.8% x P 87.3% x Q 98.7% = 82.5%",
+   "source": "plan/output/downtime/routing",
+   "filter": "planned 480 min (planned_hours), downtime 20 min, run 460 min, ideal 1.8 min/unit"
+  },
+  {
+   "figure": "Plant good output vs plan",
+   "value": "1000 vs 1050, variance -50 (-4.8%); total output 1015",
+   "source": "plan/output",
+   "filter": "sum over planned assets, 2026-11-12"
+  },
+  {
+   "figure": "Scrap units",
+   "value": "15 (PN-100: 12; PN-200: 3)",
+   "source": "output.csv",
+   "filter": "sum qty_scrap"
+  },
+  {
+   "figure": "Downtime events / minutes (MES export, 2026-11-12)",
+   "value": "2 / 65",
+   "source": "downtime.csv",
+   "filter": "all rows"
+  },
+  {
+   "figure": "Downtime rows failing start/end/duration check",
+   "value": 0,
+   "source": "downtime.csv",
+   "filter": "ended_at > started_at and duration == ended - started"
+  },
+  {
+   "figure": "Events coded Other or blank",
+   "value": "0 of 2",
+   "source": "downtime.csv",
+   "filter": "reason_code blank or Other"
+  },
+  {
+   "figure": "Downtime by reason, minutes",
+   "value": "TOOL: 45; MAT: 20",
+   "source": "downtime.csv",
+   "filter": "sum duration by reason_code"
+  },
+  {
+   "figure": "Downtime by reason, events",
+   "value": "TOOL: 1; MAT: 1",
+   "source": "downtime.csv",
+   "filter": "count by reason_code"
+  },
+  {
+   "figure": "WO-1001 good vs ordered",
+   "value": "480 of 500 (short 20), due 2026-11-14",
+   "source": "work_orders/output",
+   "filter": "work_order == WO-1001, all output in export"
+  },
+  {
+   "figure": "WO-1002 good vs ordered",
+   "value": "220 of 250 (short 30), due 2026-11-13",
+   "source": "work_orders/output",
+   "filter": "work_order == WO-1002, all output in export"
+  },
+  {
+   "figure": "WO-1003 good vs ordered",
+   "value": "300 of 300 (short 0), due 2026-11-15",
+   "source": "work_orders/output",
+   "filter": "work_order == WO-1003, all output in export"
+  },
+  {
+   "figure": "Downtime cost rate",
+   "value": "not set",
+   "source": "environment + plant_setup.py find (no rates file)",
+   "filter": "secret-config.md rate resolution order"
+  },
+  {
+   "figure": "Standard cost per part",
+   "value": "not available (no ERP connector, no cost column in exports)",
+   "source": "exports",
+   "filter": "header scan"
+  }
+ ],
+ "assets": [
+  {
+   "asset": "CNC-01",
+   "part": "PN-100",
+   "planned_qty": 800,
+   "good": 780,
+   "scrap": 12,
+   "total": 792,
+   "var": -20,
+   "var_pct": -2.5,
+   "planned_min": 960.0,
+   "downtime_min": 45,
+   "run_min": 915.0,
+   "A": 95.3,
+   "P": 86.6,
+   "Q": 98.5,
+   "OEE": 81.2,
+   "integrity_fail": 0
+  },
+  {
+   "asset": "CNC-02",
+   "part": "PN-200",
+   "planned_qty": 250,
+   "good": 220,
+   "scrap": 3,
+   "total": 223,
+   "var": -30,
+   "var_pct": -12.0,
+   "planned_min": 480.0,
+   "downtime_min": 20,
+   "run_min": 460.0,
+   "A": 95.8,
+   "P": 87.3,
+   "Q": 98.7,
+   "OEE": 82.5,
+   "integrity_fail": 0
+  }
+ ]
+}

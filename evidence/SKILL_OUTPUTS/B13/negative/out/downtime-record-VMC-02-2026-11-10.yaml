@@ -1,0 +1,32 @@
+# Downtime record, contract version 3 (shared/contracts/downtime-record.md).
+# Emitted by breakdown-diagnosis for Chain 4; consumed unchanged by daily-production-report.
+# SYNTHETIC test data. Advisory only; written to no system of record.
+# Gaps (not invented): site not stated in the breakdown inputs; started_at is a naive local time
+# ("2026-11-10 15:24 local") because no site time zone is on file, so per contract rule 4 the row is
+# blocked from any ranking or total until the zone is confirmed; shift pattern not on file.
+contract_version: 3
+site: null                      # REQUIRED - not stated in inputs/breakdown; ask
+asset_id: VMC-02
+asset_id_verbatim: "VMC-02"
+started_at: "2026-11-10T15:24"  # naive local time as recorded in event.txt - zone unresolved
+ended_at: null                  # still down at 16:10 per event.txt; no later status in inputs
+duration_minutes: null          # null while ended_at is null; never zero
+reason_code: null               # no plant reason code recorded; alarm text below is not a reason code
+reason_text: "Alarm 'SPINDLE OVERLOAD / OVERTEMP', stopped mid-cycle. Operator: grinding noise from spindle for ~20 min before alarm, chips looked normal. Machine still down at 16:10."
+production_wo: WO-8120
+production_wo_verbatim: "WO-8120"
+shift: null                     # site shift pattern not on file
+production_day: 2026-11-10      # calendar date of the event; site day-boundary rule not on file
+source_system: breakdown_diagnosis
+source_ref: "diagnosis/2026-11-10/VMC-02"
+
+diagnosis_ref: "diagnosis/2026-11-10/VMC-02"
+leading_cause: "Spindle bearing damage / preload loss (progressive wear), possibly aggravated by spindle cooling (chiller) deficiency"
+leading_cause_confidence: medium
+cited_work_orders: ["MW-118", "MW-140", "MW-160"]
+safety_flagged: true
+safety_reason: "An electrical fault: a trip - the spindle drive tripped on 'SPINDLE OVERLOAD / OVERTEMP' and stopped mid-cycle (event.txt). OEM manual Section 7.4: grinding noise -> do not run the spindle; lock out the spindle drive before any manual rotation or inspection. Operator reported grinding noise for ~20 min before the alarm."
+pm_adjustment_proposed: true    # drafted as a recommendation; current PM interval not readable (no CMMS, no PM plan)
+maintenance_wo: null            # no maintenance ticket for this event in the inputs
+diagnosis_state: advisory
+technician_step: skipped        # folded straight into the report on request; no technician confirmation in inputs

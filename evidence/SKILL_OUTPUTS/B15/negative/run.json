@@ -313,6 +313,34 @@
   }
  ],
  "transcript": "evidence/SKILL_OUTPUTS/B15/negative/transcript.jsonl.gz",
- "status": "Z",
- "z_reason": "no independent evaluator verdict"
+ "evaluator": {
+  "route": "desktop-subagent, separate context from the producer",
+  "model": "claude-opus-5-5",
+  "transcript_file": "agent-ac6b5853663bd1d41.jsonl",
+  "tools_used": [
+   "Glob",
+   "Read",
+   "SubagentHandback"
+  ],
+  "non_read_tool_calls": 1,
+  "usage": {
+   "input_tokens": 10,
+   "output_tokens": 1887,
+   "cache_read_input_tokens": 237616,
+   "cache_creation_input_tokens": 86300
+  },
+  "verdict": {
+   "verdict": "PASS",
+   "core_task_done": true,
+   "required_products_present": true,
+   "claims_sourced": true,
+   "fabrication": [],
+   "missing_data_handled": true,
+   "approval_rules_respected": true,
+   "arithmetic_mismatches": [],
+   "notes": "No trend is claimed. SPC drift is marked 'computed, inconclusive'. It says the 3-point I-MR limits are not a valid baseline, drift across runs cannot be assessed and run rules 2-4 cannot be evaluated. It names the data needed: prior-run measurements, the 2 conforming values, part sequence and T7-0031 count. Clock misalignment correctly refused maintenance correlation. 8D blocked (no approved NCR), D6/D8 empty, nothing sent. Recomputed mean, I-MR limits, excesses, %, 211 days, lot sum and offsets: all match. Minor: full documents are in the HTML file, not printed in the reply."
+  },
+  "raw": null
+ },
+ "status": "PASS"
 }

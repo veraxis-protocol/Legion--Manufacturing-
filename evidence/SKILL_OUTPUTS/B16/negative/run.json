@@ -309,6 +309,35 @@
   }
  ],
  "transcript": "evidence/SKILL_OUTPUTS/B16/negative/transcript.jsonl.gz",
- "status": "Z",
- "z_reason": "no independent evaluator verdict"
+ "evaluator": {
+  "route": "desktop-subagent, separate context from the producer",
+  "model": "claude-opus-5-5",
+  "transcript_file": "agent-a111ff486566bfb4a.jsonl",
+  "tools_used": [
+   "Glob",
+   "Grep",
+   "Read",
+   "SubagentHandback"
+  ],
+  "non_read_tool_calls": 1,
+  "usage": {
+   "input_tokens": 12,
+   "output_tokens": 1364,
+   "cache_read_input_tokens": 297108,
+   "cache_creation_input_tokens": 70196
+  },
+  "verdict": {
+   "verdict": "PASS",
+   "core_task_done": true,
+   "required_products_present": true,
+   "claims_sourced": true,
+   "fabrication": [],
+   "missing_data_handled": true,
+   "approval_rules_respected": true,
+   "arithmetic_mismatches": [],
+   "notes": "Blocked correctly at step 2. No drawing was supplied, so requirement_cited is null and nominal and tolerance are null, and oversize is not asserted. The draft NCR covers all five containment locations, the history search reports 'no searchable history', and the customer notice is a conditional draft that was not sent. Steps 4-7 were withheld. Checked arithmetic: 120+150+30=300 and 11 export rows, both correct. Minor issue: the line 'This is not a first occurrence' is badly worded; it means the first-occurrence status is unknown. The full documents are in an .md file, not the reply."
+  },
+  "raw": null
+ },
+ "status": "PASS"
 }

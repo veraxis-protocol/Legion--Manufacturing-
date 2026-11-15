@@ -130,7 +130,8 @@
     "expect": "Diagnosis (safety first, ranked causes, tests) handed into the next production report's downtime section; the handoff visible as two artifacts or two clearly separate sections."},
    "negative": {"inputs": ["breakdown", "fixtures/pulse_oee"], "drop": ["sensor_window.csv"],
     "must_mention": ["sensor"],
-    "must_not": ["\\d+(?:\\.\\d)? ?mm/s"],
+    "must_not": ["(?<![\\d.])(?!1\\.4\\b|2\\.1\\b)\\d+(?:\\.\\d)? ?mm/s"],
+    "check_note": "2026-11-15: 1.4 and 2.1 mm/s are excluded from the pattern because they are in the input maintenance_history.csv (MW-140 note), which this case keeps; only the sensor window is dropped.",
     "expect": "No sensor window: the diagnosis must say so; no readings invented."}},
 
   {"id": "B14", "skill": "ncr-writeup",

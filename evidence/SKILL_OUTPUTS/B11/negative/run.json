@@ -347,6 +347,35 @@
   }
  ],
  "transcript": "evidence/SKILL_OUTPUTS/B11/negative/transcript.jsonl.gz",
- "status": "Z",
- "z_reason": "no independent evaluator verdict"
+ "evaluator": {
+  "route": "desktop-subagent, separate context from the producer",
+  "model": "claude-opus-5-5",
+  "transcript_file": "agent-af94d2643b63de568.jsonl",
+  "tools_used": [
+   "Glob",
+   "Grep",
+   "Read",
+   "SubagentHandback"
+  ],
+  "non_read_tool_calls": 1,
+  "usage": {
+   "input_tokens": 14,
+   "output_tokens": 1993,
+   "cache_read_input_tokens": 409510,
+   "cache_creation_input_tokens": 99360
+  },
+  "verdict": {
+   "verdict": "PASS",
+   "core_task_done": true,
+   "required_products_present": true,
+   "claims_sourced": true,
+   "fabrication": [],
+   "missing_data_handled": true,
+   "approval_rules_respected": true,
+   "arithmetic_mismatches": [],
+   "notes": "plan.csv is absent even though README describes it. Output-against-plan, availability, performance and OEE are reported 'not computable' rather than 0, the day record is data_complete:false, and its metrics are null. Good 780/220, scrap 12/3, quality 0.9848/0.9865, downtime 65 min (45 TOOL CNC-01, 20 MAT CNC-02) and 69% share all recompute. rates_memo was correctly not used and losses are unpriced. Fallback file-only path, 'dashboard was not updated', nothing sent. Minor: site quality (1000/1015) was computable but left null; this is conservative."
+  },
+  "raw": null
+ },
+ "status": "PASS"
 }

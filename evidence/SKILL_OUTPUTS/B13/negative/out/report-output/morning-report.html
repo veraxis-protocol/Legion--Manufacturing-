@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SITE-1: morning report, 12 Nov 2026</title>
+<style>
+:root{--ink:#1A1D21;--paper:#F2F3F5;--paper-raised:#FFFFFF;--line:#D6D9DD;--accent:#1F5C8B;--accent-soft:#E4EDF4;--good:#2E7248;--good-soft:#E3EFE7;--warn:#A8641A;--warn-soft:#F7EBDA;--critical:#A93226;--critical-soft:#F9E9E7;--font-display:'IBM Plex Sans Condensed','Arial Narrow',sans-serif;--font-body:'IBM Plex Sans',-apple-system,sans-serif;--font-mono:'IBM Plex Mono',Consolas,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#E8EAEC;--paper:#15181B;--paper-raised:#1D2126;--line:#2E343A;--accent:#6BA8D4;--accent-soft:#1B2C39;--good:#6FBF88;--good-soft:#1B2E22;--warn:#D9A15C;--warn-soft:#33271A;--critical:#DE8378;--critical-soft:#35201E}}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-body);margin:0;padding:16px;line-height:1.45}
+main{max-width:1000px;margin:0 auto}h1,h2,h3{font-family:var(--font-display);font-weight:600}
+section,details{background:var(--paper-raised);border:1px solid var(--line);border-radius:6px;padding:12px 16px;margin:12px 0}
+summary{font-family:var(--font-display);font-weight:600;cursor:pointer}
+.crit{background:var(--critical-soft);border-color:var(--critical)}.warn{background:var(--warn-soft);border-color:var(--warn)}
+table{border-collapse:collapse;width:100%;font-size:.875rem}td,th{border-bottom:1px solid var(--line);padding:4px 6px;text-align:left;vertical-align:top}
+td.n,.mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+</style></head><body><main>
+<h1>SITE-1: morning report, 12 Nov 2026</h1>
+
+<section class="crit">
+<h2>Safety: VMC-02, flagged by breakdown diagnosis</h2>
+<p><strong>Follow your plant's lockout procedure before anyone works on this machine. This is not a safety assessment.</strong></p>
+<p><strong>VMC-02, started 2026-11-10 15:24 (local, zone not on file), still down at last report (16:10 that day).</strong> safety_reason: <em>an electrical fault: a trip</em>. The spindle drive tripped on <span class="mono">SPINDLE OVERLOAD / OVERTEMP</span> mid-cycle on WO-8120 op 20. The OEM manual (Section 7.4) says not to run a spindle showing grinding noise and to lock out the spindle drive before any manual rotation or inspection. Proposed cause: spindle bearing damage / preload loss, confidence medium. <strong>Cause proposed; technician step skipped</strong> (advisory, not established). Full diagnosis: <span class="mono">out/breakdown-diagnosis-VMC-02.html</span>.</p>
+<p><strong>Matched the diagnosis record to MES row: none.</strong> Match rule: asset plus start time (same asset_id, started_at within the same shift; no shift pattern is on file, so the same calendar day was used). The MES downtime export has 0 rows for VMC-02 on any day, so the diagnosis record stands alone as the row and the stoppage is <strong>counted once</strong>.</p>
+<p><strong>Where it sits in this report:</strong> it leads the safety block and the exceptions. It is <strong>not</strong> in the minutes ranking, frequency ranking, any total or any priced figure, for three reasons: (1) duration is null because the machine was still down at last report; (2) its started_at is a naive time with no site time zone, so per contract rule 4 the row is blocked from rankings; (3) it belongs to production day 2026-11-10, while this report covers 2026-11-12. Its downtime minutes are <strong>unknown, not zero</strong>.</p>
+</section>
+
+<section class="warn">
+<h2>Freshness and coverage</h2>
+<ul>
+<li><strong>Production day covered: 2026-11-12 only.</strong> The plan, output and downtime exports hold one date. Export files were written 2026-11-13 14:54 (-05:00). The source rows carry no as_of. This report was produced on 2026-11-14, so it is not a report on yesterday: no exports for 2026-11-13 were supplied.</li>
+<li><strong>Date mismatch with the breakdown.</strong> The request says VMC-02 went down "yesterday afternoon", but event.txt records 2026-11-10 15:24. That is neither the report's production day (2026-11-12) nor the day before today (2026-11-13). <em>Open question: confirm the event date and which production day this report should cover.</em></li>
+<li><strong>VMC-02 is not in any production export.</strong> The plan, output and downtime exports hold assets CNC-01 and CNC-02 only. VMC-02 has 0 / 0 / 0 rows, WO-8120 has 0 rows in work orders and output, and MB-1880 has 0 rows in plan, output, routing and work orders. VMC-02's planned hours, lost output and OEE cannot be computed. Its downtime cannot be measured from the MES. This is a class 7 date-window gap (the exports cover 2026-11-12, the event is 2026-11-10) together with an asset outside the exports' coverage. It is not evidence that VMC-02 lost nothing.</li>
+<li><strong>Shifts held:</strong> CNC-01 shifts 1 and 2; CNC-02 shift 1 only. The site's shift pattern is not on file, so it cannot be said whether this is a complete plant day.</li>
+<li><strong>Maintenance:</strong> export-sourced (no CMMS connector). The latest record closed 2026-09-24. Open maintenance work orders in progress could not be seen, which is not the same as none being open.</li>
+<li><strong>Consolidated dataset:</strong> not built. This run read the raw exports and checked keys in code: every output work order is in the work orders export, and plan and output part numbers match exactly with no normalization needed.</li>
+<li><strong>No plant profile on file.</strong> Planned production time = the plan's planned_hours (definition not confirmed). No standard cost, no downtime rate, no floor layout.</li>
+</ul>
+</section>
+
+<section>
+<h2>Headline figures, 2026-11-12 (CNC-01, CNC-02)</h2>
+<table>
+<tr><th>Figure</th><th>Value</th></tr>
+<tr><td>Good output vs plan</td><td class="n">1000 vs 1050, variance -50 (-4.8%); total output 1015</td></tr>
+<tr><td>OEE CNC-01</td><td class="n">A 95.3% x P 86.6% x Q 98.5% = 81.2%</td></tr>
+<tr><td>OEE CNC-02</td><td class="n">A 95.8% x P 87.3% x Q 98.7% = 82.5%</td></tr>
+<tr><td>OEE VMC-02</td><td>Not computed: VMC-02 is in no plan or output export (unreported, not 0%)</td></tr>
+<tr><td>Downtime (MES export)</td><td class="n">2 events / 65 min. Excludes VMC-02's ongoing outage (minutes unknown, other production day)</td></tr>
+<tr><td>Scrap</td><td class="n">15 units (PN-100: 12; PN-200: 3). Unpriced: no standard cost available</td></tr>
+</table>
+</section>
+
+<section>
+<h2>Today's actions</h2>
+<table>
+<tr><th>#</th><th>Issue</th><th>Impact</th><th>Next step</th><th>Owner role</th><th>Type</th></tr>
+<tr><td class="n">1</td><td>VMC-02 down since 2026-11-10 15:24, safety-flagged, current status unknown</td><td>WO-8120 op 20 (MB-1880) interrupted. Commitment impact not traceable: WO-8120 is not in the work orders export and there is no work order to sales order link</td><td>Confirm status and lockout. Technician works the diagnosis list, starting with manual rotation feel with the drive locked out</td><td>suggested: maintenance supervisor</td><td>Investigation</td></tr>
+<tr><td class="n">2</td><td>WO-1002 (PN-200): 220 of 250 good, short 30, due 2026-11-13</td><td>Due date is past relative to today's date unless output after 2026-11-12 exists (not in exports). Commitment impact not traceable: no work order to sales order link</td><td>Confirm whether the 30 were run on 2026-11-13. See the reschedule note</td><td>suggested: production scheduler</td><td>Investigation</td></tr>
+<tr><td class="n">3</td><td>WO-1001 (PN-100): 480 of 500 good, short 20, due 2026-11-14</td><td>Due today. Commitment impact not traceable</td><td>Confirm the remaining 20 are scheduled</td><td>suggested: production scheduler</td><td>Observation</td></tr>
+</table>
+<p>No decisions waiting today: no normalization awaits approval, and no reschedule move could be drafted.</p>
+</section>
+
+<section><h2>Floor view</h2><p>No floor layout on file. Attach a floor plan, or ask for a floor view, to set one up.</p></section>
+
+<details open><summary>Output against plan, 2026-11-12</summary>
+<table><tr><th>Asset</th><th>Part</th><th>Planned</th><th>Good</th><th>Scrap</th><th>Variance (good)</th></tr>
+<tr><td class="n">CNC-01</td><td class="n">PN-100</td><td class="n">800</td><td class="n">780</td><td class="n">12</td><td class="n">-20 (-2.5%)</td></tr>
+<tr><td class="n">CNC-02</td><td class="n">PN-200</td><td class="n">250</td><td class="n">220</td><td class="n">3</td><td class="n">-30 (-12.0%)</td></tr>
+<tr><td class="n">VMC-02</td><td class="n">MB-1880 (WO-8120)</td><td colspan="4">Not in plan or output exports: unreported, not zero</td></tr>
+</table></details>
+
+<details open><summary>OEE per asset</summary>
+<table><tr><th>Asset</th><th>Planned min</th><th>Downtime min</th><th>Run min</th><th>Availability</th><th>Performance</th><th>Quality</th><th>OEE</th></tr>
+<tr><td class="n">CNC-01</td><td class="n">960</td><td class="n">45</td><td class="n">915</td><td class="n">95.3%</td><td class="n">86.6%</td><td class="n">98.5%</td><td class="n">81.2%</td></tr>
+<tr><td class="n">CNC-02</td><td class="n">480</td><td class="n">20</td><td class="n">460</td><td class="n">95.8%</td><td class="n">87.3%</td><td class="n">98.7%</td><td class="n">82.5%</td></tr>
+<tr><td class="n">VMC-02</td><td colspan="7">Unreported: no plan or output data. Excluded from any average</td></tr></table>
+<p>Grain: per asset. Availability = run time / planned production time, with planned production time taken from the plan's planned_hours (plant definition not on file). Performance = ideal minutes per unit (routing run_min_per_unit) x total count / run time. quality = good ÷ (good + scrap); no rework column, so first-pass yield could not be applied.</p></details>
+
+<details open><summary>Downtime log</summary>
+<p>Reason-code coverage: 0 of 2 events coded Other or blank. 0 rows failed the start/end/duration check.</p>
+<table><tr><th colspan="3">By minutes</th></tr><tr><th>Reason</th><th>Minutes</th><th>Asset / time</th></tr>
+<tr><td class="n">TOOL</td><td class="n">45</td><td>CNC-01, 09:10-09:55, tool change overrun</td></tr>
+<tr><td class="n">MAT</td><td class="n">20</td><td>CNC-02, 13:00-13:20, waiting on material</td></tr></table>
+<table><tr><th colspan="2">By frequency</th></tr><tr><th>Reason</th><th>Events</th></tr>
+<tr><td class="n">TOOL</td><td class="n">1</td></tr><tr><td class="n">MAT</td><td class="n">1</td></tr></table>
+<p><strong>Excluded from both rankings:</strong> VMC-02, 2026-11-10 15:24, source breakdown_diagnosis, ongoing (duration null), naive timestamp, production day 2026-11-10. It is listed under Safety and Today's actions instead. Diagnosis fields: leading cause "spindle bearing damage / preload loss", confidence medium, cited MW-118, MW-140, MW-160; cause proposed, technician step skipped.</p></details>
+
+<details open><summary>Priced losses</summary>
+<p>Scrap: 15 units (PN-100: 12; PN-200: 3). Unpriced: no standard cost (no ERP connector, no cost column in the exports). Downtime: 65 min in the MES export. Unpriced: no downtime rate set. Set <span class="mono">MFG_DOWNTIME_COST_PER_HOUR</span>, or say "update our downtime cost" to record one in the plant profile. VMC-02 downtime: unpriced so far (duration unknown).</p></details>
+
+<details><summary>Week-over-week movers</summary><p>Skipped: the exports hold only 2026-11-12, with no earlier day to compare.</p></details>
+
+<details open><summary>Reschedule proposals</summary>
+<p><strong>No moves proposed, and why.</strong> The exports hold one day's plan, with no forward schedule, no changeover data and no capacity beyond 2026-11-12. VMC-02's work (WO-8120, MB-1880) appears in no plan or routing. Per the reschedule scope, a move cannot be traced, so none is offered. That does not mean nothing needs to move: WO-8120 and WO-1002 likely need a scheduler's decision once VMC-02's status and 2026-11-13 output are known.</p></details>
+
+<details><summary>Checked, nothing wrong</summary><p>WO-1003 (PN-100): 300 of 300 good, due 2026-11-15, complete.</p></details>
+
+<details><summary>Sources, methods and figures block</summary>
+<p>Sources: inputs/pulse_oee/{plan,output,downtime,routing,work_orders}.csv; inputs/breakdown/{event.txt, maintenance_history.csv, manual_troubleshooting.md}; downtime record out/downtime-record-VMC-02-2026-11-10.yaml (appended without transformation). All inputs are SYNTHETIC test data. All figures were computed by out/scripts/compute_figures.py into out/figures.json.</p>
+<table><tr><th>Figure</th><th>Value</th><th>Filter</th></tr>
+<tr><td>Production days in exports</td><td class="n">2026-11-12</td><td>distinct dates</td></tr>
+<tr><td>Assets in exports</td><td class="n">CNC-01, CNC-02</td><td>distinct asset_id</td></tr>
+<tr><td>VMC-02 rows plan / output / downtime</td><td class="n">0 / 0 / 0</td><td>asset_id == VMC-02</td></tr>
+<tr><td>WO-8120 rows work_orders / output</td><td class="n">0 / 0</td><td>work_order == WO-8120</td></tr>
+<tr><td>MB-1880 rows plan / output / routing / work_orders</td><td class="n">0 / 0 / 0 / 0</td><td>part_number == MB-1880</td></tr>
+<tr><td>MES rows matching diagnosis</td><td class="n">0</td><td>asset VMC-02, start on 2026-11-10</td></tr>
+<tr><td>Good vs plan</td><td class="n">1000 vs 1050, -50 (-4.8%); total 1015</td><td>sum planned assets</td></tr>
+<tr><td>OEE CNC-01</td><td class="n">95.3 x 86.6 x 98.5 = 81.2%</td><td>960 planned, 45 down, 915 run, 1.0 min/unit</td></tr>
+<tr><td>OEE CNC-02</td><td class="n">95.8 x 87.3 x 98.7 = 82.5%</td><td>480 planned, 20 down, 460 run, 1.8 min/unit</td></tr>
+<tr><td>Downtime events / minutes</td><td class="n">2 / 65</td><td>downtime.csv all rows</td></tr>
+<tr><td>Other or blank codes</td><td class="n">0 of 2</td><td>reason_code</td></tr>
+<tr><td>Scrap units</td><td class="n">15 (PN-100: 12; PN-200: 3)</td><td>sum qty_scrap</td></tr>
+<tr><td>WO-1001 / WO-1002 / WO-1003 good vs ordered</td><td class="n">480/500, 220/250, 300/300</td><td>by work_order</td></tr>
+<tr><td>sales_order column</td><td class="n">absent</td><td>work_orders header</td></tr>
+<tr><td>Downtime rate / standard cost</td><td>not set / not available</td><td>rate resolution order; header scan</td></tr>
+</table></details>
+
+<p>Operations page offered here; save it over yesterday's. The dashboard was not updated: Chain 4 and a standalone report run do not publish.</p>
+</main></body></html>
