@@ -1,0 +1,701 @@
+{
+ "file": "inputs/reBot_B601_DM_v1.1_20260625.step",
+ "entity_count": 450449,
+ "product_count": 97,
+ "nauo_count": 358,
+ "roots": [
+  "00_REBOT_ARM_DM_ASM"
+ ],
+ "leaf_instances_total": 326,
+ "leaf_instance_counts": {
+  "1-BASE-PLATE-1": 1,
+  "1-BASE-UP-1": 1,
+  "1-DOWN-COVER": 1,
+  "1-DOWN-DECORATION-L": 1,
+  "1-DOWN-DECORATION-R": 1,
+  "1-HANDLE": 1,
+  "1-LINK-2-ARM-L": 1,
+  "1-RAIL-BASE-2": 1,
+  "1-SPACE-1": 1,
+  "1-SPACE-2": 1,
+  "1-SPACE-DOWN": 1,
+  "1-UP-COVER": 1,
+  "1-UP-DECORATION-L": 1,
+  "1-UP-DECORATION-R": 1,
+  "1-WIRE-CLIP-1": 1,
+  "1-WIRE-CLIP-2": 2,
+  "1-WIRE-SLIP-COVER-1": 1,
+  "2-CONNECTING-ROD-1-L": 1,
+  "2-CONNECTING-ROD-1-R": 1,
+  "2-CONNECTING-ROD-2-L": 1,
+  "2-CONNECTING-ROD-2-R": 1,
+  "2-LINK-1-ARM": 2,
+  "2-LINK-2-ARM-R": 1,
+  "2-M1-ROTOR-1": 1,
+  "2-M1-STATOR-1": 1,
+  "2-M5-ROTOR-L": 1,
+  "2-M6-ROTOR": 1,
+  "2-M7-ROTOR": 1,
+  "2-M7-STATOR": 1,
+  "2-RACK-1M": 2,
+  "2-RAIL-BASE-1": 1,
+  "2-SHAFT-SLEEVE-ROTATOR-1": 4,
+  "2-SHAFT-SLEEVE-STATOR-1": 3,
+  "2-SLIDER-FIX": 2,
+  "2-SPACE-STATOR-1": 3,
+  "2-SPACE-UP": 1,
+  "2-U-PLATE-1": 1,
+  "2026-03-01-16-08-09-250": 2,
+  "2026-04-15-13-08-44-630": 2,
+  "2026-07-01-11-37-27-375": 1,
+  "5-GEAR-1M16C": 1,
+  "6-BEARING-OD26ID17H5": 3,
+  "6-BEARING-OD44ID35H5": 1,
+  "6-RAIL-170": 1,
+  "6-SILICONE-L30W9H2": 2,
+  "6-SLIDER": 2,
+  "6-THRUST-BEARING-OD78ID55H5": 1,
+  "7-HM3-12": 7,
+  "7-HM3-25": 6,
+  "7-HM3-6": 8,
+  "7-HM4-75": 4,
+  "7-KA3-12": 60,
+  "7-KM3-12": 22,
+  "7-KM3-16": 26,
+  "7-KM3-7": 64,
+  "7-KM3-8-XIAO": 5,
+  "7-KM3-9": 34,
+  "7-PIN-D3L8": 2,
+  "7-PIN-D4L10": 6,
+  "7-PIN-D4L14": 3,
+  "7-PIN-D4L7": 6,
+  "7-S-M4-5-JIMI": 2,
+  "DM-J4310": 4,
+  "DM-J4340P": 3
+ },
+ "si_units": [
+  "$,.METRE.",
+  "$,.RADIAN.",
+  "$,.STERADIAN.",
+  ".KILO.,.GRAM.",
+  ".MILLI.,.METRE."
+ ],
+ "products": {
+  "00_REBOT_ARM_DM_ASM": {
+   "entity": 450334,
+   "name": "reBot_B601_DM_v1.1_20260625",
+   "desc": ""
+  },
+  "2026-04-01-16-48-42-413": {
+   "entity": 450335,
+   "name": "Link1",
+   "desc": ""
+  },
+  "2026-04-01-17-21-14-943": {
+   "entity": 450336,
+   "name": "Link1_Purchase_Parts",
+   "desc": ""
+  },
+  "7-PIN-D4L14": {
+   "entity": 450337,
+   "name": "PIN-D4L14",
+   "desc": "NOT SPECIFIED"
+  },
+  "2026-04-01-17-24-05-844": {
+   "entity": 450338,
+   "name": "Link1_Metal_Parts",
+   "desc": ""
+  },
+  "2-U-PLATE-1": {
+   "entity": 450339,
+   "name": "03_Link1",
+   "desc": "NOT SPECIFIED"
+  },
+  "2-M1-ROTOR-1": {
+   "entity": 450340,
+   "name": "02_Arm_Yaw_Limit",
+   "desc": "NOT SPECIFIED"
+  },
+  "2026-04-01-17-26-50-842": {
+   "entity": 450341,
+   "name": "Link1_3D_Printed_Parts",
+   "desc": ""
+  },
+  "1-SPACE-1": {
+   "entity": 450342,
+   "name": "01_Upper_Arm_Limit",
+   "desc": "NOT SPECIFIED"
+  },
+  "02-LINK-1_ASM": {
+   "entity": 450343,
+   "name": "Link2",
+   "desc": "NOT SPECIFIED"
+  },
+  "2026-04-01-17-28-59-434": {
+   "entity": 450344,
+   "name": "Link2_Purchase_Parts",
+   "desc": ""
+  },
+  "7-PIN-D4L10": {
+   "entity": 450345,
+   "name": "PIN-D4L10",
+   "desc": "NOT SPECIFIED"
+  },
+  "2026-04-01-17-30-12-212": {
+   "entity": 450346,
+   "name": "Link2_Metal_Parts",
+   "desc": ""
+  },
+  "2-LINK-1-ARM": {
+   "entity": 450347,
+   "name": "03_Link2",
+   "desc": "NOT SPECIFIED"
+  },
+  "2026-04-01-17-35-08-724": {
+   "entity": 450348,
+   "name": "Link2_3D_Printed_Parts",
+   "desc": ""
+  },
+  "1-DOWN-COVER": {
+   "entity": 450349,
+   "name": "01_Lower_Arm_Cover",
+   "desc": "NOT SPECIFIED"
+  },
+  "1-DOWN-DECORATION-L": {
+   "entity": 450350,
+   "name": "01_Upper_Arm_Fuller_L",
+   "desc": "NOT SPECIFIED"
+  },
+  "1-SPACE-DOWN": {
+   "entity": 450351,
+   "name": "01_Upper_Arm_Fuller_M",
+   "desc": "NOT SPECIFIED"
+  },
+  "1-DOWN-DECORATION-R": {
+   "entity": 450352,
+   "name": "01_Upper_Arm_Fuller_R",
+   "desc": "NOT SPECIFIED"
+  },
+  "03-LINK-2_ASM": {
+   "entity": 450353,
+   "name": "Link3",
+   "desc": "NOT SPECIFIED"
+  },
+  "2026-04-01-17-43-51-870": {
+   "entity": 450354,
+   "name": "Link3_Purchase_Parts",
+   "desc": ""
+  },
+  "6-BEARING-OD26ID17H5": {
+   "entity": 450355,
+   "name": "6803ZZ",
+   "desc": "NOT SPECIFIED"
+  },
+  "2026-04-01-17-44-53-197": {
+   "entity": 450356,
+   "name": "Link3_Metal_Parts",
+   "desc": ""
+  },
+  "2-LINK-2-ARM-R": {
+   "entity": 450357,
+   "name": "03_Link3_R",
+   "desc": "NOT SPECIFIED"
+  },
+  "1-LINK-2-ARM-L": {
+   "entity": 450358,
+   "name": "03_Link3_L",
+   "desc": "NOT SPECIFIED"
+  },
+  "2-CONNECTING-ROD-1-L": {
+   "entity": 450359,
+   "name": "02_Lower_Upper_Link_L",
+   "desc": "NOT SPECIFIED"
+  },
+  "2-CONNECTING-ROD-1-R": {
+   "entity": 450360,
+   "name": "02_Lower_Upper_Link_R",
+   "desc": "NOT SPECIFIED"
+  },
+  "2-SHAFT-SLEEVE-STATOR-1": {
+   "entity": 450361,
+   "name": "02_FLANGE",
+   "desc": "NOT SPECIFIED"
+  },
+  "2-SPACE-STATOR-1": {
+   "entity": 450362,
+   "name": "02_Motor_Back_Spacer",
+   "desc": "NOT SPECIFIED"
+  },
+  "2026-04-01-17-46-12-194": {
+   "entity": 450363,
+   "name": "Link3_3D_Printed_Parts",
+   "desc": ""
+  },
+  "1-UP-DECORATION-L": {
+   "entity": 450364,
+   "name": "01_Lower_Arm_Filler_L",
+   "desc": "NOT SPECIFIED"
+  },
+  "1-HANDLE": {
+   "entity": 450365,
+   "name": "01_Arm_Handle",
+   "desc": "NOT SPECIFIED"
+  },
+  "1-UP-DECORATION-R": {
+   "entity": 450366,
+   "name": "01_Lower_Arm_Filler_R",
+   "desc": "NOT SPECIFIED"
+  },
+  "1-UP-COVER": {
+   "entity": 450367,
+   "name": "01_Upper_Arm_Cover",
+   "desc": "NOT SPECIFIED"
+  },
+  "04-LINK-3_ASM": {
+   "entity": 450368,
+   "name": "Link4",
+   "desc": "NOT SPECIFIED"
+  },
+  "2026-04-01-17-53-05-654": {
+   "entity": 450369,
+   "name": "Link4_Purchase_Parts",
+   "desc": ""
+  },
+  "7-PIN-D4L7": {
+   "entity": 450370,
+   "name": "PIN-D4L7",
+   "desc": "NOT SPECIFIED"
+  },
+  "2026-04-01-17-54-20-953": {
+   "entity": 450371,
+   "name": "Link4_Metal_Parts",
+   "desc": ""
+  },
+  "2-CONNECTING-ROD-2-L": {
+   "entity": 450372,
+   "name": "02_Lower_Wrist_Link_L",
+   "desc": "NOT SPECIFIED"
+  },
+  "2-CONNECTING-ROD-2-R": {
+   "entity": 450373,
+   "name": "02_Lower_Wrist_Link_R",
+   "desc": "NOT SPECIFIED"
+  },
+  "2026-04-01-17-59-41-762": {
+   "entity": 450374,
+   "name": "Link4_3D_Printed_Parts",
+   "desc": ""
+  },
+  "1-WIRE-SLIP-COVER-1": {
+   "entity": 450375,
+   "name": "01_Joint5_Cable Restraint_A",
+   "desc": "NOT SPECIFIED"
+  },
+  "1-WIRE-CLIP-1": {
+   "entity": 450376,
+   "name": "01_Motor_Cover",
+   "desc": "NOT SPECIFIED"
+  },
+  "05-GRIPPER_ASM": {
+   "entity": 450377,
+   "name": "Link6",
+   "desc": "NOT SPECIFIED"
+  },
+  "2026-04-01-13-55-23-860": {
+   "entity": 450378,
+   "name": "Link6_3D_Printed_Parts",
+   "desc": ""
+  },
+  "2026-04-01-13-55-23-863": {
+   "entity": 450379,
+   "name": "Link6_Metal_Parts",
+   "desc": ""
+  },
+  "2-M7-STATOR": {
+   "entity": 450380,
+   "name": "02_Gripper_Connector_B",
+   "desc": "NOT SPECIFIED"
+  },
+  "2-M6-ROTOR": {
+   "entity": 450381,
+   "name": "02_Gripper_Connector_A",
+   "desc": "NOT SPECIFIED"
+  },
+  "2026-04-01-13-55-23-866": {
+   "entity": 450382,
+   "name": "Link6_Purchase_Parts",
+   "desc": ""
+  },
+  "7-HM3-12": {
+   "entity": 450383,
+   "name": "HM3-12",
+   "desc": "NOT SPECIFIED"
+  },
+  "01-BASE-1_ASM": {
+   "entity": 450384,
+   "name": "Base",
+   "desc": "NOT SPECIFIED"
+  },
+  "2026-04-01-17-13-05-853": {
+   "entity": 450385,
+   "name": "Base_3D_Printed_Parts",
+   "desc": ""
+  },
+  "1-BASE-PLATE-1": {
+   "entity": 450386,
+   "name": "01_BASE_Plate",
+   "desc": "NOT SPECIFIED"
+  },
+  "1-BASE-UP-1": {
+   "entity": 450387,
+   "name": "01_BASE_Link",
+   "desc": "NOT SPECIFIED"
+  },
+  "2026-04-01-17-17-26-979": {
+   "entity": 450388,
+   "name": "Base_Purchase_Parts",
+   "desc": ""
+  },
+  "6-THRUST-BEARING-OD78ID55H5": {
+   "entity": 450389,
+   "name": "AXK5578",
+   "desc": "NOT SPECIFIED"
+  },
+  "6-BEARING-OD44ID35H5": {
+   "entity": 450390,
+   "name": "6707ZZ",
+   "desc": "NOT SPECIFIED"
+  },
+  "DM-J4340P": {
+   "entity": 450391,
+   "name": "DM-J4340P",
+   "desc": "NOT SPECIFIED"
+  },
+  "7-PIN-D3L8": {
+   "entity": 450392,
+   "name": "PIN-D3L8",
+   "desc": "NOT SPECIFIED"
+  },
+  "7-KM3-8-XIAO": {
+   "entity": 450393,
+   "name": "KM3-8-XIAO",
+   "desc": "NOT SPECIFIED"
+  },
+  "7-HM4-75": {
+   "entity": 450394,
+   "name": "HM4-75",
+   "desc": "NOT SPECIFIED"
+  },
+  "2026-04-01-17-19-22-932": {
+   "entity": 450395,
+   "name": "Base_Metal_Parts",
+   "desc": ""
+  },
+  "2-M1-STATOR-1": {
+   "entity": 450396,
+   "name": "02_Base_Reinforcement_Part",
+   "desc": "NOT SPECIFIED"
+  },
+  "2026-04-01-17-02-36-958": {
+   "entity": 450397,
+   "name": "Link5",
+   "desc": ""
+  },
+  "2026-04-01-13-55-23-870": {
+   "entity": 450398,
+   "name": "Link5_Purchase_Parts",
+   "desc": ""
+  },
+  "DM-J4310": {
+   "entity": 450399,
+   "name": "DM-J4310",
+   "desc": "NOT SPECIFIED"
+  },
+  "7-KM3-9": {
+   "entity": 450400,
+   "name": "KM3-9",
+   "desc": "NOT SPECIFIED"
+  },
+  "7-KM3-12": {
+   "entity": 450401,
+   "name": "KM3-12",
+   "desc": "NOT SPECIFIED"
+  },
+  "6-SILICONE-L30W9H2": {
+   "entity": 450402,
+   "name": "SILICONE-L30W9H2",
+   "desc": "NOT SPECIFIED"
+  },
+  "2026-04-01-13-55-23-871": {
+   "entity": 450403,
+   "name": "Link5_Metal_Parts",
+   "desc": ""
+  },
+  "2-M5-ROTOR-L": {
+   "entity": 450404,
+   "name": "03_Link5",
+   "desc": "NOT SPECIFIED"
+  },
+  "2-SHAFT-SLEEVE-ROTATOR-1": {
+   "entity": 450405,
+   "name": "02_Motor_Front_Spacer",
+   "desc": "NOT SPECIFIED"
+  },
+  "2026-04-01-13-55-23-873": {
+   "entity": 450406,
+   "name": "Link5_3D_Printed_Parts",
+   "desc": ""
+  },
+  "1-SPACE-2": {
+   "entity": 450407,
+   "name": "01_Lower_Arm_Limit",
+   "desc": "NOT SPECIFIED"
+  },
+  "2026-04-15-13-08-44-630": {
+   "entity": 450408,
+   "name": "01_Joint6_7_Cable Restraint_A",
+   "desc": "NOT SPECIFIED"
+  },
+  "1-WIRE-CLIP-2": {
+   "entity": 450409,
+   "name": "01_Joint6_7_Cable Restraint_B",
+   "desc": "NOT SPECIFIED"
+  },
+  "2026-04-01-17-05-40-350": {
+   "entity": 450410,
+   "name": "Gripper",
+   "desc": ""
+  },
+  "2026-04-01-13-55-23-888": {
+   "entity": 450411,
+   "name": "Gripper_Purchase_Parts",
+   "desc": ""
+  },
+  "6-RAIL-170": {
+   "entity": 450412,
+   "name": "RAIL-170",
+   "desc": "NOT SPECIFIED"
+  },
+  "5-GEAR-1M16C": {
+   "entity": 450413,
+   "name": "GEAR-1M16C",
+   "desc": "NOT SPECIFIED"
+  },
+  "7-HM3-6": {
+   "entity": 450414,
+   "name": "HM3-6",
+   "desc": "NOT SPECIFIED"
+  },
+  "7-KM3-16": {
+   "entity": 450415,
+   "name": "KM3-16",
+   "desc": "NOT SPECIFIED"
+  },
+  "7-KA3-12": {
+   "entity": 450416,
+   "name": "KA3-12",
+   "desc": "NOT SPECIFIED"
+  },
+  "7-S-M4-5-JIMI": {
+   "entity": 450417,
+   "name": "S-M4-5-JIMI",
+   "desc": "NOT SPECIFIED"
+  },
+  "7-KM3-7": {
+   "entity": 450418,
+   "name": "KM3-7",
+   "desc": "NOT SPECIFIED"
+  },
+  "7-HM3-25": {
+   "entity": 450419,
+   "name": "HM3-26",
+   "desc": "NOT SPECIFIED"
+  },
+  "6-SLIDER": {
+   "entity": 450420,
+   "name": "SLIDER",
+   "desc": "NOT SPECIFIED"
+  },
+  "2026-04-01-13-55-23-894": {
+   "entity": 450421,
+   "name": "Gripper_Metal_Parts",
+   "desc": ""
+  },
+  "2-RAIL-BASE-1": {
+   "entity": 450422,
+   "name": "02_Slider_Bracket",
+   "desc": "NOT SPECIFIED"
+  },
+  "2-M7-ROTOR": {
+   "entity": 450423,
+   "name": "02_Gear_Connector",
+   "desc": "NOT SPECIFIED"
+  },
+  "2-SLIDER-FIX": {
+   "entity": 450424,
+   "name": "02_Slider_Extension",
+   "desc": "NOT SPECIFIED"
+  },
+  "2-RACK-1M": {
+   "entity": 450425,
+   "name": "02_Rack",
+   "desc": "NOT SPECIFIED"
+  },
+  "2026-04-01-13-55-23-899": {
+   "entity": 450426,
+   "name": "Gripper_3D_Printed_Parts",
+   "desc": ""
+  },
+  "1-RAIL-BASE-2": {
+   "entity": 450427,
+   "name": "01_Rail_Bracket",
+   "desc": "NOT SPECIFIED"
+  },
+  "2026-03-01-16-08-09-250": {
+   "entity": 450428,
+   "name": "01_Finger",
+   "desc": "NOT SPECIFIED"
+  },
+  "2-SPACE-UP": {
+   "entity": 450429,
+   "name": "01_Lower_Arm_Filler_M",
+   "desc": "NOT SPECIFIED"
+  },
+  "2026-07-01-11-37-27-375": {
+   "entity": 450430,
+   "name": "02_Wrist_Bracket",
+   "desc": "NOT SPECIFIED"
+  }
+ },
+ "tree": [
+  "ROOT 00_REBOT_ARM_DM_ASM [#450040]",
+  "  01-BASE-1_ASM x1 (per parent; cumulative x1) [#450090]",
+  "    2026-04-01-17-13-05-853 x1 (per parent; cumulative x1) [#450091]",
+  "      1-BASE-PLATE-1 x1 (per parent; cumulative x1) [#450092]",
+  "      1-BASE-UP-1 x1 (per parent; cumulative x1) [#450093]",
+  "    2026-04-01-17-17-26-979 x1 (per parent; cumulative x1) [#450094]",
+  "      6-BEARING-OD44ID35H5 x1 (per parent; cumulative x1) [#450096]",
+  "      6-THRUST-BEARING-OD78ID55H5 x1 (per parent; cumulative x1) [#450095]",
+  "      7-HM4-75 x4 (per parent; cumulative x4) [#450100]",
+  "      7-KM3-8-XIAO x5 (per parent; cumulative x5) [#450099]",
+  "      7-PIN-D3L8 x2 (per parent; cumulative x2) [#450098]",
+  "      DM-J4340P x1 (per parent; cumulative x1) [#450097]",
+  "    2026-04-01-17-19-22-932 x1 (per parent; cumulative x1) [#450101]",
+  "      2-M1-STATOR-1 x1 (per parent; cumulative x1) [#450102]",
+  "  02-LINK-1_ASM x1 (per parent; cumulative x1) [#450049]",
+  "    2026-04-01-17-28-59-434 x1 (per parent; cumulative x1) [#450050]",
+  "      6-BEARING-OD26ID17H5 x1 (per parent; cumulative x1) [#450061]",
+  "      7-KA3-12 x20 (per parent; cumulative x20) [#450122]",
+  "      7-KM3-7 x24 (per parent; cumulative x24) [#450124]",
+  "      7-KM3-9 x8 (per parent; cumulative x8) [#450106]",
+  "      7-PIN-D4L10 x6 (per parent; cumulative x6) [#450051]",
+  "      DM-J4340P x2 (per parent; cumulative x2) [#450097]",
+  "    2026-04-01-17-30-12-212 x1 (per parent; cumulative x1) [#450052]",
+  "      2-LINK-1-ARM x2 (per parent; cumulative x2) [#450053]",
+  "      2-SPACE-STATOR-1 x2 (per parent; cumulative x2) [#450068]",
+  "    2026-04-01-17-35-08-724 x1 (per parent; cumulative x1) [#450054]",
+  "      1-DOWN-COVER x1 (per parent; cumulative x1) [#450055]",
+  "      1-DOWN-DECORATION-L x1 (per parent; cumulative x1) [#450056]",
+  "      1-DOWN-DECORATION-R x1 (per parent; cumulative x1) [#450058]",
+  "      1-SPACE-DOWN x1 (per parent; cumulative x1) [#450057]",
+  "  03-LINK-2_ASM x1 (per parent; cumulative x1) [#450059]",
+  "    2026-04-01-17-43-51-870 x1 (per parent; cumulative x1) [#450060]",
+  "      6-BEARING-OD26ID17H5 x1 (per parent; cumulative x1) [#450061]",
+  "      7-KA3-12 x26 (per parent; cumulative x26) [#450122]",
+  "      7-KM3-16 x6 (per parent; cumulative x6) [#450121]",
+  "      7-KM3-7 x12 (per parent; cumulative x12) [#450124]",
+  "      7-KM3-9 x18 (per parent; cumulative x18) [#450106]",
+  "      7-PIN-D4L7 x3 (per parent; cumulative x3) [#450076]",
+  "      DM-J4310 x1 (per parent; cumulative x1) [#450105]",
+  "    2026-04-01-17-44-53-197 x1 (per parent; cumulative x1) [#450062]",
+  "      1-LINK-2-ARM-L x1 (per parent; cumulative x1) [#450064]",
+  "      2-CONNECTING-ROD-1-L x1 (per parent; cumulative x1) [#450065]",
+  "      2-CONNECTING-ROD-1-R x1 (per parent; cumulative x1) [#450066]",
+  "      2-LINK-2-ARM-R x1 (per parent; cumulative x1) [#450063]",
+  "      2-SHAFT-SLEEVE-ROTATOR-1 x1 (per parent; cumulative x1) [#450111]",
+  "      2-SHAFT-SLEEVE-STATOR-1 x2 (per parent; cumulative x2) [#450067]",
+  "      2-SPACE-STATOR-1 x1 (per parent; cumulative x1) [#450068]",
+  "    2026-04-01-17-46-12-194 x1 (per parent; cumulative x1) [#450069]",
+  "      1-HANDLE x1 (per parent; cumulative x1) [#450071]",
+  "      1-UP-COVER x1 (per parent; cumulative x1) [#450073]",
+  "      1-UP-DECORATION-L x1 (per parent; cumulative x1) [#450070]",
+  "      1-UP-DECORATION-R x1 (per parent; cumulative x1) [#450072]",
+  "  04-LINK-3_ASM x1 (per parent; cumulative x1) [#450074]",
+  "    2026-04-01-17-53-05-654 x1 (per parent; cumulative x1) [#450075]",
+  "      7-KM3-12 x2 (per parent; cumulative x2) [#450107]",
+  "      7-KM3-16 x6 (per parent; cumulative x6) [#450121]",
+  "      7-KM3-7 x16 (per parent; cumulative x16) [#450124]",
+  "      7-KM3-9 x6 (per parent; cumulative x6) [#450106]",
+  "      7-PIN-D4L7 x3 (per parent; cumulative x3) [#450076]",
+  "      DM-J4310 x1 (per parent; cumulative x1) [#450105]",
+  "    2026-04-01-17-54-20-953 x1 (per parent; cumulative x1) [#450077]",
+  "      2-CONNECTING-ROD-2-L x1 (per parent; cumulative x1) [#450078]",
+  "      2-CONNECTING-ROD-2-R x1 (per parent; cumulative x1) [#450079]",
+  "      2-SHAFT-SLEEVE-ROTATOR-1 x1 (per parent; cumulative x1) [#450111]",
+  "    2026-04-01-17-59-41-762 x1 (per parent; cumulative x1) [#450080]",
+  "      1-WIRE-CLIP-1 x1 (per parent; cumulative x1) [#450082]",
+  "      1-WIRE-SLIP-COVER-1 x1 (per parent; cumulative x1) [#450081]",
+  "  05-GRIPPER_ASM x1 (per parent; cumulative x1) [#450083]",
+  "    2026-04-01-13-55-23-860 x1 (per parent; cumulative x1) [#450084]",
+  "      1-WIRE-CLIP-2 x1 (per parent; cumulative x1) [#450115]",
+  "      2026-04-15-13-08-44-630 x1 (per parent; cumulative x1) [#450114]",
+  "    2026-04-01-13-55-23-863 x1 (per parent; cumulative x1) [#450085]",
+  "      2-M6-ROTOR x1 (per parent; cumulative x1) [#450087]",
+  "      2-M7-STATOR x1 (per parent; cumulative x1) [#450086]",
+  "    2026-04-01-13-55-23-866 x1 (per parent; cumulative x1) [#450088]",
+  "      7-HM3-12 x7 (per parent; cumulative x7) [#450089]",
+  "      7-HM3-6 x4 (per parent; cumulative x4) [#450120]",
+  "      7-KA3-12 x4 (per parent; cumulative x4) [#450122]",
+  "      DM-J4310 x1 (per parent; cumulative x1) [#450105]",
+  "  2-SPACE-UP x1 (per parent; cumulative x1) [#450135]",
+  "  2026-04-01-16-48-42-413 x1 (per parent; cumulative x1) [#450041]",
+  "    2026-04-01-17-21-14-943 x1 (per parent; cumulative x1) [#450042]",
+  "      6-BEARING-OD26ID17H5 x1 (per parent; cumulative x1) [#450061]",
+  "      6-SILICONE-L30W9H2 x1 (per parent; cumulative x1) [#450108]",
+  "      7-KA3-12 x2 (per parent; cumulative x2) [#450122]",
+  "      7-KM3-12 x12 (per parent; cumulative x12) [#450107]",
+  "      7-KM3-16 x6 (per parent; cumulative x6) [#450121]",
+  "      7-PIN-D4L14 x3 (per parent; cumulative x3) [#450043]",
+  "    2026-04-01-17-24-05-844 x1 (per parent; cumulative x1) [#450044]",
+  "      2-M1-ROTOR-1 x1 (per parent; cumulative x1) [#450046]",
+  "      2-SHAFT-SLEEVE-ROTATOR-1 x1 (per parent; cumulative x1) [#450111]",
+  "      2-SHAFT-SLEEVE-STATOR-1 x1 (per parent; cumulative x1) [#450067]",
+  "      2-U-PLATE-1 x1 (per parent; cumulative x1) [#450045]",
+  "    2026-04-01-17-26-50-842 x1 (per parent; cumulative x1) [#450047]",
+  "      1-SPACE-1 x1 (per parent; cumulative x1) [#450048]",
+  "  2026-04-01-17-02-36-958 x1 (per parent; cumulative x1) [#450103]",
+  "    2026-04-01-13-55-23-870 x1 (per parent; cumulative x1) [#450104]",
+  "      6-SILICONE-L30W9H2 x1 (per parent; cumulative x1) [#450108]",
+  "      7-KA3-12 x4 (per parent; cumulative x4) [#450122]",
+  "      7-KM3-12 x8 (per parent; cumulative x8) [#450107]",
+  "      7-KM3-9 x2 (per parent; cumulative x2) [#450106]",
+  "      DM-J4310 x1 (per parent; cumulative x1) [#450105]",
+  "    2026-04-01-13-55-23-871 x1 (per parent; cumulative x1) [#450109]",
+  "      2-M5-ROTOR-L x1 (per parent; cumulative x1) [#450110]",
+  "      2-SHAFT-SLEEVE-ROTATOR-1 x1 (per parent; cumulative x1) [#450111]",
+  "    2026-04-01-13-55-23-873 x1 (per parent; cumulative x1) [#450112]",
+  "      1-SPACE-2 x1 (per parent; cumulative x1) [#450113]",
+  "      1-WIRE-CLIP-2 x1 (per parent; cumulative x1) [#450115]",
+  "      2026-04-15-13-08-44-630 x1 (per parent; cumulative x1) [#450114]",
+  "  2026-04-01-17-05-40-350 x1 (per parent; cumulative x1) [#450116]",
+  "    2026-04-01-13-55-23-888 x1 (per parent; cumulative x1) [#450117]",
+  "      5-GEAR-1M16C x1 (per parent; cumulative x1) [#450119]",
+  "      6-RAIL-170 x1 (per parent; cumulative x1) [#450118]",
+  "      6-SLIDER x2 (per parent; cumulative x2) [#450126]",
+  "      7-HM3-25 x6 (per parent; cumulative x6) [#450125]",
+  "      7-HM3-6 x4 (per parent; cumulative x4) [#450120]",
+  "      7-KA3-12 x4 (per parent; cumulative x4) [#450122]",
+  "      7-KM3-16 x8 (per parent; cumulative x8) [#450121]",
+  "      7-KM3-7 x12 (per parent; cumulative x12) [#450124]",
+  "      7-S-M4-5-JIMI x2 (per parent; cumulative x2) [#450123]",
+  "    2026-04-01-13-55-23-894 x1 (per parent; cumulative x1) [#450127]",
+  "      2-M7-ROTOR x1 (per parent; cumulative x1) [#450129]",
+  "      2-RACK-1M x2 (per parent; cumulative x2) [#450131]",
+  "      2-RAIL-BASE-1 x1 (per parent; cumulative x1) [#450128]",
+  "      2-SLIDER-FIX x2 (per parent; cumulative x2) [#450130]",
+  "    2026-04-01-13-55-23-899 x1 (per parent; cumulative x1) [#450132]",
+  "      1-RAIL-BASE-2 x1 (per parent; cumulative x1) [#450133]",
+  "      2026-03-01-16-08-09-250 x2 (per parent; cumulative x2) [#450134]",
+  "  2026-07-01-11-37-27-375 x1 (per parent; cumulative x1) [#450136]"
+ ]
+}

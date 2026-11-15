@@ -1,0 +1,36 @@
+# Quality register row per shared/contracts/quality-register-record.md v1.
+# NOT STORED: the Quality Register was not reachable this run (no artifact tools). SYNTHETIC test data.
+contract_version: 1
+record_key: "<site>_DRAFT-NCR-BSH-1210-AS-7781"   # site unknown
+ncr_ref: "DRAFT-NCR-BSH-1210-AS-7781"
+site: null
+part_number: BSH-1210
+part_number_verbatim: "BSH-1210"
+lot_number: AS-7781
+lot_number_verbatim: "AS-7781"
+found_at: "2026-11-12 (time and zone not recorded)"
+qty_found: 5
+uom: each
+requirement_cited: "BSH-1210 drawing rev A, notes line 4, hardness 25-40 HRF"
+disposition_pending: true
+summary: "Lot AS-7781 hardness 46-50 HRF on 5 of 5 samples against 25-40 HRF; C of C states 32 HRF."
+customers: []
+status: awaiting_approval
+approval_state: draft
+containment_summary: "5 of 5 locations addressed; installed at customer, at customer and in transit not checked; 400 at line 2 (WO-8150), 600 in quarantine Q-1"
+escape_clock: null
+escape_clock_unknown: false
+owner: null
+due_date: null
+recurrence: no_searchable_history
+prior_ncr_refs: []
+previous_fix_held: null
+eight_d_step: null                  # 8D blocked: NCR not approved
+leading_cause: "Candidate (low confidence): supplier lot AS-7781 produced above the hardness requirement"
+supplier_caused: true               # flag raised as a draft, awaiting a Gate 1 owner
+effectiveness_check_due: null
+closed_at: null
+closed_by: null
+last_written_by: root-cause-capa
+last_written_at: 2026-11-14T22:04:00-05:00
+first_recorded_at: 2026-11-14T22:04:00-05:00

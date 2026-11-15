@@ -1,0 +1,42 @@
+# Supplier-caused flag per shared/contracts/supplier-caused-flag.md v2. DRAFT - Gate 1 not passed. SYNTHETIC test data.
+contract_version: 2
+site: null                          # REQUIRED - not stated in inputs; asked
+determination: supplier_caused
+confidence: low
+is_leading_candidate: true
+competing_candidates:
+  - "C2, ranked second: our receiving hardness measurement reads high (tester, scale or method). Supported by gage and calibration not being recorded and by the C of C (32 HRF) disagreeing with the measured mean by 16 HRF; contradicted by lots AS-7702 and AS-7744 passing the same incoming hardness check."
+  - "C3, ranked third (also supplier-side): the parts in AS-7781 are not the parts the C of C test describes (mixed or mis-certified lot). No direct evidence."
+ncr_ref: "DRAFT-NCR-BSH-1210-AS-7781"
+capa_ref: null                      # 8D blocked: NCR approval_state is draft
+
+part_number: BSH-1210
+part_number_verbatim: "BSH-1210"
+part_revision: "A"                  # from the drawing and the finding; NOT verified against an ERP item master
+lot_number: AS-7781
+lot_number_verbatim: "AS-7781"
+supplier_id: null                   # REQUIRED - no vendor ID in the inputs; asked
+supplier_id_verbatim: null
+supplier_name: "Alder Sintered Parts"
+purchase_order: PO-30655
+received_at: null                   # receipt dated 2026-11-12 with no time or zone
+qty_affected: 1000
+uom: each
+
+evidence_for:
+  - "5 of 5 samples measured 46-50 HRF against 25-40 HRF; mean 48 HRF, 8 HRF over the upper limit (incoming_finding.txt line 3; BSH-1210_drawing_revA.md line 4; out/figures/figures.json)."
+  - "Failure confined to lot AS-7781: prior lots AS-7702 (2026-09) and AS-7744 (2026-10) from the same supplier passed incoming hardness checks (incoming_finding.txt line 5). Small numbers: 1 lot of 3, prior-lot values not recorded."
+  - "Supplier C of C for AS-7781 states 32 HRF, contradicted by the measured mean by 16 HRF (incoming_finding.txt line 4; figures.json)."
+evidence_against:
+  - "The supplier C of C states 32 HRF, inside the requirement; if our measurement is wrong the lot conforms (incoming_finding.txt line 4)."
+  - "The hardness tester, its calibration date and the test method are not recorded, so the measurements are not yet verified (incoming_finding.txt line 3)."
+  - "No supplier process data for AS-7781 is available; the supplier-side mechanism is unknown."
+lot_clustering_observed: true       # 1 failing lot of 3; small numbers
+recurrence: no_searchable_history
+escape_occurred: false
+escape_detected_at: null            # no parts placed at or past a customer
+determination_made_at: 2026-11-14T22:04:00-05:00   # session clock; plant timezone not configured. The middle of the three timestamps; it cannot be reconstructed afterwards.
+
+approved_by: null
+approved_at: null
+approval_state: draft

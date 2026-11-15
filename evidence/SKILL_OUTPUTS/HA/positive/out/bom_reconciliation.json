@@ -1,0 +1,284 @@
+{
+ "rows": [
+  {
+   "description": "Motor 1 Bearing Mount",
+   "file": "02_Base_Reinforcement_Part.step",
+   "material": "Aluminum Alloy 5052",
+   "readme_qty": 1,
+   "machining": "CNC",
+   "notes": "Can be 3D printed in ABS with high infill to reduce cost",
+   "step_product_id": "2-M1-STATOR-1",
+   "step_entity": 450396,
+   "step_qty": 1,
+   "status": "match"
+  },
+  {
+   "description": "Motor 1 Rotation Axis",
+   "file": "02_Arm_Yaw_Limit.step",
+   "material": "Aluminum Alloy 5052",
+   "readme_qty": 1,
+   "machining": "CNC",
+   "notes": "Added yaw angle motion limit",
+   "step_product_id": "2-M1-ROTOR-1",
+   "step_entity": 450340,
+   "step_qty": 1,
+   "status": "match"
+  },
+  {
+   "description": "Motor 2\u20135 Front Spacer",
+   "file": "02_Motor_Front_Spacer.step",
+   "material": "Aluminum Alloy 5052",
+   "readme_qty": 4,
+   "machining": "CNC",
+   "notes": "Can be 3D printed in ABS with 30% infill",
+   "step_product_id": "2-SHAFT-SLEEVE-ROTATOR-1",
+   "step_entity": 450405,
+   "step_qty": 4,
+   "status": "match"
+  },
+  {
+   "description": "Motor 2\u20134 Rear Spacer",
+   "file": "02_Motor_Back_Spacer.step",
+   "material": "Aluminum Alloy 5052",
+   "readme_qty": 3,
+   "machining": "CNC",
+   "notes": "",
+   "step_product_id": "2-SPACE-STATOR-1",
+   "step_entity": 450362,
+   "step_qty": 3,
+   "status": "match"
+  },
+  {
+   "description": "Motor 2\u20134 Rear Flange",
+   "file": "02_FLANGE.step",
+   "material": "Aluminum Alloy 5052",
+   "readme_qty": 3,
+   "machining": "CNC",
+   "notes": "",
+   "step_product_id": "2-SHAFT-SLEEVE-STATOR-1",
+   "step_entity": 450361,
+   "step_qty": 3,
+   "status": "match"
+  },
+  {
+   "description": "Wrist Motor 5 Bracket",
+   "file": "02_Wrist_Bracket.step",
+   "material": "Aluminum Alloy 5052",
+   "readme_qty": 1,
+   "machining": "CNC",
+   "notes": "",
+   "step_product_id": "2026-07-01-11-37-27-375",
+   "step_entity": 450430,
+   "step_qty": 1,
+   "status": "match"
+  },
+  {
+   "description": "Gripper Connector A",
+   "file": "02_Gripper_Connector_A.step",
+   "material": "Aluminum Alloy 5052",
+   "readme_qty": 1,
+   "machining": "CNC",
+   "notes": "",
+   "step_product_id": "2-M6-ROTOR",
+   "step_entity": 450381,
+   "step_qty": 1,
+   "status": "match"
+  },
+  {
+   "description": "Gripper Connector B",
+   "file": "02_Gripper_Connector_B.step",
+   "material": "Aluminum Alloy 5052",
+   "readme_qty": 1,
+   "machining": "CNC",
+   "notes": "",
+   "step_product_id": "2-M7-STATOR",
+   "step_entity": 450380,
+   "step_qty": 1,
+   "status": "match"
+  },
+  {
+   "description": "Gripper Slider Metal Bracket",
+   "file": "02_Slider_Bracket.step",
+   "material": "Aluminum Alloy 5052",
+   "readme_qty": 1,
+   "machining": "CNC",
+   "notes": "Can be 3D printed in ABS with high infill, not recommended for long-term use",
+   "step_product_id": "2-RAIL-BASE-1",
+   "step_entity": 450422,
+   "step_qty": 1,
+   "status": "match"
+  },
+  {
+   "description": "Slider to Gripper Extension",
+   "file": "02_Slider_Extension.step",
+   "material": "Aluminum Alloy 5052",
+   "readme_qty": 2,
+   "machining": "CNC",
+   "notes": "",
+   "step_product_id": "2-SLIDER-FIX",
+   "step_entity": 450424,
+   "step_qty": 2,
+   "status": "match"
+  },
+  {
+   "description": "Upper-Lower Arm Link Left",
+   "file": "02_Lower_Upper_Link_L.step",
+   "material": "Aluminum Alloy 5052",
+   "readme_qty": 1,
+   "machining": "CNC",
+   "notes": "",
+   "step_product_id": "2-CONNECTING-ROD-1-L",
+   "step_entity": 450359,
+   "step_qty": 1,
+   "status": "match"
+  },
+  {
+   "description": "Upper-Lower Arm Link Right",
+   "file": "02_Lower_Upper_Link_R.step",
+   "material": "Aluminum Alloy 5052",
+   "readme_qty": 1,
+   "machining": "CNC",
+   "notes": "",
+   "step_product_id": "2-CONNECTING-ROD-1-R",
+   "step_entity": 450360,
+   "step_qty": 1,
+   "status": "match"
+  },
+  {
+   "description": "Lower Arm-Wrist Link Left",
+   "file": "02_Lower_Wrist_Link_L.step",
+   "material": "Aluminum Alloy 5052",
+   "readme_qty": 1,
+   "machining": "CNC",
+   "notes": "",
+   "step_product_id": "2-CONNECTING-ROD-2-L",
+   "step_entity": 450372,
+   "step_qty": 1,
+   "status": "match"
+  },
+  {
+   "description": "Lower Arm-Wrist Link Right",
+   "file": "02_Lower_Wrist_Link_R.step",
+   "material": "Aluminum Alloy 5052",
+   "readme_qty": 1,
+   "machining": "CNC",
+   "notes": "",
+   "step_product_id": "2-CONNECTING-ROD-2-R",
+   "step_entity": 450373,
+   "step_qty": 1,
+   "status": "match"
+  },
+  {
+   "description": "Gear Connector",
+   "file": "02_Gear_Connector.step",
+   "material": "Aluminum Alloy 5052",
+   "readme_qty": 1,
+   "machining": "CNC",
+   "notes": "",
+   "step_product_id": "2-M7-ROTOR",
+   "step_entity": 450423,
+   "step_qty": 1,
+   "status": "match"
+  },
+  {
+   "description": "Rack",
+   "file": "02_Rack.step",
+   "material": "Aluminum Alloy 5052",
+   "readme_qty": 2,
+   "machining": "CNC",
+   "notes": "",
+   "step_product_id": "2-RACK-1M",
+   "step_entity": 450425,
+   "step_qty": 2,
+   "status": "match"
+  },
+  {
+   "description": "Link 1",
+   "file": "03_Link1.step",
+   "material": "Aluminum Alloy 5052",
+   "readme_qty": 1,
+   "machining": "CNC + Sheet Metal",
+   "notes": "",
+   "step_product_id": "2-U-PLATE-1",
+   "step_entity": 450339,
+   "step_qty": 1,
+   "status": "match"
+  },
+  {
+   "description": "Link 2",
+   "file": "03_Link2.step",
+   "material": "Aluminum Alloy 5052",
+   "readme_qty": 2,
+   "machining": "CNC + Sheet Metal",
+   "notes": "",
+   "step_product_id": "2-LINK-1-ARM",
+   "step_entity": 450347,
+   "step_qty": 2,
+   "status": "match"
+  },
+  {
+   "description": "Link 3 Left",
+   "file": "03_Link3_L.step",
+   "material": "Aluminum Alloy 5052",
+   "readme_qty": 1,
+   "machining": "CNC + Sheet Metal",
+   "notes": "",
+   "step_product_id": "1-LINK-2-ARM-L",
+   "step_entity": 450358,
+   "step_qty": 1,
+   "status": "match"
+  },
+  {
+   "description": "Link 3 Right",
+   "file": "03_Link3_R.step",
+   "material": "Aluminum Alloy 5052",
+   "readme_qty": 1,
+   "machining": "CNC + Sheet Metal",
+   "notes": "",
+   "step_product_id": "2-LINK-2-ARM-R",
+   "step_entity": 450357,
+   "step_qty": 1,
+   "status": "match"
+  },
+  {
+   "description": "Link 5",
+   "file": "03_Link5.step",
+   "material": "Aluminum Alloy 5052",
+   "readme_qty": 1,
+   "machining": "CNC + Sheet Metal",
+   "notes": "",
+   "step_product_id": "2-M5-ROTOR-L",
+   "step_entity": 450404,
+   "step_qty": 1,
+   "status": "match"
+  }
+ ],
+ "extra_metal_named_in_step": [
+  {
+   "step_product_id": "2-SPACE-UP",
+   "name": "01_Lower_Arm_Filler_M",
+   "step_qty": 1
+  }
+ ],
+ "prefix_anomalies": [
+  {
+   "step_product_id": "1-LINK-2-ARM-L",
+   "name": "03_Link3_L"
+  },
+  {
+   "step_product_id": "2-SPACE-UP",
+   "name": "01_Lower_Arm_Filler_M"
+  }
+ ],
+ "figures": {
+  "readme_cnc_rows": 21,
+  "readme_cnc_qty_per_arm": 31,
+  "step_qty_for_readme_cnc_rows": 31,
+  "rows_matching": 21,
+  "rows_mismatch_or_missing": 0,
+  "cnc_parts_for_20_sets": 620,
+  "step_leaf_instances_total": 326,
+  "step_products": 97,
+  "step_nauo": 358
+ }
+}

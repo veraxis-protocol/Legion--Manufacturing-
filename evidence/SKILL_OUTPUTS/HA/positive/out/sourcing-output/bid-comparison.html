@@ -1,0 +1,67 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Rail Bid Comparison</title><style>:root{--bg:#fbfaf7;--fg:#1d1d1b;--mut:#5d5a53;--line:#dcd8cf;--acc:#8a4b14;--warn:#9a1f1f;--card:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#181816;--fg:#ecebe6;--mut:#a9a59b;--line:#3a3833;--acc:#e0a160;--warn:#f08a8a;--card:#22211e}}
+:root[data-theme="dark"]{--bg:#181816;--fg:#ecebe6;--mut:#a9a59b;--line:#3a3833;--acc:#e0a160;--warn:#f08a8a;--card:#22211e}
+body{background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,sans-serif;padding:16px;max-width:1100px;margin:auto}
+h1{font-size:22px}h2{font-size:18px;border-bottom:1px solid var(--line);padding-bottom:4px;margin-top:32px}
+table{border-collapse:collapse;width:100%;font-size:13px;display:block;overflow-x:auto}td,th{border:1px solid var(--line);padding:4px 6px;text-align:left;vertical-align:top}
+th{background:var(--card)}.warn{color:var(--warn);font-weight:600}.mut{color:var(--mut)}pre{white-space:pre-wrap;background:var(--card);border:1px solid var(--line);padding:10px;font-size:13px}
+.banner{border:2px solid var(--acc);padding:10px;background:var(--card)}</style></head><body>
+<h1>Bid comparison SRC-2026-11-14-MGN9-170 - MGN9 170 mm rail (reBot RFQ line 2)</h1><p class="mut">Internal. SYNTHETIC supplied test quotes. No selection, no award, no PO; nothing sent to any supplier.</p>
+<div class='banner'><b>Provisional recommendation:</b> pursue Xylem Linear Motion (XL-5512) for clarification - the only bid whose MOQ (100) the pooled demand can reach. Main tradeoff: Yarrow is cheaper per piece and delivered DDP, but its MOQ of 250 is 150 above the whole pool. <b>Both bids are provisional, not ready for buyer review</b>: neither supplier is on an approved list (none on file), quality clauses not stated, lead times have no start event, Xylem's validity date cannot be computed (quote date not given) and it excludes carriages; Yarrow states no accuracy class, carriage scope or validity. <b>Do not rely on the pool</b>: 0 of 100 units are signed; if any one buyer drops out the pool is 80, below the Xylem MOQ.<br><br><b>Next step:</b> Pursue Xylem, look into a lower-MOQ source, or ask both suppliers to restate?</div>
+<h2>Comparison per quantity (20 = customer need, 100 = pooled interest, 250 = Yarrow MOQ)</h2><table><tr><th>Qty</th><th>Supplier</th><th>Approval</th><th>Unit price as quoted</th><th>Extended USD</th><th>Tooling</th><th>MOQ</th><th>Lead time</th><th>Clauses</th><th>Scope / freight</th><th>Validity</th><th>Readiness</th><th>Source</th></tr><tr><td>20</td><td>Xylem Linear Motion (fictitious)</td><td>not_confirmed_approved</td><td>11.40 USD - &quot;Unit price 11.40 USD at 100 pcs&quot;</td><td>not buyable at this qty</td><td>not stated</td><td>100 <span class='warn'>MOQ 100 &gt; 20: price does not buy this quantity</span></td><td>&quot;Lead time 3 weeks&quot; (no start event named)</td><td>not stated</td><td>&quot;Rail only (no carriage)&quot;; FOB origin</td><td>&quot;valid 21 days&quot; - quote date not stated, so expiry date cannot be computed</td><td>provisional</td><td>rail_bid_X.txt lines 2-3</td></tr><tr><td>20</td><td>Yarrow Motion Parts (fictitious)</td><td>not_confirmed_approved</td><td>9.90 USD - &quot;9.90 USD each, minimum order 250 pcs&quot;</td><td>not buyable at this qty</td><td>not stated</td><td>250 <span class='warn'>MOQ 250 &gt; 20: price does not buy this quantity</span></td><td>&quot;Lead 5 weeks&quot; (no start event named)</td><td>not stated</td><td>not stated whether carriage included; Delivered DDP</td><td>not stated</td><td>provisional</td><td>rail_bid_Y.txt lines 2-3</td></tr><tr><td>100</td><td>Xylem Linear Motion (fictitious)</td><td>not_confirmed_approved</td><td>11.40 USD - &quot;Unit price 11.40 USD at 100 pcs&quot;</td><td>1140.00</td><td>not stated</td><td>100</td><td>&quot;Lead time 3 weeks&quot; (no start event named)</td><td>not stated</td><td>&quot;Rail only (no carriage)&quot;; FOB origin</td><td>&quot;valid 21 days&quot; - quote date not stated, so expiry date cannot be computed</td><td>provisional</td><td>rail_bid_X.txt lines 2-3</td></tr><tr><td>100</td><td>Yarrow Motion Parts (fictitious)</td><td>not_confirmed_approved</td><td>9.90 USD - &quot;9.90 USD each, minimum order 250 pcs&quot;</td><td>not buyable at this qty</td><td>not stated</td><td>250 <span class='warn'>MOQ 250 &gt; 100: price does not buy this quantity</span></td><td>&quot;Lead 5 weeks&quot; (no start event named)</td><td>not stated</td><td>not stated whether carriage included; Delivered DDP</td><td>not stated</td><td>provisional</td><td>rail_bid_Y.txt lines 2-3</td></tr><tr><td>250</td><td>Xylem Linear Motion (fictitious)</td><td>not_confirmed_approved</td><td>11.40 USD - &quot;Unit price 11.40 USD at 100 pcs&quot;</td><td>2850.00 (price quoted at 100 pcs, not at this break)</td><td>not stated</td><td>100</td><td>&quot;Lead time 3 weeks&quot; (no start event named)</td><td>not stated</td><td>&quot;Rail only (no carriage)&quot;; FOB origin</td><td>&quot;valid 21 days&quot; - quote date not stated, so expiry date cannot be computed</td><td>provisional</td><td>rail_bid_X.txt lines 2-3</td></tr><tr><td>250</td><td>Yarrow Motion Parts (fictitious)</td><td>not_confirmed_approved</td><td>9.90 USD - &quot;9.90 USD each, minimum order 250 pcs&quot;</td><td>2475.00</td><td>not stated</td><td>250</td><td>&quot;Lead 5 weeks&quot; (no start event named)</td><td>not stated</td><td>not stated whether carriage included; Delivered DDP</td><td>not stated</td><td>provisional</td><td>rail_bid_Y.txt lines 2-3</td></tr></table>
+<p>Freight bases differ (FOB origin vs delivered DDP) and Yarrow states no accuracy class or carriage scope, so the unit prices are not like-for-like. Both in USD, so shown side by side.</p>
+<h2>Pooled demand vs MOQ - can we rely on it?</h2><table><tr><th>Supplier</th><th>MOQ</th><th>Pooled qty (all 5 buyers)</th><th>Slack (+) / short (-)</th><th>Pool if one buyer drops</th><th>Excess if only our customer buys at MOQ</th><th>Value of that excess USD</th></tr><tr><td>Xylem Linear Motion (fictitious)</td><td>100</td><td>100</td><td>0</td><td>80 - below MOQ</td><td>80</td><td>912.00</td></tr><tr><td>Yarrow Motion Parts (fictitious)</td><td>250</td><td>100</td><td>-150</td><td>80 - below MOQ</td><td>230</td><td>2277.00</td></tr></table>
+<p><b>Answer:</b> pooling the 5 buyers in coalition_demand.csv gives 100 rails, which exactly reaches Xylem's MOQ of 100 and does not reach Yarrow's 250. <b>It cannot be relied on:</b> 4 of the 5 rows (80 units) are 'expressed interest by email; no signed commitment', and the remaining 20 are our own RFQ customer, who has not ordered either - 0 units are committed. There is zero slack. A forecast is never inflated to reach a price; a supplier package should state the demand as 20 for a current enquiry plus up to 80 unconfirmed interest. Relying on the pool needs signed purchase commitments (or the customer accepting a 100-piece buy) before any order.</p>
+<h2>Draft supplier emails (restatement requests) - HELD, not sent</h2><p class="mut">Held for all: no supplier address on file, no released RFQ package, no approved supplier list, and the line-2 bid decision (Gate 2) is undecided.</p>
+<pre>=== SUPPLIER EMAIL - HELD - Xylem Linear Motion (fictitious) ===
+[recipient: not on file]
+Subject: Restatement request - MGN9 rail 170 mm, your ref XL-5512
+
+Hello,
+
+Thank you for your quotation XL-5512 for MGN9 rail cut to 170 mm. To evaluate it we need it restated in this form:
+- unit price in USD at 20 pcs and at 100 pcs, separately;
+- minimum order quantity;
+- whether carriages (MGN9 blocks) are included, and the accuracy class;
+- cut-length tolerance;
+- lead time to first delivery and for production, counted from receipt of purchase order;
+- quotation date and validity end date;
+- delivery basis (Incoterm), and any tooling or set-up charge (or a statement that none applies);
+- acceptance of our quality terms (certificate of conformance, change notification), or your exceptions listed.
+
+Demand: 20 pieces for a current enquiry, plus possible further demand of up to 80 pieces that is not yet confirmed. Required delivery: by 31 January 2027.
+
+A quotation in a different form will be returned for restatement.
+
+Regards,
+[buyer name]
+
+=== END ===</pre>
+<pre>=== SUPPLIER EMAIL - HELD - Yarrow Motion Parts (fictitious) ===
+[recipient: not on file]
+Subject: Restatement request - MGN9 rail 170 mm, your ref YMP-208
+
+Hello,
+
+Thank you for your quotation YMP-208 for MGN9 rail cut to 170 mm. To evaluate it we need it restated in this form:
+- unit price in USD at 20 pcs and at 100 pcs, separately;
+- minimum order quantity;
+- whether carriages (MGN9 blocks) are included, and the accuracy class;
+- cut-length tolerance;
+- lead time to first delivery and for production, counted from receipt of purchase order;
+- quotation date and validity end date;
+- delivery basis (Incoterm), and any tooling or set-up charge (or a statement that none applies);
+- acceptance of our quality terms (certificate of conformance, change notification), or your exceptions listed.
+
+Demand: 20 pieces for a current enquiry, plus possible further demand of up to 80 pieces that is not yet confirmed. Required delivery: by 31 January 2027.
+
+A quotation in a different form will be returned for restatement.
+
+Regards,
+[buyer name]
+
+=== END ===</pre>
+<p class="mut">Outbound check: each draft read alone; it names no other supplier, no other bid price, no PO price and no rate.</p>
+<h2>Detail: bid records (fields_missing)</h2><table><tr><th>Supplier</th><th>Ref</th><th>Item as quoted</th><th>conformance</th><th>fields_missing</th><th>Source</th></tr><tr><td>Xylem Linear Motion (fictitious)</td><td>XL-5512</td><td>MGN9H miniature linear rail, length 170 mm, standard accuracy</td><td>off_format</td><td>received_at / quote date (validity_until cannot be computed); breaks[20].unit_price (priced only at 100 pcs); lead_time_first_article; lead_time_production from a named event; tooling_price or statement none needed; tooling_ownership; quality_clause_acceptance (not_stated); cut-length tolerance; exceptions list (none listed)</td><td>inputs/e2e_bids/rail_bid_X.txt</td></tr><tr><td>Yarrow Motion Parts (fictitious)</td><td>YMP-208</td><td>MGN9 rail cut to 170 mm, accuracy class not stated</td><td>off_format</td><td>received_at / quote date; validity_until (not stated); accuracy class; carriage included or not; breaks[20].unit_price and breaks[100].unit_price (quantity for 9.90 not tied to a break below MOQ); lead_time_first_article; lead_time_production from a named event; tooling_price or statement none needed; tooling_ownership; quality_clause_acceptance (not_stated); exceptions list (none listed)</td><td>inputs/e2e_bids/rail_bid_Y.txt</td></tr></table>
+<h2>Figures block</h2><table><tr><th>Figure</th><th>Value</th><th>From</th></tr><tr><td>Extended Xylem Linear Motion (fictitious) at 20</td><td>None</td><td>unit x qty where qty >= MOQ</td></tr><tr><td>Extended Yarrow Motion Parts (fictitious) at 20</td><td>None</td><td>unit x qty where qty >= MOQ</td></tr><tr><td>Extended Xylem Linear Motion (fictitious) at 100</td><td>1140.0</td><td>unit x qty where qty >= MOQ</td></tr><tr><td>Extended Yarrow Motion Parts (fictitious) at 100</td><td>None</td><td>unit x qty where qty >= MOQ</td></tr><tr><td>Extended Xylem Linear Motion (fictitious) at 250</td><td>2850.0</td><td>unit x qty where qty >= MOQ</td></tr><tr><td>Extended Yarrow Motion Parts (fictitious) at 250</td><td>2475.0</td><td>unit x qty where qty >= MOQ</td></tr><tr><td>buyers</td><td>5</td><td>coalition_demand.csv</td></tr><tr><td>pooled_qty_total</td><td>100</td><td>coalition_demand.csv</td></tr><tr><td>qty_with_signed_commitment</td><td>0</td><td>coalition_demand.csv</td></tr><tr><td>qty_expressed_interest_no_signed_commitment</td><td>80</td><td>coalition_demand.csv</td></tr><tr><td>buyers_no_signed_commitment</td><td>4</td><td>coalition_demand.csv</td></tr><tr><td>qty_rfq_customer</td><td>20</td><td>coalition_demand.csv</td></tr><tr><td>need_by_dates</td><td>[&#x27;2027-01-31&#x27;]</td><td>coalition_demand.csv</td></tr></table>
+</body></html>

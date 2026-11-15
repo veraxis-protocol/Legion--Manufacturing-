@@ -1,6 +1,6 @@
 {
-  "source_commit": "c44ef9ff64d7527482d75a6ee46b4b6ae62c7391",
-  "executed_at_utc": "2026-11-15T04:27:30+00:00",
+  "source_commit": "38ec0a00a1814e66a95799c52fc0e38dc1146291",
+  "executed_at_utc": "2026-11-15T04:28:46+00:00",
   "environment": {
     "python": "3.14.7",
     "implementation": "CPython",
@@ -22,10 +22,10 @@
     "positive_BLOCKED": 1,
     "positive_Z": 0,
     "positive_NOT_RUN": 0,
-    "negative_PASS": 15,
+    "negative_PASS": 16,
     "negative_FAIL": 0,
     "negative_Z": 0,
-    "negative_NOT_RUN": 1,
+    "negative_NOT_RUN": 0,
     "e2e_stages_PASS": 3
   },
   "runtime_routes": [
@@ -35,10 +35,10 @@
     "claude-opus-5-5"
   ],
   "tokens_total": {
-    "input_tokens": 1336,
-    "output_tokens": 963686,
-    "cache_read_input_tokens": 62445070,
-    "cache_creation_input_tokens": 6598555
+    "input_tokens": 1428,
+    "output_tokens": 1043433,
+    "cache_read_input_tokens": 68013721,
+    "cache_creation_input_tokens": 7463516
   },
   "note": "Model-driven executions only. Deterministic contract/unit tests are reported separately (evidence/SKILL_MATRIX*.json) and are not counted here.",
   "skills": [
@@ -1230,7 +1230,41 @@
         "run_record": "evidence/SKILL_OUTPUTS/B17/positive/run.json"
       },
       "negative": {
-        "status": "NOT RUN"
+        "status": "PASS",
+        "reason": null,
+        "behaviour_without_live_system": null,
+        "runtime_route": "desktop-subagent",
+        "model": "claude-opus-5-5",
+        "skills_read_or_invoked": [
+          "ncr-writeup",
+          "root-cause-capa",
+          "supplier-escape-to-alternate-source",
+          "supplier-quote-request"
+        ],
+        "tool_summary": {
+          "Bash": 12,
+          "Read": 5,
+          "SubagentHandback": 1,
+          "Write": 6
+        },
+        "duration_s": 5085.0,
+        "outputs": [
+          "figures/compute_figures.py",
+          "figures/figures.json",
+          "pages/quality-page.html",
+          "pages/supply-chain-page.html",
+          "records/ncr.yaml",
+          "records/quality-register-row.yaml",
+          "records/supplier-caused-flag.yaml",
+          "run-reply.md"
+        ],
+        "deterministic_checks": "10/10",
+        "failed_checks": [],
+        "evaluator_verdict": "PASS",
+        "evaluator_fabrication": [],
+        "evaluator_arithmetic_mismatches": [],
+        "evaluator_notes": "No alternate suppliers were invented. The only named supplier is Alder Sintered Parts. Single-source risk is reported as not determinable, and the approved-supplier list is shown as missing. The chain stops correctly at Gate 1: the flag is a draft, the 8D is blocked, the RFQ is not assembled and nothing was sent. The three-timestamp note is present. Recomputed figures match: mean 48, MR-bar 2.75, UCL 55.31, LCL 40.69, 400+600=1000. One minor deviation: the saved copy is .md rather than Word, and this is disclosed.",
+        "run_record": "evidence/SKILL_OUTPUTS/B17/negative/run.json"
       }
     },
     {
@@ -1359,7 +1393,47 @@
       "chain": [],
       "e2e_stage": null,
       "positive": {
-        "status": "NOT RUN"
+        "status": "PASS",
+        "reason": null,
+        "behaviour_without_live_system": null,
+        "runtime_route": "desktop-subagent",
+        "model": "claude-opus-5-5",
+        "skills_read_or_invoked": [
+          "customer-inquiry-intake",
+          "quote-build",
+          "rfq-to-quote",
+          "supplier-quote-request"
+        ],
+        "tool_summary": {
+          "Bash": 22,
+          "Read": 3,
+          "SubagentHandback": 1,
+          "Write": 4
+        },
+        "duration_s": 22407.1,
+        "outputs": [
+          "bid_and_coalition_figures.json",
+          "bom_reconciliation.json",
+          "customer-questions-email.txt",
+          "open-work/inquiries/harbor-robotics-lab-rebot-b601-20sets.intake.txt",
+          "open-work/open-work.md",
+          "rfq-intake-harbor-robotics.html",
+          "scripts/bids_coalition.py",
+          "scripts/reconcile.py",
+          "scripts/render.py",
+          "scripts/step_bom.py",
+          "sourcing-output/bid-comparison.html",
+          "sourcing-output/restatement-XL-5512.txt",
+          "sourcing-output/restatement-YMP-208.txt",
+          "step_structure.json"
+        ],
+        "deterministic_checks": "5/5",
+        "failed_checks": [],
+        "evaluator_verdict": "PASS",
+        "evaluator_fabrication": [],
+        "evaluator_arithmetic_mismatches": [],
+        "evaluator_notes": "Did steps 1-5 and paused at Gates 1 and 2, as the skill requires. BOM is 21 rows, 31 pieces per arm, 620 for 20 sets, and checks out. Recomputed 912, 2277, 2475, 80 days and the 2026-11-19 stale date: all match. Declining item 3 follows the no-price-before-answers and ad-hoc-rate rules. Minor issues: readme line citations are offset; revision called ambiguous although readme line 31 marks the 20260625 file current; docs saved as .txt and summarised rather than printed in full.",
+        "run_record": "evidence/SKILL_OUTPUTS/HA/positive/run.json"
       }
     },
     {

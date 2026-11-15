@@ -1,0 +1,50 @@
+{
+ "samples_measured": 5,
+ "samples_stated_in_finding": 5,
+ "values_HRF": [
+  47,
+  49,
+  46,
+  50,
+  48
+ ],
+ "min_HRF": 46,
+ "max_HRF": 50,
+ "mean_HRF": 48,
+ "spec_LSL_HRF": 25,
+ "spec_USL_HRF": 40,
+ "samples_above_USL": 5,
+ "samples_below_LSL": 0,
+ "fraction_samples_failing": "5 of 5",
+ "min_minus_USL_HRF": 6,
+ "mean_minus_USL_HRF": 8,
+ "mean_over_USL_ratio": 1.2,
+ "coc_stated_HRF": 32,
+ "mean_minus_coc_HRF": 16,
+ "coc_within_spec": true,
+ "imr_centreline": 48,
+ "moving_ranges": [
+  2,
+  3,
+  4,
+  2
+ ],
+ "mr_bar": 2.75,
+ "sigma_est_mrbar_over_1.128": 2.438,
+ "imr_UCL": 55.31,
+ "imr_LCL": 40.69,
+ "points_beyond_UCL": 0,
+ "points_beyond_LCL": 0,
+ "longest_run_one_side_of_centreline": 1,
+ "lot_qty_received": 1000,
+ "qty_issued_WO8150": 400,
+ "qty_quarantine_Q1": 600,
+ "issued_plus_quarantine": 1000,
+ "reconciles_to_lot": true,
+ "prior_lots_named": [
+  "AS-7702",
+  "AS-7744"
+ ],
+ "prior_lots_count": 2,
+ "lots_with_incoming_hardness_failure": "1 of 3 (AS-7781); AS-7702 and AS-7744 recorded as passed, values not recorded"
+}

@@ -1,0 +1,149 @@
+{
+ "bids": [
+  {
+   "supplier": "Xylem Linear Motion (fictitious)",
+   "supplier_id": "unlisted",
+   "ref": "XL-5512",
+   "file": "inputs/e2e_bids/rail_bid_X.txt",
+   "src": "rail_bid_X.txt lines 2-3",
+   "item": "MGN9H miniature linear rail, length 170 mm, standard accuracy",
+   "unit_price": 11.4,
+   "currency": "USD",
+   "price_basis": "\"Unit price 11.40 USD at 100 pcs\"",
+   "moq": 100,
+   "lead": "\"Lead time 3 weeks\" (no start event named)",
+   "freight": "FOB origin",
+   "validity": "\"valid 21 days\" - quote date not stated, so expiry date cannot be computed",
+   "scope": "\"Rail only (no carriage)\"",
+   "accuracy": "standard accuracy",
+   "cut_tol": null,
+   "fields_missing": [
+    "received_at / quote date (validity_until cannot be computed)",
+    "breaks[20].unit_price (priced only at 100 pcs)",
+    "lead_time_first_article",
+    "lead_time_production from a named event",
+    "tooling_price or statement none needed",
+    "tooling_ownership",
+    "quality_clause_acceptance (not_stated)",
+    "cut-length tolerance",
+    "exceptions list (none listed)"
+   ]
+  },
+  {
+   "supplier": "Yarrow Motion Parts (fictitious)",
+   "supplier_id": "unlisted",
+   "ref": "YMP-208",
+   "file": "inputs/e2e_bids/rail_bid_Y.txt",
+   "src": "rail_bid_Y.txt lines 2-3",
+   "item": "MGN9 rail cut to 170 mm, accuracy class not stated",
+   "unit_price": 9.9,
+   "currency": "USD",
+   "price_basis": "\"9.90 USD each, minimum order 250 pcs\"",
+   "moq": 250,
+   "lead": "\"Lead 5 weeks\" (no start event named)",
+   "freight": "Delivered DDP",
+   "validity": null,
+   "scope": "not stated whether carriage included",
+   "accuracy": null,
+   "cut_tol": "+/-0.5 mm",
+   "fields_missing": [
+    "received_at / quote date",
+    "validity_until (not stated)",
+    "accuracy class",
+    "carriage included or not",
+    "breaks[20].unit_price and breaks[100].unit_price (quantity for 9.90 not tied to a break below MOQ)",
+    "lead_time_first_article",
+    "lead_time_production from a named event",
+    "tooling_price or statement none needed",
+    "tooling_ownership",
+    "quality_clause_acceptance (not_stated)",
+    "exceptions list (none listed)"
+   ]
+  }
+ ],
+ "table": [
+  {
+   "break": 20,
+   "supplier": "Xylem Linear Motion (fictitious)",
+   "unit": 11.4,
+   "ext": null,
+   "moq_flag": "MOQ 100 > 20: price does not buy this quantity",
+   "min_order_value": 1140.0
+  },
+  {
+   "break": 20,
+   "supplier": "Yarrow Motion Parts (fictitious)",
+   "unit": 9.9,
+   "ext": null,
+   "moq_flag": "MOQ 250 > 20: price does not buy this quantity",
+   "min_order_value": 2475.0
+  },
+  {
+   "break": 100,
+   "supplier": "Xylem Linear Motion (fictitious)",
+   "unit": 11.4,
+   "ext": 1140.0,
+   "moq_flag": null,
+   "min_order_value": 1140.0
+  },
+  {
+   "break": 100,
+   "supplier": "Yarrow Motion Parts (fictitious)",
+   "unit": 9.9,
+   "ext": null,
+   "moq_flag": "MOQ 250 > 100: price does not buy this quantity",
+   "min_order_value": 2475.0
+  },
+  {
+   "break": 250,
+   "supplier": "Xylem Linear Motion (fictitious)",
+   "unit": 11.4,
+   "ext": 2850.0,
+   "moq_flag": null,
+   "min_order_value": 1140.0
+  },
+  {
+   "break": 250,
+   "supplier": "Yarrow Motion Parts (fictitious)",
+   "unit": 9.9,
+   "ext": 2475.0,
+   "moq_flag": null,
+   "min_order_value": 2475.0
+  }
+ ],
+ "coalition": {
+  "buyers": 5,
+  "pooled_qty_total": 100,
+  "qty_with_signed_commitment": 0,
+  "qty_expressed_interest_no_signed_commitment": 80,
+  "buyers_no_signed_commitment": 4,
+  "qty_rfq_customer": 20,
+  "need_by_dates": [
+   "2027-01-31"
+  ]
+ },
+ "coverage": {
+  "Xylem Linear Motion (fictitious)": {
+   "moq": 100,
+   "pooled_total": 100,
+   "meets_moq_if_all_buy": true,
+   "slack_or_short": 0,
+   "customer_only_short": -80,
+   "excess_units_if_only_customer_buys_at_moq": 80,
+   "excess_value_if_only_customer_buys": 912.0,
+   "pooled_without_one_buyer": 80,
+   "meets_moq_if_one_drops": false
+  },
+  "Yarrow Motion Parts (fictitious)": {
+   "moq": 250,
+   "pooled_total": 100,
+   "meets_moq_if_all_buy": false,
+   "slack_or_short": -150,
+   "customer_only_short": -230,
+   "excess_units_if_only_customer_buys_at_moq": 230,
+   "excess_value_if_only_customer_buys": 2277.0,
+   "pooled_without_one_buyer": 80,
+   "meets_moq_if_one_drops": false
+  }
+ }
+}

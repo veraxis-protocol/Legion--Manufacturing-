@@ -1,0 +1,26 @@
+Subject: RE: RFQ - CNC aluminium part sets for reBot B601 DM arm (v1.1 STEP)
+
+Hello Lena,
+
+Thank you for the RFQ for 20 sets of the reBot B601 DM CNC aluminium parts and the MGN9-170 rails. We have checked the STEP file reBot_B601_DM_v1.1_20260625.step against the project BOM: it contains the 21 CNC part numbers, 31 pieces per arm, that the BOM lists. Before we can price it firmly we need the following:
+
+1. Revision. Please confirm that reBot_B601_DM_v1.1_20260625.step is the revision we should quote to. The project readme lists two different files under "v1.1" (20260425 and 20260625), and notes that the production version will adjust clearances and machining tolerances. Are any changes expected before you order?
+
+2. Tolerances. With no 2D drawings, the only tolerance stated is "Key dimension tolerance ±0.02 mm GB/T1840-M", with H7 / interference fits recommended for mating parts. Could you send drawings, or a list of the critical features (for example bearing bores, motor pilots, dowel holes) with their tolerances, plus the general tolerance class for everything else? Please also confirm the standard designation "GB/T1840-M" as written.
+
+3. Material. Which temper of 5052 do you need, and do you need material certificates?
+
+4. Finish. Your email says anodize is not required; the project BOM lists "Anodizing / Sandblasting". Should we quote parts as-machined and deburred, with or without sandblasting?
+
+5. Sheet-metal links. 03_Link1, 03_Link2, 03_Link3_L/R and 03_Link5 are listed as "CNC + Sheet Metal". Is a bent-and-machined 5052 part acceptable?
+
+6. Set content. The BOM says some parts (base reinforcement, front spacers, slider bracket) can be 3D printed. Do you want all 31 pieces per set in aluminium? Two items in the STEP file are labelled differently from the BOM (03_Link3_L and 01_Lower_Arm_Filler_M); please confirm that 03_Link3_L is aluminium and 01_Lower_Arm_Filler_M is a printed part outside our scope.
+
+7. Rail. Do you need the rail only, or the rail with the two MGN9 carriages per arm that the BOM lists? Any accuracy class or cut-length tolerance?
+
+8. Quantity and delivery. Is 20 sets the only quantity, or should we quote other quantities as well? For delivery by 31 January 2027, where should the parts go, and are part deliveries acceptable?
+
+9. Terms. Your preferred payment terms, packaging (for example kitted per set), any inspection report you need, and the date you need our quotation by.
+
+Thank you,
+[estimator name]

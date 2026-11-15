@@ -1,0 +1,89 @@
+# Intake form record (contract: shared/contracts/intake-form.md, version 7). DRAFT. Not saved to an Open work page (no artifact tools in this run).
+# All inputs are SYNTHETIC test data. Source refs: email = inputs/rfq_rebot_email.txt (line no.), readme = inputs/readme.md (line no.), step = inputs/reBot_B601_DM_v1.1_20260625.step (entity #).
+contract_version: 7
+site: null   # no plant profile on file (plant-setup/plant-context.md does not exist); which plant builds it is not stated
+customer: "Harbor Robotics Lab (fictitious)"
+contact: { name: "Lena Okafor", email: "lena.okafor@harbor-robotics-lab.example" }
+rfq_reference: null
+received_at: 2026-11-12T11:20:00+00:00
+response_deadline: null
+supersedes_rfq: null
+payment: null
+freight: null
+packaging: null
+liability: null
+source_documents:
+  - { name: rfq_rebot_email.txt, type: email_text, pages: 1 }
+  - { name: readme.md, type: markdown_project_readme, pages: 1 }
+  - { name: reBot_B601_DM_v1.1_20260625.step, type: step_ap214_assembly, pages: null }
+field_sources:
+  customer: "email:L15"
+  contact: "email:L2"
+  rfq_reference: "not stated (email subject L5 has no reference)"
+  received_at: "email:L4 Date header"
+  response_deadline: "not stated"
+  payment: "not stated"
+  freight: "not stated"
+  packaging: "not stated"
+  liability: "not stated"
+line_items:
+  - line_no: 1
+    part_number: null
+    part_number_verbatim: null
+    description: "CNC-machined aluminium parts for reBot B601 DM arm, complete per-arm set (21 part numbers, 31 pieces per set; see bom check)"
+    revision: "v1.1 (file reBot_B601_DM_v1.1_20260625.step) - see ambiguous register"
+    quantities: [ { qty: 20, uom: set } ]
+    material: "Aluminium 5052 (temper not stated)"
+    specs:
+      - { characteristic: "key dimension tolerance", nominal: null, tolerance: "±0.02 mm GB/T1840-M (as written)", reading_basis: from_text, source_ref: "readme:L145", note: "which dimensions are 'key' is not identified" }
+      - { characteristic: "mating parts fit", nominal: null, tolerance: "H7 / interference fit (recommended)", reading_basis: from_text, source_ref: "readme:L147", note: "features not identified" }
+      - { characteristic: "all other features", nominal: null, tolerance: null, reading_basis: unreadable_flagged, source_ref: "step file carries no tolerances; email:L12-13 'tolerances are whatever the design needs'" }
+    finish: null   # ambiguous: email:L13 'Anodize not required' vs readme:L146 'Anodizing / Sandblasting'
+    certifications_required: []
+    required_delivery: 2027-01-31
+    eau: null
+    geometry_inputs:
+      - { name: reBot_B601_DM_v1.1_20260625.step, type: step, revision: "v1.1 (20260625)", source_ref: "step header FILE_NAME; email:L9" }
+      - { name: readme.md CNC table, type: text_spec, revision: null, source_ref: "readme:L119-142" }
+    geometry_path: C1
+    field_sources: { quantities: "email:L10", material: "email:L11; readme:L121-141", required_delivery: "email:L12", description: "email:L10; readme:L114-141" }
+    line_recommendation: bid
+    line_bid_decision: draft
+  - line_no: 2
+    part_number: null
+    part_number_verbatim: "MGN9-170 mm linear rail"
+    description: "MGN9 linear rail, 170 mm, one per arm (bought-in, if we can source it)"
+    revision: null
+    quantities: [ { qty: 20, uom: each } ]
+    material: "purchased standard part (catalogue item)"
+    specs: []
+    finish: null
+    certifications_required: []
+    required_delivery: 2027-01-31
+    eau: null
+    geometry_inputs:
+      - { name: "6-RAIL-170 in STEP", type: step, revision: null, source_ref: "step #450412 (PRODUCT 'RAIL-170')" }
+    geometry_path: none
+    field_sources: { quantities: "email:L11 'one per arm' x email:L10 '20 sets'", description: "email:L11; readme:L166" }
+    line_recommendation: no_bid
+    line_bid_decision: draft
+missing_register: see out/rfq-intake-harbor-robotics.html section 4 (11 rows)
+ambiguous_register: see out/rfq-intake-harbor-robotics.html section 4 (5 rows)
+open_questions: see out/rfq-intake-harbor-robotics.html section 5, word for word, questions 1-9
+recommendation: partial
+recommendation_provisional: true
+hard_disqualifier_stopped: false
+inquiry_state: open
+stale_since: null
+answers_received: []
+bid_decision_state: draft
+bid_decision_by: null
+bid_decision_at: null
+bid_decision_basis: null
+bid_decision_reset: null
+questions_sent_at: null
+questions_sent_by: null
+paused_at_step: 5
+waiting_on: "estimator: Gate 1 (send questions 1-9) and Gate 2 (confirm bid/no-bid per line)"
+gates_passed: []
+stale_after: 2026-11-19   # default 5 business days (MFG_RFQ_STALE_DAYS not set, no profile), clock from received_at because no send recorded
