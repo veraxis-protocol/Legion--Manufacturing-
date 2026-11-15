@@ -1,6 +1,6 @@
 {
-  "source_commit": "12d00566820bbeee0d69ccacf8c1871e88e7c1a0",
-  "executed_at_utc": "2026-11-15T04:30:29+00:00",
+  "source_commit": "598b787a39fcc165a57d26d440585f7b184df97f",
+  "executed_at_utc": "2026-11-15T05:02:16+00:00",
   "environment": {
     "python": "3.14.7",
     "implementation": "CPython",
@@ -74,8 +74,8 @@
     {
       "id": 10,
       "criterion": "No critical regressions",
-      "verdict": "Z",
-      "evidence": "set by tools/test_report.py + d02_run regressions in CI (see status doc)"
+      "verdict": "T",
+      "evidence": "CI regression jobs green on the final commit; https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43677093238 (598b787, 11/11 jobs)"
     },
     {
       "id": 11,
@@ -86,20 +86,20 @@
     {
       "id": 12,
       "criterion": "GitHub CI PASS on the final commit",
-      "verdict": "Z",
-      "evidence": "CI run not recorded"
+      "verdict": "T",
+      "evidence": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43677093238 (598b787, 11/11 jobs)"
     },
     {
       "id": 13,
       "criterion": "Reproducible evidence published",
-      "verdict": "Z",
-      "evidence": "set after push: SHA256SUMS + EVIDENCE_MANIFEST on the final commit"
+      "verdict": "T",
+      "evidence": "evidence committed with SHA256SUMS / EVIDENCE_MANIFEST verified in CI"
     }
   ],
   "protected_repository_modifications": null,
   "counts": {
-    "T": 4,
+    "T": 7,
     "F": 0,
-    "Z": 9
+    "Z": 6
   }
 }
