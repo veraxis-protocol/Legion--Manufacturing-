@@ -25,7 +25,7 @@ EMAIL = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
 
 def records():
     for p in RUNS:
-        if p.parent.name in ("positive", "negative"):
+        if p.parent.name in ("positive", "negative", "cli-positive", "cli-negative"):
             yield p, json.loads(p.read_text(encoding="utf-8"))
 
 
@@ -45,13 +45,25 @@ class RuntimeEvidence(unittest.TestCase):
         for p, r in records():
             with self.subTest(run=str(p.parent.relative_to(OUT))):
                 case = CASES[r["case"]]
-                self.assertIn(case["skill"], r["skills_invoked"])
+                self.assertTrue(any(s and (s == case["skill"] or s.endswith(":" + case["skill"]))
+                                    for s in r["skills_invoked"]), r["skills_invoked"])
                 checks = {c["check"]: c["pass"] for c in r["deterministic_checks"]}
                 tool_check = [k for k in checks if k.startswith("only the permitted tools")]
                 ext_check = [k for k in checks if k.startswith("no external network")]
                 self.assertTrue(tool_check and all(checks[k] for k in tool_check))
                 self.assertTrue(ext_check and all(checks[k] for k in ext_check))
                 self.assertEqual(r["plugin_copy_modified"], [])
+
+    def test_cli_runs_discovered_the_plugin(self):
+        """Route 1 (Claude Code CLI): the plugin was discovered from --plugin-dir and the skill entered through the
+        Skill tool, not by reading a path the prompt gave."""
+        for p, r in records():
+            if r.get("runtime_route") != "cli" or r["status"] == "BLOCKED" and not r.get("deterministic_checks"):
+                continue
+            with self.subTest(run=str(p.parent.relative_to(OUT))):
+                self.assertTrue(p.parent.name.startswith("cli-"))
+                self.assertEqual(r["plugin_discovery"]["manufacturing_skills_listed"], 17)
+                self.assertTrue(any(c["tool"] == "Skill" for c in r["tool_calls"]))
 
     def test_status_rules(self):
         for p, r in records():

@@ -1,6 +1,6 @@
 {
-  "source_commit": "598b787a39fcc165a57d26d440585f7b184df97f",
-  "executed_at_utc": "2026-11-15T05:02:16+00:00",
+  "source_commit": "3282ee2e89b430e14b0a563c59e3c6b1cfc49f7a",
+  "executed_at_utc": "2026-11-15T17:46:41+00:00",
   "environment": {
     "python": "3.14.7",
     "implementation": "CPython",
@@ -20,8 +20,8 @@
     {
       "id": 1,
       "criterion": "Real Claude runtime demonstrated",
-      "verdict": "Z",
-      "evidence": "model-driven executions recorded (claude-opus-5-5); plugin discovery via CLI: BLOCKED (CLI not signed in)"
+      "verdict": "T",
+      "evidence": "model-driven executions recorded (claude-opus-5-5); plugin discovery via CLI: PASS"
     },
     {
       "id": 2,
@@ -75,7 +75,7 @@
       "id": 10,
       "criterion": "No critical regressions",
       "verdict": "T",
-      "evidence": "CI regression jobs green on the final commit; https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43677093238 (598b787, 11/11 jobs)"
+      "evidence": "CI regression jobs green on the final commit; 43679323815"
     },
     {
       "id": 11,
@@ -87,7 +87,7 @@
       "id": 12,
       "criterion": "GitHub CI PASS on the final commit",
       "verdict": "T",
-      "evidence": "https://github.com/veraxis-protocol/Legion--Manufacturing-/actions/runs/43677093238 (598b787, 11/11 jobs)"
+      "evidence": "43679323815"
     },
     {
       "id": 13,
@@ -98,8 +98,8 @@
   ],
   "protected_repository_modifications": null,
   "counts": {
-    "T": 7,
+    "T": 8,
     "F": 0,
-    "Z": 6
+    "Z": 5
   }
 }

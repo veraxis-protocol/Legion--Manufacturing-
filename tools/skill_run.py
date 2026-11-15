@@ -40,9 +40,11 @@ FIXTURES = ROOT / "tests" / "manufacturing" / "fixtures"
 OUT = ROOT / "evidence" / "SKILL_OUTPUTS"
 TOOLS = "Read,Write,Edit,Glob,Grep,Skill,Bash"
 ALLOWED = ["Read", "Write", "Edit", "Glob", "Grep", "Skill", "Bash(python:*)", "Bash(python3:*)", "Bash(ls:*)",
-           "Bash(mkdir:*)", "Bash(cat:*)", "Bash(head:*)", "Bash(wc:*)", "Bash(sqlite3:*)", "Bash(cd:*)"]
+           "Bash(mkdir:*)", "Bash(cat:*)", "Bash(head:*)", "Bash(wc:*)", "Bash(sqlite3:*)", "Bash(cd:*)",
+           "Bash(echo:*)", "Bash(find:*)", "Bash(grep:*)", "Bash(sort:*)", "Bash(tail:*)"]
 DENIED = ["WebFetch", "WebSearch", "Bash(curl:*)", "Bash(wget:*)", "Bash(pip:*)", "Bash(git:*)"]
 TRUNC = 6000
+SKILL_NAMES = {p.name for p in (PLUGIN / "skills").iterdir() if p.is_dir()} if (PLUGIN / "skills").exists() else set()
 
 
 def sha256(p: Path) -> str:
@@ -70,9 +72,17 @@ def cli_version(cli: str) -> str:
     return subprocess.run([cli, "--version"], capture_output=True, text=True, timeout=60).stdout.strip()
 
 
+def standalone_env() -> dict:
+    """The CLI runs as a standalone user would: every ANTHROPIC_* / CLAUDE* variable inherited from a host session
+    (for example the desktop app's local model proxy) is removed, so the CLI can only use its own stored sign-in."""
+    env = {k: v for k, v in os.environ.items() if not k.upper().startswith(("ANTHROPIC_", "CLAUDE"))}
+    env["PYTHONIOENCODING"] = "utf-8"
+    return env
+
+
 def auth_status(cli: str) -> dict:
     """loggedIn / authMethod / apiProvider only (no account identifiers or credentials are kept)."""
-    r = subprocess.run([cli, "auth", "status"], capture_output=True, text=True, timeout=60)
+    r = subprocess.run([cli, "auth", "status"], capture_output=True, text=True, timeout=60, env=standalone_env())
     try:
         d = json.loads(r.stdout)
     except ValueError:
@@ -127,8 +137,7 @@ def build_prompt(case: dict, variant: str) -> str:
 
 
 def run_cli(cli: str, args: list, cwd: Path, timeout: int) -> tuple:
-    env = {k: v for k, v in os.environ.items() if k not in ("CLAUDECODE", "CLAUDE_CODE_ENTRYPOINT")}
-    env["PYTHONIOENCODING"] = "utf-8"
+    env = standalone_env()
     t0 = time.time()
     try:
         p = subprocess.run([cli] + args, cwd=cwd, capture_output=True, timeout=timeout, env=env,
@@ -160,8 +169,10 @@ def parse_stream(stdout: str) -> dict:
     result = next((e for e in reversed(events) if e.get("type") == "result"), {})
     calls, by_id, text = [], {}, []
     for e in events:
-        msg = e.get("message") or {}
-        for b in msg.get("content") or [] if isinstance(msg.get("content"), list) else []:
+        msg = e.get("message") if isinstance(e.get("message"), dict) else {}
+        for b in msg.get("content") if isinstance(msg.get("content"), list) else []:
+            if not isinstance(b, dict):
+                continue
             if e.get("type") == "assistant" and b.get("type") == "tool_use":
                 c = {"id": b["id"], "tool": b["name"], "input": b.get("input"), "response": None, "is_error": None,
                      "parent_tool_use_id": e.get("parent_tool_use_id")}
@@ -221,6 +232,10 @@ def deterministic_checks(case: dict, variant: str, parsed: dict, outputs: list, 
                                                json.dumps(c["input"])))]
     checks.append({"check": "no external network, install or send action attempted", "pass": not bad,
                    "observed": [c["input"] for c in bad]})
+    used = sorted({c["tool"] for c in parsed["tool_calls"]})
+    extra = [t for t in used if t not in TOOLS.split(",")]
+    checks.append({"check": "only the permitted tools were used (" + TOOLS + ")", "pass": not extra,
+                   "observed": used})
     return checks
 
 
@@ -254,6 +269,8 @@ def evaluate(cli: str, task: Path, case: dict, variant: str, parsed: dict, timeo
             "--tools", "Read,Glob,Grep", "--allowedTools", "Read", "Glob", "Grep", "--permission-mode", "dontAsk",
             "--no-session-persistence", "--max-turns", "40", "--add-dir", str(task / "plugin")]
     rc, out, err, dur = run_cli(cli, args, task / "work", timeout)
+    with gzip.open(OUT / case["id"] / f"cli-{variant}" / "evaluator.jsonl.gz", "wt", encoding="utf-8") as g:
+        g.write(redact_stream(out))
     p = parse_stream(out)
     txt = p["result"].get("result") or ""
     m = re.search(r"\{.*\}", txt, re.S)
@@ -275,7 +292,8 @@ def run_case(case_id: str, variant: str, cli: str, timeout: int, eval_timeout: i
     case = load_cases()[case_id]
     if variant not in case:
         raise SystemExit(f"{case_id} has no {variant} variant")
-    task = Path(tempfile.mkdtemp(prefix=f"lmfg-{case_id}-{variant}-"))
+    # resolve(): the 8.3 short temp path (ADMINI~1) makes the CLI treat ./out as outside its working directory
+    task = Path(tempfile.mkdtemp(prefix=f"lmfg-{case_id}-{variant}-")).resolve()
     shutil.copytree(PLUGIN, task / "plugin")
     plugin_before = tree_digest(task / "plugin")
     work = task / "work"
@@ -286,13 +304,14 @@ def run_case(case_id: str, variant: str, cli: str, timeout: int, eval_timeout: i
     args = ["-p", prompt, "--plugin-dir", str(task / "plugin"), "--output-format", "stream-json", "--verbose",
             "--restricted", "--strict-mcp-config", "--tools", TOOLS, "--allowedTools", *ALLOWED,
             "--disallowedTools", *DENIED, "--permission-mode", "dontAsk", "--no-session-persistence",
-            "--max-turns", str(case.get("max_turns", 80))]
+            "--max-turns", str(case.get("max_turns", 80)), "--add-dir", str(task / "plugin")]
     if case.get("model"):
         args += ["--model", case["model"]]
     started = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
     rc, stdout, stderr, dur = run_cli(cli, args, work, timeout)
+    (task / "stream.jsonl").write_text(stdout, encoding="utf-8")   # kept locally (task folder), never published raw
     parsed = parse_stream(stdout)
-    dest = OUT / case_id / variant
+    dest = OUT / case_id / f"cli-{variant}"   # route 1 never overwrites the route-2 (desktop-subagent) evidence
     if dest.exists():
         shutil.rmtree(dest)
     (dest / "out").mkdir(parents=True)
@@ -309,10 +328,17 @@ def run_case(case_id: str, variant: str, cli: str, timeout: int, eval_timeout: i
     plugin_after = tree_digest(task / "plugin")
     plugin_changed = sorted(k for k in set(plugin_before) | set(plugin_after) if plugin_before.get(k) != plugin_after.get(k))
     with gzip.open(dest / "transcript.jsonl.gz", "wt", encoding="utf-8") as g:
-        g.write(stdout)
-    logged_out = "Not logged in" in (parsed["result"].get("result") or "")
+        g.write(redact_stream(stdout))
+    res_txt = parsed["result"].get("result") or ""
+    logged_out = "Not logged in" in res_txt
+    limited = bool(parsed["result"].get("is_error")) and re.search(r"usage limit|rate limit|limit reached|429", res_txt, re.I)
+    rt = parsed["runtime"]
+    discovered = [s for s in (rt.get("skills") or []) if isinstance(s, str) and s.split(":")[-1] in SKILL_NAMES]
     record = {
         "case": case_id, "skill": case["skill"], "variant": variant, "started_utc": started,
+        "runtime_route": "cli", "cli_auth": auth_status(cli),
+        "plugin_discovery": {"plugins": [p.get("name") if isinstance(p, dict) else p for p in (rt.get("plugins") or [])],
+                             "manufacturing_skills_listed": len(discovered), "skills_listed": discovered},
         "task_prompt": prompt, "inputs": staged, "cli_exit": rc, "duration_s": round(dur, 1),
         "runtime": parsed["runtime"], "skills_invoked": parsed["skills_invoked"],
         "skill_files_read": parsed["skill_files_read"],
@@ -324,10 +350,10 @@ def run_case(case_id: str, variant: str, cli: str, timeout: int, eval_timeout: i
         "plugin_copy_modified": plugin_changed, "stderr_tail": stderr[-1500:] if stderr else "",
         "transcript": str((dest / "transcript.jsonl.gz").relative_to(ROOT)).replace("\\", "/"),
     }
-    if rc == "TIMEOUT" or logged_out or not parsed["events"] or parsed["runtime"]["model"] is None:
+    if rc == "TIMEOUT" or logged_out or limited or not parsed["events"] or parsed["runtime"]["model"] is None:
         record["status"] = "BLOCKED"
-        record["blocked_reason"] = ("Claude CLI not signed in" if logged_out else
-                                    "CLI timed out" if rc == "TIMEOUT" else "no model stream")
+        record["blocked_reason"] = ("Claude CLI not signed in" if logged_out else "model usage limit reached" if limited
+                                    else "CLI timed out" if rc == "TIMEOUT" else "no model stream")
     else:
         checks = deterministic_checks(case, variant, parsed, outputs, dest / "out")
         record["deterministic_checks"] = checks
@@ -398,6 +424,22 @@ Reply with ONLY one JSON object, no prose before or after:
 TEXT_SUFFIXES = (".md", ".txt", ".csv", ".json", ".html", ".htm", ".yaml", ".yml", ".py", ".sql")
 
 
+def redact_stream(stdout: str) -> str:
+    """Route 1: the CLI stream-json reduced to the same published shape as redacted_transcript (no init metadata)."""
+    out = []
+    for raw in stdout.splitlines():
+        try:
+            e = json.loads(raw)
+        except ValueError:
+            continue
+        if e.get("type") not in ("assistant", "user"):
+            continue
+        m = e.get("message") if isinstance(e.get("message"), dict) else {}
+        out.append(json.dumps({"type": e["type"], "timestamp": e.get("timestamp"), "model": m.get("model"),
+                               "usage": m.get("usage"), "content": m.get("content")}, ensure_ascii=False))
+    return "\n".join(out) + "\n"
+
+
 def redacted_transcript(path: Path) -> str:
     """What is published: per message only type, timestamp, model, token usage and the content blocks (text, tool
     calls with their inputs, tool results). Session metadata (host attachments, tool catalogues, connector lists,
@@ -410,7 +452,7 @@ def redacted_transcript(path: Path) -> str:
             continue
         if e.get("type") not in ("assistant", "user"):
             continue
-        m = e.get("message") or {}
+        m = e.get("message") if isinstance(e.get("message"), dict) else {}
         out.append(json.dumps({"type": e["type"], "timestamp": e.get("timestamp"), "model": m.get("model"),
                                "usage": m.get("usage"), "content": m.get("content")}, ensure_ascii=False))
     return "\n".join(out) + "\n"

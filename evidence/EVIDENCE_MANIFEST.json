@@ -1,6 +1,6 @@
 {
-  "source_commit": "598b787a39fcc165a57d26d440585f7b184df97f",
-  "executed_at_utc": "2026-11-15T05:02:17+00:00",
+  "source_commit": "3282ee2e89b430e14b0a563c59e3c6b1cfc49f7a",
+  "executed_at_utc": "2026-11-15T17:46:42+00:00",
   "environment": {
     "python": "3.14.7",
     "implementation": "CPython",
@@ -28,7 +28,7 @@
     },
     {
       "path": "evidence/CLAUDE_RUNTIME.json",
-      "sha256": "ac094fb4dbc0906a0e481132dab4ea1f9db8faf04d3d4d9c918480c65bddc777"
+      "sha256": "6b6d7706f8fc48600cc13b4d7410815a1a833eda73443c1958cb74f276ae2951"
     },
     {
       "path": "evidence/CONNECTOR_ACCEPTANCE.windows-local.json",
@@ -80,7 +80,7 @@
     },
     {
       "path": "evidence/SKILL_EXECUTIONS.json",
-      "sha256": "12f9391550d205711d1ce90c60e192a47601108a342420e190a53d6de4e7ca1b"
+      "sha256": "aa4145655745de9c6bce59131d40c20cea12b92b5ba0def56bc976958beff134"
     },
     {
       "path": "evidence/SKILL_MATRIX.windows-local.json",
@@ -96,7 +96,7 @@
     },
     {
       "path": "evidence/WO_LMFG_004_GO_NO_GO.json",
-      "sha256": "cd0f94d3adac4a85d1b18f0b828164c82f58708f9ee1fc6e6fee544d9d61c9de"
+      "sha256": "6717d7a73ae17b622589121a5a83f738ad9970c7c0eb451692e2553caa327fb2"
     },
     {
       "path": "evidence/ZTL_MCP_RESULTS.json",
