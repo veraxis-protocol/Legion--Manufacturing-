@@ -24,6 +24,7 @@ EXTRA = ["manifests/UPSTREAM_MANIFEST.json", "manifests/ZTL_SOURCE_PINS.json", "
 
 def files(d: Path):
     out = sorted(p for p in d.glob("*.json") if p.name != "EVIDENCE_MANIFEST.json")
+    out += sorted((d / "E2E").glob("*.json"))      # WO-LMFG-004 end-to-end stage artifacts
     return out + [ROOT / e for e in EXTRA if (ROOT / e).exists()]
 
 
