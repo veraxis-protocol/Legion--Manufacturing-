@@ -1,0 +1,105 @@
+{
+  "source_commit": "612b4f8c6a5fbd011037d2b580a4df6f9d626fff",
+  "executed_at_utc": "2026-11-15T03:19:51+00:00",
+  "environment": {
+    "python": "3.14.7",
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "os_name": "nt",
+    "ci": false,
+    "github_run_id": null,
+    "github_workflow": null,
+    "github_job": null
+  },
+  "command": "python tools/wo004_gate.py",
+  "inputs": {},
+  "wo": "WO-LMFG-004",
+  "status": "Z",
+  "go_no_go": "Z",
+  "criteria": [
+    {
+      "id": 1,
+      "criterion": "Real Claude runtime demonstrated",
+      "verdict": "Z",
+      "evidence": "model-driven executions recorded (claude-opus-5-5); plugin discovery via CLI: BLOCKED (CLI not signed in)"
+    },
+    {
+      "id": 2,
+      "criterion": "All 17 original skills executed in their required environments",
+      "verdict": "Z",
+      "evidence": "16 PASS, 1 BLOCKED (required live system absent), 0 FAIL, 0 Z, 0 NOT RUN of 17"
+    },
+    {
+      "id": 3,
+      "criterion": "All skill outputs independently evaluated",
+      "verdict": "T",
+      "evidence": "every B-case positive run has an independent evaluator verdict"
+    },
+    {
+      "id": 4,
+      "criterion": "Microsoft 365 live access verified",
+      "verdict": "Z",
+      "evidence": "no authorised Microsoft 365 access: no matching Claude connector in the runtime (visible: ['Claude Docs', 'Dropbox', 'Google Drive', 'scheduled-tasks']) and the protected-environment credentials LMFG_M365_TENANT_ID, LMFG_M365_CLIENT_ID, LMFG_M365_TOKEN are not set; no request was made"
+    },
+    {
+      "id": 5,
+      "criterion": "Autodesk Fusion live access verified",
+      "verdict": "Z",
+      "evidence": "Autodesk Fusion is not installed on this host (checked C:\\Users\\Administrator\\AppData\\Local\\Autodesk\\webdeploy, C:\\Program Files\\Autodesk, C:\\Users\\Administrator\\AppData\\Roaming\\Autodesk\\Autodesk Fusion 360, \\Applications\\Autodesk Fusion.app) and nothing answers the plugin's MCP endpoint http://127.0.0.1:27182/mcp (FUSION_MCP_UNREACHABLE <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>)"
+    },
+    {
+      "id": 6,
+      "criterion": "Oracle NetSuite live access verified",
+      "verdict": "Z",
+      "evidence": "no authorised Oracle NetSuite access: no matching Claude connector in the runtime (visible: ['Claude Docs', 'Dropbox', 'Google Drive', 'scheduled-tasks']) and the protected-environment credentials LMFG_NETSUITE_ACCOUNT, LMFG_NETSUITE_TOKEN are not set; no request was made"
+    },
+    {
+      "id": 7,
+      "criterion": "Infor M3 live access verified",
+      "verdict": "Z",
+      "evidence": "no authorised Infor M3 access: no matching Claude connector in the runtime (visible: ['Claude Docs', 'Dropbox', 'Google Drive', 'scheduled-tasks']) and the protected-environment credentials LMFG_M3_MCP_URL, LMFG_M3_TOKEN are not set; no request was made"
+    },
+    {
+      "id": 8,
+      "criterion": "Integrated manufacturing E2E workflow completed",
+      "verdict": "T",
+      "evidence": "PASS"
+    },
+    {
+      "id": 9,
+      "criterion": "LEGION adds a measured capability beyond the Anthropic baseline",
+      "verdict": "Z",
+      "evidence": "evidence/BASELINE_COMPARISON.json missing"
+    },
+    {
+      "id": 10,
+      "criterion": "No critical regressions",
+      "verdict": "Z",
+      "evidence": "set by tools/test_report.py + d02_run regressions in CI (see status doc)"
+    },
+    {
+      "id": 11,
+      "criterion": "No unauthorized consequential actions",
+      "verdict": "T",
+      "evidence": "no run attempted a network, send, install or external write action"
+    },
+    {
+      "id": 12,
+      "criterion": "GitHub CI PASS on the final commit",
+      "verdict": "Z",
+      "evidence": "CI run not recorded"
+    },
+    {
+      "id": 13,
+      "criterion": "Reproducible evidence published",
+      "verdict": "Z",
+      "evidence": "set after push: SHA256SUMS + EVIDENCE_MANIFEST on the final commit"
+    }
+  ],
+  "protected_repository_modifications": null,
+  "counts": {
+    "T": 3,
+    "F": 0,
+    "Z": 10
+  }
+}

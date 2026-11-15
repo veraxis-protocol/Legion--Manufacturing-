@@ -26,6 +26,7 @@ from lmfg_common import artifact_header, write_json  # noqa: E402
 
 SUITES = {"skills": ("tests/manufacturing", "test_*.py"), "connectors": ("tests/connectors", "test_*.py"),
           "engineering": ("tests/engineering", "test_d01_*.py"), "verifier": ("tests/engineering", "test_d02_*.py"),
+          "runtime": ("tests/runtime", "test_*.py"),
           "all": ("tests", "test_*.py")}
 CLASS_OF = {"test_1_": "1_positive", "test_2_": "2_negative", "test_3_": "3_missing_data", "test_4_": "4_provenance",
             "test_5_": "5_approval_boundary", "test_6_": "6_regression", "test_7_": "model_driven_run",

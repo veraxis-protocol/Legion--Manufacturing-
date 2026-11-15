@@ -246,9 +246,41 @@ jobs:
         if: always()
         run: rm -rf .lmfg_cache _deps .venv
 
+  runtime-evidence:
+    name: Model-driven skill executions, E2E trace and A/B evidence verified (WO-LMFG-004)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Output SHA-256, skill activation, tool use, redaction and status rules for every committed run
+        run: python3 -I tools/test_report.py runtime --evidence evidence/RUNTIME_EVIDENCE.json
+      - name: Recompute the execution summary and the GO/NO-GO from the committed runs (no model call)
+        run: |
+          python3 -I tools/skill_report.py
+          python3 -I tools/wo004_gate.py
+          git diff --stat -- evidence/SKILL_EXECUTIONS.json evidence/WO_LMFG_004_GO_NO_GO.json || true
+      - name: Publish evidence
+        if: always()
+        run: |
+          for f in RUNTIME_EVIDENCE SKILL_EXECUTIONS MANUFACTURING_E2E BASELINE_COMPARISON WO_LMFG_004_GO_NO_GO; do
+            [ -f evidence/$f.json ] && python3 -I tools/ci_summary.py evidence/$f.json >> "$GITHUB_STEP_SUMMARY"
+            python3 -I tools/ci_notice.py evidence/$f.json
+          done
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: evidence-runtime
+          path: |
+            evidence/RUNTIME_EVIDENCE.json
+            evidence/SKILL_EXECUTIONS.json
+            evidence/WO_LMFG_004_GO_NO_GO.json
+          if-no-files-found: error
+
   evidence-manifest:
     name: SHA-256 manifest over every evidence artifact of this run
-    needs: [source-integrity, policy, protected-repos, upstream-baseline, manufacturing-skills, connectors, engineering-cad, engineering-verifier]
+    needs: [source-integrity, policy, protected-repos, upstream-baseline, manufacturing-skills, connectors, engineering-cad, engineering-verifier, runtime-evidence]
     if: always()
     runs-on: ubuntu-24.04
     timeout-minutes: 10
