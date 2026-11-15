@@ -1,0 +1,518 @@
+{
+ "case": "B12",
+ "skill": "breakdown-diagnosis",
+ "variant": "positive",
+ "started_utc": "2026-11-15T18:30:00Z",
+ "runtime_route": "cli",
+ "cli_auth": {
+  "loggedIn": true,
+  "authMethod": "claude.ai",
+  "apiProvider": "firstParty"
+ },
+ "plugin_discovery": {
+  "plugins": [
+   "claude-for-manufacturing",
+   "cc-plugin-agents-md",
+   "cc-plugin-telemetry",
+   "cc-plugin-privacy",
+   "cc-plugin-plugin-authoring"
+  ],
+  "manufacturing_skills_listed": 17,
+  "skills_listed": [
+   "claude-for-manufacturing:breakdown-diagnosis",
+   "claude-for-manufacturing:breakdown-to-next-report",
+   "claude-for-manufacturing:custom-connector",
+   "claude-for-manufacturing:customer-inquiry-intake",
+   "claude-for-manufacturing:daily-production-report",
+   "claude-for-manufacturing:data-consolidate",
+   "claude-for-manufacturing:design-space-explore",
+   "claude-for-manufacturing:inspection-to-capa",
+   "claude-for-manufacturing:morning-plant-pulse",
+   "claude-for-manufacturing:ncr-writeup",
+   "claude-for-manufacturing:onboarding",
+   "claude-for-manufacturing:quote-build",
+   "claude-for-manufacturing:rfq-to-quote",
+   "claude-for-manufacturing:root-cause-capa",
+   "claude-for-manufacturing:supplier-escape-to-alternate-source",
+   "claude-for-manufacturing:supplier-quote-request",
+   "claude-for-manufacturing:trade-study-report"
+  ]
+ },
+ "task_prompt": "VMC-02 just went down (event note, sensor window, maintenance history and the OEM troubleshooting page are in ./inputs/breakdown). What's the likely cause and what's the cheapest test to tell the candidates apart?\n\nThe input files are in ./inputs (all of them are SYNTHETIC test data for a fictitious plant). Write every work product you produce as files under ./out. Do not contact, email or write to any external system; there is no live ERP, Microsoft 365, CMMS or supplier available in this session.",
+ "inputs": [
+  {
+   "path": "inputs/breakdown/event.txt",
+   "source": "tests/runtime/inputs/breakdown/event.txt",
+   "sha256": "dca798765caac9c89ac7e2a8e046d3d758c28869fc42058ddb2fb6bf7b604be4",
+   "bytes": 478
+  },
+  {
+   "path": "inputs/breakdown/maintenance_history.csv",
+   "source": "tests/runtime/inputs/breakdown/maintenance_history.csv",
+   "sha256": "c6961a19bee6d810a3c8d78da67578a0a6f204befb554f6711170152991fd308",
+   "bytes": 709
+  },
+  {
+   "path": "inputs/breakdown/manual_troubleshooting.md",
+   "source": "tests/runtime/inputs/breakdown/manual_troubleshooting.md",
+   "sha256": "c07cb271de57ba7a4ea351bae2e154913fea7fe1dc1ad715d6d35304d859c179",
+   "bytes": 838
+  },
+  {
+   "path": "inputs/breakdown/sensor_window.csv",
+   "source": "tests/runtime/inputs/breakdown/sensor_window.csv",
+   "sha256": "97d6f1c39c7ceefac0994947143af601cf40ca7bbd7a2e32adac37ae27ee9ebf",
+   "bytes": 573
+  }
+ ],
+ "cli_exit": 0,
+ "duration_s": 143.1,
+ "runtime": {
+  "model": "claude-opus-5-5",
+  "claude_code_version": "2.1.325",
+  "permission_mode": "dontAsk",
+  "tools": [
+   "Bash",
+   "Edit",
+   "Glob",
+   "Grep",
+   "Read",
+   "Skill",
+   "Write"
+  ],
+  "plugins": [
+   {
+    "name": "claude-for-manufacturing",
+    "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B12-positive-mpxychcj\\plugin",
+    "source": "claude-for-manufacturing@inline",
+    "version": "1.0.0"
+   },
+   {
+    "name": "cc-plugin-agents-md",
+    "path": "builtin",
+    "source": "cc-plugin-agents-md@builtin"
+   },
+   {
+    "name": "cc-plugin-telemetry",
+    "path": "builtin",
+    "source": "cc-plugin-telemetry@builtin"
+   },
+   {
+    "name": "cc-plugin-privacy",
+    "path": "builtin",
+    "source": "cc-plugin-privacy@builtin"
+   },
+   {
+    "name": "cc-plugin-plugin-authoring",
+    "path": "builtin",
+    "source": "cc-plugin-plugin-authoring@builtin"
+   }
+  ],
+  "skills": [
+   "claude-for-manufacturing:breakdown-diagnosis",
+   "claude-for-manufacturing:breakdown-to-next-report",
+   "claude-for-manufacturing:custom-connector",
+   "claude-for-manufacturing:customer-inquiry-intake",
+   "claude-for-manufacturing:daily-production-report",
+   "claude-for-manufacturing:data-consolidate",
+   "claude-for-manufacturing:design-space-explore",
+   "claude-for-manufacturing:inspection-to-capa",
+   "claude-for-manufacturing:morning-plant-pulse",
+   "claude-for-manufacturing:ncr-writeup",
+   "claude-for-manufacturing:onboarding",
+   "claude-for-manufacturing:quote-build",
+   "claude-for-manufacturing:rfq-to-quote",
+   "claude-for-manufacturing:root-cause-capa",
+   "claude-for-manufacturing:supplier-escape-to-alternate-source",
+   "claude-for-manufacturing:supplier-quote-request",
+   "claude-for-manufacturing:trade-study-report",
+   "design",
+   "design-sync",
+   "dataviz",
+   "update-config",
+   "verify",
+   "debug",
+   "code-review",
+   "simplify",
+   "batch",
+   "fewer-permission-prompts",
+   "doctor",
+   "loop",
+   "schedule",
+   "claude-api",
+   "run",
+   "run-skill-generator",
+   "plugin-authoring"
+  ],
+  "mcp_servers": [],
+  "session_id": "66e69e3c-0e3e-452e-ba82-06da159d3c59"
+ },
+ "skills_invoked": [
+  "claude-for-manufacturing:breakdown-diagnosis"
+ ],
+ "skill_files_read": [],
+ "tool_calls": [
+  {
+   "tool": "Skill",
+   "input": {
+    "skill": "claude-for-manufacturing:breakdown-diagnosis"
+   },
+   "response": "Launching skill: claude-for-manufacturing:breakdown-diagnosis",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B12-positive-mpxychcj/work\"; find inputs -type f | head -50; python3 -I ../plugin/shared/scripts/plant_setup.py find"
+   },
+   "response": "inputs/breakdown/event.txt\ninputs/breakdown/maintenance_history.csv\ninputs/breakdown/manual_troubleshooting.md\ninputs/breakdown/sensor_window.csv\n{\"setup_page_first\": \"Required before reading the plant profile or any rate, once per conversation, even when profile_path does not exist yet: if you have the artifact tools (Artifact, or mcp__claude-artifacts__* in Cowork), list the user's artifacts (scope all) and look for 'Plant setup: <company>' and 'Plant rates: <company>'. If more than one 'Plant setup:' page exists and the user has not named the company, ask which plant before reading any page (run find again with --titles and the titles listed; companies names them). For each page found, read its file with those tools (action read, path setup/plant-context.txt or setup/plant-rates.txt; an older page has setup/plant-context.md or setup/plant-rates.md instead; never retype it), then run: python3 \\\"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-B12-positive-mpxychcj\\\\plugin\\\\shared\\\\scripts\\\\plant_setup.py\\\" install --from <the saved file> --company \\\"<company>\\\" (add --kind rates for the rates file), and read profile_path and rates_path. If this skill reads or writes ## Dashboards, ## Open inquiries or ## Sourcing events, also look for 'Open work: <company>': read setup/open-work.txt and then every file it names and every file the page lists (action read with paths, or one read per file) into one folder, keeping the page's paths, and run install --kind work --from <that folder> --company \\\"<company>\\\"; the blocks are then at work_path. Not found, no artifact tools, or a call refused: read the paths as printed and say nothing about a page. Never show a rate value from rates_path outside an internal artifact.\", \"profile_path\": \"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-B12-positive-mpxychcj\\\\work\\\\plant-setup\\\\plant-context.md\", \"exists\": false, \"rates_path\": \"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-B12-positive-mpxychcj\\\\work\\\\plant-setup\\\\plant-rates.md\", \"rates_exists\": false, \"work_path\": \"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-B12-positive-mpxychcj\\\\work\\\\plant-setup\\\\open-work\\\\open-work.md\", \"work_exists\": false, \"companies\": [], \"company\": null, \"persistent\": false}",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B12-positive-mpxychcj/work/inputs/breakdown\"; for f in event.txt manual_troubleshooting.md maintenance_history.csv; do echo \"=== $f\"; cat \"$f\"; done; echo \"=== sensor\"; wc -l sensor_window.csv; cat sensor_window.csv"
+   },
+   "response": "Permission to use Bash has been denied because Claude Code is running in don't ask mode. IMPORTANT: You *may* attempt to accomplish this action using other tools that might naturally be used to accomplish this goal, e.g. using head instead of cat. But you *should not* attempt to work around this denial in malicious ways, e.g. do not use your ability to run tests to execute non-test actions. You should only try to work around this restriction in reasonable ways that do not attempt to bypass the intent behind this denial. If you believe this capability is essential to complete the user's request, STOP and explain to the user what you were trying to do and why you need this permission. Let the user decide how to proceed.",
+   "is_error": true,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B12-positive-mpxychcj\\work\\inputs\\breakdown\\event.txt"
+   },
+   "response": "1\t# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.\n2\t2026-11-10 15:24 local: VMC-02 alarm 'SPINDLE OVERLOAD / OVERTEMP', machine stopped mid-cycle on WO-8120 op 20 (MB-1880).\n3\tOperator note: grinding noise from spindle for ~20 min before alarm, chips looked normal. Machine still down at 16:10.\n4\tTechnician photo description (no photo file): bluish discolouration visible on the spindle nose / taper area.\n5\t",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B12-positive-mpxychcj\\work\\inputs\\breakdown\\manual_troubleshooting.md"
+   },
+   "response": "1\t<!-- SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.  (fictitious OEM manual excerpt) -->\n2\t# VMC spindle troubleshooting (excerpt, Section 7.4)\n3\t| Symptom | Possible cause | Check |\n4\t|---|---|---|\n5\t| Overtemp with rising vibration | Spindle bearing wear / preload loss | Vibration spectrum at bearing frequencies; run-out at taper (< 3 um) |\n6\t| Overtemp, normal vibration | Chiller low flow / fluid level | Chiller flow and level |\n7\t| Overload with tool pull-out marks | Drawbar clamp force low | Clamp force gauge (spec 8.0-9.5 kN) |\n8\t| Grinding noise | Bearing damage or contamination | Stop machine; do not run spindle; manual rotation feel |\n9\tSAFETY: Lock out the spindle drive before any manual rotation or inspection. Do not run a spindle showing grinding noise.\n10\t",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B12-positive-mpxychcj\\work\\inputs\\breakdown\\maintenance_history.csv"
+   },
+   "response": "1\t# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.\n2\two,asset_id,opened,closed,type,close_out_note\n3\tMW-118,VMC-02,2026-03-02,2026-03-02,PM,quarterly PM done. greased ways. spindle sounded a bit rough at 8k, monitor\n4\tMW-131,VMC-02,2026-05-19,2026-05-20,CM,spindle alarm 2nd shift. found drawbar clamp low, adjusted belleville stack. ran ok\n5\tMW-140,VMC-02,2026-07-08,2026-07-08,PM,PM. vib reading 2.1 mm/s at 8k (was 1.4 last yr). told sup\n6\tMW-152,VMC-03,2026-08-11,2026-08-11,CM,coolant pump replaced - not related\n7\tMW-160,VMC-02,2026-09-23,2026-09-24,CM,spindle hot after long cycle. checked chiller - low on fluid topped up. temp ok after\n8\t",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B12-positive-mpxychcj\\work\\inputs\\breakdown\\sensor_window.csv"
+   },
+   "response": "1\t# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.\n2\ttimestamp,asset_id,spindle_vibration_mm_s,spindle_temp_c,spindle_load_pct,coolant_pressure_bar\n3\t2026-11-10T13:00:00-05:00,VMC-02,1.8,31.0,42,20.1\n4\t2026-11-10T13:30:00-05:00,VMC-02,1.9,31.4,44,20.0\n5\t2026-11-10T14:00:00-05:00,VMC-02,2.4,33.2,45,19.9\n6\t2026-11-10T14:30:00-05:00,VMC-02,3.1,36.0,47,20.1\n7\t2026-11-10T15:00:00-05:00,VMC-02,4.6,40.8,49,20.0\n8\t2026-11-10T15:20:00-05:00,VMC-02,7.9,47.5,58,19.8\n9\t2026-11-10T15:24:00-05:00,VMC-02,11.2,52.1,71,19.9\n10\t",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B12-positive-mpxychcj\\plugin\\shared\\contracts\\downtime-record.md"
+   },
+   "response": "1\t# Contract: the downtime record\n2\t\n3\t**Emitted by** `breakdown-diagnosis`\n4\t**Consumed by** `daily-production-report`, into its downtime log and exceptions\n5\t**Chain** 4, breakdown to next report\n6\t**Contract version** 3\n7\t\n8\tRules that govern every contract are in [README.md](README.md).\n9\t\n10\t---\n11\t\n12\t## The requirement this exists to satisfy\n13\t\n14\tChain 4's build note is unusually direct: `breakdown-diagnosis` must emit a\n15\tdowntime record **in exactly the shape `daily-production-report` consumes, with\n16\tno transformation step in between**, and the schema is to be defined before\n17\teither skill is built.\n18\t\n19\tThere is a specific reason it has to be exact. `daily-production-report` already\n20\treads downtime events from the MES or historian export. A record arriving from a\n21\tdiagnosis is a **row in that same log**, not a separate feed. If the two shapes\n22\tdiffer, the report has to reconcile them, and a reconciliation step between two\n23\tsources of downtime is precisely how a stoppage gets counted twice or dropped.\n24\t\n25\t**So this contract is the MES downtime export's shape, plus diagnosis fields.**\n26\tIt is deliberately not a richer object.\n27\t\n28\t---\n29\t\n30\t## Fields\n31\t\n32\t### The stoppage itself — identical to an export row\n33\t\n34\t| Field | Type | Behavior | Notes |\n35\t|---|---|---|---|\n36\t| `contract_version` | integer | Required | |\n37\t| `site` | string | Required | Rule 7 |\n38\t| `asset_id` | string, normalized | Required | Paired with verbatim, rule 3 |\n39\t| `asset_id_verbatim` | string | Required | As the source wrote it |\n40\t| `started_at` | timestamp with zone | Required | Rule 4. No naive timestamps |\n41\t| `ended_at` | timestamp with zone or null | Degrades | Null means still down. Not zero duration |\n42\t| `duration_minutes` | integer or null | Degrades | Null while `ended_at` is null. Never computed as zero |\n43\t| `reason_code` | string | Degrades | The plant's own code. Not remapped to a canonical set |\n44\t| `reason_text` | string | Optional | Free text as recorded |\n45\t| `production_wo` | string, normalized, or null | Optional | The production work order interrupted, when known. Paired with verbatim, rule 3 |\n46\t| `production_wo_verbatim` | string or null | Optional | As the source wrote it. Null whenever `production_wo` is null |\n47\t| `shift` | string | Degrades | Resolved against the site's shift pattern and day boundary |\n48\t| `production_day` | date | Required | Which day this belongs to, per the cross-midnight rule |\n49\t| `source_system` | string | Required | `breakdown_diagnosis` here; `mes_export` or `historian_export` for export rows |\n50\t| `source_ref` | string | Required | Rule 6 |\n51\t\n52\t### The diagnosis fields — additive only\n53\t\n54\t| Field | Type | Behavior | Notes |\n55\t|---|---|---|---|\n56\t| `diagnosis_ref` | string or null | Optional | Pointer to the ranked diagnosis this came from |\n57\t| `leading_cause` | string or null | Optional | The top-ranked candidate, as text |\n58\t| `leading_cause_confidence` | enum or null | Optional | `high`, `medium`, `low`. Never a bare percentage |\n59\t| `cited_work_orders` | list of strings | Optional | Maintenance work orders supporting the leading cause |\n60\t| `safety_flagged` | boolean | **Required** | See below |\n61\t| `safety_reason` | string or null | Required when `safety_flagged` is set | Which trigger from `../../skills/breakdown-diagnosis/SKILL.md` (*What counts as a safety implication*) applies, with its evidence; or *\"none of the safety triggers shown\"* when false. |\n62\t| `pm_adjustment_proposed` | boolean | Optional | Whether a PM plan change was drafted |\n63\t| `maintenance_wo` | string or null | Optional | The maintenance ticket, if one exists. Never named `work_order` |\n64\t| `diagnosis_state` | enum | Required | `advisory`, `technician_confirmed`, `superseded` |\n65\t| `technician_step` | enum | Required | Chain 4's pause for the technician: `confirmed` (they came back and confirmed or corrected the cause), `pending` (the chain paused and is waiting), `skipped` (no technician step happened: a test, a demo, or a record folded in straight away). |\n66\t\n67\t---\n68\t\n69\t## Three fields that carry real weight\n70\t\n71\t**`safety_flagged` is required and defaults to nothing.** `breakdown-diagnosis`\n72\tmust surface a safety implication before any diagnosis, and that ordering has to\n73\tsurvive the handoff — a safety-critical stoppage cannot arrive in a production\n74\treport as an ordinary line ranked by minutes. The consumer leads with it.\n75\t\n76\t**`duration_minutes` is null while a machine is still down, never zero.** A zero\n77\twould rank an ongoing outage last in a log sorted by minutes, which is exactly\n78\tbackwards. This is `../absent-is-not-zero.md` applied to one field.\n79\t\n80\t**`diagnosis_state` keeps advice labelled as advice.** Chain 4 pauses at a human\n81\tworking a physical machine and the diagnosis is advisory throughout. A report\n82\tthat presents an unconfirmed leading cause as the reason for the stoppage is\n83\tasserting something no one verified. **`technician_step` says why it is still\n84\tadvice**: a record folded in with the pause skipped is not the same as one\n85\twaiting on a technician, and the report and the dashboard say which.\n86\t\n87\t---\n88\t\n89\t## Reason codes are passed through, not normalized\n90\t\n91\t`reason_code` carries the plant's own code verbatim. Do not remap it to a\n92\tcanonical vocabulary on the way across.\n93\t\n94\tThe consumer has its own job here: when reason codes are inconsistent or heavily\n95\tweighted to \"Other\", **that coverage problem is a finding it reports**, not\n96\tsomething the producer should quietly clean up. Normalizing on emit would destroy\n97\tthe signal.\n98\t\n99\t---\n100\t\n101\t## Worked example\n102\t\n103\tA four-hour spindle failure, diagnosed, technician not yet finished:\n104\t\n105\t```yaml\n106\tcontract_version: 3\n107\tsite: Fairview\n108\tasset_id: HAAS-VF4-02\n109\tasset_id_verbatim: \"Haas VF4 #2\"\n110\tstarted_at: 2026-09-08T09:12:00-04:00\n111\tended_at: null\n112\tduration_minutes: null\n1...[truncated]",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B12-positive-mpxychcj\\plugin\\shared\\computed-figures.md"
+   },
+   "response": "1\t# Computed figures — a number is printed, never retyped\n2\t\n3\t**Shared across the plugin.** Every skill that reports a number follows this.\n4\t\n5\tThe failure this exists to stop has one shape. The skill does the work\n6\tcorrectly, then writes the summary from memory. The summary says \"eleven\n7\tmaintenance records\" where the data holds six, \"3.1× the control limit\" where\n8\tthe division gives 2.36, \"five orders\" where the file has six — the customer's\n9\town order being the one missed. Each figure is stated with total confidence,\n10\tand each is the first thing a quality manager or an estimator will check.\n11\t\n12\tA second shape sits next to it: the confident absence. \"The sister machine has\n13\tno bearing history.\" \"There is no PM plan in the library.\" Said after one\n14\tsearch, about a record that was there.\n15\t\n16\t---\n17\t\n18\t## The rule\n19\t\n20\t**Every count, total, ratio, percentage and \"N of M\" in user-facing output is\n21\tproduced by code run over the data in this session, and printed from that\n22\tresult. A number is never retyped, rounded from memory, or paraphrased.**\n23\t\n24\t**A negative claim — \"has no history,\" \"no plan exists,\" \"not in the file\" —\n25\tcites the exact query or filter that returned nothing.** Where the search tool\n26\tmay be incomplete (SharePoint search under-reports), enumerate the folder\n27\tinstead, or say *\"not found by search\"* rather than *\"does not exist.\"* Those\n28\tare different claims and only the first one was earned.\n29\t\n30\t---\n31\t\n32\t## The figures block — a required part of the output\n33\t\n34\tA rule that says \"check your numbers\" is a rule nobody can see being skipped.\n35\tSo the check is an output, not an intention.\n36\t\n37\t**Every run that reports a number emits a figures block**, produced by code,\n38\tbefore the prose that uses it. One row per figure:\n39\t\n40\t| Figure | Value | Computed from | Filter or query |\n41\t|---|---|---|---|\n42\t| Maintenance records, HAAS-VF4-02 | 9 | maintenance export | `asset_id == \"HAAS-VF4-02\"` |\n43\t| Sibling records mentioning \"bearing\" | 2 (LMB-13781, LMB-14022, both HAAS-VF4-05) | maintenance export | same model, `notes` contains \"bearing\" |\n44\t| Measured ÷ upper control limit | 1.87 | inspection export | measured and limit both from the same computation |\n45\t| PM plan documents found | 0 — **not found by search** | M365 library | search \"PM plan\"; folder not enumerated |\n46\t\n47\tThen three things hold, and a reader can check all three without re-running\n48\tanything:\n49\t\n50\t1. **The prose quotes the block.** A number that appears in the narrative, a\n51\t   table or a headline appears in the block with the same value. A number in\n52\t   the prose with no row in the block is a defect.\n53\t2. **A ratio comes from the same computation as its parts.** Do not compute a\n54\t   control limit in code and then divide by it in your head.\n55\t3. **A subtotal reconciles to its total in the block itself.** If 126 records\n56\t   matched, the exact and normalized rows add to 126, and each equals the sum\n57\t   of the classes it is made of. A block that does not add up is fixed before\n58\t   anything is written from it.\n59\t\n60\tWhere the skill already emits \"the structured data behind the report,\" the\n61\tfigures block is part of it. Where the output is a controlled document going to\n62\ta customer or supplier, the block stays on the internal side.\n63\t\n64\t---\n65\t\n66\t## When no code can be run\n67\t\n68\tSome sessions have no code execution. Then the count was made by reading, and\n69\tthe output says so: **\"counted by reading, not computed — verify before\n70\trelying on it,\"** on the block and beside any figure that matters. Never\n71\tpresent a hand count as a computed one. This is `absent-is-not-zero.md` applied\n72\tto the method rather than the data: an unverified number named as unverified is\n73\tuseful, and one dressed as computed is worse than none.\n74\t\n75\t---\n76\t\n77\t## What this does not change\n78\t\n79\t- A figure that cannot be read is still reported unreadable. The block carries\n80\t  the row with the reason, never a guess.\n81\t- Rates, whether read from an `MFG_*` variable or the plant profile, follow\n82\t  `secret-config.md`. The block names the source; the value appears only where\n83\t  the audience rule allows.\n84\t- Computing a figure is not applying a fix. Anything that changes data still\n85\t  needs its yes.\n86\t",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B12-positive-mpxychcj\\work\\out\\VMC-02_breakdown_diagnosis.md",
+    "content": "# VMC-02 breakdown diagnosis: 2026-11-10 15:24, SPINDLE OVERLOAD / OVERTEMP\n\n*SYNTHETIC test data for a fictitious plant. This diagnosis is ADVISORY and has not been confirmed by a technician.*\n\n> **Follow your plant's lockout procedure before anyone works on this machine. This is not a safety assessment.**\n\n## ⚠ Safety: flagged\n\n- **Do not run the spindle.** The operator heard a grinding noise for about 20 minutes before the alarm. OEM manual §7.4 says: *\"Do not run a spindle showing grinding noise\"* and *\"Lock out the spindle drive before any manual rotation or inspection.\"* Vibration reached 11.2 mm/s at the alarm. A bearing in this state can seize if the spindle is powered again.\n- **Stored energy (drawbar).** Candidate 3 involves the drawbar Belleville spring stack, which is a compressed spring pack. Only use the OEM procedure to release or adjust it. MW-131 shows that this stack has been adjusted on this machine before.\n- **Heat.** The spindle nose and taper show bluish discolouration, which means the steel got very hot at that spot. Let the spindle cool before anyone touches the nose or taper.\n- **Do not take the shortcut of restarting.** Do not reset the alarm and \"run it to see\". The manual's vibration-spectrum check needs a running spindle, so it is **excluded** while the grinding noise is unexplained.\n\n## Event (as reported, not translated)\n\n| | |\n|---|---|\n| Asset | VMC-02 |\n| Down at | 2026-11-10 15:24 local (sensor export stamps −05:00) |\n| Alarm | SPINDLE OVERLOAD / OVERTEMP. The machine stopped mid-cycle |\n| Job interrupted | WO-8120 op 20 (MB-1880) |\n| Operator | \"grinding noise from spindle for ~20 min before alarm, chips looked normal\" |\n| Photo | **No photo file.** Text description only: \"bluish discolouration visible on the spindle nose / taper area\" |\n| Status | Still down at 16:10, the last status received. The current state is unknown |\n\n## Sensor observation summary\n\nThe window runs from 13:00 to 15:24 and covers the event. The last sample is at the alarm time. There is no data after the alarm.\n\n| Time | Vib mm/s | Temp °C | Load % | Coolant bar |\n|---|---|---|---|---|\n| 13:00 | 1.8 | 31.0 | 42 | 20.1 |\n| 13:30 | 1.9 | 31.4 | 44 | 20.0 |\n| 14:00 | 2.4 | 33.2 | 45 | 19.9 |\n| 14:30 | 3.1 | 36.0 | 47 | 20.1 |\n| 15:00 | 4.6 | 40.8 | 49 | 20.0 |\n| 15:20 | 7.9 | 47.5 | 58 | 19.8 |\n| 15:24 | 11.2 | 52.1 | 71 | 19.9 |\n\n- **Vibration started climbing first and kept speeding up.** It was flat until 13:30. After that it rose by 0.5, 0.7, 1.5, 3.3 and then 3.3 mm/s between samples, and the last rise took only 4 minutes. This is a runaway shape, not a step change.\n- **Temperature followed vibration.** It rose 21.1 °C across the window. The steepest rise matched the steepest vibration rise.\n- **Spindle load stayed level (42→49 %) until 15:00 and then jumped to 71 %.** That suggests the load rose because of friction late in the failure, not because the cut got heavier. This fits the operator's \"chips looked normal\".\n- **Coolant pressure was flat (19.8–20.1 bar).** This channel is not labelled as chiller flow. It looks like cutting or through-spindle coolant pressure, so **it says nothing about the spindle chiller.** There is no chiller channel in the export.\n- Samples are unevenly spaced (30, 30, 30, 30, 20 and 4 min). The trend is clear, but the exact time of onset cannot be pinned down.\n\n## Maintenance history and close-out notes\n\nThe maintenance export holds 5 records in total: 4 for VMC-02 and 1 for VMC-03. **All four VMC-02 notes are specific observations.** None of them is a template (see the figures block).\n\n| WO | Date | Type | Close-out note (verbatim) |\n|---|---|---|---|\n| MW-118 | 2026-03-02 | PM | \"quarterly PM done. greased ways. spindle sounded a bit rough at 8k, monitor\" |\n| MW-131 | 2026-05-19 | CM | \"spindle alarm 2nd shift. found drawbar clamp low, adjusted belleville stack. ran ok\" |\n| MW-140 | 2026-07-08 | PM | \"PM. vib reading 2.1 mm/s at 8k (was 1.4 last yr). told sup\" |\n| MW-160 | 2026-09-23 | CM | \"spindle hot after long cycle. checked chiller - low on fluid topped up. temp ok after\" |\n\nThe notes show a spindle getting worse over eight months. Twice it was flagged (\"monitor\", \"told sup\") and **no follow-up work order exists in the export**. That absence is not found by search: the filter was VMC-02 records after 2026-07-08 that mention vib, spindle or bearing, and it returned only MW-160, which was a chiller job.\n\n**Sibling search:** VMC-03 is the only other VMC in the export. Its one record is MW-152, \"coolant pump replaced - not related\". It has no spindle, bearing, drawbar or chiller history. **The make and model could not be confirmed.** There is no model column, and the asset names do not state it, so VMC-03 is treated as a likely sibling but this is not verified.\n\n**Freshness:** the event was on 2026-11-10 and today is 2026-11-15. This is a static export. Anything done on VMC-02 since the stoppage, including any teardown findings, is **not in this data**.\n\n## OEM manual: VMC spindle troubleshooting, Section 7.4\n\n| Manual row | Match to this event |\n|---|---|\n| Overtemp with rising vibration → spindle bearing wear / preload loss | **Matches.** Both rose together |\n| Overtemp, normal vibration → chiller low flow / fluid level | Does not match as the primary cause, because vibration was not normal. It may be a contributor |\n| Overload with tool pull-out marks → drawbar clamp force low (spec 8.0–9.5 kN) | Overload is present. **Pull-out marks were not reported and not yet looked for** |\n| Grinding noise → bearing damage or contamination | **Matches** the operator report |\n\n---\n\n## Ranked candidate causes\n\n### 1. Spindle bearing failure (wear or preload loss, possibly contamination). Likelihood: high\n\n**Evidence**\n- The OEM §7.4 row \"Overtemp with rising vibration\" fits exactly, and so does the \"Grinding noise → bearing damage\" row.\n- The sensor window shows vibration rising first and speeding up, from 1.8 to 11.2 mm/s (6.2×), with temperature following.\n- History shows the same trend over months. In MW-118 (Mar) the spindle was \"a bit rough at 8k, monitor\". In MW-140 (Jul) vibration was \"2.1 mm/s at 8k (was 1.4 last yr)\", a 50 % rise, \"told sup\". Neither note led to a follow-up.\n- The blue discolouration at the nose and taper fits heat from the front bearing. The photo is a text description only, so it is not conclusive (see candidate 3).\n\n**First check (spindle locked out and cooled)**\n1. Turn the spindle by hand and feel for roughness, notching or tight spots (manual §7.4, grinding row).\n2. Measure run-out at the taper with a dial indicator. The OEM spec is **< 3 µm**.\n\nRough rotation or run-out over 3 µm confirms this candidate. Smooth rotation with run-out in spec makes it much less likely, and you should move to candidates 2 and 3. This takes about 15 minutes with a dial indicator and a test bar, and needs no power.\n\n**Expected fix and repair path**\n- Replace the spindle bearings or the spindle cartridge (OEM or a spindle rebuild shop). Before ordering, check for coolant contamination of the bearings, because through-spindle coolant runs at about 20 bar.\n- When the spindle comes out, inspect the taper and the drawbar too.\n- After the rebuild, record a new baseline vibration reading at 8k rpm.\n\n*Cited: MW-118, MW-140. Sensor window. OEM §7.4 rows 1 and 4.*\n\n### 2. Spindle chiller low fluid or low flow (recurring). Likelihood: medium as a contributor, low as the sole cause\n\n**Evidence**\n- MW-160 (Sep) on this asset says \"spindle hot after long cycle. checked chiller - low on fluid topped up\". The cause of the fluid loss was not recorded, so it may have dropped again.\n- The OEM row for chiller causes says \"normal vibration\". Here vibration was not normal, so the chiller does not explain the grinding on its own.\n- It could be the reason the bearings ran hot. Thermal growth raises bearing preload, which speeds up candidate 1.\n- The sensor export has **no chiller channel**. The flat coolant pressure is not evidence either way.\n\n**First check**\n- Read the chiller fluid level (sight glass) and its flow indicator. This takes about 2 minutes and needs no tools or spindle rotation.\n- Low fluid **plus** a smooth spindle on hand rotation points to the chiller as the primary cause. Low fluid **plus** a rough spindle points to candidate 1 with the chiller as a contributor. Both need fixing.\n\n**Expected fix and repair path**\n- Top up the chiller and find the leak, because this is the second time the fluid has been low.\n- Check the chiller flow and filter.\n- If the bearings are confirmed damaged, the chiller fix goes alongside the bearing repair, not in place of it.\n\n*Cited: MW-160. OEM §7.4 row 2.*\n\n### 3. Low drawbar clamp force (tool fretting in the taper). Likelihood: low to medium\n\n**Evidence**\n- MW-131 (May) on this asset says \"spindle alarm 2nd shift. found drawbar clamp low, adjusted belleville stack. ran ok\". So the Belleville stack has drifted before.\n- A tool moving in a loosely clamped taper heats the taper locally. That would fit **blue discolouration at the taper specifically**, plus the overload.\n- Against it: the OEM row needs **tool pull-out marks**, and none have been reported yet. Rising vibration and grinding fit bearings better.\n\n**First check**\n- Pull the tool that was in the spindle on WO-8120 op 20. Look at the shank and the spindle taper for fretting, pull-out marks or bluing on the tool side. This is a free visual check and takes about 5 minutes.\n- If there are marks, measure clamp force with the clamp force gauge. The spec is 8.0–9.5 kN. Mind the stored spring energy (see Safety).\n\n**Expected fix and repair path**\n- Re-shim or replace the Belleville stack and re-check the clamp force.\n- Inspect the taper for damage and regrind it if needed.\n- Note that this is the second drift since May.\n\n*Cited: MW-131. OEM §7.4 row 3.*\n\n## The cheapest test to tell them apart\n\nDo this as one no-power sequence of about 20 minutes, under lockout, after the spindle has cooled:\n\n1. **Chiller sight glass and flow** (about 2 min). This confirms or clears candidate 2's contribution.\n2. **Pull the tool and inspect the shank and taper for fretting or pull-out marks** (about 5 min). This confirms or clears candidate 3.\n3. **Hand-rotate the spindle and dial-indicate the taper run-out against the < 3 µm spec** (about 15 min). **This is the one test that confirms or clears the leading candidate.**\n\n**Do not** run the spindle for a vibration spectrum. The manual lists the spectrum as the bearing check, but its own safety note forbids running a spindle that is grinding.\n\nThese causes are not mutually exclusive. The most likely chain is a bearing worn since spring (candidate 1), possibly sped up by low chiller fluid (candidate 2). All three checks are cheap, so do all three before ordering parts.\n\n---\n\n## PM plan adjustment: DRAFT for the maintenance planner\n\n*The current PM plan was not available, because there is no CMMS connector. \"Quarterly PM\" is inferred from MW-118. **Planner: please confirm today's interval and task list for VMC-02 first.***\n\nFor VMC-02, failure mode: spindle bearing degradation and spindle overheating.\n\n1. **Make the spindle vibration reading at 8k rpm a recorded PM step with an action limit.** Right now the reading is taken, but a rise produces \"monitor\" or \"told sup\" and nothing else. Proposed rule: if the reading is ≥ 1.5× the post-rebuild baseline, the PM automatically opens a CM work order for a vibration spectrum and run-out check. The planner should set the limit. 1.5× is the rise that MW-140 recorded and nobody acted on.\n2. **Procedure change:** a close-out note containing \"monitor\", \"rough\" or \"told sup\" must create a dated follow-up work order. It cannot be closed as text only.\n3. **Chiller:** add a monthly fluid level and flow check, and require the cause of any top-up to be recorded. Fluid was low in September (MW-160). Ask whether the 2026-11-10 check finds it low again.\n4. **Drawbar:** add a clamp force gauge check (8.0–9.5 kN) to the quarterly PM. It drifted out once already (MW-131).\n5. **Optional, since a historian channel already exists:** add an alarm on spindle vibration rate of change. On 2026-11-10 vibration was rising for more than an hour before the overtemp alarm tripped.\n6. **Fleet:** apply items 1–4 to VMC-03 once it is confirmed to be the same make and model.\n\n## Close-out note: DRAFT (paste into the ticket only once confirmed)\n\n*Nothing has been written to any system. No CMMS connector is live.*\n\n> Spindle overload/overtemp alarm 15:24, grinding ~20 min prior. Historian: vib 1.8→11.2 mm/s, temp 31→52 °C over 2.5 h, coolant pressure normal. LOTO checks: chiller level/flow [__], tool shank/taper marks [__], hand rotation [__], taper run-out [__ µm, spec <3]. Cause confirmed: [__]. Work done: [__]. New baseline vib @8k: [__ mm/s]. Watch: chiller level (low Sep, MW-160), drawbar clamp (adjusted May, MW-131).\n\n---\n\n## Figures block\n\n**Counted by reading, not computed. Verify before relying on it.** Code execution was not available in this session.\n\n| Figure | Value | Computed from | Filter or query |\n|---|---|---|---|\n| Maintenance records, all assets | 5 | maintenance_history.csv | all data rows |\n| Maintenance records, VMC-02 | 4 (MW-118, MW-131, MW-140, MW-160) | maintenance_history.csv | `asset_id == \"VMC-02\"` |\n| Records on sibling VMC assets | 1 (MW-152, VMC-03) | maintenance_history.csv | `asset_id startswith \"VMC\" and != \"VMC-02\"` |\n| Sibling records mentioning spindle/bearing/vib/drawbar/chiller/hot/grinding | 0. **The query returned nothing** | maintenance_history.csv | VMC-03 rows, note contains any of those words |\n| VMC-02 follow-up WO after MW-140 on vibration/bearing | 0, **not found in the export** | maintenance_history.csv | VMC-02, opened > 2026-07-08, note contains vib/bearing/rough; MW-160 is a chiller job |\n| Template check: distinct close-out texts / texts on >1 asset | 5 / 0 | maintenance_history.csv | group by exact note text, count distinct asset_id. No model column, and the model cannot be derived from the asset names |\n| Usable (specific) VMC-02 notes | 4 of 4 | maintenance_history.csv | by reading |\n| Vibration start → alarm | 1.8 → 11.2 mm/s (6.2×) | sensor_window.csv | 13:00 row vs 15:24 row |\n| Temperature rise over window | 21.1 °C (31.0 → 52.1) | sensor_window.csv | same rows |\n| Load before / at alarm | 49 % (15:00) → 71 % (15:24) | sensor_window.csv | |\n| Coolant pressure range | 19.8–20.1 bar | sensor_window.csv | all rows |\n| MW-140 vibration vs prior year | 2.1 / 1.4 = 1.5× | MW-140 note | |\n| Known downtime at last status | ≥ 46 min (15:24 → 16:10). **The machine is still down, so this is not a duration** | event.txt | |\n| Sensor rows in window | 7 | sensor_window.csv | |\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B12-positive-mpxychcj\\work\\out\\VMC-02_breakdown_diagnosis.md (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B12-positive-mpxychcj\\work\\out\\VMC-02_downtime_record.yaml",
+    "content": "# SYNTHETIC test data - fictitious plant. Downtime record for daily-production-report (contract v3).\n# Export-sourced: no CMMS connector live; maintenance history is a static export.\ncontract_version: 3\nsite: null            # not set: no plant profile on file - daily-production-report must resolve\nasset_id: VMC-02\nasset_id_verbatim: \"VMC-02\"\nstarted_at: 2026-11-10T15:24:00-05:00\nended_at: null        # still down at last known status (16:10)\nduration_minutes: null\nreason_code: null     # plant reason code not supplied; not invented\nreason_text: \"SPINDLE OVERLOAD / OVERTEMP; grinding noise from spindle ~20 min before alarm\"\nproduction_wo: WO-8120\nproduction_wo_verbatim: \"WO-8120 op 20 (MB-1880)\"\nshift: null           # shift pattern not on file\nproduction_day: 2026-11-10   # assumes no cross-midnight day boundary; confirm against plant profile\nsource_system: breakdown_diagnosis\nsource_ref: \"diagnosis/2026-11-10/VMC-02\"\n\ndiagnosis_ref: \"out/VMC-02_breakdown_diagnosis.md\"\nleading_cause: \"Spindle bearing failure (wear/preload loss), possibly accelerated by low spindle chiller fluid\"\nleading_cause_confidence: medium\ncited_work_orders: [\"MW-118\", \"MW-140\", \"MW-160\"]\nsafety_flagged: true\nsafety_reason: \"Seizure risk on a rotating part plus stored energy: grinding spindle with vibration 11.2 mm/s must not be run (OEM manual 7.4 safety note); drawbar Belleville spring stack (stored energy) is in the inspection path; blued spindle nose indicates heat.\"\npm_adjustment_proposed: true\nmaintenance_wo: null  # no maintenance ticket for this stoppage in the export\ndiagnosis_state: advisory\ntechnician_step: pending\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B12-positive-mpxychcj\\work\\out\\VMC-02_downtime_record.yaml (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Edit",
+   "input": {
+    "replace_all": false,
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B12-positive-mpxychcj\\work\\out\\VMC-02_downtime_record.yaml",
+    "old_string": "leading_cause_confidence: medium",
+    "new_string": "leading_cause_confidence: high   # evidence strength; still advisory until the LOTO checks are done"
+   },
+   "response": "The file C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B12-positive-mpxychcj\\work\\out\\VMC-02_downtime_record.yaml has been updated successfully. (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B12-positive-mpxychcj\\work\\out\\VMC-02_command_center_maintenance_section.md",
+    "content": "## Maintenance: open breakdowns (synthetic data; you place this section, nothing has been written to any system)\n\n| Asset | Down since | Status | Safety | Leading cause (ADVISORY, technician step pending) | Next action |\n|---|---|---|---|---|---|\n| VMC-02 | 2026-11-10 15:24 (−05:00) | Down at last status (16:10). Duration open | ⚠ FLAGGED: do not run the spindle (grinding). Drawbar spring stack is stored energy | Spindle bearing failure, possibly sped up by low chiller fluid (cites MW-118, MW-140, MW-160) | No-power checks under lockout: chiller level/flow → tool shank and taper marks → hand rotation plus taper run-out (< 3 µm) |\n\nInterrupted job: WO-8120 op 20 (MB-1880). A PM change has been drafted for the planner (vibration action limit, follow-up rule, chiller and drawbar checks).\nSource: static maintenance export plus historian window. Work done after 2026-11-10 is not in the data.\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B12-positive-mpxychcj\\work\\out\\VMC-02_command_center_maintenance_section.md (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  }
+ ],
+ "tool_summary": {
+  "Bash": 2,
+  "Edit": 1,
+  "Read": 6,
+  "Skill": 1,
+  "Write": 3
+ },
+ "result": {
+  "subtype": "success",
+  "is_error": false,
+  "num_turns": 15,
+  "duration_ms": 142405,
+  "duration_api_ms": 140999,
+  "total_cost_usd": 0.6091618,
+  "usage": {
+   "input_tokens": 22,
+   "cache_creation_input_tokens": 33938,
+   "cache_read_input_tokens": 259149,
+   "output_tokens": 14287,
+   "output_tokens_details": {
+    "thinking_tokens": 3728
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 33938,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 1972,
+     "cache_read_input_tokens": 40325,
+     "cache_creation_input_tokens": 630,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 630
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard",
+   "fallback_credit": null
+  },
+  "modelUsage": {
+   "claude-opus-5-5": {
+    "inputTokens": 22,
+    "outputTokens": 14287,
+    "cacheReadInputTokens": 259149,
+    "cacheCreationInputTokens": 33938,
+    "webSearchRequests": 0,
+    "costUSD": 0.6091618,
+    "contextWindow": 1000000,
+    "maxOutputTokens": 128000,
+    "thinkingTokens": 3728,
+    "cacheCreationEphemeral5mInputTokens": 0,
+    "cacheCreationEphemeral1hInputTokens": 33938,
+    "canonicalModel": "claude-opus-5-5",
+    "provider": "firstParty",
+    "costBasis": "list"
+   }
+  },
+  "permission_denials": [
+   {
+    "tool_name": "Bash",
+    "tool_use_id": "toolu_017QQLAVf4977gWAiGXzNpvo",
+    "tool_input": {
+     "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B12-positive-mpxychcj/work/inputs/breakdown\"; for f in event.txt manual_troubleshooting.md maintenance_history.csv; do echo \"=== $f\"; cat \"$f\"; done; echo \"=== sensor\"; wc -l sensor_window.csv; cat sensor_window.csv"
+    }
+   }
+  ],
+  "terminal_reason": "completed",
+  "result": "> **Follow your plant's lockout procedure before anyone works on this machine. This is not a safety assessment.**\n\n## ⚠ Safety first: don't run the spindle\n\n- **Grinding noise.** The operator heard grinding for about 20 minutes, and vibration reached 11.2 mm/s at the alarm. The manual (§7.4) says not to run a spindle that is grinding, and to lock out the spindle drive before turning it by hand. So don't reset the alarm and run it to listen. That also rules out the manual's vibration-spectrum check for now, because it needs the spindle running.\n- **Drawbar springs.** If anyone opens the drawbar, its spring stack holds stored energy. It has been adjusted before (MW-131).\n- **Heat.** The blue tint on the spindle nose means that area got very hot. Let it cool before anyone touches it.\n\n## Likely cause: spindle bearings\n\nThis is not confirmed yet. Three causes are possible, and more than one could be true at once:\n\n1. **Worn spindle bearings: high likelihood.**\n   - **Manual match:** the manual's entry for \"overtemp with rising vibration\" fits exactly.\n   - **Sensor data:** vibration climbed first and sped up, from 1.8 to 11.2 mm/s (6.2×) between 13:00 and 15:24. Temperature followed it up by 21 °C. Spindle load only jumped (49 → 71 %) in the last 24 minutes, which fits friction rather than a heavier cut. The operator also said chips looked normal.\n   - **History:** this has been building for eight months. MW-118 (March) says \"spindle sounded a bit rough at 8k, monitor\". MW-140 (July) says \"vib 2.1 mm/s at 8k (was 1.4 last yr). told sup\". Neither note led to a follow-up work order.\n2. **Low spindle chiller fluid: medium as a contributor, low as the only cause.**\n   - MW-160 (September) found the chiller low and topped it up, but nobody recorded why it was low.\n   - The manual says a chiller problem shows up as overheating with *normal* vibration. Vibration here was not normal, so this can't be the whole story. It may have made the bearings run hot and wear faster.\n   - The sensor file has no chiller channel. Its flat coolant pressure (19.8–20.1 bar) looks like the cutting coolant, so it tells you nothing about the chiller.\n3. **Low drawbar clamp force: low to medium.**\n   - The clamp was found low in May (MW-131). A loose tool rubbing in the taper could explain blue tint right at the taper.\n   - The manual's sign for this is pull-out marks on the tool, and nobody has looked for them yet.\n\n## Cheapest test to tell them apart\n\nAbout 20 minutes, with power off and the machine locked out:\n\n1. **Check the chiller fluid level and flow indicator** (about 2 min). If it's low, the chiller played a part.\n2. **Pull the tool from WO-8120 op 20 and look at its shank and the spindle taper for rubbing or pull-out marks** (about 5 min, free). If you find marks, measure clamp force with the gauge (spec 8.0–9.5 kN).\n3. **Turn the spindle by hand, then dial-indicate the taper run-out** (spec under 3 µm). **This is the one test that settles the leading candidate.** A rough feel or run-out over 3 µm confirms the bearings. A smooth spindle within spec points you to 2 and 3.\n\nDo all three before ordering parts, since they cost almost nothing.\n\n## Draft PM change for the planner\n\nI couldn't see the current PM plan, so the planner should confirm today's interval first. \"Quarterly\" is only inferred from MW-118. The draft proposes:\n\n- A recorded vibration reading at 8k rpm at each PM, with an action limit. The draft suggests 1.5× the new baseline, which is the rise MW-140 recorded and nobody acted on.\n- A rule that any \"monitor\" or \"told sup\" close-out note opens a dated follow-up work order.\n- A monthly chiller check that records the cause of any top-up.\n- A clamp force check at each quarterly PM.\n- An alarm on how fast spindle vibration is rising. On 10 November it was climbing for over an hour before the overtemp alarm tripped.\n\n## Caveats\n\n- **Counts not computed.** Shell access was denied, so I counted every figure by reading and couldn't run anything in code. There are only 5 maintenance records and 7 sensor rows, but please verify the figures before relying on them.\n- **No photo.** I only had a text description of the blue tint, so it can't tell bearing heat apart from a tool rubbing in the taper.\n- **Possible sister machine.** VMC-03 may be the same model, but I couldn't confirm it. Its only record is \"coolant pump replaced - not related\".\n- **Data is five days old.** The event was on 10 November. Anything done on VMC-02 since then is not in this data.\n- **Downtime record has gaps.** The site, shift and reason code aren't on file, so I left them blank rather than guess. The duration is left open because the machine was still down at the last status (16:10), not zero.\n- **Draft format.** The reports are Markdown, not Word, because nothing could be generated without running code.\n\nNothing was sent to or written into any system.\n\nFiles are in `./out/`:\n- `VMC-02_breakdown_diagnosis.md` – the full diagnosis, PM draft, a close-out note to fill in after the checks, and the figures\n- `VMC-02_downtime_record.yaml` – the downtime record for the next production report, marked as unconfirmed and safety-flagged\n- `VMC-02_command_center_maintenance_section.md` – a status section for the operations page"
+ },
+ "outputs": [
+  {
+   "path": "VMC-02_breakdown_diagnosis.md",
+   "sha256": "859ed5174c6419ebef2405d705a34f48c5cb3565c023b49cd005d7abee097e7f",
+   "bytes": 14829,
+   "text": true
+  },
+  {
+   "path": "VMC-02_command_center_maintenance_section.md",
+   "sha256": "3db35f6ccfbe1f781c5301d91aac3158df9d199dc9486d90cd749983344ca398",
+   "bytes": 909,
+   "text": true
+  },
+  {
+   "path": "VMC-02_downtime_record.yaml",
+   "sha256": "84ca4973947d4c0f77c02ca9d25b900f474cdc8c9d86df284e54dfc83f87330f",
+   "bytes": 1693,
+   "text": true
+  }
+ ],
+ "files_written_outside_out": [],
+ "plugin_copy_modified": [],
+ "stderr_tail": "",
+ "transcript": "evidence/SKILL_OUTPUTS/B12/cli-positive/transcript.jsonl.gz",
+ "deterministic_checks": [
+  {
+   "check": "skill 'breakdown-diagnosis' activated through the Skill tool",
+   "pass": true,
+   "observed": [
+    "claude-for-manufacturing:breakdown-diagnosis"
+   ]
+  },
+  {
+   "check": "at least 1 work product file(s) under out/",
+   "pass": true,
+   "observed": [
+    "VMC-02_breakdown_diagnosis.md",
+    "VMC-02_command_center_maintenance_section.md",
+    "VMC-02_downtime_record.yaml"
+   ]
+  },
+  {
+   "check": "mentions /bearing/",
+   "pass": true
+  },
+  {
+   "check": "mentions /MW-140|MW-118/",
+   "pass": true
+  },
+  {
+   "check": "mentions /lock ?out|LOTO|safety/",
+   "pass": true
+  },
+  {
+   "check": "mentions /test/",
+   "pass": true
+  },
+  {
+   "check": "does not contain /MW-1(?!18|31|40|52|60)\\d\\d/ (fabrication or unauthorised claim)",
+   "pass": true,
+   "observed": null
+  },
+  {
+   "check": "no external network, install or send action attempted",
+   "pass": true,
+   "observed": []
+  },
+  {
+   "check": "only the permitted tools were used (Read,Write,Edit,Glob,Grep,Skill,Bash)",
+   "pass": true,
+   "observed": [
+    "Bash",
+    "Edit",
+    "Read",
+    "Skill",
+    "Write"
+   ]
+  }
+ ],
+ "evaluator": {
+  "engine": "nvidia-nim",
+  "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+  "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "duration_s": 55.3,
+  "usage": {
+   "prompt_tokens": 12145,
+   "completion_tokens": 10906,
+   "total_tokens": 23051,
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 10841
+   }
+  },
+  "material_given": [
+   {
+    "file": "skills/breakdown-diagnosis/SKILL.md",
+    "given": "full"
+   },
+   {
+    "file": "out/VMC-02_breakdown_diagnosis.md",
+    "sha256": "859ed5174c6419ebef2405d705a34f48c5cb3565c023b49cd005d7abee097e7f",
+    "bytes": 14829,
+    "given": "full"
+   },
+   {
+    "file": "out/VMC-02_command_center_maintenance_section.md",
+    "sha256": "3db35f6ccfbe1f781c5301d91aac3158df9d199dc9486d90cd749983344ca398",
+    "bytes": 909,
+    "given": "full"
+   },
+   {
+    "file": "out/VMC-02_downtime_record.yaml",
+    "sha256": "84ca4973947d4c0f77c02ca9d25b900f474cdc8c9d86df284e54dfc83f87330f",
+    "bytes": 1693,
+    "given": "full"
+   },
+   {
+    "file": "inputs/breakdown/event.txt",
+    "sha256": "dca798765caac9c89ac7e2a8e046d3d758c28869fc42058ddb2fb6bf7b604be4",
+    "bytes": 478,
+    "given": "full"
+   },
+   {
+    "file": "inputs/breakdown/maintenance_history.csv",
+    "sha256": "c6961a19bee6d810a3c8d78da67578a0a6f204befb554f6711170152991fd308",
+    "bytes": 709,
+    "given": "full"
+   },
+   {
+    "file": "inputs/breakdown/manual_troubleshooting.md",
+    "sha256": "c07cb271de57ba7a4ea351bae2e154913fea7fe1dc1ad715d6d35304d859c179",
+    "bytes": 838,
+    "given": "full"
+   },
+   {
+    "file": "inputs/breakdown/sensor_window.csv",
+    "sha256": "97d6f1c39c7ceefac0994947143af601cf40ca7bbd7a2e32adac37ae27ee9ebf",
+    "bytes": 573,
+    "given": "full"
+   }
+  ],
+  "tools_used": [],
+  "verdict": {
+   "verdict": "PASS",
+   "core_task_done": true,
+   "required_products_present": true,
+   "claims_sourced": true,
+   "fabrication": [],
+   "missing_data_handled": true,
+   "approval_rules_respected": true,
+   "arithmetic_mismatches": [],
+   "notes": "<=80 words"
+  },
+  "raw": null,
+  "error": null
+ },
+ "status": "PASS",
+ "skills_read_full": [],
+ "rechecked_utc": "2026-11-15T23:24:23Z"
+}

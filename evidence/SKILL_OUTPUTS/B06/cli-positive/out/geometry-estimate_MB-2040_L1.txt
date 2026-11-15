@@ -1,0 +1,79 @@
+# Geometry estimate — rfq-to-quote step 7 — SYNTHETIC TEST DATA
+# Fusion not connected — no model built. Hand-entered feature list, prefilled from the spec sheet text.
+contract_version: 1
+site: "EPW1"
+inquiry_ref: "MB-2040 rev C (Northwind Robotics; no customer RFQ no.)"
+line_no: 1
+part_number: "MB-2040"
+part_number_verbatim: "MB-2040"
+geometry_path: A
+drawing_revision_priced_to: null     # no drawing; text spec rev C only -> supports a ROM only
+origin: hand_entered
+document_ref: null
+base_model_ref: null
+cad_backend: none
+generated_at: null
+document_integrity: { result: not_applicable, bodies_before: null, bodies_after: null, sketches_before: null, sketches_after: null, checked_at: null, detail: "No CAD document opened: Fusion not connected; hand-entered list" }
+model_checks: null                    # no model; hand calc only: envelope 120x80x12 mm = 115,200 mm3 before features (bore, holes, slot not subtracted because locations are unknown)
+
+stock:
+  material: "Aluminium 6061-T6 plate per ASTM B209"
+  form: "plate"
+  size: "0.5 in x 12 in x 48 in sheet (item AL6061-PL-0.5, as bought on PO-30588)"
+  fit_check:
+    part_envelope: "120 x 80 x 12 mm"
+    cleanup_allowance: "thickness 0.7 mm total (0.35 mm/side) = 12.7 mm stock - 12 mm part; L/W 3 mm per blank ASSUMED (no plant value on file)"
+    fits: true
+    flag: "Thickness cleanup is thin (0.35 mm/side), which matters if the mounting-face flatness (Q2) is tight. Plate stock thickness tolerance is not on file."
+  source_ref: "MB-2040_spec_revC.md 'Material' and 'Envelope' rows; purchase_orders.csv PO-30588"
+
+datums:
+  - { label: "A (assumed)", feature: "mounting face", basis: inferred, source_ref: "spec names a 'mounting face' but does not say which face, and gives no datum scheme" }
+  - { label: "B/C (assumed)", feature: "two adjacent envelope edges", basis: inferred, source_ref: "no datum scheme in spec; assigned for estimating only" }
+
+features:
+  - { type: "face (both sides)", count: 2, dimension: "12 mm thickness", tolerance: "±0.2 mm", tolerance_driver: false, surface_finish: "Ra 3.2", reading_basis: from_text, source_ref: "spec 'Envelope' + 'General tolerance ISO 2768-m'" }
+  - { type: "profile", count: 1, dimension: "120 x 80 mm", tolerance: "±0.3 mm", tolerance_driver: false, surface_finish: "Ra 3.2", reading_basis: from_text, source_ref: "spec 'Envelope' + ISO 2768-m" }
+  - { type: "through-bore", count: 1, dimension: "Ø22.000 mm through, 12 mm", tolerance: "+0.021/-0.000 (H7)", tolerance_driver: true, surface_finish: "Ra 1.6", reading_basis: from_text, source_ref: "spec 'Main bore' + 'Surface finish'" }
+  - { type: "thread", count: 4, dimension: "M5x0.8 tapped through, 100 x 60 mm pattern (rev C)", tolerance: "pattern ±0.3 mm (ISO 2768-m); thread class not stated", tolerance_driver: false, surface_finish: null, reading_basis: from_text, source_ref: "spec 'Mounting holes'; email 29 Oct (Raj Patel)" }
+  - { type: "slot", count: 1, dimension: "8 mm wide x 40 mm long, through", tolerance: "±0.2 / ±0.3 mm per general note", tolerance_driver: false, surface_finish: "Ra 3.2", reading_basis: from_text, source_ref: "spec 'Slot' + ISO 2768-m" }
+  - { type: "chamfer / edge break", count: null, dimension: "0.2–0.5 mm all edges", tolerance: "as stated range", tolerance_driver: false, surface_finish: null, reading_basis: from_text, source_ref: "spec 'Edge break'" }
+
+setups:
+  - { setup_seq: 1, faces: "top face, profile, bore, holes, slot", fixture_note: "vise or plate fixture: not confirmed", machine_class: "MILL-V (3-axis VMC; VMC-02 Cell A or VMC-03 Cell B)" }
+  - { setup_seq: 2, faces: "flip: second face, finish", fixture_note: "soft jaws: not confirmed", machine_class: "MILL-V" }
+
+operations:
+  - { op_seq: 10, description: "Saw and face blank", machine_class: "MILL-V", setup_seq: null, features: ["face"], outside_process: false, assumptions: ["op list mirrors similar bracket MB-1880 rev B routing; MB-1880 drawing not on file so similarity is unverified"], source_ref: "routings.csv MB-1880 B op10 (analog)" }
+  - { op_seq: 20, description: "Op1: mill profile, bore (incl. H7 finish), M5 tap drill + tap, slot", machine_class: "MILL-V", setup_seq: 1, features: ["profile", "through-bore", "thread", "slot"], outside_process: false, assumptions: ["H7 bore finished in-machine (ream or bore) in this op", "slot and taps cut in op1"], source_ref: "routings.csv MB-1880 B op20 (analog)" }
+  - { op_seq: 30, description: "Op2: flip and finish second face, edge break", machine_class: "MILL-V", setup_seq: 2, features: ["face", "chamfer / edge break"], outside_process: false, assumptions: [], source_ref: "routings.csv MB-1880 B op30 (analog)" }
+  - { op_seq: 40, description: "Deburr and inspect", machine_class: "INSP", setup_seq: null, features: [], outside_process: false, assumptions: ["AS9102 FAI on first lot is NOT in this op's analog time"], source_ref: "routings.csv MB-1880 B op40 (analog)" }
+  - { op_seq: 50, description: "Type II black anodize (masking per Q3)", machine_class: null, setup_seq: null, features: [], outside_process: true, assumptions: ["existing vendor per PO-30602"], source_ref: "purchase_orders.csv PO-30602" }
+  - { op_seq: 60, description: "Laser etch PN + lot code", machine_class: null, setup_seq: null, features: [], outside_process: true, assumptions: ["no laser in equipment.csv, so outside source needed; none on file"], source_ref: "equipment.csv" }
+  - { op_seq: 70, description: "Final inspection / AS9102 FAI (first lot), pack, certs", machine_class: "INSP", setup_seq: null, features: [], outside_process: false, assumptions: ["no time basis on file"], source_ref: "spec 'Inspection'" }
+
+tolerances:
+  - { characteristic: "main bore", value: "Ø22.000 +0.021/-0.000 H7, Ra 1.6", reading_basis: from_text, source_ref: "spec 'Main bore'", key_characteristic: null }
+  - { characteristic: "unspecified dims", value: "ISO 2768-m", reading_basis: from_text, source_ref: "spec 'General tolerance'", key_characteristic: null }
+  - { characteristic: "M5 pattern", value: "100 x 60 mm, ±0.3 mm", reading_basis: from_text, source_ref: "spec 'Mounting holes' + ISO 2768-m", key_characteristic: null }
+  - { characteristic: "slot", value: "8 x 40 mm, ±0.2/±0.3", reading_basis: from_text, source_ref: "spec 'Slot' + ISO 2768-m", key_characteristic: null }
+  - { characteristic: "edge break", value: "0.2–0.5 mm", reading_basis: from_text, source_ref: "spec 'Edge break'", key_characteristic: null }
+
+unreadables:
+  - { what: "bore location", where: "not in spec", why: "decides feature positions and inspection" }
+  - { what: "slot location and orientation", where: "not in spec", why: "same" }
+  - { what: "mounting-face flatness", where: "spec 'TBD'", why: "may add operations; customer change pending" }
+  - { what: "datum scheme, corner radii, thread class/depth", where: "not in spec", why: "tooling and inspection" }
+  - { what: "whether H7/Ra 1.6 apply after anodize; masking", where: "not in spec", why: "decides masking or post-anodize sizing" }
+
+questions_for_estimator:
+  - "Path A: every dimension is from_text. This line is a ROM only; no Gate 3 yes makes it firm."
+  - "Inferred datums A, B and C: accept for estimating?"
+  - "Operation list copies the MB-1880 rev B routing structure (ops 10–40) plus anodize, laser-mark and FAI ops. Is MB-1880 genuinely comparable (material, size, bore class)? Its drawing is not on file."
+  - "Op 20 assumes the H7 bore is finished in-machine in op1. Correct?"
+  - "Laser marking: which outside source? None is on file."
+  - "Fixture: vise/soft jaws assumed, no dedicated fixture NRE. Correct?"
+
+cost_down_proposals: []
+
+approval: { status: draft, by: null, at: null, note: "Gate 3 not passed. Run instruction 'proceed with steps 6 onward' is generic continuation, not a Gate 3 yes or an explicit override." }

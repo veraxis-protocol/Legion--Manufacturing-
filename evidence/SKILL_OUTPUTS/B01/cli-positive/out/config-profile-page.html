@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Plant setup: Example Precision Works (DRAFT)</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+:root { --bg:#f7f8f6; --panel:#ffffff; --fg:#1c211e; --muted:#5f6862; --line:#dde2dd; --accent:#2f6b4f; --warn:#A8641A; --warn-soft:#F7EBDA; }
+@media (prefers-color-scheme: dark) { :root { --bg:#161a18; --panel:#1e2421; --fg:#e6ebe7; --muted:#9aa59e; --line:#323a35; --accent:#7cc3a0; --warn-soft:#3a2e1c; --warn:#e3b06b; color-scheme:dark; } }
+body { background:var(--bg); color:var(--fg); margin:0; padding:32px 16px; font:15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width:860px; margin:0 auto; display:flex; flex-direction:column; gap:16px; }
+h1 { font-size:24px; margin:0; }
+.sub { color:var(--muted); margin:0 0 8px; max-width:65ch; }
+.draft { background:var(--warn-soft); color:var(--warn); border:1px solid var(--warn); border-radius:6px; padding:10px 14px; }
+.panel { background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:16px 20px; overflow-wrap:anywhere; }
+h2 { font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); margin:0 0 8px; }
+ul { margin:4px 0; padding-left:20px; } li, p { margin:2px 0; }
+table { border-collapse:collapse; width:100%; display:block; overflow-x:auto; font-variant-numeric:tabular-nums; }
+td, th { border-top:1px solid var(--line); padding:4px 8px; vertical-align:top; text-align:left; }
+th { font-size:12px; color:var(--muted); font-weight:600; }
+</style>
+</head>
+<body>
+<main>
+<h1>Plant setup: Example Precision Works</h1>
+<p class="sub">The plant setup Claude reads at the start of every manufacturing task. Rate values are not kept here. Configured 2026-11-15. To change it, ask Claude; edits made on this page are not read.</p>
+<p class="draft"><strong>DRAFT - not approved.</strong> Rendered from out/plant-context.md for review. Nothing here is installed or published. Values marked <em>inferred</em> come from plant_overview.md, equipment.csv or rates_memo.txt and await confirm-or-correct. 61 open questions: see missing-data-list.html.</p>
+
+<section class="panel"><h2>Plant</h2><ul>
+<li><strong>Profile version:</strong> 2</li>
+<li><strong>Configured:</strong> 2026-11-15</li>
+<li><strong>Status:</strong> DRAFT - not approved</li>
+<li><strong>Company:</strong> Example Precision Works</li>
+<li><strong>Sites:</strong> Plant 1 - EPW1, Dayton OH (default)</li>
+<li><strong>Connectors live:</strong> none</li>
+<li><strong>Connectors not live:</strong> Oracle NetSuite, Microsoft 365, Autodesk Fusion (none tested this session)</li>
+<li><strong>Export folder:</strong> SharePoint "Exports" library (inferred) - exact path not set</li>
+<li><strong>Export refresh:</strong> MES production CSVs nightly, written 23:30 local (inferred) - other sources not set</li>
+<li><strong>Standards certified to:</strong> not set</li>
+<li><strong>Templates on file:</strong> none</li>
+<li><strong>Templates missing:</strong> NCR form, 8D format, quote layout, supplier RFQ package, trade study memo</li>
+<li><strong>Report depth:</strong> full (default - not asked)</li>
+<li><strong>Rates:</strong> see Commercial rates - state per rate only</li>
+<li><strong>Gaps open:</strong> 61</li>
+</ul></section>
+
+<section class="panel"><h2>Systems</h2><ul>
+<li><strong>ERP:</strong> Oracle NetSuite - file (export only, no API access yet)</li>
+<li><strong>CAD:</strong> Autodesk Fusion - file (Fusion MCP Server not reachable, not tested)</li>
+<li><strong>CMMS:</strong> none - shared spreadsheet (maintenance_log.csv) - file</li>
+<li><strong>Documents:</strong> Microsoft 365 (SharePoint "Quality" and "Exports") - file (connector not authorised yet)</li>
+<li><strong>MES:</strong> name not given - file - connector options not reviewed</li>
+</ul></section>
+
+<section class="panel"><h2>ERP scope</h2><ul>
+<li><strong>Record types:</strong> not checked</li>
+<li><strong>Subsidiary:</strong> not set</li>
+<li><strong>Locations:</strong> not set</li>
+<li><strong>Parts:</strong> not set</li>
+<li><strong>Part revision:</strong> not set</li>
+<li><strong>Cost fields:</strong> not set</li>
+<li><strong>Production work orders:</strong> not set</li>
+<li><strong>Source of truth:</strong> not set</li>
+<li><strong>RFQ stale after:</strong> 5 business days (default, not plant-set)</li>
+</ul><p>Approved normalizations: none yet.</p></section>
+
+<section class="panel"><h2>Documents read at setup</h2><table>
+<tr><th>File</th><th>Identified as</th><th>Fed</th><th>Status</th></tr>
+<tr><td>plant_overview.md</td><td>Plant overview</td><td>Steps 1, 3, 4, 6, 7</td><td>inferred</td></tr>
+<tr><td>equipment.csv</td><td>Asset / equipment register</td><td>Steps 3, 5, 7</td><td>inferred</td></tr>
+<tr><td>rates_memo.txt</td><td>Finance rates memo</td><td>Step 10</td><td>supplied commercial rates (see the approval draft) - awaiting a yes</td></tr>
+</table></section>
+
+<section class="panel"><h2>Export files</h2><table>
+<tr><th>File pattern</th><th>What it is</th><th>System</th><th>Cadence</th><th>Covers</th><th>Status</th></tr>
+<tr><td>MES production CSVs</td><td>Production output (inferred)</td><td>MES</td><td>nightly 23:30</td><td>not set</td><td>unconfirmed</td></tr>
+<tr><td>maintenance_log.csv</td><td>Maintenance spreadsheet (inferred)</td><td>Shared spreadsheet</td><td>manual</td><td>not set</td><td>not provided</td></tr>
+<tr><td>equipment.csv</td><td>Asset register (inferred)</td><td>dragged in</td><td>manual</td><td>5 assets</td><td>unconfirmed</td></tr>
+<tr><td>MES downtime</td><td>-</td><td>MES</td><td>-</td><td>-</td><td>missing - spec written</td></tr>
+<tr><td>NetSuite exports</td><td>-</td><td>Oracle NetSuite</td><td>-</td><td>-</td><td>missing - spec written</td></tr>
+<tr><td>Quality / inspection</td><td>-</td><td>not named</td><td>-</td><td>-</td><td>missing - spec written</td></tr>
+<tr><td>Planning / schedule</td><td>-</td><td>not named</td><td>-</td><td>-</td><td>missing - spec written</td></tr>
+<tr><td>Historian</td><td>-</td><td>not known</td><td>-</td><td>-</td><td>missing - spec written</td></tr>
+</table></section>
+
+<section class="panel"><h2>Machining data</h2><table>
+<tr><th>Machine class</th><th>Work centers</th><th>Cell</th><th>Setup hours</th><th>Tool change min</th><th>Basis</th></tr>
+<tr><td>MILL-H (HMC, 500 mm pallet)</td><td>HMC-01</td><td>Cell A</td><td>not set</td><td>not set</td><td>not set</td></tr>
+<tr><td>MILL-V (3-axis VMC)</td><td>VMC-02, VMC-03</td><td>Cell A / Cell B</td><td>not set</td><td>not set</td><td>not set</td></tr>
+<tr><td>TURN (CNC lathe, 8 in chuck)</td><td>LTH-01</td><td>Cell B</td><td>not set</td><td>not set</td><td>not set</td></tr>
+<tr><td>INSP (deburr and inspection bench)</td><td>DEB-01</td><td>Cell B</td><td>not set</td><td>-</td><td>not set</td></tr>
+<tr><td>OUTSIDE-FINISH (anodize, inferred)</td><td>outside</td><td>-</td><td>lead time not set</td><td>-</td><td>not set</td></tr>
+</table><ul>
+<li><strong>Cutting data:</strong> not set</li>
+<li><strong>Fusion tool library:</strong> not set</li>
+<li><strong>Variance flag threshold:</strong> 15% - default, not plant-set</li>
+<li><strong>Stale interval:</strong> not set</li>
+</ul></section>
+
+<section class="panel"><h2>Approved suppliers</h2><p>Not set - approved supplier list not provided.</p></section>
+
+<section class="panel"><h2>Source clocks</h2><table>
+<tr><th>Source</th><th>Timezone</th><th>Zone-aware</th><th>Observed skew</th><th>Checked</th></tr>
+<tr><td>NetSuite export</td><td>not set</td><td>not checked</td><td>not checked</td><td>-</td></tr>
+<tr><td>MES production export</td><td>not set</td><td>not checked</td><td>not checked</td><td>-</td></tr>
+<tr><td>MES downtime export</td><td>not set</td><td>not checked</td><td>not checked</td><td>-</td></tr>
+<tr><td>Historian export</td><td>not set</td><td>not checked</td><td>not checked</td><td>-</td></tr>
+<tr><td>Quality export</td><td>not set</td><td>not checked</td><td>not checked</td><td>-</td></tr>
+<tr><td>Planning export</td><td>not set</td><td>not checked</td><td>not checked</td><td>-</td></tr>
+<tr><td>Maintenance spreadsheet</td><td>not set</td><td>not checked</td><td>not checked</td><td>-</td></tr>
+</table><p>Offset self-check not run: no shared event in hand. Declared but unverified.</p></section>
+
+<section class="panel"><h2>Site: Plant 1 - EPW1, Dayton OH (default)</h2><ul>
+<li><strong>Timezone:</strong> America/New_York (inferred)</li>
+<li><strong>Shift pattern:</strong> Mon-Fri, 1st 06:00-14:30, 2nd 14:30-23:00; Saturday overtime on request (inferred)</li>
+<li><strong>Production day starts:</strong> not set</li>
+<li><strong>Cross-midnight shift belongs to:</strong> not set (no scheduled shift crosses midnight, inferred)</li>
+<li><strong>Planned production time:</strong> not set</li>
+<li><strong>Vocabulary:</strong> not set - canonical names in use</li>
+<li><strong>Capability:</strong> inferred, not confirmed - make-to-order CNC machining, aluminium and steel, 1 to 5,000 pieces; horizontal and 3-axis vertical milling, turning, deburr and inspection in-house; anodize outside. Envelope, tolerance and certifications not set</li>
+</ul></section>
+
+<section class="panel"><h2>Commercial rates</h2><ul>
+<li><strong>Labor rate:</strong> not set - proposed from rates_memo.txt, awaiting a yes and a name</li>
+<li><strong>Burden rate:</strong> not set - memo rates are stated as fully burdened; awaiting confirmation</li>
+<li><strong>Margin rules:</strong> not set - proposed default from rates_memo.txt, awaiting a yes and a name</li>
+<li><strong>Material markup:</strong> not set - proposed from rates_memo.txt, awaiting a yes</li>
+<li><strong>Outside processing markup:</strong> not set - proposed from rates_memo.txt, awaiting a yes</li>
+<li><strong>Downtime cost per hour:</strong> not set - see gaps</li>
+<li><strong>Scrap costing basis:</strong> standard material cost plus value-added labour at the work center where scrapped (inferred)</li>
+<li><strong>Environment variables:</strong> not checked this session</li>
+</ul></section>
+</main>
+</body>
+</html>

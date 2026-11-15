@@ -1,0 +1,60 @@
+contract_version: 4
+ncr_ref: NCR-RCV9921   # provisional; plant number to be assigned
+site: "not on file (no plant profile)"
+part_number: BSH-1210
+part_number_verbatim: "BSH-1210 rev A"
+part_revision: "A"
+production_wo: null
+production_wo_verbatim: null
+lot_number: AS-7781
+lot_number_verbatim: "AS-7781"
+operation: "receiving inspection"
+found_by: "receiving inspection (inspector not named in source)"
+found_at: "2026-11-12 (time and zone not recorded in source)"
+disposition_pending: true
+
+condition_found: "Hardness 47, 49, 46, 50, 48 HRF on 5 samples against 25-40 HRF; supplier C of C states 32 HRF."
+measurements:
+  - {characteristic: hardness, measured: "47, 49, 46, 50, 48", nominal: null, tolerance: "25-40", uom: HRF, gage: "not recorded", source_ref: "inputs/escape/incoming_finding.txt:3"}
+is_subjective: false
+qty_found: 5
+qty_found_reason: null
+uom: each
+
+requirement_cited:
+  source: "part drawing"
+  document: "BSH-1210_drawing_revA.md (rev A, 2025-06-02)"
+  locator: "drawing notes, line 3"
+  characteristic: "hardness"
+  stated_value: "25-40 HRF"
+requirement_not_locatable: false
+
+qty_suspect: 1000
+qty_suspect_is_minimum: false
+scope_basis: lot
+scope_reasoning: "Mechanism is material condition as supplied, a property of supplier lot AS-7781; found at receiving before any plant processing; 5/5 samples failed and within-lot LCL 40.69 HRF exceeds the 40 HRF max, so the whole lot is suspect. AS-7702/AS-7744 passed incoming hardness and are out of scope."
+traceability_complete: false   # lot identity at line 2 after issue to WO-8150 not confirmed; number of assemblies affected unknown
+
+containment:
+  - {location: installed_at_customer, qty: 0, uom: each, checked: false, action: "If WO-8150 assemblies shipped, ask the customer whether installed or shipped on", urgency: immediate, owner: null, customer: null, source_ref: "not verifiable from records in inputs"}
+  - {location: at_customer, qty: 0, uom: each, checked: false, action: "Shipment check on WO-8150 assemblies containing AS-7781", urgency: immediate, owner: null, customer: null, source_ref: "no shipment records in inputs"}
+  - {location: in_transit, qty: 0, uom: each, checked: false, action: "Same check; intercept at carrier if found", urgency: immediate, owner: null, customer: null, source_ref: "no shipment records in inputs"}
+  - {location: wip_at_machine, qty: 400, uom: each, checked: false, action: "Stop issue; count, tag NCR-RCV9921, hold loose parts and built WO-8150 assemblies; confirm lot identity", urgency: immediate, owner: null, customer: null, source_ref: "inputs/escape/incoming_finding.txt:4 (issued qty per record, not physically verified)"}
+  - {location: finished_goods, qty: 600, uom: each, checked: true, action: "Hold in receiving quarantine Q-1, tag, block issue; retain samples", urgency: same_day, owner: null, customer: null, source_ref: "inputs/escape/incoming_finding.txt:4 (Q-1)"}
+
+recurrence: no_searchable_history
+prior_ncrs_found: 0   # no search possible: no quality library this session
+related_records: []
+history_searched: false
+
+escape_occurred: false
+escape_possible: true
+verify_shipment_action: "Confirm with line 2 and shipping whether any WO-8150 assemblies containing BSH-1210 lot AS-7781 have been completed, moved to finished goods, or shipped since issue, and to which customers."
+escape_detected_at: null
+notification_drafted: true    # conditional draft
+notification_deadline: null   # customer terms not on file
+affected_customers: []
+
+approval_state: approved
+approved_by: "Test Quality Owner (LEGION WO-LMFG-004 test operator)"
+approved_at: "2026-11-15T18:06:00-05:00"

@@ -1,0 +1,679 @@
+{
+ "case": "B10",
+ "skill": "daily-production-report",
+ "variant": "positive",
+ "started_utc": "2026-11-15T18:19:47Z",
+ "runtime_route": "cli",
+ "cli_auth": {
+  "loggedIn": true,
+  "authMethod": "claude.ai",
+  "apiProvider": "firstParty"
+ },
+ "plugin_discovery": {
+  "plugins": [
+   "claude-for-manufacturing",
+   "cc-plugin-agents-md",
+   "cc-plugin-telemetry",
+   "cc-plugin-privacy",
+   "cc-plugin-plugin-authoring"
+  ],
+  "manufacturing_skills_listed": 17,
+  "skills_listed": [
+   "claude-for-manufacturing:breakdown-diagnosis",
+   "claude-for-manufacturing:breakdown-to-next-report",
+   "claude-for-manufacturing:custom-connector",
+   "claude-for-manufacturing:customer-inquiry-intake",
+   "claude-for-manufacturing:daily-production-report",
+   "claude-for-manufacturing:data-consolidate",
+   "claude-for-manufacturing:design-space-explore",
+   "claude-for-manufacturing:inspection-to-capa",
+   "claude-for-manufacturing:morning-plant-pulse",
+   "claude-for-manufacturing:ncr-writeup",
+   "claude-for-manufacturing:onboarding",
+   "claude-for-manufacturing:quote-build",
+   "claude-for-manufacturing:rfq-to-quote",
+   "claude-for-manufacturing:root-cause-capa",
+   "claude-for-manufacturing:supplier-escape-to-alternate-source",
+   "claude-for-manufacturing:supplier-quote-request",
+   "claude-for-manufacturing:trade-study-report"
+  ]
+ },
+ "task_prompt": "Produce this morning's production report from last night's exports in ./inputs: output against plan, OEE with availability/performance/quality separately, downtime ranked by minutes and by frequency, losses priced, and the exceptions that need a decision today.\n\nThe input files are in ./inputs (all of them are SYNTHETIC test data for a fictitious plant). Write every work product you produce as files under ./out. Do not contact, email or write to any external system; there is no live ERP, Microsoft 365, CMMS or supplier available in this session.",
+ "inputs": [
+  {
+   "path": "inputs/pulse_oee/downtime.csv",
+   "source": "tests/manufacturing/fixtures/pulse_oee/downtime.csv",
+   "sha256": "c6b67ed143582ab9ba983f600925fd8ea2d8e060d8d345ad83db88a8d8e51e9b",
+   "bytes": 219
+  },
+  {
+   "path": "inputs/pulse_oee/output.csv",
+   "source": "tests/manufacturing/fixtures/pulse_oee/output.csv",
+   "sha256": "059b2ea252bd443231231e9990182aa6b71a389e5e75a63d76cc63888d3b13b8",
+   "bytes": 248
+  },
+  {
+   "path": "inputs/pulse_oee/plan.csv",
+   "source": "tests/manufacturing/fixtures/pulse_oee/plan.csv",
+   "sha256": "adfed48e210488c760fc91c7b1005756e5e0a384ebd52f70d8fa482866188ca4",
+   "bytes": 140
+  },
+  {
+   "path": "inputs/pulse_oee/README.txt",
+   "source": "tests/manufacturing/fixtures/pulse_oee/README.txt",
+   "sha256": "b255661d13e32686c1e3b2f0f6f0755c356dce04dd67e1f9d1c19a36dd55e665",
+   "bytes": 345
+  },
+  {
+   "path": "inputs/pulse_oee/routing.csv",
+   "source": "tests/manufacturing/fixtures/pulse_oee/routing.csv",
+   "sha256": "1fe0dbcb9d07119191d0fda75334ad3151427cf46587ed998cb91bc1277b5635",
+   "bytes": 84
+  },
+  {
+   "path": "inputs/pulse_oee/work_orders.csv",
+   "source": "tests/manufacturing/fixtures/pulse_oee/work_orders.csv",
+   "sha256": "dd725c3fdf0cfe0e7798ca2754de75265ce64797c0c833a4db69c9508e677868",
+   "bytes": 168
+  },
+  {
+   "path": "inputs/rates_memo.txt",
+   "source": "tests/runtime/inputs/plant/rates_memo.txt",
+   "sha256": "de3ec4c8a9ad5471950808cc37c6f27d315a7f0f5d414492cc8824eb2b9f123e",
+   "bytes": 465
+  }
+ ],
+ "cli_exit": 0,
+ "duration_s": 223.9,
+ "runtime": {
+  "model": "claude-opus-5-5",
+  "claude_code_version": "2.1.325",
+  "permission_mode": "dontAsk",
+  "tools": [
+   "Bash",
+   "Edit",
+   "Glob",
+   "Grep",
+   "Read",
+   "Skill",
+   "Write"
+  ],
+  "plugins": [
+   {
+    "name": "claude-for-manufacturing",
+    "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B10-positive-859ivny3\\plugin",
+    "source": "claude-for-manufacturing@inline",
+    "version": "1.0.0"
+   },
+   {
+    "name": "cc-plugin-agents-md",
+    "path": "builtin",
+    "source": "cc-plugin-agents-md@builtin"
+   },
+   {
+    "name": "cc-plugin-telemetry",
+    "path": "builtin",
+    "source": "cc-plugin-telemetry@builtin"
+   },
+   {
+    "name": "cc-plugin-privacy",
+    "path": "builtin",
+    "source": "cc-plugin-privacy@builtin"
+   },
+   {
+    "name": "cc-plugin-plugin-authoring",
+    "path": "builtin",
+    "source": "cc-plugin-plugin-authoring@builtin"
+   }
+  ],
+  "skills": [
+   "claude-for-manufacturing:breakdown-diagnosis",
+   "claude-for-manufacturing:breakdown-to-next-report",
+   "claude-for-manufacturing:custom-connector",
+   "claude-for-manufacturing:customer-inquiry-intake",
+   "claude-for-manufacturing:daily-production-report",
+   "claude-for-manufacturing:data-consolidate",
+   "claude-for-manufacturing:design-space-explore",
+   "claude-for-manufacturing:inspection-to-capa",
+   "claude-for-manufacturing:morning-plant-pulse",
+   "claude-for-manufacturing:ncr-writeup",
+   "claude-for-manufacturing:onboarding",
+   "claude-for-manufacturing:quote-build",
+   "claude-for-manufacturing:rfq-to-quote",
+   "claude-for-manufacturing:root-cause-capa",
+   "claude-for-manufacturing:supplier-escape-to-alternate-source",
+   "claude-for-manufacturing:supplier-quote-request",
+   "claude-for-manufacturing:trade-study-report",
+   "design",
+   "design-sync",
+   "dataviz",
+   "update-config",
+   "verify",
+   "debug",
+   "code-review",
+   "simplify",
+   "batch",
+   "fewer-permission-prompts",
+   "doctor",
+   "loop",
+   "schedule",
+   "claude-api",
+   "run",
+   "run-skill-generator",
+   "plugin-authoring"
+  ],
+  "mcp_servers": [],
+  "session_id": "c8ed53d8-867f-4127-9b69-6df0014bd421"
+ },
+ "skills_invoked": [
+  "claude-for-manufacturing:daily-production-report"
+ ],
+ "skill_files_read": [
+  "daily-production-report/reference/oee.md",
+  "daily-production-report/reference/reschedule-scope.md"
+ ],
+ "tool_calls": [
+  {
+   "tool": "Skill",
+   "input": {
+    "skill": "claude-for-manufacturing:daily-production-report"
+   },
+   "response": "Launching skill: claude-for-manufacturing:daily-production-report",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B10-positive-859ivny3/work\"; find . -type f | head -100; echo; P=../plugin; ls $P/shared $P/shared/scripts $P/skills/daily-production-report/reference",
+    "description": "List inputs and plugin shared files"
+   },
+   "response": "Permission to use Bash has been denied because Claude Code is running in don't ask mode. IMPORTANT: You *may* attempt to accomplish this action using other tools that might naturally be used to accomplish this goal, e.g. using head instead of cat. But you *should not* attempt to work around this denial in malicious ways, e.g. do not use your ability to run tests to execute non-test actions. You should only try to work around this restriction in reasonable ways that do not attempt to bypass the intent behind this denial. If you believe this capability is essential to complete the user's request, STOP and explain to the user what you were trying to do and why you need this permission. Let the user decide how to proceed.",
+   "is_error": true,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B10-positive-859ivny3/work\"; python3 -I ../plugin/shared/scripts/plant_setup.py find",
+    "description": "Find plant setup"
+   },
+   "response": "{\"setup_page_first\": \"Required before reading the plant profile or any rate, once per conversation, even when profile_path does not exist yet: if you have the artifact tools (Artifact, or mcp__claude-artifacts__* in Cowork), list the user's artifacts (scope all) and look for 'Plant setup: <company>' and 'Plant rates: <company>'. If more than one 'Plant setup:' page exists and the user has not named the company, ask which plant before reading any page (run find again with --titles and the titles listed; companies names them). For each page found, read its file with those tools (action read, path setup/plant-context.txt or setup/plant-rates.txt; an older page has setup/plant-context.md or setup/plant-rates.md instead; never retype it), then run: python3 \\\"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-B10-positive-859ivny3\\\\plugin\\\\shared\\\\scripts\\\\plant_setup.py\\\" install --from <the saved file> --company \\\"<company>\\\" (add --kind rates for the rates file), and read profile_path and rates_path. If this skill reads or writes ## Dashboards, ## Open inquiries or ## Sourcing events, also look for 'Open work: <company>': read setup/open-work.txt and then every file it names and every file the page lists (action read with paths, or one read per file) into one folder, keeping the page's paths, and run install --kind work --from <that folder> --company \\\"<company>\\\"; the blocks are then at work_path. Not found, no artifact tools, or a call refused: read the paths as printed and say nothing about a page. Never show a rate value from rates_path outside an internal artifact.\", \"profile_path\": \"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-B10-positive-859ivny3\\\\work\\\\plant-setup\\\\plant-context.md\", \"exists\": false, \"rates_path\": \"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-B10-positive-859ivny3\\\\work\\\\plant-setup\\\\plant-rates.md\", \"rates_exists\": false, \"work_path\": \"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-B10-positive-859ivny3\\\\work\\\\plant-setup\\\\open-work\\\\open-work.md\", \"work_exists\": false, \"companies\": [], \"company\": null, \"persistent\": false}",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Glob",
+   "input": {
+    "pattern": "**/*"
+   },
+   "response": "inputs\\pulse_oee\\downtime.csv\ninputs\\pulse_oee\\output.csv\ninputs\\pulse_oee\\plan.csv\ninputs\\pulse_oee\\routing.csv\ninputs\\pulse_oee\\work_orders.csv\ninputs\\pulse_oee\\README.txt\ninputs\\rates_memo.txt",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B10-positive-859ivny3\\plugin\\skills\\daily-production-report\\reference\\oee.md"
+   },
+   "response": "1\t# OEE — the three components and the traps\n2\t\n3\tLoad this before computing anything.\n4\t\n5\t**OEE is the number everyone in operations knows by heart.** A plant reporting\n6\t60–70% is normal; 85% is world-class. That familiarity is exactly why a wrong OEE\n7\tdestroys trust in the whole report — a supervisor who sees 91% on a bad week\n8\tstops reading.\n9\t\n10\t```\n11\tOEE = Availability × Performance × Quality\n12\t```\n13\t\n14\t---\n15\t\n16\t## Never report the composite alone\n17\t\n18\t**Always show the three components separately.** This is a done-when condition,\n19\tnot a presentation preference.\n20\t\n21\tAn OEE of 62% caused by availability is a maintenance problem. The same 62%\n22\tcaused by quality is a completely different meeting with different people in it.\n23\tThe composite tells a plant manager the day was bad; the components tell them who\n24\tto call.\n25\t\n26\t---\n27\t\n28\t## Availability\n29\t\n30\t```\n31\tAvailability = run time / planned production time\n32\t```\n33\t\n34\t**Planned production time is a configured definition, not a derivation.**\n35\t`onboarding` captures it per site: scheduled shift hours minus whatever that plant\n36\texcludes — planned maintenance windows, breaks, scheduled changeovers. Read it\n37\tfrom the `## Plant context` block and **state the definition in the report**, because\n38\ttwo plants computing availability against different denominators are not\n39\tcomparable and neither is one plant before and after a definition change.\n40\t\n41\t### Four denominator traps\n42\t\n43\t**Unscheduled overtime.** A machine that ran hours it was never scheduled for can\n44\tproduce run time exceeding planned production time, and availability above 100%.\n45\t**Report it; do not clamp it to 100%.** An availability of 118% is a finding\n46\tabout the schedule definition, and silently capping it hides both the overtime\n47\tand the definitional problem.\n48\t\n49\t**Cross-midnight shifts.** A three-shift plant has a shift that starts on one\n50\tcalendar day and ends on the next. The `production_day` attribution rule is\n51\tconfigured per site — the day the shift started, or the day it ended — and the\n52\treport states which convention is in use. Getting it wrong moves a whole shift of\n53\toutput to the wrong day, which makes one day look bad and the next look good.\n54\t\n55\t**Planned downtime counted as downtime.** A scheduled PM window is excluded from\n56\tthe denominator, not counted as a stoppage. Counting it as unavailability\n57\tpunishes a plant for doing maintenance correctly.\n58\t\n59\t**A machine idle because there was nothing to run.** This is real, common, and\n60\tnot a maintenance problem. Whether the plant excludes no-demand time from planned\n61\tproduction time is their definitional choice, captured at onboarding. Do not\n62\tdecide it here.\n63\t\n64\t---\n65\t\n66\t## Performance\n67\t\n68\t```\n69\tPerformance = (ideal cycle time × total count) / run time\n70\t```\n71\t\n72\tIdeal cycle time comes from the routing's standard time for the operation.\n73\tWhere a plant's routing standards are stale or absent, **performance cannot be\n74\tcomputed** — see the rule below.\n75\t\n76\tPerformance above 100% means the part ran faster than its standard, which\n77\tusually means the standard is wrong rather than the machine being miraculous.\n78\tReport it as a finding about the standard.\n79\t\n80\t---\n81\t\n82\t## Quality\n83\t\n84\t```\n85\tQuality = good count / total count\n86\t```\n87\t\n88\tTotal count is good plus scrap plus rework, per the plant's own convention.\n89\t**Rework is the ambiguous one** — a part reworked into conformance was not made\n90\tright the first time, so first-pass yield excludes it. State which convention was\n91\tused, on every run, as one line under the table:\n92\t\n93\t- Export has a rework column → *quality = good ÷ (good + scrap + rework),\n94\t  first-pass yield.*\n95\t- Export has no rework column → *quality = good ÷ (good + scrap); no rework\n96\t  column, so first-pass yield could not be applied.*\n97\t\n98\tThe caveat belongs to the second case only. Printing \"no rework column\"\n99\tagainst an export that has one is a false statement about the plant's data.\n100\t\n101\t---\n102\t\n103\t## The rule that matters most: never substitute 1.0 for a missing component\n104\t\n105\tIf a component cannot be computed, **report the components you have and say the\n106\tcomposite is unavailable.** Do not multiply by 1.0 in place of the missing one.\n107\t\n108\tThis is `../../../shared/absent-is-not-zero.md` applied to the most-watched number\n109\tin the plant, and it fails in the flattering direction. A plant with no routing\n110\tstandards, whose performance is therefore unknown, would report:\n111\t\n112\t```\n113\tAvailability 0.78 × Performance [unknown as 1.0] × Quality 0.96 = 75%\n114\t```\n115\t\n116\tThat 75% looks like a decent day and it is arithmetic on a value nobody measured.\n117\tReal performance of 0.71 would have made it 53%. **Absent is not zero, and absent\n118\tis also not one hundred percent.**\n119\t\n120\tThe honest output:\n121\t\n122\t> *\"Availability 78%, quality 96%. Performance can't be computed — the routing\n123\t> standards for these parts aren't in the dataset, so there's no ideal cycle time\n124\t> to compare against. Composite OEE is unavailable until those land.\"*\n125\t\n126\t---\n127\t\n128\t## Grain\n129\t\n130\tCompute per asset or per line, and **state which**. An OEE averaged across a cell\n131\tof five machines hides the one machine causing the problem, which is usually the\n132\tentire point of looking.\n133\t\n134\tWhere the plant's vocabulary calls it a cell, a line or a work center, use their\n135\tword, per the `## Plant context` block.\n136\t\n137\t---\n138\t\n139\t## Sanity checks before reporting\n140\t\n141\t| Check | If it fails |\n142\t|---|---|\n143\t| Each component within 0–100% | Report the value and the likely denominator cause. Never clamp |\n144\t| Composite within 0–100% | Follows from the components; a composite outside range means one is wrong |\n145\t| Total count equals good plus scrap plus rework | Report the discrepancy; it means two sources disagree |\n146\t| Run time not greater than planned produ...[truncated]",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B10-positive-859ivny3\\work\\inputs\\pulse_oee\\README.txt"
+   },
+   "response": "1\tLEGION-authored SYNTHETIC export drop for the OEE reconciliation test (tests/manufacturing/test_c10, test_c11).\n2\tNot plant data. Column names are the aliases upstream pulse_compute.py reads (ALIASES, ROLES).\n3\tplan.csv adds asset_id and planned_hours; routing.csv adds run_min_per_unit, so availability, performance and quality are all computable.\n4\t",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B10-positive-859ivny3\\work\\inputs\\rates_memo.txt"
+   },
+   "response": "1\t# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.\n2\tFinance memo (fictitious), 1 Oct 2026: fully burdened shop rate MILL-H 145 USD/h, MILL-V 95 USD/h, TURN 85 USD/h,\n3\tINSP 60 USD/h. Material markup 12 percent. Target margin 18 percent. Outside processing (anodize) markup 10 percent.\n4\tScrap cost is to be priced at standard material plus value-added labour at the work centre where scrapped.\n5\t",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B10-positive-859ivny3\\work\\inputs\\pulse_oee\\plan.csv"
+   },
+   "response": "1\tpart_number,planned_qty,plan_date,work_center,asset_id,planned_hours\n2\tPN-100,800,2026-11-12,VMC,CNC-01,16\n3\tPN-200,250,2026-11-12,VMC,CNC-02,8\n4\t",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B10-positive-859ivny3\\work\\inputs\\pulse_oee\\output.csv"
+   },
+   "response": "1\twork_order,part_number,qty_good,qty_scrap,production_day,shift,asset_id,cell,site\n2\tWO-1001,PN-100,480,12,2026-11-12,1,CNC-01,CELL-A,SITE-1\n3\tWO-1002,PN-200,220,3,2026-11-12,1,CNC-02,CELL-A,SITE-1\n4\tWO-1003,PN-100,300,0,2026-11-12,2,CNC-01,CELL-A,SITE-1\n5\t",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B10-positive-859ivny3\\work\\inputs\\pulse_oee\\downtime.csv"
+   },
+   "response": "1\tasset_id,started_at,ended_at,duration_minutes,reason_code,reason_text\n2\tCNC-01,2026-11-12T09:10:00,2026-11-12T09:55:00,45,TOOL,tool change overrun\n3\tCNC-02,2026-11-12T13:00:00,2026-11-12T13:20:00,20,MAT,waiting on material\n4\t",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B10-positive-859ivny3\\work\\inputs\\pulse_oee\\routing.csv"
+   },
+   "response": "1\tpart_number,op_seq,work_center,run_min_per_unit\n2\tPN-100,10,VMC,1.0\n3\tPN-200,10,VMC,1.8\n4\t",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B10-positive-859ivny3\\work\\inputs\\pulse_oee\\work_orders.csv"
+   },
+   "response": "1\twork_order,part_number,qty_ordered,status,due_date\n2\tWO-1001,PN-100,500,RELEASED,2026-11-14\n3\tWO-1002,PN-200,250,RELEASED,2026-11-13\n4\tWO-1003,PN-100,300,RELEASED,2026-11-15\n5\t",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B10-positive-859ivny3\\plugin\\skills\\daily-production-report\\reference\\reschedule-scope.md"
+   },
+   "response": "1\t# The reschedule proposal — and where it stops\n2\t\n3\tLoad this before proposing any schedule move.\n4\t\n5\t---\n6\t\n7\t## What this is not\n8\t\n9\t**This is not finite-capacity scheduling.**\n10\t\n11\tProducing an optimal shop schedule is a constraint-optimisation problem. A\n12\tlanguage model asked to do it will return a plausible-looking schedule that\n13\tquietly violates constraints — and that is **worse than returning nothing**,\n14\tbecause a scheduler who accepts it discovers the violation on the floor, at\n15\twhich point the report has actively caused a problem it was supposed to report.\n16\t\n17\tSo there is a hard line here, and it is drawn deliberately rather than\n18\tapologetically.\n19\t\n20\t| Out of scope | In scope |\n21\t|---|---|\n22\t| Re-optimising the day | One or two specific moves |\n23\t| Sequencing every job across every cell | Moving one job, and tracing what that displaces |\n24\t| Balancing load across the plant | Naming what still misses its date after the move |\n25\t| Anything presented as optimal | Something presented as checked, with the checks listed |\n26\t\n27\t---\n28\t\n29\t## What a proposal must contain\n30\t\n31\tFour parts. A proposal missing any of them is not actionable and should not be\n32\toffered.\n33\t\n34\t1. **The move.** Specific: which job, from where, to where — and **the\n35\t   changeover it implies**: what the receiving cell was running before, and\n36\t   what switching it costs. A move that reads as free because nobody named\n37\t   the changeover is not a checked move.\n38\t2. **What it displaces.** Every job the move pushes, and where each one lands.\n39\t3. **What still misses.** After the move, which commitments are still not met.\n40\t   **A proposal that claims nothing misses is the one to distrust most.**\n41\t4. **What was checked, and what was not.** Explicitly. This is what lets a\n42\t   scheduler accept or reject without rebuilding the analysis.\n43\t\n44\tAn example, with the changeover made explicit:\n45\t\n46\t> *\"Run 4471 on cell B instead of cell A; cell B was running 4390's finishing\n47\t> pass, so this costs a changeover — call it 40 minutes on this tooling. That\n48\t> pushes 4402 to second shift, where it still makes its date; 4390 now misses\n49\t> by one day.\"*\n50\t\n51\tFour clauses. One move with its changeover, one displacement with its\n52\toutcome, one casualty named. That is the whole deliverable. Where the\n53\tchangeover cost genuinely can't be estimated, say that explicitly rather than\n54\tsilently dropping it — it is degradation, per the table below, not omission.\n55\t\n56\t---\n57\t\n58\t## The honesty requirement\n59\t\n60\t**State what was not checked.** A move traced through due dates but not through\n61\ttooling availability, operator certification, or material on hand is a partial\n62\tcheck, and saying so is what keeps it useful.\n63\t\n64\t> *\"Checked: due dates on the three affected jobs, and cell B's routing for 4471.\n65\t> Not checked: whether cell B has the fixture, whether second shift has a\n66\t> certified operator for 4402, and material availability. Worth confirming those\n67\t> before committing.\"*\n68\t\n69\tA scheduler reading that knows exactly how much of their own judgment is still\n70\trequired. A scheduler reading a bare proposal does not, and will either\n71\tover-trust it or ignore it.\n72\t\n73\t---\n74\t\n75\t## One or two moves, not a plan\n76\t\n77\tPropose per significant exception, not for the day as a whole. Where three\n78\texceptions each need a move and the moves interact, **say that they interact and\n79\tstop** rather than composing them into a schedule.\n80\t\n81\t> *\"These three exceptions all want cell B. Individually each move works; together\n82\t> they conflict, and untangling that is a scheduling decision rather than\n83\t> something I can check. Here are the three moves separately, with the conflict\n84\t> named.\"*\n85\t\n86\t---\n87\t\n88\t## Never applied\n89\t\n90\tThe proposal is **drafted for the scheduler**, never applied to any system. This\n91\tskill writes nothing to a system of record. It reports, prices, and proposes.\n92\t\n93\t---\n94\t\n95\t## Degradation\n96\t\n97\tThe proposal depends on the schedule export and on changeover or routing data.\n98\t\n99\t| Available | Behavior |\n100\t|---|---|\n101\t| Schedule export and routing data | Propose the move, fully traced |\n102\t| Schedule export, no routing or changeover data | Propose the move; state that changeover time was not accounted for |\n103\t| Neither | **Report the exception with its impact on commitments and no proposed move — and say which** |\n104\t\n105\tThat last row is the important one. Per `../../../shared/absent-is-not-zero.md`,\n106\tthe report says the move was not proposed because the schedule data was not\n107\tavailable. It does not silently omit the proposal, which reads as \"nothing needed\n108\tto move.\"\n109\t",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Grep",
+   "input": {
+    "pattern": "Resolving a rate",
+    "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B10-positive-859ivny3\\plugin\\shared\\secret-config.md",
+    "output_mode": "content",
+    "-A": 30
+   },
+   "response": "73:## Resolving a rate\n74-\n75-**Every skill that needs a rate resolves it in this order, and no other.**\n76-Link here rather than restating it.\n77-\n78-1. **The `MFG_*` variable**, if it is set in the environment. Check that it is\n79-   set by name, without printing it. If the profile also holds a value for\n80-   that rate, it is **not used and not printed anywhere**, the internal cost\n81-   sheet included — not as a comparison, not as a conflict note. Say by name\n82-   that it exists: *\"labor rate from `MFG_LABOR_RATE`; the plant profile also\n83-   holds one\"*. Two numbers for one rate on the same sheet invite someone to\n84-   pick the other.\n85-2. **A confirmed rate in the plant's rates file**, the `## Plant rates` block\n86-   at `rates_path` from `plant_setup.py find` (brought in from the private\n87-   `Plant rates: <company>` page). For an older profile, the\n88-   profile's own `### Commercial rates` section. Price on it with no label.\n89-   Cite it as *\"plant profile, confirmed by <name> on <date>\"*.\n90-3. **A placeholder in the same place.** Price on it and label it, per\n91-   *What a skill does when one is missing* below.\n92-4. **Nothing.** Block the line. Name the rate, name both ways to set it — say\n93-   *\"update our labour rate\"* to record it on the plant's rates page, or set\n94-   `MFG_LABOR_RATE` — and say which lines it blocks. It is asked once: on a\n95-   yes it is saved to the rates page, never asked again.\n96-\n97-The source goes on the internal artifact next to the value, so an estimator\n98-can see which route priced the job: `MFG_LABOR_RATE`, *plant profile\n99-(confirmed)*, or *plant profile (placeholder)*.\n100-\n101-## How a plant sets them\n102-\n103-**Through onboarding.** Step 10 asks for each rate in plain language. Before",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B10-positive-859ivny3\\plugin\\shared\\computed-figures.md"
+   },
+   "response": "1\t# Computed figures — a number is printed, never retyped\n2\t\n3\t**Shared across the plugin.** Every skill that reports a number follows this.\n4\t\n5\tThe failure this exists to stop has one shape. The skill does the work\n6\tcorrectly, then writes the summary from memory. The summary says \"eleven\n7\tmaintenance records\" where the data holds six, \"3.1× the control limit\" where\n8\tthe division gives 2.36, \"five orders\" where the file has six — the customer's\n9\town order being the one missed. Each figure is stated with total confidence,\n10\tand each is the first thing a quality manager or an estimator will check.\n11\t\n12\tA second shape sits next to it: the confident absence. \"The sister machine has\n13\tno bearing history.\" \"There is no PM plan in the library.\" Said after one\n14\tsearch, about a record that was there.\n15\t\n16\t---\n17\t\n18\t## The rule\n19\t\n20\t**Every count, total, ratio, percentage and \"N of M\" in user-facing output is\n21\tproduced by code run over the data in this session, and printed from that\n22\tresult. A number is never retyped, rounded from memory, or paraphrased.**\n23\t\n24\t**A negative claim — \"has no history,\" \"no plan exists,\" \"not in the file\" —\n25\tcites the exact query or filter that returned nothing.** Where the search tool\n26\tmay be incomplete (SharePoint search under-reports), enumerate the folder\n27\tinstead, or say *\"not found by search\"* rather than *\"does not exist.\"* Those\n28\tare different claims and only the first one was earned.\n29\t\n30\t---\n31\t\n32\t## The figures block — a required part of the output\n33\t\n34\tA rule that says \"check your numbers\" is a rule nobody can see being skipped.\n35\tSo the check is an output, not an intention.\n36\t\n37\t**Every run that reports a number emits a figures block**, produced by code,\n38\tbefore the prose that uses it. One row per figure:\n39\t\n40\t| Figure | Value | Computed from | Filter or query |\n41\t|---|---|---|---|\n42\t| Maintenance records, HAAS-VF4-02 | 9 | maintenance export | `asset_id == \"HAAS-VF4-02\"` |\n43\t| Sibling records mentioning \"bearing\" | 2 (LMB-13781, LMB-14022, both HAAS-VF4-05) | maintenance export | same model, `notes` contains \"bearing\" |\n44\t| Measured ÷ upper control limit | 1.87 | inspection export | measured and limit both from the same computation |\n45\t| PM plan documents found | 0 — **not found by search** | M365 library | search \"PM plan\"; folder not enumerated |\n46\t\n47\tThen three things hold, and a reader can check all three without re-running\n48\tanything:\n49\t\n50\t1. **The prose quotes the block.** A number that appears in the narrative, a\n51\t   table or a headline appears in the block with the same value. A number in\n52\t   the prose with no row in the block is a defect.\n53\t2. **A ratio comes from the same computation as its parts.** Do not compute a\n54\t   control limit in code and then divide by it in your head.\n55\t3. **A subtotal reconciles to its total in the block itself.** If 126 records\n56\t   matched, the exact and normalized rows add to 126, and each equals the sum\n57\t   of the classes it is made of. A block that does not add up is fixed before\n58\t   anything is written from it.\n59\t\n60\tWhere the skill already emits \"the structured data behind the report,\" the\n61\tfigures block is part of it. Where the output is a controlled document going to\n62\ta customer or supplier, the block stays on the internal side.\n63\t\n64\t---\n65\t\n66\t## When no code can be run\n67\t\n68\tSome sessions have no code execution. Then the count was made by reading, and\n69\tthe output says so: **\"counted by reading, not computed — verify before\n70\trelying on it,\"** on the block and beside any figure that matters. Never\n71\tpresent a hand count as a computed one. This is `absent-is-not-zero.md` applied\n72\tto the method rather than the data: an unverified number named as unverified is\n73\tuseful, and one dressed as computed is worse than none.\n74\t\n75\t---\n76\t\n77\t## What this does not change\n78\t\n79\t- A figure that cannot be read is still reported unreadable. The block carries\n80\t  the row with the reason, never a guess.\n81\t- Rates, whether read from an `MFG_*` variable or the plant profile, follow\n82\t  `secret-config.md`. The block names the source; the value appears only where\n83\t  the audience rule allows.\n84\t- Computing a figure is not applying a fix. Anything that changes data still\n85\t  needs its yes.\n86\t",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B10-positive-859ivny3\\plugin\\shared\\artifact-style.md"
+   },
+   "response": "1\t# Artifact style — the house look\n2\t\n3\t**Shared across the plugin.** One visual system so every page a skill produces\n4\treads as the same product. Read this before building any HTML artifact; do not\n5\tinvent a new palette per skill.\n6\t\n7\t**The point is not decoration.** These are operating tools for a plant — a data\n8\tquality report, a morning production report, a bad-actor ranking, a cost-basis\n9\tsheet. Legible and defensible beats flashy. No hero banners, no marketing\n10\tgradients. A shop drawing, not a landing page.\n11\t\n12\t---\n13\t\n14\t## The constraint that shapes everything\n15\t\n16\t**Microsoft 365 is read-only by default.** Write access is an admin opt-in and\n17\tTeams has no write path at all. No skill may assume it can post a message or\n18\twrite a file back into M365.\n19\t\n20\tSo every deliverable is produced **in the conversation** and the user places it\n21\tthemselves. An artifact is a thing they open, read, and save or forward. It is\n22\tnever something the plugin filed away on their behalf.\n23\t\n24\t**The one exception is the two live dashboards**, Operations and the Quality\n25\tRegister, which are published to the user's own Claude artifact store and\n26\tupdated in place, per `live-dashboard.md`. That store is not M365 and not a\n27\tsystem of record. Everything on this page applies to them unchanged.\n28\t\n29\t---\n30\t\n31\t## When to use an artifact, and when not to\n32\t\n33\tReach for a page when the output is something the user will **refer back to,\n34\tprint, take into a meeting, or hand to someone else**. A data quality report, a\n35\tmorning production report, a ranked diagnosis, a scored comparison. Skip it for\n36\ta single number or a one-line answer; the chat reply is the deliverable and a\n37\tpage wrapped around one sentence is noise.\n38\t\n39\t**The artifact is additive, never a replacement.** The user still gets the short\n40\tanswer in chat. The page is where they go for the full picture.\n41\t\n42\t**Three kinds of output, and only one of them is an artifact:**\n43\t\n44\t| Output | Form | Why |\n45\t|---|---|---|\n46\t| A report, dashboard, or ranked analysis | HTML artifact, this style | Read at a glance, referred back to |\n47\t| A dataset | XLSX workbook, tab per entity | Meant to be filtered, pivoted, and checked |\n48\t| A controlled document | The plant's own template | An NCR, an 8D, a quote, a supplier RFQ package and a trade study memo all have a plant-specific or customer-specific shape, captured during `onboarding`. Never restyle a controlled document into the house look. |\n49\t\n50\tThat last row matters. A quality manager's 8D goes to a customer against a\n51\tcontractual format. House styling it would be wrong, not nicer.\n52\t\n53\t---\n54\t\n55\t## Design tokens\n56\t\n57\tEvery color and font is a CSS custom property. Components never carry a literal\n58\thex, so one override point recolors the whole page correctly.\n59\t\n60\t```css\n61\t:root {\n62\t  --ink: #1A1D21;          /* primary text, graphite */\n63\t  --paper: #F2F3F5;        /* page background, cool grey */\n64\t  --paper-raised: #FFFFFF; /* card surfaces sitting on --paper */\n65\t  --line: #D6D9DD;         /* hairline borders and rules */\n66\t  --accent: #1F5C8B;       /* primary accent, drawing blue */\n67\t  --accent-soft: #E4EDF4;  /* accent tint for pills and highlights */\n68\t\n69\t  /* Semantic, never repurposed as branding */\n70\t  --good: #2E7248;\n71\t  --good-soft: #E3EFE7;\n72\t  --warn: #A8641A;\n73\t  --warn-soft: #F7EBDA;\n74\t  --critical: #A93226;\n75\t  --critical-soft: #F9E9E7;\n76\t\n77\t  --font-display: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif;\n78\t  --font-body: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;\n79\t  --font-mono: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;\n80\t\n81\t  --text-xs: 0.75rem;   --text-sm: 0.875rem;  --text-base: 1rem;\n82\t  --text-lg: 1.125rem;  --text-xl: 1.375rem;  --text-2xl: 1.75rem;\n83\t  --text-3xl: 2.25rem;\n84\t}\n85\t\n86\t@media (prefers-color-scheme: dark) {\n87\t  :root:not([data-theme=\"light\"]) {\n88\t    --ink: #E8EAEC;\n89\t    --paper: #15181B;\n90\t    --paper-raised: #1D2126;\n91\t    --line: #2E343A;\n92\t    --accent: #6BA8D4;\n93\t    --accent-soft: #1B2C39;\n94\t    --good: #6FBF88;\n95\t    --good-soft: #1B2E22;\n96\t    --warn: #D9A15C;\n97\t    --warn-soft: #33271A;\n98\t    --critical: #DE8378;\n99\t    --critical-soft: #35201E;\n100\t  }\n101\t}\n102\t\n103\t:root[data-theme=\"dark\"] {\n104\t  --ink: #E8EAEC;\n105\t  --paper: #15181B;\n106\t  --paper-raised: #1D2126;\n107\t  --line: #2E343A;\n108\t  --accent: #6BA8D4;\n109\t  --accent-soft: #1B2C39;\n110\t  --good: #6FBF88;\n111\t  --good-soft: #1B2E22;\n112\t  --warn: #D9A15C;\n113\t  --warn-soft: #33271A;\n114\t  --critical: #DE8378;\n115\t  --critical-soft: #35201E;\n116\t}\n117\t```\n118\t\n119\t**Fonts load from Google Fonts**, the one host the artifact sandbox allows:\n120\t\n121\t```html\n122\t<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n123\t<link href=\"https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap\" rel=\"stylesheet\">\n124\t```\n125\t\n126\t---\n127\t\n128\t## Type\n129\t\n130\t- **Display** for page titles and section headers only, weight 600.\n131\t- **Body** for everything read as prose.\n132\t- **Mono** for every number that sits in a column — counts, quantities, minutes,\n133\t  currency, part numbers, work order numbers, dates in a table. Pair with\n134\t  `font-variant-numeric: tabular-nums`. Part numbers and work order numbers are\n135\t  identifiers, not prose, and they belong in mono so `PN-4471-B` and `PN-4471-8`\n136\t  are distinguishable at a glance.\n137\t\n138\t---\n139\t\n140\t## Layout — the panel pattern\n141\t\n142\tContent sits in bordered panels (`--paper-raised` on `--paper`, `1px solid\n143\tvar(--line)`, `border-radius: 4px`). Panels stack with `gap`, not margin. Wide\n144\ttables get their own `overflow-x: auto` wrapper so the page never scrolls\n145\tsideways.\n146\t\n147\t```css\n148\t.panel {\n149\t  background: var(--paper-raised);\n150\t  border: 1px solid var(--line);\n151\t  border-radius: 4px;\n...[truncated]",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B10-positive-859ivny3\\work\\out\\scripts\\build_report.py",
+    "content": "\"\"\"Morning production report builder (daily-production-report skill, standalone run).\n\nReads the raw exports under inputs/pulse_oee, computes every figure in code,\nwrites the figures block (JSON + CSV) and the HTML page under out/report-output.\nUsage: python -I build_report.py <inputs_dir> <out_dir>\n\"\"\"\nimport csv, json, os, sys, html\nfrom datetime import datetime, date\nfrom collections import defaultdict, OrderedDict\n\nIN, OUT = sys.argv[1], sys.argv[2]\nRUN_DATE = date(2026, 11, 15)          # session date\nGENERATED = datetime.now().strftime(\"%Y-%m-%d %H:%M\")\nos.makedirs(OUT, exist_ok=True)\n\ndef rd(name):\n    with open(os.path.join(IN, name), newline=\"\", encoding=\"utf-8\") as f:\n        return list(csv.DictReader(f))\n\nplan, output, downtime = rd(\"plan.csv\"), rd(\"output.csv\"), rd(\"downtime.csv\")\nrouting, wos = rd(\"routing.csv\"), rd(\"work_orders.csv\")\n\nFIG = []  # figures block\ndef fig(name, value, src, flt):\n    FIG.append({\"figure\": name, \"value\": value, \"computed_from\": src, \"filter\": flt})\n    return value\n\ndef pct(x):\n    return None if x is None else round(100 * x, 2)\n\n# ---------------- Step 1: freshness ----------------\nfiles = [\"plan.csv\", \"output.csv\", \"downtime.csv\", \"routing.csv\", \"work_orders.csv\"]\nfresh = []\nfor fn in files:\n    st = os.stat(os.path.join(IN, fn))\n    fresh.append({\"file\": fn, \"modified\": datetime.fromtimestamp(st.st_mtime).strftime(\"%Y-%m-%d %H:%M\")})\nprod_days = sorted({r[\"production_day\"] for r in output})\nplan_days = sorted({r[\"plan_date\"] for r in plan})\ndt_days = sorted({r[\"started_at\"][:10] for r in downtime})\nfig(\"Production days in output export\", \", \".join(prod_days), \"output.csv\", \"distinct production_day\")\nfig(\"Plan dates in plan export\", \", \".join(plan_days), \"plan.csv\", \"distinct plan_date\")\nfig(\"Downtime event dates\", \", \".join(dt_days), \"downtime.csv\", \"distinct date(started_at)\")\nPDAY = prod_days[-1]\nage_days = (RUN_DATE - date.fromisoformat(PDAY)).days\nfig(\"Latest production day age (days before 2026-11-15)\", age_days, \"output.csv\", \"2026-11-15 minus max(production_day)\")\nmissing_days = [str(date.fromordinal(d)) for d in range(date.fromisoformat(PDAY).toordinal() + 1, RUN_DATE.toordinal())]\nfig(\"Production days with no export in the drop\", \", \".join(missing_days), \"output.csv / plan.csv / downtime.csv\", \"days between latest production_day and 2026-11-15, exclusive\")\nshifts_by_asset = defaultdict(set)\nfor r in output:\n    shifts_by_asset[r[\"asset_id\"]].add(r[\"shift\"])\nshifts_all = sorted({r[\"shift\"] for r in output})\nfig(\"Shifts present in output\", \", \".join(shifts_all), \"output.csv\", \"distinct shift\")\nfor a in sorted(shifts_by_asset):\n    fig(f\"Shifts reported, {a}\", \", \".join(sorted(shifts_by_asset[a])), \"output.csv\", f\"asset_id == {a}\")\nfuture = [r for r in downtime if datetime.fromisoformat(r[\"started_at\"]).date() > RUN_DATE]\nfig(\"Rows with future timestamps\", len(future), \"downtime.csv\", \"started_at > 2026-11-15\")\nenv_rate_set = \"MFG_DOWNTIME_COST_PER_HOUR\" in os.environ\nfig(\"MFG_DOWNTIME_COST_PER_HOUR set\", env_rate_set, \"environment\", \"checked by name; value not read\")\n\n# ---------------- Key checks (raw exports, no consolidated dataset) ----------------\npn_plan = {r[\"part_number\"] for r in plan}\npn_out = {r[\"part_number\"] for r in output}\npn_rt = {r[\"part_number\"] for r in routing}\npn_wo = {r[\"part_number\"] for r in wos}\nfig(\"Part numbers in plan not in output\", sorted(pn_plan - pn_out) or \"none\", \"plan.csv vs output.csv\", \"set difference, exact match\")\nfig(\"Part numbers in output not in plan\", sorted(pn_out - pn_plan) or \"none\", \"output.csv vs plan.csv\", \"set difference, exact match\")\nfig(\"Part numbers in output with no routing\", sorted(pn_out - pn_rt) or \"none\", \"output.csv vs routing.csv\", \"set difference, exact match\")\nwo_out = {r[\"work_order\"] for r in output}\nwo_erp = {r[\"work_order\"] for r in wos}\nfig(\"Work orders in output not in WO export\", sorted(wo_out - wo_erp) or \"none\", \"output.csv vs work_orders.csv\", \"set difference\")\nfig(\"Work orders in WO export with no output\", sorted(wo_erp - wo_out) or \"none\", \"work_orders.csv vs output.csv\", \"set difference\")\ndup = defaultdict(int)\nfor r in output:\n    dup[(r[\"work_order\"], r[\"production_day\"], r[\"shift\"])] += 1\nfig(\"Duplicate output keys (WO, day, shift)\", sum(1 for v in dup.values() if v > 1), \"output.csv\", \"count of keys with >1 row\")\nhas_so = \"sales_order\" in (wos[0].keys() if wos else [])\nfig(\"Work order export carries sales_order\", has_so, \"work_orders.csv\", \"column present\")\nhas_rework = \"qty_rework\" in (output[0].keys() if output else []) or \"rework\" in (output[0].keys() if output else [])\nfig(\"Output export carries a rework column\", has_rework, \"output.csv\", \"column 'qty_rework' or 'rework' present\")\n\n# ---------------- Step 2: output against plan ----------------\noap = []\nfor p in plan:\n    rows = [r for r in output if r[\"part_number\"] == p[\"part_number\"] and r[\"production_day\"] == p[\"plan_date\"] and r[\"asset_id\"] == p[\"asset_id\"]]\n    good = sum(int(r[\"qty_good\"]) for r in rows)\n    scrap = sum(int(r[\"qty_scrap\"]) for r in rows)\n    planned = int(p[\"planned_qty\"])\n    cell = \", \".join(sorted({r[\"cell\"] for r in rows})) or \"—\"\n    d = {\"part\": p[\"part_number\"], \"work_center\": p[\"work_center\"], \"asset\": p[\"asset_id\"], \"cell\": cell,\n         \"plan\": planned, \"good\": good, \"scrap\": scrap, \"total\": good + scrap,\n         \"variance_good\": good - planned, \"attain_good_pct\": round(100 * good / planned, 2)}\n    oap.append(d)\n    k = f\"{p['part_number']} / {p['asset_id']} / {p['plan_date']}\"\n    fig(f\"Planned qty, {k}\", planned, \"plan.csv\", f\"part_number=={p['part_number']}, asset_id=={p['asset_id']}\")\n    fig(f\"Good qty, {k}\", good, \"output.csv\", f\"same keys, sum qty_good over {len(rows)} rows\")\n    fig(f\"Scrap qty, {k}\", scrap, \"output.csv\", \"same keys, sum qty_scrap\")\n    fig(f\"Total qty (good+scrap), {k}\", good + scrap, \"output.csv\", \"good + scrap\")\n    fig(f\"Variance good vs plan, {k}\", good - planned, \"computed\", \"good - planned\")\n    fig(f\"Plan attainment (good), {k} %\", d[\"attain_good_pct\"], \"computed\", \"good / planned\")\nT_plan = fig(\"Total planned qty\", sum(d[\"plan\"] for d in oap), \"plan.csv\", \"sum planned_qty\")\nT_good = fig(\"Total good qty\", sum(d[\"good\"] for d in oap), \"output.csv\", \"sum qty_good, matched to plan rows\")\nT_scrap = fig(\"Total scrap qty\", sum(d[\"scrap\"] for d in oap), \"output.csv\", \"sum qty_scrap, matched to plan rows\")\nT_total = fig(\"Total output (good+scrap)\", T_good + T_scrap, \"computed\", \"good + scrap\")\nfig(\"Total good qty, all output rows (reconciliation)\", sum(int(r[\"qty_good\"]) for r in output), \"output.csv\", \"sum qty_good, all rows\")\nT_var = fig(\"Total variance good vs plan\", T_good - T_plan, \"computed\", \"good - planned\")\nT_att = fig(\"Total plan attainment (good) %\", round(100 * T_good / T_plan, 2), \"computed\", \"good / planned\")\nby_cell = defaultdict(lambda: [0, 0, 0])\nfor d in oap:\n    by_cell[d[\"cell\"]][0] += d[\"plan\"]; by_cell[d[\"cell\"]][1] += d[\"good\"]; by_cell[d[\"cell\"]][2] += d[\"scrap\"]\nfor c, (pl, g, s) in by_cell.items():\n    fig(f\"Cell {c}: plan / good / scrap\", f\"{pl} / {g} / {s}\", \"plan.csv + output.csv\", f\"cell=={c}\")\n\n# ---------------- Step 3: OEE per asset ----------------\nict = {r[\"part_number\"]: float(r[\"run_min_per_unit\"]) for r in routing}\ndt_valid, dt_bad = [], []\nfor r in downtime:\n    s, e = datetime.fromisoformat(r[\"started_at\"]), datetime.fromisoformat(r[\"ended_at\"])\n    stated = float(r[\"duration_minutes\"])\n    span = (e - s).total_seconds() / 60\n    if e < s:\n        dt_bad.append((r, \"end_before_start\"))\n    elif abs(span - stated) > 0.5:\n        dt_bad.append((r, f\"duration_mismatch (span {span:g} min)\"))\n    else:\n        dt_valid.append(r)\nfig(\"Downtime events, total\", len(downtime), \"downtime.csv\", \"all rows\")\nfig(\"Downtime events with untrustworthy minutes\", len(dt_bad), \"downtime.csv\", \"ended_at < started_at, or |span - duration_minutes| > 0.5\")\n\noee = []\nagg = {\"planned\": 0.0, \"down\": 0.0, \"ideal\": 0.0, \"good\": 0, \"total\": 0}\nfor p in plan:\n    a = p[\"asset_id\"]\n    planned_min = float(p[\"planned_hours\"]) * 60\n    down = sum(float(r[\"duration_minutes\"]) for r in dt_valid if r[\"asset_id\"] == a and r[\"started_at\"][:10] == p[\"plan_date\"])\n    run = planned_min - down\n    rows = [r for r in output if r[\"asset_id\"] == a and r[\"production_day\"] == p[\"plan_date\"]]\n    good = sum(int(r[\"qty_good\"]) for r in rows)\n    total = sum(int(r[\"qty_good\"]) + int(r[\"qty_scrap\"]) for r in rows)\n    ideal = sum(ict[r[\"part_number\"]] * (int(r[\"qty_good\"]) + int(r[\"qty_scrap\"])) for r in rows if r[\"part_number\"] in ict)\n    A = run / planned_min if planned_min else None\n    P = ideal / run if run and all(r[\"part_number\"] in ict for r in rows) else None\n    Q = good / total if total else None\n    O = A * P * Q if None not in (A, P, Q) else None\n    oee.append({\"asset\": a, \"work_center\": p[\"work_center\"], \"planned_min\": planned_min, \"down_min\": down, \"run_min\": run,\n                \"ideal_min\": round(ideal, 2), \"good\": good, \"total\": total,\n                \"A\": pct(A), \"P\": pct(P), \"Q\": pct(Q), \"OEE\": pct(O)})\n    for k, v, f_ in [(\"Planned production time (min)\", planned_min, \"plan.csv planned_hours x 60\"),\n                     (\"Downtime (min)\", down, \"downtime.csv sum duration_minutes, valid rows, same day\"),\n                     (\"Run time (min)\", run, \"planned - downtime\"),\n                     (\"Ideal time (min)\", round(ideal, 2), \"sum run_min_per_unit x (good+scrap)\"),\n                     (\"Availability %\", pct(A), \"run / planned\"),\n                     (\"Performance %\", pct(P), \"ideal / run\"),\n                     (\"Quality %\", pct(Q), \"good / (good+scrap)\"),\n                     (\"OEE %\", pct(O), \"A x P x Q\")]:\n        fig(f\"{k}, {a}\", v, \"computed\", f_)\n    agg[\"planned\"] += planned_min; agg[\"down\"] += down; agg[\"ideal\"] += ideal; agg[\"good\"] += good; agg[\"total\"] += total\nrunT = agg[\"planned\"] - agg[\"down\"]\npA, pP, pQ = runT / agg[\"planned\"], agg[\"ideal\"] / runT, agg[\"good\"] / agg[\"total\"]\nplant = {\"A\": pct(pA), \"P\": pct(pP), \"Q\": pct(pQ), \"OEE\": pct(pA * pP * pQ)}\nfig(\"Plant roll-up planned time (min)\", agg[\"planned\"], \"computed\", \"sum over assets\")\nfig(\"Plant roll-up run time (min)\", runT, \"computed\", \"sum over assets\")\nfor k in [\"A\", \"P\", \"Q\", \"OEE\"]:\n    fig(f\"Plant roll-up {dict(A='Availability',P='Performance',Q='Quality',OEE='OEE')[k]} %\", plant[k], \"computed\", \"time-weighted: sums of numerators / sums of denominators\")\nassets_planned = {p[\"asset_id\"] for p in plan}\nfig(\"Planned assets with no output\", sorted(assets_planned - {r['asset_id'] for r in output}) or \"none\", \"plan.csv vs output.csv\", \"set difference\")\n\n# ---------------- Step 4: downtime log ----------------\nother = [r for r in downtime if r[\"reason_code\"].strip().upper() in (\"\", \"OTHER\")]\nfig(\"Downtime events coded Other or blank\", f\"{len(other)} of {len(downtime)}\", \"downtime.csv\", \"reason_code in ('', 'Other')\")\nfig(\"Downtime minutes coded Other or blank\", sum(float(r[\"duration_minutes\"]) for r in other), \"downtime.csv\", \"same filter\")\nnamed = [r for r in dt_valid if r not in other]\nby_code = defaultdict(lambda: {\"minutes\": 0.0, \"events\": 0, \"assets\": set(), \"text\": set()})\nfor r in named:\n    c = by_code[r[\"reason_code\"]]\n    c[\"minutes\"] += float(r[\"duration_minutes\"]); c[\"events\"] += 1; c[\"assets\"].add(r[\"asset_id\"]); c[\"text\"].add(r[\"reason_text\"])\nfor code, c in by_code.items():\n    fig(f\"Downtime minutes, reason {code}\", c[\"minutes\"], \"downtime.csv\", f\"reason_code=={code}, valid rows\")\n    fig(f\"Downtime events, reason {code}\", c[\"events\"], \"downtime.csv\", f\"reason_code=={code}\")\nrank_min = sorted(by_code.items(), key=lambda kv: (-kv[1][\"minutes\"], kv[0]))\nrank_freq = sorted(by_code.items(), key=lambda kv: (-kv[1][\"events\"], -kv[1][\"minutes\"], kv[0]))\nDT_MIN = fig(\"Total downtime minutes (valid rows)\", sum(float(r[\"duration_minutes\"]) for r in dt_valid), \"downtime.csv\", \"sum duration_minutes, valid rows\")\nDT_EV = fig(\"Total downtime events\", len(downtime), \"downtime.csv\", \"all rows\")\nfig(\"Downtime minutes as share of planned time %\", round(100 * DT_MIN / agg[\"planned\"], 2), \"computed\", \"downtime / planned production time\")\n\n# ---------------- Step 5: priced losses ----------------\n# No plant profile, no rates file, no MFG_ variable. rates_memo.txt holds burdened shop rates by work centre\n# (MILL-H, MILL-V, TURN, INSP) but the exports use work centre 'VMC', which is not on the memo.\nmemo_wc = [\"MILL-H\", \"MILL-V\", \"TURN\", \"INSP\"]\nexport_wc = sorted({r[\"work_center\"] for r in plan} | {r[\"work_center\"] for r in routing})\nfig(\"Work centres in exports\", \", \".join(export_wc), \"plan.csv + routing.csv\", \"distinct work_center\")\nfig(\"Export work centres found verbatim in rates memo\", [w for w in export_wc if w in memo_wc] or \"none\", \"rates_memo.txt\", \"exact string match\")\nfig(\"Standard material cost available\", False, \"inputs/ (all files)\", \"no column or file carrying standard or material cost per part\")\nfig(\"Downtime dollars\", \"unpriced - no confirmed downtime cost rate\", \"secret-config resolution\", \"env var not set; no plant profile; memo rate is a shop rate on a work-centre name not in the exports\")\nfig(\"Scrap dollars\", \"unpriced - no standard cost\", \"inputs/\", \"no standard material cost per part\")\nscrap_by_part = {d[\"part\"]: d[\"scrap\"] for d in oap}\nfor p_, s in scrap_by_part.items():\n    fig(f\"Scrap share of units, {p_} %\", round(100 * s / T_scrap, 2), \"output.csv\", \"part scrap / total scrap\")\n# Value-added machine minutes embedded in scrap (rate-independent, from routing)\nfor p_, s in scrap_by_part.items():\n    fig(f\"Machine minutes lost in scrap, {p_}\", round(s * ict[p_], 2), \"output.csv x routing.csv\", \"scrap x run_min_per_unit\")\nSCRAP_MIN = fig(\"Machine minutes lost in scrap, total\", round(sum(s * ict[p_] for p_, s in scrap_by_part.items()), 2), \"computed\", \"sum\")\n\n# ---------------- Step 8: exceptions (work orders) ----------------\nwo_rows = []\nfor w in wos:\n    rows = [r for r in output if r[\"work_order\"] == w[\"work_order\"]]\n    good = sum(int(r[\"qty_good\"]) for r in rows)\n    scrap = sum(int(r[\"qty_scrap\"]) for r in rows)\n    ordered = int(w[\"qty_ordered\"])\n    due = date.fromisoformat(w[\"due_date\"])\n    short = max(ordered - good, 0)\n    last_day = max((r[\"production_day\"] for r in rows), default=\"—\")\n    if short > 0 and due < RUN_DATE:\n        state = \"past due, short as of last export\"\n    elif short > 0:\n        state = \"short, due later\"\n    else:\n        state = \"quantity complete; status still \" + w[\"status\"]\n    days_past = (RUN_DATE - due).days\n    d = {\"wo\": w[\"work_order\"], \"part\": w[\"part_number\"], \"ordered\": ordered, \"good\": good, \"scrap\": scrap,\n         \"short\": short, \"due\": w[\"due_date\"], \"status\": w[\"status\"], \"days_past_due\": days_past,\n         \"last_output_day\": last_day, \"state\": state,\n         \"asset\": \", \".join(sorted({r['asset_id'] for r in rows})),\n         \"make_up_min\": round(short * ict.get(w[\"part_number\"], 0), 2)}\n    wo_rows.append(d)\n    fig(f\"{w['work_order']}: good to date in drop\", good, \"output.csv\", f\"work_order=={w['work_order']}\")\n    fig(f\"{w['work_order']}: shortfall vs ordered\", short, \"computed\", \"max(ordered - good, 0)\")\n    fig(f\"{w['work_order']}: days past due at 2026-11-15\", days_past, \"work_orders.csv\", \"2026-11-15 - due_date\")\n    fig(f\"{w['work_order']}: ideal run minutes to make up shortfall\", d[\"make_up_min\"], \"routing.csv\", \"shortfall x run_min_per_unit (no scrap allowance, no setup)\")\nlate = [d for d in wo_rows if d[\"state\"].startswith(\"past due\")]\nfig(\"Work orders past due and short as of last export\", f\"{len(late)} of {len(wo_rows)}\", \"work_orders.csv + output.csv\", \"due_date < 2026-11-15 and good < qty_ordered\")\nfig(\"Work orders whose commitment impact is not traceable\", len(late), \"work_orders.csv\", \"no sales_order column\")\n\n# ---------------- write structured data ----------------\ndata = OrderedDict(production_day=PDAY, site=sorted({r['site'] for r in output}), generated=GENERATED,\n                   freshness=fresh, output_vs_plan=oap, oee_per_asset=oee, oee_plant_rollup=plant,\n                   downtime_events=downtime, downtime_excluded=[{\"row\": r, \"reason\": why} for r, why in dt_bad],\n                   downtime_rank_minutes=[{\"code\": k, \"minutes\": v[\"minutes\"], \"events\": v[\"events\"]} for k, v in rank_min],\n                   downtime_rank_frequency=[{\"code\": k, \"events\": v[\"events\"], \"minutes\": v[\"minutes\"]} for k, v in rank_freq],\n                   work_orders=wo_rows, figures_block=FIG)\nwith open(os.path.join(OUT, \"morning-report-data.json\"), \"w\", encoding=\"utf-8\") as f:\n    json.dump(data, f, indent=2, default=list)\nwith open(os.path.join(OUT, \"figures-block.csv\"), \"w\", newline=\"\", encoding=\"utf-8\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"figure\", \"value\", \"computed_from\", \"filter\"])\n    w.writeheader()\n    for r in FIG:\n        w.writerow({k: (json.dumps(v) if isinstance(v, (list, bool)) else v) for k, v in r.items()})\n\n# ---------------- HTML ----------------\nE = html.escape\ndef n(x):\n    if x is None: return \"—\"\n    if isinstance(x, float) and x.is_integer(): x = int(x)\n    return f\"{x:,}\" if isinstance(x, int) else f\"{x}\"\ndef p_(x): return \"N/A\" if x is None else f\"{x:.1f}%\"\ndef sgn(x): return f\"+{x:,}\" if x > 0 else f\"{x:,}\"\nsite = \", \".join(data[\"site\"])\npday = datetime.fromisoformat(PDAY).strftime(\"%d %b %Y\")\nfresh_rows = \"\".join(f\"<tr><td>{E(r['file'])}</td><td class='num'>{E(r['modified'])}</td><td class='num'>{E(cov)}</td><td>{st}</td></tr>\"\n    for r, cov, st in [\n        (fresh[1], PDAY + \" (shifts \" + \", \".join(shifts_all) + \")\", \"<span class='status status--critical'>%d days old</span>\" % age_days),\n        (fresh[0], \", \".join(plan_days), \"<span class='status status--critical'>no plan after %s</span>\" % plan_days[-1]),\n        (fresh[2], \", \".join(dt_days), \"<span class='status status--critical'>%d days old</span>\" % age_days),\n        (fresh[4], \"3 open WOs, due 13–15 Nov\", \"<span class='status status--warn'>no as-of; no sales order link</span>\"),\n        (fresh[3], \"PN-100, PN-200\", \"<span class='status status--good'>read</span>\")])\n\noap_rows = \"\".join(f\"<tr><td class='num'>{E(d['cell'])}</td><td class='num'>{E(d['work_center'])}</td><td class='num'>{E(d['asset'])}</td><td class='num'>{E(d['part'])}</td>\"\n                   f\"<td class='num'>{n(d['plan'])}</td><td class='num'>{n(d['good'])}</td><td class='num'>{n(d['scrap'])}</td><td class='num'>{n(d['total'])}</td>\"\n                   f\"<td class='num'>{sgn(d['variance_good'])}</td><td class='num'>{d['attain_good_pct']:.1f}%</td></tr>\" for d in oap)\noap_rows += (f\"<tr class='tot'><td colspan='4'>Total ({E(site)})</td><td class='num'>{n(T_plan)}</td><td class='num'>{n(T_good)}</td><td class='num'>{n(T_scrap)}</td>\"\n             f\"<td class='num'>{n(T_total)}</td><td class='num'>{sgn(T_var)}</td><td class='num'>{T_att:.1f}%</td></tr>\")\noee_rows = \"\".join(f\"<tr><td class='num'>{E(o['asset'])}</td><td class='num'>{n(o['planned_min'])}</td><td class='num'>{n(o['down_min'])}</td><td class='num'>{n(o['run_min'])}</td>\"\n                   f\"<td class='num'>{p_(o['A'])}</td><td class='num'>{p_(o['P'])}</td><td class='num'>{p_(o['Q'])}</td><td class='num'><b>{p_(o['OEE'])}</b></td></tr>\" for o in oee)\noee_rows += (f\"<tr class='tot'><td>Roll-up (time-weighted)</td><td class='num'>{n(agg['planned'])}</td><td class='num'>{n(agg['down'])}</td><td class='num'>{n(runT)}</td>\"\n             f\"<td class='num'>{p_(plant['A'])}</td><td class='num'>{p_(plant['P'])}</td><td class='num'>{p_(plant['Q'])}</td><td class='num'><b>{p_(plant['OEE'])}</b></td></tr>\")\ndef rank_tbl(rk, first):\n    out = \"\"\n    for i, (k, v) in enumerate(rk, 1):\n        cols = [n(v[\"minutes\"]), n(v[\"events\"])] if first == \"min\" else [n(v[\"events\"]), n(v[\"minutes\"])]\n        out += (f\"<tr><td class='num'>{i}</td><td class='num'>{E(k)}</td><td>{E('; '.join(sorted(v['text'])))}</td><td class='num'>{E(', '.join(sorted(v['assets'])))}</td>\"\n                f\"<td class='num'>{cols[0]}</td><td class='num'>{cols[1]}</td></tr>\")\n    return out\ndt_log = \"\".join(f\"<tr><td class='num'>{E(r['asset_id'])}</td><td class='num'>{E(r['started_at'].replace('T',' '))}</td><td class='num'>{E(r['ended_at'][11:16])}</td>\"\n                 f\"<td class='num'>{E(r['duration_minutes'])}</td><td class='num'>{E(r['reason_code'])}</td><td>{E(r['reason_text'])}</td></tr>\" for r in downtime)\nties = len({v[\"events\"] for _, v in rank_freq}) == 1 and len(rank_freq) > 1\nwo_tbl = \"\".join(f\"<tr><td class='num'>{E(d['wo'])}</td><td class='num'>{E(d['part'])}</td><td class='num'>{E(d['asset'])}</td><td class='num'>{n(d['ordered'])}</td><td class='num'>{n(d['good'])}</td>\"\n                 f\"<td class='num'>{n(d['scrap'])}</td><td class='num'>{n(d['short'])}</td><td class='num'>{E(d['due'])}</td><td class='num'>{E(d['status'])}</td><td>{E(d['state'])}</td></tr>\" for d in wo_rows)\nfigs = \"\".join(f\"<tr><td>{E(r['figure'])}</td><td class='num'>{E(json.dumps(r['value']) if isinstance(r['value'], (list, bool)) else str(r['value']))}</td><td>{E(r['computed_from'])}</td><td><code>{E(r['filter'])}</code></td></tr>\" for r in FIG)\nW = {d[\"wo\"]: d for d in wo_rows}\no1 = next(o for o in oee if o[\"asset\"] == \"CNC-01\"); o2 = next(o for o in oee if o[\"asset\"] == \"CNC-02\")\ns100, s200 = scrap_by_part.get(\"PN-100\", 0), scrap_by_part.get(\"PN-200\", 0)\nsh100 = round(100 * s100 / T_scrap, 1)\n\nPAGE = f\"\"\"<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<title>{E(site)}: morning report, {E(pday)}</title>\n<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n<link href=\"https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap\" rel=\"stylesheet\">\n<style>\n:root{{--ink:#1A1D21;--paper:#F2F3F5;--paper-raised:#FFFFFF;--line:#D6D9DD;--accent:#1F5C8B;--accent-soft:#E4EDF4;--good:#2E7248;--good-soft:#E3EFE7;--warn:#A8641A;--warn-soft:#F7EBDA;--critical:#A93226;--critical-soft:#F9E9E7;\n--font-display:'IBM Plex Sans Condensed','Arial Narrow',sans-serif;--font-body:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,sans-serif;--font-mono:'IBM Plex Mono','SF Mono',Consolas,monospace;\n--text-xs:.75rem;--text-sm:.875rem;--text-base:1rem;--text-lg:1.125rem;--text-xl:1.375rem;--text-2xl:1.75rem;--text-3xl:2.25rem}}\n@media (prefers-color-scheme:dark){{:root:not([data-theme=\"light\"]){{--ink:#E8EAEC;--paper:#15181B;--paper-raised:#1D2126;--line:#2E343A;--accent:#6BA8D4;--accent-soft:#1B2C39;--good:#6FBF88;--good-soft:#1B2E22;--warn:#D9A15C;--warn-soft:#33271A;--critical:#DE8378;--critical-soft:#35201E}}}}\n:root[data-theme=\"dark\"]{{--ink:#E8EAEC;--paper:#15181B;--paper-raised:#1D2126;--line:#2E343A;--accent:#6BA8D4;--accent-soft:#1B2C39;--good:#6FBF88;--good-soft:#1B2E22;--warn:#D9A15C;--warn-soft:#33271A;--critical:#DE8378;--critical-soft:#35201E}}\nbody{{margin:0;background:var(--paper);color:var(--ink);font:400 var(--text-base)/1.5 var(--font-body)}}\n.page{{display:flex;flex-direction:column;gap:1.25rem;max-width:960px;margin:0 auto;padding:2rem 1.5rem}}\nh1,h2,h3{{font-family:var(--font-display);font-weight:600;margin:0 0 .5rem}} h1{{font-size:var(--text-2xl)}} h2{{font-size:var(--text-xl)}} h3{{font-size:var(--text-lg)}}\n.meta{{font-size:var(--text-sm);opacity:.8;margin:0}}\n.panel{{background:var(--paper-raised);border:1px solid var(--line);border-radius:4px;padding:1.5rem}}\n.table-scroll{{overflow-x:auto}} table{{border-collapse:collapse;width:100%;font-size:var(--text-sm)}}\nth,td{{text-align:left;padding:.4rem .5rem;border-bottom:1px solid var(--line);vertical-align:top}} th{{font-weight:600}}\n.num{{font-family:var(--font-mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}}\ntr.tot td{{font-weight:600;border-top:2px solid var(--line)}}\n.status{{display:inline-block;padding:.15rem .55rem;border-radius:2px;font:600 var(--text-xs) var(--font-body);text-transform:uppercase;letter-spacing:.04em}}\n.status--good{{background:var(--good-soft);color:var(--good)}}.status--warn{{background:var(--warn-soft);color:var(--warn)}}.status--critical{{background:var(--critical-soft);color:var(--critical)}}\n.tiles{{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}}\n.stat-tile{{border:1px solid var(--line);border-radius:4px;padding:1rem}} .stat-figure{{font:500 var(--text-3xl) var(--font-mono);font-variant-numeric:tabular-nums}}\n.stat-label{{font-weight:600}} .stat-context{{font-size:var(--text-sm);margin:.25rem 0 0}}\n.note{{font-size:var(--text-sm)}} .crit{{border-left:4px solid var(--critical)}} .warnb{{border-left:4px solid var(--warn)}}\ndetails>summary{{cursor:pointer;font:600 var(--text-lg) var(--font-display)}} details{{margin-top:.25rem}}\ncode{{font-family:var(--font-mono);font-size:var(--text-xs)}} .page-footer{{font-size:var(--text-xs);opacity:.7}}\n</style></head><body><main class=\"page\">\n\n<header class=\"page-header\"><h1>{E(site)}: morning report, {E(pday)}</h1>\n<p class=\"meta\">Generated {E(GENERATED)} · data as of production day {E(PDAY)} (latest in the drop) · SYNTHETIC test data, fictitious plant</p></header>\n\n<div class=\"panel warnb\"><h2>Safety</h2><p>Safety status: not assessed (no breakdown diagnosis records in this drop).</p></div>\n\n<div class=\"panel freshness crit\"><h2>Sources and freshness</h2>\n<p><span class=\"status status--critical\">Stale</span> <b>The newest production day in last night's drop is {E(PDAY)}, {age_days} days before today (2026-11-15). There is no output, plan or downtime for {E(' or '.join(missing_days))}.</b>\nThis report is about {E(pday)} only. It is not yesterday, and nothing in it says what happened on 13 or 14 Nov, including whether the late work orders below were finished.</p>\n<p class=\"note\">Shifts in the day: CNC-01 reported shifts {E(', '.join(sorted(shifts_by_asset['CNC-01'])))}, and CNC-02 reported shift {E(', '.join(sorted(shifts_by_asset['CNC-02'])))} only. That matches the plan (16 h and 8 h). No site shift calendar is on file, so I can't say whether this was a full plant day.\nThe MES <code>production_day</code> column is used as given. No cross-midnight attribution rule is configured for this site.\nI read the raw exports directly because no consolidated dataset was in the drop. Part numbers, work orders and assets matched exactly across all five files, so no key needed normalizing (figures block).\nThere's no maintenance or CMMS export in the drop, so open maintenance work orders can't be seen. That is not the same as none being open.</p>\n<div class=\"table-scroll\"><table><thead><tr><th>Source</th><th>File modified</th><th>Covers</th><th>Status</th></tr></thead><tbody>{fresh_rows}\n<tr><td>Maintenance / CMMS export</td><td class=\"num\">—</td><td class=\"num\">—</td><td><span class=\"status status--critical\">not in drop</span></td></tr>\n<tr><td>Standard cost / downtime rate</td><td class=\"num\">—</td><td class=\"num\">—</td><td><span class=\"status status--critical\">not available</span></td></tr></tbody></table></div></div>\n\n<div class=\"panel\"><h2>Headline figures, {E(pday)}</h2><div class=\"tiles\">\n<div class=\"stat-tile\"><div class=\"stat-figure\">{n(T_good)} / {n(T_plan)}</div><div class=\"stat-label\">Good output against plan</div>\n<p class=\"stat-context\">{T_att:.1f}% attainment, {sgn(T_var)} units. Total output including scrap was {n(T_total)}.</p></div>\n<div class=\"stat-tile\"><div class=\"stat-figure\">{p_(plant['OEE'])}</div><div class=\"stat-label\">OEE, time-weighted across 2 assets</div>\n<p class=\"stat-context\">Availability {p_(plant['A'])} · Performance {p_(plant['P'])} · Quality {p_(plant['Q'])}. <b>Performance is the main loss.</b></p></div>\n<div class=\"stat-tile\"><div class=\"stat-figure\">{n(DT_MIN)} min</div><div class=\"stat-label\">Unplanned downtime, {DT_EV} events</div>\n<p class=\"stat-context\">Dollars <b>unpriced</b>: there's no confirmed downtime cost rate (see priced losses).</p></div>\n<div class=\"stat-tile\"><div class=\"stat-figure\">{n(T_scrap)} units</div><div class=\"stat-label\">Scrap</div>\n<p class=\"stat-context\">Dollars <b>unpriced</b>: no standard cost in the drop. {n(SCRAP_MIN)} machine-minutes were spent making it. {sh100}% of the scrapped units are PN-100.</p></div>\n</div></div>\n\n<div class=\"panel\"><h2>Today's actions</h2><div class=\"table-scroll\"><table>\n<thead><tr><th>#</th><th>Issue</th><th>Impact</th><th>Next step</th><th>Owner</th><th>Type</th></tr></thead><tbody>\n<tr><td class=\"num\">1</td><td><b>WO-1002</b> (PN-200, CNC-02): {n(W['WO-1002']['good'])} good of {n(W['WO-1002']['ordered'])}, so <b>{n(W['WO-1002']['short'])} short</b> as of {E(PDAY)}. Due {E(W['WO-1002']['due'])}, {W['WO-1002']['days_past_due']} days ago. Status still RELEASED.</td>\n<td>Past due if 13 Nov output didn't close the gap. Commitment impact not traceable: there's no work order to sales order link in the export.</td><td>Confirm 13–14 Nov output for WO-1002. If it's still short, decide on draft move A below (about {n(W['WO-1002']['make_up_min'])} ideal run minutes on CNC-02).</td><td>suggested: production scheduler</td><td><span class=\"status status--warn\">Decision</span></td></tr>\n<tr><td class=\"num\">2</td><td><b>WO-1001</b> (PN-100, CNC-01): {n(W['WO-1001']['good'])} good of {n(W['WO-1001']['ordered'])}, so <b>{n(W['WO-1001']['short'])} short</b>. Due {E(W['WO-1001']['due'])}, {W['WO-1001']['days_past_due']} day ago. Status RELEASED.</td>\n<td>Past due if 13–14 Nov output didn't close the gap. Commitment impact not traceable (no sales order link).</td><td>Confirm 13–14 Nov output. If it's still short, decide on draft move B (about {n(W['WO-1001']['make_up_min'])} ideal run minutes on CNC-01).</td><td>suggested: production scheduler</td><td><span class=\"status status--warn\">Decision</span></td></tr>\n<tr><td class=\"num\">3</td><td>The 13 and 14 Nov exports did not land. The newest data is {age_days} days old.</td><td>Every figure on this page describes 12 Nov. Neither late work order's status can be confirmed.</td><td>Find out why the export job didn't deliver 13–14 Nov, and re-run once it lands.</td><td>suggested: MES / IT export owner</td><td><span class=\"status status--warn\">Investigation</span></td></tr>\n<tr><td class=\"num\">4</td><td>There's no downtime cost rate and no standard cost, so no loss can be priced.</td><td>Losses are reported in minutes and units only.</td><td>Set a downtime cost per hour (say \"update our labour rate\", or set <code>MFG_DOWNTIME_COST_PER_HOUR</code>). Supply standard material cost for PN-100 and PN-200. Also confirm whether finance's \"MILL-V\" rate applies to work centre \"VMC\".</td><td>suggested: plant controller</td><td><span class=\"status status--warn\">Decision</span></td></tr>\n<tr><td class=\"num\">5</td><td>Performance is about 87% on both machines (CNC-01 {p_(o1['P'])}, CNC-02 {p_(o2['P'])}). That is roughly {n(round(runT - agg['ideal']))} run-minutes unaccounted for, which is more than twice the logged downtime.</td>\n<td>This is the largest OEE loss. It is spread across both machines and it is uncoded.</td><td>Check whether the routing standards (1.0 and 1.8 min/unit) include load/unload, and whether there were short stops that weren't logged.</td><td>suggested: manufacturing engineer</td><td><span class=\"status status--warn\">Investigation</span></td></tr>\n<tr><td class=\"num\">6</td><td>CNC-02 lost 20 min waiting on material (MAT, 13:00).</td><td>No shortage is visible in the drop: there's no inventory or PO export.</td><td>None today unless it recurs.</td><td>suggested: materials planner</td><td><span class=\"status\">Observation</span></td></tr>\n</tbody></table></div></div>\n\n<div class=\"panel\"><h2>Floor view</h2><p class=\"note\">There's no floor layout on file for {E(site)}. To set one up, attach a floor plan and ask for a floor view. I'll propose the machine matches for you to confirm.</p></div>\n\n<div class=\"panel\"><details open><summary>Output against plan, {E(pday)}</summary>\n<div class=\"table-scroll\"><table><thead><tr><th>Cell</th><th>WC</th><th>Asset</th><th>Part</th><th class=\"num\">Plan</th><th class=\"num\">Good</th><th class=\"num\">Scrap</th><th class=\"num\">Total</th><th class=\"num\">Var (good)</th><th class=\"num\">Attain</th></tr></thead>\n<tbody>{oap_rows}</tbody></table></div>\n<p class=\"note\">Variance is good units against planned units. Part numbers matched exactly between plan and MES (PN-100, PN-200), so nothing here is provisional and no normalization is pending.\nCELL-A is the only cell, and both lines above are in it.</p></details></div>\n\n<div class=\"panel\"><details open><summary>OEE per asset (grain: asset)</summary>\n<div class=\"table-scroll\"><table><thead><tr><th>Asset</th><th class=\"num\">Planned min</th><th class=\"num\">Downtime min</th><th class=\"num\">Run min</th><th class=\"num\">Availability</th><th class=\"num\">Performance</th><th class=\"num\">Quality</th><th class=\"num\">OEE</th></tr></thead>\n<tbody>{oee_rows}</tbody></table></div>\n<p class=\"note\"><b>Quality = good ÷ (good + scrap); no rework column, so first-pass yield could not be applied.</b><br>\nPlanned production time = the plan export's <code>planned_hours</code> per asset. No onboarding definition is on file, so it's unknown whether breaks and planned maintenance were already taken out.\nAvailability = (planned − logged unplanned downtime) ÷ planned. Performance = Σ(routing <code>run_min_per_unit</code> × (good + scrap)) ÷ run time. All three components were computed from data, and none were substituted.\nEvery planned asset reported output. No component is above 100%.</p></details></div>\n\n<div class=\"panel\"><details open><summary>Downtime: ranked by minutes and by frequency</summary>\n<p class=\"note\">Reason-code coverage: {len(other)} of {len(downtime)} events carry Other or blank, so every event is coded. Every row's duration agreed with its own start and end, so {len(dt_bad)} rows were held out.\nThat is only {DT_EV} events, which is too few to call a pattern.</p>\n<h3>By total minutes</h3><div class=\"table-scroll\"><table><thead><tr><th class=\"num\">#</th><th>Code</th><th>Text</th><th>Asset</th><th class=\"num\">Minutes</th><th class=\"num\">Events</th></tr></thead><tbody>{rank_tbl(rank_min,'min')}</tbody></table></div>\n<h3>By frequency</h3><div class=\"table-scroll\"><table><thead><tr><th class=\"num\">#</th><th>Code</th><th>Text</th><th>Asset</th><th class=\"num\">Events</th><th class=\"num\">Minutes</th></tr></thead><tbody>{rank_tbl(rank_freq,'freq')}</tbody></table></div>\n{\"<p class='note'>The two codes are tied on frequency at one event each. Order within the tie is by minutes.</p>\" if ties else \"\"}\n<h3>Event log</h3><div class=\"table-scroll\"><table><thead><tr><th>Asset</th><th>Start</th><th>End</th><th class=\"num\">Min</th><th>Code</th><th>Text</th></tr></thead><tbody>{dt_log}</tbody></table></div>\n<p class=\"note\">Maintenance work orders in progress: not shown, because no CMMS connector or maintenance export is in this drop.</p></details></div>\n\n<div class=\"panel\"><details open><summary>Priced losses</summary>\n<div class=\"table-scroll\"><table><thead><tr><th>Loss</th><th class=\"num\">Quantity</th><th class=\"num\">Dollars</th><th>Why</th></tr></thead><tbody>\n<tr><td>Scrap PN-100 (CNC-01)</td><td class=\"num\">{n(s100)} units</td><td class=\"num\">unpriced</td><td>No standard cost for PN-100 in the drop. {n(round(s100*ict['PN-100'],2))} machine-min embedded.</td></tr>\n<tr><td>Scrap PN-200 (CNC-02)</td><td class=\"num\">{n(s200)} units</td><td class=\"num\">unpriced</td><td>No standard cost for PN-200 in the drop. {n(round(s200*ict['PN-200'],2))} machine-min embedded.</td></tr>\n<tr><td>Downtime TOOL (CNC-01)</td><td class=\"num\">{n(by_code['TOOL']['minutes'])} min</td><td class=\"num\">unpriced</td><td rowspan=\"2\">There's no confirmed downtime cost rate (see below).</td></tr>\n<tr><td>Downtime MAT (CNC-02)</td><td class=\"num\">{n(by_code['MAT']['minutes'])} min</td><td class=\"num\">unpriced</td></tr>\n</tbody></table></div>\n<p class=\"note\"><b>Rate assumption:</b> none. The rate was resolved in this order: (1) <code>MFG_DOWNTIME_COST_PER_HOUR</code>, not set; (2) a confirmed rate in the plant profile, but no profile exists; (3) a placeholder there, likewise none.\n<code>inputs/rates_memo.txt</code> (finance memo, 1 Oct 2026) is a candidate source, but I didn't price on it for two reasons. First, it lists burdened <i>shop</i> rates for MILL-H, MILL-V, TURN and INSP, while these exports use work centre <code>VMC</code>, which isn't on the memo. Mapping VMC to MILL-V would be a guess that nobody has approved. Second, a shop rate is not a downtime cost per hour.\nThe memo's scrap rule is standard material plus value-added labour at the scrapping work centre. It needs a standard material cost, and the drop has none.\nOnce someone confirms the VMC rate and supplies material cost per part, the next run will price both lines. Until then the dollar figures are <i>unknown</i>, not $0.</p></details></div>\n\n<div class=\"panel\"><details open><summary>Week-over-week movers</summary><p class=\"note\">Skipped. The drop holds one production day ({E(PDAY)}), so there's no earlier day to compare against. This is a standalone run, so it has no stored day history.</p></details></div>\n\n<div class=\"panel\"><details open><summary>Exceptions and commitment impact</summary>\n<div class=\"table-scroll\"><table><thead><tr><th>WO</th><th>Part</th><th>Asset</th><th class=\"num\">Ordered</th><th class=\"num\">Good</th><th class=\"num\">Scrap</th><th class=\"num\">Short</th><th>Due</th><th>Status</th><th>State as of {E(PDAY)}</th></tr></thead><tbody>{wo_tbl}</tbody></table></div>\n<p class=\"note\">Commitment impact not traceable: there's no work order to sales order link in the work order export. This affects {len(late)} work orders (WO-1001, WO-1002). The order behind each one has not been inferred from part number.</p>\n<h3>Checked, nothing wrong</h3><ul class=\"note\">\n<li><b>WO-1003</b> (PN-100, CNC-01): {n(W['WO-1003']['good'])} good of {n(W['WO-1003']['ordered'])} ordered, due today (15 Nov). The quantity is complete. Its status still reads RELEASED, which is a housekeeping close-out and not a problem.</li>\n<li>Data integrity: there were no duplicate output keys and no downtime rows with bad times. No key mismatches were found between plan, MES, routing and work orders.</li></ul></details></div>\n\n<div class=\"panel\"><details open><summary>Reschedule proposals (drafted for the scheduler, not applied)</summary>\n<p class=\"note\">Both moves depend on 13–14 Nov output, which isn't in the drop. Each move is valid only if that work order is still short. The two moves use different machines, so they don't interact.</p>\n<h3>A. WO-1002: finish the remaining {n(W['WO-1002']['short'])} × PN-200 on CNC-02</h3>\n<p><b>Move:</b> run {n(W['WO-1002']['short'])} PN-200 on CNC-02 in its next available shift. That is about {n(W['WO-1002']['make_up_min'])} ideal minutes at 1.8 min/unit. At the {p_(o2['P'])} performance seen on 12 Nov it would be roughly {n(round(W['WO-1002']['make_up_min']/(o2['P']/100)))} minutes, with no scrap allowance. If CNC-02 is still set up for PN-200, there's no changeover. If it has moved to another part, the changeover cost can't be estimated because the drop has no changeover data.<br>\n<b>Displaces:</b> unknown. The plan export holds 12 Nov only, so I can't see what CNC-02 is loaded with next.<br>\n<b>Still misses:</b> WO-1002 is already {W['WO-1002']['days_past_due']} days past its 13 Nov due date, so this move limits the lateness and can't recover the date.<br>\n<b>Checked:</b> due dates, quantities, the routing time for PN-200 on VMC, and the 12 Nov asset assignment. <b>Not checked:</b> 13–14 Nov output, CNC-02's current load and setup, material on hand (CNC-02 waited on material on 12 Nov), operator availability, and the customer order behind the WO.</p>\n<h3>B. WO-1001: finish the remaining {n(W['WO-1001']['short'])} × PN-100 on CNC-01</h3>\n<p><b>Move:</b> run {n(W['WO-1001']['short'])} PN-100 on CNC-01. That is about {n(W['WO-1001']['make_up_min'])} ideal minutes, or roughly {n(round(W['WO-1001']['make_up_min']/(o1['P']/100)))} at 12 Nov performance. CNC-01 also ran WO-1003 (the same part), so if it's still on PN-100 there's no changeover. Otherwise the changeover cost is unknown.<br>\n<b>Displaces:</b> unknown, because there's no plan after 12 Nov.<br>\n<b>Still misses:</b> WO-1001 is {W['WO-1001']['days_past_due']} day past due, so the date itself can't be recovered.<br>\n<b>Checked:</b> due dates, quantities, and the PN-100 routing on VMC. <b>Not checked:</b> 13–14 Nov output, CNC-01's current load, tooling (CNC-01 lost 45 min to a tool change overrun on 12 Nov), material, and the customer order.</p></details></div>\n\n<div class=\"panel\"><details><summary>Sources, methods and assumptions</summary><ul class=\"note\">\n<li>Inputs: <code>inputs/pulse_oee/</code> plan.csv, output.csv, downtime.csv, routing.csv and work_orders.csv; <code>inputs/rates_memo.txt</code>. All are SYNTHETIC.</li>\n<li>No plant profile or rates page is on file. The site name comes from the MES <code>site</code> column. The defaults are used and labelled.</li>\n<li>Production day is the MES <code>production_day</code> column. Downtime was attributed to the day of <code>started_at</code>.</li>\n<li>The OEE roll-up is time-weighted (sum of numerators over sum of denominators), not an average of percentages.</li>\n<li>This report is read-only. Nothing was written to any system, and the reschedule moves are drafts.</li>\n<li>Structured data: <code>morning-report-data.json</code>. Figures block: <code>figures-block.csv</code> (below).</li></ul></details></div>\n\n<div class=\"panel\"><details><summary>Figures block ({len(FIG)} rows, computed in code)</summary>\n<div class=\"table-scroll\"><table><thead><tr><th>Figure</th><th class=\"num\">Value</th><th>From</th><th>Filter</th></tr></thead><tbody>{figs}</tbody></table></div></details></div>\n\n<footer class=\"page-footer\">Generated by <strong>daily-production-report</strong> (standalone run) — Manufacturing. Not published to any dashboard. Save it over yesterday's.</footer>\n</main></body></html>\"\"\"\nwith open(os.path.join(OUT, \"morning-report.html\"), \"w\", encoding=\"utf-8\") as f:\n    f.write(PAGE)\nprint(json.dumps({\"oap\": oap, \"oee\": oee, \"plant\": plant, \"wo\": wo_rows, \"dt_bad\": len(dt_bad), \"scrap_min\": SCRAP_MIN,\n                  \"unaccounted_run_min\": round(runT - agg['ideal'], 2), \"figs\": len(FIG)}, indent=1))\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B10-positive-859ivny3\\work\\out\\scripts\\build_report.py (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B10-positive-859ivny3/work\"; python3 -I out/scripts/build_report.py inputs/pulse_oee out/report-output",
+    "description": "Compute figures and render the report"
+   },
+   "response": "{\r\n \"oap\": [\r\n  {\r\n   \"part\": \"PN-100\",\r\n   \"work_center\": \"VMC\",\r\n   \"asset\": \"CNC-01\",\r\n   \"cell\": \"CELL-A\",\r\n   \"plan\": 800,\r\n   \"good\": 780,\r\n   \"scrap\": 12,\r\n   \"total\": 792,\r\n   \"variance_good\": -20,\r\n   \"attain_good_pct\": 97.5\r\n  },\r\n  {\r\n   \"part\": \"PN-200\",\r\n   \"work_center\": \"VMC\",\r\n   \"asset\": \"CNC-02\",\r\n   \"cell\": \"CELL-A\",\r\n   \"plan\": 250,\r\n   \"good\": 220,\r\n   \"scrap\": 3,\r\n   \"total\": 223,\r\n   \"variance_good\": -30,\r\n   \"attain_good_pct\": 88.0\r\n  }\r\n ],\r\n \"oee\": [\r\n  {\r\n   \"asset\": \"CNC-01\",\r\n   \"work_center\": \"VMC\",\r\n   \"planned_min\": 960.0,\r\n   \"down_min\": 45.0,\r\n   \"run_min\": 915.0,\r\n   \"ideal_min\": 792.0,\r\n   \"good\": 780,\r\n   \"total\": 792,\r\n   \"A\": 95.31,\r\n   \"P\": 86.56,\r\n   \"Q\": 98.48,\r\n   \"OEE\": 81.25\r\n  },\r\n  {\r\n   \"asset\": \"CNC-02\",\r\n   \"work_center\": \"VMC\",\r\n   \"planned_min\": 480.0,\r\n   \"down_min\": 20.0,\r\n   \"run_min\": 460.0,\r\n   \"ideal_min\": 401.4,\r\n   \"good\": 220,\r\n   \"total\": 223,\r\n   \"A\": 95.83,\r\n   \"P\": 87.26,\r\n   \"Q\": 98.65,\r\n   \"OEE\": 82.5\r\n  }\r\n ],\r\n \"plant\": {\r\n  \"A\": 95.49,\r\n  \"P\": 86.79,\r\n  \"Q\": 98.52,\r\n  \"OEE\": 81.65\r\n },\r\n \"wo\": [\r\n  {\r\n   \"wo\": \"WO-1001\",\r\n   \"part\": \"PN-100\",\r\n   \"ordered\": 500,\r\n   \"good\": 480,\r\n   \"scrap\": 12,\r\n   \"short\": 20,\r\n   \"due\": \"2026-11-14\",\r\n   \"status\": \"RELEASED\",\r\n   \"days_past_due\": 1,\r\n   \"last_output_day\": \"2026-11-12\",\r\n   \"state\": \"past due, short as of last export\",\r\n   \"asset\": \"CNC-01\",\r\n   \"make_up_min\": 20.0\r\n  },\r\n  {\r\n   \"wo\": \"WO-1002\",\r\n   \"part\": \"PN-200\",\r\n   \"ordered\": 250,\r\n   \"good\": 220,\r\n   \"scrap\": 3,\r\n   \"short\": 30,\r\n   \"due\": \"2026-11-13\",\r\n   \"status\": \"RELEASED\",\r\n   \"days_past_due\": 2,\r\n   \"last_output_day\": \"2026-11-12\",\r\n   \"state\": \"past due, short as of last export\",\r\n   \"asset\": \"CNC-02\",\r\n   \"make_up_min\": 54.0\r\n  },\r\n  {\r\n   \"wo\": \"WO-1003\",\r\n   \"part\": \"PN-100\",\r\n   \"ordered\": 300,\r\n   \"good\": 300,\r\n   \"scrap\": 0,\r\n   \"short\": 0,\r\n   \"due\": \"2026-11-15\",\r\n   \"status\": \"RELEASED\",\r\n   \"days_past_due\": 0,\r\n   \"last_output_day\": \"2026-11-12\",\r\n   \"state\": \"quantity complete; status still RELEASED\",\r\n   \"asset\": \"CNC-01\",\r\n   \"make_up_min\": 0.0\r\n  }\r\n ],\r\n \"dt_bad\": 0,\r\n \"scrap_min\": 17.4,\r\n \"unaccounted_run_min\": 181.6,\r\n \"figs\": 96\r\n}",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Edit",
+   "input": {
+    "replace_all": false,
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B10-positive-859ivny3\\work\\out\\scripts\\build_report.py",
+    "old_string": "# ---------------- write structured data ----------------",
+    "new_string": "fig(\"Run minutes not explained by ideal time (performance loss), roll-up\", round(runT - agg[\"ideal\"], 2), \"computed\", \"run time - ideal time, both assets\")\nfig(\"Performance loss minutes / logged downtime minutes\", round((runT - agg[\"ideal\"]) / DT_MIN, 2), \"computed\", \"same computation\")\n_perf = {o[\"asset\"]: o[\"P\"] for o in oee}\nfor d in wo_rows:\n    if d[\"short\"] > 0:\n        fig(f\"{d['wo']}: make-up minutes at 12 Nov performance\", round(d[\"make_up_min\"] / (_perf[d[\"asset\"]] / 100)), \"computed\", \"ideal make-up minutes / asset performance\")\n\n# ---------------- write structured data ----------------"
+   },
+   "response": "The file C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B10-positive-859ivny3\\work\\out\\scripts\\build_report.py has been updated successfully. (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B10-positive-859ivny3/work\"; python3 -I out/scripts/build_report.py inputs/pulse_oee out/report-output | tail -3; ls out/report-output; python3 -I -c \"import csv;[print(r['figure'],'=',r['value']) for r in csv.DictReader(open('out/report-output/figures-block.csv')) if 'make-up' in r['figure'] or 'Performance loss' in r['figure'] or 'not explained' in r['figure']]\"",
+    "description": "Re-run report build and check new figures"
+   },
+   "response": " \"unaccounted_run_min\": 181.6,\r\n \"figs\": 100\r\n}\r\nfigures-block.csv\nmorning-report-data.json\nmorning-report.html\nRun minutes not explained by ideal time (performance loss), roll-up = 181.6\r\nPerformance loss minutes / logged downtime minutes = 2.79\r\nWO-1001: make-up minutes at 12 Nov performance = 23\r\nWO-1002: make-up minutes at 12 Nov performance = 62",
+   "is_error": false,
+   "parent_tool_use_id": null
+  }
+ ],
+ "tool_summary": {
+  "Bash": 4,
+  "Edit": 1,
+  "Glob": 1,
+  "Grep": 1,
+  "Read": 11,
+  "Skill": 1,
+  "Write": 1
+ },
+ "result": {
+  "subtype": "success",
+  "is_error": false,
+  "num_turns": 22,
+  "duration_ms": 223186,
+  "duration_api_ms": 220840,
+  "total_cost_usd": 1.0707274,
+  "usage": {
+   "input_tokens": 22,
+   "cache_creation_input_tokens": 58842,
+   "cache_read_input_tokens": 336417,
+   "output_tokens": 26631,
+   "output_tokens_details": {
+    "thinking_tokens": 4109
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 58842,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 842,
+     "cache_read_input_tokens": 64521,
+     "cache_creation_input_tokens": 1338,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 1338
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard",
+   "fallback_credit": null
+  },
+  "modelUsage": {
+   "claude-opus-5-5": {
+    "inputTokens": 22,
+    "outputTokens": 26631,
+    "cacheReadInputTokens": 336417,
+    "cacheCreationInputTokens": 58842,
+    "webSearchRequests": 0,
+    "costUSD": 1.0707274,
+    "contextWindow": 1000000,
+    "maxOutputTokens": 128000,
+    "thinkingTokens": 4109,
+    "cacheCreationEphemeral5mInputTokens": 0,
+    "cacheCreationEphemeral1hInputTokens": 58842,
+    "canonicalModel": "claude-opus-5-5",
+    "provider": "firstParty",
+    "costBasis": "list"
+   }
+  },
+  "permission_denials": [
+   {
+    "tool_name": "Bash",
+    "tool_use_id": "toolu_01W3AnTBqYRx2iDZWGDMo1Dr",
+    "tool_input": {
+     "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B10-positive-859ivny3/work\"; find . -type f | head -100; echo; P=../plugin; ls $P/shared $P/shared/scripts $P/skills/daily-production-report/reference",
+     "description": "List inputs and plugin shared files"
+    }
+   }
+  ],
+  "terminal_reason": "completed",
+  "result": "I've written the morning report to `out/report-output/morning-report.html`. It covers SITE-1 for production day **12 Nov 2026**, because that is the newest day in the drop.\n\n**The data is 3 days old.** There's no output, plan or downtime for 13 or 14 Nov, so I can't confirm whether the late work orders were finished since.\n\n| | 12 Nov |\n|---|---|\n| Good output against plan | 1,000 of 1,050 (95.2%, 50 short). Total including scrap was 1,015 |\n| OEE | 81.7%: availability 95.5%, performance 86.8%, quality 98.5% |\n| Downtime | 65 min over 2 events. By minutes: tool change overrun on CNC-01 (45 min), then waiting on material on CNC-02 (20 min). By frequency they're tied at one event each, and both events had a usable reason code |\n| Scrap | 15 units, 80% of them PN-100 |\n\n**Losses are not priced.** There's no downtime cost rate and no standard cost per part in the drop. The finance memo has shop rates, but not for \"VMC\", the work centre these exports use, and a shop rate isn't a downtime cost. I left the dollar figures as unknown rather than $0.\n\n**Decisions needed today:**\n1. **WO-1002** (PN-200) is 30 short and was due 13 Nov. I drafted one make-up move for the scheduler (about 62 min on CNC-02); it isn't applied.\n2. **WO-1001** (PN-100) is 20 short and was due 14 Nov. Its draft move is about 23 min on CNC-01.\n3. Someone needs to set a downtime cost rate and give a standard cost for PN-100 and PN-200.\n\n**Worth looking into:**\n- **Performance is the biggest loss.** About 182 run-minutes aren't explained by the routing standards, almost three times the logged downtime. Either the standards are off or short stops aren't being logged.\n- **Find out why the 13–14 Nov exports didn't arrive.**\n\nI can't tell the impact on customer orders, because the work order export has no sales order link. Nothing was posted or written to any system. Save the page over yesterday's.\n\nFiles are in `out/report-output/`:\n- `morning-report.html`\n- `morning-report-data.json`\n- `figures-block.csv`\n\nThe script that builds them is `out/scripts/build_report.py`."
+ },
+ "outputs": [
+  {
+   "path": "report-output/figures-block.csv",
+   "sha256": "d371a8e8e5d3fdd0988b0b141ed8e42a731c9b89fb308118e447d8a02e871d89",
+   "bytes": 8281,
+   "text": true
+  },
+  {
+   "path": "report-output/morning-report-data.json",
+   "sha256": "f7ff004fa6a62148c24cf9db3495dcebd10a03b6e94ecc270696edb95674e5c9",
+   "bytes": 21759,
+   "text": true
+  },
+  {
+   "path": "report-output/morning-report.html",
+   "sha256": "110276d929e25b1987e3e7f6f5ec014ef3533f2a2ee9725f30d1cb8b541da85d",
+   "bytes": 38255,
+   "text": true
+  },
+  {
+   "path": "scripts/build_report.py",
+   "sha256": "a340b452f9ec1a970f3c803f9f0436ab445f4682a9d2ff09ee91564bb3198370",
+   "bytes": 42844,
+   "text": true
+  }
+ ],
+ "files_written_outside_out": [],
+ "plugin_copy_modified": [],
+ "stderr_tail": "",
+ "transcript": "evidence/SKILL_OUTPUTS/B10/cli-positive/transcript.jsonl.gz",
+ "deterministic_checks": [
+  {
+   "check": "skill 'daily-production-report' activated through the Skill tool",
+   "pass": true,
+   "observed": [
+    "claude-for-manufacturing:daily-production-report"
+   ]
+  },
+  {
+   "check": "at least 1 work product file(s) under out/",
+   "pass": true,
+   "observed": [
+    "report-output/figures-block.csv",
+    "report-output/morning-report-data.json",
+    "report-output/morning-report.html",
+    "scripts/build_report.py"
+   ]
+  },
+  {
+   "check": "mentions /availability/",
+   "pass": true
+  },
+  {
+   "check": "mentions /performance/",
+   "pass": true
+  },
+  {
+   "check": "mentions /quality/",
+   "pass": true
+  },
+  {
+   "check": "mentions /OEE/",
+   "pass": true
+  },
+  {
+   "check": "mentions /downtime/",
+   "pass": true
+  },
+  {
+   "check": "no external network, install or send action attempted",
+   "pass": true,
+   "observed": []
+  },
+  {
+   "check": "only the permitted tools were used (Read,Write,Edit,Glob,Grep,Skill,Bash)",
+   "pass": true,
+   "observed": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "Read",
+    "Skill",
+    "Write"
+   ]
+  }
+ ],
+ "evaluator": {
+  "engine": "nvidia-nim",
+  "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+  "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "duration_s": 61.7,
+  "usage": {
+   "prompt_tokens": 41467,
+   "completion_tokens": 14414,
+   "total_tokens": 55881,
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 14349
+   }
+  },
+  "attempts": [
+   {
+    "mode": "reasoning",
+    "usage": {
+     "prompt_tokens": 41467,
+     "completion_tokens": 14414,
+     "total_tokens": 55881,
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     },
+     "completion_tokens_details": {
+      "reasoning_tokens": 14349
+     }
+    },
+    "verdict_returned": true,
+    "error": null
+   }
+  ],
+  "verdict_mode": "reasoning",
+  "material_given": [
+   {
+    "file": "skills/daily-production-report/SKILL.md",
+    "given": "full"
+   },
+   {
+    "file": "out/report-output/figures-block.csv",
+    "sha256": "d371a8e8e5d3fdd0988b0b141ed8e42a731c9b89fb308118e447d8a02e871d89",
+    "bytes": 8281,
+    "given": "full"
+   },
+   {
+    "file": "out/report-output/morning-report-data.json",
+    "sha256": "f7ff004fa6a62148c24cf9db3495dcebd10a03b6e94ecc270696edb95674e5c9",
+    "bytes": 21759,
+    "given": "full"
+   },
+   {
+    "file": "out/report-output/morning-report.html",
+    "sha256": "110276d929e25b1987e3e7f6f5ec014ef3533f2a2ee9725f30d1cb8b541da85d",
+    "bytes": 38255,
+    "given": "first 30000 of 38216 chars"
+   },
+   {
+    "file": "out/scripts/build_report.py",
+    "sha256": "a340b452f9ec1a970f3c803f9f0436ab445f4682a9d2ff09ee91564bb3198370",
+    "bytes": 42844,
+    "given": "first 30000 of 42799 chars"
+   },
+   {
+    "file": "inputs/pulse_oee/downtime.csv",
+    "sha256": "c6b67ed143582ab9ba983f600925fd8ea2d8e060d8d345ad83db88a8d8e51e9b",
+    "bytes": 219,
+    "given": "full"
+   },
+   {
+    "file": "inputs/pulse_oee/output.csv",
+    "sha256": "059b2ea252bd443231231e9990182aa6b71a389e5e75a63d76cc63888d3b13b8",
+    "bytes": 248,
+    "given": "full"
+   },
+   {
+    "file": "inputs/pulse_oee/plan.csv",
+    "sha256": "adfed48e210488c760fc91c7b1005756e5e0a384ebd52f70d8fa482866188ca4",
+    "bytes": 140,
+    "given": "full"
+   },
+   {
+    "file": "inputs/pulse_oee/README.txt",
+    "sha256": "b255661d13e32686c1e3b2f0f6f0755c356dce04dd67e1f9d1c19a36dd55e665",
+    "bytes": 345,
+    "given": "full"
+   },
+   {
+    "file": "inputs/pulse_oee/routing.csv",
+    "sha256": "1fe0dbcb9d07119191d0fda75334ad3151427cf46587ed998cb91bc1277b5635",
+    "bytes": 84,
+    "given": "full"
+   },
+   {
+    "file": "inputs/pulse_oee/work_orders.csv",
+    "sha256": "dd725c3fdf0cfe0e7798ca2754de75265ce64797c0c833a4db69c9508e677868",
+    "bytes": 168,
+    "given": "full"
+   },
+   {
+    "file": "inputs/rates_memo.txt",
+    "sha256": "de3ec4c8a9ad5471950808cc37c6f27d315a7f0f5d414492cc8824eb2b9f123e",
+    "bytes": 465,
+    "given": "full"
+   }
+  ],
+  "tools_used": [],
+  "verdict": {
+   "verdict": "PASS",
+   "core_task_done": true,
+   "required_products_present": true,
+   "claims_sourced": true,
+   "fabrication": [],
+   "missing_data_handled": true,
+   "approval_rules_respected": true,
+   "arithmetic_mismatches": [],
+   "notes": "<=80 words"
+  },
+  "raw": null,
+  "error": null,
+  "re_evaluated_utc": "2026-11-15T22:25:01Z",
+  "previous_attempt": {
+   "engine": "nvidia-nim",
+   "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+   "usage": {
+    "prompt_tokens": 41467,
+    "completion_tokens": 16384,
+    "total_tokens": 57851,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+     "reasoning_tokens": 16384
+    }
+   },
+   "verdict": null,
+   "attempts": null
+  }
+ },
+ "status": "PASS",
+ "skills_read_full": [],
+ "rechecked_utc": "2026-11-15T23:24:22Z"
+}

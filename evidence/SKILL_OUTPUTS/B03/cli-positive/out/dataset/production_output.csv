@@ -1,0 +1,4 @@
+site,source_system,source_ref,as_of,join_status,mismatch_class,contradicted_by,integrity_flags,production_wo,production_wo_verbatim,part_number,part_number_verbatim,part_revision,qty_good,qty_scrap,uom,shift,production_day,asset_id,asset_id_verbatim,cell,cell_verbatim
+SITE-1,mes_export,inputs/pulse_oee/output.csv:2,2026-11-12 (date only - no time or zone in source),matched,,,,WO-1001,WO-1001,PN-100,PN-100,,480,12,not_stated,1,2026-11-12,CNC-01,CNC-01,CELL-A,CELL-A
+SITE-1,mes_export,inputs/pulse_oee/output.csv:3,2026-11-12 (date only - no time or zone in source),matched,,,,WO-1002,WO-1002,PN-200,PN-200,,220,3,not_stated,1,2026-11-12,CNC-02,CNC-02,CELL-A,CELL-A
+SITE-1,mes_export,inputs/pulse_oee/output.csv:4,2026-11-12 (date only - no time or zone in source),matched,,,,WO-1003,WO-1003,PN-100,PN-100,,300,0,not_stated,2,2026-11-12,CNC-01,CNC-01,CELL-A,CELL-A

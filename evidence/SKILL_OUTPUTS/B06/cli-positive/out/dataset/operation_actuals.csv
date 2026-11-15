@@ -1,0 +1,5 @@
+work_order,part,rev,qty_completed,qty_scrapped,op,work_center,actual_setup_min,actual_run_min_total,closed_date,run_min_per_unit,routing_match,routing_run_min_per_unit,dev_vs_routing_run,actuals_confidence,confidence_reason
+WO-7702,MB-1880,B,300,6,20,MILL-V,52,2010,2026-07-18,6.7,exact,6.2,0.0806,recorded,deviates from routing and from peer WO by more than 1%
+WO-7702,MB-1880,B,300,6,30,MILL-V,34,1005,2026-07-18,3.35,exact,3.1,0.0806,recorded,deviates from routing and from peer WO by more than 1%
+WO-7811,MB-1880,B,500,9,20,MILL-V,47,3240,2026-09-26,6.48,exact,6.2,0.0452,recorded,deviates from routing and from peer WO by more than 1%
+WO-7811,MB-1880,B,500,9,30,MILL-V,29,1590,2026-09-26,3.18,exact,3.1,0.0258,recorded,deviates from routing and from peer WO by more than 1%

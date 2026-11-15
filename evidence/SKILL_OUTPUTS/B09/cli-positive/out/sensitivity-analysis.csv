@@ -1,0 +1,35 @@
+# Sensitivity analysis - motor bracket trade study (SYNTHETIC). Weighted totals out of 100, ratio normalization. Weights in %: cost/tooling/stiffness/mass/lead.
+section,case,w_cost,w_tooling,w_stiffness,w_mass,w_lead,A_total,B_total,C_total,winner,A_minus_runner_up,note
+regime,R1 stated,30,10,25,15,20,85.62,78.28,70.03,A,7.34,
+regime,R2 equal weights,20,20,20,20,20,90.37,84.02,60.15,A,6.35,
+regime,R3 performance-led,20,5,40,20,15,90.08,84.86,76.42,A,5.22,
+regime,R4 schedule-led,25,10,20,10,35,88.03,78.95,59.76,A,9.08,
+regime,R5 cost-led,50,10,20,10,10,76.34,68.28,78.80,C,-2.46,C wins
+regime,R6 unit cost only (tooling dropped),40,0,25,15,20,80.95,72.35,80.03,A,0.91,A vs C within noise
+regime,R7 lead time dropped,37.5,12.5,31.25,18.75,0,82.02,77.02,81.59,A,0.44,A vs C within noise
+regime,R8 tooling folded into unit cost at 1000 pcs (A 18.40 / B 24.10 / C 24.30),40,0,25,15,20,99.64,86.62,70.32,A,13.02,amortized cost check
+sweep_cost,cost 10%,10,12.86,32.14,19.29,25.71,94.86,89.03,61.47,A,5.83,others scaled in proportion
+sweep_cost,cost 20%,20,11.43,28.57,17.14,22.86,90.24,83.66,65.75,A,6.58,
+sweep_cost,cost 30% (stated),30,10,25,15,20,85.62,78.28,70.03,A,7.34,
+sweep_cost,cost 40%,40,8.57,21.43,12.86,17.14,81.00,72.91,74.31,A,6.68,
+sweep_cost,cost 47.5% FLIP,47.5,7.5,18.75,11.25,15,77.53,,77.52,A=C,0.01,flip point A->C
+sweep_cost,cost 50%,50,7.14,17.86,10.71,14.29,76.37,67.54,78.59,C,-2.22,
+sweep_cost,cost 60%,60,5.71,14.29,8.57,11.43,71.75,62.16,82.88,C,-11.12,
+sweep_lead,lead 0%,37.5,12.5,31.25,18.75,0,82.02,77.02,81.59,A,0.44,near tie with C
+sweep_lead,lead 10%,33.75,11.25,28.13,16.88,10,83.82,77.65,75.81,A,6.17,
+sweep_lead,lead 20% (stated),30,10,25,15,20,85.62,78.28,70.03,A,7.34,
+sweep_lead,lead 30%,26.25,8.75,21.88,13.13,30,87.42,78.91,64.25,A,8.50,
+sweep_stiffness,stiffness 10%,36,12,10,18,24,83.03,73.94,66.57,A,9.09,
+sweep_stiffness,stiffness 40%,24,8,40,12,16,88.21,82.63,73.49,A,5.58,
+sweep_stiffness,stiffness 87.7% FLIP,,,87.7,,,,,,A=B,0,B overtakes A only above 87.7% stiffness weight
+sweep_tooling,tooling 0-100%,,,,,,,,,A,,no flip: A ties or beats C at any tooling weight
+sweep_mass,mass 0-100%,,,,,,,,,A,,no flip
+grid_A_minus_C,cost 30 / lead 0,30,14,35,21,0,,,,A,6.10,rest split tooling:stiffness:mass = 20:50:30
+grid_A_minus_C,cost 30 / lead 10,30,12,30,18,10,,,,A,10.84,
+grid_A_minus_C,cost 30 / lead 20,30,10,25,15,20,,,,A,15.59,
+grid_A_minus_C,cost 40 / lead 0,40,12,30,18,0,,,,C,-1.45,
+grid_A_minus_C,cost 40 / lead 10,40,10,25,15,10,,,,A,3.30,
+grid_A_minus_C,cost 40 / lead 20,40,8,20,12,20,,,,A,8.04,
+grid_A_minus_C,cost 50 / lead 0,50,10,25,15,0,,,,C,-9.00,
+grid_A_minus_C,cost 50 / lead 10,50,8,20,12,10,,,,C,-4.25,
+grid_A_minus_C,cost 50 / lead 20,50,6,15,9,20,,,,A,0.49,near tie

@@ -55,7 +55,7 @@
     "expect": "No purchase orders: material and anodize prices must remain unknown or explicitly labelled assumptions; no price presented as paid."}},
 
   {"id": "B06", "skill": "rfq-to-quote", "chain": ["customer-inquiry-intake", "quote-build"], "max_turns": 120,
-   "positive": {"inputs": ["rfq", "cost", "plant"],
+   "positive": {"operator_turn": "Test-operator reply (synthetic test, recorded as the gate decisions; nothing goes to any customer). Gate 1: the questions are approved as drafted but NOT sent yet. Gate 2: bid confirmed by \"Test Estimator (LEGION WO-LMFG-004 test operator)\". Proceed with the rest of the chain now (steps 6 onward, including quote-build) and quote with the open questions listed as exclusions/assumptions, as the skill allows at Gate 2. The rates memo is NOT confirmed as the plant rates file, so treat labour pricing exactly as the skills require. Same run rules as before; write the new work products under ./out.", "operator_turn_note": "Second turn from a named test operator (the skill stops at a human approval gate); same text as the route-2 run, paths made relative", "inputs": ["rfq", "cost", "plant"],
     "prompt": "Run the whole RFQ-to-quote chain for the Northwind MB-2040 inquiry in ./inputs/rfq. Our cost history is in ./inputs/cost and the plant documents, equipment and rates are in ./inputs/plant. Fusion isn't connected here. I want the intake, the questions back to the customer, the provisional bid/no-bid and the draft quote. Nothing goes to the customer.",
     "min_outputs": 2,
     "must_mention": ["MB-2040", "bid", "flatness", "PO-30588|PO-30411"],
@@ -145,7 +145,7 @@
     "expect": "Requirement not located: the NCR must not assert a requirement it cannot cite."}},
 
   {"id": "B15", "skill": "root-cause-capa",
-   "positive": {"inputs": ["quality"],
+   "positive": {"operator_turn": "Test-operator reply (synthetic test, recorded as the gate decision; nothing goes to any customer). The NCR is approved as drafted by \"Test Quality Owner (LEGION WO-LMFG-004 test operator)\"; NCR number DRAFT-WO-8102-L-0412, site \"EPW1 (test)\". Continue now with the 8D including the corrective action plan (D5) and recurrence prevention (D7) with an effectiveness check, as the skill requires. Same run rules; write under ./out.", "operator_turn_note": "Second turn from a named test operator (the skill stops at a human approval gate); same text as the route-2 run, paths made relative", "inputs": ["quality"],
     "prompt": "Find the root cause of the MB-1880 oversize bores (inspection measurements, maintenance log, prior NCRs and the finding are in ./inputs/quality) and draft the corrective action plan.",
     "must_mention": ["T7-0031|insert|tool wear", "trend|drift", "CAPA-071|NCR-0219"],
     "expect": "Timeline in code; drift with parts since tool change; candidate causal chains with evidence for and against (tool wear vs coolant concentration change vs shift/operator); no single unqualified verdict; CAPA draft with effectiveness check; prior CAPA-071 not verified."},
@@ -155,7 +155,7 @@
     "expect": "No measurement series: no trend may be claimed; the analysis must state what data is needed."}},
 
   {"id": "B16", "skill": "inspection-to-capa", "chain": ["ncr-writeup", "root-cause-capa"], "max_turns": 120,
-   "positive": {"inputs": ["quality"],
+   "positive": {"operator_turn": "Test-operator reply (synthetic test, recorded as the gate decision; nothing goes to any customer). Gate 1: the NCR is approved as drafted by \"Test Quality Owner (LEGION WO-LMFG-004 test operator)\"; use NCR number DRAFT-WO-8102-L-0412 and site \"EPW1 (test)\". Continue the chain now: the 8D draft and the customer pack with its redaction diff, held for review (not sent). Same run rules as before; write under ./out.", "operator_turn_note": "Second turn from a named test operator (the skill stops at a human approval gate); same text as the route-2 run, paths made relative", "inputs": ["quality"],
     "prompt": "Run the quality chain on this morning's MB-1880 bore finding: NCR, history check, root cause, 8D and the customer pack. Everything in ./inputs/quality. Nothing goes to the customer.",
     "min_outputs": 2,
     "must_mention": ["8D|D[1-8]", "NCR-0219|CAPA-071", "note 4|Note 4", "redact|review"],
@@ -166,7 +166,7 @@
     "expect": "No drawing: the requirement must not be asserted."}},
 
   {"id": "B17", "skill": "supplier-escape-to-alternate-source", "chain": ["ncr-writeup", "root-cause-capa", "supplier-quote-request"], "max_turns": 120,
-   "positive": {"inputs": ["escape"],
+   "positive": {"operator_turn": "Test-operator reply (synthetic test, recorded as the approvals; nothing goes to any supplier). NCR approved as drafted by \"Test Quality Owner (LEGION WO-LMFG-004 test operator)\". Supplier-caused determination owner: the same named test operator, who approves acting on it while the tester calibration check is pending. Drawing BSH-1210 rev A is confirmed current by document control (test operator) because no ERP exists. Continue the chain now: corrective action (8D draft / supplier corrective action request) and the alternate-source RFQ package with the comparable response format. Do not invent qualified suppliers; use only what approved_suppliers.csv says. Nothing is sent or released. Write under ./out.", "operator_turn_note": "Second turn from a named test operator (the skill stops at a human approval gate); same text as the route-2 run, paths made relative", "inputs": ["escape"],
     "prompt": "Run the supplier escape chain on the BSH-1210 hardness failure from receiving (./inputs/escape): NCR and containment, root cause against the supplier, corrective action, and the alternate-source RFQ package. Nothing goes to any supplier.",
     "min_outputs": 2,
     "must_mention": ["AS-7781", "47|49|50", "25-40|25 ?to ?40", "Birch|Cedar", "owner|approv|release"],

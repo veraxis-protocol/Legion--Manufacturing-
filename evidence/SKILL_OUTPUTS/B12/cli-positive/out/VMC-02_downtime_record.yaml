@@ -1,0 +1,28 @@
+# SYNTHETIC test data - fictitious plant. Downtime record for daily-production-report (contract v3).
+# Export-sourced: no CMMS connector live; maintenance history is a static export.
+contract_version: 3
+site: null            # not set: no plant profile on file - daily-production-report must resolve
+asset_id: VMC-02
+asset_id_verbatim: "VMC-02"
+started_at: 2026-11-10T15:24:00-05:00
+ended_at: null        # still down at last known status (16:10)
+duration_minutes: null
+reason_code: null     # plant reason code not supplied; not invented
+reason_text: "SPINDLE OVERLOAD / OVERTEMP; grinding noise from spindle ~20 min before alarm"
+production_wo: WO-8120
+production_wo_verbatim: "WO-8120 op 20 (MB-1880)"
+shift: null           # shift pattern not on file
+production_day: 2026-11-10   # assumes no cross-midnight day boundary; confirm against plant profile
+source_system: breakdown_diagnosis
+source_ref: "diagnosis/2026-11-10/VMC-02"
+
+diagnosis_ref: "out/VMC-02_breakdown_diagnosis.md"
+leading_cause: "Spindle bearing failure (wear/preload loss), possibly accelerated by low spindle chiller fluid"
+leading_cause_confidence: high   # evidence strength; still advisory until the LOTO checks are done
+cited_work_orders: ["MW-118", "MW-140", "MW-160"]
+safety_flagged: true
+safety_reason: "Seizure risk on a rotating part plus stored energy: grinding spindle with vibration 11.2 mm/s must not be run (OEM manual 7.4 safety note); drawbar Belleville spring stack (stored energy) is in the inspection path; blued spindle nose indicates heat."
+pm_adjustment_proposed: true
+maintenance_wo: null  # no maintenance ticket for this stoppage in the export
+diagnosis_state: advisory
+technician_step: pending

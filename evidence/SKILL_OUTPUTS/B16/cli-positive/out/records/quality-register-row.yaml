@@ -1,0 +1,30 @@
+# Contract: quality-register-record.md v1. NOT STORED in a register (no artifact tools this session).
+contract_version: 1
+record_key: "EPW1 (test)_DRAFT-WO-8102-L-0412"
+ncr_ref: DRAFT-WO-8102-L-0412
+site: "EPW1 (test)"
+part_number: MB-1880
+part_number_verbatim: "MB-1880 rev B"
+lot_number: L-0412
+lot_number_verbatim: "L-0412"
+found_at: 2026-11-11T10:05:00-05:00
+qty_found: 3
+uom: each
+requirement_cited: "MB-1880 rev B, sheet 2, note 4 (Bore A 22.000 +0.021/-0.000)"
+disposition_pending: true
+summary: "Bore A oversize 22.029-22.034 mm on L-0412; at least 300 suspect plus L-0411 tail."
+customers: ["Northwind Robotics"]
+status: open
+approval_state: approved
+containment_summary: "5 of 5 locations addressed for L-0412; installed-at-customer, at-customer delivery and in-transit not checked; L-0411 not located"
+escape_clock: null
+escape_clock_unknown: true
+owner: null
+due_date: null
+recurrence: recurrence_prior_capa_failed
+prior_ncr_refs: ["NCR-0219"]
+previous_fix_held: false
+eight_d_step: "D1-D5 and D7 drafted; D6 and D8 placeholders; customer pack held at Gate 2"
+leading_cause: "Candidate (tied): T7-0031 boring-tool state - insert edge condition vs boring-head setting creep"
+supplier_caused: false      # investigated; no material candidate (material data absent)
+effectiveness_check_due: null

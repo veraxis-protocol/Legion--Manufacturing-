@@ -1,0 +1,101 @@
+figure,value,computed_from,filter
+Production days in output export,2026-11-12,output.csv,distinct production_day
+Plan dates in plan export,2026-11-12,plan.csv,distinct plan_date
+Downtime event dates,2026-11-12,downtime.csv,distinct date(started_at)
+Latest production day age (days before 2026-11-15),3,output.csv,2026-11-15 minus max(production_day)
+Production days with no export in the drop,"2026-11-13, 2026-11-14",output.csv / plan.csv / downtime.csv,"days between latest production_day and 2026-11-15, exclusive"
+Shifts present in output,"1, 2",output.csv,distinct shift
+"Shifts reported, CNC-01","1, 2",output.csv,asset_id == CNC-01
+"Shifts reported, CNC-02",1,output.csv,asset_id == CNC-02
+Rows with future timestamps,0,downtime.csv,started_at > 2026-11-15
+MFG_DOWNTIME_COST_PER_HOUR set,false,environment,checked by name; value not read
+Part numbers in plan not in output,none,plan.csv vs output.csv,"set difference, exact match"
+Part numbers in output not in plan,none,output.csv vs plan.csv,"set difference, exact match"
+Part numbers in output with no routing,none,output.csv vs routing.csv,"set difference, exact match"
+Work orders in output not in WO export,none,output.csv vs work_orders.csv,set difference
+Work orders in WO export with no output,none,work_orders.csv vs output.csv,set difference
+"Duplicate output keys (WO, day, shift)",0,output.csv,count of keys with >1 row
+Work order export carries sales_order,false,work_orders.csv,column present
+Output export carries a rework column,false,output.csv,column 'qty_rework' or 'rework' present
+"Planned qty, PN-100 / CNC-01 / 2026-11-12",800,plan.csv,"part_number==PN-100, asset_id==CNC-01"
+"Good qty, PN-100 / CNC-01 / 2026-11-12",780,output.csv,"same keys, sum qty_good over 2 rows"
+"Scrap qty, PN-100 / CNC-01 / 2026-11-12",12,output.csv,"same keys, sum qty_scrap"
+"Total qty (good+scrap), PN-100 / CNC-01 / 2026-11-12",792,output.csv,good + scrap
+"Variance good vs plan, PN-100 / CNC-01 / 2026-11-12",-20,computed,good - planned
+"Plan attainment (good), PN-100 / CNC-01 / 2026-11-12 %",97.5,computed,good / planned
+"Planned qty, PN-200 / CNC-02 / 2026-11-12",250,plan.csv,"part_number==PN-200, asset_id==CNC-02"
+"Good qty, PN-200 / CNC-02 / 2026-11-12",220,output.csv,"same keys, sum qty_good over 1 rows"
+"Scrap qty, PN-200 / CNC-02 / 2026-11-12",3,output.csv,"same keys, sum qty_scrap"
+"Total qty (good+scrap), PN-200 / CNC-02 / 2026-11-12",223,output.csv,good + scrap
+"Variance good vs plan, PN-200 / CNC-02 / 2026-11-12",-30,computed,good - planned
+"Plan attainment (good), PN-200 / CNC-02 / 2026-11-12 %",88.0,computed,good / planned
+Total planned qty,1050,plan.csv,sum planned_qty
+Total good qty,1000,output.csv,"sum qty_good, matched to plan rows"
+Total scrap qty,15,output.csv,"sum qty_scrap, matched to plan rows"
+Total output (good+scrap),1015,computed,good + scrap
+"Total good qty, all output rows (reconciliation)",1000,output.csv,"sum qty_good, all rows"
+Total variance good vs plan,-50,computed,good - planned
+Total plan attainment (good) %,95.24,computed,good / planned
+Cell CELL-A: plan / good / scrap,1050 / 1000 / 15,plan.csv + output.csv,cell==CELL-A
+"Downtime events, total",2,downtime.csv,all rows
+Downtime events with untrustworthy minutes,0,downtime.csv,"ended_at < started_at, or |span - duration_minutes| > 0.5"
+"Planned production time (min), CNC-01",960.0,computed,plan.csv planned_hours x 60
+"Downtime (min), CNC-01",45.0,computed,"downtime.csv sum duration_minutes, valid rows, same day"
+"Run time (min), CNC-01",915.0,computed,planned - downtime
+"Ideal time (min), CNC-01",792.0,computed,sum run_min_per_unit x (good+scrap)
+"Availability %, CNC-01",95.31,computed,run / planned
+"Performance %, CNC-01",86.56,computed,ideal / run
+"Quality %, CNC-01",98.48,computed,good / (good+scrap)
+"OEE %, CNC-01",81.25,computed,A x P x Q
+"Planned production time (min), CNC-02",480.0,computed,plan.csv planned_hours x 60
+"Downtime (min), CNC-02",20.0,computed,"downtime.csv sum duration_minutes, valid rows, same day"
+"Run time (min), CNC-02",460.0,computed,planned - downtime
+"Ideal time (min), CNC-02",401.4,computed,sum run_min_per_unit x (good+scrap)
+"Availability %, CNC-02",95.83,computed,run / planned
+"Performance %, CNC-02",87.26,computed,ideal / run
+"Quality %, CNC-02",98.65,computed,good / (good+scrap)
+"OEE %, CNC-02",82.5,computed,A x P x Q
+Plant roll-up planned time (min),1440.0,computed,sum over assets
+Plant roll-up run time (min),1375.0,computed,sum over assets
+Plant roll-up Availability %,95.49,computed,time-weighted: sums of numerators / sums of denominators
+Plant roll-up Performance %,86.79,computed,time-weighted: sums of numerators / sums of denominators
+Plant roll-up Quality %,98.52,computed,time-weighted: sums of numerators / sums of denominators
+Plant roll-up OEE %,81.65,computed,time-weighted: sums of numerators / sums of denominators
+Planned assets with no output,none,plan.csv vs output.csv,set difference
+Downtime events coded Other or blank,0 of 2,downtime.csv,"reason_code in ('', 'Other')"
+Downtime minutes coded Other or blank,0,downtime.csv,same filter
+"Downtime minutes, reason TOOL",45.0,downtime.csv,"reason_code==TOOL, valid rows"
+"Downtime events, reason TOOL",1,downtime.csv,reason_code==TOOL
+"Downtime minutes, reason MAT",20.0,downtime.csv,"reason_code==MAT, valid rows"
+"Downtime events, reason MAT",1,downtime.csv,reason_code==MAT
+Total downtime minutes (valid rows),65.0,downtime.csv,"sum duration_minutes, valid rows"
+Total downtime events,2,downtime.csv,all rows
+Downtime minutes as share of planned time %,4.51,computed,downtime / planned production time
+Work centres in exports,VMC,plan.csv + routing.csv,distinct work_center
+Export work centres found verbatim in rates memo,none,rates_memo.txt,exact string match
+Standard material cost available,false,inputs/ (all files),no column or file carrying standard or material cost per part
+Downtime dollars,unpriced - no confirmed downtime cost rate,secret-config resolution,env var not set; no plant profile; memo rate is a shop rate on a work-centre name not in the exports
+Scrap dollars,unpriced - no standard cost,inputs/,no standard material cost per part
+"Scrap share of units, PN-100 %",80.0,output.csv,part scrap / total scrap
+"Scrap share of units, PN-200 %",20.0,output.csv,part scrap / total scrap
+"Machine minutes lost in scrap, PN-100",12.0,output.csv x routing.csv,scrap x run_min_per_unit
+"Machine minutes lost in scrap, PN-200",5.4,output.csv x routing.csv,scrap x run_min_per_unit
+"Machine minutes lost in scrap, total",17.4,computed,sum
+WO-1001: good to date in drop,480,output.csv,work_order==WO-1001
+WO-1001: shortfall vs ordered,20,computed,"max(ordered - good, 0)"
+WO-1001: days past due at 2026-11-15,1,work_orders.csv,2026-11-15 - due_date
+WO-1001: ideal run minutes to make up shortfall,20.0,routing.csv,"shortfall x run_min_per_unit (no scrap allowance, no setup)"
+WO-1002: good to date in drop,220,output.csv,work_order==WO-1002
+WO-1002: shortfall vs ordered,30,computed,"max(ordered - good, 0)"
+WO-1002: days past due at 2026-11-15,2,work_orders.csv,2026-11-15 - due_date
+WO-1002: ideal run minutes to make up shortfall,54.0,routing.csv,"shortfall x run_min_per_unit (no scrap allowance, no setup)"
+WO-1003: good to date in drop,300,output.csv,work_order==WO-1003
+WO-1003: shortfall vs ordered,0,computed,"max(ordered - good, 0)"
+WO-1003: days past due at 2026-11-15,0,work_orders.csv,2026-11-15 - due_date
+WO-1003: ideal run minutes to make up shortfall,0.0,routing.csv,"shortfall x run_min_per_unit (no scrap allowance, no setup)"
+Work orders past due and short as of last export,2 of 3,work_orders.csv + output.csv,due_date < 2026-11-15 and good < qty_ordered
+Work orders whose commitment impact is not traceable,2,work_orders.csv,no sales_order column
+"Run minutes not explained by ideal time (performance loss), roll-up",181.6,computed,"run time - ideal time, both assets"
+Performance loss minutes / logged downtime minutes,2.79,computed,same computation
+WO-1001: make-up minutes at 12 Nov performance,23,computed,ideal make-up minutes / asset performance
+WO-1002: make-up minutes at 12 Nov performance,62,computed,ideal make-up minutes / asset performance

@@ -1,0 +1,608 @@
+{
+ "case": "B02",
+ "skill": "custom-connector",
+ "variant": "positive",
+ "started_utc": "2026-11-15T17:52:41Z",
+ "runtime_route": "cli",
+ "cli_auth": {
+  "loggedIn": true,
+  "authMethod": "claude.ai",
+  "apiProvider": "firstParty"
+ },
+ "plugin_discovery": {
+  "plugins": [
+   "claude-for-manufacturing",
+   "cc-plugin-agents-md",
+   "cc-plugin-telemetry",
+   "cc-plugin-privacy",
+   "cc-plugin-plugin-authoring"
+  ],
+  "manufacturing_skills_listed": 17,
+  "skills_listed": [
+   "claude-for-manufacturing:breakdown-diagnosis",
+   "claude-for-manufacturing:breakdown-to-next-report",
+   "claude-for-manufacturing:custom-connector",
+   "claude-for-manufacturing:customer-inquiry-intake",
+   "claude-for-manufacturing:daily-production-report",
+   "claude-for-manufacturing:data-consolidate",
+   "claude-for-manufacturing:design-space-explore",
+   "claude-for-manufacturing:inspection-to-capa",
+   "claude-for-manufacturing:morning-plant-pulse",
+   "claude-for-manufacturing:ncr-writeup",
+   "claude-for-manufacturing:onboarding",
+   "claude-for-manufacturing:quote-build",
+   "claude-for-manufacturing:rfq-to-quote",
+   "claude-for-manufacturing:root-cause-capa",
+   "claude-for-manufacturing:supplier-escape-to-alternate-source",
+   "claude-for-manufacturing:supplier-quote-request",
+   "claude-for-manufacturing:trade-study-report"
+  ]
+ },
+ "task_prompt": "Our maintenance team keeps work orders in a small CMMS database with no vendor MCP. Get the plugin talking to it: the permitted target is the SQLite file ./inputs/connector/cmms_synthetic.sqlite (read-only access only). Work out the right access approach, set it up, test it against the real data and show me what you read back.\n\nThe input files are in ./inputs (all of them are SYNTHETIC test data for a fictitious plant). Write every work product you produce as files under ./out. Do not contact, email or write to any external system; there is no live ERP, Microsoft 365, CMMS or supplier available in this session.",
+ "inputs": [
+  {
+   "path": "inputs/connector/cmms_synthetic.sqlite",
+   "source": "tests/runtime/inputs/connector/cmms_synthetic.sqlite",
+   "sha256": "88b87d83ab1ca11668636bbe5e1e9847a445dce58a1ac27f4c50011fb64af72b",
+   "bytes": 24576
+  },
+  {
+   "path": "inputs/connector/README.txt",
+   "source": "tests/runtime/inputs/connector/README.txt",
+   "sha256": "1b41305e1defbb5ee5e95b2a474f9c81ba20f5beb87df26802e81a6137e81d64",
+   "bytes": 352
+  }
+ ],
+ "cli_exit": 0,
+ "duration_s": 167.7,
+ "runtime": {
+  "model": "claude-opus-5-5",
+  "claude_code_version": "2.1.325",
+  "permission_mode": "dontAsk",
+  "tools": [
+   "Bash",
+   "Edit",
+   "Glob",
+   "Grep",
+   "Read",
+   "Skill",
+   "Write"
+  ],
+  "plugins": [
+   {
+    "name": "claude-for-manufacturing",
+    "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B02-positive-gftdtggo\\plugin",
+    "source": "claude-for-manufacturing@inline",
+    "version": "1.0.0"
+   },
+   {
+    "name": "cc-plugin-agents-md",
+    "path": "builtin",
+    "source": "cc-plugin-agents-md@builtin"
+   },
+   {
+    "name": "cc-plugin-telemetry",
+    "path": "builtin",
+    "source": "cc-plugin-telemetry@builtin"
+   },
+   {
+    "name": "cc-plugin-privacy",
+    "path": "builtin",
+    "source": "cc-plugin-privacy@builtin"
+   },
+   {
+    "name": "cc-plugin-plugin-authoring",
+    "path": "builtin",
+    "source": "cc-plugin-plugin-authoring@builtin"
+   }
+  ],
+  "skills": [
+   "claude-for-manufacturing:breakdown-diagnosis",
+   "claude-for-manufacturing:breakdown-to-next-report",
+   "claude-for-manufacturing:custom-connector",
+   "claude-for-manufacturing:customer-inquiry-intake",
+   "claude-for-manufacturing:daily-production-report",
+   "claude-for-manufacturing:data-consolidate",
+   "claude-for-manufacturing:design-space-explore",
+   "claude-for-manufacturing:inspection-to-capa",
+   "claude-for-manufacturing:morning-plant-pulse",
+   "claude-for-manufacturing:ncr-writeup",
+   "claude-for-manufacturing:onboarding",
+   "claude-for-manufacturing:quote-build",
+   "claude-for-manufacturing:rfq-to-quote",
+   "claude-for-manufacturing:root-cause-capa",
+   "claude-for-manufacturing:supplier-escape-to-alternate-source",
+   "claude-for-manufacturing:supplier-quote-request",
+   "claude-for-manufacturing:trade-study-report",
+   "design",
+   "design-sync",
+   "dataviz",
+   "update-config",
+   "verify",
+   "debug",
+   "code-review",
+   "simplify",
+   "batch",
+   "fewer-permission-prompts",
+   "doctor",
+   "loop",
+   "schedule",
+   "claude-api",
+   "run",
+   "run-skill-generator",
+   "plugin-authoring"
+  ],
+  "mcp_servers": [],
+  "session_id": "da87e007-0f16-419d-a8b6-a480789d2f73"
+ },
+ "skills_invoked": [
+  "claude-for-manufacturing:custom-connector"
+ ],
+ "skill_files_read": [
+  "custom-connector/reference/access-ladder.md",
+  "custom-connector/reference/credentials-and-failure-modes.md"
+ ],
+ "tool_calls": [
+  {
+   "tool": "Skill",
+   "input": {
+    "skill": "claude-for-manufacturing:custom-connector",
+    "args": "Target: CMMS work orders in SQLite file ./inputs/connector/cmms_synthetic.sqlite, read-only. Inputs in ./inputs (synthetic). Write all outputs under ./out. No external systems."
+   },
+   "response": "Launching skill: claude-for-manufacturing:custom-connector",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B02-positive-gftdtggo/work\"; find inputs -type f | head -100; P=../plugin; ls $P $P/shared $P/shared/scripts $P/skills/custom-connector/reference; python3 -I $P/shared/scripts/plant_setup.py find",
+    "description": "List inputs and plugin files, find plant setup"
+   },
+   "response": "Permission to use Bash has been denied because Claude Code is running in don't ask mode. IMPORTANT: You *may* attempt to accomplish this action using other tools that might naturally be used to accomplish this goal, e.g. using head instead of cat. But you *should not* attempt to work around this denial in malicious ways, e.g. do not use your ability to run tests to execute non-test actions. You should only try to work around this restriction in reasonable ways that do not attempt to bypass the intent behind this denial. If you believe this capability is essential to complete the user's request, STOP and explain to the user what you were trying to do and why you need this permission. Let the user decide how to proceed.",
+   "is_error": true,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "ls -R inputs",
+    "description": "List input files"
+   },
+   "response": "inputs:\nconnector\n\ninputs/connector:\nREADME.txt\ncmms_synthetic.sqlite",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B02-positive-gftdtggo\\work\\inputs\\connector\\README.txt"
+   },
+   "response": "1\t# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.\n2\tcmms_synthetic.sqlite is a local, synthetic CMMS database (SQLite). It is the only permitted target system for the\n3\tcustom-connector run. Tables: meta, assets, work_orders. View: v_open_work_orders. No credentials are needed.\n4\t",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "python3 -I ../plugin/shared/scripts/plant_setup.py find",
+    "description": "Locate plant setup profile"
+   },
+   "response": "{\"setup_page_first\": \"Required before reading the plant profile or any rate, once per conversation, even when profile_path does not exist yet: if you have the artifact tools (Artifact, or mcp__claude-artifacts__* in Cowork), list the user's artifacts (scope all) and look for 'Plant setup: <company>' and 'Plant rates: <company>'. If more than one 'Plant setup:' page exists and the user has not named the company, ask which plant before reading any page (run find again with --titles and the titles listed; companies names them). For each page found, read its file with those tools (action read, path setup/plant-context.txt or setup/plant-rates.txt; an older page has setup/plant-context.md or setup/plant-rates.md instead; never retype it), then run: python3 \\\"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-B02-positive-gftdtggo\\\\plugin\\\\shared\\\\scripts\\\\plant_setup.py\\\" install --from <the saved file> --company \\\"<company>\\\" (add --kind rates for the rates file), and read profile_path and rates_path. If this skill reads or writes ## Dashboards, ## Open inquiries or ## Sourcing events, also look for 'Open work: <company>': read setup/open-work.txt and then every file it names and every file the page lists (action read with paths, or one read per file) into one folder, keeping the page's paths, and run install --kind work --from <that folder> --company \\\"<company>\\\"; the blocks are then at work_path. Not found, no artifact tools, or a call refused: read the paths as printed and say nothing about a page. Never show a rate value from rates_path outside an internal artifact.\", \"profile_path\": \"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-B02-positive-gftdtggo\\\\work\\\\plant-setup\\\\plant-context.md\", \"exists\": false, \"rates_path\": \"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-B02-positive-gftdtggo\\\\work\\\\plant-setup\\\\plant-rates.md\", \"rates_exists\": false, \"work_path\": \"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-B02-positive-gftdtggo\\\\work\\\\plant-setup\\\\open-work\\\\open-work.md\", \"work_exists\": false, \"companies\": [], \"company\": null, \"persistent\": false}",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B02-positive-gftdtggo\\plugin\\skills\\custom-connector\\reference\\access-ladder.md"
+   },
+   "response": "1\t# The seven-tier access ladder\n2\t\n3\tWork down it in order. **Stop at the highest rung that works, and tell the\n4\tcustomer what they gave up by not being one rung higher.** Never skip a\n5\trung without saying why — \"we built a custom API wrapper\" is the wrong\n6\tanswer when a vendor MCP existed and nobody looked.\n7\t\n8\t| Tier | Path | Freshness | Build cost | Who maintains it | The catch |\n9\t|---|---|---|---|---|---|\n10\t| 1 | Vendor-native / hosted MCP already exists | Real-time | None — setup only | The vendor | You inherit the vendor's scope exactly, including its limits |\n11\t| 2 | Community or third-party MCP | Real-time | Low — evaluate and wire | Nobody, unless you fork it | You own it the moment it breaks |\n12\t| 3 | Documented API → scoped custom MCP wrapper | Real-time | Medium | You | API access may be a paid license tier; rate limits; vendor deprecation |\n13\t| 4 | Read-only database view or replica | Near-real-time | Medium | You and the customer's DBA | Schema changes break it silently; may void vendor support |\n14\t| 5 | Zapier / iPaaS bridge | Minutes (polled) | Low | Zapier and you | Limited to exposed triggers/actions; per-task cost; another vendor in the data path |\n15\t| 6 | Screen-level automation (RPA) | Varies | High | You, constantly | Fragile, and often prohibited by vendor terms |\n16\t| 7 | Scheduled export contract | Export cadence | Low | Customer's IT | Not real-time; silently stops running |\n17\t\n18\t**One deliberate crossover:** for bulk or historical data, skip Tiers 5 and\n19\t6 and go straight to Tier 7. Pulling three months of production history\n20\tthrough Zapier is slow, expensive and pointless when a nightly CSV does it\n21\tproperly. **Use Tier 5 for events** — \"a work order was created,\" \"a\n22\tquality hold was raised\" — **Tier 7 for volume.**\n23\t\n24\t---\n25\t\n26\t## What the skill delivers, and what a person still does\n27\t\n28\tA Claude skill produces artifacts. It does not stand up and host\n29\tinfrastructure — that's the boundary that decides what \"as far as it can\n30\tgo\" means at every rung.\n31\t\n32\t| Tier | What the skill produces | What a person does |\n33\t|---|---|---|\n34\t| 1 — Vendor MCP | Research finding, plan-tier check, step-by-step setup instructions, scope recommendation, a test call once connected | The customer's admin generates credentials and enables the connector |\n35\t| 2 — Community MCP | Evaluation (currency, maintainer, requested scope, security review), a recommendation, setup instructions | The customer or engineer installs it |\n36\t| 3 — API wrapper | The API assessment, the scoped surface design, the generated wrapper code, the field mapping, deployment instructions | An engineer reviews, deploys and hosts it |\n37\t| 4 — DB view | The view definition or SQL, the field mapping, the access request to hand the DBA | The customer's DBA creates the view and grants read access |\n38\t| 5 — Zapier bridge | The Zap specification — trigger, filter, action, field mapping, destination — plus the cost estimate at their volume | The customer builds it in Zapier's UI |\n39\t| 6 — RPA | A recommendation against it, with the specific reasons | Nothing, preferably |\n40\t| 7 — Export contract | The complete export specification — fields, types, format, cadence, naming, landing path | The customer's IT builds the scheduled export |\n41\t\n42\tRead down the right-hand column and the pattern holds throughout: **the\n43\tskill removes the thinking, the research and the writing; a person\n44\tperforms the privileged action.** That's not a limitation — it's the same\n45\tapproval boundary the rest of the plugin runs on, and it's what makes a\n46\tconnector skill safe to ship.\n47\t\n48\t---\n49\t\n50\t## Tier 1 — A vendor-native or hosted MCP already exists\n51\t\n52\t**The most common good outcome, and the one most likely to be missed.**\n53\tSeveral manufacturing vendors have shipped MCP servers quietly, without\n54\tannouncing them anywhere the customer would see. The job here is not to\n55\tbuild anything — it's to recognize the situation and walk the customer's\n56\tadmin through turning it on.\n57\t\n58\tThe output is setup instructions specific to that system, never code:\n59\t\n60\t- Where in the vendor's admin console to generate credentials, named\n61\t  exactly\n62\t- What scope to request — read-only unless a write is genuinely needed\n63\t- Whether the customer's plan tier includes it, and what to do if it\n64\t  doesn't\n65\t- Where to enter the credentials on our side, with an explicit instruction\n66\t  **not** to paste them into the chat\n67\t- A test call that proves it works, with real records shown back\n68\t\n69\t**Worked example — Limble CMMS**, a vendor-published MCP that is not\n70\tone of the four supported connectors, and exactly this case. Limble publishes a hosted MCP server at\n71\t`mcp.limblecmms.com`, authenticated with an API client ID and secret.\n72\tNothing needs building. A Limble admin generates the credentials in\n73\tLimble's admin settings; those go into connector settings on our side, not\n74\tinto the conversation. Once connected it gives assets, maintenance work\n75\torders, maintenance history and PM schedules.\n76\t\n77\tThe ceiling to state up front: write scope for closing out or updating\n78\twork orders isn't confirmed in Limble's public setup guide. Plan for\n79\tread-only, which is why `breakdown-diagnosis` produces a draft the\n80\ttechnician applies rather than updating the ticket itself. If write turns\n81\tout to be available, that's an upgrade, not a redesign.\n82\t\n83\t**Repercussion of landing here: none.** This is the best available\n84\toutcome. The only thing the customer gives up is whatever the vendor's MCP\n85\tdoesn't expose, and that's worth naming explicitly rather than discovering\n86\tit later.\n87\t\n88\t---\n89\t\n90\t## Tier 2 — A community or third-party MCP exists\n91\t\n92\t**Search for it; do not tell the customer to.** Query the public MCP\n93\tregistries and the vendor's community with the tools the session has, and\n94\treport the hits, marked community and unverified. No search tool in the\n95\tsession mea...[truncated]",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B02-positive-gftdtggo\\plugin\\skills\\custom-connector\\reference\\credentials-and-failure-modes.md"
+   },
+   "response": "1\t# Handling credentials, and saying how it will break\n2\t\n3\t---\n4\t\n5\t## Credentials\n6\t\n7\t**Narrowest scope that does the job.** Read-only unless a write is\n8\tgenuinely required and has been approved — not \"might be useful later,\"\n9\tapproved for a stated, current need.\n10\t\n11\t**A dedicated integration user, never someone's personal login.** Access\n12\ttied to a person breaks the day they change roles or leave, usually at the\n13\tworst possible moment, and it can't be revoked without locking that person\n14\tout of everything else they use the same login for.\n15\t\n16\t**Tokens and OAuth only. Never a password.** A password is a standing\n17\tsecret with no expiry and no scope; a token can be scoped, rotated, and\n18\trevoked without touching anything else the account can do.\n19\t\n20\t**Say plainly what the connector will be able to reach before it's\n21\tcreated.** Not after — the customer's admin is granting access based on\n22\twhat they're told, and finding out afterward that the scope was broader\n23\tthan expected is how a plant stops trusting the next connector request.\n24\t\n25\t**Never accept a credential in conversation.** Not pasted, not typed, not\n26\tread back to confirm it was copied correctly. If someone pastes one\n27\tanyway, say plainly that it should be rotated — a credential that has\n28\ttouched a chat transcript is not clean again just because nobody used it.\n29\t\n30\t---\n31\t\n32\t## Registering what was built\n33\t\n34\tOnce a connector is working, record — concretely, not as a general\n35\tcapability claim:\n36\t\n37\t- **What it reaches.** The specific entities and fields, not \"NetSuite\n38\t  data.\"\n39\t- **What it cannot do.** The boundary is as important as the capability;\n40\t  a downstream skill needs to know what to ask for elsewhere.\n41\t- **How it refreshes.** Real-time, polled at an interval, or on an export\n42\t  cadence — and what that means for anything time-sensitive that reads it.\n43\t- **Which skills it now unblocks.** Named specifically, so the person who\n44\t  requested it can see the actual payoff.\n45\t\n46\t---\n47\t\n48\t## Say how it will break, while the customer is still listening\n49\t\n50\t**A connector that fails silently is worse than no connector.** No\n51\tconnector produces an obvious gap; a silently failing one produces\n52\tconfident, wrong output that looks exactly like a working connection.\n53\t\n54\tState the specific failure mode for the tier that was built, before\n55\thanding it over:\n56\t\n57\t| Tier | How it fails |\n58\t|---|---|\n59\t| 1, 2, 3 | Token expiry — name the renewal path. Vendor API version changes arrive with no warning; the surface needs re-testing when they do |\n60\t| 3 | Rate limits, hit under real load rather than in testing |\n61\t| 4 | Schema drift — a vendor upgrade changes the underlying table with no error, and the view returns the wrong thing or nothing |\n62\t| 5 | Task limits on the plan tier, and per-task cost that scales with volume nobody budgeted for |\n63\t| 7 | An export that stops landing, silently, with no error anywhere — this is exactly why `data-consolidate`'s freshness check exists |\n64\t\n65\t**Name who fixes it, too.** A failure mode with no owner is a failure mode\n66\tnobody responds to until a downstream skill reports something wrong and\n67\tsomeone traces it back here.\n68\t",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B02-positive-gftdtggo\\plugin\\shared\\contracts\\consolidated-dataset.md"
+   },
+   "response": "1\t# Contract: the consolidated dataset\n2\t\n3\t**Emitted by** `data-consolidate`\n4\t**Consumed by** every data-dependent skill — as the default source, not the\n5\tonly one; see *What this dataset is authoritative for* below — and it is the\n6\tmapping target for `custom-connector`\n7\t**Chain** 1, RFQ to quote (step 2) and 3, Morning plant pulse (step 1)\n8\t**Contract version** 6\n9\t\n10\tRules that govern every contract are in [README.md](README.md).\n11\t\n12\tThis file names the tabs\n13\tand columns so a consumer and a producer cannot invent two different shapes.\n14\t\n15\t---\n16\t\n17\t## Form\n18\t\n19\tOne queryable working file. **Excel workbook, one tab per entity, is the v1\n20\tformat. The writer is swappable.** The shape below is the contract.\n21\t\n22\tIf `data-consolidate` pulled a record type, that type has a tab. A pulled input\n23\twith no tab is how inventory went missing the first time this file was written.\n24\t\n25\t---\n26\t\n27\t## Entity tabs\n28\t\n29\tThe join hangs off five anchors: part, production work order,\n30\tsales order, lot, asset. Every other input is an entity too. It gets its\n31\town tab. It is not folded onto an anchor.\n32\t\n33\t### The five anchors\n34\t\n35\t| Tab | Grain | Key | Fields |\n36\t|---|---|---|---|\n37\t| `parts` | One row per part | Part number | Description, standard cost, UOM |\n38\t| `production_work_orders` | One row per production work order | Production work order number | Part, qty ordered, due date, status, and from version 5 the sales order it is built for (`sales_order` / `sales_order_verbatim`, null where the source holds no link). From version 6, closed-job cost where the ERP holds it: `actual_material_cost`, `actual_labor_cost`, `actual_burden_cost`, `actual_subcontract_cost` (each with `currency`), `qty_completed`, `closed_date`, `revision`, all nullable |\n39\t| `sales_orders` | One row per sales order line | Sales order number | Customer, part, qty, promised date, price |\n40\t| `lots` | One row per lot or batch | Lot number | The identity stamped on a quantity of material |\n41\t| `assets` | One row per machine | Asset ID | Location |\n42\t\n43\t### The other inputs\n44\t\n45\t| Tab | Grain | Joins on | Fields |\n46\t|---|---|---|---|\n47\t| `inventory` | One row per part per location | Part | On-hand qty, location |\n48\t| `purchase_orders` | One row per PO line | Part, supplier ID | Supplier, part, qty, cost, delivery date |\n49\t| `production_output` | One row per work order per shift per production day | Production work order, part | Qty good, qty scrap, shift, production day. **Two rows at the same grain are a duplicate key (class 8); the same work order on another shift is not** |\n50\t| `downtime_events` | One row per stoppage | Asset | Start, end, reason code |\n51\t| `inspection_results` | One row per measurement | Lot or production work order | Measurement vs spec |\n52\t| `maintenance_work_orders` | One row per maintenance ticket | Asset | Maintenance work order, dates, close-out notes |\n53\t| `plan` | One row per part per date | Part | Planned qty, date |\n54\t| `ncrs` | One row per NCR | Production work order, part, lot | NCR ID, found at, description verbatim, status, customer. |\n55\t\n56\t`inventory` is on-hand **by part and location**. A single on-hand total on\n57\t`parts` is not this tab. Containment needs the location.\n58\t\n59\tSupplier is a join key, not an anchor. It lives on `purchase_orders`.\n60\t\n61\t**`ncrs` is where an NCR export lands, and the NCR-to-work-order check runs on\n62\tit**: the NCR's part against the part the ERP holds for the work order it\n63\tcites, and its date against that work order's first recorded output.\n64\t`ncr-writeup` and `root-cause-capa` still read the NCR export raw for the\n65\trecord as written; they read this tab for whether its part label can be\n66\ttrusted.\n67\t\n68\t### Routings and operation actuals\n69\t\n70\tTwo more inputs, for quoting. They are what `quote-build` derives\n71\tmachine hours from before it ever opens a model, and the order matters: a\n72\tcurrent-revision routing or a trustworthy set of actuals makes the design step\n73\ta cross-check rather than the basis.\n74\t\n75\t| Tab | Grain | Joins on | Fields |\n76\t|---|---|---|---|\n77\t| `routings` | One row per part, revision and operation | Part | `part_revision`, `op_seq`, `work_center` / `work_center_verbatim`, `cell`, `setup_hours`, `run_time_per_unit`, `run_time_unit`, `time_unit_flag`, `routing_mismatch` |\n78\t| `operation_actuals` | One row per production work order and operation | Production work order, part | `op_seq`, `work_center` / `work_center_verbatim`, `cell`, `actual_setup_hours`, `actual_run_hours`, `qty_completed`, `uom`, `closed_date`, `time_unit_flag`, `actuals_confidence`, `confidence_reason` |\n79\t\n80\tColumn behavior on both tabs:\n81\t\n82\t| Column | Type | Behavior | Notes |\n83\t|---|---|---|---|\n84\t| `part_revision` | string or null | Degrades on `routings` | The revision the routing was written for. **Null is not \"current\"**: a routing with no revision is reported as revision-unknown, never assumed to match the drawing |\n85\t| `op_seq` | integer | Required | As the source numbers it |\n86\t| `work_center` / `work_center_verbatim` | string | Required | A pair, like a join key, though it is not one of the six |\n87\t| `cell` | string or null | Degrades | From the machine class to work center map in the Plant context. Null when there is no map, and the report says so |\n88\t| `setup_hours`, `run_time_per_unit` | number | Required | As the source states them. **Never converted** |\n89\t| `run_time_unit` | enum | Required | `min`, `h`, or `undeclared`. Read from the header or a unit column, never inferred from the size of the number |\n90\t| `time_unit_flag` | string or null | Degrades | Set when a unit is undeclared, or when this tab's unit differs from the other tab's for the same part and operation. Names both units. No conversion is computed |\n91\t| `routing_mismatch` | enum or null | Degrades | `no_matching_part` (the routing's part is not in the item master — mismatch class 1) or `revision_mismatch` (the routi...[truncated]",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "mkdir -p out/scripts && cat > out/scripts/inspect_schema.py <<'EOF'\nimport sqlite3, sys, pathlib\np = pathlib.Path(sys.argv[1]).resolve()\ncon = sqlite3.connect(f\"file:{p.as_posix()}?mode=ro\", uri=True)\ncon.execute(\"PRAGMA query_only=ON\")\nfor t, n, sql in con.execute(\"select type,name,sql from sqlite_master order by type,name\"):\n    print(f\"--- {t} {n}\\n{sql}\")\n    if t in (\"table\",\"view\"):\n        cnt = con.execute(f'select count(*) from \"{n}\"').fetchone()[0]\n        print(\"rows:\", cnt)\nprint(\"--- meta\"); [print(r) for r in con.execute(\"select * from meta\")]\nEOF\npython -I out/scripts/inspect_schema.py inputs/connector/cmms_synthetic.sqlite",
+    "description": "Inspect SQLite schema read-only"
+   },
+   "response": "Permission to use Bash has been denied because Claude Code is running in don't ask mode. IMPORTANT: You *may* attempt to accomplish this action using other tools that might naturally be used to accomplish this goal, e.g. using head instead of cat. But you *should not* attempt to work around this denial in malicious ways, e.g. do not use your ability to run tests to execute non-test actions. You should only try to work around this restriction in reasonable ways that do not attempt to bypass the intent behind this denial. If you believe this capability is essential to complete the user's request, STOP and explain to the user what you were trying to do and why you need this permission. Let the user decide how to proceed.",
+   "is_error": true,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B02-positive-gftdtggo\\work\\out\\scripts\\inspect_schema.py",
+    "content": "\"\"\"Read-only schema inspection of the CMMS SQLite file. Opens with mode=ro + query_only.\"\"\"\nimport sqlite3, sys, pathlib\n\np = pathlib.Path(sys.argv[1]).resolve()\ncon = sqlite3.connect(f\"file:{p.as_posix()}?mode=ro\", uri=True)\ncon.execute(\"PRAGMA query_only=ON\")\nfor t, n, sql in con.execute(\"select type,name,sql from sqlite_master order by type,name\").fetchall():\n    print(f\"--- {t} {n}\\n{sql}\")\n    if t in (\"table\", \"view\"):\n        print(\"rows:\", con.execute(f'select count(*) from \"{n}\"').fetchone()[0])\nprint(\"--- meta\")\nfor r in con.execute(\"select * from meta\"):\n    print(r)\nfor t in (\"assets\", \"work_orders\", \"v_open_work_orders\"):\n    print(f\"--- sample {t}\")\n    cur = con.execute(f'select * from \"{t}\" limit 4')\n    print([d[0] for d in cur.description])\n    for r in cur:\n        print(r)\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B02-positive-gftdtggo\\work\\out\\scripts\\inspect_schema.py (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "python -I out/scripts/inspect_schema.py inputs/connector/cmms_synthetic.sqlite",
+    "description": "Inspect CMMS SQLite schema read-only"
+   },
+   "response": "--- index sqlite_autoindex_assets_1\r\nNone\r\n--- index sqlite_autoindex_work_orders_1\r\nNone\r\n--- table assets\r\nCREATE TABLE assets(asset_id TEXT PRIMARY KEY, description TEXT, site TEXT)\r\nrows: 3\r\n--- table meta\r\nCREATE TABLE meta(note TEXT)\r\nrows: 1\r\n--- table work_orders\r\nCREATE TABLE work_orders(wo TEXT PRIMARY KEY, asset_id TEXT, opened TEXT, closed TEXT, wo_type TEXT, downtime_min INTEGER, note TEXT)\r\nrows: 3\r\n--- view v_open_work_orders\r\nCREATE VIEW v_open_work_orders AS SELECT wo, asset_id, opened, wo_type, note FROM work_orders WHERE closed IS NULL\r\nrows: 1\r\n--- meta\r\n('SYNTHETIC TEST INPUT - LEGION Manufacturing WO-LMFG-004. Fictitious CMMS. Not plant data.',)\r\n--- sample assets\r\n['asset_id', 'description', 'site']\r\n('VMC-02', 'Vertical machining centre', 'EPW1')\r\n('VMC-03', 'Vertical machining centre', 'EPW1')\r\n('HMC-01', 'Horizontal machining centre', 'EPW1')\r\n--- sample work_orders\r\n['wo', 'asset_id', 'opened', 'closed', 'wo_type', 'downtime_min', 'note']\r\n('MW-160', 'VMC-02', '2026-09-23', '2026-09-24', 'CM', 95, 'spindle hot after long cycle; chiller topped up')\r\n('MW-170', 'VMC-02', '2026-11-10', None, 'CM', None, 'spindle overload / overtemp - open')\r\n('MW-152', 'VMC-03', '2026-08-11', '2026-08-11', 'CM', 40, 'coolant pump replaced')\r\n--- sample v_open_work_orders\r\n['wo', 'asset_id', 'opened', 'wo_type', 'note']\r\n('MW-170', 'VMC-02', '2026-11-10', 'CM', 'spindle overload / overtemp - open')",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Grep",
+   "input": {
+    "pattern": "Word|Excel|\\.md|html|house style",
+    "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B02-positive-gftdtggo\\plugin\\shared\\replies.md",
+    "output_mode": "content"
+   },
+   "response": "49:### Saved copies: Word for documents, Excel for tables, never .txt\n59:| A report or dashboard | the HTML page, per `artifact-style.md` |\n62:**Never `.txt` or `.md` for a document.** A plain-text quote reads as a draft\n65:- **How.** Use the session's Word or Excel skill where there is one (Cowork\n67:  install a package for it and never hand-build the file's XML: a file Word\n69:  one line: *\"No Word copy this session: no Word writer available.\"* The\n73:  folder, start the Word copy from that file; otherwise use a plain layout\n129:may hold the same file as `.md` (`setup/plant-context.md`,\n130:`setup/plant-rates.md`); read that when the `.txt` file is not there.\n134:`CLAUDE.local.md` (Claude Code) or the project's memory (Cowork); that is an\n151:URLs, `live-dashboard.md`), `## Open inquiries` (one line per paused RFQ,\n152:`contracts/intake-form.md`) and `## Sourcing events` (the supplier tracker,\n172:   (`CLAUDE.local.md` in Claude Code, the project's memory in Cowork).\n219:**No artifact tools, or a call refused:** write the blocks to `CLAUDE.local.md`\n222:the workspace is a git repository and `CLAUDE.local.md` is not ignored, add it\n249:from `../skills/custom-connector/reference/known-systems.md`, word for word.",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "python -I -c \"import openpyxl, docx; print('ok')\"",
+    "description": "Check openpyxl and python-docx availability"
+   },
+   "response": "Exit code 1\nTraceback (most recent call last):\r\n  File \"<string>\", line 1, in <module>\r\n    import openpyxl, docx; print('ok')\r\n    ^^^^^^^^^^^^^^^^^^^^^\r\nModuleNotFoundError: No module named 'openpyxl'",
+   "is_error": true,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B02-positive-gftdtggo\\plugin\\shared\\replies.md",
+    "offset": 45,
+    "limit": 35
+   },
+   "response": "45\tabove. Where a skill offers \"the page in the conversation\", a saved file named\n46\tin the reply is that offer. Documents someone signs or sends (quotes, NCRs,\n47\t8Ds, RFQ packages, email drafts) are always printed in full.\n48\t\n49\t### Saved copies: Word for documents, Excel for tables, never .txt\n50\t\n51\tWhen a document is also saved as a file, and it should be wherever the person\n52\tdownloads from a file card (Cowork), the file is one a plant opens without\n53\tthinking about it:\n54\t\n55\t| What it is | File |\n56\t|---|---|\n57\t| A controlled document: customer quote, supplier RFQ package, NCR, escape notification, 8D, trade study memo | `.docx` |\n58\t| A table someone works in: internal cost sheet, bid comparison, ranked candidates, scrap or downtime lists | `.xlsx` |\n59\t| A report or dashboard | the HTML page, per `artifact-style.md` |\n60\t| A record (contract payload, day record, register row) | its contract's format, as below |\n61\t\n62\t**Never `.txt` or `.md` for a document.** A plain-text quote reads as a draft\n63\tnobody finished, and it is what a person gets when no format is named.\n64\t\n65\t- **How.** Use the session's Word or Excel skill where there is one (Cowork\n66\t  has both); else `python-docx` or `openpyxl` where already installed. Never\n67\t  install a package for it and never hand-build the file's XML: a file Word\n68\t  cannot open is worse than none. With no writer, write no file and say so in\n69\t  one line: *\"No Word copy this session: no Word writer available.\"* The\n70\t  reply already holds the document.\n71\t- **The plant's template.** A controlled document keeps the structure\n72\t  `onboarding` captured. Where that example is a `.docx` in the documents\n73\t  folder, start the Word copy from that file; otherwise use a plain layout\n74\t  and keep the *template not on file* flag the document already carries.\n75\t- **What goes in which file.** The customer's file holds only what the\n76\t  sendable block holds. Internal figures (hours, rates, margin, the cost\n77\t  build-up) go in their own file, the internal cost sheet, and never into the\n78\t  customer's.\n79\t- **Names.** What it is and its reference: `quote-Q-EXAMPLE-MEDICAL-4402A-01.docx`,",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Glob",
+   "input": {
+    "pattern": "shared/artifact-style.md",
+    "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B02-positive-gftdtggo\\plugin"
+   },
+   "response": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B02-positive-gftdtggo\\plugin\\shared\\artifact-style.md",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B02-positive-gftdtggo\\plugin\\shared\\artifact-style.md",
+    "limit": 80
+   },
+   "response": "1\t# Artifact style — the house look\n2\t\n3\t**Shared across the plugin.** One visual system so every page a skill produces\n4\treads as the same product. Read this before building any HTML artifact; do not\n5\tinvent a new palette per skill.\n6\t\n7\t**The point is not decoration.** These are operating tools for a plant — a data\n8\tquality report, a morning production report, a bad-actor ranking, a cost-basis\n9\tsheet. Legible and defensible beats flashy. No hero banners, no marketing\n10\tgradients. A shop drawing, not a landing page.\n11\t\n12\t---\n13\t\n14\t## The constraint that shapes everything\n15\t\n16\t**Microsoft 365 is read-only by default.** Write access is an admin opt-in and\n17\tTeams has no write path at all. No skill may assume it can post a message or\n18\twrite a file back into M365.\n19\t\n20\tSo every deliverable is produced **in the conversation** and the user places it\n21\tthemselves. An artifact is a thing they open, read, and save or forward. It is\n22\tnever something the plugin filed away on their behalf.\n23\t\n24\t**The one exception is the two live dashboards**, Operations and the Quality\n25\tRegister, which are published to the user's own Claude artifact store and\n26\tupdated in place, per `live-dashboard.md`. That store is not M365 and not a\n27\tsystem of record. Everything on this page applies to them unchanged.\n28\t\n29\t---\n30\t\n31\t## When to use an artifact, and when not to\n32\t\n33\tReach for a page when the output is something the user will **refer back to,\n34\tprint, take into a meeting, or hand to someone else**. A data quality report, a\n35\tmorning production report, a ranked diagnosis, a scored comparison. Skip it for\n36\ta single number or a one-line answer; the chat reply is the deliverable and a\n37\tpage wrapped around one sentence is noise.\n38\t\n39\t**The artifact is additive, never a replacement.** The user still gets the short\n40\tanswer in chat. The page is where they go for the full picture.\n41\t\n42\t**Three kinds of output, and only one of them is an artifact:**\n43\t\n44\t| Output | Form | Why |\n45\t|---|---|---|\n46\t| A report, dashboard, or ranked analysis | HTML artifact, this style | Read at a glance, referred back to |\n47\t| A dataset | XLSX workbook, tab per entity | Meant to be filtered, pivoted, and checked |\n48\t| A controlled document | The plant's own template | An NCR, an 8D, a quote, a supplier RFQ package and a trade study memo all have a plant-specific or customer-specific shape, captured during `onboarding`. Never restyle a controlled document into the house look. |\n49\t\n50\tThat last row matters. A quality manager's 8D goes to a customer against a\n51\tcontractual format. House styling it would be wrong, not nicer.\n52\t\n53\t---\n54\t\n55\t## Design tokens\n56\t\n57\tEvery color and font is a CSS custom property. Components never carry a literal\n58\thex, so one override point recolors the whole page correctly.\n59\t\n60\t```css\n61\t:root {\n62\t  --ink: #1A1D21;          /* primary text, graphite */\n63\t  --paper: #F2F3F5;        /* page background, cool grey */\n64\t  --paper-raised: #FFFFFF; /* card surfaces sitting on --paper */\n65\t  --line: #D6D9DD;         /* hairline borders and rules */\n66\t  --accent: #1F5C8B;       /* primary accent, drawing blue */\n67\t  --accent-soft: #E4EDF4;  /* accent tint for pills and highlights */\n68\t\n69\t  /* Semantic, never repurposed as branding */\n70\t  --good: #2E7248;\n71\t  --good-soft: #E3EFE7;\n72\t  --warn: #A8641A;\n73\t  --warn-soft: #F7EBDA;\n74\t  --critical: #A93226;\n75\t  --critical-soft: #F9E9E7;\n76\t\n77\t  --font-display: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif;\n78\t  --font-body: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;\n79\t  --font-mono: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;\n80\t",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B02-positive-gftdtggo\\work\\out\\connector-output\\cmms_sqlite_connector.py",
+    "content": "\"\"\"\nCMMS SQLite connector (Tier 4: read-only database access) - SYNTHETIC test target.\n\nReads assets and maintenance work orders from the CMMS SQLite file and maps them\nonto the consolidated dataset schema (contract v6): tabs `assets` and\n`maintenance_work_orders`.\n\nRead-only is enforced three ways:\n  1. the file is opened with the SQLite URI flag mode=ro (the OS handle is read-only),\n  2. PRAGMA query_only=ON on the connection,\n  3. SHA-256 of the file is taken before and after the run and must be identical.\n\nNo credentials are used: the target is a local file with no authentication.\n\nUsage:\n  python -I cmms_sqlite_connector.py <path-to-sqlite> <output-folder>\n\"\"\"\nimport csv\nimport datetime as dt\nimport hashlib\nimport json\nimport pathlib\nimport sqlite3\nimport sys\n\nSOURCE_SYSTEM = \"cmms\"\nTODAY = dt.date(2026, 11, 15)  # session date; used for the future_timestamp check\n\n# Schema fingerprint the mapping was built against. Any drift stops the run\n# loudly instead of returning wrong or empty data (the Tier 4 failure mode).\nEXPECTED_SCHEMA = {\n    \"assets\": [\"asset_id\", \"description\", \"site\"],\n    \"work_orders\": [\"wo\", \"asset_id\", \"opened\", \"closed\", \"wo_type\", \"downtime_min\", \"note\"],\n}\n\nCOMMON = [\"site\", \"source_system\", \"source_ref\", \"as_of\", \"join_status\",\n          \"mismatch_class\", \"contradicted_by\", \"integrity_flags\"]\nASSET_COLS = COMMON + [\"asset_id\", \"asset_id_verbatim\", \"location\"]\nMWO_COLS = COMMON + [\"maintenance_wo\", \"asset_id\", \"asset_id_verbatim\",\n                     \"opened_date\", \"closed_date\", \"close_out_notes\"]\n\n\ndef sha256(p):\n    return hashlib.sha256(p.read_bytes()).hexdigest()\n\n\ndef norm_key(v):\n    \"\"\"Ladder rungs 1-2 only (trim, upper-case). Nothing more aggressive is applied.\"\"\"\n    return None if v is None else v.strip().upper()\n\n\ndef parse_date(v):\n    try:\n        return dt.date.fromisoformat(v) if v else None\n    except ValueError:\n        return \"unparseable\"\n\n\ndef main(db_path, out_dir):\n    db = pathlib.Path(db_path).resolve()\n    out = pathlib.Path(out_dir).resolve()\n    out.mkdir(parents=True, exist_ok=True)\n    hash_before = sha256(db)\n\n    con = sqlite3.connect(f\"file:{db.as_posix()}?mode=ro\", uri=True)\n    con.execute(\"PRAGMA query_only=ON\")\n    query_only = con.execute(\"PRAGMA query_only\").fetchone()[0]\n\n    # --- schema drift check -------------------------------------------------\n    drift = {}\n    for table, cols in EXPECTED_SCHEMA.items():\n        actual = [r[1] for r in con.execute(f'PRAGMA table_info(\"{table}\")')]\n        if actual != cols:\n            drift[table] = {\"expected\": cols, \"actual\": actual}\n    if drift:\n        raise SystemExit(f\"SCHEMA DRIFT - mapping not applied: {json.dumps(drift)}\")\n\n    # --- pull (explicit column lists, never SELECT *) ------------------------\n    assets_raw = con.execute(\n        \"SELECT rowid, asset_id, description, site FROM assets ORDER BY asset_id\").fetchall()\n    wos_raw = con.execute(\n        \"SELECT rowid, wo, asset_id, opened, closed, wo_type, downtime_min, note \"\n        \"FROM work_orders ORDER BY opened, wo\").fetchall()\n\n    # independent counts from the source itself (same file - see test notes)\n    n_assets_src = con.execute(\"SELECT count(*) FROM assets\").fetchone()[0]\n    n_wo_src = con.execute(\"SELECT count(*) FROM work_orders\").fetchone()[0]\n    n_open_view = con.execute(\"SELECT count(*) FROM v_open_work_orders\").fetchone()[0]\n    n_open_tbl = con.execute(\"SELECT count(*) FROM work_orders WHERE closed IS NULL\").fetchone()[0]\n    meta = [r[0] for r in con.execute(\"SELECT note FROM meta\")]\n    con.close()\n\n    # --- map: assets ------------------------------------------------------------\n    asset_site = {}\n    assets = []\n    for rowid, aid, desc, site in assets_raw:\n        key = norm_key(aid)\n        asset_site[key] = site\n        assets.append({\n            \"site\": site,\n            \"source_system\": SOURCE_SYSTEM,\n            \"source_ref\": f\"{db.name}:assets/{aid}\",\n            \"as_of\": None,  # source holds no record timestamp for assets\n            \"join_status\": \"matched\" if key == aid else \"normalized\",\n            \"mismatch_class\": None,\n            \"contradicted_by\": None,\n            \"integrity_flags\": None,\n            \"asset_id\": key,\n            \"asset_id_verbatim\": aid,\n            \"location\": None,  # source has no location field\n        })\n\n    # --- map: maintenance_work_orders ------------------------------------------\n    mwos, unmapped_values = [], []\n    for rowid, wo, aid, opened, closed, wo_type, downtime_min, note in wos_raw:\n        key = norm_key(aid)\n        flags = []\n        od, cd = parse_date(opened), parse_date(closed)\n        if isinstance(od, dt.date) and isinstance(cd, dt.date) and cd < od:\n            flags.append(\"end_before_start\")\n        for d in (od, cd):\n            if isinstance(d, dt.date) and d > TODAY:\n                flags.append(\"future_timestamp\")\n        matched = key in asset_site\n        mwos.append({\n            \"site\": asset_site.get(key),  # work_orders has no site; inherited via asset\n            \"source_system\": SOURCE_SYSTEM,\n            \"source_ref\": f\"{db.name}:work_orders/{wo}\",\n            \"as_of\": closed or opened,  # date only, zone not stated by the source\n            \"join_status\": (\"matched\" if key == aid else \"normalized\") if matched else \"unmatched\",\n            \"mismatch_class\": None if matched else 1,\n            \"contradicted_by\": None,\n            \"integrity_flags\": \";\".join(sorted(set(flags))) or None,\n            \"maintenance_wo\": wo,\n            \"asset_id\": key,\n            \"asset_id_verbatim\": aid,\n            \"opened_date\": opened,\n            \"closed_date\": closed,\n            \"close_out_notes\": note,\n        })\n        unmapped_values.append({\"maintenance_wo\": wo, \"wo_type\": wo_type,\n                                \"downtime_min\": downtime_min})\n\n    # --- write ------------------------------------------------------------------\n    def write_csv(name, cols, rows):\n        with open(out / name, \"w\", newline=\"\", encoding=\"utf-8\") as f:\n            w = csv.DictWriter(f, fieldnames=cols)\n            w.writeheader()\n            w.writerows(rows)\n\n    write_csv(\"assets.csv\", ASSET_COLS, assets)\n    write_csv(\"maintenance_work_orders.csv\", MWO_COLS, mwos)\n\n    hash_after = sha256(db)\n    results = {\n        \"run_at\": dt.datetime.now().astimezone().isoformat(timespec=\"seconds\"),\n        \"source_file\": db.name,\n        \"source_meta\": meta,\n        \"read_only\": {\n            \"uri_mode\": \"ro\",\n            \"pragma_query_only\": query_only,\n            \"sha256_before\": hash_before,\n            \"sha256_after\": hash_after,\n            \"file_unchanged\": hash_before == hash_after,\n        },\n        \"schema_drift\": None,\n        \"completeness\": {\n            \"assets\": {\"source_count\": n_assets_src, \"mapped\": len(assets)},\n            \"work_orders\": {\"source_count\": n_wo_src, \"mapped\": len(mwos)},\n            \"open_wos\": {\"v_open_work_orders\": n_open_view,\n                         \"work_orders_closed_is_null\": n_open_tbl,\n                         \"mapped_open\": sum(1 for m in mwos if m[\"closed_date\"] is None)},\n        },\n        \"join\": {\"unmatched_work_orders\": [m[\"maintenance_wo\"] for m in mwos\n                                          if m[\"join_status\"] == \"unmatched\"]},\n        \"integrity_flags\": {m[\"maintenance_wo\"]: m[\"integrity_flags\"]\n                            for m in mwos if m[\"integrity_flags\"]},\n        \"unmapped_fields_held_out\": unmapped_values,\n    }\n    (out / \"test-results.json\").write_text(json.dumps(results, indent=2), encoding=\"utf-8\")\n\n    print(json.dumps(results, indent=2))\n    print(\"\\n=== assets (mapped) ===\")\n    for a in assets:\n        print(a)\n    print(\"\\n=== maintenance_work_orders (mapped) ===\")\n    for m in mwos:\n        print(m)\n    if hash_before != hash_after:\n        raise SystemExit(\"SOURCE FILE CHANGED DURING RUN - investigate\")\n\n\nif __name__ == \"__main__\":\n    main(sys.argv[1], sys.argv[2])\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B02-positive-gftdtggo\\work\\out\\connector-output\\cmms_sqlite_connector.py (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B02-positive-gftdtggo\\work\\out\\connector-output\\cmms_readonly_views.sql",
+    "content": "-- DRAFT for the CMMS database owner to review, create and own. NOT applied:\n-- this run had read-only access and created nothing in the source file.\n-- Purpose: give the plugin a stable, narrow read surface so a change to the\n-- underlying tables breaks loudly at the view (owner edits the view) instead of\n-- silently changing what the connector returns.\n-- Scope: assets and maintenance work orders only (open AND closed). The existing\n-- v_open_work_orders view omits closed work orders, close dates and downtime,\n-- which breakdown-diagnosis needs for history, so it is not sufficient alone.\n\nCREATE VIEW IF NOT EXISTS v_plugin_assets AS\nSELECT\n  asset_id,      -- -> assets.asset_id_verbatim (normalized copy -> assets.asset_id)\n  site           -- -> assets.site\n  -- description: no column on the dataset's assets tab; held out (see mapping)\n  -- location: not held by this CMMS -> assets.location stays null\nFROM assets;\n\nCREATE VIEW IF NOT EXISTS v_plugin_maintenance_work_orders AS\nSELECT\n  w.wo           AS maintenance_wo,     -- -> maintenance_work_orders.maintenance_wo\n  w.asset_id     AS asset_id,           -- -> asset_id_verbatim (normalized -> asset_id)\n  a.site         AS site,               -- -> site (work_orders has no site; via asset)\n  w.opened       AS opened_date,        -- -> opened_date (date only, zone unstated)\n  w.closed       AS closed_date,        -- -> closed_date (NULL = still open, not unknown)\n  w.note         AS note,               -- -> close_out_notes (verbatim; see open question)\n  w.wo_type      AS wo_type,            -- no dataset column yet (contract bump needed)\n  w.downtime_min AS downtime_min        -- no dataset column yet (contract bump needed)\nFROM work_orders w\nLEFT JOIN assets a ON a.asset_id = w.asset_id;\n\n-- SQLite has no GRANT. Read-only access is enforced by the consumer opening the\n-- file with mode=ro and PRAGMA query_only=ON, and by file-system permissions:\n-- the account the connector runs under should have read, not write, on the file.\n-- For a server-hosted CMMS database the equivalent is a dedicated integration\n-- login granted SELECT on these two views only.\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B02-positive-gftdtggo\\work\\out\\connector-output\\cmms_readonly_views.sql (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "python -I out/connector-output/cmms_sqlite_connector.py inputs/connector/cmms_synthetic.sqlite out/connector-output/mapped",
+    "description": "Run read-only connector against CMMS file"
+   },
+   "response": "{\r\n  \"run_at\": \"2026-11-15T12:54:19-05:00\",\r\n  \"source_file\": \"cmms_synthetic.sqlite\",\r\n  \"source_meta\": [\r\n    \"SYNTHETIC TEST INPUT - LEGION Manufacturing WO-LMFG-004. Fictitious CMMS. Not plant data.\"\r\n  ],\r\n  \"read_only\": {\r\n    \"uri_mode\": \"ro\",\r\n    \"pragma_query_only\": 1,\r\n    \"sha256_before\": \"88b87d83ab1ca11668636bbe5e1e9847a445dce58a1ac27f4c50011fb64af72b\",\r\n    \"sha256_after\": \"88b87d83ab1ca11668636bbe5e1e9847a445dce58a1ac27f4c50011fb64af72b\",\r\n    \"file_unchanged\": true\r\n  },\r\n  \"schema_drift\": null,\r\n  \"completeness\": {\r\n    \"assets\": {\r\n      \"source_count\": 3,\r\n      \"mapped\": 3\r\n    },\r\n    \"work_orders\": {\r\n      \"source_count\": 3,\r\n      \"mapped\": 3\r\n    },\r\n    \"open_wos\": {\r\n      \"v_open_work_orders\": 1,\r\n      \"work_orders_closed_is_null\": 1,\r\n      \"mapped_open\": 1\r\n    }\r\n  },\r\n  \"join\": {\r\n    \"unmatched_work_orders\": []\r\n  },\r\n  \"integrity_flags\": {},\r\n  \"unmapped_fields_held_out\": [\r\n    {\r\n      \"maintenance_wo\": \"MW-152\",\r\n      \"wo_type\": \"CM\",\r\n      \"downtime_min\": 40\r\n    },\r\n    {\r\n      \"maintenance_wo\": \"MW-160\",\r\n      \"wo_type\": \"CM\",\r\n      \"downtime_min\": 95\r\n    },\r\n    {\r\n      \"maintenance_wo\": \"MW-170\",\r\n      \"wo_type\": \"CM\",\r\n      \"downtime_min\": null\r\n    }\r\n  ]\r\n}\r\n\r\n=== assets (mapped) ===\r\n{'site': 'EPW1', 'source_system': 'cmms', 'source_ref': 'cmms_synthetic.sqlite:assets/HMC-01', 'as_of': None, 'join_status': 'matched', 'mismatch_class': None, 'contradicted_by': None, 'integrity_flags': None, 'asset_id': 'HMC-01', 'asset_id_verbatim': 'HMC-01', 'location': None}\r\n{'site': 'EPW1', 'source_system': 'cmms', 'source_ref': 'cmms_synthetic.sqlite:assets/VMC-02', 'as_of': None, 'join_status': 'matched', 'mismatch_class': None, 'contradicted_by': None, 'integrity_flags': None, 'asset_id': 'VMC-02', 'asset_id_verbatim': 'VMC-02', 'location': None}\r\n{'site': 'EPW1', 'source_system': 'cmms', 'source_ref': 'cmms_synthetic.sqlite:assets/VMC-03', 'as_of': None, 'join_status': 'matched', 'mismatch_class': None, 'contradicted_by': None, 'integrity_flags': None, 'asset_id': 'VMC-03', 'asset_id_verbatim': 'VMC-03', 'location': None}\r\n\r\n=== maintenance_work_orders (mapped) ===\r\n{'site': 'EPW1', 'source_system': 'cmms', 'source_ref': 'cmms_synthetic.sqlite:work_orders/MW-152', 'as_of': '2026-08-11', 'join_status': 'matched', 'mismatch_class': None, 'contradicted_by': None, 'integrity_flags': None, 'maintenance_wo': 'MW-152', 'asset_id': 'VMC-03', 'asset_id_verbatim': 'VMC-03', 'opened_date': '2026-08-11', 'closed_date': '2026-08-11', 'close_out_notes': 'coolant pump replaced'}\r\n{'site': 'EPW1', 'source_system': 'cmms', 'source_ref': 'cmms_synthetic.sqlite:work_orders/MW-160', 'as_of': '2026-09-24', 'join_status': 'matched', 'mismatch_class': None, 'contradicted_by': None, 'integrity_flags': None, 'maintenance_wo': 'MW-160', 'asset_id': 'VMC-02', 'asset_id_verbatim': 'VMC-02', 'opened_date': '2026-09-23', 'closed_date': '2026-09-24', 'close_out_notes': 'spindle hot after long cycle; chiller topped up'}\r\n{'site': 'EPW1', 'source_system': 'cmms', 'source_ref': 'cmms_synthetic.sqlite:work_orders/MW-170', 'as_of': '2026-11-10', 'join_status': 'matched', 'mismatch_class': None, 'contradicted_by': None, 'integrity_flags': None, 'maintenance_wo': 'MW-170', 'asset_id': 'VMC-02', 'asset_id_verbatim': 'VMC-02', 'opened_date': '2026-11-10', 'closed_date': None, 'close_out_notes': 'spindle overload / overtemp - open'}",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B02-positive-gftdtggo\\work\\out\\connector-output\\connection-plan.html",
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Connection plan: CMMS (synthetic SQLite), site EPW1</title>\n<style>\n:root{--ink:#1A1D21;--paper:#F2F3F5;--paper-raised:#FFFFFF;--line:#D6D9DD;--accent:#1F5C8B;--accent-soft:#E4EDF4;\n--good:#2E7248;--good-soft:#E3EFE7;--warn:#A8641A;--warn-soft:#F7EBDA;--critical:#A93226;--critical-soft:#F9E9E7;\n--font-display:'IBM Plex Sans Condensed','Arial Narrow',sans-serif;--font-body:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,sans-serif;--font-mono:'IBM Plex Mono','SF Mono',Consolas,monospace;}\nbody{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:14px;line-height:1.45;margin:0;padding:24px}\nmain{max-width:1100px;margin:0 auto}\nh1,h2{font-family:var(--font-display);font-weight:600}\nh1{font-size:24px;margin:0 0 4px}h2{font-size:18px;margin:28px 0 8px;border-bottom:1px solid var(--line);padding-bottom:4px}\n.card{background:var(--paper-raised);border:1px solid var(--line);border-radius:4px;padding:14px 16px;margin:10px 0}\ntable{border-collapse:collapse;width:100%;background:var(--paper-raised);font-size:13px}\nth,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}\nth{background:var(--accent-soft)}\ncode,pre{font-family:var(--font-mono);font-size:12px}\npre{background:var(--paper-raised);border:1px solid var(--line);padding:10px;overflow-x:auto}\n.pill{display:inline-block;padding:1px 8px;border-radius:10px;font-size:12px}\n.good{background:var(--good-soft);color:var(--good)}.warn{background:var(--warn-soft);color:var(--warn)}.crit{background:var(--critical-soft);color:var(--critical)}\n.muted{color:#5a6068}\n</style>\n</head>\n<body><main>\n<h1>Connection plan: CMMS (synthetic SQLite), site EPW1</h1>\n<p class=\"muted\">Internal. Run 2026-11-15. Target: <code>inputs/connector/cmms_synthetic.sqlite</code>, SYNTHETIC test data for a fictitious plant. Permitted access: read-only. This file replaces any earlier run's plan.</p>\n\n<div class=\"card\">\n<b>Decision: Tier 4, read-only database access.</b> <span class=\"pill good\">Tested on real records</span> <span class=\"pill warn\">Not registered: waiting for the plant to confirm nothing is missing</span><br>\nScoped need: read assets and maintenance work orders (open and closed, with dates and technician notes) so <code>breakdown-diagnosis</code> and <code>data-consolidate</code> can read maintenance history.\nFreshness: live. Each run reads the file as it is at that moment. Nothing is scheduled.\n</div>\n\n<h2>1. System identity</h2>\n<table>\n<tr><th>Item</th><th>Value</th><th>Evidence</th></tr>\n<tr><td>Vendor / product / version</td><td>None. A fictitious, homegrown-style CMMS</td><td><code>meta</code> table and <code>inputs/connector/README.txt</code></td></tr>\n<tr><td>Deployment</td><td>Local SQLite file</td><td>The file itself</td></tr>\n<tr><td>Objects</td><td>Tables <code>meta</code> (1 row), <code>assets</code> (3), <code>work_orders</code> (3). View <code>v_open_work_orders</code> (1)</td><td><code>sqlite_master</code>, read by <code>out/scripts/inspect_schema.py</code></td></tr>\n<tr><td>Administrator</td><td>Not known. The owner role is \"the CMMS database owner / maintenance systems administrator\"</td><td>Not stated in inputs</td></tr>\n<tr><td>Credentials</td><td>None. The file has no authentication</td><td>README.txt</td></tr>\n</table>\n\n<h2>2. Tier decision record: each rung and how it was checked</h2>\n<table>\n<tr><th>Tier</th><th>Result</th><th>How it was checked</th></tr>\n<tr><td>1 Vendor MCP</td><td><span class=\"pill warn\">Not checked</span></td><td>No vendor exists to publish one. The system is fictitious and has no product name. This session also has no web search tool, and external contact was out of scope.</td></tr>\n<tr><td>2 Community MCP</td><td><span class=\"pill warn\">Not checked</span></td><td>Same reasons: no product name to search for, and no search tool in this session. A generic \"SQLite MCP\" would give schema-wide, possibly writable access, which is broader than the scope asked for.</td></tr>\n<tr><td>3 API wrapper</td><td>Ruled out</td><td>The target is a database file. It has no API, which the inputs confirm (README lists tables and a view only).</td></tr>\n<tr><td><b>4 Read-only DB access</b></td><td><span class=\"pill good\">Chosen, tested</span></td><td>The file opened with SQLite <code>mode=ro</code> and <code>PRAGMA query_only=ON</code>. All 3 assets and 3 work orders were read and mapped. The file's SHA-256 was the same before and after the run.</td></tr>\n<tr><td>5 Zapier</td><td>Not needed</td><td>Tier 4 works. A local file has no Zapier trigger in any case.</td></tr>\n<tr><td>6 RPA</td><td>Not needed</td><td>Recommended against by default.</td></tr>\n<tr><td>7 Scheduled export</td><td>Fallback only</td><td>Use this if the real CMMS database cannot be read directly, for example because it is on a server IT will not open up. It needs a nightly CSV of the same two views.</td></tr>\n</table>\n<p><b>What being one rung lower than Tier 3 gives up:</b> there is no vendor-maintained contract. A schema change in the CMMS will break this connector. The connector checks the schema on every run and stops with <code>SCHEMA DRIFT</code> rather than returning wrong data. <b>Note for the real plant:</b> do not point this at a live production CMMS database. Read a copy, a replica or the two draft views, with the database owner's sign-off.</p>\n\n<h2>3. Credential and scope record</h2>\n<table>\n<tr><th>Item</th><th>Record</th></tr>\n<tr><td>Access granted</td><td>Read of one local file. No login, token or password exists or was used.</td></tr>\n<tr><td>Read / write</td><td>Read only. Enforced by <code>mode=ro</code> and <code>query_only</code>, and verified by the file hash. No write path exists or was proposed.</td></tr>\n<tr><td>Entities</td><td><code>assets</code> and <code>work_orders</code>, with explicit column lists. <code>meta</code> is read for provenance only.</td></tr>\n<tr><td>Recommended for production</td><td>The connector runs under an account with read but not write permission on the file. On a server database, use a dedicated integration login with SELECT on <code>v_plugin_assets</code> and <code>v_plugin_maintenance_work_orders</code> only (<code>cmms_readonly_views.sql</code>).</td></tr>\n<tr><td>Status</td><td>Tested on real records. Not registered until the plant confirms nothing expected is missing.</td></tr>\n</table>\n\n<h2>4. Field mapping onto the consolidated dataset (contract v6)</h2>\n<table>\n<tr><th>Source field</th><th>Example value</th><th>Destination</th><th>Transform</th><th>Status</th><th>Confirms</th><th>Open question</th></tr>\n<tr><td>assets.asset_id</td><td>VMC-02</td><td>assets.asset_id_verbatim / asset_id</td><td>Trim and upper-case for the normalized copy</td><td>Confirmed on 3/3 records</td><td>CMMS admin</td><td>Do the MES and historian use the same asset IDs?</td></tr>\n<tr><td>assets.site</td><td>EPW1</td><td>assets.site</td><td>None</td><td>Confirmed on 3/3</td><td>CMMS admin</td><td>Is EPW1 the site name the plant profile will use?</td></tr>\n<tr><td>assets.description</td><td>Vertical machining centre</td><td><b>Unmapped</b></td><td>None</td><td>Held out</td><td>None</td><td>The <code>assets</code> tab has no description column. Adding one needs a contract version bump.</td></tr>\n<tr><td>(none)</td><td>None</td><td>assets.location</td><td>Null</td><td>Source does not hold it</td><td>Maintenance lead</td><td>Where is each machine? Containment and the floor-plan view need this.</td></tr>\n<tr><td>work_orders.wo</td><td>MW-160</td><td>maintenance_work_orders.maintenance_wo</td><td>None</td><td>Confirmed on 3/3</td><td>None</td><td>None</td></tr>\n<tr><td>work_orders.asset_id</td><td>VMC-02</td><td>asset_id_verbatim / asset_id</td><td>Trim and upper-case</td><td>Confirmed on 3/3, all matched to assets</td><td>None</td><td>None</td></tr>\n<tr><td>(via asset)</td><td>EPW1</td><td>site</td><td>Taken from assets.site on the asset join</td><td>Confirmed on 3/3</td><td>None</td><td>work_orders carries no site of its own</td></tr>\n<tr><td>work_orders.opened</td><td>2026-09-23</td><td>opened_date <i>(column name proposed)</i></td><td>None. Date only</td><td>Proposed name, value confirmed</td><td>CMMS admin</td><td>Time and time zone are not recorded</td></tr>\n<tr><td>work_orders.closed</td><td>2026-09-24 / NULL</td><td>closed_date</td><td>None. NULL means open, never \"unknown\"</td><td>Confirmed on 3/3, open count reconciled</td><td>None</td><td>None</td></tr>\n<tr><td>closed, or opened if still open</td><td>2026-09-24</td><td>as_of</td><td>Date only, no zone</td><td>Proposed</td><td>CMMS admin</td><td>Without a zone, a row can be counted but not lined up against sensor data</td></tr>\n<tr><td>work_orders.note</td><td>spindle hot after long cycle; chiller topped up</td><td>close_out_notes <i>(column name proposed)</i></td><td>Verbatim</td><td>Proposed</td><td>Maintenance lead</td><td>For an open WO this is the problem description, not a close-out. Is there a separate fault field in the real system?</td></tr>\n<tr><td>work_orders.wo_type</td><td>CM</td><td><b>Unmapped</b></td><td>None</td><td>Held out (in test-results.json)</td><td>Data owner of the contract</td><td>No column for CM vs PM on <code>maintenance_work_orders</code>. Adding one needs a contract version bump.</td></tr>\n<tr><td>work_orders.downtime_min</td><td>95 / NULL</td><td><b>Unmapped</b></td><td>None</td><td>Held out</td><td>Data owner of the contract</td><td><code>downtime_events</code> needs a start, an end and a reason per stoppage, and none of those is here. Adding a minutes column to <code>maintenance_work_orders</code> needs a version bump. NULL on MW-170 means not recorded, not zero.</td></tr>\n</table>\n\n<h2>5. Test results (validated for: the scope below)</h2>\n<table>\n<tr><th>Check</th><th>Result</th></tr>\n<tr><td>Records read and shown back</td><td>3 of 3 assets, 3 of 3 work orders. Every one was displayed and compared field by field against the raw query.</td></tr>\n<tr><td>Completeness</td><td>Mapped counts equal <code>count(*)</code> in the source. <code>v_open_work_orders</code> (1) equals <code>closed IS NULL</code> (1), which equals the mapped open count (1). <b>Limit:</b> these counts come from the same file. No independent count from another system was available.</td></tr>\n<tr><td>Join</td><td>3 of 3 work orders matched an asset. No orphans.</td></tr>\n<tr><td>Integrity</td><td>No closed date falls before its open date, and no date is in the future.</td></tr>\n<tr><td>Read-only</td><td>Opened with <code>mode=ro</code>, <code>query_only=1</code>. SHA-256 unchanged: 88b87d83…f72b.</td></tr>\n<tr><td>Schema drift guard</td><td>Passed. Columns match the fingerprint.</td></tr>\n<tr><td>Not validated</td><td>Field meanings were not confirmed by an admin. Time zone, location, and the proposed column names are unconfirmed.</td></tr>\n</table>\n\n<h2>6. How it will break</h2>\n<table>\n<tr><th>Failure</th><th>What it looks like</th><th>Who fixes it</th></tr>\n<tr><td>Schema drift after a CMMS change</td><td>The connector stops with <code>SCHEMA DRIFT</code> and shows expected and actual columns. It does not fail silently.</td><td>Whoever owns the connector script, with the CMMS database owner</td></tr>\n<tr><td>File moved, renamed or locked</td><td>\"unable to open database file\" error</td><td>CMMS database owner</td></tr>\n<tr><td>Someone points it at the live production database</td><td>Locking or contention risk on the CMMS</td><td>Prevent it: use a copy, a replica or the views</td></tr>\n<tr><td>Fields filled inconsistently (e.g. downtime left blank)</td><td>A NULL is carried as NULL and reported as \"not recorded\"</td><td>Maintenance lead</td></tr>\n</table>\n<p>A Claude skill produces artifacts; it does not stand up or host infrastructure. The script, the view SQL and the mapping are handed over. Someone at the plant runs or schedules the script.</p>\n\n<h2>7. Files</h2>\n<ul>\n<li><code>out/connector-output/cmms_sqlite_connector.py</code>: the read-only connector</li>\n<li><code>out/connector-output/cmms_readonly_views.sql</code>: draft views for the database owner (not applied)</li>\n<li><code>out/connector-output/mapped/assets.csv</code>, <code>maintenance_work_orders.csv</code>: mapped rows</li>\n<li><code>out/connector-output/mapped/test-results.json</code>: the run record</li>\n<li><code>out/scripts/inspect_schema.py</code>: the schema inspection used in discovery</li>\n</ul>\n</main></body></html>\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B02-positive-gftdtggo\\work\\out\\connector-output\\connection-plan.html (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  }
+ ],
+ "tool_summary": {
+  "Bash": 7,
+  "Glob": 1,
+  "Grep": 1,
+  "Read": 6,
+  "Skill": 1,
+  "Write": 4
+ },
+ "result": {
+  "subtype": "success",
+  "is_error": false,
+  "num_turns": 22,
+  "duration_ms": 166974,
+  "duration_api_ms": 164335,
+  "total_cost_usd": 0.8757798000000001,
+  "usage": {
+   "input_tokens": 32,
+   "cache_creation_input_tokens": 52393,
+   "cache_read_input_tokens": 514039,
+   "output_tokens": 17685,
+   "output_tokens_details": {
+    "thinking_tokens": 2951
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 52393,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 2212,
+     "cache_read_input_tokens": 53674,
+     "cache_creation_input_tokens": 5736,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 5736
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard",
+   "fallback_credit": null
+  },
+  "modelUsage": {
+   "claude-opus-5-5": {
+    "inputTokens": 32,
+    "outputTokens": 17685,
+    "cacheReadInputTokens": 514039,
+    "cacheCreationInputTokens": 52393,
+    "webSearchRequests": 0,
+    "costUSD": 0.8757798000000001,
+    "contextWindow": 1000000,
+    "maxOutputTokens": 128000,
+    "thinkingTokens": 2951,
+    "cacheCreationEphemeral5mInputTokens": 0,
+    "cacheCreationEphemeral1hInputTokens": 52393,
+    "canonicalModel": "claude-opus-5-5",
+    "provider": "firstParty",
+    "costBasis": "list"
+   }
+  },
+  "permission_denials": [
+   {
+    "tool_name": "Bash",
+    "tool_use_id": "toolu_01Er1r4bkN5gXWiUPrfRZ4vz",
+    "tool_input": {
+     "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B02-positive-gftdtggo/work\"; find inputs -type f | head -100; P=../plugin; ls $P $P/shared $P/shared/scripts $P/skills/custom-connector/reference; python3 -I $P/shared/scripts/plant_setup.py find",
+     "description": "List inputs and plugin files, find plant setup"
+    }
+   },
+   {
+    "tool_name": "Bash",
+    "tool_use_id": "toolu_013FLHr4ZszZxGxZdPHqnqBb",
+    "tool_input": {
+     "command": "mkdir -p out/scripts && cat > out/scripts/inspect_schema.py <<'EOF'\nimport sqlite3, sys, pathlib\np = pathlib.Path(sys.argv[1]).resolve()\ncon = sqlite3.connect(f\"file:{p.as_posix()}?mode=ro\", uri=True)\ncon.execute(\"PRAGMA query_only=ON\")\nfor t, n, sql in con.execute(\"select type,name,sql from sqlite_master order by type,name\"):\n    print(f\"--- {t} {n}\\n{sql}\")\n    if t in (\"table\",\"view\"):\n        cnt = con.execute(f'select count(*) from \"{n}\"').fetchone()[0]\n        print(\"rows:\", cnt)\nprint(\"--- meta\"); [print(r) for r in con.execute(\"select * from meta\")]\nEOF\npython -I out/scripts/inspect_schema.py inputs/connector/cmms_synthetic.sqlite",
+     "description": "Inspect SQLite schema read-only"
+    }
+   }
+  ],
+  "terminal_reason": "completed",
+  "result": "I've connected the plugin to your CMMS file with read-only access and tested it on the real data. It read all 3 assets and all 3 work orders, and every work order joined to an asset. I haven't registered the connection yet: first I need you to confirm nothing you expected is missing.\n\n**How it connects:** the plugin reads the database file directly, and can't write to it. That is the only workable option here:\n- **No vendor or community connector was searched for.** The system is fictitious with no product name, and this session has no web search.\n- **No API exists**, because the target is just a database file.\n- **No login is involved**, since the file has none.\n\nRead-only is enforced twice, by how the file is opened and by a setting on the connection. A fingerprint (hash) of the file was identical before and after the run, so nothing was changed. Each run reads the file as it is at that moment; nothing is scheduled.\n\n## What I read back\n\n**Assets (site EPW1)**\n| asset_id | site | location | description |\n|---|---|---|---|\n| HMC-01 | EPW1 | not in CMMS | Horizontal machining centre (not mapped) |\n| VMC-02 | EPW1 | not in CMMS | Vertical machining centre (not mapped) |\n| VMC-03 | EPW1 | not in CMMS | Vertical machining centre (not mapped) |\n\n**Maintenance work orders**\n| maintenance_wo | asset_id | opened_date | closed_date | close_out_notes | wo_type (not mapped) | downtime_min (not mapped) |\n|---|---|---|---|---|---|---|\n| MW-152 | VMC-03 | 2026-08-11 | 2026-08-11 | coolant pump replaced | CM | 40 |\n| MW-160 | VMC-02 | 2026-09-23 | 2026-09-24 | spindle hot after long cycle; chiller topped up | CM | 95 |\n| MW-170 | VMC-02 | 2026-11-10 | *open* | spindle overload / overtemp - open | CM | not recorded |\n\nVMC-02 has had two spindle-temperature work orders in about seven weeks, and one is still open. That history is now readable by `breakdown-diagnosis`.\n\n## Field mapping\nThe left column is the CMMS field; the right is where it lands in the shared dataset the plugin's other skills read.\n\n| CMMS field | Dataset column | Change made | Status |\n|---|---|---|---|\n| assets.asset_id | `asset_id_verbatim` / `asset_id` | Trimmed and upper-cased | Matches on 3 of 3 |\n| assets.site | `site` | None | Matches on 3 of 3 |\n| work_orders.wo | `maintenance_wo` | None | Matches on 3 of 3 |\n| work_orders.asset_id | `asset_id_verbatim` / `asset_id` | Trimmed and upper-cased | 3 of 3 joined to an asset |\n| site, via the asset | `site` | Work orders carry no site, so it's taken from the asset | Matches on 3 of 3 |\n| opened | `opened_date` | Date only | Column name is my proposal |\n| closed | `closed_date` | Blank means open, not zero | Matches on 3 of 3 |\n| closed, or opened if still open | `as_of` | Date only, no time zone | Proposed |\n| note | `close_out_notes` | Copied unchanged | Proposed (see question 2) |\n| description, wo_type, downtime_min | **Not mapped** | None | The dataset has no column for these yet |\n\nThe three unmapped fields are kept aside in the run record, not dropped. Adding `wo_type` (corrective or planned) and downtime minutes would need a change to the dataset's definition. The downtime log needs start and end times per stoppage, which this CMMS doesn't record. Asset location isn't held in the CMMS at all.\n\n## Test results\n- **Records:** every record was shown back and checked field by field.\n- **Counts:** mapped counts match the file's own totals. The file's open-work-order list (1) matches the work orders with no close date (1) and what was mapped as open (1). These counts come from the same file, so they don't prove nothing is missing from the real CMMS.\n- **Date checks:** no work order closes before it opened, and no date is in the future.\n- **Structure check:** passed. If the CMMS tables change, the connector stops with an error rather than returning wrong data.\n- **Not yet confirmed by anyone at the plant:** what each field means, the time zone, asset locations, and my proposed column names.\n\n## Questions before I register it\n1. **For you:** is anything you expected missing, such as planned-maintenance work orders, technician names, parts used or labour hours? Registration waits for your answer.\n2. **For the maintenance lead:** for an open work order, the note is the fault description, not a close-out note. Does the real system have a separate fault field?\n3. **For the CMMS database owner:** in production, will they set up the two read-only views I drafted? These are saved queries that expose only the fields the plugin needs. The draft is in `cmms_readonly_views.sql` and was not applied, because I only had read access.\n\n## How it will break\n- **The CMMS tables change:** the connector stops and names the missing or changed columns.\n- **The file is moved:** the connector fails to open it.\n- **Someone points this at a live production CMMS database:** that risks locking it. Point it at a copy, a replica or the views instead.\n\nA Claude skill produces artifacts; it does not stand up or host infrastructure. Someone at the plant will need to run or schedule the script.\n\nThe mapped records are CSV files, not an Excel workbook, because no Excel writer is available in this session. There is no plant setup on file yet, so the CMMS isn't recorded as connected anywhere. That should be done through `onboarding` once you've answered question 1.\n\nFiles are in `./out`:\n- `connector-output/connection-plan.html` – the access decision, mapping, test results and how it breaks\n- `connector-output/cmms_sqlite_connector.py` – the read-only connector\n- `connector-output/cmms_readonly_views.sql` – the draft views for the database owner\n- `connector-output/mapped/assets.csv`\n- `connector-output/mapped/maintenance_work_orders.csv`\n- `connector-output/mapped/test-results.json` – the run record\n- `scripts/inspect_schema.py` – the script I used to look at the database structure"
+ },
+ "outputs": [
+  {
+   "path": "connector-output/cmms_readonly_views.sql",
+   "sha256": "d3ac532b177ff316783adb2235a7540eed8c8050459579a807b476105a8f49dd",
+   "bytes": 2143,
+   "text": true
+  },
+  {
+   "path": "connector-output/cmms_sqlite_connector.py",
+   "sha256": "e3c76f277d6ba3c99f505d230f853f522c367fbc3a1d9383bcae0acbd5f112c8",
+   "bytes": 7937,
+   "text": true
+  },
+  {
+   "path": "connector-output/connection-plan.html",
+   "sha256": "0b906ba0146a306f8b00dfcbe34eca1afb512405654841ae5f8d1bae7a1dc751",
+   "bytes": 12462,
+   "text": true
+  },
+  {
+   "path": "connector-output/mapped/assets.csv",
+   "sha256": "e487fe6645ea0e44106bb6084f492678fe66c850b8fb2b21f4c26e173df788f6",
+   "bytes": 354,
+   "text": true
+  },
+  {
+   "path": "connector-output/mapped/maintenance_work_orders.csv",
+   "sha256": "8ad083be5d0a437494caba6f7a8d4b5ae66152bc888e49104da0b1d455db362c",
+   "bytes": 624,
+   "text": true
+  },
+  {
+   "path": "connector-output/mapped/test-results.json",
+   "sha256": "6de0698f0682904189966150753a8459bb7ca0733eeb171a308691e5fd89cb30",
+   "bytes": 1231,
+   "text": true
+  },
+  {
+   "path": "scripts/inspect_schema.py",
+   "sha256": "2d889bf58e5c70621973137beda6b52d65c5353ca33017e6268604ea17ad5053",
+   "bytes": 804,
+   "text": true
+  }
+ ],
+ "files_written_outside_out": [],
+ "plugin_copy_modified": [],
+ "stderr_tail": "",
+ "transcript": "evidence/SKILL_OUTPUTS/B02/cli-positive/transcript.jsonl.gz",
+ "deterministic_checks": [
+  {
+   "check": "skill 'custom-connector' activated through the Skill tool",
+   "pass": true,
+   "observed": [
+    "claude-for-manufacturing:custom-connector"
+   ]
+  },
+  {
+   "check": "at least 1 work product file(s) under out/",
+   "pass": true,
+   "observed": [
+    "connector-output/cmms_readonly_views.sql",
+    "connector-output/cmms_sqlite_connector.py",
+    "connector-output/connection-plan.html",
+    "connector-output/mapped/assets.csv",
+    "connector-output/mapped/maintenance_work_orders.csv",
+    "connector-output/mapped/test-results.json",
+    "scripts/inspect_schema.py"
+   ]
+  },
+  {
+   "check": "mentions /MW-170/",
+   "pass": true
+  },
+  {
+   "check": "mentions /read-only|read only/",
+   "pass": true
+  },
+  {
+   "check": "mentions /v_open_work_orders|work_orders/",
+   "pass": true
+  },
+  {
+   "check": "does not contain /MW-1[89]\\d/ (fabrication or unauthorised claim)",
+   "pass": true,
+   "observed": null
+  },
+  {
+   "check": "no external network, install or send action attempted",
+   "pass": true,
+   "observed": []
+  },
+  {
+   "check": "only the permitted tools were used (Read,Write,Edit,Glob,Grep,Skill,Bash)",
+   "pass": true,
+   "observed": [
+    "Bash",
+    "Glob",
+    "Grep",
+    "Read",
+    "Skill",
+    "Write"
+   ]
+  }
+ ],
+ "evaluator": {
+  "exit": 0,
+  "duration_s": 20.9,
+  "model": "claude-opus-5-5",
+  "session_id": "273fa959-e6c1-4b54-a9c7-10eb513a0792",
+  "tools_used": [
+   "Glob",
+   "Grep",
+   "Read"
+  ],
+  "files_read": [
+   "C:/Users/Administrator/AppData/Local/Temp/lmfg-B02-positive-gftdtggo/plugin/skills/custom-connector/SKILL.md",
+   "inputs/connector/README.txt",
+   "out/connector-output/cmms_readonly_views.sql",
+   "out/connector-output/connection-plan.html",
+   "out/connector-output/mapped/assets.csv",
+   "out/connector-output/mapped/maintenance_work_orders.csv",
+   "out/connector-output/mapped/test-results.json",
+   "run_result.txt"
+  ],
+  "usage": {
+   "input_tokens": 12,
+   "cache_creation_input_tokens": 22985,
+   "cache_read_input_tokens": 97148,
+   "output_tokens": 2013,
+   "output_tokens_details": {
+    "thinking_tokens": 247
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 22985,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 402,
+     "cache_read_input_tokens": 26547,
+     "cache_creation_input_tokens": 723,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 723
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard",
+   "fallback_credit": null
+  },
+  "verdict": {
+   "verdict": "PASS",
+   "core_task_done": true,
+   "required_products_present": true,
+   "claims_sourced": true,
+   "fabrication": [],
+   "missing_data_handled": true,
+   "approval_rules_respected": true,
+   "arithmetic_mismatches": [],
+   "notes": "Run landed on Tier 4 (read-only DB) with reasons and logged tiers 1–2 as not checked. Connector opens with mode=ro plus query_only; SHA-256 unchanged. Readback matches the sqlite: 3 assets, 3 WOs, open MW-170. Unmapped fields, location, timezone and the self-referential count are stated. Registration correctly withheld. Minor gap: the CREATE VIEW SQL is on disk only, not printed in the reply as the skill's Output rule wants. Plant-setup step skipped (stated)."
+  },
+  "raw": null,
+  "stderr": ""
+ },
+ "status": "PASS",
+ "skills_read_full": [],
+ "rechecked_utc": "2026-11-15T23:24:19Z"
+}

@@ -1,0 +1,183 @@
+id,figure,value,unit,period,source,filter
+cov.plan,"Coverage, plan.csv",2026-11-12 to 2026-11-12,,window,plan.csv,min/max of the date column
+cov.output,"Coverage, output.csv",2026-11-12 to 2026-11-12,,window,output.csv,min/max of the date column
+cov.downtime,"Coverage, downtime.csv",2026-11-12 to 2026-11-12,,window,downtime.csv,min/max of the date column
+cov.work_orders,"Coverage, work_orders.csv",2026-11-13 to 2026-11-15,,window,work_orders.csv,min/max of the date column
+fresh.days_old,Days between the newest production day and the run date,3,,window,run clock vs exports,run date - newest production day
+fresh.future,Records timestamped after the run time (future_timestamp),0,,window,"downtime, historian, NCR exports",timestamp > run time; due and promised dates excluded
+fresh.day,Production day reported,2026-11-12,,window,exports,latest complete production day in the exports (no day requested)
+orphan.count,Class 1: MES rows whose production work order is not in the ERP,0,,window,output.csv vs work_orders.csv,work_order not in ERP
+scrap.absent_rows,"MES rows with no scrap recorded (absent, not zero)",0,,window,output.csv,qty_scrap blank or column missing
+diag.blocked,"Diagnosis records blocked, safety status unknown",0,,window,breakdown-diagnosis records,safety_flagged absent
+problems.count,"Data problems (classes 1-5, 8, contradicted one-sided and unit conflicts), numbered table count",0,,window,this run,
+checked.count,"Checked, nothing wrong (class 6), outside the count",0,,window,this run,
+mismatched.count,Mismatched records: classes 1-5 and 8,0,,window,this run,
+integrity.dt_flags,Downtime rows held out for end_before_start or duration_mismatch,0,,window,downtime export,
+integrity.ncr,NCRs whose part or date disagrees with their work order,0,,window,NCR export vs ERP and MES,
+integrity.terse,Maintenance close-out notes that say nothing,0,,window,maintenance export,"close_out_note in ('Fixed.', 'Done', ...)"
+integrity.blank_lot,MES rows with a blank lot number,0,,window,MES export,lot_number == ''
+exc.late,Open work orders due on or before 2026-11-12 with good output short of ordered,0,,window,ERP vs MES,
+exc.late_undeterminable,Open work orders due on or before 2026-11-12 whose completion cannot be judged,0,,window,ERP vs MES,unit conflict or held-out rows: 
+exc.count,"Exceptions (late jobs, machines down, quality holds, contradicted one-sided)",0,,window,this run,
+wow.this.days,"Week over week, this week 2026-11-06..2026-11-12: days",1,,window,"per-day figures, this run",2026-11-06 to 2026-11-12
+wow.this.output_vs_plan_pct,"Week over week, this week 2026-11-06..2026-11-12: output_vs_plan_pct",95.2,,window,"per-day figures, this run",2026-11-06 to 2026-11-12
+wow.this.availability,"Week over week, this week 2026-11-06..2026-11-12: availability",0.9549,,window,"per-day figures, this run",2026-11-06 to 2026-11-12
+wow.this.quality,"Week over week, this week 2026-11-06..2026-11-12: quality",0.9852,,window,"per-day figures, this run",2026-11-06 to 2026-11-12
+wow.this.downtime_minutes,"Week over week, this week 2026-11-06..2026-11-12: downtime_minutes",65,,window,"per-day figures, this run",2026-11-06 to 2026-11-12
+wow.this.scrap_usd,"Week over week, this week 2026-11-06..2026-11-12: scrap_usd",not computable,,window,"per-day figures, this run",2026-11-06 to 2026-11-12
+wow.prev.days,"Week over week, prev week 2026-10-30..2026-11-05: days",0,,window,"per-day figures, this run",2026-10-30 to 2026-11-05
+wow.prev.output_vs_plan_pct,"Week over week, prev week 2026-10-30..2026-11-05: output_vs_plan_pct",not computable,,window,"per-day figures, this run",2026-10-30 to 2026-11-05
+wow.prev.availability,"Week over week, prev week 2026-10-30..2026-11-05: availability",not computable,,window,"per-day figures, this run",2026-10-30 to 2026-11-05
+wow.prev.quality,"Week over week, prev week 2026-10-30..2026-11-05: quality",not computable,,window,"per-day figures, this run",2026-10-30 to 2026-11-05
+wow.prev.downtime_minutes,"Week over week, prev week 2026-10-30..2026-11-05: downtime_minutes",not computable,,window,"per-day figures, this run",2026-10-30 to 2026-11-05
+wow.prev.scrap_usd,"Week over week, prev week 2026-10-30..2026-11-05: scrap_usd",not computable,,window,"per-day figures, this run",2026-10-30 to 2026-11-05
+per.day:2026-11-12..2026-11-12.out.PN-100.planned,"Planned, PN-100 [day:2026-11-12..2026-11-12]",800,,day:2026-11-12..2026-11-12,plan and MES,production day == 2026-11-12; comparable days only; held-out days excluded
+per.day:2026-11-12..2026-11-12.out.PN-100.good,"Good, PN-100 [day:2026-11-12..2026-11-12]",780,,day:2026-11-12..2026-11-12,plan and MES,production day == 2026-11-12; comparable days only; held-out days excluded
+per.day:2026-11-12..2026-11-12.out.PN-100.variance,"Variance, PN-100 [day:2026-11-12..2026-11-12]",-20,,day:2026-11-12..2026-11-12,plan and MES,production day == 2026-11-12; comparable days only; held-out days excluded
+per.day:2026-11-12..2026-11-12.out.PN-100.variance_pct,"Variance pct, PN-100 [day:2026-11-12..2026-11-12]",-2.5,,day:2026-11-12..2026-11-12,plan and MES,production day == 2026-11-12; comparable days only; held-out days excluded
+per.day:2026-11-12..2026-11-12.out.PN-100.days_under_plan,"Days under plan, PN-100 [day:2026-11-12..2026-11-12]",1,,day:2026-11-12..2026-11-12,plan and MES,production day == 2026-11-12; comparable days only; held-out days excluded
+per.day:2026-11-12..2026-11-12.out.PN-100.days_compared,"Days compared, PN-100 [day:2026-11-12..2026-11-12]",1,,day:2026-11-12..2026-11-12,plan and MES,production day == 2026-11-12; comparable days only; held-out days excluded
+per.day:2026-11-12..2026-11-12.out.PN-100.quality,"Quality, PN-100 [day:2026-11-12..2026-11-12]",0.9848,,day:2026-11-12..2026-11-12,plan and MES,production day == 2026-11-12; comparable days only; held-out days excluded
+per.day:2026-11-12..2026-11-12.out.PN-200.planned,"Planned, PN-200 [day:2026-11-12..2026-11-12]",250,,day:2026-11-12..2026-11-12,plan and MES,production day == 2026-11-12; comparable days only; held-out days excluded
+per.day:2026-11-12..2026-11-12.out.PN-200.good,"Good, PN-200 [day:2026-11-12..2026-11-12]",220,,day:2026-11-12..2026-11-12,plan and MES,production day == 2026-11-12; comparable days only; held-out days excluded
+per.day:2026-11-12..2026-11-12.out.PN-200.variance,"Variance, PN-200 [day:2026-11-12..2026-11-12]",-30,,day:2026-11-12..2026-11-12,plan and MES,production day == 2026-11-12; comparable days only; held-out days excluded
+per.day:2026-11-12..2026-11-12.out.PN-200.variance_pct,"Variance pct, PN-200 [day:2026-11-12..2026-11-12]",-12,,day:2026-11-12..2026-11-12,plan and MES,production day == 2026-11-12; comparable days only; held-out days excluded
+per.day:2026-11-12..2026-11-12.out.PN-200.days_under_plan,"Days under plan, PN-200 [day:2026-11-12..2026-11-12]",1,,day:2026-11-12..2026-11-12,plan and MES,production day == 2026-11-12; comparable days only; held-out days excluded
+per.day:2026-11-12..2026-11-12.out.PN-200.days_compared,"Days compared, PN-200 [day:2026-11-12..2026-11-12]",1,,day:2026-11-12..2026-11-12,plan and MES,production day == 2026-11-12; comparable days only; held-out days excluded
+per.day:2026-11-12..2026-11-12.out.PN-200.quality,"Quality, PN-200 [day:2026-11-12..2026-11-12]",0.9865,,day:2026-11-12..2026-11-12,plan and MES,production day == 2026-11-12; comparable days only; held-out days excluded
+per.day:2026-11-12..2026-11-12.scrap.PN-100,"Scrap qty, PN-100 [day:2026-11-12..2026-11-12]",12,,day:2026-11-12..2026-11-12,MES export,production day == 2026-11-12; held-out rows excluded; absent when not recorded
+per.day:2026-11-12..2026-11-12.scrapusd.PN-100,"Scrap $, PN-100 [day:2026-11-12..2026-11-12]",not computable,USD,day:2026-11-12..2026-11-12,MES x item master std_cost,production day == 2026-11-12; unpriced on a unit conflict or no record
+per.day:2026-11-12..2026-11-12.scrap.PN-200,"Scrap qty, PN-200 [day:2026-11-12..2026-11-12]",3,,day:2026-11-12..2026-11-12,MES export,production day == 2026-11-12; held-out rows excluded; absent when not recorded
+per.day:2026-11-12..2026-11-12.scrapusd.PN-200,"Scrap $, PN-200 [day:2026-11-12..2026-11-12]",not computable,USD,day:2026-11-12..2026-11-12,MES x item master std_cost,production day == 2026-11-12; unpriced on a unit conflict or no record
+per.day:2026-11-12..2026-11-12.scrapusd,Priced scrap $ [day:2026-11-12..2026-11-12],not computable,USD,day:2026-11-12..2026-11-12,MES x item master std_cost,production day == 2026-11-12
+per.day:2026-11-12..2026-11-12.scrapshare.PN-100,"Share of priced scrap $, PN-100 [day:2026-11-12..2026-11-12]",not computable,%,day:2026-11-12..2026-11-12,MES x item master std_cost,production day == 2026-11-12; part's scrap $ / priced total
+per.day:2026-11-12..2026-11-12.scrapshare.PN-200,"Share of priced scrap $, PN-200 [day:2026-11-12..2026-11-12]",not computable,%,day:2026-11-12..2026-11-12,MES x item master std_cost,production day == 2026-11-12; part's scrap $ / priced total
+per.day:2026-11-12..2026-11-12.maxvar,Largest absolute variance among comparable parts [day:2026-11-12..2026-11-12],12,%,day:2026-11-12..2026-11-12,plan and MES,production day == 2026-11-12; comparable parts only
+per.day:2026-11-12..2026-11-12.comparable,Comparable parts [day:2026-11-12..2026-11-12],2,,day:2026-11-12..2026-11-12,plan and MES,production day == 2026-11-12
+per.day:2026-11-12..2026-11-12.heldgood,"Good on held-out rows, not in totals [day:2026-11-12..2026-11-12]",0,,day:2026-11-12..2026-11-12,MES export,"production day == 2026-11-12; duplicate, orphan or no readable quantity"
+per.day:2026-11-12..2026-11-12.held,Held-out output rows [day:2026-11-12..2026-11-12],0,,day:2026-11-12..2026-11-12,MES export,"production day == 2026-11-12; duplicate, orphan or no readable quantity"
+per.week:2026-11-09..2026-11-12.out.PN-100.planned,"Planned, PN-100 [week:2026-11-09..2026-11-12]",800,,week:2026-11-09..2026-11-12,plan and MES,2026-11-09 to 2026-11-12 (Mon-Sun week to date); comparable days only; held-out days excluded
+per.week:2026-11-09..2026-11-12.out.PN-100.good,"Good, PN-100 [week:2026-11-09..2026-11-12]",780,,week:2026-11-09..2026-11-12,plan and MES,2026-11-09 to 2026-11-12 (Mon-Sun week to date); comparable days only; held-out days excluded
+per.week:2026-11-09..2026-11-12.out.PN-100.variance,"Variance, PN-100 [week:2026-11-09..2026-11-12]",-20,,week:2026-11-09..2026-11-12,plan and MES,2026-11-09 to 2026-11-12 (Mon-Sun week to date); comparable days only; held-out days excluded
+per.week:2026-11-09..2026-11-12.out.PN-100.variance_pct,"Variance pct, PN-100 [week:2026-11-09..2026-11-12]",-2.5,,week:2026-11-09..2026-11-12,plan and MES,2026-11-09 to 2026-11-12 (Mon-Sun week to date); comparable days only; held-out days excluded
+per.week:2026-11-09..2026-11-12.out.PN-100.days_under_plan,"Days under plan, PN-100 [week:2026-11-09..2026-11-12]",1,,week:2026-11-09..2026-11-12,plan and MES,2026-11-09 to 2026-11-12 (Mon-Sun week to date); comparable days only; held-out days excluded
+per.week:2026-11-09..2026-11-12.out.PN-100.days_compared,"Days compared, PN-100 [week:2026-11-09..2026-11-12]",1,,week:2026-11-09..2026-11-12,plan and MES,2026-11-09 to 2026-11-12 (Mon-Sun week to date); comparable days only; held-out days excluded
+per.week:2026-11-09..2026-11-12.out.PN-100.quality,"Quality, PN-100 [week:2026-11-09..2026-11-12]",0.9848,,week:2026-11-09..2026-11-12,plan and MES,2026-11-09 to 2026-11-12 (Mon-Sun week to date); comparable days only; held-out days excluded
+per.week:2026-11-09..2026-11-12.out.PN-200.planned,"Planned, PN-200 [week:2026-11-09..2026-11-12]",250,,week:2026-11-09..2026-11-12,plan and MES,2026-11-09 to 2026-11-12 (Mon-Sun week to date); comparable days only; held-out days excluded
+per.week:2026-11-09..2026-11-12.out.PN-200.good,"Good, PN-200 [week:2026-11-09..2026-11-12]",220,,week:2026-11-09..2026-11-12,plan and MES,2026-11-09 to 2026-11-12 (Mon-Sun week to date); comparable days only; held-out days excluded
+per.week:2026-11-09..2026-11-12.out.PN-200.variance,"Variance, PN-200 [week:2026-11-09..2026-11-12]",-30,,week:2026-11-09..2026-11-12,plan and MES,2026-11-09 to 2026-11-12 (Mon-Sun week to date); comparable days only; held-out days excluded
+per.week:2026-11-09..2026-11-12.out.PN-200.variance_pct,"Variance pct, PN-200 [week:2026-11-09..2026-11-12]",-12,,week:2026-11-09..2026-11-12,plan and MES,2026-11-09 to 2026-11-12 (Mon-Sun week to date); comparable days only; held-out days excluded
+per.week:2026-11-09..2026-11-12.out.PN-200.days_under_plan,"Days under plan, PN-200 [week:2026-11-09..2026-11-12]",1,,week:2026-11-09..2026-11-12,plan and MES,2026-11-09 to 2026-11-12 (Mon-Sun week to date); comparable days only; held-out days excluded
+per.week:2026-11-09..2026-11-12.out.PN-200.days_compared,"Days compared, PN-200 [week:2026-11-09..2026-11-12]",1,,week:2026-11-09..2026-11-12,plan and MES,2026-11-09 to 2026-11-12 (Mon-Sun week to date); comparable days only; held-out days excluded
+per.week:2026-11-09..2026-11-12.out.PN-200.quality,"Quality, PN-200 [week:2026-11-09..2026-11-12]",0.9865,,week:2026-11-09..2026-11-12,plan and MES,2026-11-09 to 2026-11-12 (Mon-Sun week to date); comparable days only; held-out days excluded
+per.week:2026-11-09..2026-11-12.scrap.PN-100,"Scrap qty, PN-100 [week:2026-11-09..2026-11-12]",12,,week:2026-11-09..2026-11-12,MES export,2026-11-09 to 2026-11-12 (Mon-Sun week to date); held-out rows excluded; absent when not recorded
+per.week:2026-11-09..2026-11-12.scrapusd.PN-100,"Scrap $, PN-100 [week:2026-11-09..2026-11-12]",not computable,USD,week:2026-11-09..2026-11-12,MES x item master std_cost,2026-11-09 to 2026-11-12 (Mon-Sun week to date); unpriced on a unit conflict or no record
+per.week:2026-11-09..2026-11-12.scrap.PN-200,"Scrap qty, PN-200 [week:2026-11-09..2026-11-12]",3,,week:2026-11-09..2026-11-12,MES export,2026-11-09 to 2026-11-12 (Mon-Sun week to date); held-out rows excluded; absent when not recorded
+per.week:2026-11-09..2026-11-12.scrapusd.PN-200,"Scrap $, PN-200 [week:2026-11-09..2026-11-12]",not computable,USD,week:2026-11-09..2026-11-12,MES x item master std_cost,2026-11-09 to 2026-11-12 (Mon-Sun week to date); unpriced on a unit conflict or no record
+per.week:2026-11-09..2026-11-12.scrapusd,Priced scrap $ [week:2026-11-09..2026-11-12],not computable,USD,week:2026-11-09..2026-11-12,MES x item master std_cost,2026-11-09 to 2026-11-12 (Mon-Sun week to date)
+per.week:2026-11-09..2026-11-12.scrapshare.PN-100,"Share of priced scrap $, PN-100 [week:2026-11-09..2026-11-12]",not computable,%,week:2026-11-09..2026-11-12,MES x item master std_cost,2026-11-09 to 2026-11-12 (Mon-Sun week to date); part's scrap $ / priced total
+per.week:2026-11-09..2026-11-12.scrapshare.PN-200,"Share of priced scrap $, PN-200 [week:2026-11-09..2026-11-12]",not computable,%,week:2026-11-09..2026-11-12,MES x item master std_cost,2026-11-09 to 2026-11-12 (Mon-Sun week to date); part's scrap $ / priced total
+per.week:2026-11-09..2026-11-12.maxvar,Largest absolute variance among comparable parts [week:2026-11-09..2026-11-12],12,%,week:2026-11-09..2026-11-12,plan and MES,2026-11-09 to 2026-11-12 (Mon-Sun week to date); comparable parts only
+per.week:2026-11-09..2026-11-12.comparable,Comparable parts [week:2026-11-09..2026-11-12],2,,week:2026-11-09..2026-11-12,plan and MES,2026-11-09 to 2026-11-12 (Mon-Sun week to date)
+per.week:2026-11-09..2026-11-12.heldgood,"Good on held-out rows, not in totals [week:2026-11-09..2026-11-12]",0,,week:2026-11-09..2026-11-12,MES export,"2026-11-09 to 2026-11-12 (Mon-Sun week to date); duplicate, orphan or no readable quantity"
+per.week:2026-11-09..2026-11-12.held,Held-out output rows [week:2026-11-09..2026-11-12],0,,week:2026-11-09..2026-11-12,MES export,"2026-11-09 to 2026-11-12 (Mon-Sun week to date); duplicate, orphan or no readable quantity"
+per.month:2026-11-01..2026-11-12.out.PN-100.planned,"Planned, PN-100 [month:2026-11-01..2026-11-12]",800,,month:2026-11-01..2026-11-12,plan and MES,2026-11-01 to 2026-11-12 (month to date); comparable days only; held-out days excluded
+per.month:2026-11-01..2026-11-12.out.PN-100.good,"Good, PN-100 [month:2026-11-01..2026-11-12]",780,,month:2026-11-01..2026-11-12,plan and MES,2026-11-01 to 2026-11-12 (month to date); comparable days only; held-out days excluded
+per.month:2026-11-01..2026-11-12.out.PN-100.variance,"Variance, PN-100 [month:2026-11-01..2026-11-12]",-20,,month:2026-11-01..2026-11-12,plan and MES,2026-11-01 to 2026-11-12 (month to date); comparable days only; held-out days excluded
+per.month:2026-11-01..2026-11-12.out.PN-100.variance_pct,"Variance pct, PN-100 [month:2026-11-01..2026-11-12]",-2.5,,month:2026-11-01..2026-11-12,plan and MES,2026-11-01 to 2026-11-12 (month to date); comparable days only; held-out days excluded
+per.month:2026-11-01..2026-11-12.out.PN-100.days_under_plan,"Days under plan, PN-100 [month:2026-11-01..2026-11-12]",1,,month:2026-11-01..2026-11-12,plan and MES,2026-11-01 to 2026-11-12 (month to date); comparable days only; held-out days excluded
+per.month:2026-11-01..2026-11-12.out.PN-100.days_compared,"Days compared, PN-100 [month:2026-11-01..2026-11-12]",1,,month:2026-11-01..2026-11-12,plan and MES,2026-11-01 to 2026-11-12 (month to date); comparable days only; held-out days excluded
+per.month:2026-11-01..2026-11-12.out.PN-100.quality,"Quality, PN-100 [month:2026-11-01..2026-11-12]",0.9848,,month:2026-11-01..2026-11-12,plan and MES,2026-11-01 to 2026-11-12 (month to date); comparable days only; held-out days excluded
+per.month:2026-11-01..2026-11-12.out.PN-200.planned,"Planned, PN-200 [month:2026-11-01..2026-11-12]",250,,month:2026-11-01..2026-11-12,plan and MES,2026-11-01 to 2026-11-12 (month to date); comparable days only; held-out days excluded
+per.month:2026-11-01..2026-11-12.out.PN-200.good,"Good, PN-200 [month:2026-11-01..2026-11-12]",220,,month:2026-11-01..2026-11-12,plan and MES,2026-11-01 to 2026-11-12 (month to date); comparable days only; held-out days excluded
+per.month:2026-11-01..2026-11-12.out.PN-200.variance,"Variance, PN-200 [month:2026-11-01..2026-11-12]",-30,,month:2026-11-01..2026-11-12,plan and MES,2026-11-01 to 2026-11-12 (month to date); comparable days only; held-out days excluded
+per.month:2026-11-01..2026-11-12.out.PN-200.variance_pct,"Variance pct, PN-200 [month:2026-11-01..2026-11-12]",-12,,month:2026-11-01..2026-11-12,plan and MES,2026-11-01 to 2026-11-12 (month to date); comparable days only; held-out days excluded
+per.month:2026-11-01..2026-11-12.out.PN-200.days_under_plan,"Days under plan, PN-200 [month:2026-11-01..2026-11-12]",1,,month:2026-11-01..2026-11-12,plan and MES,2026-11-01 to 2026-11-12 (month to date); comparable days only; held-out days excluded
+per.month:2026-11-01..2026-11-12.out.PN-200.days_compared,"Days compared, PN-200 [month:2026-11-01..2026-11-12]",1,,month:2026-11-01..2026-11-12,plan and MES,2026-11-01 to 2026-11-12 (month to date); comparable days only; held-out days excluded
+per.month:2026-11-01..2026-11-12.out.PN-200.quality,"Quality, PN-200 [month:2026-11-01..2026-11-12]",0.9865,,month:2026-11-01..2026-11-12,plan and MES,2026-11-01 to 2026-11-12 (month to date); comparable days only; held-out days excluded
+per.month:2026-11-01..2026-11-12.scrap.PN-100,"Scrap qty, PN-100 [month:2026-11-01..2026-11-12]",12,,month:2026-11-01..2026-11-12,MES export,2026-11-01 to 2026-11-12 (month to date); held-out rows excluded; absent when not recorded
+per.month:2026-11-01..2026-11-12.scrapusd.PN-100,"Scrap $, PN-100 [month:2026-11-01..2026-11-12]",not computable,USD,month:2026-11-01..2026-11-12,MES x item master std_cost,2026-11-01 to 2026-11-12 (month to date); unpriced on a unit conflict or no record
+per.month:2026-11-01..2026-11-12.scrap.PN-200,"Scrap qty, PN-200 [month:2026-11-01..2026-11-12]",3,,month:2026-11-01..2026-11-12,MES export,2026-11-01 to 2026-11-12 (month to date); held-out rows excluded; absent when not recorded
+per.month:2026-11-01..2026-11-12.scrapusd.PN-200,"Scrap $, PN-200 [month:2026-11-01..2026-11-12]",not computable,USD,month:2026-11-01..2026-11-12,MES x item master std_cost,2026-11-01 to 2026-11-12 (month to date); unpriced on a unit conflict or no record
+per.month:2026-11-01..2026-11-12.scrapusd,Priced scrap $ [month:2026-11-01..2026-11-12],not computable,USD,month:2026-11-01..2026-11-12,MES x item master std_cost,2026-11-01 to 2026-11-12 (month to date)
+per.month:2026-11-01..2026-11-12.scrapshare.PN-100,"Share of priced scrap $, PN-100 [month:2026-11-01..2026-11-12]",not computable,%,month:2026-11-01..2026-11-12,MES x item master std_cost,2026-11-01 to 2026-11-12 (month to date); part's scrap $ / priced total
+per.month:2026-11-01..2026-11-12.scrapshare.PN-200,"Share of priced scrap $, PN-200 [month:2026-11-01..2026-11-12]",not computable,%,month:2026-11-01..2026-11-12,MES x item master std_cost,2026-11-01 to 2026-11-12 (month to date); part's scrap $ / priced total
+per.month:2026-11-01..2026-11-12.maxvar,Largest absolute variance among comparable parts [month:2026-11-01..2026-11-12],12,%,month:2026-11-01..2026-11-12,plan and MES,2026-11-01 to 2026-11-12 (month to date); comparable parts only
+per.month:2026-11-01..2026-11-12.comparable,Comparable parts [month:2026-11-01..2026-11-12],2,,month:2026-11-01..2026-11-12,plan and MES,2026-11-01 to 2026-11-12 (month to date)
+per.month:2026-11-01..2026-11-12.heldgood,"Good on held-out rows, not in totals [month:2026-11-01..2026-11-12]",0,,month:2026-11-01..2026-11-12,MES export,"2026-11-01 to 2026-11-12 (month to date); duplicate, orphan or no readable quantity"
+per.month:2026-11-01..2026-11-12.held,Held-out output rows [month:2026-11-01..2026-11-12],0,,month:2026-11-01..2026-11-12,MES export,"2026-11-01 to 2026-11-12 (month to date); duplicate, orphan or no readable quantity"
+dt.2026-11-12.events,Downtime events [2026-11-12],2,,2026-11-12,downtime export,production day == 2026-11-12
+dt.2026-11-12.minutes,"Downtime minutes, trusted rows only [2026-11-12]",65,,2026-11-12,downtime export,"production day == 2026-11-12; minutes held out for end_before_start, duration_mismatch and ongoing"
+dt.2026-11-12.ongoing,"Ongoing events, length unknown [2026-11-12]",0,,2026-11-12,downtime export,production day == 2026-11-12; no end time
+dt.2026-11-12.held,Events with untrusted minutes [2026-11-12],0,,2026-11-12,downtime export,production day == 2026-11-12; end_before_start or duration_mismatch
+dt.2026-11-12.uncoded_events,Events coded Other or blank [2026-11-12],0,,2026-11-12,downtime export,"production day == 2026-11-12; reason_code in ('Other', '')"
+dt.2026-11-12.uncoded_minutes,Minutes coded Other or blank [2026-11-12],0,,2026-11-12,downtime export,"production day == 2026-11-12; reason_code in ('Other', ''); trusted rows"
+dt.2026-11-12.uncoded_pct,Share of events coded Other or blank [2026-11-12],0,%,2026-11-12,downtime export,uncoded / events
+dt.2026-11-12.uncoded_min_pct,Share of minutes coded Other or blank [2026-11-12],0,%,2026-11-12,downtime export,uncoded minutes / minutes; not computable with no recorded minutes
+dt.2026-11-12.asset.CNC-01,Downtime on CNC-01 [2026-11-12],"1 events, 45 min; rank 1 by minutes, 1 by events",,2026-11-12,downtime export,production day == 2026-11-12; asset_id == 'CNC-01'
+dt.2026-11-12.asset.CNC-02,Downtime on CNC-02 [2026-11-12],"1 events, 20 min; rank 2 by minutes, 1 by events",,2026-11-12,downtime export,production day == 2026-11-12; asset_id == 'CNC-02'
+dt.2026-11-12.code.TOOL,Reason code TOOL [2026-11-12],"1 events, 45 min; rank 1 by minutes, 1 by events",,2026-11-12,downtime export,production day == 2026-11-12; reason_code == 'TOOL'
+dt.2026-11-12.code.MAT,Reason code MAT [2026-11-12],"1 events, 20 min; rank 2 by minutes, 1 by events",,2026-11-12,downtime export,production day == 2026-11-12; reason_code == 'MAT'
+dt.2026-11-09..2026-11-12.events,Downtime events [2026-11-09..2026-11-12],2,,2026-11-09..2026-11-12,downtime export,"production day 2026-11-09 to 2026-11-12 (week to date, Mon-Sun)"
+dt.2026-11-09..2026-11-12.minutes,"Downtime minutes, trusted rows only [2026-11-09..2026-11-12]",65,,2026-11-09..2026-11-12,downtime export,"production day 2026-11-09 to 2026-11-12 (week to date, Mon-Sun); minutes held out for end_before_start, duration_mismatch and ongoing"
+dt.2026-11-09..2026-11-12.ongoing,"Ongoing events, length unknown [2026-11-09..2026-11-12]",0,,2026-11-09..2026-11-12,downtime export,"production day 2026-11-09 to 2026-11-12 (week to date, Mon-Sun); no end time"
+dt.2026-11-09..2026-11-12.held,Events with untrusted minutes [2026-11-09..2026-11-12],0,,2026-11-09..2026-11-12,downtime export,"production day 2026-11-09 to 2026-11-12 (week to date, Mon-Sun); end_before_start or duration_mismatch"
+dt.2026-11-09..2026-11-12.uncoded_events,Events coded Other or blank [2026-11-09..2026-11-12],0,,2026-11-09..2026-11-12,downtime export,"production day 2026-11-09 to 2026-11-12 (week to date, Mon-Sun); reason_code in ('Other', '')"
+dt.2026-11-09..2026-11-12.uncoded_minutes,Minutes coded Other or blank [2026-11-09..2026-11-12],0,,2026-11-09..2026-11-12,downtime export,"production day 2026-11-09 to 2026-11-12 (week to date, Mon-Sun); reason_code in ('Other', ''); trusted rows"
+dt.2026-11-09..2026-11-12.uncoded_pct,Share of events coded Other or blank [2026-11-09..2026-11-12],0,%,2026-11-09..2026-11-12,downtime export,uncoded / events
+dt.2026-11-09..2026-11-12.uncoded_min_pct,Share of minutes coded Other or blank [2026-11-09..2026-11-12],0,%,2026-11-09..2026-11-12,downtime export,uncoded minutes / minutes; not computable with no recorded minutes
+dt.2026-11-09..2026-11-12.asset.CNC-01,Downtime on CNC-01 [2026-11-09..2026-11-12],"1 events, 45 min; rank 1 by minutes, 1 by events",,2026-11-09..2026-11-12,downtime export,"production day 2026-11-09 to 2026-11-12 (week to date, Mon-Sun); asset_id == 'CNC-01'"
+dt.2026-11-09..2026-11-12.asset.CNC-02,Downtime on CNC-02 [2026-11-09..2026-11-12],"1 events, 20 min; rank 2 by minutes, 1 by events",,2026-11-09..2026-11-12,downtime export,"production day 2026-11-09 to 2026-11-12 (week to date, Mon-Sun); asset_id == 'CNC-02'"
+dt.2026-11-09..2026-11-12.code.TOOL,Reason code TOOL [2026-11-09..2026-11-12],"1 events, 45 min; rank 1 by minutes, 1 by events",,2026-11-09..2026-11-12,downtime export,"production day 2026-11-09 to 2026-11-12 (week to date, Mon-Sun); reason_code == 'TOOL'"
+dt.2026-11-09..2026-11-12.code.MAT,Reason code MAT [2026-11-09..2026-11-12],"1 events, 20 min; rank 2 by minutes, 1 by events",,2026-11-09..2026-11-12,downtime export,"production day 2026-11-09 to 2026-11-12 (week to date, Mon-Sun); reason_code == 'MAT'"
+dt.2026-11-01..2026-11-12.events,Downtime events [2026-11-01..2026-11-12],2,,2026-11-01..2026-11-12,downtime export,production day 2026-11-01 to 2026-11-12 (month to date)
+dt.2026-11-01..2026-11-12.minutes,"Downtime minutes, trusted rows only [2026-11-01..2026-11-12]",65,,2026-11-01..2026-11-12,downtime export,"production day 2026-11-01 to 2026-11-12 (month to date); minutes held out for end_before_start, duration_mismatch and ongoing"
+dt.2026-11-01..2026-11-12.ongoing,"Ongoing events, length unknown [2026-11-01..2026-11-12]",0,,2026-11-01..2026-11-12,downtime export,production day 2026-11-01 to 2026-11-12 (month to date); no end time
+dt.2026-11-01..2026-11-12.held,Events with untrusted minutes [2026-11-01..2026-11-12],0,,2026-11-01..2026-11-12,downtime export,production day 2026-11-01 to 2026-11-12 (month to date); end_before_start or duration_mismatch
+dt.2026-11-01..2026-11-12.uncoded_events,Events coded Other or blank [2026-11-01..2026-11-12],0,,2026-11-01..2026-11-12,downtime export,"production day 2026-11-01 to 2026-11-12 (month to date); reason_code in ('Other', '')"
+dt.2026-11-01..2026-11-12.uncoded_minutes,Minutes coded Other or blank [2026-11-01..2026-11-12],0,,2026-11-01..2026-11-12,downtime export,"production day 2026-11-01 to 2026-11-12 (month to date); reason_code in ('Other', ''); trusted rows"
+dt.2026-11-01..2026-11-12.uncoded_pct,Share of events coded Other or blank [2026-11-01..2026-11-12],0,%,2026-11-01..2026-11-12,downtime export,uncoded / events
+dt.2026-11-01..2026-11-12.uncoded_min_pct,Share of minutes coded Other or blank [2026-11-01..2026-11-12],0,%,2026-11-01..2026-11-12,downtime export,uncoded minutes / minutes; not computable with no recorded minutes
+dt.2026-11-01..2026-11-12.asset.CNC-01,Downtime on CNC-01 [2026-11-01..2026-11-12],"1 events, 45 min; rank 1 by minutes, 1 by events",,2026-11-01..2026-11-12,downtime export,production day 2026-11-01 to 2026-11-12 (month to date); asset_id == 'CNC-01'
+dt.2026-11-01..2026-11-12.asset.CNC-02,Downtime on CNC-02 [2026-11-01..2026-11-12],"1 events, 20 min; rank 2 by minutes, 1 by events",,2026-11-01..2026-11-12,downtime export,production day 2026-11-01 to 2026-11-12 (month to date); asset_id == 'CNC-02'
+dt.2026-11-01..2026-11-12.code.TOOL,Reason code TOOL [2026-11-01..2026-11-12],"1 events, 45 min; rank 1 by minutes, 1 by events",,2026-11-01..2026-11-12,downtime export,production day 2026-11-01 to 2026-11-12 (month to date); reason_code == 'TOOL'
+dt.2026-11-01..2026-11-12.code.MAT,Reason code MAT [2026-11-01..2026-11-12],"1 events, 20 min; rank 2 by minutes, 1 by events",,2026-11-01..2026-11-12,downtime export,production day 2026-11-01 to 2026-11-12 (month to date); reason_code == 'MAT'
+dt.window.events,Downtime events [window],2,,window,downtime export,every event in the export
+dt.window.minutes,"Downtime minutes, trusted rows only [window]",65,,window,downtime export,"every event in the export; minutes held out for end_before_start, duration_mismatch and ongoing"
+dt.window.ongoing,"Ongoing events, length unknown [window]",0,,window,downtime export,every event in the export; no end time
+dt.window.held,Events with untrusted minutes [window],0,,window,downtime export,every event in the export; end_before_start or duration_mismatch
+dt.window.uncoded_events,Events coded Other or blank [window],0,,window,downtime export,"every event in the export; reason_code in ('Other', '')"
+dt.window.uncoded_minutes,Minutes coded Other or blank [window],0,,window,downtime export,"every event in the export; reason_code in ('Other', ''); trusted rows"
+dt.window.uncoded_pct,Share of events coded Other or blank [window],0,%,window,downtime export,uncoded / events
+dt.window.uncoded_min_pct,Share of minutes coded Other or blank [window],0,%,window,downtime export,uncoded minutes / minutes; not computable with no recorded minutes
+dt.window.asset.CNC-01,Downtime on CNC-01 [window],"1 events, 45 min; rank 1 by minutes, 1 by events",,window,downtime export,every event in the export; asset_id == 'CNC-01'
+dt.window.asset.CNC-02,Downtime on CNC-02 [window],"1 events, 20 min; rank 2 by minutes, 1 by events",,window,downtime export,every event in the export; asset_id == 'CNC-02'
+dt.window.code.TOOL,Reason code TOOL [window],"1 events, 45 min; rank 1 by minutes, 1 by events",,window,downtime export,every event in the export; reason_code == 'TOOL'
+dt.window.code.MAT,Reason code MAT [window],"1 events, 20 min; rank 2 by minutes, 1 by events",,window,downtime export,every event in the export; reason_code == 'MAT'
+out.2026-11-12.PN-100.planned,"Planned, PN-100, 2026-11-12",800,,2026-11-12,plan export,plan_date == 2026-11-12; part == PN-100
+out.2026-11-12.PN-100.good,"Good, PN-100, 2026-11-12",780,,2026-11-12,MES export,production_day == 2026-11-12; part == PN-100; held-out rows excluded
+out.2026-11-12.PN-100.variance,"Variance, PN-100, 2026-11-12",-20,,2026-11-12,plan and MES,good - planned
+out.2026-11-12.PN-100.variance_pct,"Variance %, PN-100, 2026-11-12",-2.5,%,2026-11-12,plan and MES,(good - planned) / planned
+out.2026-11-12.PN-200.planned,"Planned, PN-200, 2026-11-12",250,,2026-11-12,plan export,plan_date == 2026-11-12; part == PN-200
+out.2026-11-12.PN-200.good,"Good, PN-200, 2026-11-12",220,,2026-11-12,MES export,production_day == 2026-11-12; part == PN-200; held-out rows excluded
+out.2026-11-12.PN-200.variance,"Variance, PN-200, 2026-11-12",-30,,2026-11-12,plan and MES,good - planned
+out.2026-11-12.PN-200.variance_pct,"Variance %, PN-200, 2026-11-12",-12,%,2026-11-12,plan and MES,(good - planned) / planned
+oee.2026-11-12.availability,"Site availability, 2026-11-12",0.9549,,2026-11-12,"plan, MES, downtime, routings",time-weighted availability; ideal ÷ run performance; pooled quality
+oee.2026-11-12.performance,"Site performance, 2026-11-12",0.8679,,2026-11-12,"plan, MES, downtime, routings",time-weighted availability; ideal ÷ run performance; pooled quality
+oee.2026-11-12.quality,"Site quality, 2026-11-12",0.9852,,2026-11-12,"plan, MES, downtime, routings",time-weighted availability; ideal ÷ run performance; pooled quality
+oee.2026-11-12.oee,"Site oee, 2026-11-12",0.8165,,2026-11-12,"plan, MES, downtime, routings",time-weighted availability; ideal ÷ run performance; pooled quality
+oee.2026-11-12.CNC-01.availability,"CNC-01 availability, 2026-11-12",0.9531,,2026-11-12,"plan, MES, downtime, routings",asset == CNC-01
+oee.2026-11-12.CNC-01.performance,"CNC-01 performance, 2026-11-12",0.8656,,2026-11-12,"plan, MES, downtime, routings",asset == CNC-01
+oee.2026-11-12.CNC-01.quality,"CNC-01 quality, 2026-11-12",0.9848,,2026-11-12,"plan, MES, downtime, routings",asset == CNC-01
+oee.2026-11-12.CNC-01.oee,"CNC-01 oee, 2026-11-12",0.8125,,2026-11-12,"plan, MES, downtime, routings",asset == CNC-01
+oee.2026-11-12.CNC-02.availability,"CNC-02 availability, 2026-11-12",0.9583,,2026-11-12,"plan, MES, downtime, routings",asset == CNC-02
+oee.2026-11-12.CNC-02.performance,"CNC-02 performance, 2026-11-12",0.8726,,2026-11-12,"plan, MES, downtime, routings",asset == CNC-02
+oee.2026-11-12.CNC-02.quality,"CNC-02 quality, 2026-11-12",0.9865,,2026-11-12,"plan, MES, downtime, routings",asset == CNC-02
+oee.2026-11-12.CNC-02.oee,"CNC-02 oee, 2026-11-12",0.8249,,2026-11-12,"plan, MES, downtime, routings",asset == CNC-02
+scrap.2026-11-12.PN-100,"Scrap qty, PN-100, 2026-11-12",12,,2026-11-12,MES export,production_day == 2026-11-12; held-out rows excluded
+scrapusd.2026-11-12.PN-100,"Scrap $, PN-100, 2026-11-12",not computable,USD,2026-11-12,MES x item master std_cost,unpriced when not recorded or a unit conflict
+scrap.2026-11-12.PN-200,"Scrap qty, PN-200, 2026-11-12",3,,2026-11-12,MES export,production_day == 2026-11-12; held-out rows excluded
+scrapusd.2026-11-12.PN-200,"Scrap $, PN-200, 2026-11-12",not computable,USD,2026-11-12,MES x item master std_cost,unpriced when not recorded or a unit conflict
+scrapusd.2026-11-12.total,"Priced scrap $, 2026-11-12",not computable,USD,2026-11-12,MES x item master std_cost,sum of priced parts
+dtusd.2026-11-12,"Downtime $, 2026-11-12",not computable,USD,2026-11-12,downtime minutes x rate,unset
+figures.rows,Rows in figures.csv,182,,window,this file,"row count, this row included"

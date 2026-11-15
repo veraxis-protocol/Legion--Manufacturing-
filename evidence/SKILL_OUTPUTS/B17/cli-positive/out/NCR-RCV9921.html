@@ -1,0 +1,66 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><title>NONCONFORMANCE REPORT — NCR-RCV9921 (provisional number)</title><style>body{font-family:Calibri,Arial,sans-serif;max-width:980px;margin:24px auto;font-size:14px;color:#111}table{border-collapse:collapse;margin:8px 0}td,th{border:1px solid #888;padding:4px 6px;vertical-align:top}th{background:#eee}.delim{font-family:Consolas,monospace;background:#f3f3f3;padding:4px}</style></head><body>
+<h1>NONCONFORMANCE REPORT — NCR-RCV9921 (provisional number)</h1>
+<p><b>Status: APPROVED as drafted — Test Quality Owner (LEGION WO-LMFG-004 test operator), 2026-11-15T18:06:00-05:00.</b> Disposition still pending. Plant NCR number to be assigned. Template: the plant&#x27;s controlled NCR template is not on file (no plant profile this session); neutral structure used.</p>
+<h2>1. Identification</h2>
+<table>
+<tr><th>Field</th><th>Value</th></tr>
+<tr><td>Part / revision</td><td>BSH-1210 Flanged bushing, rev A (drawing BSH-1210 rev A, dated 2025-06-02)</td></tr>
+<tr><td>Supplier</td><td>Alder Sintered Parts (fictitious) — vendor ID not available (no ERP this session)</td></tr>
+<tr><td>Purchase order / receipt</td><td>PO-30655 / RCV-9921</td></tr>
+<tr><td>Supplier lot</td><td>AS-7781</td></tr>
+<tr><td>Production WO</td><td>None for the finding (purchased part). Consuming WO: WO-8150, assembly line 2</td></tr>
+<tr><td>Operation</td><td>Receiving inspection</td></tr>
+<tr><td>Found by</td><td>Receiving inspection — inspector not named in the source</td></tr>
+<tr><td>Found at</td><td>2026-11-12 — time and time zone not recorded in the source</td></tr>
+<tr><td>Disposition</td><td><b>Pending</b> (MRB)</td></tr>
+</table>
+<h2>2. Requirement violated</h2>
+<table>
+<tr><th>Source</th><th>Document</th><th>Locator</th><th>Characteristic</th><th>Stated value</th></tr>
+<tr><td>Part drawing</td><td>BSH-1210_drawing_revA.md (rev A, 2025-06-02)</td><td>Drawing notes, line 3: &quot;Hardness 25-40 HRF&quot;</td><td>Hardness</td><td>25–40 HRF</td></tr>
+</table>
+<p>Cited at rev A, the revision on the receipt and the finding. Only one revision is in the inputs.</p>
+<h2>3. Condition found</h2>
+<p>Hardness on 5 samples from lot AS-7781 measured <b>47, 49, 46, 50, 48 HRF</b> against 25–40 HRF. All 5 of 5 above the upper limit, by 6 to 10 HRF; mean 48 HRF.</p>
+<p>The supplier&#x27;s certificate of conformance for AS-7781 states <b>32 HRF</b>, 16 HRF below our mean. Measured and certified values conflict.</p>
+<table>
+<tr><th>Characteristic</th><th>Measured (HRF)</th><th>Requirement</th><th>Gage</th><th>Source</th></tr>
+<tr><td>Hardness</td><td>47, 49, 46, 50, 48</td><td>25–40 HRF</td><td><b>Not recorded</b> (tester ID, calibration date, test location on part not given)</td><td>incoming_finding.txt, line 3</td></tr>
+</table>
+<ul>
+<li>Subjective finding: no (measured).</li>
+<li>Qty found nonconforming: 5 (5 sampled, 5 failed).</li>
+<li><b>Not tested: oil content</b> (drawing requires 18% min by volume). A harder-than-specified sintered part can mean higher density and lower porosity, so oil content on this lot is open.</li>
+<li><b>Gage status is a finding of its own until recorded</b>: the test can&#x27;t be called fully verified until the tester&#x27;s ID and calibration date are on the NCR.</li>
+</ul>
+<h2>4. Suspect quantity and scope</h2>
+<p><b>Suspect: 1,000 pcs, the whole of lot AS-7781</b> (scope basis: lot).</p>
+<p>Reasoning: the suspected mechanism is material condition as supplied, which belongs to the supplier&#x27;s lot, not to any process step at this plant (the parts were found at receiving, before any processing here). 5 of 5 random samples failed, and the within-lot spread sits entirely above the limit (computed lower control limit 40.69 HRF against a 40 HRF maximum). So the whole lot is suspect, not just the parts measured. Prior lots AS-7702 (2026-09) and AS-7744 (2026-10) passed incoming hardness checks and are not in scope.</p>
+<p><b>Traceability: incomplete at line 2.</b> Lot identity after issue to WO-8150 hasn&#x27;t been confirmed. We don&#x27;t know whether the 400 pcs are kept apart from other BSH-1210 lots on line 2, or how many have gone into assemblies. If line-side stock is mixed, every BSH-1210 at line 2 and every WO-8150 assembly built since the issue is suspect until lot identity is confirmed. The part count is still the lot (1,000), but the number of <b>assemblies</b> affected is unknown.</p>
+<h2>5. Containment, by urgency (customer side first; owners blank for assignment)</h2>
+<table>
+<tr><th>Location</th><th>Suspect qty</th><th>Action</th><th>Urgency</th><th>Owner</th></tr>
+<tr><td>Installed at customer</td><td><b>not checked</b></td><td>Settled by the shipment check below. If any WO-8150 assemblies shipped, ask the customer whether they have been installed or shipped on</td><td>immediate</td><td></td></tr>
+<tr><td>At customer</td><td><b>not checked</b></td><td>Confirm with shipping whether any WO-8150 assemblies containing lot AS-7781 have shipped since issue. Customer not identified in the source</td><td>immediate</td><td></td></tr>
+<tr><td>In transit</td><td><b>not checked</b></td><td>Same check, for shipments not yet delivered. Intercept at the carrier if found</td><td>immediate</td><td></td></tr>
+<tr><td>WIP at machine (assembly line 2, WO-8150)</td><td><b>not checked</b> — finding records 400 issued</td><td>Stop issuing BSH-1210 from AS-7781 on line 2. Physically count loose AS-7781 parts and tag them NCR-RCV9921. Identify and hold every WO-8150 assembly built with them. Confirm lot identity at the line</td><td>immediate</td><td></td></tr>
+<tr><td>Finished goods / on-hand stock (receiving quarantine Q-1)</td><td>600 (checked, per receiving finding)</td><td>Keep on hold in Q-1, tag NCR-RCV9921, block in stores so none are issued. Retain 5 tested pieces plus untested pieces for re-test</td><td>same day</td><td></td></tr>
+</table>
+<p>Line 2 and the three customer-side locations stay &quot;not checked&quot; until someone confirms them. None of them is clear.</p>
+<h2>6. Recurrence (searched at creation)</h2>
+<p><b>No searchable history available.</b> The quality document library (prior NCRs and CAPAs) isn&#x27;t reachable this session, so the search could not run (history_searched: false). This is <b>not</b> a first occurrence; it&#x27;s unknown. Prior NCRs found: 0, because no search was possible.</p>
+<p>From the finding: the two previous receipts from this supplier (AS-7702, AS-7744) passed incoming hardness. Those are passed inspections, not prior NCRs.</p>
+<h2>7. Escape</h2>
+<ul>
+<li>escape_occurred: <b>false</b> (nothing yet places parts at a customer).</li>
+<li>escape_possible: <b>true.</b> 400 pcs went to an assembly work order (WO-8150) at least three days before today. Whether any assemblies have shipped hasn&#x27;t been checked.</li>
+<li>Shipment check to settle it: <i>&quot;Confirm with line 2 and shipping whether any WO-8150 assemblies containing BSH-1210 lot AS-7781 have been completed, moved to finished goods, or shipped since issue, and to which customers.&quot;</i></li>
+<li>A conditional customer notification is drafted (separate document). It goes <b>only</b> if that check finds parts shipped.</li>
+<li>escape_detected_at: <b>null</b>. It gets stamped only if the check places parts at or past a customer.</li>
+</ul>
+<h2>8. Approval</h2>
+<table>
+<tr><th>approval_state</th><th>approved_by</th><th>approved_at</th></tr>
+<tr><td>approved</td><td>Test Quality Owner (LEGION WO-LMFG-004 test operator)</td><td>2026-11-15T18:06:00-05:00</td></tr>
+</table>
+</body></html>

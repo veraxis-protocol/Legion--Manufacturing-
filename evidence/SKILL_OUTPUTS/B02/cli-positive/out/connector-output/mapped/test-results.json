@@ -1,0 +1,51 @@
+{
+  "run_at": "2026-11-15T12:54:19-05:00",
+  "source_file": "cmms_synthetic.sqlite",
+  "source_meta": [
+    "SYNTHETIC TEST INPUT - LEGION Manufacturing WO-LMFG-004. Fictitious CMMS. Not plant data."
+  ],
+  "read_only": {
+    "uri_mode": "ro",
+    "pragma_query_only": 1,
+    "sha256_before": "88b87d83ab1ca11668636bbe5e1e9847a445dce58a1ac27f4c50011fb64af72b",
+    "sha256_after": "88b87d83ab1ca11668636bbe5e1e9847a445dce58a1ac27f4c50011fb64af72b",
+    "file_unchanged": true
+  },
+  "schema_drift": null,
+  "completeness": {
+    "assets": {
+      "source_count": 3,
+      "mapped": 3
+    },
+    "work_orders": {
+      "source_count": 3,
+      "mapped": 3
+    },
+    "open_wos": {
+      "v_open_work_orders": 1,
+      "work_orders_closed_is_null": 1,
+      "mapped_open": 1
+    }
+  },
+  "join": {
+    "unmatched_work_orders": []
+  },
+  "integrity_flags": {},
+  "unmapped_fields_held_out": [
+    {
+      "maintenance_wo": "MW-152",
+      "wo_type": "CM",
+      "downtime_min": 40
+    },
+    {
+      "maintenance_wo": "MW-160",
+      "wo_type": "CM",
+      "downtime_min": 95
+    },
+    {
+      "maintenance_wo": "MW-170",
+      "wo_type": "CM",
+      "downtime_min": null
+    }
+  ]
+}

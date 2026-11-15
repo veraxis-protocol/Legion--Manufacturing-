@@ -1,0 +1,4 @@
+site,source_system,source_ref,as_of,join_status,mismatch_class,contradicted_by,integrity_flags,production_wo,production_wo_verbatim,part_number,part_number_verbatim,part_revision,qty,uom,due_date,status,sales_order,sales_order_verbatim
+not_stated,manual,inputs/pulse_oee/work_orders.csv:2,unknown (no record date in source),matched,,,,WO-1001,WO-1001,PN-100,PN-100,,500,not_stated,2026-11-14,RELEASED,,
+not_stated,manual,inputs/pulse_oee/work_orders.csv:3,unknown (no record date in source),matched,,,,WO-1002,WO-1002,PN-200,PN-200,,250,not_stated,2026-11-13,RELEASED,,
+not_stated,manual,inputs/pulse_oee/work_orders.csv:4,unknown (no record date in source),matched,,,,WO-1003,WO-1003,PN-100,PN-100,,300,not_stated,2026-11-15,RELEASED,,

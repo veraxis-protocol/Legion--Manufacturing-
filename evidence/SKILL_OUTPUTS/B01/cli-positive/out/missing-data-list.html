@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Missing-data list - Example Precision Works (EPW1)</title>
+<style>
+:root{--ink:#1A1D21;--paper:#F2F3F5;--paper-raised:#FFFFFF;--line:#D6D9DD;--accent:#1F5C8B;--accent-soft:#E4EDF4;
+--warn:#A8641A;--warn-soft:#F7EBDA;--critical:#A93226;--critical-soft:#F9E9E7;
+--font-body:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,sans-serif;--font-display:'IBM Plex Sans Condensed','Arial Narrow',sans-serif}
+body{background:var(--paper);color:var(--ink);font:14px/1.5 var(--font-body);margin:0;padding:24px}
+main{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+h1{font-family:var(--font-display);font-size:24px;margin:0}
+h2{font-family:var(--font-display);font-size:14px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin:0 0 8px}
+.sub{color:#5f6862;margin:0}
+section{background:var(--paper-raised);border:1px solid var(--line);border-radius:6px;padding:14px 18px}
+table{border-collapse:collapse;width:100%}
+th,td{border-top:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:top}
+th{font-size:12px;color:#5f6862}
+td:first-child{white-space:nowrap;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;padding:0 6px;border-radius:8px;font-size:12px}
+.hi{background:var(--critical-soft);color:var(--critical)}
+.md{background:var(--warn-soft);color:var(--warn)}
+.lo{background:var(--accent-soft);color:var(--accent)}
+</style>
+</head>
+<body>
+<main>
+<h1>Missing-data list - Example Precision Works, Plant 1 (EPW1)</h1>
+<p class="sub">Onboarding run 2026-11-15, non-interactive. Every open question from the interview is recorded here instead of asked live. Sources read: plant_overview.md, equipment.csv, rates_memo.txt. Rate values never appear on this page. Impact: <span class="pill hi">high</span> blocks or badly degrades a skill; <span class="pill md">medium</span> degrades with a stated limit; <span class="pill lo">low</span> a default applies.</p>
+
+<section><h2>A. Approval</h2><table>
+<tr><th>#</th><th>Open question</th><th>Skills affected</th><th>How they degrade until answered</th></tr>
+<tr><td>1 <span class="pill hi">high</span></td><td>Approve the Plant context draft (out/plant-context.md): "yes" (files plus private Plant setup and Plant rates pages) or "yes, folder only". Who should be recorded as approving it?</td><td>All twelve skills</td><td>No profile is installed; every skill finds no Plant context and asks again or runs on canonical defaults.</td></tr>
+</table></section>
+
+<section><h2>B. Systems and connectors</h2><table>
+<tr><th>#</th><th>Open question</th><th>Skills affected</th><th>How they degrade until answered</th></tr>
+<tr><td>2 <span class="pill md">medium</span></td><td>Oracle NetSuite: will the connector be enabled for this plugin, or does the plant stay on exports? (plant_overview.md: export only, no API access yet)</td><td>Every skill; most of all data-consolidate, quote-build, supplier-quote-request, customer-inquiry-intake, daily-production-report, morning-plant-pulse</td><td>Each runs its file-only path and names every ERP figure as export-sourced. supplier-quote-request has no live vendor list.</td></tr>
+<tr><td>3 <span class="pill md">medium</span></td><td>Microsoft 365: will the connector be authorised so the "Exports" and "Quality" SharePoint libraries can be read?</td><td>data-consolidate, daily-production-report, morning-plant-pulse, ncr-writeup, root-cause-capa, customer-inquiry-intake</td><td>Exports must be dragged in by hand (cadence manual); morning-plant-pulse cannot run unattended; prior NCRs/8Ds in the Quality library are not searched.</td></tr>
+<tr><td>4 <span class="pill md">medium</span></td><td>Autodesk Fusion: is the Fusion MCP Server to be enabled on one of the two programming workstations?</td><td>design-space-explore, rfq-to-quote</td><td>design-space-explore cannot generate variants. rfq-to-quote's design step is skipped and hours fall back down the ladder, labelled. trade-study-report unaffected.</td></tr>
+<tr><td>5 <span class="pill hi">high</span></td><td>Maintenance runs on a shared spreadsheet with no CMMS. Can maintenance_log.csv be put on a nightly export to the Exports library in the spec format (export-request-spec.html)?</td><td>breakdown-diagnosis, breakdown-to-next-report, daily-production-report, morning-plant-pulse, data-consolidate, root-cause-capa</td><td>breakdown-diagnosis has no asset records, open tickets or PM plan beyond what the spreadsheet holds. daily-production-report's "maintenance work orders in progress" line is replaced from the export where one exists, otherwise omitted and said so. The others read maintenance from the file and name it in the freshness banner.</td></tr>
+<tr><td>6 <span class="pill lo">low</span></td><td>What is the MES called (product name, or homegrown)?</td><td>Connector options (Step 12)</td><td>Stays on exports; connector options not reviewed for it.</td></tr>
+</table></section>
+
+<section><h2>C. ERP scope (NetSuite)</h2><table>
+<tr><th>#</th><th>Open question</th><th>Skills affected</th><th>How they degrade until answered</th></tr>
+<tr><td>7 <span class="pill md">medium</span></td><td>Which record types does the account hold for this plant: items/assemblies, sales orders and fulfilments, purchase orders, receipts, vendors, lot numbers, work orders, locations? (checked on connection, or from one sample export of each)</td><td>data-consolidate, every ERP reader</td><td>Record types reported "not checked"; nothing assumed present.</td></tr>
+<tr><td>8 <span class="pill md">medium</span></td><td>Does the NetSuite account have more than one subsidiary? Which is EPW1's?</td><td>data-consolidate, every ERP reader</td><td>Says "scope not set" and pulls nothing whose scope it would have to guess.</td></tr>
+<tr><td>9 <span class="pill md">medium</span></td><td>Which NetSuite locations are Plant 1 (name or ID)?</td><td>data-consolidate, ncr-writeup (containment by location)</td><td>As above; inventory by location cannot be scoped.</td></tr>
+<tr><td>10 <span class="pill md">medium</span></td><td>Which items are your parts: an item class, a prefix, or a list?</td><td>data-consolidate, every ERP reader</td><td>As above; offers the prefix it sees as a question.</td></tr>
+<tr><td>11 <span class="pill hi">high</span></td><td>Where does the part revision live: a named field, an item-ID suffix (which pattern), or only on the drawing?</td><td>supplier-quote-request, quote-build</td><td>The revision check says where it looked and that the location is not set; the revision hard stop holds.</td></tr>
+<tr><td>12 <span class="pill md">medium</span></td><td>Is Standard Costing on? Which fields hold standard, average, last purchase and purchase cost? (The finance memo prices scrap at standard material cost.)</td><td>quote-build, supplier-quote-request, daily-production-report</td><td>Reads standard, then average, then last purchase price, naming the field each figure came from; never treats a field equal to sell price as a cost.</td></tr>
+<tr><td>13 <span class="pill md">medium</span></td><td>Do production work orders live in NetSuite, or only in the MES?</td><td>data-consolidate</td><td>Treats NetSuite as the source; if it returns none, says so once.</td></tr>
+<tr><td>14 <span class="pill lo">low</span></td><td>Where a NetSuite export and a connector both cover an entity, which wins?</td><td>data-consolidate</td><td>Asked at the first overlap.</td></tr>
+<tr><td>15 <span class="pill lo">low</span></td><td>How many business days may an RFQ wait on the customer before it is stale?</td><td>customer-inquiry-intake, rfq-to-quote</td><td>5 business days, labelled "default, not plant-set".</td></tr>
+</table></section>
+
+<section><h2>D. Export folder and files</h2><table>
+<tr><th>#</th><th>Open question</th><th>Skills affected</th><th>How they degrade until answered</th></tr>
+<tr><td>16 <span class="pill md">medium</span></td><td>Exact export folder path inside the SharePoint "Exports" library (inferred from plant_overview.md - confirm or correct).</td><td>data-consolidate, daily-production-report, morning-plant-pulse</td><td>Asks for the folder once per run.</td></tr>
+<tr><td>17 <span class="pill hi">high</span></td><td>MES production CSVs: file-name pattern, columns, and which window each 23:30 file covers. Please drop one sample file to confirm its identity.</td><td>data-consolidate, daily-production-report, morning-plant-pulse</td><td>File is identified by header signature at run time and must be confirmed each time; no output vs plan.</td></tr>
+<tr><td>18 <span class="pill hi">high</span></td><td>maintenance_log.csv was named but not provided. Please drop a copy; which columns does it hold and how often is it updated?</td><td>breakdown-diagnosis, daily-production-report, data-consolidate, root-cause-capa</td><td>No maintenance history at all until a file is in hand.</td></tr>
+<tr><td>19 <span class="pill md">medium</span></td><td>equipment.csv looks like the asset register: asset ID, description, cell, work center, install year, five assets. Is that right, and is it complete (any saw, CMM or other asset missing)?</td><td>data-consolidate, breakdown-diagnosis, daily-production-report</td><td>Recorded as inferred, unconfirmed, cadence manual.</td></tr>
+<tr><td>20 <span class="pill hi">high</span></td><td>Does the MES record downtime events (asset, start, end, reason code)? If so, can it be exported nightly? Spec written.</td><td>daily-production-report, morning-plant-pulse, breakdown-diagnosis</td><td>No availability, no downtime ranking; OEE not computed and the report says why.</td></tr>
+<tr><td>21 <span class="pill md">medium</span></td><td>Which NetSuite saved-search exports exist today (items, sales orders, work orders, purchase orders, inventory, routings, closed-job actuals)? Spec written.</td><td>data-consolidate, quote-build, supplier-quote-request, ncr-writeup</td><td>Each missing tab is named absent; quote-build has no routing or actuals rung.</td></tr>
+<tr><td>22 <span class="pill md">medium</span></td><td>Is there a quality / inspection export (and from what system)? Spec written.</td><td>root-cause-capa, ncr-writeup, daily-production-report</td><td>No SPC or measurement timeline; scrap only from the MES output file.</td></tr>
+<tr><td>23 <span class="pill hi">high</span></td><td>Where does the production plan / schedule live, and can it be exported daily? Spec written.</td><td>daily-production-report, morning-plant-pulse</td><td>No output-against-plan figure.</td></tr>
+<tr><td>24 <span class="pill lo">low</span></td><td>Is there a historian or machine-monitoring system (spindle load, alarms)? Spec written in case.</td><td>breakdown-diagnosis, root-cause-capa</td><td>Diagnosis runs on maintenance history and photos only; no sensor window.</td></tr>
+</table></section>
+
+<section><h2>E. Time configuration (highest risk)</h2><table>
+<tr><th>#</th><th>Open question</th><th>Skills affected</th><th>How they degrade until answered</th></tr>
+<tr><td>25 <span class="pill hi">high</span></td><td>For each source (NetSuite export, MES production, MES downtime, historian, quality, planning, maintenance spreadsheet): what timezone are its timestamps in, and do they carry an offset or are they bare local time?</td><td>root-cause-capa, daily-production-report</td><td>Refuse to correlate across sources; report the alignment gap.</td></tr>
+<tr><td>26 <span class="pill hi">high</span></td><td>When does your production day begin - 06:00 with first shift, midnight, or another time?</td><td>daily-production-report, morning-plant-pulse, root-cause-capa</td><td>Cannot compute availability; output reported only, with the reason.</td></tr>
+<tr><td>27 <span class="pill md">medium</span></td><td>Second shift ends at 23:00. When it runs late past midnight, does that output belong to the day it started or the day it ended? And Saturday overtime: its own production day, or folded into Friday?</td><td>daily-production-report, root-cause-capa</td><td>Cross-midnight attribution treated as unresolved; shift clustering listed among checks that could not run.</td></tr>
+<tr><td>28 <span class="pill hi">high</span></td><td>What counts as planned production time: scheduled shift hours minus what (breaks, lunch, planned PM windows, scheduled changeovers)? Does Saturday overtime count when scheduled?</td><td>daily-production-report, morning-plant-pulse</td><td>OEE availability not computed.</td></tr>
+<tr><td>29 <span class="pill md">medium</span></td><td>Offset self-check: name one event recorded in two systems (e.g. a work order completion in both the NetSuite export and the MES file) and supply both files.</td><td>root-cause-capa, daily-production-report</td><td>Every source clock stays "declared, unverified".</td></tr>
+<tr><td>30 <span class="pill md">medium</span></td><td>The MES file is written at 23:30: does it cover the whole production day just ended, or everything since the last file? How are late or corrected records handled?</td><td>data-consolidate, daily-production-report</td><td>Late rows may be double-counted or missed; freshness banner says the window is undeclared.</td></tr>
+</table></section>
+
+<section><h2>F. Vocabulary and report depth</h2><table>
+<tr><th>#</th><th>Open question</th><th>Skills affected</th><th>How they degrade until answered</th></tr>
+<tr><td>31 <span class="pill lo">low</span></td><td>Your words for: production work order (job, work order, traveler?), work center vs cell, part, lot, sales order, asset, supplier. equipment.csv uses cell / work center / asset ID - one source, so not adopted yet.</td><td>data-consolidate, breakdown-diagnosis, every report</td><td>Canonical names used and labelled canonical.</td></tr>
+<tr><td>32 <span class="pill lo">low</span></td><td>NCRs and 8Ds summary-first, or full detail?</td><td>ncr-writeup, root-cause-capa</td><td>Full detail.</td></tr>
+</table></section>
+
+<section><h2>G. Sites</h2><table>
+<tr><th>#</th><th>Open question</th><th>Skills affected</th><th>How they degrade until answered</th></tr>
+<tr><td>33 <span class="pill lo">low</span></td><td>Is Plant 1 (EPW1, Dayton) the only site?</td><td>Everything</td><td>Treated as single-site; site block named "(default)".</td></tr>
+</table></section>
+
+<section><h2>H. Capability profile</h2><table>
+<tr><th>#</th><th>Open question</th><th>Skills affected</th><th>How they degrade until answered</th></tr>
+<tr><td>34 <span class="pill md">medium</span></td><td>Which aluminium and steel grades do you run routinely? Any material you will not run (stainless, titanium, plastics)?</td><td>customer-inquiry-intake, rfq-to-quote</td><td>Bid/no-bid degrades to a constraint-free recommendation and says so.</td></tr>
+<tr><td>35 <span class="pill md">medium</span></td><td>Which processes are in-house and which go outside? (Inferred: horizontal and 3-axis vertical milling, turning, deburr and inspection in-house; anodize outside.) Heat treat, plating, grinding, 4th axis?</td><td>customer-inquiry-intake, quote-build</td><td>As above.</td></tr>
+<tr><td>36 <span class="pill md">medium</span></td><td>Largest part each machine takes: HMC-01 travels and pallet load, VMC-02/03 X-Y-Z travels, LTH-01 max turning diameter, length and bar capacity.</td><td>customer-inquiry-intake</td><td>No size check; flagged as unchecked.</td></tr>
+<tr><td>37 <span class="pill hi">high</span></td><td>Tightest tolerance you have demonstrated, by process (position, diameter, flatness, surface finish) - demonstrated, not aspirational.</td><td>customer-inquiry-intake</td><td>No basis for declining tight-tolerance work.</td></tr>
+<tr><td>38 <span class="pill md">medium</span></td><td>Certifications held, with expiry dates.</td><td>customer-inquiry-intake, supplier-quote-request</td><td>Certification requirements in an RFQ cannot be checked.</td></tr>
+</table></section>
+
+<section><h2>I. Machining data</h2><table>
+<tr><th>#</th><th>Open question</th><th>Skills affected</th><th>How they degrade until answered</th></tr>
+<tr><td>39 <span class="pill hi">high</span></td><td>Typical setup hours for MILL-H, MILL-V, TURN and INSP - and is each figure measured or a best guess?</td><td>quote-build, rfq-to-quote</td><td>Hours from a drawing run on library defaults, labelled "library defaults, not plant data".</td></tr>
+<tr><td>40 <span class="pill md">medium</span></td><td>Tool-change time per machine class - measured or best guess?</td><td>quote-build, rfq-to-quote</td><td>As above; any assumed figure is named in every variance it drives.</td></tr>
+<tr><td>41 <span class="pill md">medium</span></td><td>Cutting data (SFM and chip load per material and tool class), or the name of the Fusion tool library the programmers use.</td><td>quote-build, rfq-to-quote</td><td>Library defaults, ranked as first principles.</td></tr>
+<tr><td>42 <span class="pill lo">low</span></td><td>How far apart can two estimates of the same operation be before you want it flagged?</td><td>quote-build</td><td>15%, labelled "default, not plant-set".</td></tr>
+<tr><td>43 <span class="pill lo">low</span></td><td>How old can a cost or an actual be before you stop trusting it (days)?</td><td>quote-build</td><td>Cost history age shown but not flagged stale.</td></tr>
+<tr><td>44 <span class="pill lo">low</span></td><td>Work center MILL-V is in two cells (VMC-02 Cell A, VMC-03 Cell B, per equipment.csv). Confirm cell is assigned per machine, not per work center.</td><td>data-consolidate, daily-production-report</td><td>Cell roll-ups for MILL-V shown per machine and flagged.</td></tr>
+<tr><td>45 <span class="pill lo">low</span></td><td>Anodize: typical outside lead time per lot.</td><td>quote-build</td><td>Promised date excludes outside-process time and says so.</td></tr>
+</table></section>
+
+<section><h2>J. Standards, clauses and approved suppliers</h2><table>
+<tr><th>#</th><th>Open question</th><th>Skills affected</th><th>How they degrade until answered</th></tr>
+<tr><td>46 <span class="pill md">medium</span></td><td>Standards certified to, with revision (e.g. ISO 9001:2015) - please send the certificate.</td><td>supplier-quote-request, customer-inquiry-intake</td><td>Clauses from the part record only, flagged unverified.</td></tr>
+<tr><td>47 <span class="pill md">medium</span></td><td>Your standard supplier quality clause list (material certs, FAI, right of access).</td><td>supplier-quote-request</td><td>Clause set flagged unverified.</td></tr>
+<tr><td>48 <span class="pill md">medium</span></td><td>Your standard commercial terms (payment, freight, packaging, tooling ownership).</td><td>supplier-quote-request</td><td>Terms section left for the buyer to fill.</td></tr>
+<tr><td>49 <span class="pill md">medium</span></td><td>Approved supplier list by commodity (aluminium bar/plate, steel bar, anodize, tooling). Is anodize single source?</td><td>supplier-quote-request</td><td>Candidates from ERP vendors only, each flagged "not confirmed approved".</td></tr>
+</table></section>
+
+<section><h2>K. Templates (one real example of each)</h2><table>
+<tr><th>#</th><th>Open question</th><th>Skills affected</th><th>How they degrade until answered</th></tr>
+<tr><td>50 <span class="pill md">medium</span></td><td>A recent NCR on your form.</td><td>ncr-writeup, inspection-to-capa</td><td>Neutral structure, flagged "not the plant's controlled format".</td></tr>
+<tr><td>51 <span class="pill md">medium</span></td><td>A recent 8D / corrective action in your (or your customer's) format.</td><td>root-cause-capa, inspection-to-capa</td><td>As above.</td></tr>
+<tr><td>52 <span class="pill md">medium</span></td><td>A recent customer quote.</td><td>quote-build, rfq-to-quote</td><td>As above.</td></tr>
+<tr><td>53 <span class="pill lo">low</span></td><td>Your supplier RFQ package, if you have a standard one.</td><td>supplier-quote-request</td><td>As above.</td></tr>
+<tr><td>54 <span class="pill lo">low</span></td><td>A trade study or design memo - only if you have done one; fine to defer.</td><td>trade-study-report</td><td>As above.</td></tr>
+</table></section>
+
+<section><h2>L. Commercial rates (names only - values are in the approval draft)</h2><table>
+<tr><th>#</th><th>Open question</th><th>Skills affected</th><th>How they degrade until answered</th></tr>
+<tr><td>55 <span class="pill hi">high</span></td><td>Labor and burden: the finance memo gives fully burdened shop rates per work center, not a labor/burden split. Confirm those rates are what quotes should use and that burden is included in them.</td><td>quote-build, rfq-to-quote, breakdown-diagnosis</td><td>quote-build blocks every labor line until a rate is confirmed or a placeholder is recorded.</td></tr>
+<tr><td>56 <span class="pill hi">high</span></td><td>Margin: confirm the memo's target margin as the default. Is any customer or job type (prototype, rush) quoted differently?</td><td>quote-build, rfq-to-quote</td><td>The margin line is blocked.</td></tr>
+<tr><td>57 <span class="pill md">medium</span></td><td>Material markup and outside-processing (anodize) markup: confirm, and should quote-build apply them as separate lines before margin?</td><td>quote-build</td><td>Not applied; recorded as said and flagged.</td></tr>
+<tr><td>58 <span class="pill hi">high</span></td><td>What does an hour of downtime cost you? (Asked, never derived from the shop rates.)</td><td>daily-production-report, morning-plant-pulse, breakdown-diagnosis</td><td>Morning report prices scrap only and states downtime is unpriced; breakdown-diagnosis reports downtime in hours only.</td></tr>
+<tr><td>59 <span class="pill hi">high</span></td><td>Who is giving these rates, and is the memo (dated 2026-10-01) still current? Each confirmed rate carries that name and date.</td><td>quote-build, daily-production-report</td><td>Rates cannot be written as confirmed.</td></tr>
+<tr><td>60 <span class="pill lo">low</span></td><td>Are any MFG_ rate variables set in the environment Claude runs in? (Not checked this session - no shell available.)</td><td>quote-build, daily-production-report, breakdown-diagnosis</td><td>If one is set it wins over the rates page at run time.</td></tr>
+<tr><td>61 <span class="pill lo">low</span></td><td>Scrap costing basis (from the memo: standard material plus value-added labour at the work center where scrapped) - confirm.</td><td>daily-production-report</td><td>Applied as inferred and labelled.</td></tr>
+</table></section>
+
+<section><h2>Connector options (Step 12)</h2><table>
+<tr><th>System</th><th>What exists</th><th>Route</th><th>Next step</th></tr>
+<tr><td>Maintenance spreadsheet (maintenance_log.csv)</td><td>Not a system - a shared file; nothing to connect</td><td>Export (scheduled, per spec)</td><td>Put it on the nightly export spec; revisit if a CMMS is adopted</td></tr>
+<tr><td>MES (name not given)</td><td>Not in our registry - check your vendor's docs for an MCP server (web search not used this session)</td><td>Export (already running)</td><td>Tell us the MES name; if homegrown, the plant's own developer is the source of truth</td></tr>
+</table></section>
+</main>
+</body>
+</html>

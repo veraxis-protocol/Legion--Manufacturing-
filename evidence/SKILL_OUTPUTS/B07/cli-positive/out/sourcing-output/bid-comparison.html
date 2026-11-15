@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Bid comparison — SRC-2026-11-15-BSH-1210 — BSH-1210 rev A (INTERNAL)</title>
+<style>
+body{font:14px/1.45 system-ui,Segoe UI,sans-serif;max-width:1180px;margin:24px auto;padding:0 16px;color:#1d2433}
+h1{font-size:20px}h2{font-size:16px;margin-top:28px;border-bottom:1px solid #d5dae3;padding-bottom:4px}
+table{border-collapse:collapse;width:100%;margin:8px 0 4px}th,td{border:1px solid #d5dae3;padding:5px 7px;text-align:left;vertical-align:top}
+th{background:#f2f4f8}td.n{text-align:right;font-variant-numeric:tabular-nums}
+.box{background:#f6f8fb;border-left:4px solid #3b5bdb;padding:10px 14px}.warn{border-left-color:#c92a2a}
+.flag{color:#c92a2a;font-weight:600}.muted{color:#5c6577}pre{white-space:pre-wrap;background:#fafafa;border:1px solid #e3e6ec;padding:10px}
+details{margin:8px 0}summary{cursor:pointer;font-weight:600}
+</style></head><body>
+<p class="muted">INTERNAL. Do not send. Synthetic test data. Nothing has been sent, and no bid has been awarded. Figures are from <code>out/figures.md</code>, computed by <code>out/scripts/compare_bids.py</code>.</p>
+<h1>BSH-1210 rev A flanged bushing: bid comparison, SRC-2026-11-15-BSH-1210</h1>
+
+<h2>1. Provisional recommendation</h2>
+<div class="box">
+<p><b>Pursue Alder Sintered Parts as the lead option, on condition that it restates.</b> Neither bid is ready for buyer review. Both are <i>provisional</i>.</p>
+<p><b>Why Alder:</b> on an indicative basis, 3,200 pcs at its 3,000-pc price is <b>1,760.00 USD</b>, against Birch's first-order total of <b>3,418.00 USD</b> (1,568.00 parts plus 1,850 tooling). That leaves <b>1,658.00 USD</b> of headroom for Alder's freight before Birch is cheaper on this order. Alder quotes 4 weeks ARO with existing tooling. Birch quotes 6–7 weeks and needs new tooling, which is 54.1 % of its first order.</p>
+<p><b>What argues against it:</b> Alder lists an exception to the drawing: <span class="flag">hardness 25-45 HRF vs 25-40 HRF required</span>. That needs engineering's disposition, or Alder must agree to meet the drawing. Its price is FOB origin, so freight is extra and unknown. Its MOQ of 1,000 exceeds the 800-pc December release. Its 30-day validity runs from an undated quote and may already have expired. The 3,200 figure assumes Alder's 3,000-pc price applies at 3,200, which the quote does not say. Birch's piece price is 0.06 USD/ea lower. Its tooling would only pay back at about 30,833 pcs, against 3,200 in the MRP horizon. That could change if there is a longer-term volume, and none is on file.</p>
+<p><b>Open before any award, for both:</b> drawing rev A confirmed against the ERP item master. Approved-supplier status for both suppliers (neither is confirmed approved). Restated bids in the package format. Quality clause acceptance (both silent). The exact December need date. If the 800 pcs are needed on 1 Dec, <span class="flag">neither bid makes it</span>: Alder lands about 12 days late and Birch 26–33 days late, if a PO went out today.</p>
+</div>
+<p><b>Next step:</b> pursue Alder, look into the alternatives, or ask both suppliers to restate first (drafts below)? Picking one is a choice about what to do next. It is not a selection or an award.</p>
+
+<h2>2. Comparison per quantity break (breaks required by the package: 800 / 1,200 / 3,200 pcs)</h2>
+<p class="muted">Both bids predate the package and were quoted at other quantities. A price is shown only where the supplier quoted that exact break. Absent means <i>not stated</i>, never zero. Both bids are in USD.</p>
+
+<h3>800 pcs (December 2026 release)</h3>
+<table><tr><th>Supplier</th><th>Approval</th><th>Unit price</th><th>Extended</th><th>Tooling</th><th>First-order total</th><th>MOQ</th><th>Lead time FA / production</th><th>Clauses</th><th>Exceptions</th><th>Validity</th><th>Readiness</th><th>Source</th></tr>
+<tr><td>Alder Sintered Parts</td><td>not confirmed approved</td><td>not quoted per unit at 800. As quoted: "1,000 pcs 0.62 USD/ea; 3,000 pcs 0.55 USD/ea"</td><td>—</td><td>not stated ("Tooling: existing")</td><td>—</td><td class="flag">1,000 &gt; 800: the price does not buy this quantity</td><td>"4 weeks ARO", not split</td><td>not stated</td><td class="flag">hardness 25-45 HRF</td><td>30 days from undated quote</td><td>provisional</td><td>bid_supplier_A.txt, line 3</td></tr>
+<tr><td>Birch Powder Metal</td><td>not confirmed approved</td><td>not quoted per unit at 800. As quoted: one price, at 3,200 only</td><td>—</td><td>1,850 USD one time</td><td>—</td><td>not stated</td><td>"6-7 weeks", no start event, not split</td><td>not stated</td><td>none listed</td><td>not stated</td><td>provisional</td><td>bid_supplier_B.txt, line 3</td></tr></table>
+
+<h3>1,200 pcs (monthly release, Jan/Feb 2027)</h3>
+<table><tr><th>Supplier</th><th>Approval</th><th>Unit price</th><th>Extended</th><th>Tooling</th><th>First-order total</th><th>MOQ</th><th>Lead time FA / production</th><th>Clauses</th><th>Exceptions</th><th>Validity</th><th>Readiness</th><th>Source</th></tr>
+<tr><td>Alder Sintered Parts</td><td>not confirmed approved</td><td>not quoted per unit at 1,200. As quoted: "1,000 pcs 0.62 USD/ea; 3,000 pcs 0.55 USD/ea"</td><td>—</td><td>not stated ("existing")</td><td>—</td><td>1,000</td><td>"4 weeks ARO"</td><td>not stated</td><td class="flag">hardness 25-45 HRF</td><td>30 days, undated</td><td>provisional</td><td>bid_supplier_A.txt, line 3</td></tr>
+<tr><td>Birch Powder Metal</td><td>not confirmed approved</td><td>not quoted per unit at 1,200</td><td>—</td><td>1,850 USD</td><td>—</td><td>not stated</td><td>"6-7 weeks"</td><td>not stated</td><td>none listed</td><td>not stated</td><td>provisional</td><td>bid_supplier_B.txt, line 3</td></tr></table>
+
+<h3>3,200 pcs (full MRP horizon, Dec 2026 – Feb 2027)</h3>
+<table><tr><th>Supplier</th><th>Approval</th><th>Unit price</th><th>Extended</th><th>Tooling</th><th>First-order total (includes one-time tooling)</th><th>MOQ</th><th>Lead time FA / production</th><th>Clauses</th><th>Exceptions</th><th>Validity</th><th>Readiness</th><th>Source</th></tr>
+<tr><td>Alder Sintered Parts</td><td>not confirmed approved</td><td>not quoted per unit at 3,200. As quoted: "3,000 pcs 0.55 USD/ea"<br><span class="muted">Indicative only, not ranked: 1,760.00 USD if the 3,000 break applies at 3,200</span></td><td>—</td><td>not stated ("existing")</td><td>—</td><td>1,000</td><td>"4 weeks ARO"</td><td>not stated</td><td class="flag">hardness 25-45 HRF</td><td>30 days, undated</td><td>provisional</td><td>bid_supplier_A.txt, line 3</td></tr>
+<tr><td>Birch Powder Metal</td><td>not confirmed approved</td><td class="n">0.49 USD</td><td class="n">1,568.00 USD</td><td class="n">1,850 USD</td><td class="n">3,418.00 USD</td><td>not stated</td><td>"6-7 weeks"</td><td>not stated</td><td>none listed; <span class="flag">revision not stated</span></td><td>not stated</td><td>provisional</td><td>bid_supplier_B.txt, lines 2–3</td></tr></table>
+<p><b>Freight basis differs and is not normalised:</b> Alder quotes FOB origin (freight is ours, cost unknown). Birch quotes DDP to our plant, delivered, with payment net 45. Alder states no payment terms. The two totals are not on the same delivered basis.</p>
+<p><b>Responses:</b> 2 of 2 known suppliers have bid, and both are off-format. No due date has been set, so none is past due.</p>
+
+<h2>3. Draft supplier emails (not sent)</h2>
+<p>Held, both drafts: rev A is not confirmed against the ERP item master, there is no response due date, no contact address is on file, and neither supplier is confirmed approved.</p>
+<div class="box"><b>Alder Sintered Parts</b> · HELD · To: [recipient: not on file]<br>Subject: SRC-2026-11-15-BSH-1210 — BSH-1210 rev A bushing: please restate your quote Q-A-118 in our RFQ format<br>Full body: see <code>out/email_drafts_BSH-1210.md</code>. It asks for prices at 800/1,200/3,200, confirmation of tooling charge and ownership, a split lead time, a dated validity, freight to our basis, payment terms, clause acceptance, and whether they can hold 25-40 HRF as drawn.</div>
+<div class="box" style="margin-top:8px"><b>Birch Powder Metal</b> · HELD · To: [recipient: not on file]<br>Subject: SRC-2026-11-15-BSH-1210 — BSH-1210 rev A bushing: please restate your quote BPM-77 in our RFQ format<br>Full body: see <code>out/email_drafts_BSH-1210.md</code>. It asks for confirmation of rev A, prices at 800/1,200/3,200, tooling ownership and lead time, a split lead time, MOQ, a dated validity, clause acceptance, and exceptions.</div>
+
+<h2>4. Detail</h2>
+<details><summary>Readiness evidence per bid (four prerequisites)</summary>
+<table><tr><th>Prerequisite</th><th>Alder Sintered Parts</th><th>Birch Powder Metal</th></tr>
+<tr><td>1. Cost comparable</td><td>No. No price at any required break, tooling price and ownership not stated, FOB origin</td><td>Partly. Priced at 3,200 only, tooling stated, MOQ not stated</td></tr>
+<tr><td>2. Supplier approved</td><td>Not confirmed (no approved supplier table)</td><td>Not confirmed (no approved supplier table)</td></tr>
+<tr><td>3. Delivery evidenced</td><td>Not evidenced. 4 wk ARO lands about 2026-12-13 if a PO went out today. The December need date is unknown</td><td>Not evidenced. 6–7 wk lands about 2026-12-27 to 2027-01-03, with no start event and no tooling/FA time</td></tr>
+<tr><td>4. Technical &amp; quality terms accepted</td><td>No. Hardness exception open. Clauses not stated</td><td>No. Revision not stated. Clauses not stated</td></tr></table></details>
+<details><summary>Bid records summary (full records in out/sourcing/SRC-2026-11-15-BSH-1210/)</summary>
+<table><tr><th>Supplier</th><th>Source file</th><th>Prices as quoted</th><th>fields_missing (12 each)</th></tr>
+<tr><td>Alder Sintered Parts</td><td>bid_supplier_A.txt</td><td>1,000 pcs 0.62 USD/ea; 3,000 pcs 0.55 USD/ea</td><td>unit price at 800, 1,200, 3,200; FA lead time from named event; production lead time split; tooling price or "none"; tooling ownership; validity as date; quote date; quality clause acceptance; freight cost to our dock; payment terms</td></tr>
+<tr><td>Birch Powder Metal</td><td>bid_supplier_B.txt</td><td>0.49 USD at 3,200 pcs; tooling 1,850 USD</td><td>drawing revision; unit price at 800, 1,200; FA lead time from named event; production lead time split; tooling ownership; tooling/FA timing; MOQ; validity; quote date; quality clause acceptance; exceptions (confirm none)</td></tr></table></details>
+<details><summary>Figures block</summary><p>See <code>out/figures.md</code>. It holds every value on this page, with its filter.</p></details>
+<details><summary>Sources</summary><ul><li>inputs/supplier/BSH-1210_drawing_revA.md: drawing rev A, 2025-06-02</li><li>inputs/supplier/demand.csv: MRP export, 3 rows, rev A</li><li>inputs/supplier/bid_supplier_A.txt: Alder quote Q-A-118, undated</li><li>inputs/supplier/bid_supplier_B.txt: Birch ref BPM-77, undated</li></ul></details>
+</body></html>

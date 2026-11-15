@@ -1,0 +1,53 @@
+{
+ "n_samples": 5,
+ "readings_HRF": [
+  47,
+  49,
+  46,
+  50,
+  48
+ ],
+ "mean_HRF": 48,
+ "min_HRF": 46,
+ "max_HRF": 50,
+ "n_out_of_spec": 5,
+ "spec_HRF": [
+  25,
+  40
+ ],
+ "excess_over_USL_min_max": [
+  6,
+  10
+ ],
+ "mean_minus_USL": 8,
+ "coc_stated_HRF": 32,
+ "mean_minus_coc": 16,
+ "spc_basis": "individuals chart, n=5, one lot (AS-7781); no prior-lot readings in inputs",
+ "moving_ranges": [
+  2,
+  3,
+  4,
+  2
+ ],
+ "MRbar": 2.75,
+ "sigma_hat": 2.438,
+ "CL": 48,
+ "UCL": 55.31,
+ "LCL": 40.69,
+ "points_beyond_control_limits": 0,
+ "run_rule": "7 consecutive points one side of CL: cannot evaluate, n=5 < 7",
+ "LCL_minus_USL": 0.69,
+ "qty_lot": 1000,
+ "qty_issued_line2": 400,
+ "qty_Q1": 600,
+ "reconciles": true,
+ "receipts_listed_from_supplier": 3,
+ "receipts_failed": 1,
+ "suppliers_in_csv": 3,
+ "sintered_bronze_rows": 2,
+ "sintered_bronze_approved": 2,
+ "sintered_bronze_approved_excl_implicated": 1,
+ "suppliers_qualified_on_part": 1,
+ "not_confirmed_approved": 1,
+ "cedar_days_since_audit": 883
+}

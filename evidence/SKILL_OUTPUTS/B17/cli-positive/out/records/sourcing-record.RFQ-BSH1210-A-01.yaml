@@ -1,0 +1,13 @@
+# Sourcing record, RFQ-BSH1210-A-01. NOT STORED to an Open work page (no artifact tools). Paste back next time.
+event_id: SRC-2026-11-15-BSH-1210-A
+trigger: "supplier-caused flag NCR-RCV9921 (approval_state: approved 2026-11-15T18:06:00-05:00 by Test Quality Owner (LEGION WO-LMFG-004 test operator); tester check pending)"
+part: BSH-1210
+revision: "A (drawing title block; confirmed current by document control - Test Quality Owner (LEGION WO-LMFG-004 test operator) - 2026-11-15, no ERP exists)"
+status: drafted_not_released   # Gate 1 approved; revision confirmed by document control; Gate 2 not released
+single_source: "yes: the only qualified supplier for the part is the implicated supplier"
+suppliers:
+  - {supplier: "Birch Powder Metal (fictitious)", approval: approved, status: drafted_held, sent: null, due: null}
+  - {supplier: "Cedar Bearings Inc (fictitious)", approval: not_confirmed_approved, status: drafted_held, sent: null, due: null}
+escape_detected_at: null
+determination_made_at: "2026-11-15T17:59:41-05:00"
+rfq_issued_at: null   # written only when the buyer says the package went out

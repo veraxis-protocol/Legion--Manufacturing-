@@ -1,0 +1,1061 @@
+{
+ "case": "B16",
+ "skill": "inspection-to-capa",
+ "variant": "positive",
+ "started_utc": "2026-11-15T22:47:30Z",
+ "runtime_route": "cli",
+ "cli_auth": {
+  "loggedIn": true,
+  "authMethod": "claude.ai",
+  "apiProvider": "firstParty"
+ },
+ "turns": [
+  {
+   "turn": 1,
+   "from": "task prompt",
+   "exit": 0,
+   "duration_s": 392.7,
+   "result": {
+    "subtype": "success",
+    "is_error": false,
+    "num_turns": 27,
+    "usage": {
+     "input_tokens": 42,
+     "cache_creation_input_tokens": 107680,
+     "cache_read_input_tokens": 1250296,
+     "output_tokens": 42693,
+     "output_tokens_details": {
+      "thinking_tokens": 11299
+     },
+     "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+     },
+     "service_tier": "standard",
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 107680,
+      "ephemeral_5m_input_tokens": 0
+     },
+     "inference_geo": "global",
+     "iterations": [
+      {
+       "input_tokens": 2,
+       "output_tokens": 2824,
+       "cache_read_input_tokens": 111803,
+       "cache_creation_input_tokens": 2894,
+       "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2894
+       },
+       "type": "message"
+      }
+     ],
+     "speed": "standard",
+     "fallback_credit": null
+    }
+   }
+  },
+  {
+   "turn": 2,
+   "from": "test operator (gate decision)",
+   "text": "Test-operator reply (synthetic test, recorded as the gate decision; nothing goes to any customer). Gate 1: the NCR is approved as drafted by \"Test Quality Owner (LEGION WO-LMFG-004 test operator)\"; use NCR number DRAFT-WO-8102-L-0412 and site \"EPW1 (test)\". Continue the chain now: the 8D draft and the customer pack with its redaction diff, held for review (not sent). Same run rules as before; write under ./out.",
+   "exit": 0,
+   "duration_s": 163.0,
+   "result": {
+    "subtype": "success",
+    "is_error": false,
+    "num_turns": 17,
+    "usage": {
+     "input_tokens": 20,
+     "cache_creation_input_tokens": 21290,
+     "cache_read_input_tokens": 1112434,
+     "output_tokens": 17121,
+     "output_tokens_details": {
+      "thinking_tokens": 3033
+     },
+     "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+     },
+     "service_tier": "standard",
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 21290,
+      "ephemeral_5m_input_tokens": 0
+     },
+     "inference_geo": "global",
+     "iterations": [
+      {
+       "input_tokens": 2,
+       "output_tokens": 2479,
+       "cache_read_input_tokens": 134891,
+       "cache_creation_input_tokens": 1096,
+       "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1096
+       },
+       "type": "message"
+      }
+     ],
+     "speed": "standard",
+     "fallback_credit": null
+    }
+   }
+  }
+ ],
+ "plugin_discovery": {
+  "plugins": [
+   "claude-for-manufacturing",
+   "cc-plugin-agents-md",
+   "cc-plugin-telemetry",
+   "cc-plugin-privacy",
+   "cc-plugin-plugin-authoring"
+  ],
+  "manufacturing_skills_listed": 17,
+  "skills_listed": [
+   "claude-for-manufacturing:breakdown-diagnosis",
+   "claude-for-manufacturing:breakdown-to-next-report",
+   "claude-for-manufacturing:custom-connector",
+   "claude-for-manufacturing:customer-inquiry-intake",
+   "claude-for-manufacturing:daily-production-report",
+   "claude-for-manufacturing:data-consolidate",
+   "claude-for-manufacturing:design-space-explore",
+   "claude-for-manufacturing:inspection-to-capa",
+   "claude-for-manufacturing:morning-plant-pulse",
+   "claude-for-manufacturing:ncr-writeup",
+   "claude-for-manufacturing:onboarding",
+   "claude-for-manufacturing:quote-build",
+   "claude-for-manufacturing:rfq-to-quote",
+   "claude-for-manufacturing:root-cause-capa",
+   "claude-for-manufacturing:supplier-escape-to-alternate-source",
+   "claude-for-manufacturing:supplier-quote-request",
+   "claude-for-manufacturing:trade-study-report"
+  ]
+ },
+ "task_prompt": "Run the quality chain on this morning's MB-1880 bore finding: NCR, history check, root cause, 8D and the customer pack. Everything in ./inputs/quality. Nothing goes to the customer.\n\nThe input files are in ./inputs (all of them are SYNTHETIC test data for a fictitious plant). Write every work product you produce as files under ./out. Do not contact, email or write to any external system; there is no live ERP, Microsoft 365, CMMS or supplier available in this session.",
+ "inputs": [
+  {
+   "path": "inputs/quality/finding.txt",
+   "source": "tests/runtime/inputs/quality/finding.txt",
+   "sha256": "70b00e96c426176a6080d9c7fcf3cecc475bcf026eac5268da050a22929652f1",
+   "bytes": 571
+  },
+  {
+   "path": "inputs/quality/inspection_measurements.csv",
+   "source": "tests/runtime/inputs/quality/inspection_measurements.csv",
+   "sha256": "4b12420dc9040798a5e6a5a23f7fec58444e83efe46563973d457151874f25c1",
+   "bytes": 1072
+  },
+  {
+   "path": "inputs/quality/maintenance_log.csv",
+   "source": "tests/runtime/inputs/quality/maintenance_log.csv",
+   "sha256": "1df793ea5ae7cb4961e374a405b85b9de6bda9918365cbe98ab863c2648c5944",
+   "bytes": 332
+  },
+  {
+   "path": "inputs/quality/MB-1880_drawing_revB_notes.md",
+   "source": "tests/runtime/inputs/quality/MB-1880_drawing_revB_notes.md",
+   "sha256": "7fb4a3aa73364ad8647043b72c0f113d868adcbfcbab8bcaa640bfc8379c8dc8",
+   "bytes": 364
+  },
+  {
+   "path": "inputs/quality/prior_ncrs.csv",
+   "source": "tests/runtime/inputs/quality/prior_ncrs.csv",
+   "sha256": "10d492855334cb73d79d22c9cd321ea5516e11cdfb771229c8f0d56879bd6cc1",
+   "bytes": 439
+  }
+ ],
+ "cli_exit": 0,
+ "duration_s": 555.8,
+ "runtime": {
+  "model": "claude-opus-5-5",
+  "claude_code_version": "2.1.325",
+  "permission_mode": "dontAsk",
+  "tools": [
+   "Bash",
+   "Edit",
+   "Glob",
+   "Grep",
+   "Read",
+   "Skill",
+   "Write"
+  ],
+  "plugins": [
+   {
+    "name": "claude-for-manufacturing",
+    "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\plugin",
+    "source": "claude-for-manufacturing@inline",
+    "version": "1.0.0"
+   },
+   {
+    "name": "cc-plugin-agents-md",
+    "path": "builtin",
+    "source": "cc-plugin-agents-md@builtin"
+   },
+   {
+    "name": "cc-plugin-telemetry",
+    "path": "builtin",
+    "source": "cc-plugin-telemetry@builtin"
+   },
+   {
+    "name": "cc-plugin-privacy",
+    "path": "builtin",
+    "source": "cc-plugin-privacy@builtin"
+   },
+   {
+    "name": "cc-plugin-plugin-authoring",
+    "path": "builtin",
+    "source": "cc-plugin-plugin-authoring@builtin"
+   }
+  ],
+  "skills": [
+   "claude-for-manufacturing:breakdown-diagnosis",
+   "claude-for-manufacturing:breakdown-to-next-report",
+   "claude-for-manufacturing:custom-connector",
+   "claude-for-manufacturing:customer-inquiry-intake",
+   "claude-for-manufacturing:daily-production-report",
+   "claude-for-manufacturing:data-consolidate",
+   "claude-for-manufacturing:design-space-explore",
+   "claude-for-manufacturing:inspection-to-capa",
+   "claude-for-manufacturing:morning-plant-pulse",
+   "claude-for-manufacturing:ncr-writeup",
+   "claude-for-manufacturing:onboarding",
+   "claude-for-manufacturing:quote-build",
+   "claude-for-manufacturing:rfq-to-quote",
+   "claude-for-manufacturing:root-cause-capa",
+   "claude-for-manufacturing:supplier-escape-to-alternate-source",
+   "claude-for-manufacturing:supplier-quote-request",
+   "claude-for-manufacturing:trade-study-report",
+   "design",
+   "design-sync",
+   "dataviz",
+   "update-config",
+   "verify",
+   "debug",
+   "code-review",
+   "simplify",
+   "batch",
+   "fewer-permission-prompts",
+   "doctor",
+   "loop",
+   "schedule",
+   "claude-api",
+   "run",
+   "run-skill-generator",
+   "plugin-authoring"
+  ],
+  "mcp_servers": [],
+  "session_id": "c634f32a-3a4a-4b44-8254-a10da4cd6fd8"
+ },
+ "skills_invoked": [
+  "claude-for-manufacturing:inspection-to-capa"
+ ],
+ "skill_files_read": [
+  "ncr-writeup/SKILL.md",
+  "root-cause-capa/SKILL.md"
+ ],
+ "tool_calls": [
+  {
+   "tool": "Skill",
+   "input": {
+    "skill": "claude-for-manufacturing:inspection-to-capa",
+    "args": "MB-1880 bore finding from this morning. Inputs in ./inputs/quality. Write all outputs under ./out. Nothing goes to the customer; no external systems."
+   },
+   "response": "Launching skill: claude-for-manufacturing:inspection-to-capa",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B16-positive-98uba09f\"; find work/inputs -type f | head -100; echo; ls plugin/shared plugin/shared/contracts plugin/skills/ncr-writeup plugin/skills/root-cause-capa",
+    "description": "List input files and plugin references"
+   },
+   "response": "work/inputs/quality/finding.txt\nwork/inputs/quality/inspection_measurements.csv\nwork/inputs/quality/maintenance_log.csv\nwork/inputs/quality/MB-1880_drawing_revB_notes.md\nwork/inputs/quality/prior_ncrs.csv\n\nplugin/shared:\nabsent-is-not-zero.md\napproval-gates.md\nartifact-style.md\ncommand-center.md\ncomputed-figures.md\ncontracts\nerp-connectors.md\nlive-dashboard.md\nreplies.md\nscheduling.md\nscripts\nsecret-config.md\n\nplugin/shared/contracts:\nREADME.md\nconsolidated-dataset.md\ndowntime-record.md\nfloor-layout.md\ngeometry-estimate.md\nintake-form.md\nncr.md\npulse-day-record.md\nquality-register-record.md\nsupplier-bid.md\nsupplier-caused-flag.md\nvariant-manifest.md\n\nplugin/skills/ncr-writeup:\nSKILL.md\nreference\n\nplugin/skills/root-cause-capa:\nSKILL.md\nreference\nShell cwd was reset to C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd inputs/quality; for f in *; do echo \"=== $f\"; cat \"$f\"; echo; done",
+    "description": "Print all quality input files"
+   },
+   "response": "=== MB-1880_drawing_revB_notes.md\n<!-- SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data. -->\n# MB-1880 drawing revision B - notes page (sheet 2)\n1. Material 6061-T6. 2. Break edges 0.2-0.5. 3. General tolerance ISO 2768-m.\n4. Bore A: dia 22.000 +0.021/-0.000, Ra 1.6. 5. Anodize Type II black after machining; bore masked.\n\n=== finding.txt\n# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.\n2026-11-11 10:05, final inspection, inspector J. Ortiz: MB-1880 rev B, work order WO-8102, lot L-0412.\nMain bore measured 22.034, 22.031, 22.029 mm on 3 of 5 sampled parts (spec on drawing MB-1880 rev B, note 4: dia 22.000 +0.021/-0.000).\nParts made on VMC-03 2nd shift 2026-11-10. Lot size 300; 120 still at VMC-03 queue, 150 in finished goods FG-2 rack 14, 30 already shipped to Northwind Robotics on 2026-11-11 08:00 (packing slip PS-5521).\n\n=== inspection_measurements.csv\n# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.\ntimestamp,lot,work_order,machine,shift,operator,tool_id,tool_change_since_last,part_seq,bore_dia_mm\n2026-11-09T07:10:00-05:00,L-0409,WO-8099,VMC-03,1,OP-11,T7-0031,yes,1,22.008\n2026-11-09T09:40:00-05:00,L-0409,WO-8099,VMC-03,1,OP-11,T7-0031,no,40,22.010\n2026-11-09T12:15:00-05:00,L-0409,WO-8099,VMC-03,1,OP-11,T7-0031,no,80,22.012\n2026-11-09T15:30:00-05:00,L-0410,WO-8100,VMC-03,2,OP-23,T7-0031,no,1,22.013\n2026-11-09T19:45:00-05:00,L-0410,WO-8100,VMC-03,2,OP-23,T7-0031,no,60,22.016\n2026-11-10T07:20:00-05:00,L-0411,WO-8101,VMC-03,1,OP-11,T7-0031,no,1,22.017\n2026-11-10T11:05:00-05:00,L-0411,WO-8101,VMC-03,1,OP-11,T7-0031,no,70,22.019\n2026-11-10T15:10:00-05:00,L-0412,WO-8102,VMC-03,2,OP-23,T7-0031,no,1,22.022\n2026-11-10T18:30:00-05:00,L-0412,WO-8102,VMC-03,2,OP-23,T7-0031,no,90,22.029\n2026-11-10T21:50:00-05:00,L-0412,WO-8102,VMC-03,2,OP-23,T7-0031,no,180,22.034\n2026-11-11T07:05:00-05:00,L-0413,WO-8103,VMC-03,1,OP-11,T7-0032,yes,1,22.007\n\n=== maintenance_log.csv\n# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.\ntimestamp,asset_id,event\n2026-11-08T16:00:00-05:00,VMC-03,coolant concentration adjusted 6% -> 8%\n2026-11-11T06:40:00-05:00,VMC-03,boring head T7 insert replaced (T7-0031 -> T7-0032) after inspection hold\n\n=== prior_ncrs.csv\n# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.\nncr,date,part,defect,cause,capa,capa_effective\nNCR-0219,2026-04-14,MB-1880,bore oversize 22.026,boring insert wear beyond 900 parts,CAPA-071 insert change every 600 parts,not verified\nNCR-0244,2026-08-02,MB-1500,slot width undersize,wrong offset after tool change,CAPA-080 offset check sheet,verified 2026-09-01",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B16-positive-98uba09f/plugin\"; cat skills/ncr-writeup/SKILL.md; ls skills/ncr-writeup/reference skills/root-cause-capa/reference",
+    "description": "Read ncr-writeup skill"
+   },
+   "response": "---\nname: ncr-writeup\ndescription: \"Writes the nonconformance report: what was found and measured, the specific requirement it violates cited to its document and locator, how many parts are actually suspect and why that scope rather than a narrower one, and where every one of them physically is across all five locations. Searches prior NCRs and CAPAs at the moment of writing and reports whether the earlier fix held. Where containment places parts at a customer, drafts the escape notification automatically against its contractual clock. Never asserts a requirement it cannot locate. Keeps the site's Quality Register of open NCRs up to date, and closes an NCR there when told to. Use when someone says \\\"write up this nonconformance,\\\" \\\"we found bad parts,\\\" \\\"raise an NCR,\\\" \\\"the inspector rejected this lot,\\\" \\\"a customer is complaining about a part,\\\" or \\\"close NCR-2026-0141.\\\"\"\ncompatibility: \"Requires none. Reads the consolidated dataset for work orders, lots and on-hand inventory by location; the ERP (Oracle NetSuite or Infor M3) for shipments, which the workbook never carries; and Microsoft 365 for drawings, specs and the quality document library. Runs on pasted findings, inspection exports and uploaded drawings with no connector. The NCR uses the plant's or the customer's controlled template, never the house style.\"\n---\n\n# NCR Writeup\n\nThe formal record that something did not meet its requirement, written by\nwhoever found it — an inspector, an operator, a customer complaint landing in\nsomebody's inbox.\n\n**It has to answer four questions**, and the skill is built around them in\norder, because each one depends on the last:\n\n1. **What was found** — the observed condition, measured where possible.\n   \"Hole diameter 0.512 in,\" not \"hole too big.\"\n2. **Against which requirement** — cited to a document and a locator.\n3. **How many parts** — rarely just the one somebody found.\n4. **Where they physically are** — which is containment.\n\n**Quick start**\n\n```\n→ Capture the finding, structured: part, WO, lot, operation, condition, who, when\n→ Cite the requirement. Cannot locate one? Flag blocking. Never invent one\n→ Scope the suspect quantity, and show the reasoning behind the scope\n→ Locate the parts across all five locations\n→ Recommend containment per location, ordered by urgency\n→ Search history NOW: prior NCRs and CAPAs, and whether the fix held\n→ Parts at a customer? Draft the escape notification against its clock\n→ Write the register row, keyed <site>_<ncr_ref>, and update the Quality Register\n→ \"Close NCR-…\"? The user's decision: set the row closed and republish\n```\n\n---\n\n## Inputs\n\n**First, find the plant setup:** from the task's own folder (never `cd` into the plugin), run\n`python3 -I <this skill's folder>/../../shared/scripts/plant_setup.py find`, do its `setup_page_first` step, then read the profile at\n`profile_path` and any rate at `rates_path`, per `../../shared/replies.md`.\n\n| Input | Source | Form |\n|---|---|---|\n| The finding | Inspector notes, operator report, customer complaint email | Conversation, M365 mail, pasted text |\n| Inspection measurements | Quality system export to the M365 folder | CSV/XLSX |\n| The requirement | Drawing, spec, standard clause, customer PO flow-down | M365 documents |\n| Work order, lot, quantity produced | `data-consolidate` workbook, then the ERP | `../../shared/contracts/consolidated-dataset.md` |\n| Where the parts are, on-hand | `inventory` tab — one row per part per location | Same workbook |\n| Where the parts are, shipped | ERP shipment records. Infor M3 delivery lines carry no lot (`../../shared/erp-connectors.md`): they give candidate shipments by part and date, each unverified until confirmed | Connector |\n| Prior NCRs and CAPAs | M365 quality document library | Documents |\n| The plant's NCR template | `## Plant context`, captured during `onboarding` | Template |\n\n**The inspection measurements come from the quality export rather than the\nworkbook**, because an NCR quotes the condition as measured — \"hole diameter\n0.512 in\" — and that is the value the gage wrote, not the normalized one.\nEverything about *identity* still comes from the dataset: which work order,\nwhich lot, where the parts are. See *What this dataset is authoritative for* in\n`../../shared/contracts/consolidated-dataset.md`.\n\nRead the plant's vocabulary, sites, standards and template location from the\n`## Plant context` block. A plant that says \"traveler\" gets an NCR that says\ntraveler.\n\n---\n\n## Workflow\n\n### Step 1 — Capture the finding, structured\n\nPart and revision, production work order, lot, the operation it was found at,\nquantity found, the measured or observed condition, who found it, and when with\nits timezone.\n\nTake the measurement as recorded, with its gage. A characteristic measured on a\ngage whose calibration has lapsed is a finding of its own — check the date if\none is available.\n\n### Step 2 — Cite the requirement\n\nLocate the drawing, spec or clause and cite the **document, the locator inside\nit, the characteristic, and the stated value.** Cite it at the revision the part\nwas actually built to, not the current one.\n\n**If the requirement cannot be located, flag the NCR as blocking and say what\nwas searched.** Never assert one. Read `reference/requirement-citation.md` —\nthis is the field the whole chain gates on, and blocking here is a normal,\ncorrect outcome.\n\n### Step 3 — Scope the affected quantity\n\nFrom the work order quantity, the lot, and the production window. Reason\nexplicitly from the suspected mechanism outward, and **state the assumption**.\n\nWhere traceability is incomplete, the scope widens and says why. Never narrow it\nto make the number look better. **Where the widened number is still only what\ncan be counted, it is a floor**: set `qty_suspect_is_minimum` and write *at\nleast 660* everywhere it is printed. Where the source records no count of parts\nfound, `qty_found` is null with `qty_found_reason`, never a number filled in.\nRead `reference/scope-and-cont...[truncated]",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B16-positive-98uba09f/plugin\"; cat skills/root-cause-capa/SKILL.md",
+    "description": "Read root-cause-capa skill"
+   },
+   "response": "---\nname: root-cause-capa\ndescription: \"Reads sensor history, inspection measurements, maintenance records and prior tickets onto one verified timeline, runs the pattern checks in code rather than by eye — SPC drift, clustering by lot, shift, operator, machine and tool change, correlation with a maintenance event — then proposes ranked candidate causal chains, each with the evidence for it, the evidence against it, and the test that would confirm or kill it. Drafts the 8D. Where the leading candidate points at purchased material, raises the supplier-caused flag that starts a sourcing action. Use when someone says \\\"why did this happen,\\\" \\\"root cause,\\\" \\\"write the 8D,\\\" \\\"investigate this nonconformance,\\\" \\\"CAPA,\\\" or \\\"the customer wants a corrective action report.\\\"\"\ncompatibility: \"Requires none. Reads the consolidated dataset, historian and inspection exports from Microsoft 365, the ERP (Oracle NetSuite or Infor M3) for lots and material receipts, and maintenance history via data-consolidate. Runs on exports alone with no connector. Never correlates across sources whose clocks it could not align. Never produces a single unqualified verdict.\"\n---\n\n# Root Cause and CAPA\n\nThe step between \"we found a bad part\" and \"we fixed the reason.\" It is slow,\nexpert work, and the reason it is slow is that the evidence sits in four systems\nthat nobody looks at together.\n\n**Two rules govern everything below, and they are the whole character of the\nskill:**\n\n**Compute, do not eyeball.** Control limits, run rules and group comparisons are\ncalculated in code and the skill interprets the computed result. A claim that a\nprocess \"was drifting,\" asserted from looking at a data file, is the first thing\na quality manager will test and the fastest way to lose the room.\n\n**Rank, do not conclude.** The output is candidate causal chains with supporting\n*and contradicting* evidence. A confident wrong root cause is worse than a\nranked list, because it closes the investigation and the fix fails.\n\n**Quick start**\n\n```\n→ Assemble the evidence window; VERIFY time alignment first\n→ Misaligned? Refuse to correlate. Say which conclusions still survive\n→ Run the computed checks: SPC drift, clustering, maintenance correlation, recurrence\n→ Build candidate chains, each link carrying its own evidence for and against\n→ Rank by evidential strength; name what would confirm and what would kill each\n→ Draft the 8D: D1-D5 and D7 populated, D6 and D8 left as placeholders\n→ Material implicated? Raise the supplier-caused flag for Chain 5\n→ Customer pack: redact as a reviewable diff, approved before anything leaves\n```\n\n---\n\n## Inputs\n\n**First, find the plant setup:** from the task's own folder (never `cd` into the plugin), run\n`python3 -I <this skill's folder>/../../shared/scripts/plant_setup.py find`, do its `setup_page_first` step, then read the profile at\n`profile_path` and any rate at `rates_path`, per `../../shared/replies.md`.\n\n| Input | Source | Form |\n|---|---|---|\n| The NCR | `ncr-writeup` | `../../shared/contracts/ncr.md` |\n| Sensor and process history for the window | Historian export to M365 | CSV |\n| Inspection measurements across the run | Quality system export to M365 | CSV/XLSX |\n| Prior NCRs and CAPAs | M365 quality library | Documents |\n| Maintenance history on the asset | CMMS, via `data-consolidate`'s consolidated dataset | Structured — connector-sourced when a CMMS connector is live, export-sourced otherwise |\n| Work order, lot, material receipts | The ERP. Infor M3 receipts carry no lot (`../../shared/erp-connectors.md`): the lot-to-receipt link is asked, and unverified until confirmed | Connector |\n| Supplier and PO for the material lot | The ERP | Connector |\n| Process documents and work instructions | M365 | Documents |\n| Source clocks, shift boundary, skew self-check | `## Plant context` | Config |\n\n**Two of these are read raw rather than from the consolidated dataset, and\nthat is deliberate.** The historian export because no workbook tab carries a\nhigh-frequency sensor trace, and the inspection export because a computed\ncontrol chart needs the measurement as the gage wrote it, not as the ladder\nnormalized it. On identity — which lot, which work order — the dataset still\nwins. Read *What this dataset is authoritative for* in\n`../../shared/contracts/consolidated-dataset.md`.\n\n**An NCR with no cited requirement blocks the 8D, the customer pack and the\ndiff**, with a pointer back to `ncr-writeup`. Nonconformance is always against\na requirement. The investigation itself proceeds as a draft, per Step 5: ranked\ncandidates and an evidence appendix, labelled draft and blocked from the 8D.\n\n**Carry the NCR's open questions forward, never close them by omission.** A\nscope with `qty_suspect_is_minimum` is printed *at least N* in D2 and in the\ncustomer pack; an `escape_possible` NCR keeps its shipment check open in D3; a\nnull `qty_found` stays null with its reason.\n\n---\n\n## Workflow\n\n### Step 1 — Assemble the evidence window, and verify the clocks\n\nAlign sensor, inspection, production and maintenance data onto one zone-aware\ntimeline around the event.\n\n**This is most of the work and the highest-risk step in the skill.** Different\nsystems record time differently, some in plant local and some in UTC, some\nzone-naive. Read the per-source clocks and the measured skew from the\n`## Plant context` block rather than assuming, then confirm against an event\nvisible in two sources.\n\n**Where alignment cannot be verified, refuse to correlate** and say which\nconclusions survive anyway — lot clustering, for instance, does not depend on\nthe clocks. Read `reference/time-alignment.md`.\n\n**A join is a join only when the data carries it.** A work order is on the\ntimeline as a *data join* when a record ties it to the lot, the part or the\nevent — a lot number on its row, a receipt against it. A work order the NCR's\nfree text names, with no such record, is on the timeline **labelled \"per NCR\ntext, not a data join\"**, and every conclusion re...[truncated]",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B16-positive-98uba09f/plugin\"; for f in skills/ncr-writeup/reference/*.md skills/root-cause-capa/reference/*.md; do echo \"=== $f\"; cat \"$f\"; done",
+    "description": "Read skill reference docs"
+   },
+   "response": "<persisted-output>\nOutput too large (31.8KB). Full output saved to: C:\\Users\\Administrator\\.claude\\projects\\C--Users-Administrator-AppData-Local-Temp-lmfg-B16-positive-98uba09f-work\\c634f32a-3a4a-4b44-8254-a10da4cd6fd8\\tool-results\\bk98bca2v.txt\n\nPreview (first 2KB):\n=== skills/ncr-writeup/reference/recurrence-and-escape.md\n# Recurrence and escape\n\nTwo steps that both exist because of the same problem: they are things everyone\nagrees should happen, and they do not happen, because the moment they need to\nhappen is the moment everybody is busy.\n\n---\n\n## Recurrence — searched at creation, not on request\n\n**The search runs automatically when the NCR is written.** Not when somebody\nthinks to ask for it. The moment of detection is the only moment anyone is\nlooking at this part and this defect, and if the question is not answered then,\nit is not answered at all.\n\n### Search four ways\n\n| Search | Finds |\n|---|---|\n| Same part number | Has this part done this before |\n| Same defect on any part | A process problem wearing a different part number |\n| Same process, operation or cell | A machine or a setup that keeps producing this |\n| Same supplier or material lot | The signal that routes into Chain 5 |\n\nSearch prior NCRs and closed CAPAs in the plant's quality document library.\n\n### The highest-value line in the whole chain\n\nFor any match, report **whether the earlier corrective action held.**\n\nA recurrence after a closed CAPA is a materially more serious finding than a\nfirst occurrence. It says the fix did not work, or was never really implemented,\nor addressed a symptom. It changes what happens next, it changes who needs to\nknow, and in an audit it is the difference between a minor observation and a\nsystemic finding.\n\nThree distinct outcomes, and they must not be collapsed:\n\n- `first_occurrence` — searched, nothing found\n- `recurrence_prior_capa_held` — it happened before, the fix worked, this is\n  something new\n- `recurrence_prior_capa_failed` — it happened before, the fix did not hold\n\n### \"No searchable history\" is its own answer\n\n`no_searchable_history` is a separate value from `first_occurrence` on purpose.\n\nIf there is no quality document library, or it holds nothing for this part, say\n...\n</persisted-output>",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\.claude\\projects\\C--Users-Administrator-AppData-Local-Temp-lmfg-B16-positive-98uba09f-work\\c634f32a-3a4a-4b44-8254-a10da4cd6fd8\\tool-results\\bk98bca2v.txt"
+   },
+   "response": "1\t=== skills/ncr-writeup/reference/recurrence-and-escape.md\n2\t# Recurrence and escape\n3\t\n4\tTwo steps that both exist because of the same problem: they are things everyone\n5\tagrees should happen, and they do not happen, because the moment they need to\n6\thappen is the moment everybody is busy.\n7\t\n8\t---\n9\t\n10\t## Recurrence — searched at creation, not on request\n11\t\n12\t**The search runs automatically when the NCR is written.** Not when somebody\n13\tthinks to ask for it. The moment of detection is the only moment anyone is\n14\tlooking at this part and this defect, and if the question is not answered then,\n15\tit is not answered at all.\n16\t\n17\t### Search four ways\n18\t\n19\t| Search | Finds |\n20\t|---|---|\n21\t| Same part number | Has this part done this before |\n22\t| Same defect on any part | A process problem wearing a different part number |\n23\t| Same process, operation or cell | A machine or a setup that keeps producing this |\n24\t| Same supplier or material lot | The signal that routes into Chain 5 |\n25\t\n26\tSearch prior NCRs and closed CAPAs in the plant's quality document library.\n27\t\n28\t### The highest-value line in the whole chain\n29\t\n30\tFor any match, report **whether the earlier corrective action held.**\n31\t\n32\tA recurrence after a closed CAPA is a materially more serious finding than a\n33\tfirst occurrence. It says the fix did not work, or was never really implemented,\n34\tor addressed a symptom. It changes what happens next, it changes who needs to\n35\tknow, and in an audit it is the difference between a minor observation and a\n36\tsystemic finding.\n37\t\n38\tThree distinct outcomes, and they must not be collapsed:\n39\t\n40\t- `first_occurrence` — searched, nothing found\n41\t- `recurrence_prior_capa_held` — it happened before, the fix worked, this is\n42\t  something new\n43\t- `recurrence_prior_capa_failed` — it happened before, the fix did not hold\n44\t\n45\t### \"No searchable history\" is its own answer\n46\t\n47\t`no_searchable_history` is a separate value from `first_occurrence` on purpose.\n48\t\n49\tIf there is no quality document library, or it holds nothing for this part, say\n50\t**\"no searchable history available.\"** Never say nothing — per\n51\t`../../../shared/absent-is-not-zero.md`, silence reads as \"no recurrence,\" which\n52\tis a far stronger claim than the evidence supports and exactly the wrong thing to\n53\ttell a quality manager.\n54\t\n55\t---\n56\t\n57\t## Escape — the clock starts without you\n58\t\n59\t**An escape is a nonconforming part that reached a customer.** It is triggered\n60\tthe moment containment places any suspect quantity at `at_customer` or\n61\t`installed_at_customer`.\n62\t\n63\tThat usually starts a contractual notification window — often 24 to 48 hours in\n64\tautomotive and aerospace. **Missing that window is a bigger problem than the\n65\tdefect itself.** A defect is a quality event. A missed notification is a breach,\n66\tand it is the thing that costs an approved-supplier status.\n67\t\n68\t### Chained straight off containment\n69\t\n70\tThe notification draft is produced **automatically**, as the immediate next\n71\toutput after containment finds parts at a customer. Nobody has to remember it,\n72\tunder time pressure, against a clock they are not watching.\n73\t\n74\tThis is the single most valuable piece of automation in the skill, and it is\n75\tvaluable precisely because it is boring.\n76\t\n77\t### What the draft contains\n78\t\n79\t- Part, revision, quantity shipped and the shipments involved\n80\t- What the nonconformance is, in plain terms, against the cited requirement\n81\t- What we are asking the customer to do — usually quarantine the receipt and\n82\t  confirm whether any have been installed or shipped on\n83\t- What we are doing about it and when they will hear next\n84\t- The NCR reference\n85\t\n86\t### The clock, stated\n87\t\n88\tRecord `notification_deadline` as a **timestamp with its zone**, computed from\n89\t`found_at` plus the contractual window, and put it at the top of the draft.\n90\t\n91\tWhere the contractual window is not known, say so and do not guess one — an\n92\tinvented 48 hours that is really 24 is worse than an open question. Ask where the\n93\tcustomer's terms are recorded.\n94\t\n95\t### It still does not send\n96\t\n97\tThe draft is a draft. Nothing customer-facing leaves without a quality owner\n98\tapproving it — this is the Chain 2 and Chain 5 approval gate, and an escape\n99\tnotification is the most consequential thing this plugin will ever put in front\n100\tof a person. Speed is the point; unattended sending is not.\n101\t=== skills/ncr-writeup/reference/requirement-citation.md\n102\t# Citing the requirement — the field the whole chain gates on\n103\t\n104\t**Nonconformance is always against a specific requirement, never just \"it looked\n105\twrong.\"** An NCR without a cited requirement is not an NCR, and\n106\t`root-cause-capa` blocks on one with a pointer back here.\n107\t\n108\tThis is the single most common way a nonconformance record is written badly, and\n109\tit is worth being strict about, because a quality manager reads the citation\n110\tbefore they read anything else.\n111\t\n112\t---\n113\t\n114\t## What counts as a requirement\n115\t\n116\tA requirement is **stated, measurable, and locatable in a document.** Four\n117\tsources, roughly in order of how often they are the right one:\n118\t\n119\t| Source | Where it lives | The locator you need |\n120\t|---|---|---|\n121\t| Customer drawing | M365 document library | Page, view or datum, and the feature |\n122\t| Internal specification | M365 controlled documents | Section number |\n123\t| Standard clause | The standards the plant is certified to, captured in `## Plant context` | Clause number, e.g. AS9100 8.5.1 |\n124\t| Customer purchase-order requirement | The ERP, or the PO document | The flowed-down line |\n125\t\n126\tEach one produces four things: **the document, the locator inside it, the\n127\tcharacteristic, and the stated value.** A citation missing the locator is not\n128\tusable — \"it's on the drawing somewhere\" sends the next person back to do the\n129\twork again.\n130\t\n131\t---\n132\t\n133\t## Get the revision rig...[truncated]",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B16-positive-98uba09f/plugin/shared\"; cat replies.md computed-figures.md approval-gates.md contracts/ncr.md; ls scripts",
+    "description": "Read shared rules and NCR contract"
+   },
+   "response": "<persisted-output>\nOutput too large (41.3KB). Full output saved to: C:\\Users\\Administrator\\.claude\\projects\\C--Users-Administrator-AppData-Local-Temp-lmfg-B16-positive-98uba09f-work\\c634f32a-3a4a-4b44-8254-a10da4cd6fd8\\tool-results\\b9pay6lhs.txt\n\nPreview (first 2KB):\n# What a reply holds — documents, records, memory and names\n\n**Shared across every skill.** Four rules about what goes in front of the\nperson and where things are kept.\n\n---\n\n## Documents are printed in full; records are summarised\n\nA **document** is what a person reads, signs or sends: the quote, the cost\nsheet, the NCR, the 8D, the RFQ package, an email draft, the morning report,\nthe intake form. **It is printed in the reply, in full.** Saving a copy to a\nfile as well is fine; a file *instead of* the reply is not. The person reads\nthe reply, and every delimited block and outbound check lives in it.\n\n### Reports are the exception: a short reply when the page was written\n\nThe morning report, the Operations page and the supplier bid comparison are\nread on a page, not in the chat. For\nthe bid comparison the headline is the provisional recommendation and its main\ntradeoff, the exceptions are the requirements still open before an award, and\nthe decision waiting is the next-step question. **When this run wrote the full page\nsomewhere the person can open** (a publish returned its URL, or the page was\nsaved as an HTML file and the reply names the file), the reply is a summary\nof about 150 words. **200 words is a hard limit: count before sending.** Each\nitem below is one sentence; an exception or a decision is the thing and its\nnumber, with the explanation left on the page.\n\n1. Safety first, one line per item: a safety-flagged record, a record under\n   *\"Blocked — safety status unknown\"*, or *\"Safety status: not assessed\"*.\n2. The site, the production day, and the freshness state in one line: data\n   complete, or the gap.\n3. The headline: good output against plan, and OEE or why it is not computed.\n4. Up to three exceptions, one line each.\n5. The decisions waiting today, or *\"No decisions waiting today.\"*\n6. Where the full page is: the URL or the file path.\n\nNo tables, logs or methods in the summary; they are on the page. Every\n...\n</persisted-output>",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\.claude\\projects\\C--Users-Administrator-AppData-Local-Temp-lmfg-B16-positive-98uba09f-work\\c634f32a-3a4a-4b44-8254-a10da4cd6fd8\\tool-results\\b9pay6lhs.txt"
+   },
+   "response": "1\t# What a reply holds — documents, records, memory and names\n2\t\n3\t**Shared across every skill.** Four rules about what goes in front of the\n4\tperson and where things are kept.\n5\t\n6\t---\n7\t\n8\t## Documents are printed in full; records are summarised\n9\t\n10\tA **document** is what a person reads, signs or sends: the quote, the cost\n11\tsheet, the NCR, the 8D, the RFQ package, an email draft, the morning report,\n12\tthe intake form. **It is printed in the reply, in full.** Saving a copy to a\n13\tfile as well is fine; a file *instead of* the reply is not. The person reads\n14\tthe reply, and every delimited block and outbound check lives in it.\n15\t\n16\t### Reports are the exception: a short reply when the page was written\n17\t\n18\tThe morning report, the Operations page and the supplier bid comparison are\n19\tread on a page, not in the chat. For\n20\tthe bid comparison the headline is the provisional recommendation and its main\n21\ttradeoff, the exceptions are the requirements still open before an award, and\n22\tthe decision waiting is the next-step question. **When this run wrote the full page\n23\tsomewhere the person can open** (a publish returned its URL, or the page was\n24\tsaved as an HTML file and the reply names the file), the reply is a summary\n25\tof about 150 words. **200 words is a hard limit: count before sending.** Each\n26\titem below is one sentence; an exception or a decision is the thing and its\n27\tnumber, with the explanation left on the page.\n28\t\n29\t1. Safety first, one line per item: a safety-flagged record, a record under\n30\t   *\"Blocked — safety status unknown\"*, or *\"Safety status: not assessed\"*.\n31\t2. The site, the production day, and the freshness state in one line: data\n32\t   complete, or the gap.\n33\t3. The headline: good output against plan, and OEE or why it is not computed.\n34\t4. Up to three exceptions, one line each.\n35\t5. The decisions waiting today, or *\"No decisions waiting today.\"*\n36\t6. Where the full page is: the URL or the file path.\n37\t\n38\tNo tables, logs or methods in the summary; they are on the page. Every\n39\tnumber in the summary is one the page prints. **This is for the whole\n40\treport only.** A request that picks sections or skips some (\"freshness and\n41\tthe rankings, skip OEE this time\"), a question, a record the person asked to\n42\tsee, or text to paste is answered in the reply in full, in report order, as\n43\talways; the page may still be saved as well. **When nothing could be written**\n44\t(no file writer and no publish), the page is printed in the reply in full, as\n45\tabove. Where a skill offers \"the page in the conversation\", a saved file named\n46\tin the reply is that offer. Documents someone signs or sends (quotes, NCRs,\n47\t8Ds, RFQ packages, email drafts) are always printed in full.\n48\t\n49\t### Saved copies: Word for documents, Excel for tables, never .txt\n50\t\n51\tWhen a document is also saved as a file, and it should be wherever the person\n52\tdownloads from a file card (Cowork), the file is one a plant opens without\n53\tthinking about it:\n54\t\n55\t| What it is | File |\n56\t|---|---|\n57\t| A controlled document: customer quote, supplier RFQ package, NCR, escape notification, 8D, trade study memo | `.docx` |\n58\t| A table someone works in: internal cost sheet, bid comparison, ranked candidates, scrap or downtime lists | `.xlsx` |\n59\t| A report or dashboard | the HTML page, per `artifact-style.md` |\n60\t| A record (contract payload, day record, register row) | its contract's format, as below |\n61\t\n62\t**Never `.txt` or `.md` for a document.** A plain-text quote reads as a draft\n63\tnobody finished, and it is what a person gets when no format is named.\n64\t\n65\t- **How.** Use the session's Word or Excel skill where there is one (Cowork\n66\t  has both); else `python-docx` or `openpyxl` where already installed. Never\n67\t  install a package for it and never hand-build the file's XML: a file Word\n68\t  cannot open is worse than none. With no writer, write no file and say so in\n69\t  one line: *\"No Word copy this session: no Word writer available.\"* The\n70\t  reply already holds the document.\n71\t- **The plant's template.** A controlled document keeps the structure\n72\t  `onboarding` captured. Where that example is a `.docx` in the documents\n73\t  folder, start the Word copy from that file; otherwise use a plain layout\n74\t  and keep the *template not on file* flag the document already carries.\n75\t- **What goes in which file.** The customer's file holds only what the\n76\t  sendable block holds. Internal figures (hours, rates, margin, the cost\n77\t  build-up) go in their own file, the internal cost sheet, and never into the\n78\t  customer's.\n79\t- **Names.** What it is and its reference: `quote-Q-EXAMPLE-MEDICAL-4402A-01.docx`,\n80\t  `cost-sheet-Q-EXAMPLE-MEDICAL-4402A-01.xlsx`, `NCR-2026-0141.docx`. Name each file in\n81\t  the reply.\n82\t\n83\tA **record** is a handoff to another skill or a store: a contract payload (a\n84\tdowntime record, a geometry estimate), a register row, a pulse day record, a\n85\tsupplier bid record, a selection record, a sourcing-event row. **It is never\n86\tpasted into the reply as a raw YAML or JSON block.** A quality manager, a\n87\tbuyer or an estimator should not have to read 150 lines of field names to\n88\tfind out what happened.\n89\t\n90\tInstead:\n91\t\n92\t1. **Save the full record** where its contract says, or to a file next to the\n93\t   run's other outputs, and **name the file** in the reply.\n94\t2. **Show a short table of the fields a person decides on**, under their\n95\t   contract names so nothing is lost in translation — the key, the status,\n96\t   and whichever of these the record has: `fields_missing`, `data_complete`,\n97\t   `decided_by`, `decided_at`, `follows_recommendation`, `actuals_confidence`,\n98\t   `geometry_path`, `reading_basis`, `approval`. One row per record, or one\n99\t   row per field for a single record. Never more than about a dozen rows.\n100\t3. **If the record cannot be saved** (no write access this session), print it\n101\t   in full, **as a table, not a code bl...[truncated]",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B16-positive-98uba09f/work\"; (python3 -I ../plugin/shared/scripts/plant_setup.py find || python -I ../plugin/shared/scripts/plant_setup.py find) 2>&1 | head -40; ls -la; ls CLAUDE.local.md 2>/dev/null; python -c \"import docx, openpyxl; print('ok')\"",
+    "description": "Locate plant setup and check doc writers"
+   },
+   "response": "Exit code 1\n{\"setup_page_first\": \"Required before reading the plant profile or any rate, once per conversation, even when profile_path does not exist yet: if you have the artifact tools (Artifact, or mcp__claude-artifacts__* in Cowork), list the user's artifacts (scope all) and look for 'Plant setup: <company>' and 'Plant rates: <company>'. If more than one 'Plant setup:' page exists and the user has not named the company, ask which plant before reading any page (run find again with --titles and the titles listed; companies names them). For each page found, read its file with those tools (action read, path setup/plant-context.txt or setup/plant-rates.txt; an older page has setup/plant-context.md or setup/plant-rates.md instead; never retype it), then run: python3 \\\"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-B16-positive-98uba09f\\\\plugin\\\\shared\\\\scripts\\\\plant_setup.py\\\" install --from <the saved file> --company \\\"<company>\\\" (add --kind rates for the rates file), and read profile_path and rates_path. If this skill reads or writes ## Dashboards, ## Open inquiries or ## Sourcing events, also look for 'Open work: <company>': read setup/open-work.txt and then every file it names and every file the page lists (action read with paths, or one read per file) into one folder, keeping the page's paths, and run install --kind work --from <that folder> --company \\\"<company>\\\"; the blocks are then at work_path. Not found, no artifact tools, or a call refused: read the paths as printed and say nothing about a page. Never show a rate value from rates_path outside an internal artifact.\", \"profile_path\": \"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-B16-positive-98uba09f\\\\work\\\\plant-setup\\\\plant-context.md\", \"exists\": false, \"rates_path\": \"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-B16-positive-98uba09f\\\\work\\\\plant-setup\\\\plant-rates.md\", \"rates_exists\": false, \"work_path\": \"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-B16-positive-98uba09f\\\\work\\\\plant-setup\\\\open-work\\\\open-work.md\", \"work_exists\": false, \"companies\": [], \"company\": null, \"persistent\": false}\r\ntotal 0\ndrwxr-xr-x 1 Administrator 197121 0 Nov 15 17:47 .\ndrwxr-xr-x 1 Administrator 197121 0 Nov 15 17:47 ..\ndrwxr-xr-x 1 Administrator 197121 0 Nov 15 17:47 inputs\ndrwxr-xr-x 1 Administrator 197121 0 Nov 15 17:47 out\nTraceback (most recent call last):\r\n  File \"<string>\", line 1, in <module>\r\n    import docx, openpyxl; print('ok')\r\n    ^^^^^^^^^^^^^^^^^^^^^\r\nModuleNotFoundError: No module named 'docx'",
+   "is_error": true,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "python -c \"import openpyxl; print(openpyxl.__version__)\"; python -c \"import yaml; print('yaml')\"; python --version; cat \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B16-positive-98uba09f/plugin/shared/contracts/quality-register-record.md\" | head -80",
+    "description": "Check libraries and register record contract"
+   },
+   "response": "Traceback (most recent call last):\r\n  File \"<string>\", line 1, in <module>\r\n    import openpyxl; print(openpyxl.__version__)\r\n    ^^^^^^^^^^^^^^^\r\nModuleNotFoundError: No module named 'openpyxl'\r\nyaml\r\nPython 3.14.7\r\n# Contract: the quality register record\n\n**Emitted by** `ncr-writeup` (creates and updates the row, and closes it on the user's word) and `root-cause-capa` (adds the investigation fields)\n**Consumed by** the Quality Register dashboard, rebuilt from every row on each run that writes one\n**Chains** 2 (inspection to CAPA) and 5 (supplier escape to alternate source)\n**Contract version** 1\n\nRules that govern every contract are in [README.md](README.md). How records\nare stored, keyed and read is `../live-dashboard.md`.\n\n---\n\n## Why it exists, and why it is not the NCR\n\nA single run knows the one NCR in front of it. A register of open corrective\nactions needs every other one, so each NCR and 8D run leaves a row behind in\nthe register's own database. The page is rebuilt from all of them.\n\n**This is a separate contract so [ncr.md](ncr.md) stays stable.** The NCR is\nthe handoff between two skills; this is the register's row. It copies the few\nNCR fields the register shows and adds the fields only a register needs.\n\n**Each field is written by the skill that knows it at that moment.** The NCR\nfields and the status are known when `ncr-writeup` writes the NCR. The\ninvestigation fields are known when `root-cause-capa` drafts the 8D. A skill\nnever writes a field it does not know yet: it leaves it null, and the page\nsays *not yet*.\n\n**References, never documents.** The row carries the NCR reference and a one-\nline summary, never the NCR, the 8D or anything from a redacted customer pack.\nIt does carry customer names and notification deadlines, which is why the\nregister is internal (see `../secret-config.md`).\n\n---\n\n## Identification — from the NCR\n\n| Field | Type | Producer | Behavior | Notes |\n|---|---|---|---|---|\n| `contract_version` | integer | both | Required | |\n| `record_key` | string | `ncr-writeup` | Required | `<site>_<ncr_ref>`, e.g. `Fairview_NCR-2026-0141`. The `ArtifactData` document key in `ncrs`. A second run on the same NCR overwrites it |\n| `ncr_ref` | string | `ncr-writeup` | Required | |\n| `site` | string | `ncr-writeup` | Required | Rule 7 |\n| `part_number` / `part_number_verbatim` | string | `ncr-writeup` | Required | Rule 3 |\n| `lot_number` / `lot_number_verbatim` | string or null | `ncr-writeup` | Degrades | |\n| `found_at` | timestamp with zone | `ncr-writeup` | Required | Rule 4 |\n| `qty_found` / `uom` | number / string | `ncr-writeup` | Required | Rule 5 |\n| `requirement_cited` | string or null | `ncr-writeup` | Degrades | One line: document and locator. Null with `status: blocked` when not locatable |\n| `disposition_pending` | boolean | `ncr-writeup` | Required | |\n| `summary` | string | `ncr-writeup` | Required | One line. The condition found, never the document |\n| `customers` | list of strings | `ncr-writeup` | Required | Affected customers from containment. Empty list when no parts reached a customer |\n\n## Register state\n\n| Field | Type | Producer | Behavior | Notes |\n|---|---|---|---|---|\n| `status` | enum | `ncr-writeup`, `root-cause-capa` | Required | `blocked` (no locatable requirement), `awaiting_approval` (NCR not yet `approved`), `open`, `closed` |\n| `approval_state` | enum | `ncr-writeup` | Required | Copied from the NCR at the time of writing: `draft`, `approved`, `rejected` |\n| `containment_summary` | string | `ncr-writeup` | Required | e.g. \"5 of 5 locations addressed; installed at customer not checked\" |\n| `escape_clock` | timestamp with zone or null | `ncr-writeup` | Degrades | The NCR's `notification_deadline`. Null when there is no escape, or when the contractual window is unknown, and then `escape_clock_unknown` is true |\n| `escape_clock_unknown` | boolean | `ncr-writeup` | Required | True when parts reached a customer and no window could be computed |\n| `owner` | string or null | `ncr-writeup`, `root-cause-capa` | Degrades | The person named as owner in the run. Never guessed. Null reads *unassigned* |\n| `due_date` | date or null | `ncr-writeup`, `root-cause-capa` | Degrades | The next committed date: the escape clock, then a customer-stated 8D due date. Null reads *no due date*, never overdue |\n| `recurrence` | enum | `ncr-writeup` | Required | The NCR's value, unchanged |\n| `prior_ncr_refs` | list of strings | `ncr-writeup` | Degrades | From the NCR's `related_records` |\n| `previous_fix_held` | boolean or null | `ncr-writeup` | Degrades | Null when there is no prior record or no searchable history. Never read as true |\n\n## Investigation — from the 8D\n\n| Field | Type | Producer | Behavior | Notes |\n|---|---|---|---|---|\n| `eight_d_step` | string or null | `root-cause-capa` | Degrades | The last discipline drafted, e.g. \"D5 drafted; D6 and D8 placeholders\". Null until an 8D is drafted |\n| `leading_cause` | string or null | `root-cause-capa` | Degrades | One line. The top-ranked candidate, labelled as a candidate, never as established |\n| `supplier_caused` | boolean or null | `root-cause-capa` | Degrades | True only when the supplier-caused flag was raised. Null until investigated. The supplier signal itself lives on the Supply Chain page |\n| `effectiveness_check_due` | date or null | `root-cause-capa` | Degrades | Only when a date has been committed. Null until then |\n\n## Close and provenance\n\n| Field | Type | Producer | Behavior | Notes |\n|---|---|---|---|---|",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "mkdir -p \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B16-positive-98uba09f/work/out/analysis\" && cat > \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B16-positive-98uba09f/work/out/analysis/compute_figures.py\" <<'EOF'\n\"\"\"Computed figures for the MB-1880 bore NCR chain. Run: python -I compute_figures.py <inputs/quality dir> <out dir>\"\"\"\nimport csv, sys, json, statistics as st\nfrom datetime import datetime\nfrom pathlib import Path\n\nsrc, out = Path(sys.argv[1]), Path(sys.argv[2])\ndef read(name):\n    lines = [l for l in (src/name).read_text(encoding=\"utf-8\").splitlines() if l.strip() and not l.startswith(\"#\")]\n    return list(csv.DictReader(lines))\n\ninsp = read(\"inspection_measurements.csv\"); mx = read(\"maintenance_log.csv\"); prior = read(\"prior_ncrs.csv\")\nfor r in insp: r[\"t\"] = datetime.fromisoformat(r[\"timestamp\"]); r[\"x\"] = float(r[\"bore_dia_mm\"]); r[\"seq\"] = int(r[\"part_seq\"])\nfor r in mx: r[\"t\"] = datetime.fromisoformat(r[\"timestamp\"])\ninsp.sort(key=lambda r: r[\"t\"])\nNOM, USL, LSL = 22.000, 22.021, 22.000\nF = []  # figures block rows\ndef fig(name, value, frm, q): F.append((name, value, frm, q)); return value\n\nfig(\"Inspection rows (all)\", len(insp), \"inspection_measurements.csv\", \"all data rows\")\nzones = sorted({r[\"t\"].utcoffset().total_seconds()/3600 for r in insp+mx})\nfig(\"UTC offsets present across inspection+maintenance\", \",\".join(f\"{z:+.0f}h\" for z in zones), \"both CSVs\", \"utcoffset of every timestamp\")\nfig(\"Coverage, inspection export\", f\"{insp[0]['timestamp']} to {insp[-1]['timestamp']}\", \"inspection_measurements.csv\", \"min/max timestamp\")\nfig(\"Coverage, maintenance export\", f\"{min(r['timestamp'] for r in mx)} to {max(r['timestamp'] for r in mx)}\", \"maintenance_log.csv\", \"min/max timestamp\")\n\n# spec check\noos = [r for r in insp if r[\"x\"] > USL or r[\"x\"] < LSL]\nfig(\"In-process readings above USL 22.021\", f\"{len(oos)} of {len(insp)}: \" + \"; \".join(f\"{r['lot']} seq {r['seq']} = {r['x']:.3f}\" for r in oos), \"inspection_measurements.csv\", \"bore_dia_mm > 22.021\")\nfirst_oos = oos[0]\nfig(\"First out-of-spec in-process reading\", f\"{first_oos['timestamp']} {first_oos['lot']} seq {first_oos['seq']} = {first_oos['x']:.3f} (excess {first_oos['x']-USL:+.3f})\", \"inspection_measurements.csv\", \"earliest row with bore > 22.021\")\nfor v in (22.034, 22.031, 22.029):\n    fig(f\"Final-inspection value {v:.3f} minus USL\", f\"{v-USL:+.3f} mm\", \"finding.txt\", \"measured - 22.021\")\nfig(\"Final-inspection values found in the export\", \", \".join(f\"{v:.3f}:{'yes' if any(abs(r['x']-v)<1e-9 for r in insp) else 'no'}\" for v in (22.034,22.031,22.029)), \"finding.txt vs inspection export\", \"exact value match\")\n\n# tool T7-0031 points\nt31 = [r for r in insp if r[\"tool_id\"] == \"T7-0031\"]\nfig(\"Readings on insert T7-0031\", len(t31), \"inspection export\", \"tool_id == T7-0031\")\ninc = sum(1 for a, b in zip(t31, t31[1:]) if b[\"x\"] > a[\"x\"])\nfig(\"Consecutive increases across T7-0031 readings\", f\"{inc} of {len(t31)-1} steps\", \"inspection export\", \"x[i] > x[i-1], tool T7-0031, time order\")\n# I-MR chart on T7-0031 readings\nxs = [r[\"x\"] for r in t31]; mrs = [abs(b-a) for a, b in zip(xs, xs[1:])]\ncl = st.mean(xs); mrbar = st.mean(mrs); sig = mrbar/1.128\nucl, lcl = cl + 3*sig, cl - 3*sig\nfig(\"SPC centreline (I chart)\", f\"{cl:.4f} mm\", \"inspection export\", \"mean of 10 T7-0031 readings\")\nfig(\"SPC UCL (I chart)\", f\"{ucl:.4f} mm\", \"inspection export\", \"CL + 2.66*MRbar\")\nfig(\"SPC LCL (I chart)\", f\"{lcl:.4f} mm\", \"inspection export\", \"CL - 2.66*MRbar\")\nfig(\"SPC basis\", f\"Individuals/moving-range, n={len(xs)} points, lots L-0409..L-0412, insert T7-0031, MRbar={mrbar:.4f}, sigma_hat={sig:.4f}\", \"inspection export\", \"MR over consecutive readings\")\nbeyond = [r for r in t31 if r[\"x\"] > ucl or r[\"x\"] < lcl]\nfig(\"Points beyond I-chart limits\", f\"{len(beyond)}\" + (\": \"+\", \".join(f\"{r['lot']} seq{r['seq']}={r['x']:.3f}\" for r in beyond) if beyond else \"\"), \"computed\", \"x > UCL or x < LCL\")\nfig(\"Caveat on limits\", \"Limits computed from a trending series; MR inflated by the trend, so limits are wide. No stable baseline period exists in the export\", \"computed\", \"-\")\n# Nelson rule 3: 6 points in a row steadily increasing (i.e. 6 increasing steps -> 7 points per Nelson; WE/AIAG trend rule: 6 points increasing = 5 steps). Report both.\ndef first_trend(points, steps):\n    run = 0\n    for i in range(1, len(points)):\n        run = run+1 if points[i][\"x\"] > points[i-1][\"x\"] else 0\n        if run >= steps: return points[i]\nfire_aiag = first_trend(t31, 5)  # 6 consecutive points increasing\nfire_nelson = first_trend(t31, 6)  # Nelson rule 3: six points in a row increasing (6 increments)\nfig(\"Run rule: 6 consecutive points increasing (AIAG trend) - fires at\", f\"{fire_aiag['timestamp']} {fire_aiag['lot']} seq {fire_aiag['seq']} = {fire_aiag['x']:.3f} (in spec)\", \"computed\", \"5 consecutive increases\")\nfig(\"Run rule: Nelson 3 (6 increasing steps) - fires at\", f\"{fire_nelson['timestamp']} {fire_nelson['lot']} seq {fire_nelson['seq']} = {fire_nelson['x']:.3f} (in spec)\", \"computed\", \"6 consecutive increases\")\nlead_h = (first_oos[\"t\"] - fire_aiag[\"t\"]).total_seconds()/3600\nfig(\"Hours between first trend-rule signal and first out-of-spec reading\", f\"{lead_h:.2f} h\", \"computed\", \"first_oos.t - trend_fire.t\")\n# run of points above centreline\nrun=best=0\nfor r in t31:\n    run = run+1 if r[\"x\"] > cl else 0; best=max(best,run)\nfig(\"Longest run above centreline\", best, \"computed\", \"consecutive x > CL\")\n\n# Drift rates\nt0 = t31[0][\"t\"]\nhrs = [(r[\"t\"]-t0).total_seconds()/3600 for r in t31]\nn=len(xs); mh=st.mean(hrs); mxv=st.mean(xs)\nslope = sum((h-mh)*(x-mxv) for h,x in zip(hrs,xs))/sum((h-mh)**2 for h in hrs)\nr_corr = st.correlation(hrs, xs)\nfig(\"Linear drift vs elapsed time, T7-0031\", f\"{slope*1000:.3f} um/h (r = {r_corr:.3f})\", \"computed\", \"OLS bore ~ hours since 2026-11-09 07:10\")\nfor lot in [\"L-0409\",\"L-0410\",\"L-0411\",\"L-0412\"]:\n    p=[r for r in t31 if r[\"lot\"]==lot]\n    dh=(p[-1][\"t\"]-p[0][\"t\"]).total_seconds()/3600; dx=p[-1][\"x\"]-p[0][\"x\"]; dn=p[-1][\"seq\"]-p[0][\"seq\"]\n    fig(f\"Within-lot drift {lot} (shift {p[0]['shift']})\", f\"{dx*1000:+.0f} um over {dh:.2f} h ({dx/dh*1000:.2f} um/h) and {dn} parts ({dx/dn*1000:.3f} um/part)\", \"computed\", f\"first vs last reading in {lot}\")\n# Overnight / between-shift step: L-0410 last -> L-0411 first\na=[r for r in t31 if r[\"lot\"]==\"L-0410\"][-1]; b=[r for r in t31 if r[\"lot\"]==\"L-0411\"][0]\nfig(\"Change across overnight idle (L-0410 last -> L-0411 first)\", f\"{(b['x']-a['x'])*1000:+.0f} um over {(b['t']-a['t']).total_seconds()/3600:.2f} h\", \"computed\", \"consecutive readings spanning night\")\n# Interpolated USL crossing between L-0411 last and L-0412 first\na=[r for r in t31 if r[\"lot\"]==\"L-0411\"][-1]; b=[r for r in t31 if r[\"lot\"]==\"L-0412\"][0]\nfrac=(USL-a[\"x\"])/(b[\"x\"]-a[\"x\"]); tc=a[\"t\"]+(b[\"t\"]-a[\"t\"])*frac\nfig(\"Linear-interpolated USL crossing (ASSUMPTION: linear between readings)\", f\"{tc.isoformat()} - between {a['lot']} seq {a['seq']} ({a['timestamp']}) and {b['lot']} seq {b['seq']} ({b['timestamp']})\", \"computed\", \"interpolate 22.021 between bracketing readings\")\nfig(\"L-0411 last reading margin to USL\", f\"{(USL-a['x'])*1000:.0f} um\", \"computed\", \"22.021 - 22.019\")\n# minimum parts on insert\nmins = {}\nfor lot in [\"L-0409\",\"L-0410\",\"L-0411\",\"L-0412\"]:\n    mins[lot]=max(r[\"seq\"] for r in t31 if r[\"lot\"]==lot)\nmins[\"L-0412\"]=max(mins[\"L-0412\"],300)\nfig(\"Parts on insert T7-0031, floor\", f\"at least {sum(mins.values())} ({' + '.join(f'{k}:{v}' for k,v in mins.items())}; L-0409..L-0411 = highest part_seq seen, lot sizes not on file; L-0412 = lot size 300 per finding)\", \"inspection export + finding.txt\", \"sum\")\nfig(\"CAPA-071 insert-change interval\", \"600 parts\", \"prior_ncrs.csv\", \"NCR-0219 row\")\nfig(\"Parts on T7-0031 at first out-of-spec reading, floor\", f\"at least {mins['L-0409']+mins['L-0410']+mins['L-0411']+1}\", \"computed\", \"80+60+70 seen before L-0412 seq 1\")\n# post-change\npost=[r for r in insp if r[\"tool_id\"]==\"T7-0032\"]\nfig(\"First reading after insert change\", f\"{post[0]['timestamp']} {post[0]['lot']} = {post[0]['x']:.3f} (vs L-0409 seq1 on new T7-0031 = {t31[0]['x']:.3f})\", \"inspection export\", \"tool_id == T7-0032\")\nfig(\"Drop at insert change (last T7-0031 -> first T7-0032)\", f\"{(post[0]['x']-t31[-1]['x'])*1000:+.0f} um\", \"computed\", \"\")\n\n# clustering by shift / operator\nfor key in (\"shift\",\"operator\"):\n    groups={}\n    for r in insp: groups.setdefault(r[key],[]).append(r)\n    for g,rs in sorted(groups.items()):\n        o=sum(1 for r in rs if r[\"x\"]>USL)\n        fig(f\"Readings by {key} {g}\", f\"{len(rs)} readings ({len(rs)/len(insp):.0%} of all), {o} above USL\", \"inspection export\", f\"group by {key}\")\nconf = all((r[\"shift\"]==\"1\")==(r[\"operator\"]==\"OP-11\") for r in insp)\nfig(\"Shift and operator confounded\", \"yes - every shift-1 reading is OP-11 and every shift-2 reading is OP-23\" if conf else \"no\", \"inspection export\", \"cross-tab\")\n# residuals from linear time trend by shift\nres={}\nfor r,h in zip(t31,hrs):\n    pred=mxv+slope*(h-mh); res.setdefault(r[\"shift\"],[]).append(r[\"x\"]-pred)\nfor s,v in sorted(res.items()):\n    fig(f\"Mean residual from time trend, shift {s}\", f\"{st.mean(v)*1000:+.2f} um (n={len(v)})\", \"computed\", \"x - OLS fit, T7-0031\")\nfig(\"Machines in export\", \",\".join(sorted({r['machine'] for r in insp})), \"inspection export\", \"distinct machine\")\nfig(\"Material lot / heat field in export\", \"absent - no column\", \"inspection export header\", \"column list\")\n# maintenance\nfor r in mx:\n    fig(f\"Maintenance event {r['timestamp']}\", r[\"event\"], \"maintenance_log.csv\", f\"asset_id == {r['asset_id']}\")\nfig(\"Maintenance events between T7-0031 install and insert replacement\", sum(1 for r in mx if t31[0][\"t\"] < r[\"t\"] < post[0][\"t\"] and \"replaced\" not in r[\"event\"]), \"maintenance_log.csv\", \"t in (2026-11-09 07:10, 2026-11-11 07:05), excluding the replacement itself\")\nanchor=[r for r in mx if \"T7-0032\" in r[\"event\"]][0]\nfig(\"Clock anchor: insert replacement (maint) -> first T7-0032 reading (insp)\", f\"{(post[0]['t']-anchor['t']).total_seconds()/60:.0f} min, in the expected order\", \"both CSVs\", \"event visible in two sources\")\n# prior NCRs\nsame_part=[p for p in prior if p[\"part\"]==\"MB-1880\"]\nfig(\"Prior NCRs, same part MB-1880\", f\"{len(same_part)}: \" + \", \".join(p[\"ncr\"] for p in same_part), \"prior_ncrs.csv\", \"part == MB-1880\")\nfig(\"Prior NCRs, same defect (bore oversize) any part\", sum(1 for p in prior if \"bore\" in p[\"defect\"]), \"prior_ncrs.csv\", \"defect contains 'bore'\")\nfig(\"Prior NCRs, same supplier/material lot\", \"could not search - no supplier or lot column\", \"prior_ncrs.csv\", \"column list\")\nfig(\"Prior NCRs, same machine VMC-03\", \"could not search - no machine column\", \"prior_ncrs.csv\", \"column list\")\nfig(\"NCR-0219 measured vs this event max\", f\"22.026 then; 22.034 now ({(22.034-22.026)*1000:+.0f} um worse)\", \"prior_ncrs.csv + finding.txt\", \"\")\n# quantities\nlot=300; wip=120; fg=150; ship=30\nfig(\"Lot L-0412 quantity reconciliation\", f\"{wip} + {fg} + {ship} = {wip+fg+ship} vs lot size {lot} ({'reconciles' if wip+fg+ship==lot else 'DOES NOT reconcile'})\", \"finding.txt\", \"\")\nfig(\"Final inspection sample\", \"3 of 5 sampled above USL; the 2 passing values are not recorded\", \"finding.txt\", \"\")\n\n(out/\"figures.json\").write_text(json.dumps(F, indent=1), encoding=\"utf-8\")\nlines=[\"| # | Figure | Value | Computed from | Filter or query |\",\"|---|---|---|---|---|\"]\nfor i,(a,b,c,d) in enumerate(F,1): lines.append(f\"| F{i} | {a} | {b} | {c} | `{d}` |\" if d else f\"| F{i} | {a} | {b} | {c} | — |\")\n(out/\"figures_block.md\").write_text(\"\\n\".join(lines)+\"\\n\", encoding=\"utf-8\")\nprint(\"\\n\".join(lines))\nEOF\ncd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B16-positive-98uba09f/work\" && python -I out/analysis/compute_figures.py inputs/quality out/analysis",
+    "description": "Write and run figure computation script"
+   },
+   "response": "Exit code 2\n/usr/bin/bash: -c: line 93: unexpected EOF while looking for matching `''",
+   "is_error": true,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "ls \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B16-positive-98uba09f/work/out/analysis\"",
+    "description": "Check analysis directory"
+   },
+   "response": "Exit code 2\nls: cannot access 'C:/Users/Administrator/AppData/Local/Temp/lmfg-B16-positive-98uba09f/work/out/analysis': No such file or directory",
+   "is_error": true,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\analysis\\compute_figures.py",
+    "content": "\"\"\"Computed figures for the MB-1880 bore NCR chain.\nRun from the task folder:  python -I out/analysis/compute_figures.py inputs/quality out/analysis\n\"\"\"\nimport csv, sys, json, statistics as st\nfrom datetime import datetime\nfrom pathlib import Path\n\nsrc, out = Path(sys.argv[1]), Path(sys.argv[2])\n\n\ndef read(name):\n    lines = [l for l in (src / name).read_text(encoding=\"utf-8\").splitlines()\n             if l.strip() and not l.startswith(\"#\")]\n    return list(csv.DictReader(lines))\n\n\ninsp = read(\"inspection_measurements.csv\")\nmx = read(\"maintenance_log.csv\")\nprior = read(\"prior_ncrs.csv\")\nfor r in insp:\n    r[\"t\"] = datetime.fromisoformat(r[\"timestamp\"])\n    r[\"x\"] = float(r[\"bore_dia_mm\"])\n    r[\"seq\"] = int(r[\"part_seq\"])\nfor r in mx:\n    r[\"t\"] = datetime.fromisoformat(r[\"timestamp\"])\ninsp.sort(key=lambda r: r[\"t\"])\nUSL, LSL = 22.021, 22.000\nF = []\n\n\ndef fig(name, value, frm, q):\n    F.append((name, value, frm, q))\n    return value\n\n\nfig(\"Inspection rows (all)\", len(insp), \"inspection_measurements.csv\", \"all data rows\")\nzones = sorted({r[\"t\"].utcoffset().total_seconds() / 3600 for r in insp + mx})\nfig(\"UTC offsets present (inspection + maintenance)\", \",\".join(f\"{z:+.0f}h\" for z in zones), \"both CSVs\", \"utcoffset of every timestamp\")\nfig(\"Coverage, inspection export\", f\"{insp[0]['timestamp']} to {insp[-1]['timestamp']}\", \"inspection_measurements.csv\", \"min/max timestamp\")\nfig(\"Coverage, maintenance export\", f\"{min(r['timestamp'] for r in mx)} to {max(r['timestamp'] for r in mx)}\", \"maintenance_log.csv\", \"min/max timestamp\")\n\noos = [r for r in insp if r[\"x\"] > USL or r[\"x\"] < LSL]\nfig(\"In-process readings outside 22.000-22.021\", f\"{len(oos)} of {len(insp)}: \" + \"; \".join(f\"{r['lot']} seq {r['seq']} = {r['x']:.3f}\" for r in oos), \"inspection_measurements.csv\", \"bore_dia_mm > 22.021 or < 22.000\")\nfirst_oos = oos[0]\nfig(\"First out-of-spec in-process reading\", f\"{first_oos['timestamp']} {first_oos['lot']} seq {first_oos['seq']} = {first_oos['x']:.3f} ({(first_oos['x'] - USL) * 1000:+.0f} um over USL)\", \"inspection_measurements.csv\", \"earliest row with bore > 22.021\")\nfor v in (22.034, 22.031, 22.029):\n    fig(f\"Final-inspection value {v:.3f} over USL\", f\"{(v - USL) * 1000:+.0f} um\", \"finding.txt\", \"measured - 22.021\")\nfig(\"Final-inspection values present in the inspection export\", \", \".join(f\"{v:.3f}:{'yes' if any(abs(r['x'] - v) < 1e-9 for r in insp) else 'no'}\" for v in (22.034, 22.031, 22.029)), \"finding.txt vs inspection export\", \"exact value match\")\n\nt31 = [r for r in insp if r[\"tool_id\"] == \"T7-0031\"]\nfig(\"Readings on insert T7-0031\", len(t31), \"inspection export\", \"tool_id == T7-0031\")\ninc = sum(1 for a, b in zip(t31, t31[1:]) if b[\"x\"] > a[\"x\"])\nfig(\"Increasing steps across T7-0031 readings\", f\"{inc} of {len(t31) - 1}\", \"inspection export\", \"x[i] > x[i-1], T7-0031, time order\")\n\nxs = [r[\"x\"] for r in t31]\nmrs = [abs(b - a) for a, b in zip(xs, xs[1:])]\ncl = st.mean(xs); mrbar = st.mean(mrs); sig = mrbar / 1.128\nucl, lcl = cl + 3 * sig, cl - 3 * sig\nfig(\"SPC centreline (I chart)\", f\"{cl:.4f} mm\", \"inspection export\", \"mean of T7-0031 readings\")\nfig(\"SPC UCL (I chart)\", f\"{ucl:.4f} mm\", \"inspection export\", \"CL + 2.66*MRbar\")\nfig(\"SPC LCL (I chart)\", f\"{lcl:.4f} mm\", \"inspection export\", \"CL - 2.66*MRbar\")\nfig(\"SPC basis\", f\"Individuals/moving range, n={len(xs)} points, lots L-0409..L-0412 on insert T7-0031, MRbar={mrbar * 1000:.2f} um, sigma_hat={sig * 1000:.2f} um. No stable baseline exists; limits are inflated by the trend itself\", \"inspection export\", \"MR of consecutive readings\")\nbeyond = [r for r in t31 if r[\"x\"] > ucl or r[\"x\"] < lcl]\nfig(\"Points beyond I-chart limits\", f\"{len(beyond)}\" + (\": \" + \", \".join(f\"{r['lot']} seq {r['seq']} = {r['x']:.3f}\" for r in beyond) if beyond else \"\"), \"computed\", \"x > UCL or x < LCL\")\nfig(\"UCL vs spec USL\", f\"UCL {ucl:.4f} is {(ucl - USL) * 1000:+.1f} um vs USL 22.021 (control limit, not spec limit)\", \"computed\", \"UCL - USL\")\n\n\ndef first_trend(points, steps):\n    run = 0\n    for i in range(1, len(points)):\n        run = run + 1 if points[i][\"x\"] > points[i - 1][\"x\"] else 0\n        if run >= steps:\n            return points[i]\n\n\nfa = first_trend(t31, 5)\nfn = first_trend(t31, 6)\nfig(\"Run rule checked: 6 points in a row increasing (AIAG trend rule) - first fires\", f\"{fa['timestamp']} {fa['lot']} seq {fa['seq']} = {fa['x']:.3f} (in spec)\", \"computed\", \"5 consecutive increases\")\nfig(\"Run rule checked: Nelson rule 3 (6 consecutive increases) - first fires\", f\"{fn['timestamp']} {fn['lot']} seq {fn['seq']} = {fn['x']:.3f} (in spec)\", \"computed\", \"6 consecutive increases\")\nlead_h = (first_oos[\"t\"] - fa[\"t\"]).total_seconds() / 3600\nfig(\"Hours from first trend-rule signal to first out-of-spec reading\", f\"{lead_h:.2f} h\", \"computed\", \"first_oos.t - trend_fire.t\")\nrun = best = 0\nfor r in t31:\n    run = run + 1 if r[\"x\"] > cl else 0\n    best = max(best, run)\nfig(\"Longest run above centreline\", best, \"computed\", \"consecutive x > CL (rule needs 9; not fired)\")\n\nt0 = t31[0][\"t\"]\nhrs = [(r[\"t\"] - t0).total_seconds() / 3600 for r in t31]\nmh = st.mean(hrs); mxv = st.mean(xs)\nslope = sum((h - mh) * (x - mxv) for h, x in zip(hrs, xs)) / sum((h - mh) ** 2 for h in hrs)\nfig(\"Linear drift vs elapsed time, T7-0031\", f\"{slope * 1000:.3f} um/h (r = {st.correlation(hrs, xs):.3f})\", \"computed\", \"OLS bore ~ hours since 2026-11-09T07:10\")\nfor lot in [\"L-0409\", \"L-0410\", \"L-0411\", \"L-0412\"]:\n    p = [r for r in t31 if r[\"lot\"] == lot]\n    dh = (p[-1][\"t\"] - p[0][\"t\"]).total_seconds() / 3600\n    dx = p[-1][\"x\"] - p[0][\"x\"]; dn = p[-1][\"seq\"] - p[0][\"seq\"]\n    fig(f\"Within-lot drift {lot} (shift {p[0]['shift']})\", f\"{dx * 1000:+.0f} um over {dh:.2f} h ({dx / dh * 1000:.2f} um/h) and {dn} parts ({dx / dn * 1000:.3f} um/part)\", \"computed\", f\"first vs last reading in {lot}\")\na = [r for r in t31 if r[\"lot\"] == \"L-0410\"][-1]; b = [r for r in t31 if r[\"lot\"] == \"L-0411\"][0]\nfig(\"Change across overnight idle (L-0410 last -> L-0411 first)\", f\"{(b['x'] - a['x']) * 1000:+.0f} um over {(b['t'] - a['t']).total_seconds() / 3600:.2f} h\", \"computed\", \"readings either side of the night\")\na = [r for r in t31 if r[\"lot\"] == \"L-0411\"][-1]; b = [r for r in t31 if r[\"lot\"] == \"L-0412\"][0]\nfrac = (USL - a[\"x\"]) / (b[\"x\"] - a[\"x\"]); tc = a[\"t\"] + (b[\"t\"] - a[\"t\"]) * frac\nfig(\"Interpolated USL crossing (ASSUMES linear drift between readings)\", f\"{tc.isoformat()} - between {a['lot']} seq {a['seq']} ({a['timestamp']}) and {b['lot']} seq {b['seq']} ({b['timestamp']})\", \"computed\", \"interpolate 22.021 between bracketing readings\")\nfig(\"L-0411 last reading margin to USL\", f\"{(USL - a['x']) * 1000:.0f} um\", \"computed\", \"22.021 - 22.019\")\nmins = {lot: max(r[\"seq\"] for r in t31 if r[\"lot\"] == lot) for lot in [\"L-0409\", \"L-0410\", \"L-0411\", \"L-0412\"]}\nmins[\"L-0412\"] = max(mins[\"L-0412\"], 300)\nfig(\"Parts cut on insert T7-0031, floor\", f\"at least {sum(mins.values())} ({' + '.join(f'{k}:{v}' for k, v in mins.items())}); L-0409..L-0411 = highest part_seq sampled, lot sizes not on file; L-0412 = lot size 300 per finding\", \"inspection export + finding.txt\", \"sum\")\nfig(\"Parts on T7-0031 before L-0412 seq 1, floor\", f\"at least {mins['L-0409'] + mins['L-0410'] + mins['L-0411']}\", \"computed\", \"highest seq sampled in L-0409..L-0411\")\nfig(\"CAPA-071 insert-change interval\", \"600 parts\", \"prior_ncrs.csv\", \"row NCR-0219\")\npost = [r for r in insp if r[\"tool_id\"] == \"T7-0032\"]\nfig(\"First reading after insert change\", f\"{post[0]['timestamp']} {post[0]['lot']} = {post[0]['x']:.3f} (first reading on new T7-0031 was {t31[0]['x']:.3f})\", \"inspection export\", \"tool_id == T7-0032\")\nfig(\"Step at insert change (last T7-0031 -> first T7-0032)\", f\"{(post[0]['x'] - t31[-1]['x']) * 1000:+.0f} um\", \"computed\", \"\")\n\nfor key in (\"shift\", \"operator\"):\n    groups = {}\n    for r in insp:\n        groups.setdefault(r[key], []).append(r)\n    for g, rs in sorted(groups.items()):\n        o = sum(1 for r in rs if r[\"x\"] > USL)\n        fig(f\"Readings by {key} {g}\", f\"{len(rs)} of {len(insp)} readings ({len(rs) / len(insp):.0%}); {o} of {len(oos)} out-of-spec\", \"inspection export\", f\"group by {key}\")\nconf = all((r[\"shift\"] == \"1\") == (r[\"operator\"] == \"OP-11\") for r in insp)\nfig(\"Shift and operator confounded\", \"yes: every shift-1 reading is OP-11, every shift-2 reading is OP-23\" if conf else \"no\", \"inspection export\", \"cross-tab shift x operator\")\nres = {}\nfor r, h in zip(t31, hrs):\n    res.setdefault(r[\"shift\"], []).append(r[\"x\"] - (mxv + slope * (h - mh)))\nfor s, v in sorted(res.items()):\n    fig(f\"Mean residual from time trend, shift {s}\", f\"{st.mean(v) * 1000:+.2f} um (n={len(v)})\", \"computed\", \"x - OLS fit, T7-0031\")\nfig(\"Machines in inspection export\", \",\".join(sorted({r['machine'] for r in insp})), \"inspection export\", \"distinct machine\")\nfig(\"Material lot / heat in inspection export\", \"absent - no such column\", \"inspection export header\", \"column list\")\nfor r in mx:\n    fig(f\"Maintenance event {r['timestamp']} ({r['asset_id']})\", r[\"event\"], \"maintenance_log.csv\", f\"asset_id == {r['asset_id']}\")\nbetween = [r for r in mx if t31[0][\"t\"] < r[\"t\"] < post[0][\"t\"] and \"replaced\" not in r[\"event\"]]\nfig(\"Maintenance events during T7-0031 life other than its replacement\", len(between), \"maintenance_log.csv\", \"t in (2026-11-09T07:10, 2026-11-11T07:05), event not 'replaced'\")\nanchor = [r for r in mx if \"T7-0032\" in r[\"event\"]][0]\nfig(\"Clock anchor: insert replacement (maint) -> first T7-0032 reading (insp)\", f\"+{(post[0]['t'] - anchor['t']).total_seconds() / 60:.0f} min, expected order\", \"both CSVs\", \"event visible in two sources\")\nsame_part = [p for p in prior if p[\"part\"] == \"MB-1880\"]\nfig(\"Prior NCRs, same part MB-1880\", f\"{len(same_part)}: \" + \", \".join(p[\"ncr\"] for p in same_part), \"prior_ncrs.csv\", \"part == 'MB-1880'\")\nfig(\"Prior NCRs, same defect (bore) any part\", sum(1 for p in prior if \"bore\" in p[\"defect\"]), \"prior_ncrs.csv\", \"defect contains 'bore'\")\nfig(\"Prior NCRs searchable by machine or supplier/lot\", \"no - prior_ncrs.csv has no machine, supplier or lot column\", \"prior_ncrs.csv header\", \"column list\")\nfig(\"Prior NCR rows screened\", len(prior), \"prior_ncrs.csv\", \"all rows\")\nfig(\"NCR-0219 measured vs this event max\", f\"22.026 then; 22.034 now ({(22.034 - 22.026) * 1000:+.0f} um)\", \"prior_ncrs.csv + finding.txt\", \"\")\nlot, wip, fg, ship = 300, 120, 150, 30\nfig(\"Lot L-0412 location reconciliation\", f\"{wip} + {fg} + {ship} = {wip + fg + ship} vs lot size {lot} ({'reconciles' if wip + fg + ship == lot else 'DOES NOT reconcile'})\", \"finding.txt\", \"\")\nfig(\"Final inspection sample\", \"3 of 5 above USL; the 2 passing values not recorded\", \"finding.txt\", \"\")\n\n(out / \"figures.json\").write_text(json.dumps(F, indent=1), encoding=\"utf-8\")\nrows = [\"| # | Figure | Value | Computed from | Filter or query |\", \"|---|---|---|---|---|\"]\nfor i, (a_, b_, c_, d_) in enumerate(F, 1):\n    rows.append(f\"| F{i} | {a_} | {b_} | {c_} | \" + (f\"`{d_}`\" if d_ else \"—\") + \" |\")\n(out / \"figures_block.md\").write_text(\"\\n\".join(rows) + \"\\n\", encoding=\"utf-8\")\nprint(\"\\n\".join(rows))\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\analysis\\compute_figures.py (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B16-positive-98uba09f/work\" && python -I out/analysis/compute_figures.py inputs/quality out/analysis",
+    "description": "Run figure computation"
+   },
+   "response": "| # | Figure | Value | Computed from | Filter or query |\r\n|---|---|---|---|---|\r\n| F1 | Inspection rows (all) | 11 | inspection_measurements.csv | `all data rows` |\r\n| F2 | UTC offsets present (inspection + maintenance) | -5h | both CSVs | `utcoffset of every timestamp` |\r\n| F3 | Coverage, inspection export | 2026-11-09T07:10:00-05:00 to 2026-11-11T07:05:00-05:00 | inspection_measurements.csv | `min/max timestamp` |\r\n| F4 | Coverage, maintenance export | 2026-11-08T16:00:00-05:00 to 2026-11-11T06:40:00-05:00 | maintenance_log.csv | `min/max timestamp` |\r\n| F5 | In-process readings outside 22.000-22.021 | 3 of 11: L-0412 seq 1 = 22.022; L-0412 seq 90 = 22.029; L-0412 seq 180 = 22.034 | inspection_measurements.csv | `bore_dia_mm > 22.021 or < 22.000` |\r\n| F6 | First out-of-spec in-process reading | 2026-11-10T15:10:00-05:00 L-0412 seq 1 = 22.022 (+1 um over USL) | inspection_measurements.csv | `earliest row with bore > 22.021` |\r\n| F7 | Final-inspection value 22.034 over USL | +13 um | finding.txt | `measured - 22.021` |\r\n| F8 | Final-inspection value 22.031 over USL | +10 um | finding.txt | `measured - 22.021` |\r\n| F9 | Final-inspection value 22.029 over USL | +8 um | finding.txt | `measured - 22.021` |\r\n| F10 | Final-inspection values present in the inspection export | 22.034:yes, 22.031:no, 22.029:yes | finding.txt vs inspection export | `exact value match` |\r\n| F11 | Readings on insert T7-0031 | 10 | inspection export | `tool_id == T7-0031` |\r\n| F12 | Increasing steps across T7-0031 readings | 9 of 9 | inspection export | `x[i] > x[i-1], T7-0031, time order` |\r\n| F13 | SPC centreline (I chart) | 22.0180 mm | inspection export | `mean of T7-0031 readings` |\r\n| F14 | SPC UCL (I chart) | 22.0257 mm | inspection export | `CL + 2.66*MRbar` |\r\n| F15 | SPC LCL (I chart) | 22.0103 mm | inspection export | `CL - 2.66*MRbar` |\r\n| F16 | SPC basis | Individuals/moving range, n=10 points, lots L-0409..L-0412 on insert T7-0031, MRbar=2.89 um, sigma_hat=2.56 um. No stable baseline exists; limits are inflated by the trend itself | inspection export | `MR of consecutive readings` |\r\n| F17 | Points beyond I-chart limits | 4: L-0409 seq 1 = 22.008, L-0409 seq 40 = 22.010, L-0412 seq 90 = 22.029, L-0412 seq 180 = 22.034 | computed | `x > UCL or x < LCL` |\r\n| F18 | UCL vs spec USL | UCL 22.0257 is +4.7 um vs USL 22.021 (control limit, not spec limit) | computed | `UCL - USL` |\r\n| F19 | Run rule checked: 6 points in a row increasing (AIAG trend rule) - first fires | 2026-11-10T07:20:00-05:00 L-0411 seq 1 = 22.017 (in spec) | computed | `5 consecutive increases` |\r\n| F20 | Run rule checked: Nelson rule 3 (6 consecutive increases) - first fires | 2026-11-10T11:05:00-05:00 L-0411 seq 70 = 22.019 (in spec) | computed | `6 consecutive increases` |\r\n| F21 | Hours from first trend-rule signal to first out-of-spec reading | 7.83 h | computed | `first_oos.t - trend_fire.t` |\r\n| F22 | Longest run above centreline | 4 | computed | `consecutive x > CL (rule needs 9; not fired)` |\r\n| F23 | Linear drift vs elapsed time, T7-0031 | 0.535 um/h (r = 0.936) | computed | `OLS bore ~ hours since 2026-11-09T07:10` |\r\n| F24 | Within-lot drift L-0409 (shift 1) | +4 um over 5.08 h (0.79 um/h) and 79 parts (0.051 um/part) | computed | `first vs last reading in L-0409` |\r\n| F25 | Within-lot drift L-0410 (shift 2) | +3 um over 4.25 h (0.71 um/h) and 59 parts (0.051 um/part) | computed | `first vs last reading in L-0410` |\r\n| F26 | Within-lot drift L-0411 (shift 1) | +2 um over 3.75 h (0.53 um/h) and 69 parts (0.029 um/part) | computed | `first vs last reading in L-0411` |\r\n| F27 | Within-lot drift L-0412 (shift 2) | +12 um over 6.67 h (1.80 um/h) and 179 parts (0.067 um/part) | computed | `first vs last reading in L-0412` |\r\n| F28 | Change across overnight idle (L-0410 last -> L-0411 first) | +1 um over 11.58 h | computed | `readings either side of the night` |\r\n| F29 | Interpolated USL crossing (ASSUMES linear drift between readings) | 2026-11-10T13:48:20-05:00 - between L-0411 seq 70 (2026-11-10T11:05:00-05:00) and L-0412 seq 1 (2026-11-10T15:10:00-05:00) | computed | `interpolate 22.021 between bracketing readings` |\r\n| F30 | L-0411 last reading margin to USL | 2 um | computed | `22.021 - 22.019` |\r\n| F31 | Parts cut on insert T7-0031, floor | at least 510 (L-0409:80 + L-0410:60 + L-0411:70 + L-0412:300); L-0409..L-0411 = highest part_seq sampled, lot sizes not on file; L-0412 = lot size 300 per finding | inspection export + finding.txt | `sum` |\r\n| F32 | Parts on T7-0031 before L-0412 seq 1, floor | at least 210 | computed | `highest seq sampled in L-0409..L-0411` |\r\n| F33 | CAPA-071 insert-change interval | 600 parts | prior_ncrs.csv | `row NCR-0219` |\r\n| F34 | First reading after insert change | 2026-11-11T07:05:00-05:00 L-0413 = 22.007 (first reading on new T7-0031 was 22.008) | inspection export | `tool_id == T7-0032` |\r\n| F35 | Step at insert change (last T7-0031 -> first T7-0032) | -27 um | computed | � |\r\n| F36 | Readings by shift 1 | 6 of 11 readings (55%); 0 of 3 out-of-spec | inspection export | `group by shift` |\r\n| F37 | Readings by shift 2 | 5 of 11 readings (45%); 3 of 3 out-of-spec | inspection export | `group by shift` |\r\n| F38 | Readings by operator OP-11 | 6 of 11 readings (55%); 0 of 3 out-of-spec | inspection export | `group by operator` |\r\n| F39 | Readings by operator OP-23 | 5 of 11 readings (45%); 3 of 3 out-of-spec | inspection export | `group by operator` |\r\n| F40 | Shift and operator confounded | yes: every shift-1 reading is OP-11, every shift-2 reading is OP-23 | inspection export | `cross-tab shift x operator` |\r\n| F41 | Mean residual from time trend, shift 1 | -1.20 um (n=5) | computed | `x - OLS fit, T7-0031` |\r\n| F42 | Mean residual from time trend, shift 2 | +1.20 um (n=5) | computed | `x - OLS fit, T7-0031` |\r\n| F43 | Machines in inspection export | VMC-03 | inspection export | `distinct machine` |\r\n| F44 | Material lot / heat in inspection export | absent - no such column | inspection export head...[truncated]",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Edit",
+   "input": {
+    "replace_all": false,
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\analysis\\compute_figures.py",
+    "old_string": "fig(\"Final inspection sample\", \"3 of 5 above USL; the 2 passing values not recorded\", \"finding.txt\", \"\")",
+    "new_string": "fig(\"Final inspection sample\", \"3 of 5 above USL; the 2 passing values not recorded\", \"finding.txt\", \"\")\n# finding.txt times are zone-naive; ASSUMED plant local -05:00 (same offset as both CSVs)\nfrom datetime import timedelta, timezone\nEST = timezone(timedelta(hours=-5))\nfound = datetime(2026, 11, 11, 10, 5, tzinfo=EST)\nshipped = datetime(2026, 11, 11, 8, 0, tzinfo=EST)\nhold = anchor[\"t\"]\nfig(\"'Inspection hold' (maint log) before shipment PS-5521\", f\"{(shipped - hold).total_seconds() / 60:.0f} min (hold-triggered insert change {hold.isoformat()}, shipment {shipped.isoformat()})\", \"maintenance_log.csv + finding.txt\", \"shipped - replacement time (finding time ASSUMED -05:00)\")\nfig(\"Shipment PS-5521 before final-inspection finding\", f\"{(found - shipped).total_seconds() / 60:.0f} min\", \"finding.txt\", \"found - shipped\")\nref = datetime(2026, 11, 15, 0, 0, tzinfo=EST)\nel = ref - found\nfig(\"Elapsed from finding to start of 2026-11-15 (today)\", f\"at least {el.days} d {el.seconds // 3600} h {(el.seconds % 3600) // 60} min ({el.total_seconds() / 3600:.1f} h)\", \"finding.txt + session date\", \"2026-11-15T00:00-05:00 - found_at\")\nfig(\"Floor of parts on T7-0031 vs CAPA-071 interval\", f\"floor {sum(mins.values())} vs 600: {'below - cannot show interval exceeded' if sum(mins.values()) < 600 else 'exceeded'}\", \"computed\", \"F31 vs F33\")\nfig(\"If L-0409..L-0411 were each 300 (UNVERIFIED hypothetical)\", f\"{300 * 4} parts on T7-0031; 600 reached during lot {['L-0409', 'L-0410', 'L-0411', 'L-0412'][(600 - 1) // 300]}\", \"computed\", \"hypothetical only - lot sizes not on file\")"
+   },
+   "response": "The file C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\analysis\\compute_figures.py has been updated successfully. (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B16-positive-98uba09f/work\" && PYTHONIOENCODING=utf-8 python -I out/analysis/compute_figures.py inputs/quality out/analysis | tail -6",
+    "description": "Re-run figure computation"
+   },
+   "response": "| F55 | Final inspection sample | 3 of 5 above USL; the 2 passing values not recorded | finding.txt | � |\r\n| F56 | 'Inspection hold' (maint log) before shipment PS-5521 | 80 min (hold-triggered insert change 2026-11-11T06:40:00-05:00, shipment 2026-11-11T08:00:00-05:00) | maintenance_log.csv + finding.txt | `shipped - replacement time (finding time ASSUMED -05:00)` |\r\n| F57 | Shipment PS-5521 before final-inspection finding | 125 min | finding.txt | `found - shipped` |\r\n| F58 | Elapsed from finding to start of 2026-11-15 (today) | at least 3 d 13 h 55 min (85.9 h) | finding.txt + session date | `2026-11-15T00:00-05:00 - found_at` |\r\n| F59 | Floor of parts on T7-0031 vs CAPA-071 interval | floor 510 vs 600: below - cannot show interval exceeded | computed | `F31 vs F33` |\r\n| F60 | If L-0409..L-0411 were each 300 (UNVERIFIED hypothetical) | 1200 parts on T7-0031; 600 reached during lot L-0410 | computed | `hypothetical only - lot sizes not on file` |",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\NCR-DRAFT-MB1880-L0412.md",
+    "content": "# NONCONFORMANCE REPORT — DRAFT, awaiting quality-owner approval (Gate 1)\n\n> SYNTHETIC test data, fictitious plant. Plant's controlled NCR template **not on file** (no plant profile in this session) — neutral NCR structure used. NCR number not yet issued by the quality system: working reference **NCR-DRAFT-MB1880-L0412**. Site: **not recorded — to be confirmed**.\n\n## 1. Identification\n\n| Field | Value |\n|---|---|\n| NCR ref | NCR-DRAFT-MB1880-L0412 (placeholder until numbered) |\n| Part / revision | MB-1880, rev B |\n| Production work order | WO-8102 |\n| Lot | L-0412 (lot size 300) |\n| Machine / operation | VMC-03, bore operation (op number not on file); produced 2nd shift 2026-11-10 |\n| Found at | Final inspection |\n| Found by | J. Ortiz, Inspector |\n| Found at (time) | 2026-11-11 10:05 — source time is zone-naive, **assumed plant local −05:00** (same offset as every other source) |\n| Gage | **Not recorded** — gage ID and calibration status to be added |\n| Disposition | **Pending** (MRB) |\n\n## 2. Requirement violated\n\n| Document | Locator | Characteristic | Stated value |\n|---|---|---|---|\n| MB-1880 drawing, rev B | Sheet 2 (notes page), note 4 | Bore A diameter | Ø22.000 +0.021 / −0.000 mm (22.000–22.021), Ra 1.6 |\n\nThe finding calls it \"main bore\"; the drawing calls it \"Bore A\". **Confirm they are the same feature.** Built to rev B per finding; rev B is the only revision on file.\n\n## 3. Condition found\n\nBore A oversize on 3 of 5 parts sampled at final inspection:\n\n| Measured | Over USL 22.021 |\n|---|---|\n| 22.034 mm | +13 µm (F7) |\n| 22.031 mm | +10 µm (F8) |\n| 22.029 mm | +8 µm (F9) |\n\nThe 2 passing values were not recorded (F55). `qty_found` = 3 nonconforming (of 5 sampled). Measured, not subjective.\n\n**Also in the in-process export:** 3 of 11 readings were out of spec, all from L-0412 (F5). The **first one was part 1 of the lot**, 22.022 at 2026-11-10 15:10 (F6). That means the in-process data had L-0412 out of spec from its first part.\n\n## 4. Suspect quantity: **at least 300**, plus the unquantified tail of L-0411\n\n| Field | Value |\n|---|---|\n| qty_suspect | **at least 300** (`qty_suspect_is_minimum: true`) |\n| scope_basis | production_window |\n| traceability_complete | false |\n\n**Scope reasoning.** The mechanism is a continuous upward drift of bore diameter on boring insert T7-0031 across 4 lots: 9 of 9 steps increasing (F12), r = 0.936 against time (F23). The drift stopped only when the insert was replaced (−27 µm step, F35).\n- **L-0412 / WO-8102: all 300 are suspect.** Its first sampled part was already over the limit (F6), and the drift continued through the lot.\n- **L-0411 / WO-8101 is suspect but has no count.** Its last sampled reading was 22.019 at part 70 (11:05), only 2 µm below USL (F30). If the drift is linear, it crossed the USL around **13:48 on 2026-11-10** (F29), and that time falls inside or right after L-0411's run. The lot size, how many parts came after part 70, and where the lot is now are **not on file**. That is why the scope is a floor.\n- **L-0409 and L-0410 are not included, based on an assumption.** Their readings were ≤ 22.016 (≥ 5 µm margin), and a monotone drift puts earlier parts below later in-spec readings. This rests on sparse sampling (2–3 readings per lot). They come into scope if a retained-sample re-measure of L-0411 shows parts above 22.019 earlier than part 70.\n- **L-0413 onward is not suspect.** It was cut on the new insert T7-0032 and read 22.007 (F34).\n\n## 5. Containment — all five locations, ordered by urgency (owners blank for assignment)\n\n**L-0412 / WO-8102 (300 parts; locations reconcile 120 + 150 + 30 = 300, F54):**\n\n| # | Location | Suspect qty | Action | Urgency | Owner | Source |\n|---|---|---|---|---|---|---|\n| 1 | Installed at customer — Northwind Robotics | **not checked** | Ask Northwind whether any of the 30 on PS-5521 have been installed or shipped onward | immediate | | Not visible in our records |\n| 2 | At customer — Northwind Robotics | **30 shipped, delivery not confirmed** | Request quarantine of the PS-5521 receipt. Confirm the delivery date in the ERP/carrier record | immediate | | finding.txt (PS-5521, shipped 2026-11-11 08:00). **Not ERP-verified** |\n| 3 | In transit | **not checked** (the same 30 are counted once, above) | Check with the carrier. If PS-5521 is not yet delivered, intercept it | immediate | | No carrier record on file |\n| 4 | WIP at machine — VMC-03 queue | 120 | Hold at the cell and tag with the NCR ref. Stop the next operation | immediate | | finding.txt |\n| 5 | Finished goods — FG-2 rack 14 | 150 | Move to quarantine and tag with the NCR ref | same day | | finding.txt |\n\n**L-0411 / WO-8101 (quantity not on file):**\n\n| # | Location | Suspect qty | Action | Urgency | Owner |\n|---|---|---|---|---|---|\n| 6 | Installed at customer | **not checked** | Depends on the shipment check in row 7 | immediate | |\n| 7 | At customer / in transit | **not checked** | Check the ERP for every shipment containing WO-8101 / L-0411, to any customer | immediate | |\n| 8 | WIP / finished goods | **not checked** | Locate the lot and hold it pending a re-measure of Bore A | same day | |\n\n**Containment-timing anomaly — confirm before approving this plan.** The maintenance log says the insert was replaced at **06:40 on 2026-11-11 \"after inspection hold\"**. The 30 parts shipped at **08:00**, which is **80 min after** that hold (F56). Final inspection then found the defect **125 min after** the shipment (F57). Two questions need answers:\n- What was held at or before 06:40?\n- Why did L-0412 parts ship after the hold and before final inspection was complete?\n\n## 6. History (searched at creation)\n\n**Recurrence: `recurrence_prior_capa_failed`.** **The previous fix did not hold.**\n- **NCR-0219** (2026-04-14) had the same part, the same characteristic and the same direction: MB-1880 bore oversize at 22.026. This event reached 22.034, +8 µm further out (F53).\n- The cause assigned then was \"boring insert wear beyond 900 parts\". The fix was CAPA-071, \"insert change every 600 parts\", and its effectiveness check is recorded as **\"not verified\"**.\n- The defect has now returned on the same part and feature, so CAPA-071 did not prevent recurrence. The data does not yet show whether the 600-part interval was followed:\n  - The parts-on-insert floor is 510 (F31), which is below 600 (F59).\n  - The lot sizes of L-0409 to L-0411 are not on file.\n  - If those lots were 300 each, the 600th part would have come during L-0410 (F60). **That is a hypothetical, not a finding.**\n- **NCR-0244** (MB-1500, slot width undersize, wrong offset after tool change; CAPA-080 verified 2026-09-01) is a different part and characteristic, so it does not count as a match. It is noted because a wrong offset is one of the candidate causes here.\n- prior_ncrs_found = 1 (F49). Searched by same part and same defect: 2 rows screened (F52). **The history could not be searched by machine or by supplier/material lot**, because the prior-NCR file has no such columns (F51).\n\n## 7. Escape\n\n`escape_occurred: true`: 30 parts shipped to Northwind Robotics on PS-5521. `escape_detected_at` = 2026-11-11 10:05 (−05:00 assumed), which is when the finding first placed parts at the customer. The contractual notification window is **not on file and has not been guessed**.\n\n**Clock warning.** The finding is dated 2026-11-11. Today is 2026-11-15, **at least 85.9 h later (F58)**. A 24 h or 48 h window, if that is what the contract says, has already passed unless Northwind was told. A conditional notification draft is in `escape-notification-DRAFT-Northwind.md`. **It has not been sent.**\n\n## 8. Approval (Gate 1)\n\n| approval_state | approved_by | approved_at |\n|---|---|---|\n| draft | — (name to be given by the approver) | — |\n\nThe quality owner confirms (1) the finding, (2) the cited requirement, (3) the suspect scope, and (4) the containment plan.\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\NCR-DRAFT-MB1880-L0412.md (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\escape-notification-DRAFT-Northwind.md",
+    "content": "# ESCAPE NOTIFICATION — DRAFT. NOT SENT. Held for quality-owner review.\n\n**Contractual clock:** the Northwind Robotics notification window is **not on file**, so no deadline has been computed. Detection was 2026-11-11 10:05 (−05:00 assumed). As of 2026-11-15, **at least 85.9 h have elapsed**. Check first whether Northwind has already been notified. If not, check where their supplier-quality terms are recorded before release.\n\n**Released only by a person. Per this session's instruction, nothing goes to the customer from this run.**\n\n---\n\n**To:** Northwind Robotics — Supplier Quality (contact to be filled)\n**Subject:** Nonconformance notification — MB-1880 rev B, packing slip PS-5521 — [NCR number]\n\nWe are notifying you of a nonconformance that affects parts shipped to you.\n\n- **Part:** MB-1880, revision B\n- **Shipment:** packing slip PS-5521, shipped 2026-11-11, 30 parts, from lot L-0412\n- **Nonconformance:** Bore A diameter is above the drawing limit. The requirement is drawing MB-1880 rev B, sheet 2, note 4: Ø22.000 +0.021/−0.000 mm. Sampled parts from the lot measured 22.029–22.034 mm, which is 8–13 µm over the upper limit. We are treating all parts in the lot as suspect.\n- **What we ask you to do now:**\n  1. Quarantine the PS-5521 receipt.\n  2. Tell us whether any of the 30 parts have been installed or shipped onward.\n- **What we are doing:**\n  - The remaining parts of the lot are held at our site.\n  - The cutting tool involved has been replaced.\n  - A root-cause investigation is under way. We are also checking whether any earlier shipments are affected, and will tell you the result.\n- **Next update from us:** [date/time to be filled]\n- **Reference:** [NCR number]\n\n[Name, title, contact — to be filled by the sender]\n\n---\n*Open item before release: we are checking whether an earlier lot (L-0411 / WO-8101) also shipped to Northwind. If it did, this notification must be widened before it goes out. A separate notification is needed for any other customer who received L-0411.*\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\escape-notification-DRAFT-Northwind.md (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\root-cause-investigation-DRAFT.md",
+    "content": "# Root-cause investigation — DRAFT (NCR not yet approved; 8D and customer pack blocked at Gate 1)\n\nSYNTHETIC test data. Every number is quoted from the figures block (`analysis/figures_block.md`, F-numbers).\n\n## Ranked candidate causal chains\n\nRanking is by evidential strength. **No single cause is established.** The data shows clearly *where* the change sits (the T7 boring tool state, which was reset at the insert change). It does not yet show *which mechanism* inside that tool state moved the diameter **upward**.\n\n### Candidate 1 — Edge condition of insert T7-0031 grew the effective cutting radius (built-up edge on 6061, or edge damage), and the insert ran past its usable life\n`T7-0031 cutting edge changes with use` → `effective bore radius grows (≈0.535 µm/h)` → `USL crossed ≈13:48 on 11-10` → `L-0412 cut entirely above limit`\n\n- **Link 1: edge changes with use.**\n  - *For:* The bore rose on 9 of 9 consecutive readings from install to removal (F12). Replacing the insert dropped the bore 27 µm back to 22.007 (F34, F35). No other maintenance event occurred during the insert's life (F47). NCR-0219 had the same symptom on the same part and was attributed to insert wear (prior_ncrs.csv).\n  - *Against:* The removed insert has not been examined. **Ordinary flank wear on a boring insert normally makes a bore *smaller*, not larger.** So \"insert wear\", as NCR-0219 stated it, does not explain an oversize by itself. The mechanism has to be built-up edge or edge damage, and no evidence yet distinguishes those.\n- **Link 2: radius grows steadily.**\n  - *For:* The fit against time is r = 0.936 (F23). The overnight idle added only +1 µm (F28), which is consistent with a cumulative tool state and not with thermal recovery.\n  - *Against:* The rate is not constant. L-0412 drifted 1.80 µm/h, against 0.53–0.79 µm/h in the earlier lots (F24–F27). End-of-life acceleration would explain that, but so would a shift-2 factor (Candidate 4).\n- **Link 3: past usable life.**\n  - *For:* CAPA-071 sets a 600-part life (F33).\n  - *Against:* The provable floor of parts cut on this insert is 510, below 600 (F59). Lot sizes for L-0409–L-0411 are not on file. **This link has no direct evidence for it yet. It is the weak point of the chain.**\n- **Confirm:** Microscope or photo of retained insert T7-0031 shows built-up edge or edge chipping, and the work-order quantities for WO-8099–8101 put the insert past 600 parts.\n- **Kill:** Insert T7-0031 shows a clean edge with normal flank wear only, **or** a fresh insert reproduces the drift over a short run.\n\n### Candidate 2 — Boring-head or cartridge diameter setting crept outward (mechanical loosening), and was reset at the insert change\n`boring-head adjustment not locked / cartridge loose` → `set diameter walks outward under cutting load` → `bore grows steadily` → `out of spec`\n\n- **Link 1: adjustment not locked.**\n  - *For:* An insert change on a boring head usually involves re-setting the diameter, which would explain the full −27 µm reset (F35) just as well as Candidate 1 does.\n  - *Against:* There is no record of the head setting before or after the change, and no tool-presetter record. **This link has nothing under For apart from compatibility with the reset. It is the weak point.**\n- **Link 2: setting walks under load.**\n  - *For:* The drift is monotone across both shifts (F12).\n  - *Against:* The overnight +1 µm (F28) is a cumulative change, which fits creep as well as wear, so this does not discriminate.\n- **Confirm:** The head is still set on the presetter as it came off the machine (if it was not re-zeroed) and reads larger than its documented set diameter, or the lock screw is found loose.\n- **Kill:** Presetter or setup records show the head was not adjusted at the insert change, and only the insert was swapped.\n\n**Candidates 1 and 2 are effectively tied on the data on hand.** Both predict a monotone rise and a reset at the change.\n\n### Candidate 3 — Tool wear-offset or compensation entered in the wrong direction\n`wear-offset entries on T7` → `sign or magnitude wrong` → `stepwise growth` → `out of spec`\n\n- **For:**\n  - A wrong offset after a tool change happened before at this plant (NCR-0244, a different part).\n  - The 30 parts shipped 80 min after an \"inspection hold\" (F56), which suggests someone was already reacting. Offsets may have been touched.\n- **Against:**\n  - The growth is smooth on every reading (F12, F23) and not stepwise.\n  - There was no tool change during the drift. NCR-0244's mechanism was triggered by a tool change.\n  - No offset record exists in the data. **No link has direct evidence for it.**\n- **Confirm:** The CNC offset/parameter history for T7 on VMC-03 shows wear-comp edits between 2026-11-09 07:10 and 2026-11-11 06:40 that add up to about +26 µm on diameter.\n- **Kill:** The offset history shows no T7 edits in that window.\n\n### Candidate 4 — A shift-2 practice factor added to the drift\n`shift-2 practice (feed/speed override, offset touch, coolant top-up)` → `faster growth on shift 2` → `L-0412 crossed sooner`\n\n- **For:**\n  - All 3 out-of-spec readings came on shift 2 (F37).\n  - The mean residual from the time trend is +1.20 µm on shift 2 and −1.20 µm on shift 1 (F41, F42).\n  - L-0412 drifted at 1.80 µm/h (F27).\n- **Against:**\n  - Shift 2 also ran L-0410, which drifted at 0.71 µm/h, no faster than shift 1 (F25).\n  - The numbers are small: n = 5 per shift.\n  - Shift is **fully confounded** with operator (F40) and with tool age: L-0412 was simply the last lot on the insert.\n  - **This is not established as a pattern.** It is reported as a pattern, not as a person.\n- **Confirm:** The machine log shows feed/speed overrides or offset edits during L-0412 that did not occur on shift 1.\n- **Kill:** The machine log shows identical program, overrides and offsets across both shifts.\n\n### Candidate 5 — Coolant concentration change (6% → 8%, 2026-11-08 16:00) promoting built-up edge\n- **For:** It is the only process change before the drift (F45). All T7-0031 parts were cut after it.\n- **Against:**\n  - The new insert T7-0032, also at 8%, read 22.007 (F34).\n  - There is no data on this tool at 6% to compare against.\n  - At most this is a contributor to Candidate 1. It does not explain the oversize alone.\n- **Confirm:** The removed insert shows built-up edge (Candidate 1 confirm), **and** a short run at 6% on a fresh insert shows a slower drift.\n- **Kill:** The drift rate on T7-0032 at 8% matches pre-11-08 history at 6%, if that history exists.\n\n### Candidate 6 — Measurement or gage error (low)\n- **For:** Gage IDs and calibration status are not recorded.\n- **Against:**\n  - In-process and final inspection agree on the direction and the magnitude.\n  - The same measurement stream read 22.007 immediately after the insert change (F34). A gage error would not reset at a tool change.\n- **Confirm:** Calibration of the bore gage(s) is lapsed, or a gage R&R shows a bias of 5 µm or more.\n- **Kill:** Calibration is current, and a re-measure of 5 retained L-0412 parts on a CMM reproduces 22.029–22.034.\n\n### Separate chain — why it escaped (detection and containment)\nThis is not the cause of the oversize. It is why 300 parts were cut and 30 shipped.\n\n`in-process reading 22.022 on part 1 of L-0412 (F6)` → `no stop / reaction plan triggered` → `lot ran to completion` → `30 shipped 80 min after an inspection hold (F56) and 125 min before final inspection completed (F57)`\n\n- **For:**\n  - The in-process readings are in the export with production-time timestamps.\n  - A computed trend rule would have signalled at 2026-11-10 07:20, **7.83 h before the first out-of-spec reading** (F19, F21).\n- **Against / unknown:**\n  - It is not confirmed that the export is a real-time in-process check rather than data entered later.\n  - The reaction plan for VMC-03 bore readings is not on file.\n\n## Cheapest discriminating test\n**Pull insert T7-0031 and the T7 boring head, inspect the insert edge under magnification, and read the head on the presetter before anyone re-sets it. In the same visit, export the VMC-03 offset history for T7 (2026-11-09 07:10 → 2026-11-11 06:40).**\n\nThis takes about an hour, needs no production time, and separates Candidates 1, 2 and 3:\n- Built-up edge or a chipped edge points to Candidate 1.\n- A head reading oversize or a loose lock points to Candidate 2.\n- T7 offset edits point to Candidate 3.\n\nPulling the WO-8099–8101 quantities from the ERP at the same time settles Link 3 of Candidate 1, which is whether CAPA-071's 600-part interval was followed.\n\n## Supplier-caused flag\n**Not raised.** No candidate points at purchased material. Material lot/heat is not in the inspection export (F44), so a material check **could not run**. That does not show material is ruled out; the data to test it is not there.\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\root-cause-investigation-DRAFT.md (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\evidence-appendix.md",
+    "content": "# Evidence appendix — MB-1880 / L-0412 bore oversize (INTERNAL — never in the customer pack)\n\n## Sources and coverage\n\n| Source | File | Coverage | Clock |\n|---|---|---|---|\n| Finding | inputs/quality/finding.txt | 2026-11-10 to 2026-11-11 events | **Zone-naive.** Assumed plant local −05:00. Not anchored to a second source |\n| Drawing notes | inputs/quality/MB-1880_drawing_revB_notes.md | rev B, sheet 2 | n/a |\n| In-process inspection | inputs/quality/inspection_measurements.csv | 2026-11-09T07:10 to 2026-11-11T07:05 −05:00 (F3) | Zone-aware −05:00 (F2) |\n| Maintenance | inputs/quality/maintenance_log.csv — **export-sourced, not a live CMMS.** A repair logged after the export would be missing | 2026-11-08T16:00 to 2026-11-11T06:40 −05:00 (F4) | Zone-aware −05:00 |\n| Prior NCRs/CAPAs | inputs/quality/prior_ncrs.csv | 2 rows (F52) | dates only |\n| Historian / sensor data | — | **Not available.** No spindle-load, temperature or coolant trace | — |\n| ERP (shipments, WO quantities, material receipts) | — | **Not available** | — |\n\n**The inspection export does not cover the final-inspection sample itself.** 22.031 is not in it (F10). The 22.034 and 22.029 values match in-process readings by value only, and are not confirmed to be the same parts.\n\n## Time alignment\n- Every timestamp in both CSVs carries −05:00 (F2). That is EST and is consistent with US DST having ended on 2026-11-01. Nothing in these sources crosses a DST change.\n- **Anchor in two sources:** the maintenance log has the insert replaced at 06:40. The inspection export shows the first T7-0032 reading at 07:05, flagged `tool_change_since_last=yes`. That is +25 min, in the expected order (F48).\n- **Residual uncertainty:** ordering is verified, but exact skew is not. The maintenance time may be the time of entry. Conclusions here work on hour-to-day scales, so correlating inspection and maintenance is allowed with that ±25 min caveat.\n- **finding.txt is not anchored to anything.** Statements that rely on its times (F56, F57, F58) assume −05:00 local and are labelled that way.\n- Shift boundary and production-day rule: **not on file** (no plant profile). Shift labels are taken as recorded.\n\n## Timeline (−05:00)\n\n| Time | Source | Event |\n|---|---|---|\n| 11-08 16:00 | maint | Coolant 6% → 8% |\n| 11-09 07:10 | insp | New insert T7-0031; L-0409 part 1 = 22.008 |\n| 11-09 12:15 | insp | L-0409 part 80 = 22.012 |\n| 11-09 15:30–19:45 | insp | L-0410 (shift 2) 22.013 → 22.016 |\n| 11-10 07:20 | insp | L-0411 part 1 = 22.017. **AIAG trend rule fires (F19)** |\n| 11-10 11:05 | insp | L-0411 part 70 = 22.019. Nelson rule 3 fires (F20). 2 µm margin (F30) |\n| 11-10 ~13:48 | computed | Interpolated USL crossing (assumes linear drift) (F29) |\n| 11-10 15:10 | insp | **L-0412 part 1 = 22.022, first out-of-spec reading (F6)** |\n| 11-10 18:30 / 21:50 | insp | L-0412 parts 90 / 180 = 22.029 / 22.034 |\n| 11-11 06:40 | maint | Insert replaced \"after inspection hold\" |\n| 11-11 07:05 | insp | L-0413 on T7-0032 = 22.007 |\n| 11-11 08:00 | finding | 30 × L-0412 shipped to Northwind, PS-5521. **80 min after the hold (F56)** |\n| 11-11 10:05 | finding | Final inspection: 3 of 5 out of spec. **125 min after the shipment (F57)** |\n\n## SPC (computed, T7-0031 readings)\n- Individuals/MR chart, n = 10 (F16). **CL 22.0180, UCL 22.0257, LCL 22.0103 mm** (F13–F15). These are control limits, **not** spec limits. The UCL sits 4.7 µm above the USL (F18).\n- Points beyond the limits: 4, at both ends of the trend (F17). The limits come from a trending series with no stable baseline, so they are wide and the chart's main signal is the trend.\n- **Run rule checked:**\n  - Six points steadily increasing (AIAG) **fired at 2026-11-10 07:20** (L-0411, 22.017, still in spec), **7.83 h before** the first out-of-spec reading (F19, F21).\n  - Nelson rule 3 fired at 11:05 (F20).\n  - Nine-in-a-row above the centreline did **not** fire: the longest run was 4 (F22).\n\n## Clustering (against base rates)\n- **Shift:** shift 2 had 5 of 11 readings (45%) and 3 of 3 out-of-spec (F37). Shift 1 had 6 of 11 (55%) and 0 of 3 (F36). **That is small numbers, and it is confounded with tool age.** All 3 out-of-spec readings are from the last lot on the insert. Not a pattern on its own.\n- **Operator:** identical to shift, because the two are fully confounded (F40). Reported as a pattern, not a person.\n- **Machine:** VMC-03 only (F43). No comparison possible.\n- **Tool change:** the strongest signal. The bore rose on 9 of 9 steps while on T7-0031 (F12), then stepped −27 µm at the change (F35).\n- **Material lot: could not run.** There is no lot or heat column (F44).\n\n## Maintenance correlation\n- The only event during T7-0031's life other than its replacement: **0** (F47).\n- The coolant change came 15 h before the insert was installed (F45), so the whole drift happened at 8%. The new insert at 8% read 22.007 (F34).\n\n## Checks that came back clean\n- No maintenance event inside the drift window (F47).\n- No points below the LSL (F5).\n- The overnight idle produced no step (+1 µm, F28), which argues against a thermal cause.\n- L-0412 locations reconcile to the lot size (F54).\n\n## Checks that could not run\n- **Material/heat clustering:** no material lot data (F44).\n- **Sensor correlation:** no historian export.\n- **Recurrence search by machine and by supplier:** no such fields in prior NCRs (F51).\n- **Gage calibration:** gage not recorded.\n- **Shipment verification:** no ERP.\n\n## Figures block\nSee `analysis/figures_block.md` (F1–F60), produced by `analysis/compute_figures.py` from the input files. It is printed in full in the chat reply.\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\evidence-appendix.md (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\8D-and-customer-pack-STATUS.md",
+    "content": "# 8D and customer pack — BLOCKED at Gate 1\n\n**Condition that blocks them:** NCR-DRAFT-MB1880-L0412 has `approval_state: draft`. The requirement *is* cited (MB-1880 rev B, sheet 2, note 4), so the citation is not the blocker. The quality owner's confirmation is.\n\nNot produced in this run, by design:\n- the 8D (D1–D5 and D7 drafted, with D6 and D8 left as placeholders)\n- the redacted customer pack\n- the redaction diff\n\nThe ranked candidates and the evidence appendix are produced as drafts (`root-cause-investigation-DRAFT.md`, `evidence-appendix.md`).\n\n**To unblock:** the quality owner confirms the finding, the cited requirement, the suspect scope (at least 300, plus the L-0411 tail) and the containment plan, and gives the name to record as approver. The 8D and the pack + diff are then drafted. **Gate 2 still applies to them: the pack is never sent by this chain**, and this session's instruction is that nothing goes to the customer.\n\n## Pending redaction log (no diff exists yet)\nNo removal requests have been received. These items are already known to need a decision when the diff is built:\n\n| Item | Proposed treatment | Reason |\n|---|---|---|\n| Operator IDs OP-11 / OP-23, inspector J. Ortiz | Remove | Personnel |\n| NCR-0244 (MB-1500) | Remove | Unrelated finding, other part |\n| Machine ID VMC-03, insert IDs, coolant concentration, CAPA-071 interval | Owner's call | Internal process detail |\n| **NCR-0219 recurrence and CAPA-071 \"effectiveness not verified\"** | **Stays in** | Removing a recurrence is misrepresentation, not redaction |\n| Shipment-before-final-inspection / hold timing (F56, F57) | **Stays in, in substance** | It is how the escape happened; the customer's D4 escape point depends on it |\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\8D-and-customer-pack-STATUS.md (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "mkdir -p \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B16-positive-98uba09f/work/out/records\" && echo ok",
+    "description": "Create records output folder"
+   },
+   "response": "ok",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\records\\ncr.yaml",
+    "content": "# Contract: ncr.md v4. SYNTHETIC test data. Handoff to root-cause-capa.\ncontract_version: 4\nncr_ref: NCR-DRAFT-MB1880-L0412\nsite: SITE-TBC   # not recorded in inputs; no plant profile\npart_number: MB-1880\npart_number_verbatim: \"MB-1880 rev B\"\npart_revision: \"B\"\nproduction_wo: WO-8102\nproduction_wo_verbatim: \"WO-8102\"\nlot_number: L-0412\nlot_number_verbatim: \"L-0412\"\noperation: \"Bore A, VMC-03 (op number not on file)\"\nfound_by: \"J. Ortiz, Inspector\"\nfound_at: 2026-11-11T10:05:00-05:00   # source zone-naive; -05:00 assumed\ndisposition_pending: true\n\ncondition_found: \"Bore A diameter measured 22.034, 22.031, 22.029 mm on 3 of 5 sampled parts against 22.000 +0.021/-0.000 mm.\"\nmeasurements:\n  - { characteristic: \"Bore A diameter\", measured: \"22.034\", nominal: \"22.000\", tolerance: \"+0.021/-0.000\", uom: mm, gage: null, source_ref: \"finding.txt\" }\n  - { characteristic: \"Bore A diameter\", measured: \"22.031\", nominal: \"22.000\", tolerance: \"+0.021/-0.000\", uom: mm, gage: null, source_ref: \"finding.txt\" }\n  - { characteristic: \"Bore A diameter\", measured: \"22.029\", nominal: \"22.000\", tolerance: \"+0.021/-0.000\", uom: mm, gage: null, source_ref: \"finding.txt\" }\nis_subjective: false\nqty_found: 3\nqty_found_reason: null\nuom: each\n\nrequirement_cited:\n  source: \"customer drawing\"\n  document: \"MB-1880 drawing rev B\"\n  locator: \"sheet 2 (notes page), note 4\"\n  characteristic: \"Bore A diameter\"\n  stated_value: \"22.000 +0.021/-0.000 mm, Ra 1.6\"\nrequirement_not_locatable: false\n\nqty_suspect: 300\nqty_suspect_is_minimum: true\nscope_basis: production_window\nscope_reasoning: \"Monotone bore drift on insert T7-0031 (9 of 9 increasing, r=0.936). All 300 of L-0412 suspect: part 1 already read 22.022. L-0411/WO-8101 suspect but uncounted: last reading 22.019 at part 70, interpolated USL crossing ~2026-11-10 13:48; lot size and location not on file. L-0409/L-0410 excluded on a monotone-drift assumption (readings <=22.016). L-0413+ on new insert read 22.007.\"\ntraceability_complete: false\n\ncontainment:\n  - { location: installed_at_customer, qty: 0, uom: each, checked: false, action: \"Ask Northwind Robotics whether any of the 30 on PS-5521 are installed or shipped on.\", urgency: immediate, owner: null, customer: \"Northwind Robotics\", source_ref: \"not verifiable from our records\" }\n  - { location: at_customer, qty: 30, uom: each, checked: false, action: \"Request quarantine of PS-5521 receipt; confirm delivery in ERP/carrier.\", urgency: immediate, owner: null, customer: \"Northwind Robotics\", source_ref: \"finding.txt PS-5521 (not ERP-verified)\" }\n  - { location: in_transit, qty: 0, uom: each, checked: false, action: \"Check carrier; intercept PS-5521 if not delivered (same 30 counted under at_customer).\", urgency: immediate, owner: null, customer: \"Northwind Robotics\", source_ref: \"no carrier record\" }\n  - { location: wip_at_machine, qty: 120, uom: each, checked: true, action: \"Hold at VMC-03 queue, tag NCR, stop next operation.\", urgency: immediate, owner: null, customer: null, source_ref: \"finding.txt\" }\n  - { location: finished_goods, qty: 150, uom: each, checked: true, action: \"Move FG-2 rack 14 to quarantine, tag NCR.\", urgency: same_day, owner: null, customer: null, source_ref: \"finding.txt\" }\n  # L-0411 / WO-8101: quantity and locations not checked anywhere; see NCR section 5 rows 6-8.\n\nrecurrence: recurrence_prior_capa_failed\nprior_ncrs_found: 1\nrelated_records:\n  - { ref: NCR-0219, date: 2026-04-14, what_matched: \"same part MB-1880, same characteristic (bore oversize 22.026)\", fix_held: false, note: \"CAPA-071 (insert change every 600 parts); effectiveness 'not verified'\" }\nhistory_searched: true\n\nescape_occurred: true\nescape_possible: true   # L-0411 shipment status unchecked\nverify_shipment_action: \"Confirm in the ERP whether any WO-8101 / L-0411 parts shipped, to any customer, and the delivery status of PS-5521.\"\nescape_detected_at: 2026-11-11T10:05:00-05:00\nnotification_drafted: true\nnotification_deadline: null   # contractual window not on file; >=85.9 h elapsed as of 2026-11-15\naffected_customers: [\"Northwind Robotics\"]\n\napproval_state: draft\napproved_by: null\napproved_at: null\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\records\\ncr.yaml (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\records\\quality-register-row.yaml",
+    "content": "# Contract: quality-register-record.md v1. NOT STORED in a register (no artifact tools this session).\ncontract_version: 1\nrecord_key: SITE-TBC_NCR-DRAFT-MB1880-L0412\nncr_ref: NCR-DRAFT-MB1880-L0412\nsite: SITE-TBC\npart_number: MB-1880\npart_number_verbatim: \"MB-1880 rev B\"\nlot_number: L-0412\nlot_number_verbatim: \"L-0412\"\nfound_at: 2026-11-11T10:05:00-05:00\nqty_found: 3\nuom: each\nrequirement_cited: \"MB-1880 rev B, sheet 2, note 4 (Bore A 22.000 +0.021/-0.000)\"\ndisposition_pending: true\nsummary: \"Bore A oversize 22.029-22.034 mm on L-0412; at least 300 suspect plus L-0411 tail.\"\ncustomers: [\"Northwind Robotics\"]\nstatus: awaiting_approval\napproval_state: draft\ncontainment_summary: \"5 of 5 locations addressed for L-0412; installed-at-customer, at-customer delivery and in-transit not checked; L-0411 not located\"\nescape_clock: null\nescape_clock_unknown: true\nowner: null\ndue_date: null\nrecurrence: recurrence_prior_capa_failed\nprior_ncr_refs: [\"NCR-0219\"]\nprevious_fix_held: false\neight_d_step: null          # 8D blocked at Gate 1\nleading_cause: \"Candidate (tied): T7-0031 boring-tool state - insert edge condition vs boring-head setting creep\"\nsupplier_caused: false      # investigated; no material candidate (material data absent)\neffectiveness_check_due: null\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\records\\quality-register-row.yaml (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B16-positive-98uba09f/work/out\" && grep -rl \"NCR-DRAFT-MB1880-L0412\" . ",
+    "description": "Find files carrying the placeholder NCR ref"
+   },
+   "response": "./8D-and-customer-pack-STATUS.md\n./NCR-DRAFT-MB1880-L0412.md\n./records/ncr.yaml\n./records/quality-register-row.yaml",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B16-positive-98uba09f/work/out\" && sed -i 's/NCR-DRAFT-MB1880-L0412/DRAFT-WO-8102-L-0412/g; s/SITE-TBC/EPW1 (test)/g' NCR-DRAFT-MB1880-L0412.md records/ncr.yaml records/quality-register-row.yaml && mv NCR-DRAFT-MB1880-L0412.md NCR-DRAFT-WO-8102-L-0412.md && rm 8D-and-customer-pack-STATUS.md && sed -i 's/^site: EPW1 (test)/site: \"EPW1 (test)\"/; s/^record_key: EPW1 (test)_/record_key: \"EPW1 (test)_/; s/^\\(record_key: .*L-0412\\)$/\\1\"/' records/ncr.yaml records/quality-register-row.yaml && grep -n \"site\\|record_key\\|ncr_ref\" records/*.yaml && head -5 NCR-DRAFT-WO-8102-L-0412.md",
+    "description": "Apply approved NCR number and site to outputs"
+   },
+   "response": "records/ncr.yaml:3:ncr_ref: DRAFT-WO-8102-L-0412\nrecords/ncr.yaml:4:site: \"EPW1 (test)\"   # not recorded in inputs; no plant profile\nrecords/quality-register-row.yaml:3:record_key: \"EPW1 (test)_DRAFT-WO-8102-L-0412\"\nrecords/quality-register-row.yaml:4:ncr_ref: DRAFT-WO-8102-L-0412\nrecords/quality-register-row.yaml:5:site: \"EPW1 (test)\"\nrecords/quality-register-row.yaml:25:prior_ncr_refs: [\"NCR-0219\"]\n# NONCONFORMANCE REPORT — DRAFT, awaiting quality-owner approval (Gate 1)\n\n> SYNTHETIC test data, fictitious plant. Plant's controlled NCR template **not on file** (no plant profile in this session) — neutral NCR structure used. NCR number not yet issued by the quality system: working reference **DRAFT-WO-8102-L-0412**. Site: **not recorded — to be confirmed**.\n\n## 1. Identification\n[This command modified 2 files you've previously read: records\\quality-register-row.yaml, records\\ncr.yaml. Call Read before editing.]",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\NCR-DRAFT-WO-8102-L-0412.md",
+    "offset": 1,
+    "limit": 4
+   },
+   "response": "1\t# NONCONFORMANCE REPORT — DRAFT, awaiting quality-owner approval (Gate 1)\n2\t\n3\t> SYNTHETIC test data, fictitious plant. Plant's controlled NCR template **not on file** (no plant profile in this session) — neutral NCR structure used. NCR number not yet issued by the quality system: working reference **DRAFT-WO-8102-L-0412**. Site: **not recorded — to be confirmed**.\n4\t",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\records\\ncr.yaml",
+    "offset": 1,
+    "limit": 5
+   },
+   "response": "1\t# Contract: ncr.md v4. SYNTHETIC test data. Handoff to root-cause-capa.\n2\tcontract_version: 4\n3\tncr_ref: DRAFT-WO-8102-L-0412\n4\tsite: \"EPW1 (test)\"   # not recorded in inputs; no plant profile\n5\tpart_number: MB-1880",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\records\\quality-register-row.yaml",
+    "offset": 18
+   },
+   "response": "18\tapproval_state: draft\n19\tcontainment_summary: \"5 of 5 locations addressed for L-0412; installed-at-customer, at-customer delivery and in-transit not checked; L-0411 not located\"\n20\tescape_clock: null\n21\tescape_clock_unknown: true\n22\towner: null\n23\tdue_date: null\n24\trecurrence: recurrence_prior_capa_failed\n25\tprior_ncr_refs: [\"NCR-0219\"]\n26\tprevious_fix_held: false\n27\teight_d_step: null          # 8D blocked at Gate 1\n28\tleading_cause: \"Candidate (tied): T7-0031 boring-tool state - insert edge condition vs boring-head setting creep\"\n29\tsupplier_caused: false      # investigated; no material candidate (material data absent)\n30\teffectiveness_check_due: null\n31\t",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Edit",
+   "input": {
+    "replace_all": false,
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\NCR-DRAFT-WO-8102-L-0412.md",
+    "old_string": "# NONCONFORMANCE REPORT — DRAFT, awaiting quality-owner approval (Gate 1)\n\n> SYNTHETIC test data, fictitious plant. Plant's controlled NCR template **not on file** (no plant profile in this session) — neutral NCR structure used. NCR number not yet issued by the quality system: working reference **DRAFT-WO-8102-L-0412**. Site: **not recorded — to be confirmed**.",
+    "new_string": "# NONCONFORMANCE REPORT DRAFT-WO-8102-L-0412 — APPROVED at Gate 1 (synthetic test)\n\n> SYNTHETIC test data, fictitious plant. Plant's controlled NCR template **not on file** — neutral NCR structure used. NCR number **DRAFT-WO-8102-L-0412** and site **EPW1 (test)** as given by the approver. Content unchanged from the draft that was approved."
+   },
+   "response": "The file C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\NCR-DRAFT-WO-8102-L-0412.md has been updated successfully.",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Edit",
+   "input": {
+    "replace_all": false,
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\NCR-DRAFT-WO-8102-L-0412.md",
+    "old_string": "| draft | — (name to be given by the approver) | — |\n\nThe quality owner confirms (1) the finding, (2) the cited requirement, (3) the suspect scope, and (4) the containment plan.",
+    "new_string": "| approved | Test Quality Owner (LEGION WO-LMFG-004 test operator) | 2026-11-15 (time of day not given) |\n\nApproved as drafted: (1) the finding, (2) the cited requirement, (3) the suspect scope, (4) the containment plan. Recorded as a synthetic-test gate decision."
+   },
+   "response": "The file C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\NCR-DRAFT-WO-8102-L-0412.md has been updated successfully.",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Edit",
+   "input": {
+    "replace_all": false,
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\records\\ncr.yaml",
+    "old_string": "site: \"EPW1 (test)\"   # not recorded in inputs; no plant profile",
+    "new_string": "site: \"EPW1 (test)\"   # as given by the Gate 1 approver"
+   },
+   "response": "The file C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\records\\ncr.yaml has been updated successfully.",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B16-positive-98uba09f/work/out/records\" && sed -i 's/^approval_state: draft$/approval_state: approved/; s/^approved_by: null$/approved_by: \"Test Quality Owner (LEGION WO-LMFG-004 test operator)\"/; s/^approved_at: null$/approved_at: 2026-11-15   # date only; time of day not given/' ncr.yaml && tail -3 ncr.yaml",
+    "description": "Set NCR record approval fields"
+   },
+   "response": "approval_state: approved\napproved_by: \"Test Quality Owner (LEGION WO-LMFG-004 test operator)\"\napproved_at: 2026-11-15   # date only; time of day not given\n[This command modified 1 file you've previously read: ncr.yaml. Call Read before editing.]",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Edit",
+   "input": {
+    "replace_all": false,
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\records\\quality-register-row.yaml",
+    "old_string": "approval_state: draft",
+    "new_string": "approval_state: approved"
+   },
+   "response": "The file C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\records\\quality-register-row.yaml has been updated successfully.",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Edit",
+   "input": {
+    "replace_all": false,
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\records\\quality-register-row.yaml",
+    "old_string": "eight_d_step: null          # 8D blocked at Gate 1",
+    "new_string": "eight_d_step: \"D1-D5 and D7 drafted; D6 and D8 placeholders; customer pack held at Gate 2\""
+   },
+   "response": "The file C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\records\\quality-register-row.yaml has been updated successfully.",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Edit",
+   "input": {
+    "replace_all": false,
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\records\\quality-register-row.yaml",
+    "old_string": "status: awaiting_approval",
+    "new_string": "status: open"
+   },
+   "response": "The file C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\records\\quality-register-row.yaml has been updated successfully.",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\8D-INTERNAL-DRAFT-WO-8102-L-0412.md",
+    "content": "# 8D REPORT — INTERNAL DRAFT — DRAFT-WO-8102-L-0412\n\n> SYNTHETIC test data, fictitious plant. Site EPW1 (test). The plant's or customer's controlled 8D template is **not on file**, so the standard eight-discipline structure is used. **INTERNAL:** this version carries personnel, machine and process detail and the history search. The customer version is `8D-CUSTOMER-PACK-DRAFT-WO-8102-L-0412.md`, and the changes are in `redaction-diff-WO-8102-L-0412.md`. Figures are quoted as F-numbers from `analysis/figures_block.md`.\n\n| Field | Value |\n|---|---|\n| Part / rev | MB-1880 rev B |\n| Customer | Northwind Robotics |\n| NCR | DRAFT-WO-8102-L-0412 (approved 2026-11-15, Test Quality Owner) |\n| Prior related | NCR-0219 / CAPA-071 — **recurrence: the previous fix did not hold** |\n| 8D status | D1–D5 and D7 drafted. D6 and D8 are open placeholders |\n\n## D1 — Team (proposed; the owner edits)\n\n| Role | Name |\n|---|---|\n| Champion / quality owner | Test Quality Owner (LEGION WO-LMFG-004 test operator) |\n| Finder, final inspection | J. Ortiz, Inspector |\n| Manufacturing engineer, VMC-03 bore operation | _to assign_ |\n| Tooling / maintenance (T7 boring head, presetter) | _to assign_ |\n| Production lead, shifts 1 and 2 | _to assign_ |\n| Shipping / logistics (release control) | _to assign_ |\n\n## D2 — Problem description\n\n- **What:** Bore A on MB-1880 rev B is oversize: 22.034, 22.031 and 22.029 mm against **Ø22.000 +0.021/−0.000 mm** (drawing MB-1880 rev B, sheet 2, note 4). That is 8–13 µm over the upper limit (F7–F9).\n- **Where:** VMC-03, bore operation, insert T7-0031.\n- **When:** Lot L-0412 / WO-8102 was produced on 2nd shift, 2026-11-10. In-process data has it out of spec from part 1 at 15:10 (F6). Final inspection found it at 2026-11-11 10:05 (−05:00 assumed).\n- **How found:** Final inspection sample, 3 of 5 above the limit (F55).\n- **How many:** **at least 300** suspect. That is all of L-0412, plus an uncounted tail of L-0411 / WO-8101, whose last reading was 22.019, 2 µm under the limit (F30).\n- **Escaped:** 30 parts shipped to Northwind Robotics on PS-5521, 2026-11-11 08:00.\n- **Recurrence:** NCR-0219 (2026-04-14) was the same part and the same characteristic, at 22.026. CAPA-071's effectiveness was never verified.\n\n## D3 — Interim containment\n\n| Location | Qty | Action | Status |\n|---|---|---|---|\n| Installed at Northwind | **not checked** | Ask Northwind whether any are installed or shipped on | Open |\n| At Northwind (PS-5521) | 30 shipped, delivery not confirmed | Request quarantine of the receipt | Open. Notification drafted, **not sent**; the contractual window is not on file, and at least 85.9 h had elapsed by 2026-11-15 (F58) |\n| In transit | **not checked** | Carrier check / intercept | Open |\n| WIP, VMC-03 queue | 120 | Hold and tag | Action stated. **Execution not confirmed in records** |\n| Finished goods, FG-2 rack 14 | 150 | Quarantine and tag | Action stated. **Execution not confirmed in records** |\n| L-0411 / WO-8101, all locations | **not checked** | Locate, hold, re-measure Bore A. Run the ERP shipment check for any customer | Open. `escape_possible` |\n| Source | — | Insert T7-0031 replaced by T7-0032 at 2026-11-11 06:40. The first part after it read 22.007 (F34) | Done (maintenance log) |\n\nDisposition of the held parts stays with MRB. Bore A is masked at anodize and an oversize bore cannot be recovered by re-machining; disposition is MRB's decision, not this draft's.\n\n## D4 — Root cause (ranked candidates; not concluded)\n\n**Occurrence: where the change sits is clear, the mechanism is not.** The bore rose on 9 of 9 consecutive readings on T7-0031 (F12), r = 0.936 against time (F23), and stepped −27 µm at the insert change (F35). No other maintenance event happened in the window (F47).\n\n| Rank | Candidate chain | Strongest For | Strongest Against | Status |\n|---|---|---|---|---|\n| 1= | T7-0031 cutting-edge condition (built-up edge on 6061 or edge damage) → effective radius grows → USL crossed ≈13:48 on 11-10 (F29) | Monotone rise and reset at the change (F12, F35); same symptom in NCR-0219 | Normal flank wear makes a bore *smaller*; the insert has not been examined; **the \"ran past life\" link is unproven**, because the floor of 510 parts is below 600 (F59) | **Tied** |\n| 1= | Boring head / cartridge setting creeps outward → reset when the insert was changed | Explains the −27 µm reset equally well | No presetter or setup record; no direct evidence for the first link | **Tied** |\n| 3 | T7 wear offset entered with the wrong sign or size | A similar offset error happened before at the site | The growth is smooth, not stepwise (F12); no offset record | Weak |\n| 4 | Shift-2 practice factor | 3 of 3 out-of-spec readings on shift 2 (F37); residual +1.20 µm (F42) | n = 5 per shift; confounded with operator and tool age (F40); L-0410 on shift 2 drifted normally (F25) | Weak; a pattern, not a person |\n| 5 | Coolant 6% → 8% (11-08) promoting built-up edge | The only prior process change (F45) | The new insert at 8% read 22.007 (F34) | Contributor at most |\n| 6 | Gage error | Gage ID and calibration not recorded | The readings reset at a tool change, which a gage error would not do (F34) | Unlikely |\n\n**Verification test, which settles the tie:** pull insert T7-0031 and the T7 head, and inspect them before anyone re-sets them:\n- inspect the edge under magnification\n- read the head on the presetter\n- export the VMC-03 T7 offset history for 2026-11-09 07:10 → 2026-11-11 06:40\n- pull the WO-8099–8101 quantities\n\n**Escape point: why it was not detected or contained.**\n`in-process reading 22.022 on part 1 of L-0412 (F6)` → `no stop or reaction` → `full lot produced` → `30 shipped 80 min after an \"inspection hold\" was raised (F56) and 125 min before final inspection completed (F57)`.\n\n- A trend rule would have signalled at 2026-11-10 07:20, **7.83 h before** the first out-of-spec part (F19, F21).\n- Open: whether the in-process export is real-time, and what the 06:40 hold covered.\n\n**Why CAPA-071 did not hold:**\n1. Its effectiveness was never verified.\n2. Its mechanism, \"insert wear causes oversize\", was never tested. Wear normally makes a bore smaller.\n3. It relied on a part-count interval that nothing recorded here enforces or evidences.\n\n## D5 — Chosen corrective actions (each names the link it breaks)\n\n| # | Action | Breaks | Condition |\n|---|---|---|---|\n| CA1 | Reaction plan at VMC-03 for Bore A: any in-process reading above 22.021 stops the machine and quarantines every part made since the last conforming reading | Escape chain, link 2: \"no stop / reaction triggered\" | Unconditional |\n| CA2 | Individuals chart with the six-increasing-points trend rule on Bore A, plotted at the machine; a signal requires a tool check before continuing | Escape chain, link 1→2: a drift seen only once out of spec | Unconditional. Sampling frequency and reaction limit to be set from a capability study, **not** set here |\n| CA3 | Shipping release interlock: no lot ships without a completed final-inspection record, and none while a hold is open on that part number or machine | Escape chain, link 4: \"shipped after hold, before final inspection\" | Unconditional |\n| CA4 | Machine-enforced tool-life counter on T7 (CNC tool-life management), with a hard stop at a validated interval | Candidate 1, link 3: \"insert ran past usable life\" | Interval set **after** the D4 test and a drift-versus-count study. 600 is not carried forward unverified |\n| CA5 | At every T7 insert change: preset the head, torque-check and record the lock, record the set diameter | Candidate 2, link 1: \"adjustment not locked\" | Applies if the D4 test confirms Candidate 2. Kept as a precaution regardless |\n| CA6 | Insert grade/geometry for 6061 (polished, sharp edge for aluminium) and coolant-concentration window review | Candidate 1, link 1 (built-up edge) and Candidate 5 | Only if the D4 test finds built-up edge |\n\nMoved out of D5:\n- Inspecting T7-0031, the offset export and the ERP quantity pull are D4 verification.\n- Holds, quarantine and the Northwind notification are D3.\n\n## D6 — Implement and verify (PLACEHOLDER: needs real-world outcome)\n\n| Action | Implemented by | Date implemented | Verification method | Verification result | Verified by | Date |\n|---|---|---|---|---|---|---|\n| CA1 | | | | | | |\n| CA2 | | | | | | |\n| CA3 | | | | | | |\n| CA4 | | | | | | |\n| CA5 | | | | | | |\n| CA6 | | | | | | |\n\nEffectiveness check (date not committed): ______\n\n## D7 — Prevent recurrence (system level)\n\n1. **No CAPA closes without an effectiveness check.** CAPA-071 sat at \"not verified\" and the defect came back. CAPA closure in the quality system requires a verification record with data, and an open CAPA with no check by its due date is escalated. *This addresses why CAPA-071 did not hold.*\n2. **The mechanism is confirmed before the corrective action is approved.** CAPA-071 acted on \"insert wear causes oversize\" without a test. Physically, wear points the other way. A D4 test record is required before D5 sign-off.\n3. **Life limits are enforced by the machine, not by counting.** Every tool life limit that exists because of an NCR moves into CNC tool-life management. Applies site-wide, not only to T7.\n4. **Control plan and PFMEA update.** Any characteristic with a prior NCR is given in-process SPC with a trend rule and a written reaction plan. Bore A on MB-1880 is the first case.\n5. **Hold-to-shipping linkage.** Inspection holds are visible to and enforced in shipping release, so a hold on a machine or part blocks shipment of the related lots.\n6. **History searchable by machine and supplier.** The NCR log gains machine and material-lot fields. This search could not run this time (F51).\n\n## D8 — Close and recognize (PLACEHOLDER: needs human sign-off)\n\n| Field | Value |\n|---|---|\n| Closure approved by | |\n| Date | |\n| Customer acceptance (if required) | |\n| Team recognized | |\n| Lessons learned recorded at | |\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\8D-INTERNAL-DRAFT-WO-8102-L-0412.md (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\8D-CUSTOMER-PACK-DRAFT-WO-8102-L-0412.md",
+    "content": "# 8D REPORT — CUSTOMER VERSION — DRAFT, HELD AT GATE 2 — NOT SENT\n\n> SYNTHETIC test data. **Held for review of the redaction diff (`redaction-diff-WO-8102-L-0412.md`). Per this session's instruction, nothing goes to the customer.** Standard 8D structure; the customer's controlled template is not on file.\n\n| Field | Value |\n|---|---|\n| Customer | Northwind Robotics |\n| Part / rev | MB-1880 rev B |\n| Our reference | DRAFT-WO-8102-L-0412 |\n| Related prior report | NCR-0219 / CAPA-071 (April 2026) — **recurrence** |\n| Status | D1–D5 and D7 drafted. D6 and D8 open |\n\n## D1 — Team\nQuality owner (champion); final inspection; manufacturing engineering; tooling/maintenance; production; shipping. Contact: [to be filled by the sender].\n\n## D2 — Problem description\n- **Defect:** Bore A diameter on MB-1880 rev B measured **22.034, 22.031 and 22.029 mm** against drawing MB-1880 rev B, sheet 2, note 4: **Ø22.000 +0.021/−0.000 mm**. That is 8–13 µm over the upper limit.\n- **Lot and dates:** lot L-0412, produced 2026-11-10. Found at our final inspection on 2026-11-11, where 3 of 5 sampled parts were over the limit.\n- **Suspect quantity: at least 300** (the whole of lot L-0412). An earlier lot, L-0411, is also suspect; we are establishing its quantity and whether any of it shipped to you.\n- **Shipped to you:** 30 parts on packing slip PS-5521, 2026-11-11.\n- **This is a recurrence.** The same oversize condition on the same bore was reported in NCR-0219 (April 2026, 22.026 mm). The corrective action from that event, a scheduled insert-replacement interval, was **never verified as effective**, and it did not prevent this recurrence.\n\n## D3 — Interim containment\n\n| Location | Qty | Action | Status |\n|---|---|---|---|\n| Installed in your product | not yet known | Please tell us whether any of the 30 have been installed or shipped on | Open — your input needed |\n| At your site (PS-5521) | 30 | Please quarantine the receipt | Open |\n| In transit | being confirmed | Carrier check / intercept if not delivered | Open |\n| Work in process at our site | 120 | Held and tagged | Action in place, confirmation pending |\n| Finished goods at our site | 150 | Quarantined and tagged | Action in place, confirmation pending |\n| Earlier lot L-0411 | being established | Locate, hold, re-measure. Shipment check in progress | Open; we will tell you whether any reached you |\n| Process | — | Cutting insert replaced 2026-11-11. The first part after the change measured 22.007 mm | Done |\n\nDisposition of held parts: pending.\n\n## D4 — Root cause (investigation in progress, not concluded)\n\n**Occurrence.** The bore diameter rose steadily on every in-process reading while one boring insert was in use (10 consecutive readings over about two days). It dropped back to 22.007 mm when the insert was replaced. No other maintenance took place in that period. The cause is located in the condition of the boring tool, but **which mechanism** is responsible is not yet confirmed. Two candidates are currently equally supported:\n\n1. The insert's cutting-edge condition (material build-up or edge damage) enlarged the cut.\n2. The boring head's diameter setting moved outward in use and was reset when the insert was changed.\n\nLess supported candidates still open:\n- a tool-offset entry error\n- a shift-related process factor\n- a coolant concentration change made the day before the run\n- measurement error, considered unlikely\n\n**Verification under way:** we are examining the removed insert and the boring head setting, and the machine's tool-offset history, before anything is reset.\n\n**Why it was not detected.**\n- An in-process reading on the **first part** of lot L-0412 was already above the limit, and production was not stopped.\n- In-process data showed a rising trend about 8 hours before the first out-of-spec part, and no trend rule was in place to flag it.\n- The 30 parts shipped **after an inspection hold had been raised at our site and before final inspection of the lot was complete**. We are still establishing what that hold covered.\n\n**Why the April 2026 corrective action did not hold:**\n1. It was never verified as effective.\n2. The mechanism it assumed was not tested.\n3. Its replacement interval depended on manual counting that was not enforced.\n\n## D5 — Corrective actions\n\n| # | Action | Addresses |\n|---|---|---|\n| CA1 | Any in-process bore reading above the limit stops the machine, and every part since the last conforming reading is quarantined | Non-detection: no reaction to an out-of-spec reading |\n| CA2 | Statistical process control with a trend rule on Bore A at the machine; a signal requires a tool check before production continues | Non-detection: drift not seen until out of spec |\n| CA3 | Shipping interlock: no lot ships without completed final inspection, and none while a related hold is open | Escape: shipment after a hold and before final inspection |\n| CA4 | Machine-enforced tool-life limit on the boring tool, at an interval validated by test | Root cause candidate 1 (tool run past usable life) |\n| CA5 | Preset, lock-check and record the boring-head diameter at every insert change | Root cause candidate 2 (head setting movement) |\n| CA6 | Insert grade and coolant review for this aluminium alloy, if material build-up is confirmed | Root cause candidate 1 (edge build-up) |\n\n## D6 — Implementation and verification\nOpen. To be completed with implementation dates and verification results.\n\n## D7 — Prevent recurrence\n1. Corrective actions are not closed without a data-based effectiveness check. This is the failure behind the April 2026 recurrence.\n2. The root-cause mechanism is confirmed by test before corrective actions are approved.\n3. Tool-life limits that come from a nonconformance are enforced by the machine, site-wide.\n4. Control plan update: characteristics with a nonconformance history get in-process SPC with a written reaction plan.\n5. Inspection holds are linked to shipping release.\n\n## D8 — Closure\nOpen.\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\8D-CUSTOMER-PACK-DRAFT-WO-8102-L-0412.md (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\redaction-diff-WO-8102-L-0412.md",
+    "content": "# Redaction diff — internal 8D → customer pack, DRAFT-WO-8102-L-0412 (Gate 2: for quality-owner review)\n\n> SYNTHETIC test data. **The quality owner approves this diff, not the clean customer version.** Nothing has been sent. Removal requests received: **none**, so there are no refusals to record.\n\n## Changes made\n\n| # | Location | Internal | Customer version | Why |\n|---|---|---|---|---|\n| 1 | Header | Approver name \"Test Quality Owner (LEGION WO-LMFG-004 test operator)\", approval date | Removed; contact left for the sender | Personnel |\n| 2 | D1 | Named champion; \"J. Ortiz, Inspector\"; open role slots | Roles only | Personnel |\n| 3 | Throughout | F-number citations to the internal figures block | Removed; the figures themselves are kept where stated | Figures block stays internal |\n| 4 | D2, D4 | \"VMC-03\", \"insert T7-0031 / T7-0032\", \"T7 head\" | \"the machine\", \"the boring insert\", \"the boring head\" | Internal process detail — **owner's call**. The meaning is unchanged |\n| 5 | D2 | \"2nd shift\"; \"in-process data out of spec from part 1 at 15:10\" | \"in-process reading on the first part … already above the limit\" (moved to D4) | Shift detail is internal; **the finding is kept** |\n| 6 | D3 | \"notification drafted, not sent; window not on file; at least 85.9 h elapsed\" | Removed | Internal notification status |\n| 7 | D3 | \"ERP shipment check for any customer\" for L-0411 | \"shipment check in progress; we will tell you whether any reached you\" | Other customers. No other customer name appears anywhere, internal or external |\n| 8 | D3 | \"Execution not confirmed in records\" | \"Action in place, confirmation pending\" | Same meaning. **Reviewer: confirm this wording does not overstate.** If the holds are not physically in place, it must say so |\n| 9 | D3 | MRB / anodize-masking / not recoverable by re-machining | \"Disposition of held parts: pending\" | Internal disposition reasoning |\n| 10 | D4 table | Ranked table with For/Against and F-numbers; \"shift-2 residual +1.20 µm, 3 of 3 on shift 2\"; \"coolant 6% → 8%\" | Two tied candidates stated, the others listed; \"a shift-related process factor\"; \"a coolant concentration change\" | Personnel-adjacent (shift = one operator, F40) and process parameters. **The ranking and the tie are kept** |\n| 11 | D4 | \"A similar offset error happened before at the site\" (NCR-0244, another part) | Removed | Unrelated finding from the history search |\n| 12 | D4 | Interpolated USL crossing ≈13:48; trend rule fired 07:20, 7.83 h before | \"rising trend about 8 hours before the first out-of-spec part\" | Rounded, not softened. 7.83 h is stated as \"about 8 hours\" |\n| 13 | D4 | \"Wear normally makes a bore smaller\" (physics note against NCR-0219's cause) | \"The mechanism it assumed was not tested\" | Internal engineering argument. **The substance is kept** |\n| 14 | D4 | Verification test detail (presetter, offset export window, ERP pull of WO-8099–8101) | \"examining the removed insert and the boring head setting, and the machine's tool-offset history\" | Internal work orders and process detail |\n| 15 | D5 | \"Breaks link N\" column; conditions (\"after D4 test\", \"600 not carried forward\") | \"Addresses\" column, in plain terms | Internal chain notation. The traceability to the root cause is kept |\n| 16 | D7 item 6 | NCR log gets machine and material-lot fields | Removed | Internal quality-system housekeeping |\n| 17 | D6, D8 | Placeholder tables | \"Open\" | Placeholders. Nothing pre-filled in either version |\n\n## Kept on purpose (not redacted)\n\n| Item | Why it stays |\n|---|---|\n| **NCR-0219 recurrence, 22.026 mm, and CAPA-071 \"never verified as effective, did not prevent recurrence\"** | Removing a recurrence is misrepresentation, not redaction |\n| \"At least 300\" and L-0411 still open | The scope is printed as a floor everywhere. The open shipment check stays open |\n| First-part reading above the limit and no stop | It is the detection failure. Removing it would soften the finding |\n| **Shipment after an inspection hold and before final inspection was complete** | It is how the escape happened. Wording states only what is known; what the hold covered is still being established |\n| All measurements, the requirement citation, dates, PS-5521 | Required content |\n\n## For the reviewer to decide\n- Row 4: whether to name the machine and insert IDs (some customers require them in 8D D4).\n- Row 8: the D3 wording, given that hold execution is not confirmed in records.\n- Whether to state the CAPA-071 replacement interval (600 parts) to the customer. It is currently omitted as internal detail; the recurrence itself is stated in full.\n\n## Gate 2\nApproval of this diff: **not given.** It is recorded with the reviewer's own name when they give it. Even after approval, the pack is handed to a person to send, and this session sends nothing.\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B16-positive-98uba09f\\work\\out\\redaction-diff-WO-8102-L-0412.md (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B16-positive-98uba09f/work/out\" && grep -niE \"ortiz|test quality owner|legion|VMC|T7|0244|MB-1500|OP-1|OP-2|85\\.9|shift 2|2nd shift|6%|8%|F[0-9]+\\b|MRB|ERP\" 8D-CUSTOMER-PACK-DRAFT-WO-8102-L-0412.md; echo \"---\"; sed -i 's/^# Root-cause investigation — DRAFT (NCR not yet approved; 8D and customer pack blocked at Gate 1)/# Root-cause investigation — DRAFT (NCR approved 2026-11-15; carried into 8D-INTERNAL-DRAFT-WO-8102-L-0412.md D4)/' root-cause-investigation-DRAFT.md && head -1 root-cause-investigation-DRAFT.md; ls -R",
+    "description": "Leak-check customer pack and list outputs"
+   },
+   "response": "---\n# Root-cause investigation — DRAFT (NCR approved 2026-11-15; carried into 8D-INTERNAL-DRAFT-WO-8102-L-0412.md D4)\n.:\n8D-CUSTOMER-PACK-DRAFT-WO-8102-L-0412.md\n8D-INTERNAL-DRAFT-WO-8102-L-0412.md\nNCR-DRAFT-WO-8102-L-0412.md\nanalysis\nescape-notification-DRAFT-Northwind.md\nevidence-appendix.md\nrecords\nredaction-diff-WO-8102-L-0412.md\nroot-cause-investigation-DRAFT.md\n\n./analysis:\ncompute_figures.py\nfigures.json\nfigures_block.md\n\n./records:\nncr.yaml\nquality-register-row.yaml\n[This command modified 1 file you've previously read: root-cause-investigation-DRAFT.md. Call Read before editing.]",
+   "is_error": false,
+   "parent_tool_use_id": null
+  }
+ ],
+ "tool_summary": {
+  "Bash": 17,
+  "Edit": 7,
+  "Read": 5,
+  "Skill": 1,
+  "Write": 11
+ },
+ "result": {
+  "subtype": "success",
+  "is_error": false,
+  "num_turns": 17,
+  "duration_ms": 162231,
+  "duration_api_ms": 547527,
+  "total_cost_usd": 2.700834000000001,
+  "usage": {
+   "input_tokens": 20,
+   "cache_creation_input_tokens": 21290,
+   "cache_read_input_tokens": 1112434,
+   "output_tokens": 17121,
+   "output_tokens_details": {
+    "thinking_tokens": 3033
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 21290,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 2479,
+     "cache_read_input_tokens": 134891,
+     "cache_creation_input_tokens": 1096,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 1096
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard",
+   "fallback_credit": null
+  },
+  "modelUsage": {
+   "claude-opus-5-5": {
+    "inputTokens": 62,
+    "outputTokens": 59814,
+    "thinkingTokens": 14332,
+    "cacheReadInputTokens": 2362730,
+    "cacheCreationInputTokens": 128970,
+    "cacheCreationEphemeral5mInputTokens": 0,
+    "cacheCreationEphemeral1hInputTokens": 128970,
+    "webSearchRequests": 0,
+    "costUSD": 2.700834000000001,
+    "contextWindow": 1000000,
+    "maxOutputTokens": 128000,
+    "canonicalModel": "claude-opus-5-5",
+    "provider": "firstParty",
+    "costBasis": "list"
+   }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "result": "I've drafted the 8D and the customer pack, and the chain is now stopped at Gate 2, the second sign-off. The customer pack is held until someone reviews the list of what was removed from it (the redaction diff). Nothing has been sent, and no outside system was contacted.\n\nThe approval is recorded as you gave it: NCR **DRAFT-WO-8102-L-0412**, site **EPW1 (test)**, approved by \"Test Quality Owner (LEGION WO-LMFG-004 test operator)\" on 2026-11-15. You didn't give a time of day, so only the date is recorded.\n\n## Internal 8D (`8D-INTERNAL-DRAFT-WO-8102-L-0412.md`)\n- **D1, team:** you as quality owner and J. Ortiz as the inspector who found it. The engineering, tooling, production and shipping roles are left for you to assign.\n- **D2, problem:** Bore A measured 22.029–22.034 mm against a limit of 22.000–22.021 (drawing rev B, sheet 2, note 4). **At least 300 parts** are suspect, plus part of lot L-0411. 30 parts went to Northwind on packing slip PS-5521. This is a repeat of NCR-0219.\n- **D3, containment:** each location is listed with its real status.\n  - The holds on the 120 parts at the machine and the 150 in finished goods are stated, but **nothing in the records confirms they were actually carried out**.\n  - Whether Northwind has installed any parts, the delivery status, and L-0411 are all still open.\n  - The insert was replaced and the next part measured 22.007.\n- **D4, root cause:** still a ranked list, not a conclusion. Two causes are tied for first: the condition of the insert's cutting edge, and the boring head setting slipping outward.\n  - The draft also explains why the defect wasn't caught: a reading on the first part was already over the limit, a rising trend was visible about 7.8 hours before that, and parts shipped after a hold and before final inspection.\n  - It gives three reasons the previous fix (CAPA-071) failed: nobody checked it worked, its assumed cause was never tested, and the 600-part insert interval wasn't enforced.\n- **D5, corrective actions:** six, each tied to the part of the cause it fixes.\n  1. Stop the machine on any out-of-limit reading.\n  2. A trend alarm on the bore measurements.\n  3. No shipping without final inspection, and none while a hold is open.\n  4. A tool-life counter in the machine control. The interval is set only after the insert test; the old 600 isn't simply carried over.\n  5. Preset and lock-check the boring head at every insert change.\n  6. Review the insert grade and coolant, but only if the test finds aluminium building up on the edge.\n- **D6 (verification) and D8 (closure):** left as empty tables on purpose. They need real results and a signature.\n- **D7, preventing recurrence:** no corrective action closes without proof it worked; the cause must be confirmed by test before the fix is approved; machine-enforced tool-life limits site-wide; process monitoring and a written reaction plan for any feature with a past defect; holds linked to shipping; and machine and material-lot fields added to the NCR log.\n\n## Customer pack (`8D-CUSTOMER-PACK-DRAFT-WO-8102-L-0412.md`)\nIt has the same structure and the same findings as the internal 8D, without internal detail. It keeps:\n- the repeat of NCR-0219 and the fact that the earlier fix was never verified\n- the \"at least 300\" scope\n- the first-part reading that didn't stop the machine\n- the shipment that went out after a hold and before final inspection\n\nI searched it for names, machine and tool IDs, operator and shift detail, the other part's NCR, coolant percentages, the 85.9-hour figure and references to the calculation sheet. None were found.\n\n## Redaction diff (`redaction-diff-WO-8102-L-0412.md`): this is what you approve\n17 changes. The main ones:\n\n| # | Removed or changed | Why |\n|---|---|---|\n| 1–2 | Names (approver, inspector) replaced by roles | People's names |\n| 4 | VMC-03 and the T7 insert IDs made generic | Internal detail. **Your call** |\n| 6 | Notification status and the 85.9 hours elapsed | Internal |\n| 7 | \"Any customer\" wording for L-0411 | Other customers |\n| 8 | \"Execution not confirmed\" became \"action in place, confirmation pending\" | **Please check this doesn't overstate.** If the holds aren't physically in place, the pack has to say so |\n| 10 | Shift-level evidence and coolant percentages | Shift data identifies one operator, plus process detail. The ranking and the tie stay |\n| 11 | NCR-0244 | Unrelated finding |\n| 12 | 7.83 h rounded to \"about 8 hours\" | Rounded only, not softened |\n\nDeliberately kept in: the NCR-0219 repeat and the failed earlier fix, the \"at least 300\" scope with L-0411 still open, the first-part reading, the shipment after the hold, and every measurement and date. Nobody asked for anything to be removed, so there are no refused requests to record.\n\n## Decisions for you\n1. **Approve the redaction diff (Gate 2).** Who should I record as approving it? I'll record only a name you give.\n2. Decide on diff rows 4 and 8, and whether to tell the customer the 600-part insert interval.\n3. Today, run the test that settles the tie: take off the old insert and the boring head before anyone resets them, inspect the insert edge and measure the head on the presetter. Also pull the machine's tool-offset history and the quantities for WO-8099 to 8101.\n\n## Records\n- `records/ncr.yaml` is now approved and keyed to the new number and site. I changed my own placeholder files to match: I renamed the earlier NCR file and deleted the status file that said the 8D was blocked.\n- `records/quality-register-row.yaml` has key `EPW1 (test)_DRAFT-WO-8102-L-0412`, status `open`, 8D drafted to D5 and D7, the leading cause labelled as a tied candidate, and the supplier flag not raised. **The Quality Register itself was not updated:** there was nothing to publish it to in this session, so this row is saved but not stored anywhere else.\n- No Word writer was available, so all documents are Markdown.\n\nFiles are in `out/`:\n- `8D-INTERNAL-DRAFT-WO-8102-L-0412.md`\n- `8D-CUSTOMER-PACK-DRAFT-WO-8102-L-0412.md`\n- `redaction-diff-WO-8102-L-0412.md`\n- `NCR-DRAFT-WO-8102-L-0412.md`\n- `escape-notification-DRAFT-Northwind.md`\n- `root-cause-investigation-DRAFT.md`\n- `evidence-appendix.md`\n- `records/`\n- `analysis/`"
+ },
+ "outputs": [
+  {
+   "path": "8D-CUSTOMER-PACK-DRAFT-WO-8102-L-0412.md",
+   "sha256": "ae6f75f10caf5953c9eb96b2b1e5aa890fc81b03fc6c1d760454dbb9ccce88bc",
+   "bytes": 6003,
+   "text": true
+  },
+  {
+   "path": "8D-INTERNAL-DRAFT-WO-8102-L-0412.md",
+   "sha256": "436034527a6e612c6d912ce4aff74ced4264ba9889a1d3215aa00503afa3bbb0",
+   "bytes": 9986,
+   "text": true
+  },
+  {
+   "path": "analysis/compute_figures.py",
+   "sha256": "d2b137a6f3efee236a059cbe2954d0d0fe2561908c6f5b661ec5dfd4ebeda397",
+   "bytes": 12470,
+   "text": true
+  },
+  {
+   "path": "analysis/figures.json",
+   "sha256": "7aef131a2b6965ba8c865dc9bd5f2a145938815dd45e0e37eead9164b2cab50d",
+   "bytes": 9006,
+   "text": true
+  },
+  {
+   "path": "analysis/figures_block.md",
+   "sha256": "c01b7309395e9bb4c3e9f095cc6d6fc753c1ec3a0f4ce7875d169e1e96a34cf7",
+   "bytes": 8311,
+   "text": true
+  },
+  {
+   "path": "escape-notification-DRAFT-Northwind.md",
+   "sha256": "8972bb2c69c4d71eb74400b81cfd50b0e555415595bc8f169e8aba82019693e0",
+   "bytes": 2030,
+   "text": true
+  },
+  {
+   "path": "evidence-appendix.md",
+   "sha256": "ef1f5b18164b846a39dbed86ac8b5e3b4957078264c49fb3139ca1438d0afb66",
+   "bytes": 5655,
+   "text": true
+  },
+  {
+   "path": "NCR-DRAFT-WO-8102-L-0412.md",
+   "sha256": "b63dfe4a356133a91adbbc1fa04b2d7b0d64612db57985cfe36db22d5ffb6a4e",
+   "bytes": 7987,
+   "text": true
+  },
+  {
+   "path": "records/ncr.yaml",
+   "sha256": "0b844592ee905781ff8fa9472c39b292e010c19d2b10dcce72a16ef90d562b39",
+   "bytes": 4218,
+   "text": true
+  },
+  {
+   "path": "records/quality-register-row.yaml",
+   "sha256": "5ca615b1b6cbfd9111b4f890fc3998c879d62abaa8ec212371f83568d2bfb0b1",
+   "bytes": 1305,
+   "text": true
+  },
+  {
+   "path": "redaction-diff-WO-8102-L-0412.md",
+   "sha256": "4193214a41bf2c39dba68048018482f914ca3570dd6fd41d003eb42ca4b56f9e",
+   "bytes": 4824,
+   "text": true
+  },
+  {
+   "path": "root-cause-investigation-DRAFT.md",
+   "sha256": "58cbd42e8c4f041aea2361947b73d7e75e2001797a1b0517b6887697c827718b",
+   "bytes": 8881,
+   "text": true
+  }
+ ],
+ "files_written_outside_out": [],
+ "plugin_copy_modified": [],
+ "stderr_tail": "",
+ "transcript": "evidence/SKILL_OUTPUTS/B16/cli-positive/transcript.jsonl.gz",
+ "deterministic_checks": [
+  {
+   "check": "skill 'inspection-to-capa' activated through the Skill tool",
+   "pass": true,
+   "observed": [
+    "claude-for-manufacturing:inspection-to-capa"
+   ]
+  },
+  {
+   "check": "chained skill 'ncr-writeup' instructions used",
+   "pass": true
+  },
+  {
+   "check": "chained skill 'root-cause-capa' instructions used",
+   "pass": true
+  },
+  {
+   "check": "at least 2 work product file(s) under out/",
+   "pass": true,
+   "observed": [
+    "8D-CUSTOMER-PACK-DRAFT-WO-8102-L-0412.md",
+    "8D-INTERNAL-DRAFT-WO-8102-L-0412.md",
+    "analysis/compute_figures.py",
+    "analysis/figures.json",
+    "analysis/figures_block.md",
+    "escape-notification-DRAFT-Northwind.md",
+    "evidence-appendix.md",
+    "NCR-DRAFT-WO-8102-L-0412.md",
+    "records/ncr.yaml",
+    "records/quality-register-row.yaml",
+    "redaction-diff-WO-8102-L-0412.md",
+    "root-cause-investigation-DRAFT.md"
+   ]
+  },
+  {
+   "check": "mentions /8D|D[1-8]/",
+   "pass": true
+  },
+  {
+   "check": "mentions /NCR-0219|CAPA-071/",
+   "pass": true
+  },
+  {
+   "check": "mentions /note 4|Note 4/",
+   "pass": true
+  },
+  {
+   "check": "mentions /redact|review/",
+   "pass": true
+  },
+  {
+   "check": "no external network, install or send action attempted",
+   "pass": true,
+   "observed": []
+  },
+  {
+   "check": "only the permitted tools were used (Read,Write,Edit,Glob,Grep,Skill,Bash)",
+   "pass": true,
+   "observed": [
+    "Bash",
+    "Edit",
+    "Read",
+    "Skill",
+    "Write"
+   ]
+  }
+ ],
+ "evaluator": {
+  "engine": "nvidia-nim",
+  "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+  "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "duration_s": 58.9,
+  "usage": {
+   "prompt_tokens": 34983,
+   "completion_tokens": 14456,
+   "total_tokens": 49439,
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 14391
+   }
+  },
+  "attempts": [
+   {
+    "mode": "reasoning",
+    "usage": {
+     "prompt_tokens": 34983,
+     "completion_tokens": 14456,
+     "total_tokens": 49439,
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     },
+     "completion_tokens_details": {
+      "reasoning_tokens": 14391
+     }
+    },
+    "verdict_returned": true,
+    "error": null
+   }
+  ],
+  "verdict_mode": "reasoning",
+  "material_given": [
+   {
+    "file": "skills/inspection-to-capa/SKILL.md",
+    "given": "full"
+   },
+   {
+    "file": "out/8D-CUSTOMER-PACK-DRAFT-WO-8102-L-0412.md",
+    "sha256": "ae6f75f10caf5953c9eb96b2b1e5aa890fc81b03fc6c1d760454dbb9ccce88bc",
+    "bytes": 6003,
+    "given": "full"
+   },
+   {
+    "file": "out/8D-INTERNAL-DRAFT-WO-8102-L-0412.md",
+    "sha256": "436034527a6e612c6d912ce4aff74ced4264ba9889a1d3215aa00503afa3bbb0",
+    "bytes": 9986,
+    "given": "full"
+   },
+   {
+    "file": "out/analysis/compute_figures.py",
+    "sha256": "d2b137a6f3efee236a059cbe2954d0d0fe2561908c6f5b661ec5dfd4ebeda397",
+    "bytes": 12470,
+    "given": "full"
+   },
+   {
+    "file": "out/analysis/figures.json",
+    "sha256": "7aef131a2b6965ba8c865dc9bd5f2a145938815dd45e0e37eead9164b2cab50d",
+    "bytes": 9006,
+    "given": "full"
+   },
+   {
+    "file": "out/analysis/figures_block.md",
+    "sha256": "c01b7309395e9bb4c3e9f095cc6d6fc753c1ec3a0f4ce7875d169e1e96a34cf7",
+    "bytes": 8311,
+    "given": "full"
+   },
+   {
+    "file": "out/escape-notification-DRAFT-Northwind.md",
+    "sha256": "8972bb2c69c4d71eb74400b81cfd50b0e555415595bc8f169e8aba82019693e0",
+    "bytes": 2030,
+    "given": "full"
+   },
+   {
+    "file": "out/evidence-appendix.md",
+    "sha256": "ef1f5b18164b846a39dbed86ac8b5e3b4957078264c49fb3139ca1438d0afb66",
+    "bytes": 5655,
+    "given": "full"
+   },
+   {
+    "file": "out/NCR-DRAFT-WO-8102-L-0412.md",
+    "sha256": "b63dfe4a356133a91adbbc1fa04b2d7b0d64612db57985cfe36db22d5ffb6a4e",
+    "bytes": 7987,
+    "given": "full"
+   },
+   {
+    "file": "out/records/ncr.yaml",
+    "sha256": "0b844592ee905781ff8fa9472c39b292e010c19d2b10dcce72a16ef90d562b39",
+    "bytes": 4218,
+    "given": "full"
+   },
+   {
+    "file": "out/records/quality-register-row.yaml",
+    "sha256": "5ca615b1b6cbfd9111b4f890fc3998c879d62abaa8ec212371f83568d2bfb0b1",
+    "bytes": 1305,
+    "given": "full"
+   },
+   {
+    "file": "out/redaction-diff-WO-8102-L-0412.md",
+    "sha256": "4193214a41bf2c39dba68048018482f914ca3570dd6fd41d003eb42ca4b56f9e",
+    "bytes": 4824,
+    "given": "full"
+   },
+   {
+    "file": "out/root-cause-investigation-DRAFT.md",
+    "sha256": "58cbd42e8c4f041aea2361947b73d7e75e2001797a1b0517b6887697c827718b",
+    "bytes": 8881,
+    "given": "full"
+   },
+   {
+    "file": "inputs/quality/finding.txt",
+    "sha256": "70b00e96c426176a6080d9c7fcf3cecc475bcf026eac5268da050a22929652f1",
+    "bytes": 571,
+    "given": "full"
+   },
+   {
+    "file": "inputs/quality/inspection_measurements.csv",
+    "sha256": "4b12420dc9040798a5e6a5a23f7fec58444e83efe46563973d457151874f25c1",
+    "bytes": 1072,
+    "given": "full"
+   },
+   {
+    "file": "inputs/quality/maintenance_log.csv",
+    "sha256": "1df793ea5ae7cb4961e374a405b85b9de6bda9918365cbe98ab863c2648c5944",
+    "bytes": 332,
+    "given": "full"
+   },
+   {
+    "file": "inputs/quality/MB-1880_drawing_revB_notes.md",
+    "sha256": "7fb4a3aa73364ad8647043b72c0f113d868adcbfcbab8bcaa640bfc8379c8dc8",
+    "bytes": 364,
+    "given": "full"
+   },
+   {
+    "file": "inputs/quality/prior_ncrs.csv",
+    "sha256": "10d492855334cb73d79d22c9cd321ea5516e11cdfb771229c8f0d56879bd6cc1",
+    "bytes": 439,
+    "given": "full"
+   }
+  ],
+  "tools_used": [],
+  "verdict": {
+   "verdict": "PASS",
+   "core_task_done": true,
+   "required_products_present": true,
+   "claims_sourced": true,
+   "fabrication": [],
+   "missing_data_handled": true,
+   "approval_rules_respected": true,
+   "arithmetic_mismatches": [],
+   "notes": "<=80 words"
+  },
+  "raw": null,
+  "error": null
+ },
+ "status": "PASS",
+ "skills_read_full": [
+  "ncr-writeup",
+  "root-cause-capa"
+ ],
+ "rechecked_utc": "2026-11-15T23:24:25Z"
+}

@@ -1,0 +1,671 @@
+{
+ "case": "B03",
+ "skill": "data-consolidate",
+ "variant": "positive",
+ "started_utc": "2026-11-15T17:55:52Z",
+ "runtime_route": "cli",
+ "cli_auth": {
+  "loggedIn": true,
+  "authMethod": "claude.ai",
+  "apiProvider": "firstParty"
+ },
+ "plugin_discovery": {
+  "plugins": [
+   "claude-for-manufacturing",
+   "cc-plugin-agents-md",
+   "cc-plugin-telemetry",
+   "cc-plugin-privacy",
+   "cc-plugin-plugin-authoring"
+  ],
+  "manufacturing_skills_listed": 17,
+  "skills_listed": [
+   "claude-for-manufacturing:breakdown-diagnosis",
+   "claude-for-manufacturing:breakdown-to-next-report",
+   "claude-for-manufacturing:custom-connector",
+   "claude-for-manufacturing:customer-inquiry-intake",
+   "claude-for-manufacturing:daily-production-report",
+   "claude-for-manufacturing:data-consolidate",
+   "claude-for-manufacturing:design-space-explore",
+   "claude-for-manufacturing:inspection-to-capa",
+   "claude-for-manufacturing:morning-plant-pulse",
+   "claude-for-manufacturing:ncr-writeup",
+   "claude-for-manufacturing:onboarding",
+   "claude-for-manufacturing:quote-build",
+   "claude-for-manufacturing:rfq-to-quote",
+   "claude-for-manufacturing:root-cause-capa",
+   "claude-for-manufacturing:supplier-escape-to-alternate-source",
+   "claude-for-manufacturing:supplier-quote-request",
+   "claude-for-manufacturing:trade-study-report"
+  ]
+ },
+ "task_prompt": "Join last night's exports in ./inputs (plan, output, downtime, routing, work orders) and our equipment list into one working dataset keyed on part, work order and asset, and give me the data quality report. Flag any keys that don't match.\n\nThe input files are in ./inputs (all of them are SYNTHETIC test data for a fictitious plant). Write every work product you produce as files under ./out. Do not contact, email or write to any external system; there is no live ERP, Microsoft 365, CMMS or supplier available in this session.",
+ "inputs": [
+  {
+   "path": "inputs/pulse_oee/downtime.csv",
+   "source": "tests/manufacturing/fixtures/pulse_oee/downtime.csv",
+   "sha256": "c6b67ed143582ab9ba983f600925fd8ea2d8e060d8d345ad83db88a8d8e51e9b",
+   "bytes": 219
+  },
+  {
+   "path": "inputs/pulse_oee/output.csv",
+   "source": "tests/manufacturing/fixtures/pulse_oee/output.csv",
+   "sha256": "059b2ea252bd443231231e9990182aa6b71a389e5e75a63d76cc63888d3b13b8",
+   "bytes": 248
+  },
+  {
+   "path": "inputs/pulse_oee/plan.csv",
+   "source": "tests/manufacturing/fixtures/pulse_oee/plan.csv",
+   "sha256": "adfed48e210488c760fc91c7b1005756e5e0a384ebd52f70d8fa482866188ca4",
+   "bytes": 140
+  },
+  {
+   "path": "inputs/pulse_oee/README.txt",
+   "source": "tests/manufacturing/fixtures/pulse_oee/README.txt",
+   "sha256": "b255661d13e32686c1e3b2f0f6f0755c356dce04dd67e1f9d1c19a36dd55e665",
+   "bytes": 345
+  },
+  {
+   "path": "inputs/pulse_oee/routing.csv",
+   "source": "tests/manufacturing/fixtures/pulse_oee/routing.csv",
+   "sha256": "1fe0dbcb9d07119191d0fda75334ad3151427cf46587ed998cb91bc1277b5635",
+   "bytes": 84
+  },
+  {
+   "path": "inputs/pulse_oee/work_orders.csv",
+   "source": "tests/manufacturing/fixtures/pulse_oee/work_orders.csv",
+   "sha256": "dd725c3fdf0cfe0e7798ca2754de75265ce64797c0c833a4db69c9508e677868",
+   "bytes": 168
+  },
+  {
+   "path": "inputs/equipment.csv",
+   "source": "tests/runtime/inputs/plant/equipment.csv",
+   "sha256": "6bc7b960ed94a27a533c229fbb9eac6209afa0a242129537a769f2f688f659cd",
+   "bytes": 460
+  }
+ ],
+ "cli_exit": 0,
+ "duration_s": 232.5,
+ "runtime": {
+  "model": "claude-opus-5-5",
+  "claude_code_version": "2.1.325",
+  "permission_mode": "dontAsk",
+  "tools": [
+   "Bash",
+   "Edit",
+   "Glob",
+   "Grep",
+   "Read",
+   "Skill",
+   "Write"
+  ],
+  "plugins": [
+   {
+    "name": "claude-for-manufacturing",
+    "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\plugin",
+    "source": "claude-for-manufacturing@inline",
+    "version": "1.0.0"
+   },
+   {
+    "name": "cc-plugin-agents-md",
+    "path": "builtin",
+    "source": "cc-plugin-agents-md@builtin"
+   },
+   {
+    "name": "cc-plugin-telemetry",
+    "path": "builtin",
+    "source": "cc-plugin-telemetry@builtin"
+   },
+   {
+    "name": "cc-plugin-privacy",
+    "path": "builtin",
+    "source": "cc-plugin-privacy@builtin"
+   },
+   {
+    "name": "cc-plugin-plugin-authoring",
+    "path": "builtin",
+    "source": "cc-plugin-plugin-authoring@builtin"
+   }
+  ],
+  "skills": [
+   "claude-for-manufacturing:breakdown-diagnosis",
+   "claude-for-manufacturing:breakdown-to-next-report",
+   "claude-for-manufacturing:custom-connector",
+   "claude-for-manufacturing:customer-inquiry-intake",
+   "claude-for-manufacturing:daily-production-report",
+   "claude-for-manufacturing:data-consolidate",
+   "claude-for-manufacturing:design-space-explore",
+   "claude-for-manufacturing:inspection-to-capa",
+   "claude-for-manufacturing:morning-plant-pulse",
+   "claude-for-manufacturing:ncr-writeup",
+   "claude-for-manufacturing:onboarding",
+   "claude-for-manufacturing:quote-build",
+   "claude-for-manufacturing:rfq-to-quote",
+   "claude-for-manufacturing:root-cause-capa",
+   "claude-for-manufacturing:supplier-escape-to-alternate-source",
+   "claude-for-manufacturing:supplier-quote-request",
+   "claude-for-manufacturing:trade-study-report",
+   "design",
+   "design-sync",
+   "dataviz",
+   "update-config",
+   "verify",
+   "debug",
+   "code-review",
+   "simplify",
+   "batch",
+   "fewer-permission-prompts",
+   "doctor",
+   "loop",
+   "schedule",
+   "claude-api",
+   "run",
+   "run-skill-generator",
+   "plugin-authoring"
+  ],
+  "mcp_servers": [],
+  "session_id": "179964be-b82c-4633-add1-a5acb4e409a5"
+ },
+ "skills_invoked": [
+  "claude-for-manufacturing:data-consolidate"
+ ],
+ "skill_files_read": [
+  "data-consolidate/reference/join-keys.md",
+  "data-consolidate/reference/mismatch-classes.md"
+ ],
+ "tool_calls": [
+  {
+   "tool": "Skill",
+   "input": {
+    "skill": "claude-for-manufacturing:data-consolidate",
+    "args": "Join last night's exports in ./inputs (plan, output, downtime, routing, work orders) and the equipment list into one working dataset keyed on part, work order and asset; produce data quality report; flag mismatched keys. File-only, write all outputs under ./out. No external systems."
+   },
+   "response": "Launching skill: claude-for-manufacturing:data-consolidate",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B03-positive-v9_zl201/work\"; ls -la . inputs; python3 -I ../plugin/shared/scripts/plant_setup.py find; ls ../plugin/skills/data-consolidate/reference ../plugin/shared ../plugin/shared/contracts",
+    "description": "List inputs and find plant setup"
+   },
+   "response": ".:\ntotal 0\ndrwxr-xr-x 1 Administrator 197121 0 Nov 15 12:55 .\ndrwxr-xr-x 1 Administrator 197121 0 Nov 15 12:55 ..\ndrwxr-xr-x 1 Administrator 197121 0 Nov 15 12:55 inputs\ndrwxr-xr-x 1 Administrator 197121 0 Nov 15 12:55 out\n\ninputs:\ntotal 5\ndrwxr-xr-x 1 Administrator 197121   0 Nov 15 12:55 .\ndrwxr-xr-x 1 Administrator 197121   0 Nov 15 12:55 ..\n-rw-r--r-- 1 Administrator 197121 460 Nov 13 23:04 equipment.csv\ndrwxr-xr-x 1 Administrator 197121   0 Nov 15 12:55 pulse_oee\n{\"setup_page_first\": \"Required before reading the plant profile or any rate, once per conversation, even when profile_path does not exist yet: if you have the artifact tools (Artifact, or mcp__claude-artifacts__* in Cowork), list the user's artifacts (scope all) and look for 'Plant setup: <company>' and 'Plant rates: <company>'. If more than one 'Plant setup:' page exists and the user has not named the company, ask which plant before reading any page (run find again with --titles and the titles listed; companies names them). For each page found, read its file with those tools (action read, path setup/plant-context.txt or setup/plant-rates.txt; an older page has setup/plant-context.md or setup/plant-rates.md instead; never retype it), then run: python3 \\\"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-B03-positive-v9_zl201\\\\plugin\\\\shared\\\\scripts\\\\plant_setup.py\\\" install --from <the saved file> --company \\\"<company>\\\" (add --kind rates for the rates file), and read profile_path and rates_path. If this skill reads or writes ## Dashboards, ## Open inquiries or ## Sourcing events, also look for 'Open work: <company>': read setup/open-work.txt and then every file it names and every file the page lists (action read with paths, or one read per file) into one folder, keeping the page's paths, and run install --kind work --from <that folder> --company \\\"<company>\\\"; the blocks are then at work_path. Not found, no artifact tools, or a call refused: read the paths as printed and say nothing about a page. Never show a rate value from rates_path outside an internal artifact.\", \"profile_path\": \"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-B03-positive-v9_zl201\\\\work\\\\plant-setup\\\\plant-context.md\", \"exists\": false, \"rates_path\": \"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-B03-positive-v9_zl201\\\\work\\\\plant-setup\\\\plant-rates.md\", \"rates_exists\": false, \"work_path\": \"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-B03-positive-v9_zl201\\\\work\\\\plant-setup\\\\open-work\\\\open-work.md\", \"work_exists\": false, \"companies\": [], \"company\": null, \"persistent\": false}\r\n../plugin/shared:\nabsent-is-not-zero.md\napproval-gates.md\nartifact-style.md\ncommand-center.md\ncomputed-figures.md\ncontracts\nerp-connectors.md\nlive-dashboard.md\nreplies.md\nscheduling.md\nscripts\nsecret-config.md\n\n../plugin/shared/contracts:\nREADME.md\nconsolidated-dataset.md\ndowntime-record.md\nfloor-layout.md\ngeometry-estimate.md\nintake-form.md\nncr.md\npulse-day-record.md\nquality-register-record.md\nsupplier-bid.md\nsupplier-caused-flag.md\nvariant-manifest.md\n\n../plugin/skills/data-consolidate/reference:\njoin-keys.md\nmismatch-classes.md",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\plugin\\skills\\data-consolidate\\reference\\join-keys.md"
+   },
+   "response": "1\t# Join keys and the normalization ladder\n2\t\n3\tLoad this before joining anything.\n4\t\n5\t## Why this file exists\n6\t\n7\tA plant does not have one database. It has five to eight systems bought at\n8\tdifferent times by different departments, and the same physical thing carries a\n9\tdifferent identifier in each one. A single part might be:\n10\t\n11\t| Where | How it appears |\n12\t|---|---|\n13\t| ERP item master | `PN-4471-B` |\n14\t| MES production export | `4471B` |\n15\t| Quality inspection export | `4471-B Rev 2` |\n16\t| Maintenance spares list | `Bracket, Upper, 4471` |\n17\t\n18\tAll four are the same part. Only the first three are joinable, and none of them\n19\tmatch as-is.\n20\t\n21\t## The six join keys\n22\t\n23\tThese are the identifiers that should be common across systems. Everything the\n24\tconsolidated dataset is built around hangs off one of them.\n25\t\n26\t| Join key | Links | Source of truth |\n27\t|---|---|---|\n28\t| Part number | Product ↔ production ↔ quality ↔ purchasing | ERP item master (NetSuite or Infor M3) |\n29\t| Production work order number | Production run ↔ output ↔ quality results ↔ cost | The ERP. In Infor M3 it is the manufacturing order number |\n30\t| Sales order number | Customer commitment ↔ production ↔ shipping | The ERP. In Infor M3 it is the customer order number |\n31\t| Lot / batch number | Material ↔ parts made from it ↔ customers who received them | MES or quality export |\n32\t| Asset ID | Machine ↔ downtime ↔ maintenance history | CMMS connector or maintenance export |\n33\t| Supplier ID / vendor number | Purchase orders ↔ incoming material ↔ supplier quality | The ERP |\n34\t\n35\t**Source of truth decides direction.** When two sides disagree on a key's shape,\n36\tnormalize toward the source of truth rather than toward whichever side has more\n37\trows. The ERP item master is the reference for part numbers even when the MES\n38\texport has ten times the volume.\n39\t\n40\t### The work order name collision\n41\t\n42\tMaintenance systems also call their repair tickets \"work orders.\" A production\n43\twork order and a maintenance work order are different records with different\n44\tnumbering, and joining one to the other produces nonsense.\n45\t\n46\tAlways disambiguate in output and in column naming: **production work order** and\n47\t**maintenance work order**, never bare \"work order\" or \"WO.\"\n48\t\n49\t## The normalization ladder\n50\t\n51\tApply in this order. Each rung is more aggressive than the last, so stopping\n52\tearly is safer than going further than needed.\n53\t\n54\t| Rung | Transformation | Notes |\n55\t|---|---|---|\n56\t| 1 | Trim leading and trailing whitespace | Manual exports carry trailing spaces constantly |\n57\t| 2 | Normalize case | Fold to a single case for comparison only |\n58\t| 3 | Normalize punctuation | `PN-4471-B` / `PN_4471_B` / `PN4471B` collapse to one comparison form. A lost part prefix (`4471B` against `PN-4471-B`) collapses too, **only where exactly one part on the `parts` tab matches once its prefix is dropped**. Name the prefix in the log. Where two or more parts would match (`PN-4471-B` and `AX-4471-B`), nothing is matched by this rung: the record is reported with every candidate, and the plant says which |\n59\t| 4 | Restore lost leading zeros | `451` matches `00451` only if a zero-padded variant exists on the other side. Test for it; do not pad blindly |\n60\t| 5 | Strip revision suffix | `4471-B` matches `4471-B Rev 2`. The revision is extra information, not a different part |\n61\t\n62\t**Rungs 1, 2 and 3 are safe to propose as automatic.** Rungs 4 and 5 change\n63\tmeaning and always carry their own proposal, because a stripped revision or an\n64\tassumed zero can be wrong.\n65\t\n66\t### Two hard rules\n67\t\n68\t**Compare on the normalized form; store and display the original.** The\n69\tconsolidated dataset carries the source system's own identifier verbatim\n70\talongside the normalized key. A plant person searching for `PN-4471-B` in their\n71\town vocabulary must find it. Never overwrite a source identifier with a\n72\tnormalized one.\n73\t\n74\t**Every normalization applied is logged and reportable.** The data quality report\n75\tnames each rule that fired, how many records it touched, and an example of the\n76\tbefore and after. A silent normalization is indistinguishable from a bug, and the\n77\tfirst time a total looks wrong this log is the only way to tell them apart.\n78\t\n79\t### Revision data is preserved, never discarded\n80\t\n81\tWhen rung 5 fires, the revision that was stripped goes into its own column and\n82\tthe report states that revision data existed on one side only. Stripping it to\n83\tmake the join work is correct; losing it is not.\n84\t\n85\t## Date windows by entity\n86\t\n87\tWhen the user narrows the join to the overlap, the window does not apply to\n88\tevery tab alike. Three kinds of record, three rules:\n89\t\n90\t| Kind | Tabs | What the window does |\n91\t|---|---|---|\n92\t| **Activity** | `production_output`, `downtime_events`, `inspection_results`, `plan`, `operation_actuals` | Scoped to the overlap. A row outside it is Class 7 |\n93\t| **Open commitments** | Open `sales_orders` lines, open `production_work_orders` | **Kept by status, whatever their dates.** An open order is in scope until it closes. A sales order line that carries only a promised date and no order date is never out of window for lacking one |\n94\t| **Reference history** | `purchase_orders` and their receipts, `maintenance_work_orders`, `ncrs`, `lots` | Kept for a lookback before the window start: the Plant context's lookback if one is set, otherwise **180 days, stated as a default, not plant-set**. Labelled as history in the report and never counted in the window's totals |\n95\t\n96\tClosed commitments (a shipped sales order, a closed work order) are activity:\n97\tscoped by their own close or ship date. Never class a record 7 because the\n98\tnarrowing removed the history that explains it. A material receipt from\n99\tbefore the window is how a heat is traced to the work orders it fed, and a\n100\trepair from June is how a breakdown is read in August.\n101\t\n102\t...[truncated]",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\plugin\\skills\\data-consolidate\\reference\\mismatch-classes.md"
+   },
+   "response": "1\t# The eight mismatch classes\n2\t\n3\tLoad this when classifying join failures.\n4\t\n5\tWhen two datasets are joined on a key, some rows find no partner. That is not a\n6\tnuisance to be counted — it is usually a real business problem in disguise. The\n7\tskill classifies every mismatch into one of the eight classes below and reports\n8\teach class separately, with counts **and example rows**.\n9\t\n10\t**A count on its own is not a finding.** \"312 mismatches\" tells a plant person\n11\tnothing they can act on. \"298 of them are one export covering three days the\n12\tother does not\" tells them to re-run tomorrow.\n13\t\n14\t---\n15\t\n16\t## Check the date window first\n17\t\n18\t**Class 7 is checked before any other class is reported.** A date-window\n19\tmismatch manufactures apparent mismatches across every key at once, and it\n20\texplains most large mismatch counts. Reporting format drift and orphan records\n21\ton top of an unnoticed window gap sends someone chasing problems that do not\n22\texist.\n23\t\n24\tOrder of work: window overlap, then key shape, then genuine one-sided records.\n25\t\n26\t---\n27\t\n28\t## Class 1 — Orphan record\n29\t\n30\t**What it is.** A record references a key that does not exist on the other side\n31\tat all. A production record reports output against production work order\n32\t`WO-88213`, and no such work order exists in NetSuite.\n33\t\n34\t**What it means.** One of three things, and they are very different: somebody ran\n35\tan unauthorized job, a work order was deleted after the fact, or the two exports\n36\tare from different dates.\n37\t\n38\t**Detection.** Key is well-formed and no normalization rung produces a match.\n39\t\n40\t**Proposed fix.** None automatic — this is a question, not a formatting problem.\n41\tReport the orphans with their quantities and dates, and state which of the three\n42\texplanations the surrounding evidence supports. Check the date window before\n43\tconcluding anything.\n44\t\n45\t**On routings: routing with no matching part.** A routing whose part number no\n46\tnormalization rung matches to the item master. Either the part was renamed,\n47\tretired, or never set up in the item master. Report it by that name, with its\n48\toperations; no automatic fix. It is never used to quote a part it merely looks\n49\tlike.\n50\t\n51\t---\n52\t\n53\t## Class 2 — Format drift\n54\t\n55\t**What it is.** `PN-4471-B` versus `4471B` versus `4471_B`. Same part, different\n56\tpunctuation.\n57\t\n58\t**What it means.** Nothing about the business. It is the most common class by\n59\tvolume and the least interesting.\n60\t\n61\t**Detection.** Normalization ladder rungs 1–3 produce a match.\n62\t\n63\t**Proposed fix.** Apply the punctuation and case normalization, with the\n64\tnormalization shown.\n65\t\n66\t---\n67\t\n68\t## Class 3 — Leading-zero loss\n69\t\n70\t**What it is.** `00451` became `451` because a system exported to CSV and a\n71\tspreadsheet stripped the zeros on open.\n72\t\n73\t**What it means.** A tooling artifact, extremely common, and not a data entry\n74\tproblem.\n75\t\n76\t**Detection.** Rung 4 — test whether a zero-padded variant of the short key\n77\texists on the other side. Do not pad blindly; only claim the class when the\n78\tpadded partner is actually present.\n79\t\n80\t**Proposed fix.** Restore the padding to the source-of-truth width. Report the\n81\twidth used.\n82\t\n83\t---\n84\t\n85\t## Class 4 — Revision suffix mismatch\n86\t\n87\t**What it is.** `4471-B` versus `4471-B Rev 2`. The part is the same; the\n88\trevision is additional information carried on one side only.\n89\t\n90\t**What it means.** One system tracks revision on the identifier and the other\n91\tdoes not.\n92\t\n93\t**Detection.** Rung 5 — a match appears once the revision suffix is stripped.\n94\t\n95\t**Proposed fix.** Strip and match, preserve the stripped revision in its own\n96\tcolumn, and report that revision data existed on one side only. Never discard it.\n97\t\n98\t**On routings: routing revision mismatch — no automatic fix.** A routing\n99\twritten for revision 1, read against a drawing at revision 2, matches once the\n100\tsuffix is stripped, and that match is exactly the mistake. A routing is the\n101\toperation list for one revision; a later revision may have tightened a\n102\ttolerance that adds an operation. Report it as a *routing revision mismatch*:\n103\twhich revision the routing is for, which revision is being quoted or is\n104\tcurrent, and what the drawing's revision history says changed where it is\n105\tavailable. The routing stays on the `routings` tab, marked `revision_mismatch`,\n106\tand `quote-build` shows it as superseded, never prices from it. A routing with\n107\tno revision at all is not a mismatch but it is not a match either: report it\n108\tas revision-unknown, never assumed current. `quote-build` may use it only with\n109\tthat label on every line it touches.\n110\t\n111\t---\n112\t\n113\t## Class 5 — Case and whitespace\n114\t\n115\t**What it is.** Trailing spaces and inconsistent capitalization, usually from a\n116\tmanual export or a hand-maintained sheet.\n117\t\n118\t**Detection.** Rungs 1–2 produce a match.\n119\t\n120\t**Proposed fix.** Trim and case-fold for comparison.\n121\t\n122\t---\n123\t\n124\t## Class 6 — Genuine one-sided record\n125\t\n126\t**What it is.** A part in the ERP that has never been produced. A machine in\n127\tthe CMMS that appears in no production record. A supplier with no purchase orders\n128\tin the window.\n129\t\n130\t**What it means.** Usually nothing wrong at all. An item master legitimately\n131\tcontains parts that are not currently running.\n132\t\n133\t**Detection.** Key is well-formed, no normalization produces a match, and the\n134\tabsence is consistent with the record's own type and dates.\n135\t\n136\t**Proposed fix.** None. **Report, do not alarm.** Distinguish this class clearly\n137\tfrom Class 1, because an orphan is a problem and a one-sided record generally is\n138\tnot, and conflating them makes the whole report look like noise.\n139\t\n140\t**Unless another source contradicts it.** A closed production work order with\n141\tno MES output is one-sided; the same work order cited on an NCR, on inspection\n142\trows or by a...[truncated]",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B03-positive-v9_zl201/work/inputs\"; find . -type f | xargs ls -la; for f in $(find . -type f); do echo \"=== $f\"; head -c 3000 \"$f\"; echo; wc -l \"$f\"; done",
+    "description": "Inspect all input files"
+   },
+   "response": "Permission to use Bash has been denied because Claude Code is running in don't ask mode. IMPORTANT: You *may* attempt to accomplish this action using other tools that might naturally be used to accomplish this goal, e.g. using head instead of cat. But you *should not* attempt to work around this denial in malicious ways, e.g. do not use your ability to run tests to execute non-test actions. You should only try to work around this restriction in reasonable ways that do not attempt to bypass the intent behind this denial. If you believe this capability is essential to complete the user's request, STOP and explain to the user what you were trying to do and why you need this permission. Let the user decide how to proceed.",
+   "is_error": true,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Glob",
+   "input": {
+    "pattern": "**/*",
+    "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\work\\inputs"
+   },
+   "response": "inputs\\pulse_oee\\downtime.csv\ninputs\\pulse_oee\\output.csv\ninputs\\pulse_oee\\plan.csv\ninputs\\pulse_oee\\routing.csv\ninputs\\pulse_oee\\work_orders.csv\ninputs\\pulse_oee\\README.txt\ninputs\\equipment.csv",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\work\\inputs\\pulse_oee\\README.txt"
+   },
+   "response": "1\tLEGION-authored SYNTHETIC export drop for the OEE reconciliation test (tests/manufacturing/test_c10, test_c11).\n2\tNot plant data. Column names are the aliases upstream pulse_compute.py reads (ALIASES, ROLES).\n3\tplan.csv adds asset_id and planned_hours; routing.csv adds run_min_per_unit, so availability, performance and quality are all computable.\n4\t",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\work\\inputs\\equipment.csv"
+   },
+   "response": "1\t# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.\n2\tasset_id,description,cell,work_center,install_year\n3\tHMC-01,Horizontal machining centre 500 mm pallet,Cell A,MILL-H,2019\n4\tVMC-02,Vertical machining centre 3-axis,Cell A,MILL-V,2016\n5\tVMC-03,Vertical machining centre 3-axis,Cell B,MILL-V,2021\n6\tLTH-01,CNC lathe 8in chuck,Cell B,TURN,2018\n7\tDEB-01,Deburr and inspection bench,Cell B,INSP,2015\n8\t",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\work\\inputs\\pulse_oee\\downtime.csv"
+   },
+   "response": "1\tasset_id,started_at,ended_at,duration_minutes,reason_code,reason_text\n2\tCNC-01,2026-11-12T09:10:00,2026-11-12T09:55:00,45,TOOL,tool change overrun\n3\tCNC-02,2026-11-12T13:00:00,2026-11-12T13:20:00,20,MAT,waiting on material\n4\t",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\work\\inputs\\pulse_oee\\output.csv"
+   },
+   "response": "1\twork_order,part_number,qty_good,qty_scrap,production_day,shift,asset_id,cell,site\n2\tWO-1001,PN-100,480,12,2026-11-12,1,CNC-01,CELL-A,SITE-1\n3\tWO-1002,PN-200,220,3,2026-11-12,1,CNC-02,CELL-A,SITE-1\n4\tWO-1003,PN-100,300,0,2026-11-12,2,CNC-01,CELL-A,SITE-1\n5\t",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\work\\inputs\\pulse_oee\\plan.csv"
+   },
+   "response": "1\tpart_number,planned_qty,plan_date,work_center,asset_id,planned_hours\n2\tPN-100,800,2026-11-12,VMC,CNC-01,16\n3\tPN-200,250,2026-11-12,VMC,CNC-02,8\n4\t",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\work\\inputs\\pulse_oee\\routing.csv"
+   },
+   "response": "1\tpart_number,op_seq,work_center,run_min_per_unit\n2\tPN-100,10,VMC,1.0\n3\tPN-200,10,VMC,1.8\n4\t",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\work\\inputs\\pulse_oee\\work_orders.csv"
+   },
+   "response": "1\twork_order,part_number,qty_ordered,status,due_date\n2\tWO-1001,PN-100,500,RELEASED,2026-11-14\n3\tWO-1002,PN-200,250,RELEASED,2026-11-13\n4\tWO-1003,PN-100,300,RELEASED,2026-11-15\n5\t",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\plugin\\shared\\contracts\\consolidated-dataset.md"
+   },
+   "response": "1\t# Contract: the consolidated dataset\n2\t\n3\t**Emitted by** `data-consolidate`\n4\t**Consumed by** every data-dependent skill — as the default source, not the\n5\tonly one; see *What this dataset is authoritative for* below — and it is the\n6\tmapping target for `custom-connector`\n7\t**Chain** 1, RFQ to quote (step 2) and 3, Morning plant pulse (step 1)\n8\t**Contract version** 6\n9\t\n10\tRules that govern every contract are in [README.md](README.md).\n11\t\n12\tThis file names the tabs\n13\tand columns so a consumer and a producer cannot invent two different shapes.\n14\t\n15\t---\n16\t\n17\t## Form\n18\t\n19\tOne queryable working file. **Excel workbook, one tab per entity, is the v1\n20\tformat. The writer is swappable.** The shape below is the contract.\n21\t\n22\tIf `data-consolidate` pulled a record type, that type has a tab. A pulled input\n23\twith no tab is how inventory went missing the first time this file was written.\n24\t\n25\t---\n26\t\n27\t## Entity tabs\n28\t\n29\tThe join hangs off five anchors: part, production work order,\n30\tsales order, lot, asset. Every other input is an entity too. It gets its\n31\town tab. It is not folded onto an anchor.\n32\t\n33\t### The five anchors\n34\t\n35\t| Tab | Grain | Key | Fields |\n36\t|---|---|---|---|\n37\t| `parts` | One row per part | Part number | Description, standard cost, UOM |\n38\t| `production_work_orders` | One row per production work order | Production work order number | Part, qty ordered, due date, status, and from version 5 the sales order it is built for (`sales_order` / `sales_order_verbatim`, null where the source holds no link). From version 6, closed-job cost where the ERP holds it: `actual_material_cost`, `actual_labor_cost`, `actual_burden_cost`, `actual_subcontract_cost` (each with `currency`), `qty_completed`, `closed_date`, `revision`, all nullable |\n39\t| `sales_orders` | One row per sales order line | Sales order number | Customer, part, qty, promised date, price |\n40\t| `lots` | One row per lot or batch | Lot number | The identity stamped on a quantity of material |\n41\t| `assets` | One row per machine | Asset ID | Location |\n42\t\n43\t### The other inputs\n44\t\n45\t| Tab | Grain | Joins on | Fields |\n46\t|---|---|---|---|\n47\t| `inventory` | One row per part per location | Part | On-hand qty, location |\n48\t| `purchase_orders` | One row per PO line | Part, supplier ID | Supplier, part, qty, cost, delivery date |\n49\t| `production_output` | One row per work order per shift per production day | Production work order, part | Qty good, qty scrap, shift, production day. **Two rows at the same grain are a duplicate key (class 8); the same work order on another shift is not** |\n50\t| `downtime_events` | One row per stoppage | Asset | Start, end, reason code |\n51\t| `inspection_results` | One row per measurement | Lot or production work order | Measurement vs spec |\n52\t| `maintenance_work_orders` | One row per maintenance ticket | Asset | Maintenance work order, dates, close-out notes |\n53\t| `plan` | One row per part per date | Part | Planned qty, date |\n54\t| `ncrs` | One row per NCR | Production work order, part, lot | NCR ID, found at, description verbatim, status, customer. |\n55\t\n56\t`inventory` is on-hand **by part and location**. A single on-hand total on\n57\t`parts` is not this tab. Containment needs the location.\n58\t\n59\tSupplier is a join key, not an anchor. It lives on `purchase_orders`.\n60\t\n61\t**`ncrs` is where an NCR export lands, and the NCR-to-work-order check runs on\n62\tit**: the NCR's part against the part the ERP holds for the work order it\n63\tcites, and its date against that work order's first recorded output.\n64\t`ncr-writeup` and `root-cause-capa` still read the NCR export raw for the\n65\trecord as written; they read this tab for whether its part label can be\n66\ttrusted.\n67\t\n68\t### Routings and operation actuals\n69\t\n70\tTwo more inputs, for quoting. They are what `quote-build` derives\n71\tmachine hours from before it ever opens a model, and the order matters: a\n72\tcurrent-revision routing or a trustworthy set of actuals makes the design step\n73\ta cross-check rather than the basis.\n74\t\n75\t| Tab | Grain | Joins on | Fields |\n76\t|---|---|---|---|\n77\t| `routings` | One row per part, revision and operation | Part | `part_revision`, `op_seq`, `work_center` / `work_center_verbatim`, `cell`, `setup_hours`, `run_time_per_unit`, `run_time_unit`, `time_unit_flag`, `routing_mismatch` |\n78\t| `operation_actuals` | One row per production work order and operation | Production work order, part | `op_seq`, `work_center` / `work_center_verbatim`, `cell`, `actual_setup_hours`, `actual_run_hours`, `qty_completed`, `uom`, `closed_date`, `time_unit_flag`, `actuals_confidence`, `confidence_reason` |\n79\t\n80\tColumn behavior on both tabs:\n81\t\n82\t| Column | Type | Behavior | Notes |\n83\t|---|---|---|---|\n84\t| `part_revision` | string or null | Degrades on `routings` | The revision the routing was written for. **Null is not \"current\"**: a routing with no revision is reported as revision-unknown, never assumed to match the drawing |\n85\t| `op_seq` | integer | Required | As the source numbers it |\n86\t| `work_center` / `work_center_verbatim` | string | Required | A pair, like a join key, though it is not one of the six |\n87\t| `cell` | string or null | Degrades | From the machine class to work center map in the Plant context. Null when there is no map, and the report says so |\n88\t| `setup_hours`, `run_time_per_unit` | number | Required | As the source states them. **Never converted** |\n89\t| `run_time_unit` | enum | Required | `min`, `h`, or `undeclared`. Read from the header or a unit column, never inferred from the size of the number |\n90\t| `time_unit_flag` | string or null | Degrades | Set when a unit is undeclared, or when this tab's unit differs from the other tab's for the same part and operation. Names both units. No conversion is computed |\n91\t| `routing_mismatch` | enum or null | Degrades | `no_matching_part` (the routing's part is not in the item master — mismatch class 1) or `revision_mismatch` (the routi...[truncated]",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\plugin\\shared\\artifact-style.md"
+   },
+   "response": "1\t# Artifact style — the house look\n2\t\n3\t**Shared across the plugin.** One visual system so every page a skill produces\n4\treads as the same product. Read this before building any HTML artifact; do not\n5\tinvent a new palette per skill.\n6\t\n7\t**The point is not decoration.** These are operating tools for a plant — a data\n8\tquality report, a morning production report, a bad-actor ranking, a cost-basis\n9\tsheet. Legible and defensible beats flashy. No hero banners, no marketing\n10\tgradients. A shop drawing, not a landing page.\n11\t\n12\t---\n13\t\n14\t## The constraint that shapes everything\n15\t\n16\t**Microsoft 365 is read-only by default.** Write access is an admin opt-in and\n17\tTeams has no write path at all. No skill may assume it can post a message or\n18\twrite a file back into M365.\n19\t\n20\tSo every deliverable is produced **in the conversation** and the user places it\n21\tthemselves. An artifact is a thing they open, read, and save or forward. It is\n22\tnever something the plugin filed away on their behalf.\n23\t\n24\t**The one exception is the two live dashboards**, Operations and the Quality\n25\tRegister, which are published to the user's own Claude artifact store and\n26\tupdated in place, per `live-dashboard.md`. That store is not M365 and not a\n27\tsystem of record. Everything on this page applies to them unchanged.\n28\t\n29\t---\n30\t\n31\t## When to use an artifact, and when not to\n32\t\n33\tReach for a page when the output is something the user will **refer back to,\n34\tprint, take into a meeting, or hand to someone else**. A data quality report, a\n35\tmorning production report, a ranked diagnosis, a scored comparison. Skip it for\n36\ta single number or a one-line answer; the chat reply is the deliverable and a\n37\tpage wrapped around one sentence is noise.\n38\t\n39\t**The artifact is additive, never a replacement.** The user still gets the short\n40\tanswer in chat. The page is where they go for the full picture.\n41\t\n42\t**Three kinds of output, and only one of them is an artifact:**\n43\t\n44\t| Output | Form | Why |\n45\t|---|---|---|\n46\t| A report, dashboard, or ranked analysis | HTML artifact, this style | Read at a glance, referred back to |\n47\t| A dataset | XLSX workbook, tab per entity | Meant to be filtered, pivoted, and checked |\n48\t| A controlled document | The plant's own template | An NCR, an 8D, a quote, a supplier RFQ package and a trade study memo all have a plant-specific or customer-specific shape, captured during `onboarding`. Never restyle a controlled document into the house look. |\n49\t\n50\tThat last row matters. A quality manager's 8D goes to a customer against a\n51\tcontractual format. House styling it would be wrong, not nicer.\n52\t\n53\t---\n54\t\n55\t## Design tokens\n56\t\n57\tEvery color and font is a CSS custom property. Components never carry a literal\n58\thex, so one override point recolors the whole page correctly.\n59\t\n60\t```css\n61\t:root {\n62\t  --ink: #1A1D21;          /* primary text, graphite */\n63\t  --paper: #F2F3F5;        /* page background, cool grey */\n64\t  --paper-raised: #FFFFFF; /* card surfaces sitting on --paper */\n65\t  --line: #D6D9DD;         /* hairline borders and rules */\n66\t  --accent: #1F5C8B;       /* primary accent, drawing blue */\n67\t  --accent-soft: #E4EDF4;  /* accent tint for pills and highlights */\n68\t\n69\t  /* Semantic, never repurposed as branding */\n70\t  --good: #2E7248;\n71\t  --good-soft: #E3EFE7;\n72\t  --warn: #A8641A;\n73\t  --warn-soft: #F7EBDA;\n74\t  --critical: #A93226;\n75\t  --critical-soft: #F9E9E7;\n76\t\n77\t  --font-display: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif;\n78\t  --font-body: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;\n79\t  --font-mono: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;\n80\t\n81\t  --text-xs: 0.75rem;   --text-sm: 0.875rem;  --text-base: 1rem;\n82\t  --text-lg: 1.125rem;  --text-xl: 1.375rem;  --text-2xl: 1.75rem;\n83\t  --text-3xl: 2.25rem;\n84\t}\n85\t\n86\t@media (prefers-color-scheme: dark) {\n87\t  :root:not([data-theme=\"light\"]) {\n88\t    --ink: #E8EAEC;\n89\t    --paper: #15181B;\n90\t    --paper-raised: #1D2126;\n91\t    --line: #2E343A;\n92\t    --accent: #6BA8D4;\n93\t    --accent-soft: #1B2C39;\n94\t    --good: #6FBF88;\n95\t    --good-soft: #1B2E22;\n96\t    --warn: #D9A15C;\n97\t    --warn-soft: #33271A;\n98\t    --critical: #DE8378;\n99\t    --critical-soft: #35201E;\n100\t  }\n101\t}\n102\t\n103\t:root[data-theme=\"dark\"] {\n104\t  --ink: #E8EAEC;\n105\t  --paper: #15181B;\n106\t  --paper-raised: #1D2126;\n107\t  --line: #2E343A;\n108\t  --accent: #6BA8D4;\n109\t  --accent-soft: #1B2C39;\n110\t  --good: #6FBF88;\n111\t  --good-soft: #1B2E22;\n112\t  --warn: #D9A15C;\n113\t  --warn-soft: #33271A;\n114\t  --critical: #DE8378;\n115\t  --critical-soft: #35201E;\n116\t}\n117\t```\n118\t\n119\t**Fonts load from Google Fonts**, the one host the artifact sandbox allows:\n120\t\n121\t```html\n122\t<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n123\t<link href=\"https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap\" rel=\"stylesheet\">\n124\t```\n125\t\n126\t---\n127\t\n128\t## Type\n129\t\n130\t- **Display** for page titles and section headers only, weight 600.\n131\t- **Body** for everything read as prose.\n132\t- **Mono** for every number that sits in a column — counts, quantities, minutes,\n133\t  currency, part numbers, work order numbers, dates in a table. Pair with\n134\t  `font-variant-numeric: tabular-nums`. Part numbers and work order numbers are\n135\t  identifiers, not prose, and they belong in mono so `PN-4471-B` and `PN-4471-8`\n136\t  are distinguishable at a glance.\n137\t\n138\t---\n139\t\n140\t## Layout — the panel pattern\n141\t\n142\tContent sits in bordered panels (`--paper-raised` on `--paper`, `1px solid\n143\tvar(--line)`, `border-radius: 4px`). Panels stack with `gap`, not margin. Wide\n144\ttables get their own `overflow-x: auto` wrapper so the page never scrolls\n145\tsideways.\n146\t\n147\t```css\n148\t.panel {\n149\t  background: var(--paper-raised);\n150\t  border: 1px solid var(--line);\n151\t  border-radius: 4px;\n...[truncated]",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\plugin\\shared\\computed-figures.md"
+   },
+   "response": "1\t# Computed figures — a number is printed, never retyped\n2\t\n3\t**Shared across the plugin.** Every skill that reports a number follows this.\n4\t\n5\tThe failure this exists to stop has one shape. The skill does the work\n6\tcorrectly, then writes the summary from memory. The summary says \"eleven\n7\tmaintenance records\" where the data holds six, \"3.1× the control limit\" where\n8\tthe division gives 2.36, \"five orders\" where the file has six — the customer's\n9\town order being the one missed. Each figure is stated with total confidence,\n10\tand each is the first thing a quality manager or an estimator will check.\n11\t\n12\tA second shape sits next to it: the confident absence. \"The sister machine has\n13\tno bearing history.\" \"There is no PM plan in the library.\" Said after one\n14\tsearch, about a record that was there.\n15\t\n16\t---\n17\t\n18\t## The rule\n19\t\n20\t**Every count, total, ratio, percentage and \"N of M\" in user-facing output is\n21\tproduced by code run over the data in this session, and printed from that\n22\tresult. A number is never retyped, rounded from memory, or paraphrased.**\n23\t\n24\t**A negative claim — \"has no history,\" \"no plan exists,\" \"not in the file\" —\n25\tcites the exact query or filter that returned nothing.** Where the search tool\n26\tmay be incomplete (SharePoint search under-reports), enumerate the folder\n27\tinstead, or say *\"not found by search\"* rather than *\"does not exist.\"* Those\n28\tare different claims and only the first one was earned.\n29\t\n30\t---\n31\t\n32\t## The figures block — a required part of the output\n33\t\n34\tA rule that says \"check your numbers\" is a rule nobody can see being skipped.\n35\tSo the check is an output, not an intention.\n36\t\n37\t**Every run that reports a number emits a figures block**, produced by code,\n38\tbefore the prose that uses it. One row per figure:\n39\t\n40\t| Figure | Value | Computed from | Filter or query |\n41\t|---|---|---|---|\n42\t| Maintenance records, HAAS-VF4-02 | 9 | maintenance export | `asset_id == \"HAAS-VF4-02\"` |\n43\t| Sibling records mentioning \"bearing\" | 2 (LMB-13781, LMB-14022, both HAAS-VF4-05) | maintenance export | same model, `notes` contains \"bearing\" |\n44\t| Measured ÷ upper control limit | 1.87 | inspection export | measured and limit both from the same computation |\n45\t| PM plan documents found | 0 — **not found by search** | M365 library | search \"PM plan\"; folder not enumerated |\n46\t\n47\tThen three things hold, and a reader can check all three without re-running\n48\tanything:\n49\t\n50\t1. **The prose quotes the block.** A number that appears in the narrative, a\n51\t   table or a headline appears in the block with the same value. A number in\n52\t   the prose with no row in the block is a defect.\n53\t2. **A ratio comes from the same computation as its parts.** Do not compute a\n54\t   control limit in code and then divide by it in your head.\n55\t3. **A subtotal reconciles to its total in the block itself.** If 126 records\n56\t   matched, the exact and normalized rows add to 126, and each equals the sum\n57\t   of the classes it is made of. A block that does not add up is fixed before\n58\t   anything is written from it.\n59\t\n60\tWhere the skill already emits \"the structured data behind the report,\" the\n61\tfigures block is part of it. Where the output is a controlled document going to\n62\ta customer or supplier, the block stays on the internal side.\n63\t\n64\t---\n65\t\n66\t## When no code can be run\n67\t\n68\tSome sessions have no code execution. Then the count was made by reading, and\n69\tthe output says so: **\"counted by reading, not computed — verify before\n70\trelying on it,\"** on the block and beside any figure that matters. Never\n71\tpresent a hand count as a computed one. This is `absent-is-not-zero.md` applied\n72\tto the method rather than the data: an unverified number named as unverified is\n73\tuseful, and one dressed as computed is worse than none.\n74\t\n75\t---\n76\t\n77\t## What this does not change\n78\t\n79\t- A figure that cannot be read is still reported unreadable. The block carries\n80\t  the row with the reason, never a guess.\n81\t- Rates, whether read from an `MFG_*` variable or the plant profile, follow\n82\t  `secret-config.md`. The block names the source; the value appears only where\n83\t  the audience rule allows.\n84\t- Computing a figure is not applying a fix. Anything that changes data still\n85\t  needs its yes.\n86\t",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\work\\out\\dataset\\parts.csv",
+    "content": "site,source_system,source_ref,as_of,join_status,mismatch_class,contradicted_by,integrity_flags,part_number,part_number_verbatim,part_revision,description,amount,currency,uom\nnot_stated,manual,inputs/pulse_oee/work_orders.csv:2;4 (derived - no item master in drop),unknown (no record date in source),matched,,,,PN-100,PN-100,,not_in_source,,,not_stated\nnot_stated,manual,inputs/pulse_oee/work_orders.csv:3 (derived - no item master in drop),unknown (no record date in source),matched,,,,PN-200,PN-200,,not_in_source,,,not_stated\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\work\\out\\dataset\\parts.csv (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\work\\out\\dataset\\production_work_orders.csv",
+    "content": "site,source_system,source_ref,as_of,join_status,mismatch_class,contradicted_by,integrity_flags,production_wo,production_wo_verbatim,part_number,part_number_verbatim,part_revision,qty,uom,due_date,status,sales_order,sales_order_verbatim\nnot_stated,manual,inputs/pulse_oee/work_orders.csv:2,unknown (no record date in source),matched,,,,WO-1001,WO-1001,PN-100,PN-100,,500,not_stated,2026-11-14,RELEASED,,\nnot_stated,manual,inputs/pulse_oee/work_orders.csv:3,unknown (no record date in source),matched,,,,WO-1002,WO-1002,PN-200,PN-200,,250,not_stated,2026-11-13,RELEASED,,\nnot_stated,manual,inputs/pulse_oee/work_orders.csv:4,unknown (no record date in source),matched,,,,WO-1003,WO-1003,PN-100,PN-100,,300,not_stated,2026-11-15,RELEASED,,\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\work\\out\\dataset\\production_work_orders.csv (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\work\\out\\dataset\\production_output.csv",
+    "content": "site,source_system,source_ref,as_of,join_status,mismatch_class,contradicted_by,integrity_flags,production_wo,production_wo_verbatim,part_number,part_number_verbatim,part_revision,qty_good,qty_scrap,uom,shift,production_day,asset_id,asset_id_verbatim,cell,cell_verbatim\nSITE-1,mes_export,inputs/pulse_oee/output.csv:2,2026-11-12 (date only - no time or zone in source),matched,,,,WO-1001,WO-1001,PN-100,PN-100,,480,12,not_stated,1,2026-11-12,CNC-01,CNC-01,CELL-A,CELL-A\nSITE-1,mes_export,inputs/pulse_oee/output.csv:3,2026-11-12 (date only - no time or zone in source),matched,,,,WO-1002,WO-1002,PN-200,PN-200,,220,3,not_stated,1,2026-11-12,CNC-02,CNC-02,CELL-A,CELL-A\nSITE-1,mes_export,inputs/pulse_oee/output.csv:4,2026-11-12 (date only - no time or zone in source),matched,,,,WO-1003,WO-1003,PN-100,PN-100,,300,0,not_stated,2,2026-11-12,CNC-01,CNC-01,CELL-A,CELL-A\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\work\\out\\dataset\\production_output.csv (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\work\\out\\dataset\\plan.csv",
+    "content": "site,source_system,source_ref,as_of,join_status,mismatch_class,contradicted_by,integrity_flags,part_number,part_number_verbatim,part_revision,qty,uom,plan_date,work_center,work_center_verbatim,cell,asset_id,asset_id_verbatim,planned_hours\nnot_stated,planning_export,inputs/pulse_oee/plan.csv:2,2026-11-12 (date only - no time or zone in source),matched,,,,PN-100,PN-100,,800,not_stated,2026-11-12,VMC,VMC,,CNC-01,CNC-01,16\nnot_stated,planning_export,inputs/pulse_oee/plan.csv:3,2026-11-12 (date only - no time or zone in source),matched,,,,PN-200,PN-200,,250,not_stated,2026-11-12,VMC,VMC,,CNC-02,CNC-02,8\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\work\\out\\dataset\\plan.csv (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\work\\out\\dataset\\downtime_events.csv",
+    "content": "site,source_system,source_ref,as_of,join_status,mismatch_class,contradicted_by,integrity_flags,asset_id,asset_id_verbatim,started_at,ended_at,duration_minutes,reason_code,reason_text\nnot_stated,mes_export,inputs/pulse_oee/downtime.csv:2,2026-11-12T09:10:00 (no zone in source),unmatched,1,,,CNC-01,CNC-01,2026-11-12T09:10:00,2026-11-12T09:55:00,45,TOOL,tool change overrun\nnot_stated,mes_export,inputs/pulse_oee/downtime.csv:3,2026-11-12T13:00:00 (no zone in source),unmatched,1,,,CNC-02,CNC-02,2026-11-12T13:00:00,2026-11-12T13:20:00,20,MAT,waiting on material\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\work\\out\\dataset\\downtime_events.csv (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\work\\out\\dataset\\assets.csv",
+    "content": "site,source_system,source_ref,as_of,join_status,mismatch_class,contradicted_by,integrity_flags,asset_id,asset_id_verbatim,description,location,cell,cell_verbatim,work_center,work_center_verbatim,install_year\nnot_stated,manual,inputs/equipment.csv:3,2026-11-13 23:04 (file time - zone unknown),unmatched,,,,HMC-01,HMC-01,Horizontal machining centre 500 mm pallet,Cell A,Cell A,Cell A,MILL-H,MILL-H,2019\nnot_stated,manual,inputs/equipment.csv:4,2026-11-13 23:04 (file time - zone unknown),unmatched,,,,VMC-02,VMC-02,Vertical machining centre 3-axis,Cell A,Cell A,Cell A,MILL-V,MILL-V,2016\nnot_stated,manual,inputs/equipment.csv:5,2026-11-13 23:04 (file time - zone unknown),unmatched,,,,VMC-03,VMC-03,Vertical machining centre 3-axis,Cell B,Cell B,Cell B,MILL-V,MILL-V,2021\nnot_stated,manual,inputs/equipment.csv:6,2026-11-13 23:04 (file time - zone unknown),unmatched,,,,LTH-01,LTH-01,CNC lathe 8in chuck,Cell B,Cell B,Cell B,TURN,TURN,2018\nnot_stated,manual,inputs/equipment.csv:7,2026-11-13 23:04 (file time - zone unknown),unmatched,,,,DEB-01,DEB-01,Deburr and inspection bench,Cell B,Cell B,Cell B,INSP,INSP,2015\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\work\\out\\dataset\\assets.csv (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\work\\out\\dataset\\key_mismatch_log.csv",
+    "content": "finding_id,key,source_file,source_row,value_verbatim,compared_against,result,mismatch_class,proposed_fix,status\nM1,asset_id,inputs/pulse_oee/downtime.csv,2,CNC-01,inputs/equipment.csv asset_id (HMC-01 VMC-02 VMC-03 LTH-01 DEB-01),no match on any ladder rung,1,none automatic - needs a machine-number crosswalk from the plant,question open\nM1,asset_id,inputs/pulse_oee/downtime.csv,3,CNC-02,inputs/equipment.csv asset_id,no match on any ladder rung,1,none automatic - needs a machine-number crosswalk from the plant,question open\nM1,asset_id (attribute),inputs/pulse_oee/output.csv,2,CNC-01,inputs/equipment.csv asset_id,no match on any ladder rung,1,none automatic,question open\nM1,asset_id (attribute),inputs/pulse_oee/output.csv,3,CNC-02,inputs/equipment.csv asset_id,no match on any ladder rung,1,none automatic,question open\nM1,asset_id (attribute),inputs/pulse_oee/output.csv,4,CNC-01,inputs/equipment.csv asset_id,no match on any ladder rung,1,none automatic,question open\nM1,asset_id (attribute),inputs/pulse_oee/plan.csv,2,CNC-01,inputs/equipment.csv asset_id,no match on any ladder rung,1,none automatic,question open\nM1,asset_id (attribute),inputs/pulse_oee/plan.csv,3,CNC-02,inputs/equipment.csv asset_id,no match on any ladder rung,1,none automatic,question open\nM2,asset_id,inputs/equipment.csv,3-7,HMC-01; VMC-02; VMC-03; LTH-01; DEB-01,MES/plan/downtime asset_id (CNC-01 CNC-02),not referenced by any production/plan/downtime row,unclassified,none - cannot be called one-sided (class 6) until M1 crosswalk exists,question open\nP1,cell (attribute - not a join key),inputs/pulse_oee/output.csv,2-4,CELL-A,inputs/equipment.csv cell 'Cell A',matches after rung 2 (case) + rung 3 (punctuation),2,treat CELL-A and Cell A as the same cell; verbatim kept,AWAITING APPROVAL\nW1,work_center (attribute),inputs/pulse_oee/plan.csv + routing.csv,plan 2-3; routing 2-3,VMC,inputs/equipment.csv work_center (MILL-H MILL-V TURN INSP),no match on any ladder rung,n/a (mapped not joined),none automatic - needs plant machine-class / work-center map,question open\nR1,routing file signature,inputs/pulse_oee/routing.csv,1,header: part_number op_seq work_center run_min_per_unit,routing signature (part; op seq; work center; setup time; run time),no setup-time column; no revision column,n/a,none - file set aside from routings tab,question open\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\work\\out\\dataset\\key_mismatch_log.csv (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\work\\out\\dataset\\_manifest.md",
+    "content": "# Consolidated dataset — manifest (SYNTHETIC test data)\n\nBuilt 2026-11-15 from `./inputs` only. This was a file-only run: no ERP or CMMS connector was used and nothing was written to any external system.\nContract: `consolidated-dataset.md` v6. **The writer is CSV, one file per tab, not XLSX.** Code execution was unavailable in this session, so no workbook could be generated. The column shapes follow the contract.\n**All counts were made by reading the files, not computed in code. Verify them before relying on them.**\n\n## Tabs present\n\n| Tab | Rows | Built from | Window kind |\n|---|---|---|---|\n| parts | 2 | derived from work_orders.csv (no item master in drop) | reference |\n| production_work_orders | 3 | inputs/pulse_oee/work_orders.csv | open commitments (all RELEASED; kept by status) |\n| production_output | 3 | inputs/pulse_oee/output.csv | activity, 2026-11-12 |\n| plan | 2 | inputs/pulse_oee/plan.csv | activity, 2026-11-12 |\n| downtime_events | 2 | inputs/pulse_oee/downtime.csv | activity, 2026-11-12 |\n| assets | 5 | inputs/equipment.csv | reference |\n| key_mismatch_log | 11 lines | every unmatched key and pending proposal | — |\n\n## Tabs missing — named gaps, not empty\n\n- **routings**: `routing.csv` was **set aside**. It has no setup-time column and no revision, so it fails the routing signature. Its 2 rows (PN-100 op 10 VMC 1.0 min/unit; PN-200 op 10 VMC 1.8 min/unit) are shown in the report. With no routing tab, `quote-build` cannot start from a routing.\n- **operation_actuals**: there was no source in the drop, so the backflush (`probable_standard`) check was not run.\n- **sales_orders, lots, inventory, purchase_orders, inspection_results, maintenance_work_orders, ncrs**: there was no source in the drop.\n\n## Columns that could not be filled\n\n- `uom` is `not_stated` on every quantity. No file declares a unit, and units are never inferred.\n- `site` is `SITE-1` on production_output, which is the only file that names a site. Every other tab has `not_stated`.\n- `as_of` has no zone on any row. Output and plan carry dates only. Downtime has local times with no zone. work_orders.csv has no record date at all.\n- `cell` on plan is null, because the plant context has no work-center-to-cell map.\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\work\\out\\dataset\\_manifest.md (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\work\\out\\data_quality_report.html",
+    "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Data Quality Report — SITE-1 — production day 2026-11-12 (SYNTHETIC)</title>\n<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n<link href=\"https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap\" rel=\"stylesheet\">\n<style>\n:root{--ink:#1A1D21;--paper:#F2F3F5;--paper-raised:#FFFFFF;--line:#D6D9DD;--accent:#1F5C8B;--accent-soft:#E4EDF4;--good:#2E7248;--good-soft:#E3EFE7;--warn:#A8641A;--warn-soft:#F7EBDA;--critical:#A93226;--critical-soft:#F9E9E7;\n--font-display:'IBM Plex Sans Condensed','Arial Narrow',sans-serif;--font-body:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,sans-serif;--font-mono:'IBM Plex Mono','SF Mono',Consolas,monospace;\n--text-xs:.75rem;--text-sm:.875rem;--text-base:1rem;--text-lg:1.125rem;--text-xl:1.375rem;--text-2xl:1.75rem;--text-3xl:2.25rem}\n@media (prefers-color-scheme:dark){:root:not([data-theme=\"light\"]){--ink:#E8EAEC;--paper:#15181B;--paper-raised:#1D2126;--line:#2E343A;--accent:#6BA8D4;--accent-soft:#1B2C39;--good:#6FBF88;--good-soft:#1B2E22;--warn:#D9A15C;--warn-soft:#33271A;--critical:#DE8378;--critical-soft:#35201E}}\n:root[data-theme=\"dark\"]{--ink:#E8EAEC;--paper:#15181B;--paper-raised:#1D2126;--line:#2E343A;--accent:#6BA8D4;--accent-soft:#1B2C39;--good:#6FBF88;--good-soft:#1B2E22;--warn:#D9A15C;--warn-soft:#33271A;--critical:#DE8378;--critical-soft:#35201E}\nbody{margin:0;background:var(--paper);color:var(--ink);font:400 var(--text-base)/1.5 var(--font-body)}\n.page{display:flex;flex-direction:column;gap:1.25rem;max-width:900px;margin:0 auto;padding:2rem 1.5rem}\n.panel{background:var(--paper-raised);border:1px solid var(--line);border-radius:4px;padding:1.5rem}\nh1,h2,h3{font-family:var(--font-display);font-weight:600;margin:0 0 .5rem}\nh1{font-size:var(--text-2xl)}h2{font-size:var(--text-xl)}h3{font-size:var(--text-lg)}\n.meta{font-size:var(--text-sm);margin:0;opacity:.8}\n.table-scroll{overflow-x:auto}\ntable{border-collapse:collapse;width:100%;font-size:var(--text-sm)}\nth,td{text-align:left;padding:.4rem .5rem;border-bottom:1px solid var(--line);vertical-align:top}\ntd.num,code,.mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums}\ntd.num{text-align:right}\n.status{display:inline-block;padding:.15rem .55rem;border-radius:2px;font:600 var(--text-xs) var(--font-body);text-transform:uppercase;letter-spacing:.04em}\n.status--good{background:var(--good-soft);color:var(--good)}.status--warn{background:var(--warn-soft);color:var(--warn)}.status--critical{background:var(--critical-soft);color:var(--critical)}\n.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem}\n.stat-figure{font:600 var(--text-3xl) var(--font-mono);font-variant-numeric:tabular-nums}\n.stat-label{font-weight:600}.stat-context{font-size:var(--text-sm);margin:.25rem 0 0}\n.proposal{border-left:4px solid var(--warn)}\n.decision{border:2px solid var(--warn)}\n.page-footer{font-size:var(--text-xs);opacity:.7;text-align:center}\nul{margin:.25rem 0;padding-left:1.25rem}\n</style>\n</head>\n<body>\n<div class=\"page\">\n\n<header class=\"page-header\">\n  <h1>Data Quality Report</h1>\n  <p class=\"meta\">SITE-1 (SYNTHETIC test plant) · Generated Nov 15, 2026 · data as of production day Nov 12, 2026 (no zone in any source)</p>\n  <p class=\"meta\"><strong>All figures were counted by reading, not computed. Verify them before relying on them.</strong> Code execution was unavailable in this session.</p>\n</header>\n\n<div class=\"panel decision\">\n  <h2>DECISION REQUIRED: APPROVE OR REJECT</h2>\n  <p><strong>Cell label <code>CELL-A</code> (MES output) = <code>Cell A</code> (equipment list).</strong></p>\n  <ul>\n    <li><strong>Why it is proposed:</strong> the two labels match after case folding (rung 2) and punctuation folding (rung 3).</li>\n    <li><strong>Limits:</strong> cell is a label, not a join key. Approving it does <em>not</em> link any machine. CNC-01 and CNC-02 stay unmatched (see Finding 1).</li>\n    <li><strong>Rows touched:</strong> 3 output rows (output.csv lines 2–4: WO-1001, WO-1002, WO-1003; 1,000 good and 15 scrap, unit not stated) and 2 equipment rows (HMC-01, VMC-02).</li>\n    <li><strong>Approve:</strong> both labels are read as one cell for cell-level rollups. The spelling each file used is kept in <code>cell_verbatim</code>, and the rule is saved to the approved-normalizations list.</li>\n    <li><strong>Reject:</strong> the labels stay separate, so MES cell totals cannot be laid against the equipment list by cell. The rule is not proposed again.</li>\n    <li><strong>Reply asked for:</strong> \"approve cell CELL-A = Cell A\" or \"reject\". Please include the name of the person approving.</li>\n  </ul>\n</div>\n\n<div class=\"panel freshness\">\n  <h2>Sources</h2>\n  <div class=\"table-scroll\"><table>\n    <thead><tr><th>Source</th><th>Last refreshed</th><th>Covers</th><th>Status</th></tr></thead>\n    <tbody>\n      <tr><td>Production output (MES export) <code>output.csv</code></td><td class=\"num\">not readable this session</td><td class=\"num\">2026-11-12</td><td><span class=\"status status--warn\">3 days old</span></td></tr>\n      <tr><td>Downtime (MES export) <code>downtime.csv</code></td><td class=\"num\">not readable this session</td><td class=\"num\">2026-11-12 09:10–13:20</td><td><span class=\"status status--warn\">3 days old</span></td></tr>\n      <tr><td>Plan (planning export) <code>plan.csv</code></td><td class=\"num\">not readable this session</td><td class=\"num\">2026-11-12</td><td><span class=\"status status--warn\">3 days old</span></td></tr>\n      <tr><td>Production work orders <code>work_orders.csv</code> (source system not stated)</td><td class=\"num\">not readable this session</td><td class=\"num\">open orders, due 11-13 to 11-15</td><td><span class=\"status status--warn\">No record date</span></td></tr>\n      <tr><td>Routing <code>routing.csv</code></td><td class=\"num\">not readable this session</td><td class=\"num\">no date</td><td><span class=\"status status--critical\">Set aside: incomplete</span></td></tr>\n      <tr><td>Equipment list <code>equipment.csv</code>: <strong>maintenance/asset data is from a file export, not a live CMMS</strong></td><td class=\"num\">2026-11-13 23:04 (file time)</td><td class=\"num\">reference list, undated</td><td><span class=\"status status--good\">Read</span></td></tr>\n    </tbody>\n  </table></div>\n  <p><strong>The \"last night\" drop holds only Nov 12.</strong> Today is Sun Nov 15. Output, plan and downtime all cover one day, Nov 12, and nothing covers Nov 13 or Nov 14. Either the export was not refreshed, or the plant did not run on those days. Please confirm which before this feeds a morning report.</p>\n  <p>The activity sources all cover the same single day, so their windows overlap fully. There is no date-window mismatch (class 7), and no row is out of window. No source carries a timestamp later than the run time, so there is no future-timestamp finding.</p>\n</div>\n\n<div class=\"tiles\">\n  <div class=\"panel stat-tile\"><div class=\"stat-figure\">10 / 10</div><div class=\"stat-label\">Part and work-order keys matched</div><p class=\"stat-context\">All exact. No normalization was needed.</p></div>\n  <div class=\"panel stat-tile\"><div class=\"stat-figure\">0 / 7</div><div class=\"stat-label\">Machine IDs matched to equipment list</div><p class=\"stat-context\">The MES uses CNC-01 and CNC-02, which are not in the equipment list.</p></div>\n  <div class=\"panel stat-tile\"><div class=\"stat-figure\">10 / 17</div><div class=\"stat-label\">Dataset rows joined</div><p class=\"stat-context\">The 7 unjoined rows are 2 downtime events and 5 equipment rows, all caused by Finding 1.</p></div>\n</div>\n\n<div class=\"panel\">\n  <h2>Rows in vs rows joined, per tab</h2>\n  <div class=\"table-scroll\"><table>\n    <thead><tr><th>Tab</th><th>Joined on</th><th>Rows in</th><th>Joined</th><th>Status</th></tr></thead>\n    <tbody>\n      <tr><td>parts (derived from work orders)</td><td>part</td><td class=\"num\">2</td><td class=\"num\">2</td><td><span class=\"status status--warn\">No item master</span></td></tr>\n      <tr><td>production_work_orders</td><td>production WO</td><td class=\"num\">3</td><td class=\"num\">3</td><td><span class=\"status status--good\">Matched</span></td></tr>\n      <tr><td>production_output</td><td>production WO, part</td><td class=\"num\">3</td><td class=\"num\">3</td><td><span class=\"status status--good\">Matched</span></td></tr>\n      <tr><td>plan</td><td>part</td><td class=\"num\">2</td><td class=\"num\">2</td><td><span class=\"status status--good\">Matched</span></td></tr>\n      <tr><td>downtime_events</td><td>asset</td><td class=\"num\">2</td><td class=\"num\">0</td><td><span class=\"status status--critical\">Orphan machine IDs</span></td></tr>\n      <tr><td>assets</td><td>asset</td><td class=\"num\">5</td><td class=\"num\">0</td><td><span class=\"status status--critical\">No crosswalk</span></td></tr>\n      <tr><td>routings</td><td>part</td><td class=\"num\">2 (file)</td><td class=\"num\">not loaded</td><td><span class=\"status status--critical\">Set aside</span></td></tr>\n    </tbody>\n  </table></div>\n  <p>Not in the drop, so these tabs are missing rather than empty: <strong>operation_actuals, sales_orders, lots, inventory, purchase_orders, inspection_results, maintenance_work_orders, ncrs.</strong></p>\n</div>\n\n<div class=\"panel\">\n  <h2>Finding 1: The MES and the equipment list number machines differently <span class=\"status status--critical\">Orphan record (class 1)</span></h2>\n  <p>Output, plan and downtime name two machines, <code>CNC-01</code> and <code>CNC-02</code>. The equipment list names five: <code>HMC-01, VMC-02, VMC-03, LTH-01, DEB-01</code>. None of the five matches on any normalization rung. This is a single cause behind 7 rows (2 machine IDs), not 7 separate problems.</p>\n  <div class=\"table-scroll\"><table>\n    <thead><tr><th>File, line</th><th>Machine</th><th>What it says</th></tr></thead>\n    <tbody>\n      <tr><td class=\"mono\">downtime.csv:2</td><td class=\"mono\">CNC-01</td><td>45 min TOOL, tool change overrun, 09:10–09:55</td></tr>\n      <tr><td class=\"mono\">downtime.csv:3</td><td class=\"mono\">CNC-02</td><td>20 min MAT, waiting on material, 13:00–13:20</td></tr>\n      <tr><td class=\"mono\">output.csv:2</td><td class=\"mono\">CNC-01</td><td>WO-1001 PN-100, 480 good / 12 scrap, shift 1</td></tr>\n      <tr><td class=\"mono\">plan.csv:3</td><td class=\"mono\">CNC-02</td><td>PN-200, 250 planned, 8 h, work center VMC</td></tr>\n    </tbody>\n  </table></div>\n  <p><strong>The evidence points in different directions.</strong> The MES puts both CNC machines in CELL-A. The equipment list's Cell A holds HMC-01 (a horizontal machine, MILL-H) and VMC-02. The plan says both CNC machines are work center <code>VMC</code>, and the vertical machines on the list are VMC-02 (Cell A) and VMC-03 (Cell B). Nothing establishes which physical machine CNC-01 or CNC-02 is. They could also be machines missing from the equipment list.</p>\n  <p><strong>Proposed fix:</strong> none automatic. I won't guess a mapping. <strong>Question for the plant:</strong> which equipment-list asset is CNC-01, and which is CNC-02? Alternatively, is the equipment list missing them?</p>\n  <p><strong>What it means:</strong> downtime and OEE can be reported by MES machine name, but not tied to any machine's install year, cell or maintenance history until the crosswalk exists.</p>\n  <p><strong>The 5 equipment-list assets</strong> are not referenced anywhere in the drop. I have left them <em>unclassified</em> rather than calling them \"not running\" (class 6), because two of them may be CNC-01 and CNC-02 under another name.</p>\n</div>\n\n<div class=\"panel proposal\">\n  <span class=\"status status--warn\">Awaiting approval</span>\n  <h3>Format drift (class 2): cell label <code>CELL-A</code> vs <code>Cell A</code></h3>\n  <p>The 3 output rows read <code>CELL-A</code> and the 2 equipment rows read <code>Cell A</code>. Folding case and punctuation makes them identical. 3 output rows would line up with Cell A if this is approved. No machine join follows from it. See the decision block at the top.</p>\n</div>\n\n<div class=\"panel\">\n  <h2>Finding 2: Work-center names don't match <span class=\"status status--warn\">Question</span></h2>\n  <p>The plan and routing use work center <code>VMC</code>. The equipment list uses <code>MILL-H, MILL-V, TURN, INSP</code>. No rung matches them, and there is no plant work-center-to-cell map on file, so <code>cell</code> is null on the plan rows. Cell can't be read from the equipment list either, because MILL-V sits in both Cell A and Cell B.</p>\n  <p><strong>Proposed fix:</strong> none automatic. Please tell me whether <code>VMC</code> means <code>MILL-V</code>, and give the work-center-to-cell map; running onboarding would capture it.</p>\n</div>\n\n<div class=\"panel\">\n  <h2>Finding 3: The routing file is incomplete <span class=\"status status--critical\">Set aside</span></h2>\n  <p><code>routing.csv</code> has part, operation, work center and run minutes per unit. It has <strong>no setup time and no revision</strong>, so it fails the routing check and was not loaded into a <code>routings</code> tab. Loading it would have meant filling the gap.</p>\n  <div class=\"table-scroll\"><table>\n    <thead><tr><th>Line</th><th>Part</th><th>Op</th><th>Work center</th><th>Run</th><th>Setup</th><th>Revision</th></tr></thead>\n    <tbody>\n      <tr><td class=\"mono\">routing.csv:2</td><td class=\"mono\">PN-100</td><td class=\"num\">10</td><td class=\"mono\">VMC</td><td class=\"num\">1.0 min/unit</td><td>not in file</td><td>unknown</td></tr>\n      <tr><td class=\"mono\">routing.csv:3</td><td class=\"mono\">PN-200</td><td class=\"num\">10</td><td class=\"mono\">VMC</td><td class=\"num\">1.8 min/unit</td><td>not in file</td><td>unknown</td></tr>\n    </tbody>\n  </table></div>\n  <p>Both of its part numbers match the work orders exactly, so the keys are fine. The file's unit is minutes, as declared in its header, and the plan's <code>planned_hours</code> is in hours. Nothing was converted.</p>\n  <p><strong>What it means:</strong> the file is good enough for a run-rate (performance) comparison, but not for quoting. Quoting would need setup time and a revision. No actuals file was provided, so the backflush check (<code>probable_standard</code>) did not run.</p>\n</div>\n\n<div class=\"panel\">\n  <h2>Clean checks</h2>\n  <ul>\n    <li><strong>Part numbers:</strong> <code>PN-100</code> and <code>PN-200</code> are spelled identically in output, plan, routing and work orders. All 7 part references matched exactly.</li>\n    <li><strong>Production work orders:</strong> all 3 output work orders (WO-1001, WO-1002, WO-1003) exist in work_orders.csv, and every output row's part agrees with its work order's part.</li>\n    <li><strong>Plan vs work orders:</strong> PN-100 is planned at 800, which equals WO-1001 (500) plus WO-1003 (300). PN-200 is planned at 250, which equals WO-1002.</li>\n    <li><strong>Duplicate keys (class 8):</strong> none. The grains checked were WO + shift + day, part + date + machine, part + op, and asset ID.</li>\n    <li><strong>Leading zeros, revision suffix, case/whitespace on keys (classes 3, 4, 5):</strong> none fired.</li>\n    <li><strong>Downtime integrity:</strong> both events end after they start, and the stated minutes equal end minus start (45 and 20).</li>\n    <li><strong>Sign convention, units conflict, future timestamps:</strong> no file has a sales-order or fulfilment line, no key has two units, and no date is later than the run time.</li>\n  </ul>\n</div>\n\n<div class=\"panel\">\n  <h2>Gaps that limit what the dataset can be used for</h2>\n  <ul>\n    <li><strong>Unit of measure:</strong> no file states one. Every quantity is <code>uom = not_stated</code>, and units are never assumed.</li>\n    <li><strong>Time zone:</strong> no file carries one. Output and plan have dates only. The figures can be counted, but they can't be correlated across systems or split at midnight.</li>\n    <li><strong>Site:</strong> only output.csv names one (<code>SITE-1</code>). Every other tab has <code>not_stated</code>.</li>\n    <li><strong>Item master:</strong> no file in the drop has one. The parts tab is derived from the work orders and has no description, cost or UOM.</li>\n    <li><strong>Vocabulary:</strong> this report uses the plugin's standard terms (production work order, cell, work center), not this plant's own words, because no plant profile exists yet.</li>\n  </ul>\n</div>\n\n<div class=\"panel\">\n  <h2>What the plant should know (not data-quality defects)</h2>\n  <ul>\n    <li>WO-1002 was due Nov 13 and is still RELEASED. It has 220 good and 3 scrap on Nov 12 against 250 ordered.</li>\n    <li>WO-1003 produced its full 300 on Nov 12 and is still RELEASED, not closed.</li>\n  </ul>\n</div>\n\n<div class=\"panel\">\n  <h2>Normalizations applied</h2>\n  <p><strong>None.</strong> Every key that joined did so exactly. One normalization is proposed (the cell label) and is waiting for a yes.</p>\n  <h3>Verbatim lookups</h3>\n  <p>Searching by the spelling the source printed works. <code>WO-1002</code> finds <code>production_output</code> output.csv:3 and <code>production_work_orders</code> work_orders.csv:3. <code>CNC-01</code> finds downtime.csv:2, output.csv:2 and output.csv:4, and plan.csv:2. Format-drift, revision-suffix and case-and-whitespace lookups are <em>not applicable: no key in this drop has a second spelling.</em></p>\n</div>\n\n<div class=\"panel\">\n  <h2>Figures block <span class=\"status status--warn\">Counted by reading, not computed</span></h2>\n  <div class=\"table-scroll\"><table>\n    <thead><tr><th>Figure</th><th>Value</th><th>Source</th><th>Filter</th></tr></thead>\n    <tbody>\n      <tr><td>Input data rows</td><td class=\"num\">17</td><td>all 6 files</td><td>equipment 5 + work orders 3 + output 3 + plan 2 + downtime 2 + routing 2</td></tr>\n      <tr><td>Dataset rows written</td><td class=\"num\">17</td><td>6 tabs</td><td>parts 2 (derived) + PWO 3 + output 3 + plan 2 + downtime 2 + assets 5; routing 2 set aside</td></tr>\n      <tr><td>Dataset rows joined</td><td class=\"num\">10</td><td>tabs</td><td>join_status = matched</td></tr>\n      <tr><td>· matched exactly</td><td class=\"num\">10</td><td></td><td>no ladder rung fired</td></tr>\n      <tr><td>· matched after normalization</td><td class=\"num\">0</td><td></td><td>10 + 0 = 10 ✓</td></tr>\n      <tr><td>Dataset rows unjoined</td><td class=\"num\">7</td><td></td><td>downtime 2 (class 1) + assets 5 (unclassified); 10 + 7 = 17 ✓</td></tr>\n      <tr><td>Part references checked</td><td class=\"num\">7 matched / 7</td><td>output, plan, routing</td><td>part_number in work_orders.csv</td></tr>\n      <tr><td>Production WO references checked</td><td class=\"num\">3 matched / 3</td><td>output</td><td>work_order in work_orders.csv</td></tr>\n      <tr><td>Machine-ID references</td><td class=\"num\">0 matched / 7</td><td>output 3, plan 2, downtime 2</td><td>asset_id in equipment.csv; 2 distinct IDs</td></tr>\n      <tr><td>Class 1, orphan</td><td class=\"num\">7 rows (2 IDs)</td><td></td><td>2 on asset-keyed rows (downtime) + 5 where asset is an attribute</td></tr>\n      <tr><td>Class 2, format drift (proposed)</td><td class=\"num\">3 output rows</td><td>cell attribute</td><td>CELL-A vs Cell A</td></tr>\n      <tr><td>Classes 3, 4, 5, 7, 8</td><td class=\"num\">0 each</td><td></td><td></td></tr>\n      <tr><td>Integrity flags raised</td><td class=\"num\">0</td><td></td><td>all 8 checks; downtime 45 = 45, 20 = 20</td></tr>\n      <tr><td>Rows awaiting a proposed fix (join_status proposed_normalization)</td><td class=\"num\">0</td><td></td><td>the cell proposal changes no key, so no row is held</td></tr>\n      <tr><td>probable_standard rows</td><td class=\"num\">not run</td><td></td><td>no operation actuals in the drop</td></tr>\n      <tr><td>Output 1,000 good / 15 scrap (unit not stated)</td><td class=\"num\">1,000 / 15</td><td>output.csv</td><td>480+220+300; 12+3+0</td></tr>\n    </tbody>\n  </table></div>\n</div>\n\n<footer class=\"page-footer\">Generated by <strong>data-consolidate</strong> — Manufacturing · SYNTHETIC test data · file-only run, nothing written to any external system</footer>\n</div>\n</body>\n</html>\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B03-positive-v9_zl201\\work\\out\\data_quality_report.html (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  }
+ ],
+ "tool_summary": {
+  "Bash": 2,
+  "Glob": 1,
+  "Read": 12,
+  "Skill": 1,
+  "Write": 9
+ },
+ "result": {
+  "subtype": "success",
+  "is_error": false,
+  "num_turns": 27,
+  "duration_ms": 231670,
+  "duration_api_ms": 231123,
+  "total_cost_usd": 1.1635074,
+  "usage": {
+   "input_tokens": 24,
+   "cache_creation_input_tokens": 68867,
+   "cache_read_input_tokens": 428377,
+   "output_tokens": 26340,
+   "output_tokens_details": {
+    "thinking_tokens": 8763
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 68867,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 1645,
+     "cache_read_input_tokens": 66979,
+     "cache_creation_input_tokens": 8905,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 8905
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard",
+   "fallback_credit": null
+  },
+  "modelUsage": {
+   "claude-opus-5-5": {
+    "inputTokens": 24,
+    "outputTokens": 26340,
+    "cacheReadInputTokens": 428377,
+    "cacheCreationInputTokens": 68867,
+    "webSearchRequests": 0,
+    "costUSD": 1.1635074,
+    "contextWindow": 1000000,
+    "maxOutputTokens": 128000,
+    "thinkingTokens": 8763,
+    "cacheCreationEphemeral5mInputTokens": 0,
+    "cacheCreationEphemeral1hInputTokens": 68867,
+    "canonicalModel": "claude-opus-5-5",
+    "provider": "firstParty",
+    "costBasis": "list"
+   }
+  },
+  "permission_denials": [
+   {
+    "tool_name": "Bash",
+    "tool_use_id": "toolu_014LiNBa5at55epnqoJAZWGw",
+    "tool_input": {
+     "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B03-positive-v9_zl201/work/inputs\"; find . -type f | xargs ls -la; for f in $(find . -type f); do echo \"=== $f\"; head -c 3000 \"$f\"; echo; wc -l \"$f\"; done",
+     "description": "Inspect all input files"
+    }
+   }
+  ],
+  "terminal_reason": "completed",
+  "result": "I've joined the six files into one dataset and written the data quality report. Part numbers and production work orders all match, but **none of the machine IDs match the equipment list**.\n\nI couldn't run code in this session, so every count below was made by reading the files. The files are tiny (17 data rows), but verify the counts before relying on them. For the same reason the dataset is one CSV per tab, not an Excel workbook.\n\n---\n\n**DECISION REQUIRED: APPROVE OR REJECT**\n**Cell label `CELL-A` (production output file) = `Cell A` (equipment list).**\n- **Why:** the two labels are identical once case and punctuation are ignored.\n- **Limits:** cell is a label, not a key. Approving this links no machines.\n- **Rows touched:** 3 output rows (WO-1001, WO-1002, WO-1003: 1,000 good and 15 scrap, unit not stated) and 2 equipment rows (HMC-01, VMC-02).\n- **Approve:** both labels count as one cell when rolling up by cell. The original spellings are kept.\n- **Reject:** the labels stay separate and I won't propose this again.\n- **Reply:** \"approve cell CELL-A = Cell A\" or \"reject\", with the name of the person approving.\n\n---\n\n**Freshness: the drop only covers Nov 12.** Today is Sun Nov 15. Output, plan and downtime all cover Nov 12 only, and nothing covers Nov 13 or 14. Either the export wasn't refreshed or the plant didn't run on those days. Please confirm which before this feeds a morning report. The three sources all cover the same day, so nothing falls outside a shared date range. The equipment list comes from a file dated Nov 13 23:04, not a live maintenance system.\n\n**Rows joined: 10 of 17**\n| Tab | Rows | Joined |\n|---|---|---|\n| production_work_orders | 3 | 3 |\n| production_output | 3 | 3 (work order and part) |\n| plan | 2 | 2 |\n| parts (built from the work orders; there's no item master) | 2 | 2 |\n| downtime_events | 2 | **0** |\n| assets | 5 | **0** |\n\n**Keys that don't match**\n1. **Machine IDs: 0 of 7 rows match.** Output, plan and downtime use `CNC-01` and `CNC-02`. The equipment list has `HMC-01`, `VMC-02`, `VMC-03`, `LTH-01` and `DEB-01`. That's one cause behind 7 rows.\n   - The clues disagree. The production output file puts both machines in Cell A, which holds HMC-01 (horizontal) and VMC-02. The plan calls both work center \"VMC\", and the vertical machines are VMC-02 (Cell A) and VMC-03 (Cell B).\n   - There's no safe automatic fix. **Question:** which equipment asset is CNC-01, and which is CNC-02? Or are they missing from the list? Until that's answered, downtime can't be linked to a machine's cell or maintenance history.\n   - I haven't called the 5 equipment-list machines \"idle\", because two of them may be CNC-01 and CNC-02.\n2. **Work center names: `VMC` vs `MILL-H`/`MILL-V`/`TURN`/`INSP`.** There's no plant map from work center to cell, so cell is left blank on the plan rows. **Question:** does VMC mean MILL-V?\n3. **Routing file set aside.** It has run minutes per unit but no setup time and no revision. Its part numbers match fine. It's usable for comparing run rates, but not for quoting. There was no file of actual hours per job, so I couldn't check whether booked times are just copies of the standard.\n\n**Clean:** part numbers and work orders matched exactly everywhere, so no formatting fixes were needed. Planned quantities equal the work order quantities (PN-100: 800 = 500 + 300; PN-200: 250). There are no duplicate keys, no dates later than today, and both downtime durations agree with their start and end times.\n\n**Gaps:**\n- No file states a unit of measure or a time zone.\n- Only the output file names a site (`SITE-1`).\n- The drop has no sales orders, lots, inventory, purchase orders, inspection results, maintenance work orders, NCRs or actual job hours.\n\n**Worth knowing (not data problems):** WO-1002 was due Nov 13 and is still released, with 220 good of 250. WO-1003 finished all 300 but hasn't been closed.\n\nNothing was sent to or written to any external system.\n\nFiles are in `./out`:\n- `data_quality_report.html` (the full report, including the table of counts)\n- `dataset/`: one CSV per tab, plus `key_mismatch_log.csv` and `_manifest.md`"
+ },
+ "outputs": [
+  {
+   "path": "data_quality_report.html",
+   "sha256": "3c2046004189beac5b7ad3c802ce5fcf23730c55f00fb69be50cabf020e8b66e",
+   "bytes": 20169,
+   "text": true
+  },
+  {
+   "path": "dataset/_manifest.md",
+   "sha256": "0e3156fa1a23c0b967b19ed5689b250aa8d64e2c7fad46b5ffbd310521b580a7",
+   "bytes": 2232,
+   "text": true
+  },
+  {
+   "path": "dataset/assets.csv",
+   "sha256": "a0be7644a3fa1b28a367f949aef9b934e6e96cf84869d3f1003e1e93764d7de7",
+   "bytes": 1116,
+   "text": true
+  },
+  {
+   "path": "dataset/downtime_events.csv",
+   "sha256": "88fa1d2c56e7573279652d0337613a49a86b44fc38d45eb11eb842bc6228eff2",
+   "bytes": 562,
+   "text": true
+  },
+  {
+   "path": "dataset/key_mismatch_log.csv",
+   "sha256": "a38d18136c9811cfe319d424a5485bea7bbf20317ba36896ac39466e232d1db9",
+   "bytes": 2339,
+   "text": true
+  },
+  {
+   "path": "dataset/parts.csv",
+   "sha256": "06c39b11a39b859f78fe2152221a539833ddfd343944cca36c02982e5f799114",
+   "bytes": 528,
+   "text": true
+  },
+  {
+   "path": "dataset/plan.csv",
+   "sha256": "1a5358ebcba2a79415d6f8df1dae6c0e183acd5b3af9a03baf9f4a45585f9bec",
+   "bytes": 606,
+   "text": true
+  },
+  {
+   "path": "dataset/production_output.csv",
+   "sha256": "3074475aec9a5fb1233ca9b14ce03b9b9a066994dac02d3b92646d3fc031923f",
+   "bytes": 867,
+   "text": true
+  },
+  {
+   "path": "dataset/production_work_orders.csv",
+   "sha256": "06e36055a32ec393f5eb19ca03cf2ec1c31f9450a96a4c92563b6218feefd73d",
+   "bytes": 737,
+   "text": true
+  }
+ ],
+ "files_written_outside_out": [],
+ "plugin_copy_modified": [],
+ "stderr_tail": "",
+ "transcript": "evidence/SKILL_OUTPUTS/B03/cli-positive/transcript.jsonl.gz",
+ "deterministic_checks": [
+  {
+   "check": "skill 'data-consolidate' activated through the Skill tool",
+   "pass": true,
+   "observed": [
+    "claude-for-manufacturing:data-consolidate"
+   ]
+  },
+  {
+   "check": "at least 2 work product file(s) under out/",
+   "pass": true,
+   "observed": [
+    "data_quality_report.html",
+    "dataset/_manifest.md",
+    "dataset/assets.csv",
+    "dataset/downtime_events.csv",
+    "dataset/key_mismatch_log.csv",
+    "dataset/parts.csv",
+    "dataset/plan.csv",
+    "dataset/production_output.csv",
+    "dataset/production_work_orders.csv"
+   ]
+  },
+  {
+   "check": "no external network, install or send action attempted",
+   "pass": true,
+   "observed": []
+  },
+  {
+   "check": "only the permitted tools were used (Read,Write,Edit,Glob,Grep,Skill,Bash)",
+   "pass": true,
+   "observed": [
+    "Bash",
+    "Glob",
+    "Read",
+    "Skill",
+    "Write"
+   ]
+  }
+ ],
+ "evaluator": {
+  "exit": 0,
+  "duration_s": 21.4,
+  "model": "claude-opus-5-5",
+  "session_id": "7cc4ead3-0faa-4e0b-8f95-fbec28a81c5d",
+  "tools_used": [
+   "Glob",
+   "Read"
+  ],
+  "files_read": [
+   "C:/Users/Administrator/AppData/Local/Temp/lmfg-B03-positive-v9_zl201/plugin/skills/data-consolidate/SKILL.md",
+   "inputs/equipment.csv",
+   "inputs/pulse_oee/README.txt",
+   "inputs/pulse_oee/downtime.csv",
+   "inputs/pulse_oee/output.csv",
+   "inputs/pulse_oee/plan.csv",
+   "inputs/pulse_oee/routing.csv",
+   "inputs/pulse_oee/work_orders.csv",
+   "out/data_quality_report.html",
+   "out/dataset/_manifest.md",
+   "out/dataset/downtime_events.csv",
+   "out/dataset/key_mismatch_log.csv",
+   "out/dataset/parts.csv",
+   "out/dataset/production_output.csv",
+   "run_result.txt"
+  ],
+  "usage": {
+   "input_tokens": 10,
+   "cache_creation_input_tokens": 28917,
+   "cache_read_input_tokens": 77933,
+   "output_tokens": 2204,
+   "output_tokens_details": {
+    "thinking_tokens": 364
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 28917,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 399,
+     "cache_read_input_tokens": 31758,
+     "cache_creation_input_tokens": 1444,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 1444
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard",
+   "fallback_credit": null
+  },
+  "verdict": {
+   "verdict": "PASS",
+   "core_task_done": true,
+   "required_products_present": true,
+   "claims_sourced": true,
+   "fabrication": [],
+   "missing_data_handled": true,
+   "approval_rules_respected": true,
+   "arithmetic_mismatches": [],
+   "notes": "Output is CSV per tab, which the run states openly. The HTML report names the mismatched keys: CNC-01 and CNC-02 against the equipment list, VMC against MILL-*, and CELL-A versus Cell A. Recomputed sums 1,000 good/15 scrap, plan 800=500+300, 17 rows and 45/20-min downtime are all correct. No fixes were applied without a yes. Gaps: counts were made by reading rather than in code (disclosed). Rows with no time zone were not flagged in integrity_flags. The report loads Google Fonts."
+  },
+  "raw": null,
+  "stderr": ""
+ },
+ "status": "PASS",
+ "skills_read_full": [],
+ "rechecked_utc": "2026-11-15T23:24:19Z"
+}

@@ -1,0 +1,12 @@
+finding_id,key,source_file,source_row,value_verbatim,compared_against,result,mismatch_class,proposed_fix,status
+M1,asset_id,inputs/pulse_oee/downtime.csv,2,CNC-01,inputs/equipment.csv asset_id (HMC-01 VMC-02 VMC-03 LTH-01 DEB-01),no match on any ladder rung,1,none automatic - needs a machine-number crosswalk from the plant,question open
+M1,asset_id,inputs/pulse_oee/downtime.csv,3,CNC-02,inputs/equipment.csv asset_id,no match on any ladder rung,1,none automatic - needs a machine-number crosswalk from the plant,question open
+M1,asset_id (attribute),inputs/pulse_oee/output.csv,2,CNC-01,inputs/equipment.csv asset_id,no match on any ladder rung,1,none automatic,question open
+M1,asset_id (attribute),inputs/pulse_oee/output.csv,3,CNC-02,inputs/equipment.csv asset_id,no match on any ladder rung,1,none automatic,question open
+M1,asset_id (attribute),inputs/pulse_oee/output.csv,4,CNC-01,inputs/equipment.csv asset_id,no match on any ladder rung,1,none automatic,question open
+M1,asset_id (attribute),inputs/pulse_oee/plan.csv,2,CNC-01,inputs/equipment.csv asset_id,no match on any ladder rung,1,none automatic,question open
+M1,asset_id (attribute),inputs/pulse_oee/plan.csv,3,CNC-02,inputs/equipment.csv asset_id,no match on any ladder rung,1,none automatic,question open
+M2,asset_id,inputs/equipment.csv,3-7,HMC-01; VMC-02; VMC-03; LTH-01; DEB-01,MES/plan/downtime asset_id (CNC-01 CNC-02),not referenced by any production/plan/downtime row,unclassified,none - cannot be called one-sided (class 6) until M1 crosswalk exists,question open
+P1,cell (attribute - not a join key),inputs/pulse_oee/output.csv,2-4,CELL-A,inputs/equipment.csv cell 'Cell A',matches after rung 2 (case) + rung 3 (punctuation),2,treat CELL-A and Cell A as the same cell; verbatim kept,AWAITING APPROVAL
+W1,work_center (attribute),inputs/pulse_oee/plan.csv + routing.csv,plan 2-3; routing 2-3,VMC,inputs/equipment.csv work_center (MILL-H MILL-V TURN INSP),no match on any ladder rung,n/a (mapped not joined),none automatic - needs plant machine-class / work-center map,question open
+R1,routing file signature,inputs/pulse_oee/routing.csv,1,header: part_number op_seq work_center run_min_per_unit,routing signature (part; op seq; work center; setup time; run time),no setup-time column; no revision column,n/a,none - file set aside from routings tab,question open

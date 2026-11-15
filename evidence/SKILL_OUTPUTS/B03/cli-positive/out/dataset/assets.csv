@@ -1,0 +1,6 @@
+site,source_system,source_ref,as_of,join_status,mismatch_class,contradicted_by,integrity_flags,asset_id,asset_id_verbatim,description,location,cell,cell_verbatim,work_center,work_center_verbatim,install_year
+not_stated,manual,inputs/equipment.csv:3,2026-11-13 23:04 (file time - zone unknown),unmatched,,,,HMC-01,HMC-01,Horizontal machining centre 500 mm pallet,Cell A,Cell A,Cell A,MILL-H,MILL-H,2019
+not_stated,manual,inputs/equipment.csv:4,2026-11-13 23:04 (file time - zone unknown),unmatched,,,,VMC-02,VMC-02,Vertical machining centre 3-axis,Cell A,Cell A,Cell A,MILL-V,MILL-V,2016
+not_stated,manual,inputs/equipment.csv:5,2026-11-13 23:04 (file time - zone unknown),unmatched,,,,VMC-03,VMC-03,Vertical machining centre 3-axis,Cell B,Cell B,Cell B,MILL-V,MILL-V,2021
+not_stated,manual,inputs/equipment.csv:6,2026-11-13 23:04 (file time - zone unknown),unmatched,,,,LTH-01,LTH-01,CNC lathe 8in chuck,Cell B,Cell B,Cell B,TURN,TURN,2018
+not_stated,manual,inputs/equipment.csv:7,2026-11-13 23:04 (file time - zone unknown),unmatched,,,,DEB-01,DEB-01,Deburr and inspection bench,Cell B,Cell B,Cell B,INSP,INSP,2015

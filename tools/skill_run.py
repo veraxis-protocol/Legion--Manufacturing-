@@ -39,11 +39,20 @@ INPUTS = ROOT / "tests" / "runtime" / "inputs"
 FIXTURES = ROOT / "tests" / "manufacturing" / "fixtures"
 OUT = ROOT / "evidence" / "SKILL_OUTPUTS"
 TOOLS = "Read,Write,Edit,Glob,Grep,Skill,Bash"
-ALLOWED = ["Read", "Write", "Edit", "Glob", "Grep", "Skill", "Bash(python:*)", "Bash(python3:*)", "Bash(ls:*)",
+# Bash is allowed in full (as on route 2): a narrow prefix list denied ordinary shell loops/env/xargs and stopped skills
+# from running their own scripts. Network, install, VCS and remote-shell commands stay denied, and the deterministic
+# check "no external network, install or send action attempted" still fails any run that tries one.
+ALLOWED = ["Read", "Write", "Edit", "Glob", "Grep", "Skill", "Bash", "Bash(python:*)", "Bash(python3:*)", "Bash(ls:*)",
            "Bash(mkdir:*)", "Bash(cat:*)", "Bash(head:*)", "Bash(wc:*)", "Bash(sqlite3:*)", "Bash(cd:*)",
            "Bash(echo:*)", "Bash(find:*)", "Bash(grep:*)", "Bash(sort:*)", "Bash(tail:*)"]
-DENIED = ["WebFetch", "WebSearch", "Bash(curl:*)", "Bash(wget:*)", "Bash(pip:*)", "Bash(git:*)"]
+DENIED = ["WebFetch", "WebSearch", "Bash(curl:*)", "Bash(wget:*)", "Bash(pip:*)", "Bash(pip3:*)", "Bash(git:*)",
+          "Bash(ssh:*)", "Bash(scp:*)", "Bash(nc:*)", "Bash(powershell:*)", "Bash(pwsh:*)", "Bash(Invoke-WebRequest:*)"]
 TRUNC = 6000
+sys.path.insert(0, str(ROOT / "tools"))
+# owner decision 2026-11-15: the independent evaluator runs on NVIDIA NIM (a different model family) to save Claude
+# usage; LMFG_EVALUATOR=claude restores the Claude CLI evaluator. Each run records which engine judged it.
+EVALUATOR = os.environ.get("LMFG_EVALUATOR") or ("nim" if (Path(os.environ.get(
+    "NVIDIA_API_KEY_FILE", r"C:\Users\Administrator\Desktop\nvapi.txt"))).exists() else "claude")
 SKILL_NAMES = {p.name for p in (PLUGIN / "skills").iterdir() if p.is_dir()} if (PLUGIN / "skills").exists() else set()
 
 
@@ -104,6 +113,74 @@ def _src(spec: str) -> Path:
     return INPUTS / spec
 
 
+def recheck(case_id: str, variant: str) -> dict:
+    case = load_cases()[case_id]
+    dest = OUT / case_id / f"cli-{variant}"
+    r = json.loads((dest / "run.json").read_text(encoding="utf-8"))
+    parsed = shell_skill_reads({"tool_calls": r["tool_calls"], "skills_invoked": r["skills_invoked"],
+                                "skill_files_read": list(r.get("skill_files_read") or []), "result": r["result"]})
+    r["skill_files_read"] = sorted(set(parsed["skill_files_read"]))
+    r["skills_read_full"] = parsed["skills_read_full"]
+    r["deterministic_checks"] = deterministic_checks(case, variant, parsed, r["outputs"], dest / "out")
+    r["rechecked_utc"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+    _set_status(r, case, variant)
+    (dest / "run.json").write_text(json.dumps(r, indent=1, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
+    return r
+
+
+def _set_status(r: dict, case: dict, variant: str) -> None:
+    ev = (r.get("evaluator") or {}).get("verdict") or {}
+    det_ok = all(c["pass"] for c in r.get("deterministic_checks", []))
+    ev_ok = ev.get("verdict") == "PASS" and not ev.get("fabrication")
+    r.pop("z_reason", None)
+    if case.get("live_required") and variant == "positive":
+        r["status"], r["behaviour_without_live_system"] = "BLOCKED", "PASS" if det_ok and ev_ok else "FAIL"
+    elif ev.get("verdict") is None:
+        r["status"], r["z_reason"] = "Z", "independent evaluator gave no parseable verdict"
+    else:
+        r["status"] = "PASS" if det_ok and ev_ok else "FAIL"
+
+
+def re_evaluate(case_id: str, variant: str) -> dict:
+    """Re-judge a committed CLI run with the NIM evaluator, without a new producer run. The task folder is rebuilt
+    from the byte-identical plugin, the case's inputs (hashes must equal the run's recorded input hashes) and the
+    committed outputs; the producer's final message comes from run.json."""
+    import nim_eval
+    case = load_cases()[case_id]
+    dest = OUT / case_id / f"cli-{variant}"
+    rp = dest / "run.json"
+    r = json.loads(rp.read_text(encoding="utf-8"))
+    task = Path(tempfile.mkdtemp(prefix=f"lmfg-reeval-{case_id}-")).resolve()
+    try:
+        shutil.copytree(PLUGIN, task / "plugin")
+        (task / "work" / "inputs").mkdir(parents=True)
+        staged = stage_inputs(case, variant, task / "work" / "inputs")
+        if json.dumps(staged, sort_keys=True) != json.dumps(r["inputs"], sort_keys=True):
+            raise SystemExit(f"{case_id}: staged inputs differ from the run's recorded inputs; not re-evaluating")
+        shutil.copytree(dest / "out", task / "work" / "out")
+        prev = r.get("evaluator")
+        r["evaluator"], lines = nim_eval.evaluate(task, case, variant, r["result"].get("result") or "")
+        r["evaluator"]["re_evaluated_utc"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+        r["evaluator"]["previous_attempt"] = {k: (prev or {}).get(k) for k in ("engine", "model", "usage", "verdict",
+                                                                               "attempts")}
+        with gzip.open(dest / "evaluator.jsonl.gz", "wt", encoding="utf-8") as g:
+            g.write("\n".join(lines) + "\n")
+    finally:
+        shutil.rmtree(task, ignore_errors=True)
+    ev = r["evaluator"].get("verdict") or {}
+    det_ok = all(c["pass"] for c in r.get("deterministic_checks", []))
+    ev_ok = ev.get("verdict") == "PASS" and not ev.get("fabrication")
+    r.pop("z_reason", None)
+    if case.get("live_required") and variant == "positive":
+        r["status"], r["behaviour_without_live_system"] = "BLOCKED", "PASS" if det_ok and ev_ok else "FAIL"
+    elif ev.get("verdict") is None:
+        r["status"], r["z_reason"] = "Z", "independent evaluator gave no parseable verdict"
+    else:
+        r["status"] = "PASS" if det_ok and ev_ok else "FAIL"
+    rp.write_text(json.dumps(r, indent=1, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
+    return r
+
+
 def stage_inputs(case: dict, variant: str, dest: Path) -> list:
     v = case[variant]
     drop = set(v.get("drop", []))
@@ -157,6 +234,10 @@ def _text(content) -> str:
 
 
 def parse_stream(stdout: str) -> dict:
+    return shell_skill_reads(_parse_stream(stdout))
+
+
+def _parse_stream(stdout: str) -> dict:
     events = []
     for line in stdout.splitlines():
         line = line.strip()
@@ -301,14 +382,29 @@ def run_case(case_id: str, variant: str, cli: str, timeout: int, eval_timeout: i
     (work / "out").mkdir()
     staged = stage_inputs(case, variant, work / "inputs")
     prompt = build_prompt(case, variant)
-    args = ["-p", prompt, "--plugin-dir", str(task / "plugin"), "--output-format", "stream-json", "--verbose",
-            "--restricted", "--strict-mcp-config", "--tools", TOOLS, "--allowedTools", *ALLOWED,
-            "--disallowedTools", *DENIED, "--permission-mode", "dontAsk", "--no-session-persistence",
-            "--max-turns", str(case.get("max_turns", 80)), "--add-dir", str(task / "plugin")]
+    operator_turn = case[variant].get("operator_turn")
+    common = ["--plugin-dir", str(task / "plugin"), "--output-format", "stream-json", "--verbose",
+              "--restricted", "--strict-mcp-config", "--tools", TOOLS, "--allowedTools", *ALLOWED,
+              "--disallowedTools", *DENIED, "--permission-mode", "dontAsk",
+              "--max-turns", str(case.get("max_turns", 80)), "--add-dir", str(task / "plugin")]
+    if not operator_turn:   # a gated case needs its session kept for the operator's second turn (--resume)
+        common.append("--no-session-persistence")
     if case.get("model"):
-        args += ["--model", case["model"]]
+        common += ["--model", case["model"]]
     started = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
-    rc, stdout, stderr, dur = run_cli(cli, args, work, timeout)
+    rc, stdout, stderr, dur = run_cli(cli, ["-p", prompt] + common, work, timeout)
+    turns = [{"turn": 1, "from": "task prompt", "exit": rc, "duration_s": round(dur, 1),
+              "result": {k: parse_stream(stdout)["result"].get(k) for k in ("subtype", "is_error", "num_turns", "usage")}}]
+    first = parse_stream(stdout)
+    if operator_turn and rc == 0 and first["runtime"].get("session_id") and not first["result"].get("is_error"):
+        # the skill stopped at its human approval gate; the named test operator's decision is the second user turn
+        rc2, out2, err2, dur2 = run_cli(cli, ["-p", operator_turn, "--resume", first["runtime"]["session_id"]] + common,
+                                        work, timeout)
+        turns.append({"turn": 2, "from": "test operator (gate decision)", "text": operator_turn, "exit": rc2,
+                      "duration_s": round(dur2, 1),
+                      "result": {k: parse_stream(out2)["result"].get(k) for k in ("subtype", "is_error", "num_turns",
+                                                                                     "usage")}})
+        stdout, stderr, dur, rc = stdout + "\n" + out2, (stderr or "") + (err2 or ""), dur + dur2, rc2
     (task / "stream.jsonl").write_text(stdout, encoding="utf-8")   # kept locally (task folder), never published raw
     parsed = parse_stream(stdout)
     dest = OUT / case_id / f"cli-{variant}"   # route 1 never overwrites the route-2 (desktop-subagent) evidence
@@ -331,12 +427,12 @@ def run_case(case_id: str, variant: str, cli: str, timeout: int, eval_timeout: i
         g.write(redact_stream(stdout))
     res_txt = parsed["result"].get("result") or ""
     logged_out = "Not logged in" in res_txt
-    limited = bool(parsed["result"].get("is_error")) and re.search(r"usage limit|rate limit|limit reached|429", res_txt, re.I)
+    limited = bool(parsed["result"].get("is_error")) and re.search(r"usage limit|rate limit|limit reached|hit your [^\n]{0,20}limit|429", res_txt, re.I)
     rt = parsed["runtime"]
     discovered = [s for s in (rt.get("skills") or []) if isinstance(s, str) and s.split(":")[-1] in SKILL_NAMES]
     record = {
         "case": case_id, "skill": case["skill"], "variant": variant, "started_utc": started,
-        "runtime_route": "cli", "cli_auth": auth_status(cli),
+        "runtime_route": "cli", "cli_auth": auth_status(cli), "turns": turns,
         "plugin_discovery": {"plugins": [p.get("name") if isinstance(p, dict) else p for p in (rt.get("plugins") or [])],
                              "manufacturing_skills_listed": len(discovered), "skills_listed": discovered},
         "task_prompt": prompt, "inputs": staged, "cli_exit": rc, "duration_s": round(dur, 1),
@@ -357,7 +453,15 @@ def run_case(case_id: str, variant: str, cli: str, timeout: int, eval_timeout: i
     else:
         checks = deterministic_checks(case, variant, parsed, outputs, dest / "out")
         record["deterministic_checks"] = checks
-        record["evaluator"] = evaluate(cli, task, case, variant, parsed, eval_timeout)
+        if EVALUATOR == "nim":
+            import nim_eval
+            record["evaluator"], lines = nim_eval.evaluate(task, case, variant, parsed["result"].get("result") or "",
+                                                           eval_timeout)
+            with gzip.open(dest / "evaluator.jsonl.gz", "wt", encoding="utf-8") as g:
+                g.write("\n".join(lines) + "\n")
+        else:
+            record["evaluator"] = evaluate(cli, task, case, variant, parsed, eval_timeout)
+            record["evaluator"]["engine"] = "claude-code-cli"
         ev = (record["evaluator"].get("verdict") or {})
         det_ok = all(c["pass"] for c in checks)
         ev_ok = ev.get("verdict") == "PASS" and not ev.get("fabrication")
@@ -478,6 +582,38 @@ def prepare(case_id: str, variant: str) -> dict:
         plugin=(task / "plugin").as_posix(), work=work.as_posix(), prompt=prompt)}
 
 
+def shell_skill_reads(p: dict) -> dict:
+    """Skills whose SKILL.md the model read in full: the Read tool, or cat/type in a shell (head excerpts excluded);
+    used by both routes. Adds to p["skill_files_read"] and sets p["skills_read_full"]."""
+    read = {f.split("/")[0] for f in p["skill_files_read"] if f.endswith("/SKILL.md")}
+    for c in p["tool_calls"]:
+        if c["tool"] in ("Bash", "PowerShell") and isinstance(c["input"], dict):
+            cmd = str(c["input"].get("command", "")).replace("\\", "/")
+            cwd_skill = None                          # `cd .../skills/<name>; cat SKILL.md`
+            for seg in re.split(r"[;&|\n]", cmd):
+                m_cd = re.match(r"\s*cd\s+\S*skills/([\w-]+)/?\s*$", seg)
+                if m_cd:
+                    cwd_skill = m_cd.group(1)
+                elif re.match(r"\s*cd\s+\S*/skills/?\s*$", seg):
+                    cwd_skill = "<skills>"          # `cd .../skills; cat <name>/SKILL.md`
+                if cwd_skill == "<skills>" and re.match(r"\s*(cat|Get-Content|type)\s", seg):
+                    for a in re.findall(r"(?:^|\s)([\w-]+)/SKILL\.md", seg):
+                        read.add(a)
+                        p["skill_files_read"].append(f"{a}/SKILL.md")
+                if re.match(r"\s*sed\s+-n\s+['\"]?\d+,\d+p", seg):   # ranged read of a SKILL.md section: counts for
+                    for a in re.findall(r"(?:skills/|(?:^|\s))([\w-]+)/SKILL\.md", seg):  # chains, not as "full read"
+                        if cwd_skill == "<skills>" or "skills/" in seg:
+                            p["skill_files_read"].append(f"{a}/SKILL.md#sections")
+                if re.match(r"\s*(cat|Get-Content|type)\b", seg):
+                    read.update(re.findall(r"skills/([\w-]+)/SKILL\.md", seg))
+                    if cwd_skill and re.search(r"(^|\s)(\./)?SKILL\.md\b", seg):
+                        read.add(cwd_skill)
+                        p["skill_files_read"].append(f"{cwd_skill}/SKILL.md")
+                    p["skill_files_read"] += [f"{a}/{b}" for a, b in re.findall(r"skills/([\w-]+)/([\w./*-]+)", seg)]
+    p["skills_read_full"] = sorted(read)
+    return p
+
+
 def parse_session_jsonl(path: Path) -> dict:
     """A Claude Code session/subagent transcript (.jsonl): the same message blocks as stream-json, plus per-message
     model and usage. Converted to the stream shape so parse_stream() does the rest."""
@@ -507,33 +643,7 @@ def parse_session_jsonl(path: Path) -> dict:
     handback = [c for c in p["tool_calls"] if c["tool"] == "SubagentHandback"]
     final = json.dumps(handback[-1]["input"], ensure_ascii=False) if handback else p["assistant_text"]
     p["result"].update(usage=usage, result=final)
-    # skills whose SKILL.md the model read in full: the Read tool, or cat/type in a shell (head excerpts excluded)
-    read = {f.split("/")[0] for f in p["skill_files_read"] if f.endswith("/SKILL.md")}
-    for c in p["tool_calls"]:
-        if c["tool"] in ("Bash", "PowerShell") and isinstance(c["input"], dict):
-            cmd = str(c["input"].get("command", "")).replace("\\", "/")
-            cwd_skill = None                          # `cd .../skills/<name>; cat SKILL.md`
-            for seg in re.split(r"[;&|\n]", cmd):
-                m_cd = re.match(r"\s*cd\s+\S*skills/([\w-]+)/?\s*$", seg)
-                if m_cd:
-                    cwd_skill = m_cd.group(1)
-                elif re.match(r"\s*cd\s+\S*/skills/?\s*$", seg):
-                    cwd_skill = "<skills>"          # `cd .../skills; cat <name>/SKILL.md`
-                if cwd_skill == "<skills>" and re.match(r"\s*(cat|Get-Content|type)\s", seg):
-                    for a in re.findall(r"(?:^|\s)([\w-]+)/SKILL\.md", seg):
-                        read.add(a)
-                        p["skill_files_read"].append(f"{a}/SKILL.md")
-                if re.match(r"\s*sed\s+-n\s+['\"]?\d+,\d+p", seg):   # ranged read of a SKILL.md section: counts for
-                    for a in re.findall(r"(?:skills/|(?:^|\s))([\w-]+)/SKILL\.md", seg):  # chains, not as "full read"
-                        if cwd_skill == "<skills>" or "skills/" in seg:
-                            p["skill_files_read"].append(f"{a}/SKILL.md#sections")
-                if re.match(r"\s*(cat|Get-Content|type)\b", seg):
-                    read.update(re.findall(r"skills/([\w-]+)/SKILL\.md", seg))
-                    if cwd_skill and re.search(r"(^|\s)(\./)?SKILL\.md\b", seg):
-                        read.add(cwd_skill)
-                        p["skill_files_read"].append(f"{cwd_skill}/SKILL.md")
-                    p["skill_files_read"] += [f"{a}/{b}" for a, b in re.findall(r"skills/([\w-]+)/([\w./*-]+)", seg)]
-    p["skills_read_full"] = sorted(read)
+    shell_skill_reads(p)
     p["window"] = [first, last]
     return p
 
@@ -660,11 +770,26 @@ def main():
     ap.add_argument("--prepare", action="store_true", help="route 2: build the task folder, print the subagent prompt")
     ap.add_argument("--eval-prompt", action="store_true", help="route 2: print the evaluator prompt")
     ap.add_argument("--ingest", help="route 2: subagent transcript (.jsonl) of the producer run")
+    ap.add_argument("--recheck", action="store_true",
+                    help="route 1: recompute the deterministic checks of a committed cli-<variant> run from its recorded "
+                         "tool calls and outputs (no model call); the evaluator verdict is kept")
+    ap.add_argument("--re-evaluate", action="store_true",
+                    help="route 1: re-run only the NIM evaluator on a committed cli-<variant> run (no Claude call)")
     ap.add_argument("--ingest-eval", help="route 2: subagent transcript (.jsonl) of the evaluator")
     a = ap.parse_args()
     if a.prepare:
         for cid in a.cases:
             print(json.dumps(prepare(cid, a.variant)))
+        return 0
+    if a.recheck:
+        r = recheck(a.cases[0], a.variant)
+        print(json.dumps({"case": r["case"], "variant": a.variant, "status": r["status"],
+                          "failed_checks": [c["check"] for c in r["deterministic_checks"] if not c["pass"]]}))
+        return 0
+    if a.re_evaluate:
+        r = re_evaluate(a.cases[0], a.variant)
+        print(json.dumps({"case": r["case"], "variant": a.variant, "status": r["status"],
+                          "evaluator": (r.get("evaluator") or {}).get("verdict")}, ensure_ascii=False))
         return 0
     if a.eval_prompt:
         print(eval_prompt(a.cases[0], a.variant))

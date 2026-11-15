@@ -1,0 +1,192 @@
+# Intake form — contract version 7 — Chain 1 (rfq-to-quote), paused after step 5
+# SYNTHETIC TEST DATA. Saved by customer-inquiry-intake under rfq-to-quote, 2026-11-15.
+contract_version: 7
+site: "EPW1 — Example Precision Works, Plant 1, Dayton OH"
+customer: "Northwind Robotics"
+contact: { name: "Dana Whitfield", email: "dana.whitfield@northwind-robotics.example", phone: null }
+rfq_reference: null          # customer gave no RFQ number; inquiry keyed as "MB-2040 rev C"
+received_at: 2026-11-02T09:14:00-05:00
+response_deadline: null
+supersedes_rfq: null         # earlier thread messages (28 Oct, 29 Oct) are part of this one inquiry, not separate RFQs
+payment: null
+freight: null
+packaging: null
+liability: null
+source_documents:
+  - { name: "rfq_email.txt", type: email_thread, pages: 1, note: "3 messages: Dana Whitfield 2 Nov, Raj Patel 29 Oct, Dana Whitfield 28 Oct" }
+  - { name: "MB-2040_spec_revC.md", type: text_spec, pages: 1, note: "Specification sheet rev C dated 2026-10-27; no dimensioned drawing" }
+field_sources:
+  customer: "MB-2040_spec_revC.md: header; rfq_email.txt: From line, msg 1"
+  contact: "rfq_email.txt: msg 1 (2 Nov) From line"
+  rfq_reference: "rfq_email.txt: msg 1 Subject — no RFQ number given"
+  received_at: "rfq_email.txt: msg 1 Date line"
+  response_deadline: "not stated anywhere in package"
+  payment: "not stated"
+  freight: "not stated"
+  packaging: "not stated"
+  liability: "not stated"
+
+line_items:
+  - line_no: 1
+    part_number: "MB-2040"
+    part_number_verbatim: "MB-2040"
+    description: "Motor bracket, machined 6061-T6 plate, black anodized"
+    revision: "C"
+    quantities:
+      - { qty: 250, uom: each }
+      - { qty: 500, uom: each }
+      - { qty: 1000, uom: each }
+    quantity_structure: "three discrete price breaks, not a range; never averaged"
+    material: "Aluminium 6061-T6 plate per ASTM B209"
+    specs:
+      - { characteristic: "envelope length", nominal: "120 mm", tolerance: "±0.3 mm", reading_basis: general_note, source_ref: "MB-2040_spec_revC.md: 'Envelope' row; general note 'ISO 2768-m' row (linear, >30–120)" }
+      - { characteristic: "envelope width", nominal: "80 mm", tolerance: "±0.3 mm", reading_basis: general_note, source_ref: "MB-2040_spec_revC.md: 'Envelope' row; 'General tolerance ISO 2768-m' row (>30–120)" }
+      - { characteristic: "thickness", nominal: "12 mm", tolerance: "±0.2 mm", reading_basis: general_note, source_ref: "MB-2040_spec_revC.md: 'Envelope' row; 'General tolerance ISO 2768-m' row (>6–30)" }
+      - { characteristic: "main bore diameter, through", nominal: "22.000 mm", tolerance: "+0.021 / -0.000 (H7)", reading_basis: from_text, source_ref: "MB-2040_spec_revC.md: 'Main bore' row" }
+      - { characteristic: "main bore surface finish", nominal: "Ra 1.6 µm", tolerance: "max", reading_basis: from_text, source_ref: "MB-2040_spec_revC.md: 'Surface finish' row" }
+      - { characteristic: "main bore location", nominal: null, tolerance: null, reading_basis: unreadable_flagged, source_ref: "MB-2040_spec_revC.md — not stated; no drawing in package (missing register M1)" }
+      - { characteristic: "4x M5x0.8 tapped through", nominal: "M5x0.8", tolerance: "thread class not stated", reading_basis: from_text, source_ref: "MB-2040_spec_revC.md: 'Mounting holes' row" }
+      - { characteristic: "M5 hole pattern spacing", nominal: "100 x 60 mm (rev C position, 2 mm outboard of rev B)", tolerance: "±0.3 mm each", reading_basis: general_note, source_ref: "MB-2040_spec_revC.md: 'Mounting holes' row + 'General tolerance' row; rfq_email.txt msg 2 (Raj Patel, 29 Oct)" }
+      - { characteristic: "slot width", nominal: "8 mm", tolerance: "±0.2 mm", reading_basis: general_note, source_ref: "MB-2040_spec_revC.md: 'Slot' row ('tolerance per general note') + ISO 2768-m (>6–30)" }
+      - { characteristic: "slot length", nominal: "40 mm", tolerance: "±0.3 mm", reading_basis: general_note, source_ref: "MB-2040_spec_revC.md: 'Slot' row + ISO 2768-m (>30–120)" }
+      - { characteristic: "slot location and orientation", nominal: null, tolerance: null, reading_basis: unreadable_flagged, source_ref: "not stated; no drawing (missing register M1)" }
+      - { characteristic: "surface finish, all other surfaces", nominal: "Ra 3.2 µm", tolerance: "max", reading_basis: from_text, source_ref: "MB-2040_spec_revC.md: 'Surface finish' row" }
+      - { characteristic: "edge break, all edges", nominal: "0.2–0.5 mm", tolerance: "as stated range", reading_basis: from_text, source_ref: "MB-2040_spec_revC.md: 'Edge break' row" }
+      - { characteristic: "flatness, mounting face", nominal: null, tolerance: null, reading_basis: unreadable_flagged, source_ref: "MB-2040_spec_revC.md: 'Flatness' row = 'TBD'; rfq_email.txt msg 2 'still being decided'" }
+    finish: "Type II sulfuric anodize, black, per MIL-A-8625 (class not stated)"
+    marking: "Part number and lot code, laser etched, location per customer (location not given)"
+    certifications_required:
+      - "Material certification with each lot (rfq_email.txt msg 1)"
+      - "First article inspection report, AS9102 format, first lot (MB-2040_spec_revC.md 'Inspection' row)"
+    required_delivery: 2027-01-15
+    required_delivery_note: "First articles by 15 Jan 2027; production deliveries monthly thereafter, quantities per month not stated"
+    eau: 4000
+    eau_note: "'roughly 4,000 pcs if the pilot goes well (not a commitment)'"
+    geometry_inputs:
+      - { name: "MB-2040_spec_revC.md", type: text_spec, revision: "C", source_ref: "MB-2040_spec_revC.md: title line" }
+    geometry_inputs_note: "Rev B drawings circulated by customer procurement are NOT in the package and are explicitly superseded (rfq_email.txt msg 2)."
+    geometry_path: A
+    geometry_path_note: "Written specification only, no dimensioned drawing and no STEP. Any price is a ROM (budgetary), never a firm quote, until a rev C drawing arrives (then re-classified C2)."
+    line_recommendation: bid
+    line_bid_decision: confirmed
+    field_sources:
+      part_number: "MB-2040_spec_revC.md: header"
+      revision: "MB-2040_spec_revC.md: header 'Revision: C (2026-10-27)'; rfq_email.txt msg 1 subject"
+      quantities: "rfq_email.txt: msg 1 (2 Nov) 'Quantities: 250, 500 and 1,000 pcs'"
+      material: "MB-2040_spec_revC.md: 'Material' row"
+      finish: "MB-2040_spec_revC.md: 'Finish' row; rfq_email.txt msg 1 'Please include anodize per the spec'"
+      certifications_required: "rfq_email.txt msg 1; MB-2040_spec_revC.md 'Inspection' row"
+      required_delivery: "rfq_email.txt: msg 1 'first articles by 15 Jan 2027'"
+      eau: "rfq_email.txt: msg 3 (28 Oct)"
+      geometry_inputs: "package contents: two files only"
+
+missing_register:
+  - { id: M1, line_no: 1, field: "dimensioned drawing / 3D model (bore location, slot location & orientation, datum scheme, corner radii, thread class)", why_it_matters: "Without it the line is geometry path A: ROM only, and bore/slot location tolerances cannot be read at all. A firm quote needs the drawing.", should_have_come_from: "rev C drawing PDF (and STEP) attached to the RFQ email" }
+  - { id: M2, line_no: 1, field: "flatness of mounting face (and which face is the mounting face)", why_it_matters: "PENDING CHANGE stated by customer: 'still being decided by our design team; we will confirm it separately' (Raj Patel, 29 Oct). A tight flatness on 12 mm machined plate can add stress-relief/finishing operations or exceed capability; risk to the rev C being quoted.", should_have_come_from: "spec sheet 'Flatness' row (marked TBD) / drawing" }
+  - { id: M3, line_no: 1, field: "anodize detail: class, coating thickness, whether H7 bore / Ra 1.6 / M5 threads apply after anodize, masking", why_it_matters: "Type II coating build-up is a significant fraction of the 0.021 mm H7 band; decides masking or post-anodize sizing operations.", should_have_come_from: "spec sheet 'Finish' row / drawing notes" }
+  - { id: M4, line_no: 1, field: "marking location, lot-code format, character size", why_it_matters: "Spec says 'location per customer' but gives none; no laser marker in the plant equipment list, so this is likely outside processing to be priced.", should_have_come_from: "spec sheet 'Marking' row / drawing" }
+  - { id: M5, line_no: 1, field: "release schedule: monthly quantity after FAI; FAI sample size; whether breaks are order quantities or release quantities", why_it_matters: "Setup and anodize lot charges amortize per release, not per order; decides price per break and the load check.", should_have_come_from: "RFQ email" }
+  - { id: M6, line_no: 1, field: "quality-system flow-down (AS9100 or other) and material cert type", why_it_matters: "AS9102-format FAI suggests an aerospace-style flow-down; plant certifications are not on file. A required certification the plant does not hold would be a no-bid.", should_have_come_from: "customer terms / quality requirements document" }
+  - { id: M7, line_no: null, field: "response deadline for the quote", why_it_matters: "Drives priority against other open quotes; quote turnaround already 13 days at 2026-11-15.", should_have_come_from: "RFQ email" }
+  - { id: M8, line_no: null, field: "payment terms", why_it_matters: "Quote will otherwise state plant standard; plant standard terms are not on file either.", should_have_come_from: "customer terms page" }
+  - { id: M9, line_no: null, field: "freight / Incoterms and ship-to", why_it_matters: "Freight basis changes the delivered price and who owns transit risk.", should_have_come_from: "customer terms page" }
+  - { id: M10, line_no: null, field: "packaging", why_it_matters: "Black anodized parts usually need individual separation to avoid cosmetic scuffing; unpriced if unstated.", should_have_come_from: "customer terms page / spec" }
+  - { id: M11, line_no: null, field: "liability / terms & conditions", why_it_matters: "Customer flow-downs (warranty, consequential damages) not visible; cannot check against plant standard.", should_have_come_from: "customer terms page" }
+
+ambiguous_register: []
+ambiguous_register_note: "Nothing in the package is stated two different ways. The rev B vs rev C hole pattern was resolved by the customer in writing (Raj Patel, 29 Oct: 'Ignore rev B drawings'); the spec sheet's '100 x 60 mm pattern (rev C position)' agrees. Recorded here so the estimator knows rev B copies may be circulating inside the customer."
+
+constraint_check:
+  profile_available: false
+  basis: "No onboarding capability profile on file. Checked against inputs/plant/plant_overview.md, equipment.csv and inputs/cost/purchase_orders.csv only. Demonstrated tolerance capability, size envelope by machine, and certifications held are NOT on file and were NOT checked."
+  items:
+    - { constraint: "process", requested: "CNC milling of plate part", plant_capability: "make-to-order CNC machining; 2x 3-axis VMC (MILL-V), 1x HMC (MILL-H)", source: "plant_overview.md; equipment.csv", result: "within" }
+    - { constraint: "material", requested: "6061-T6 plate", plant_capability: "aluminium and steel; 6061-T6 plate bought on PO-30411, PO-30588", source: "plant_overview.md; purchase_orders.csv", result: "within" }
+    - { constraint: "quantity", requested: "250 / 500 / 1,000; EAU ~4,000", plant_capability: "1–5,000 pcs", source: "plant_overview.md", result: "within" }
+    - { constraint: "size envelope", requested: "120 x 80 x 12 mm", plant_capability: "HMC 500 mm pallet; VMC travels not on file", source: "equipment.csv", result: "within for HMC; VMC not checkable" }
+    - { constraint: "anodize Type II black", requested: "MIL-A-8625 Type II black", plant_capability: "outside processing, Bright Anodize LLC, 'Type II black anodize per lot (up to 300 pcs <=150 mm)'", source: "purchase_orders.csv PO-30602", result: "within via OSP" }
+    - { constraint: "laser marking", requested: "laser-etched PN + lot code", plant_capability: "no laser marker in equipment list", source: "equipment.csv", result: "not in-house; needs OSP source (not a disqualifier)" }
+    - { constraint: "H7 bore 22.000 +0.021, Ra 1.6", requested: "from_text", plant_capability: "not on file", source: "—", result: "not checkable; scoring input" }
+    - { constraint: "AS9102 FAI / quality certifications", requested: "AS9102-format FAI", plant_capability: "not on file", source: "—", result: "not checkable; scoring input" }
+constraint_violations: []
+hard_disqualifier_stopped: false
+
+open_questions: |
+  Subject: RE: RFQ - motor bracket MB-2040 rev C — a few questions before we quote
+
+  Hi Dana,
+
+  Thanks for sending MB-2040 rev C. We'd like to quote it and have a few questions so the
+  price we send is firm and not hedged.
+
+  1. Drawing. We received the rev C specification sheet (dated 27 Oct) but no dimensioned
+     drawing or 3D model. Could you send the rev C drawing (PDF) and a STEP file if you have one?
+     We need the bore and slot locations, which way the slot runs, the datum scheme, corner
+     radii and the M5 thread class and depth. Without a drawing we can only give you a
+     budgetary figure.
+
+  2. Flatness. Raj mentioned on 29 Oct that your design team is still deciding the flatness of
+     the mounting face. Do you have a value or a date for it yet, and which face is the mounting
+     face? If it comes with a new revision (rev D), please tell us so we quote the right one.
+     Otherwise we can quote rev C with flatness excluded and add it later.
+
+  3. Anodize and the bore. Type II anodize adds a coating that uses up much of the 22 mm H7
+     tolerance band. Do the H7 size and the Ra 1.6 finish apply after anodize? Should the bore
+     and the M5 threads be masked? Can you also confirm Class 2 (dyed black) and any coating
+     thickness requirement?
+
+  4. Marking. Where on the part should the part number and lot code go, in what lot-code format,
+     and at what character height?
+
+  5. Quantities and schedule. Are 250, 500 and 1,000 total order quantities? After first articles
+     on 15 Jan 2027, how many pieces per monthly delivery? How many pieces do you want for first
+     article, and do they count toward the order? Is 15 Jan a ship date or a date at your dock?
+
+  6. Quality requirements. You asked for an AS9102-format FAI. Does the order carry an AS9100 or
+     other quality-system requirement, or any other flow-downs? For the material cert, is a mill
+     certificate to ASTM B209 enough, or do you need EN 10204 3.1?
+
+  7. Commercial. When do you need our quote? Please also send your payment terms, freight terms
+     and ship-to address, any packaging requirement for the anodized parts, and your purchase
+     terms and conditions if they apply.
+
+  If 1 and 2 will take a while, answers to 3 to 7 would still let us move ahead.
+
+  Best regards,
+  [Estimator name]
+  Example Precision Works
+
+recommendation: bid
+recommendation_provisional: true
+recommendation_reasoning:
+  - "Line 1 (only line): provisional BID."
+  - "Constraint check is PARTIAL: no capability profile is on file. Checked against the plant overview, equipment list and purchase history only. Process, material, quantity, size (HMC) and Type II black anodize (existing OSP vendor, PO-30602) are all within what those documents show. H7 bore capability, flatness capability and certifications held were not checkable."
+  - "No hard disqualifier is determinable from stated facts."
+  - "Geometry path A: spec sheet only, no drawing. Until a rev C drawing arrives, any price would be a ROM (budgetary), not a firm quote."
+  - "Comparable (similar bracket, not the same part): MB-1880 rev B. WO-7702 closed 2026-07-18 (about 4 months old), 300 pcs, 6 scrapped. WO-7811 closed 2026-09-26 (about 7 weeks old), 500 pcs, 9 scrapped. On both jobs the actual machining run time came in above routing standard (about 3–8% on ops 20 and 30). The ERP export has no actual-cost or revenue columns, so whether those jobs made money cannot be stated. Read straight from closed_jobs.csv; step 6 (data-consolidate, backflush check) has not run yet."
+  - "Date: first articles on 15 Jan 2027 is about 8.5 weeks from today and needs two outside-processing steps (anodize, plus laser marking). Shop load is not on file, so the date was not checked against load."
+  - "No prior quote history for MB-2040 (NetSuite is export-only and no quote export was supplied). This is reported as absent, not as 'new part'."
+would_change_recommendation:
+  - { question: "Q6 quality-system flow-down", line: 1, becomes: "no_bid if AS9100 (or another certification) is mandatory and the plant does not hold it. Plant certifications are not on file." }
+  - { question: "Q2 flatness", line: 1, becomes: "no_bid, or bid with added operations, if the flatness callout is tighter than the plant has demonstrated on machined 6061 plate after anodize (capability not on file)." }
+  - { question: "Q1 drawing", line: 1, becomes: "stays bid, but ROM/budgetary only until it arrives. Drawing location tolerances on bore/slot could also tighten the capability picture." }
+  - { question: "Q3 anodize vs H7 bore", line: 1, becomes: "stays bid; if H7 must hold after anodize without masking, adds masking or post-anodize sizing and raises risk." }
+  - { question: "Q5 release schedule / date", line: 1, becomes: "stays bid; if monthly releases are small, OSP lot charges dominate; if load cannot absorb 15 Jan, bid with an alternative date." }
+
+inquiry_state: stale
+stale_since: 2026-11-09
+stale_note: "Default interval (5 business days, NOT plant-set; no MFG_RFQ_STALE_DAYS or profile value). No questions_sent_at is recorded, so the clock ran from received_at (2026-11-02). Stale is visibility only. The inquiry stays OPEN. The clock restarts when the estimator records the send."
+answers_received: []
+bid_decision_state: confirmed
+bid_decision_by: "Test Estimator (LEGION WO-LMFG-004 test operator)"
+bid_decision_at: "2026-11-15 (time of day not given)"
+bid_decision_basis: { inquiry: "bid (provisional) as shown 2026-11-15", line_1: "bid (provisional)", instruction: "quote with open questions Q1–Q7 as exclusions/assumptions" }
+bid_decision_reset: null
+questions_approved_note: "Gate 1: questions approved as drafted by Test Estimator (LEGION WO-LMFG-004 test operator) on 2026-11-15, NOT sent. Gate 1 is the send; it is not passed until a send is recorded."
+questions_sent_at: null
+questions_sent_by: null
+paused_at_step: 8
+waiting_on: "estimator: Gate 1 send (Q1–Q7); Gate 3 (confirm hand-entered feature list, inferred datums, op list); rates (labour, burden, margin) before any price; then Gate 4 release. Customer: answers to Q1–Q7 and the rev C drawing."
+gates_passed:
+  - { gate: 2, by: "Test Estimator (LEGION WO-LMFG-004 test operator)", at: "2026-11-15" }
+quote_draft: { ref: "Q-NORTHWIND-MB2040-01", state: "draft, prices blocked (rates not set), budgetary (path A)", customer_file: "out/customer-budgetary-estimate_Q-NORTHWIND-MB2040-01_DRAFT.html", internal_file: "out/internal-cost-sheet_Q-NORTHWIND-MB2040-01.html", operation_record: "out/operation-record_Q-NORTHWIND-MB2040-01.csv" }

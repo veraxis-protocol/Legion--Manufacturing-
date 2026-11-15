@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Connection plan: CMMS (synthetic SQLite), site EPW1</title>
+<style>
+:root{--ink:#1A1D21;--paper:#F2F3F5;--paper-raised:#FFFFFF;--line:#D6D9DD;--accent:#1F5C8B;--accent-soft:#E4EDF4;
+--good:#2E7248;--good-soft:#E3EFE7;--warn:#A8641A;--warn-soft:#F7EBDA;--critical:#A93226;--critical-soft:#F9E9E7;
+--font-display:'IBM Plex Sans Condensed','Arial Narrow',sans-serif;--font-body:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,sans-serif;--font-mono:'IBM Plex Mono','SF Mono',Consolas,monospace;}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:14px;line-height:1.45;margin:0;padding:24px}
+main{max-width:1100px;margin:0 auto}
+h1,h2{font-family:var(--font-display);font-weight:600}
+h1{font-size:24px;margin:0 0 4px}h2{font-size:18px;margin:28px 0 8px;border-bottom:1px solid var(--line);padding-bottom:4px}
+.card{background:var(--paper-raised);border:1px solid var(--line);border-radius:4px;padding:14px 16px;margin:10px 0}
+table{border-collapse:collapse;width:100%;background:var(--paper-raised);font-size:13px}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--accent-soft)}
+code,pre{font-family:var(--font-mono);font-size:12px}
+pre{background:var(--paper-raised);border:1px solid var(--line);padding:10px;overflow-x:auto}
+.pill{display:inline-block;padding:1px 8px;border-radius:10px;font-size:12px}
+.good{background:var(--good-soft);color:var(--good)}.warn{background:var(--warn-soft);color:var(--warn)}.crit{background:var(--critical-soft);color:var(--critical)}
+.muted{color:#5a6068}
+</style>
+</head>
+<body><main>
+<h1>Connection plan: CMMS (synthetic SQLite), site EPW1</h1>
+<p class="muted">Internal. Run 2026-11-15. Target: <code>inputs/connector/cmms_synthetic.sqlite</code>, SYNTHETIC test data for a fictitious plant. Permitted access: read-only. This file replaces any earlier run's plan.</p>
+
+<div class="card">
+<b>Decision: Tier 4, read-only database access.</b> <span class="pill good">Tested on real records</span> <span class="pill warn">Not registered: waiting for the plant to confirm nothing is missing</span><br>
+Scoped need: read assets and maintenance work orders (open and closed, with dates and technician notes) so <code>breakdown-diagnosis</code> and <code>data-consolidate</code> can read maintenance history.
+Freshness: live. Each run reads the file as it is at that moment. Nothing is scheduled.
+</div>
+
+<h2>1. System identity</h2>
+<table>
+<tr><th>Item</th><th>Value</th><th>Evidence</th></tr>
+<tr><td>Vendor / product / version</td><td>None. A fictitious, homegrown-style CMMS</td><td><code>meta</code> table and <code>inputs/connector/README.txt</code></td></tr>
+<tr><td>Deployment</td><td>Local SQLite file</td><td>The file itself</td></tr>
+<tr><td>Objects</td><td>Tables <code>meta</code> (1 row), <code>assets</code> (3), <code>work_orders</code> (3). View <code>v_open_work_orders</code> (1)</td><td><code>sqlite_master</code>, read by <code>out/scripts/inspect_schema.py</code></td></tr>
+<tr><td>Administrator</td><td>Not known. The owner role is "the CMMS database owner / maintenance systems administrator"</td><td>Not stated in inputs</td></tr>
+<tr><td>Credentials</td><td>None. The file has no authentication</td><td>README.txt</td></tr>
+</table>
+
+<h2>2. Tier decision record: each rung and how it was checked</h2>
+<table>
+<tr><th>Tier</th><th>Result</th><th>How it was checked</th></tr>
+<tr><td>1 Vendor MCP</td><td><span class="pill warn">Not checked</span></td><td>No vendor exists to publish one. The system is fictitious and has no product name. This session also has no web search tool, and external contact was out of scope.</td></tr>
+<tr><td>2 Community MCP</td><td><span class="pill warn">Not checked</span></td><td>Same reasons: no product name to search for, and no search tool in this session. A generic "SQLite MCP" would give schema-wide, possibly writable access, which is broader than the scope asked for.</td></tr>
+<tr><td>3 API wrapper</td><td>Ruled out</td><td>The target is a database file. It has no API, which the inputs confirm (README lists tables and a view only).</td></tr>
+<tr><td><b>4 Read-only DB access</b></td><td><span class="pill good">Chosen, tested</span></td><td>The file opened with SQLite <code>mode=ro</code> and <code>PRAGMA query_only=ON</code>. All 3 assets and 3 work orders were read and mapped. The file's SHA-256 was the same before and after the run.</td></tr>
+<tr><td>5 Zapier</td><td>Not needed</td><td>Tier 4 works. A local file has no Zapier trigger in any case.</td></tr>
+<tr><td>6 RPA</td><td>Not needed</td><td>Recommended against by default.</td></tr>
+<tr><td>7 Scheduled export</td><td>Fallback only</td><td>Use this if the real CMMS database cannot be read directly, for example because it is on a server IT will not open up. It needs a nightly CSV of the same two views.</td></tr>
+</table>
+<p><b>What being one rung lower than Tier 3 gives up:</b> there is no vendor-maintained contract. A schema change in the CMMS will break this connector. The connector checks the schema on every run and stops with <code>SCHEMA DRIFT</code> rather than returning wrong data. <b>Note for the real plant:</b> do not point this at a live production CMMS database. Read a copy, a replica or the two draft views, with the database owner's sign-off.</p>
+
+<h2>3. Credential and scope record</h2>
+<table>
+<tr><th>Item</th><th>Record</th></tr>
+<tr><td>Access granted</td><td>Read of one local file. No login, token or password exists or was used.</td></tr>
+<tr><td>Read / write</td><td>Read only. Enforced by <code>mode=ro</code> and <code>query_only</code>, and verified by the file hash. No write path exists or was proposed.</td></tr>
+<tr><td>Entities</td><td><code>assets</code> and <code>work_orders</code>, with explicit column lists. <code>meta</code> is read for provenance only.</td></tr>
+<tr><td>Recommended for production</td><td>The connector runs under an account with read but not write permission on the file. On a server database, use a dedicated integration login with SELECT on <code>v_plugin_assets</code> and <code>v_plugin_maintenance_work_orders</code> only (<code>cmms_readonly_views.sql</code>).</td></tr>
+<tr><td>Status</td><td>Tested on real records. Not registered until the plant confirms nothing expected is missing.</td></tr>
+</table>
+
+<h2>4. Field mapping onto the consolidated dataset (contract v6)</h2>
+<table>
+<tr><th>Source field</th><th>Example value</th><th>Destination</th><th>Transform</th><th>Status</th><th>Confirms</th><th>Open question</th></tr>
+<tr><td>assets.asset_id</td><td>VMC-02</td><td>assets.asset_id_verbatim / asset_id</td><td>Trim and upper-case for the normalized copy</td><td>Confirmed on 3/3 records</td><td>CMMS admin</td><td>Do the MES and historian use the same asset IDs?</td></tr>
+<tr><td>assets.site</td><td>EPW1</td><td>assets.site</td><td>None</td><td>Confirmed on 3/3</td><td>CMMS admin</td><td>Is EPW1 the site name the plant profile will use?</td></tr>
+<tr><td>assets.description</td><td>Vertical machining centre</td><td><b>Unmapped</b></td><td>None</td><td>Held out</td><td>None</td><td>The <code>assets</code> tab has no description column. Adding one needs a contract version bump.</td></tr>
+<tr><td>(none)</td><td>None</td><td>assets.location</td><td>Null</td><td>Source does not hold it</td><td>Maintenance lead</td><td>Where is each machine? Containment and the floor-plan view need this.</td></tr>
+<tr><td>work_orders.wo</td><td>MW-160</td><td>maintenance_work_orders.maintenance_wo</td><td>None</td><td>Confirmed on 3/3</td><td>None</td><td>None</td></tr>
+<tr><td>work_orders.asset_id</td><td>VMC-02</td><td>asset_id_verbatim / asset_id</td><td>Trim and upper-case</td><td>Confirmed on 3/3, all matched to assets</td><td>None</td><td>None</td></tr>
+<tr><td>(via asset)</td><td>EPW1</td><td>site</td><td>Taken from assets.site on the asset join</td><td>Confirmed on 3/3</td><td>None</td><td>work_orders carries no site of its own</td></tr>
+<tr><td>work_orders.opened</td><td>2026-09-23</td><td>opened_date <i>(column name proposed)</i></td><td>None. Date only</td><td>Proposed name, value confirmed</td><td>CMMS admin</td><td>Time and time zone are not recorded</td></tr>
+<tr><td>work_orders.closed</td><td>2026-09-24 / NULL</td><td>closed_date</td><td>None. NULL means open, never "unknown"</td><td>Confirmed on 3/3, open count reconciled</td><td>None</td><td>None</td></tr>
+<tr><td>closed, or opened if still open</td><td>2026-09-24</td><td>as_of</td><td>Date only, no zone</td><td>Proposed</td><td>CMMS admin</td><td>Without a zone, a row can be counted but not lined up against sensor data</td></tr>
+<tr><td>work_orders.note</td><td>spindle hot after long cycle; chiller topped up</td><td>close_out_notes <i>(column name proposed)</i></td><td>Verbatim</td><td>Proposed</td><td>Maintenance lead</td><td>For an open WO this is the problem description, not a close-out. Is there a separate fault field in the real system?</td></tr>
+<tr><td>work_orders.wo_type</td><td>CM</td><td><b>Unmapped</b></td><td>None</td><td>Held out (in test-results.json)</td><td>Data owner of the contract</td><td>No column for CM vs PM on <code>maintenance_work_orders</code>. Adding one needs a contract version bump.</td></tr>
+<tr><td>work_orders.downtime_min</td><td>95 / NULL</td><td><b>Unmapped</b></td><td>None</td><td>Held out</td><td>Data owner of the contract</td><td><code>downtime_events</code> needs a start, an end and a reason per stoppage, and none of those is here. Adding a minutes column to <code>maintenance_work_orders</code> needs a version bump. NULL on MW-170 means not recorded, not zero.</td></tr>
+</table>
+
+<h2>5. Test results (validated for: the scope below)</h2>
+<table>
+<tr><th>Check</th><th>Result</th></tr>
+<tr><td>Records read and shown back</td><td>3 of 3 assets, 3 of 3 work orders. Every one was displayed and compared field by field against the raw query.</td></tr>
+<tr><td>Completeness</td><td>Mapped counts equal <code>count(*)</code> in the source. <code>v_open_work_orders</code> (1) equals <code>closed IS NULL</code> (1), which equals the mapped open count (1). <b>Limit:</b> these counts come from the same file. No independent count from another system was available.</td></tr>
+<tr><td>Join</td><td>3 of 3 work orders matched an asset. No orphans.</td></tr>
+<tr><td>Integrity</td><td>No closed date falls before its open date, and no date is in the future.</td></tr>
+<tr><td>Read-only</td><td>Opened with <code>mode=ro</code>, <code>query_only=1</code>. SHA-256 unchanged: 88b87d83…f72b.</td></tr>
+<tr><td>Schema drift guard</td><td>Passed. Columns match the fingerprint.</td></tr>
+<tr><td>Not validated</td><td>Field meanings were not confirmed by an admin. Time zone, location, and the proposed column names are unconfirmed.</td></tr>
+</table>
+
+<h2>6. How it will break</h2>
+<table>
+<tr><th>Failure</th><th>What it looks like</th><th>Who fixes it</th></tr>
+<tr><td>Schema drift after a CMMS change</td><td>The connector stops with <code>SCHEMA DRIFT</code> and shows expected and actual columns. It does not fail silently.</td><td>Whoever owns the connector script, with the CMMS database owner</td></tr>
+<tr><td>File moved, renamed or locked</td><td>"unable to open database file" error</td><td>CMMS database owner</td></tr>
+<tr><td>Someone points it at the live production database</td><td>Locking or contention risk on the CMMS</td><td>Prevent it: use a copy, a replica or the views</td></tr>
+<tr><td>Fields filled inconsistently (e.g. downtime left blank)</td><td>A NULL is carried as NULL and reported as "not recorded"</td><td>Maintenance lead</td></tr>
+</table>
+<p>A Claude skill produces artifacts; it does not stand up or host infrastructure. The script, the view SQL and the mapping are handed over. Someone at the plant runs or schedules the script.</p>
+
+<h2>7. Files</h2>
+<ul>
+<li><code>out/connector-output/cmms_sqlite_connector.py</code>: the read-only connector</li>
+<li><code>out/connector-output/cmms_readonly_views.sql</code>: draft views for the database owner (not applied)</li>
+<li><code>out/connector-output/mapped/assets.csv</code>, <code>maintenance_work_orders.csv</code>: mapped rows</li>
+<li><code>out/connector-output/mapped/test-results.json</code>: the run record</li>
+<li><code>out/scripts/inspect_schema.py</code>: the schema inspection used in discovery</li>
+</ul>
+</main></body></html>

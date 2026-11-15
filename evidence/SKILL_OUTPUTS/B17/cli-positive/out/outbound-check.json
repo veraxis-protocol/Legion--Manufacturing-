@@ -1,0 +1,17 @@
+[
+ {
+  "block": "SUPPLIER RFQ PACKAGE \u2014 SENDABLE",
+  "result": "PASS",
+  "problems": []
+ },
+ {
+  "block": "SUPPLIER EMAIL \u2014 HELD \u2014 Birch Powder Metal (fictitious)",
+  "result": "PASS",
+  "problems": []
+ },
+ {
+  "block": "SUPPLIER EMAIL \u2014 HELD \u2014 Cedar Bearings Inc (fictitious)",
+  "result": "PASS",
+  "problems": []
+ }
+]

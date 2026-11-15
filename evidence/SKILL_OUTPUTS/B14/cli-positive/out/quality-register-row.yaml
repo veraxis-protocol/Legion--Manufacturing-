@@ -1,0 +1,39 @@
+# Quality register row, contract quality-register-record.md v1. NOT STORED in a Quality Register (no Artifact tools this session).
+# SYNTHETIC test data.
+contract_version: 1
+record_key: "not-recorded_NCR-DRAFT-20261111-MB1880"
+ncr_ref: NCR-DRAFT-20261111-MB1880
+site: "not recorded"
+part_number: MB-1880
+part_number_verbatim: "MB-1880 rev B"
+lot_number: L-0412
+lot_number_verbatim: "L-0412"
+found_at: "2026-11-11T10:05:00"   # zone not recorded
+qty_found: 3
+uom: each
+requirement_cited: "MB-1880 drawing rev B, sheet 2, note 4, Bore A dia 22.000 +0.021/-0.000 mm"
+disposition_pending: true
+summary: "Bore A 22.029-22.034 mm vs 22.021 max on 3 of 5 samples; lot L-0412 (at least 300) suspect; 30 shipped to Northwind Robotics."
+customers: ["Northwind Robotics"]
+
+status: awaiting_approval
+approval_state: draft
+containment_summary: "5 of 5 locations addressed; installed at customer and in transit not checked; WIP/FG counts as of 2026-11-11, not reconfirmed"
+escape_clock: null
+escape_clock_unknown: true
+owner: null
+due_date: null
+recurrence: recurrence_prior_capa_failed
+prior_ncr_refs: ["NCR-0219"]
+previous_fix_held: false
+
+eight_d_step: null
+leading_cause: null
+supplier_caused: null
+effectiveness_check_due: null
+
+closed_at: null
+closed_by: null
+last_written_by: ncr-writeup
+last_written_at: "2026-11-15"
+first_recorded_at: "2026-11-15"

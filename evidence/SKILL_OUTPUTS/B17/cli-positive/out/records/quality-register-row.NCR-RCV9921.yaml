@@ -1,0 +1,13 @@
+# Quality Register row. NOT STORED: no artifact tools this session. Paste back next time.
+key: "<site>_NCR-RCV9921"   # site not on file
+ncr_ref: NCR-RCV9921
+part: "BSH-1210 rev A"
+status: open
+containment_summary: "1,000 suspect (lot AS-7781): 600 held in Q-1 (checked); 400 issued to WO-8150 line 2 (not checked); customer side not checked"
+escape: "possible, not established; shipment check open; deadline unknown (terms not on file)"
+recurrence: no_searchable_history
+previous_fix_held: "cannot be judged"
+eightd_step: "D1-D5, D7 drafted; D6/D8 placeholders; unblocked (NCR approved 2026-11-15T18:06:00-05:00)"
+leading_cause_candidate: "supplier lot AS-7781 above spec (candidate, medium confidence)"
+supplier_caused_flag: "raised, approved 2026-11-15T18:06:00-05:00 (tester check pending)"
+effectiveness_check_date: null

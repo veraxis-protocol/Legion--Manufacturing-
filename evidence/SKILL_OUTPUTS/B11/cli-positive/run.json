@@ -1,0 +1,763 @@
+{
+ "case": "B11",
+ "skill": "morning-plant-pulse",
+ "variant": "positive",
+ "started_utc": "2026-11-15T23:09:00Z",
+ "runtime_route": "cli",
+ "cli_auth": {
+  "loggedIn": true,
+  "authMethod": "claude.ai",
+  "apiProvider": "firstParty"
+ },
+ "turns": [
+  {
+   "turn": 1,
+   "from": "task prompt",
+   "exit": 0,
+   "duration_s": 187.4,
+   "result": {
+    "subtype": "success",
+    "is_error": false,
+    "num_turns": 21,
+    "usage": {
+     "input_tokens": 38,
+     "cache_creation_input_tokens": 90454,
+     "cache_read_input_tokens": 977367,
+     "output_tokens": 20509,
+     "output_tokens_details": {
+      "thinking_tokens": 3513
+     },
+     "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+     },
+     "service_tier": "standard",
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 90454,
+      "ephemeral_5m_input_tokens": 0
+     },
+     "inference_geo": "global",
+     "iterations": [
+      {
+       "input_tokens": 2,
+       "output_tokens": 784,
+       "cache_read_input_tokens": 96311,
+       "cache_creation_input_tokens": 1160,
+       "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1160
+       },
+       "type": "message"
+      }
+     ],
+     "speed": "standard",
+     "fallback_credit": null
+    }
+   }
+  }
+ ],
+ "plugin_discovery": {
+  "plugins": [
+   "claude-for-manufacturing",
+   "cc-plugin-agents-md",
+   "cc-plugin-telemetry",
+   "cc-plugin-privacy",
+   "cc-plugin-plugin-authoring"
+  ],
+  "manufacturing_skills_listed": 17,
+  "skills_listed": [
+   "claude-for-manufacturing:breakdown-diagnosis",
+   "claude-for-manufacturing:breakdown-to-next-report",
+   "claude-for-manufacturing:custom-connector",
+   "claude-for-manufacturing:customer-inquiry-intake",
+   "claude-for-manufacturing:daily-production-report",
+   "claude-for-manufacturing:data-consolidate",
+   "claude-for-manufacturing:design-space-explore",
+   "claude-for-manufacturing:inspection-to-capa",
+   "claude-for-manufacturing:morning-plant-pulse",
+   "claude-for-manufacturing:ncr-writeup",
+   "claude-for-manufacturing:onboarding",
+   "claude-for-manufacturing:quote-build",
+   "claude-for-manufacturing:rfq-to-quote",
+   "claude-for-manufacturing:root-cause-capa",
+   "claude-for-manufacturing:supplier-escape-to-alternate-source",
+   "claude-for-manufacturing:supplier-quote-request",
+   "claude-for-manufacturing:trade-study-report"
+  ]
+ },
+ "task_prompt": "Run the morning plant pulse on last night's export drop in ./inputs and give me the operations command center page. There is no artifact store here, so write the page as an HTML file.\n\nThe input files are in ./inputs (all of them are SYNTHETIC test data for a fictitious plant). Write every work product you produce as files under ./out. Do not contact, email or write to any external system; there is no live ERP, Microsoft 365, CMMS or supplier available in this session.",
+ "inputs": [
+  {
+   "path": "inputs/pulse_oee/downtime.csv",
+   "source": "tests/manufacturing/fixtures/pulse_oee/downtime.csv",
+   "sha256": "c6b67ed143582ab9ba983f600925fd8ea2d8e060d8d345ad83db88a8d8e51e9b",
+   "bytes": 219
+  },
+  {
+   "path": "inputs/pulse_oee/output.csv",
+   "source": "tests/manufacturing/fixtures/pulse_oee/output.csv",
+   "sha256": "059b2ea252bd443231231e9990182aa6b71a389e5e75a63d76cc63888d3b13b8",
+   "bytes": 248
+  },
+  {
+   "path": "inputs/pulse_oee/plan.csv",
+   "source": "tests/manufacturing/fixtures/pulse_oee/plan.csv",
+   "sha256": "adfed48e210488c760fc91c7b1005756e5e0a384ebd52f70d8fa482866188ca4",
+   "bytes": 140
+  },
+  {
+   "path": "inputs/pulse_oee/README.txt",
+   "source": "tests/manufacturing/fixtures/pulse_oee/README.txt",
+   "sha256": "b255661d13e32686c1e3b2f0f6f0755c356dce04dd67e1f9d1c19a36dd55e665",
+   "bytes": 345
+  },
+  {
+   "path": "inputs/pulse_oee/routing.csv",
+   "source": "tests/manufacturing/fixtures/pulse_oee/routing.csv",
+   "sha256": "1fe0dbcb9d07119191d0fda75334ad3151427cf46587ed998cb91bc1277b5635",
+   "bytes": 84
+  },
+  {
+   "path": "inputs/pulse_oee/work_orders.csv",
+   "source": "tests/manufacturing/fixtures/pulse_oee/work_orders.csv",
+   "sha256": "dd725c3fdf0cfe0e7798ca2754de75265ce64797c0c833a4db69c9508e677868",
+   "bytes": 168
+  },
+  {
+   "path": "inputs/rates_memo.txt",
+   "source": "tests/runtime/inputs/plant/rates_memo.txt",
+   "sha256": "de3ec4c8a9ad5471950808cc37c6f27d315a7f0f5d414492cc8824eb2b9f123e",
+   "bytes": 465
+  }
+ ],
+ "cli_exit": 0,
+ "duration_s": 187.4,
+ "runtime": {
+  "model": "claude-opus-5-5",
+  "claude_code_version": "2.1.325",
+  "permission_mode": "dontAsk",
+  "tools": [
+   "Bash",
+   "Edit",
+   "Glob",
+   "Grep",
+   "Read",
+   "Skill",
+   "Write"
+  ],
+  "plugins": [
+   {
+    "name": "claude-for-manufacturing",
+    "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B11-positive-8i6980__\\plugin",
+    "source": "claude-for-manufacturing@inline",
+    "version": "1.0.0"
+   },
+   {
+    "name": "cc-plugin-agents-md",
+    "path": "builtin",
+    "source": "cc-plugin-agents-md@builtin"
+   },
+   {
+    "name": "cc-plugin-telemetry",
+    "path": "builtin",
+    "source": "cc-plugin-telemetry@builtin"
+   },
+   {
+    "name": "cc-plugin-privacy",
+    "path": "builtin",
+    "source": "cc-plugin-privacy@builtin"
+   },
+   {
+    "name": "cc-plugin-plugin-authoring",
+    "path": "builtin",
+    "source": "cc-plugin-plugin-authoring@builtin"
+   }
+  ],
+  "skills": [
+   "claude-for-manufacturing:breakdown-diagnosis",
+   "claude-for-manufacturing:breakdown-to-next-report",
+   "claude-for-manufacturing:custom-connector",
+   "claude-for-manufacturing:customer-inquiry-intake",
+   "claude-for-manufacturing:daily-production-report",
+   "claude-for-manufacturing:data-consolidate",
+   "claude-for-manufacturing:design-space-explore",
+   "claude-for-manufacturing:inspection-to-capa",
+   "claude-for-manufacturing:morning-plant-pulse",
+   "claude-for-manufacturing:ncr-writeup",
+   "claude-for-manufacturing:onboarding",
+   "claude-for-manufacturing:quote-build",
+   "claude-for-manufacturing:rfq-to-quote",
+   "claude-for-manufacturing:root-cause-capa",
+   "claude-for-manufacturing:supplier-escape-to-alternate-source",
+   "claude-for-manufacturing:supplier-quote-request",
+   "claude-for-manufacturing:trade-study-report",
+   "design",
+   "design-sync",
+   "dataviz",
+   "update-config",
+   "verify",
+   "debug",
+   "code-review",
+   "simplify",
+   "batch",
+   "fewer-permission-prompts",
+   "doctor",
+   "loop",
+   "schedule",
+   "claude-api",
+   "run",
+   "run-skill-generator",
+   "plugin-authoring"
+  ],
+  "mcp_servers": [],
+  "session_id": "cc9fb13a-ec6e-4553-a10c-7c11f2938ba0"
+ },
+ "skills_invoked": [
+  "claude-for-manufacturing:morning-plant-pulse"
+ ],
+ "skill_files_read": [
+  "daily-production-report/SKILL.md"
+ ],
+ "tool_calls": [
+  {
+   "tool": "Skill",
+   "input": {
+    "skill": "claude-for-manufacturing:morning-plant-pulse"
+   },
+   "response": "Launching skill: claude-for-manufacturing:morning-plant-pulse",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B11-positive-8i6980__/work\"; ls -la inputs; ls ../plugin/skills/morning-plant-pulse ../plugin/skills/morning-plant-pulse/*; python3 -I ../plugin/shared/scripts/plant_setup.py find",
+    "description": "List inputs, skill files, find plant setup"
+   },
+   "response": "total 5\ndrwxr-xr-x 1 Administrator 197121   0 Nov 15 18:09 .\ndrwxr-xr-x 1 Administrator 197121   0 Nov 15 18:09 ..\ndrwxr-xr-x 1 Administrator 197121   0 Nov 15 18:09 pulse_oee\n-rw-r--r-- 1 Administrator 197121 465 Nov 13 23:04 rates_memo.txt\n../plugin/skills/morning-plant-pulse/SKILL.md\n\n../plugin/skills/morning-plant-pulse:\nSKILL.md\nreference\nscripts\n\n../plugin/skills/morning-plant-pulse/reference:\ncompute-engine.md\noperations-dashboard.md\nshort-page.md\n\n../plugin/skills/morning-plant-pulse/scripts:\npulse_compute.py\nrender_short.py\n{\"setup_page_first\": \"Required before reading the plant profile or any rate, once per conversation, even when profile_path does not exist yet: if you have the artifact tools (Artifact, or mcp__claude-artifacts__* in Cowork), list the user's artifacts (scope all) and look for 'Plant setup: <company>' and 'Plant rates: <company>'. If more than one 'Plant setup:' page exists and the user has not named the company, ask which plant before reading any page (run find again with --titles and the titles listed; companies names them). For each page found, read its file with those tools (action read, path setup/plant-context.txt or setup/plant-rates.txt; an older page has setup/plant-context.md or setup/plant-rates.md instead; never retype it), then run: python3 \\\"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-B11-positive-8i6980__\\\\plugin\\\\shared\\\\scripts\\\\plant_setup.py\\\" install --from <the saved file> --company \\\"<company>\\\" (add --kind rates for the rates file), and read profile_path and rates_path. If this skill reads or writes ## Dashboards, ## Open inquiries or ## Sourcing events, also look for 'Open work: <company>': read setup/open-work.txt and then every file it names and every file the page lists (action read with paths, or one read per file) into one folder, keeping the page's paths, and run install --kind work --from <that folder> --company \\\"<company>\\\"; the blocks are then at work_path. Not found, no artifact tools, or a call refused: read the paths as printed and say nothing about a page. Never show a rate value from rates_path outside an internal artifact.\", \"profile_path\": \"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-B11-positive-8i6980__\\\\work\\\\plant-setup\\\\plant-context.md\", \"exists\": false, \"rates_path\": \"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-B11-positive-8i6980__\\\\work\\\\plant-setup\\\\plant-rates.md\", \"rates_exists\": false, \"work_path\": \"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-B11-positive-8i6980__\\\\work\\\\plant-setup\\\\open-work\\\\open-work.md\", \"work_exists\": false, \"companies\": [], \"company\": null, \"persistent\": false}",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B11-positive-8i6980__/work\"; ls -la inputs/pulse_oee; cat inputs/rates_memo.txt; echo; for f in inputs/pulse_oee/*; do echo \"=== $f\"; head -c 3000 \"$f\"; echo; done",
+    "description": "Inspect input files"
+   },
+   "response": "total 10\ndrwxr-xr-x 1 Administrator 197121   0 Nov 15 18:09 .\ndrwxr-xr-x 1 Administrator 197121   0 Nov 15 18:09 ..\n-rw-r--r-- 1 Administrator 197121 345 Nov 13 14:54 README.txt\n-rw-r--r-- 1 Administrator 197121 219 Nov 13 14:54 downtime.csv\n-rw-r--r-- 1 Administrator 197121 248 Nov 13 14:54 output.csv\n-rw-r--r-- 1 Administrator 197121 140 Nov 13 14:54 plan.csv\n-rw-r--r-- 1 Administrator 197121  84 Nov 13 14:54 routing.csv\n-rw-r--r-- 1 Administrator 197121 168 Nov 13 14:54 work_orders.csv\n# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.\nFinance memo (fictitious), 1 Oct 2026: fully burdened shop rate MILL-H 145 USD/h, MILL-V 95 USD/h, TURN 85 USD/h,\nINSP 60 USD/h. Material markup 12 percent. Target margin 18 percent. Outside processing (anodize) markup 10 percent.\nScrap cost is to be priced at standard material plus value-added labour at the work centre where scrapped.\n\n=== inputs/pulse_oee/README.txt\nLEGION-authored SYNTHETIC export drop for the OEE reconciliation test (tests/manufacturing/test_c10, test_c11).\nNot plant data. Column names are the aliases upstream pulse_compute.py reads (ALIASES, ROLES).\nplan.csv adds asset_id and planned_hours; routing.csv adds run_min_per_unit, so availability, performance and quality are all computable.\n\n=== inputs/pulse_oee/downtime.csv\nasset_id,started_at,ended_at,duration_minutes,reason_code,reason_text\nCNC-01,2026-11-12T09:10:00,2026-11-12T09:55:00,45,TOOL,tool change overrun\nCNC-02,2026-11-12T13:00:00,2026-11-12T13:20:00,20,MAT,waiting on material\n\n=== inputs/pulse_oee/output.csv\nwork_order,part_number,qty_good,qty_scrap,production_day,shift,asset_id,cell,site\nWO-1001,PN-100,480,12,2026-11-12,1,CNC-01,CELL-A,SITE-1\nWO-1002,PN-200,220,3,2026-11-12,1,CNC-02,CELL-A,SITE-1\nWO-1003,PN-100,300,0,2026-11-12,2,CNC-01,CELL-A,SITE-1\n\n=== inputs/pulse_oee/plan.csv\npart_number,planned_qty,plan_date,work_center,asset_id,planned_hours\nPN-100,800,2026-11-12,VMC,CNC-01,16\nPN-200,250,2026-11-12,VMC,CNC-02,8\n\n=== inputs/pulse_oee/routing.csv\npart_number,op_seq,work_center,run_min_per_unit\nPN-100,10,VMC,1.0\nPN-200,10,VMC,1.8\n\n=== inputs/pulse_oee/work_orders.csv\nwork_order,part_number,qty_ordered,status,due_date\nWO-1001,PN-100,500,RELEASED,2026-11-14\nWO-1002,PN-200,250,RELEASED,2026-11-13\nWO-1003,PN-100,300,RELEASED,2026-11-15",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B11-positive-8i6980__/plugin/skills/morning-plant-pulse\"; cat reference/compute-engine.md reference/operations-dashboard.md reference/short-page.md; python3 -I scripts/pulse_compute.py --help",
+    "description": "Read skill references and engine help"
+   },
+   "response": "# The compute engine: what it writes and how to read it\n\nLoaded before building the page. The engine is `../scripts/pulse_compute.py`,\nstandard-library Python, run once per pulse. It reads the export folder\n(CSV, or XLSX one table per sheet), recognises each file by its header, and\ncomputes every figure the Operations page prints. The page code selects and\nformats; it does no arithmetic.\n\n```\npython3 -I ../scripts/pulse_compute.py --exports exports --out pulse-output \\\n  [--day 2026-08-31] [--profile <profile_path>] [--rates <rates_path>] [--diagnoses exports/diagnoses] \\\n  [--manifest columns.json] [--run-time 2026-09-01T04:10:00-04:00] [--tz America/New_York]\n```\n\n- `--day` is the production day asked for. Without it the engine takes the\n  `Production day` the plant context names, else the latest day the plan,\n  output and downtime exports all cover, and says which.\n- `--profile` is any file holding the `## Plant context` block: `profile_path`\n  from `plant_setup.py find`, or for an older profile, the memory\n  file or a `plant-context.md` in the drop. Without one, the time zone and the\n  day start are assumed and listed in `context.assumptions`.\n- `--rates` is the `## Plant rates` file at `rates_path`; its downtime cost per\n  hour wins over a value left in an older profile.\n- Breakdown-diagnosis records (YAML or JSON) are read from\n  `exports/diagnoses/` unless `--diagnoses` names another folder.\n- `--manifest` is only for a plant whose headers the engine does not\n  recognise: `{\"roles\": {\"<file>\": \"output\"}, \"columns\": {\"output\": {\"qty_good\": \"<header>\"}}}`.\n  A file it cannot place is listed in `context.files_not_used` with the reason.\n\nIt prints a short summary, and exits 2 with the failed checks listed when a\nsubtotal does not reconcile. On exit 2 nothing it wrote is used.\n\n---\n\n## `figures.csv` — the figures block\n\nOne row per number: `id, figure, value, unit, period, source, filter`. A\nvalue that could not be computed reads `not computable`, never 0. The page's\nfigures block is this file; the prose and every table quote it. A number on\nthe page with no row here is a defect.\n\n## `pulse_model.json` — what the page is built from\n\n| Key | Holds | Page rule it carries |\n|---|---|---|\n| `context` | Site, time zone and whether it was assumed, day start and the day-boundary rule, run time, `assumptions`, files used and not used, `part_reference`, `unit_reference` | Every assumption goes in the freshness banner or the run notes, in its own words |\n| `freshness` | Production day and how it was chosen, newest day and its age, `data_as_of`, `data_complete`, `gaps`, per-source `coverage` (first, last, rows, `landed`), `activity_window`, `future_timestamps` | A gap is the banner's first row. A day whose MES output has fewer shifts than most days is a gap too (*only the 07:00 shift for …*): not a complete plant day. `future_timestamps` makes that source's dates untrusted |\n| `normalizations` | Each spelling matched by a rung: verbatim, canonical, rule, class, rows, `status` | `approved` rules are used as they stand and never re-proposed. Everything else is *proposed, awaiting approval*, and its rows are provisional |\n| `today` | The production day: `parts` (plan, good, variance, status, both spellings, held-out rows), `oee_by_asset` with `why_not`, site `availability` / `performance` / `quality` / `oee`, `quality_convention`, `scrap` by part, `scrap_priced_usd`, `downtime_usd`, `rate_source`, `unpriced`, `stops` | A part's `status` is the label: `comparable`, `not comparable, unit conflict` (no variance), `held out` (plan *not counted*, good *held out*), `no output recorded`. A null component is *not computable* with its `why_not`, never 1.0 |\n| `periods` | `day`, `week` (Mon–Sun to date) and `month` (1st to the day) roll-ups: per-part totals, days under plan, scrap and priced scrap, held-out rows | A day whose output for a part is an unresolved duplicate is out of that part's period totals |\n| `downtime` | `day`, `week`, `month` and `window` rankings: `by_asset` and `by_code`, each with events, minutes, ongoing, held out, `rank_minutes`, `rank_events` (1, 2, 2, 4); `held_out` rows; uncoded events and minutes | Both rankings, always. `by_code` never holds `Other` or blank: state `uncoded_events` of `events` as its own finding first. An ongoing stop counts as an event with no minutes |\n| `data_problems` | `numbered` (classes 1–5 and 8, class 6 contradicted, and unit conflicts, each with `n`), `count`, `waiting_on_decision` (unit conflicts, normalizations awaiting approval, provisional row count, NCR keys that disagree with the ERP), `class7`, `checked_nothing_wrong`, `integrity` | The numbered table is `numbered` and its count is `count`. `checked_nothing_wrong` is a separate block, never numbered, never counted |\n| `exceptions` | `items` (late job, machine down, quality hold, one-sided contradicted), `late_jobs`, `late_undeterminable`, `so_link`, `maintenance_history` per asset | A null `commitment_impact` is yours to trace through `sales_order`; with `so_link` false say *\"commitment impact not traceable: no work order to sales order link in the ERP\"* once, with the count |\n| `diagnoses` | `safety_flagged` records (lead the page), `blocked_safety_unknown` (first list, outside every figure), `matched_to_mes_row` (records matched to an MES downtime row on asset plus start time, each with `matched_mes_row`; the stoppage is counted once), `assets_with_diagnosis` (assets with a record whose safety status is known; a blocked record does not count) | A record with the flag true or false is already in the rankings, as its own row or on the MES row it matched; a blocked one is in none |\n| `week_over_week` | This week and last, from the exports, with the days each rests on; `skip` when last week has no data | Labelled *from this run's exports, not stored history* unless stored records were read |\n| `checks` | How many self-checks ran, and any that failed | |\n\n## `periods.json` and `figures-short-page.csv...[truncated]",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "W=\"C:/Users/Administrator/AppData/Local/Temp/lmfg-B11-positive-8i6980__/work\"; P=\"C:/Users/Administrator/AppData/Local/Temp/lmfg-B11-positive-8i6980__/plugin\"; cd \"$W\" && mkdir -p out && python3 -I \"$P/skills/morning-plant-pulse/scripts/pulse_compute.py\" --exports inputs/pulse_oee --out out/pulse-output; echo EXIT $?; ls out/pulse-output",
+    "description": "Run pulse compute engine on exports"
+   },
+   "response": "site: SITE-1 | production day: 2026-11-12 (latest complete production day in the exports (no day requested)) | data complete: True\r\nassumption: Times are plant local, assumed America/New_York; no plant profile.\r\nassumption: Production-day rule: calendar day, plant local (assumed; no plant profile and no MES shift labels).\r\ndata problems (numbered): 0 | checked, nothing wrong: 0 | exceptions: 0\r\nOEE 2026-11-12: availability 0.9549, performance 0.8679, quality 0.9852, composite 0.8165\r\ndowntime 2026-11-12: 65 min trusted, 2 events, 0 open | scrap priced $None | downtime $ unpriced (unset)\r\nfigures: 363 rows | day records: 1 | self-checks: 48 run, 0 failed\r\nEXIT 0\nday_records.json\nfigures-short-page.csv\nfigures.csv\nperiods.json\npulse_model.json",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B11-positive-8i6980__/work/out/pulse-output\"; cat pulse_model.json; echo; cat day_records.json",
+    "description": "Read engine model and day records"
+   },
+   "response": "{\r\n \"context\": {\r\n  \"engine_version\": \"1\",\r\n  \"site\": \"SITE-1\",\r\n  \"company\": null,\r\n  \"profile\": false,\r\n  \"profile_source\": null,\r\n  \"time_zone\": \"America/New_York\",\r\n  \"time_zone_assumed\": true,\r\n  \"day_start\": \"00:00\",\r\n  \"day_boundary\": \"calendar day, plant local (assumed; no plant profile and no MES shift labels)\",\r\n  \"run_time\": \"2026-11-15T18:09:15.382267-05:00\",\r\n  \"run_time_local\": \"2026-11-15 18:09 (plant local)\",\r\n  \"assumptions\": [\r\n   \"Times are plant local, assumed America/New_York; no plant profile.\",\r\n   \"Production-day rule: calendar day, plant local (assumed; no plant profile and no MES shift labels).\"\r\n  ],\r\n  \"files_used\": {\r\n   \"downtime\": \"downtime.csv\",\r\n   \"output\": \"output.csv\",\r\n   \"plan\": \"plan.csv\",\r\n   \"routings\": \"routing.csv\",\r\n   \"work_orders\": \"work_orders.csv\"\r\n  },\r\n  \"files_not_used\": [\r\n   {\r\n    \"file\": \"README.txt\",\r\n    \"why\": \"not CSV or XLSX\"\r\n   }\r\n  ],\r\n  \"part_reference\": \"work_orders.csv part numbers (no item master in the drop)\",\r\n  \"unit_reference\": null\r\n },\r\n \"normalizations\": [],\r\n \"freshness\": {\r\n  \"production_day\": \"2026-11-12\",\r\n  \"day_source\": \"latest complete production day in the exports (no day requested)\",\r\n  \"newest_production_day\": \"2026-11-12\",\r\n  \"days_old\": 3,\r\n  \"data_as_of\": \"2026-11-13T14:54:48.425646-05:00\",\r\n  \"data_as_of_local\": \"2026-11-13 14:54 (plant local)\",\r\n  \"data_as_of_basis\": \"when the plan, output and downtime exports landed (drop manifest, else file time)\",\r\n  \"newest_event\": \"2026-11-12 13:00 (plant local)\",\r\n  \"data_complete\": true,\r\n  \"gaps\": [],\r\n  \"coverage\": {\r\n   \"plan\": {\r\n    \"file\": \"plan.csv\",\r\n    \"first\": \"2026-11-12\",\r\n    \"last\": \"2026-11-12\",\r\n    \"rows\": 2,\r\n    \"landed\": \"2026-11-13 14:54 (plant local)\",\r\n    \"activity\": true\r\n   },\r\n   \"output\": {\r\n    \"file\": \"output.csv\",\r\n    \"first\": \"2026-11-12\",\r\n    \"last\": \"2026-11-12\",\r\n    \"rows\": 3,\r\n    \"landed\": \"2026-11-13 14:54 (plant local)\",\r\n    \"activity\": true\r\n   },\r\n   \"downtime\": {\r\n    \"file\": \"downtime.csv\",\r\n    \"first\": \"2026-11-12\",\r\n    \"last\": \"2026-11-12\",\r\n    \"rows\": 2,\r\n    \"landed\": \"2026-11-13 14:54 (plant local)\",\r\n    \"activity\": true\r\n   },\r\n   \"work_orders\": {\r\n    \"file\": \"work_orders.csv\",\r\n    \"first\": \"2026-11-13\",\r\n    \"last\": \"2026-11-15\",\r\n    \"rows\": 3,\r\n    \"landed\": \"2026-11-13 14:54 (plant local)\",\r\n    \"activity\": false\r\n   }\r\n  },\r\n  \"activity_window\": [\r\n   \"2026-11-12\",\r\n   \"2026-11-12\"\r\n  ],\r\n  \"future_timestamps\": [],\r\n  \"sources_disagree\": false\r\n },\r\n \"diagnoses\": {\r\n  \"blocked_safety_unknown\": [],\r\n  \"safety_flagged\": [],\r\n  \"matched_to_mes_row\": [],\r\n  \"assets_with_diagnosis\": []\r\n },\r\n \"data_problems\": {\r\n  \"numbered\": [],\r\n  \"count\": 0,\r\n  \"mismatched\": [],\r\n  \"duplicates\": [],\r\n  \"waiting_on_decision\": {\r\n   \"unit_conflicts\": {},\r\n   \"normalizations\": [],\r\n   \"provisional_rows\": 0,\r\n   \"ncr_keys\": []\r\n  },\r\n  \"class7\": [],\r\n  \"checked_nothing_wrong\": [],\r\n  \"contradicted\": [],\r\n  \"integrity\": {\r\n   \"downtime_duration_conflicts\": [],\r\n   \"blank_lots\": [],\r\n   \"mes_part_differs\": [],\r\n   \"terse_close_out_notes\": [],\r\n   \"shared_lots\": {}\r\n  }\r\n },\r\n \"exceptions\": {\r\n  \"items\": [],\r\n  \"late_jobs\": [],\r\n  \"late_undeterminable\": [],\r\n  \"so_link\": false,\r\n  \"maintenance_history\": {}\r\n },\r\n \"week_over_week\": {\r\n  \"basis\": \"per-day figures computed this run from the exports\",\r\n  \"this_week\": {\r\n   \"from\": \"2026-11-06\",\r\n   \"to\": \"2026-11-12\",\r\n   \"days\": 1,\r\n   \"output_vs_plan_pct\": 95.2,\r\n   \"availability\": 0.9549,\r\n   \"availability_days\": 1,\r\n   \"quality\": 0.9852,\r\n   \"quality_days\": 1,\r\n   \"downtime_minutes\": 65,\r\n   \"scrap_usd\": null\r\n  },\r\n  \"last_week\": {\r\n   \"from\": \"2026-10-30\",\r\n   \"to\": \"2026-11-05\",\r\n   \"days\": 0,\r\n   \"output_vs_plan_pct\": null,\r\n   \"availability\": null,\r\n   \"availability_days\": 0,\r\n   \"quality\": null,\r\n   \"quality_days\": 0,\r\n   \"downtime_minutes\": null,\r\n   \"scrap_usd\": null\r\n  },\r\n  \"skip\": true\r\n },\r\n \"periods\": {\r\n  \"day\": {\r\n   \"label\": \"day:2026-11-12..2026-11-12\",\r\n   \"period\": \"production day == 2026-11-12\",\r\n   \"days\": [\r\n    \"2026-11-12\"\r\n   ],\r\n   \"summary\": {\r\n    \"comparable_parts\": 2,\r\n    \"max_abs_variance_pct\": 12.0,\r\n    \"all_under\": true,\r\n    \"all_over\": false,\r\n    \"days_under\": [\r\n     {\r\n      \"part\": \"PN-100\",\r\n      \"under\": 1,\r\n      \"of\": 1\r\n     },\r\n     {\r\n      \"part\": \"PN-200\",\r\n      \"under\": 1,\r\n      \"of\": 1\r\n     }\r\n    ],\r\n    \"provisional\": [],\r\n    \"held_out_parts\": [],\r\n    \"not_comparable\": []\r\n   },\r\n   \"parts\": {\r\n    \"PN-100\": {\r\n     \"part\": \"PN-100\",\r\n     \"planned\": 800,\r\n     \"good\": 780,\r\n     \"days_compared\": 1,\r\n     \"days_under_plan\": 1,\r\n     \"days_held_out\": [],\r\n     \"unit_conflict\": false,\r\n     \"provisional\": false,\r\n     \"plan_spellings\": [\r\n      \"PN-100\"\r\n     ],\r\n     \"mes_spellings\": [\r\n      \"PN-100\"\r\n     ],\r\n     \"units\": [],\r\n     \"item_unit\": null,\r\n     \"quality\": 0.9848,\r\n     \"status\": \"comparable\",\r\n     \"variance\": -20,\r\n     \"variance_pct\": -2.5\r\n    },\r\n    \"PN-200\": {\r\n     \"part\": \"PN-200\",\r\n     \"planned\": 250,\r\n     \"good\": 220,\r\n     \"days_compared\": 1,\r\n     \"days_under_plan\": 1,\r\n     \"days_held_out\": [],\r\n     \"unit_conflict\": false,\r\n     \"provisional\": false,\r\n     \"plan_spellings\": [\r\n      \"PN-200\"\r\n     ],\r\n     \"mes_spellings\": [\r\n      \"PN-200\"\r\n     ],\r\n     \"units\": [],\r\n     \"item_unit\": null,\r\n     \"quality\": 0.9865,\r\n     \"status\": \"comparable\",\r\n     \"variance\": -30,\r\n     \"variance_pct\": -12.0\r\n    }\r\n   },\r\n   \"scrap\": {\r\n    \"PN-100\": {\r\n     \"part\": \"PN-100\",\r\n     \"scrap\": 12,\r\n     \"scrap_usd\": null,\r\n     \"unit\": null,\r\n     \"days_not_recorded\": 0,\r\n     \"unit_conflict\": false,\r\n     \"priced\": false,\r\n     \"share_of_priced\": null\r\n    },\r\n    \"PN-200\": {\r\n     \"part\": \"PN-200\",\r\n     \"scrap\": 3,\r\n     \"scrap_usd\": null,\r\n     \"unit\": null,\r\n     \"days_not_recorded\": 0,\r\n     \"unit_conflict\": false,\r\n     \"priced\": false,\r\n     \"share_of_priced\": null\r\n    }\r\n   },\r\n   \"scrap_priced_usd\": null,\r\n   \"held_out_rows\": 0,\r\n   \"held_out_good\": 0\r\n  },\r\n  \"week\": {\r\n   \"label\": \"we...[truncated]",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B11-positive-8i6980__/plugin/shared\"; ls; wc -l *.md; cat command-center.md computed-figures.md; ",
+    "description": "Read shared command-center and figures guidance"
+   },
+   "response": "absent-is-not-zero.md\napproval-gates.md\nartifact-style.md\ncommand-center.md\ncomputed-figures.md\ncontracts\nerp-connectors.md\nlive-dashboard.md\nreplies.md\nscheduling.md\nscripts\nsecret-config.md\n  146 absent-is-not-zero.md\n  191 approval-gates.md\n  358 artifact-style.md\n  120 command-center.md\n   85 computed-figures.md\n  125 erp-connectors.md\n  287 live-dashboard.md\n  249 replies.md\n   91 scheduling.md\n  302 secret-config.md\n 1954 total\n# Command-center pages — what they are, and what they are not\n\nEvery chain carries a `Command center:` line naming the page a run\nfeeds — Sales, Quality, Operations, Supply Chain. This file defines the shape\nonce, so five skills do not each invent one.\n\nIt exists because they were each inventing one, and inventing the same\ncontradiction: \"updates open corrective actions,\" \"updates the maintenance\npanel,\" \"attaches the NCR and the 8D.\" Read literally, those are writes into an\nexternal system. The plugin's own binding rule says otherwise:\n\n> **Microsoft 365 is read-only by default.** Write access is an admin opt-in and\n> Teams has no write path at all. No skill may assume it can post a message or\n> write a file back into M365.\n> — `artifact-style.md`\n\nBoth statements cannot be true. This one wins, because it is the platform\nconstraint rather than a preference.\n\n---\n\n## What a command-center page actually is\n\n**Two kinds, and a skill always knows which one it produced.**\n\n**A live dashboard**, for Operations and Quality. Published to the user's\nClaude artifact store on the first run and updated in place at the same URL on\nevery later run, per `live-dashboard.md`. The artifact store is the user's own\nClaude account, not M365 and not a system of record, so publishing to it does\nnot break the rule above.\n\n**An offered page**, for Sales and Supply Chain, and for Operations or Quality\nwhenever the dashboard could not be published this run. An artifact produced\nin the conversation that the user places: a page they open, read, and save or\nforward, written as **a replacement for the last one**, carrying the same\nsections in the same order, so a person can put it where the previous version\nlived and read the delta at a glance. The plugin does not put it there.\n\n**\"Updated\" is allowed only after a successful publish.** A skill may say it\nupdated a dashboard only when the publish call returned a URL in this same\nrun. Everywhere else the page was *offered*, and the skill says so. Reporting a\npanel as updated when a page was offered is the false statement this file was\nwritten to stop, and it still is.\n\n**The dashboard is private until the user shares it.** No skill shares it, and\nno skill says it is shared.\n\n## The four pages\n\n| Page | Fed by | Carries |\n|---|---|---|\n| **Sales** | Chain 1, at quote release | Commercial performance for the period, with the intake record and the quote attached to the run |\n| **Quality** | Chain 2, and Chain 5's quality half | Open corrective actions, with the NCR and the 8D by reference. **A live dashboard, the Quality Register**, written by `ncr-writeup` and `root-cause-capa` |\n| **Operations** | Chain 3 nightly, Chain 4 on a breakdown | The morning numbers, the downtime log, exceptions, and the maintenance picture. **A live dashboard, published by Chain 3 only.** Chain 4, and `daily-production-report` run alone, offer the page in the conversation; two pages showing the same numbers is how a meeting ends up arguing about which is right |\n| **Supply Chain** | Chain 5's sourcing half | The supplier signal and the sourcing package |\n\nChain 5 produces **two pages from one run** — Quality takes the corrective\naction record, Supply Chain takes the supplier signal. They are separate\nartifacts with separate audiences, not one page with two sections.\n\n## The rules\n\n**Say what actually happened.** *\"Updated **Fairview: Operations Command\nCenter**, `<url>`. Private to you until you share it\"* is honest when the\npublish returned that URL in this run. *\"Here is the Operations page for\n8 September; save it over yesterday's\"* is honest when it did not. *\"Updated\nthe Operations command center\"* with no URL behind it is not, and a plant\nperson who believes it will stop checking.\n\n**Every command-center page ends with one of two lines**, not only the first\npage in a run:\n\n- **Published:** the dashboard line, with its name and URL.\n- **Offered:** the placement line, *\"save it over yesterday's\"*, or where the\n  last one lives. **A page that should have been a dashboard and was not also\n  says so:** *\"The dashboard was not updated: [reason].\"* That fallback never\n  stalls the run, and never offers to publish later.\n\nChain 5 produces two pages; both end that way.\n\n**When asked to do something the plugin never does, hand over the content and\nsay who acts.** Post to a channel, send the mail, close the ticket, update the\nrecord: give the ready-to-use text, and say plainly that the user performs the\naction. *\"I don't post to Teams. Here's the text to paste.\"* **Never offer to\ndo it \"once X is confirmed\"** — *\"confirm the channel and I will post exactly\nthis\"* promises a capability that does not exist, and the person waits for a\npost that never comes. Where the right content is a draft — a close-out note,\na channel message — produce it, labelled as a draft, rather than only saying\nit cannot be filed.\n\n**Say what was actually checked, by the call that checked it.** *\"I searched\nthe public MCP registry\"* when that is the call that ran. Not *\"I checked your\nconnector directory\"* and not *\"three connectors are installed on this\naccount\"* unless the account's own listing was queried in this run. A search of\none place reported as a check of another is a false statement about the user's\nown systems, and it is the kind they act on.\n\n**Attachments are references, not uploads.** \"Attaches the NCR\" means the page\ncarries the NCR's identifier and enough of it to be useful, so a reader can find\nthe full record. Nothing is uploaded anywhere.\n\n**Sensitive values follow the audienc...[truncated]",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B11-positive-8i6980__/plugin/shared\"; cat replies.md; sed -n 1,400p artifact-style.md",
+    "description": "Read replies and artifact style guidance"
+   },
+   "response": "# What a reply holds — documents, records, memory and names\n\n**Shared across every skill.** Four rules about what goes in front of the\nperson and where things are kept.\n\n---\n\n## Documents are printed in full; records are summarised\n\nA **document** is what a person reads, signs or sends: the quote, the cost\nsheet, the NCR, the 8D, the RFQ package, an email draft, the morning report,\nthe intake form. **It is printed in the reply, in full.** Saving a copy to a\nfile as well is fine; a file *instead of* the reply is not. The person reads\nthe reply, and every delimited block and outbound check lives in it.\n\n### Reports are the exception: a short reply when the page was written\n\nThe morning report, the Operations page and the supplier bid comparison are\nread on a page, not in the chat. For\nthe bid comparison the headline is the provisional recommendation and its main\ntradeoff, the exceptions are the requirements still open before an award, and\nthe decision waiting is the next-step question. **When this run wrote the full page\nsomewhere the person can open** (a publish returned its URL, or the page was\nsaved as an HTML file and the reply names the file), the reply is a summary\nof about 150 words. **200 words is a hard limit: count before sending.** Each\nitem below is one sentence; an exception or a decision is the thing and its\nnumber, with the explanation left on the page.\n\n1. Safety first, one line per item: a safety-flagged record, a record under\n   *\"Blocked — safety status unknown\"*, or *\"Safety status: not assessed\"*.\n2. The site, the production day, and the freshness state in one line: data\n   complete, or the gap.\n3. The headline: good output against plan, and OEE or why it is not computed.\n4. Up to three exceptions, one line each.\n5. The decisions waiting today, or *\"No decisions waiting today.\"*\n6. Where the full page is: the URL or the file path.\n\nNo tables, logs or methods in the summary; they are on the page. Every\nnumber in the summary is one the page prints. **This is for the whole\nreport only.** A request that picks sections or skips some (\"freshness and\nthe rankings, skip OEE this time\"), a question, a record the person asked to\nsee, or text to paste is answered in the reply in full, in report order, as\nalways; the page may still be saved as well. **When nothing could be written**\n(no file writer and no publish), the page is printed in the reply in full, as\nabove. Where a skill offers \"the page in the conversation\", a saved file named\nin the reply is that offer. Documents someone signs or sends (quotes, NCRs,\n8Ds, RFQ packages, email drafts) are always printed in full.\n\n### Saved copies: Word for documents, Excel for tables, never .txt\n\nWhen a document is also saved as a file, and it should be wherever the person\ndownloads from a file card (Cowork), the file is one a plant opens without\nthinking about it:\n\n| What it is | File |\n|---|---|\n| A controlled document: customer quote, supplier RFQ package, NCR, escape notification, 8D, trade study memo | `.docx` |\n| A table someone works in: internal cost sheet, bid comparison, ranked candidates, scrap or downtime lists | `.xlsx` |\n| A report or dashboard | the HTML page, per `artifact-style.md` |\n| A record (contract payload, day record, register row) | its contract's format, as below |\n\n**Never `.txt` or `.md` for a document.** A plain-text quote reads as a draft\nnobody finished, and it is what a person gets when no format is named.\n\n- **How.** Use the session's Word or Excel skill where there is one (Cowork\n  has both); else `python-docx` or `openpyxl` where already installed. Never\n  install a package for it and never hand-build the file's XML: a file Word\n  cannot open is worse than none. With no writer, write no file and say so in\n  one line: *\"No Word copy this session: no Word writer available.\"* The\n  reply already holds the document.\n- **The plant's template.** A controlled document keeps the structure\n  `onboarding` captured. Where that example is a `.docx` in the documents\n  folder, start the Word copy from that file; otherwise use a plain layout\n  and keep the *template not on file* flag the document already carries.\n- **What goes in which file.** The customer's file holds only what the\n  sendable block holds. Internal figures (hours, rates, margin, the cost\n  build-up) go in their own file, the internal cost sheet, and never into the\n  customer's.\n- **Names.** What it is and its reference: `quote-Q-EXAMPLE-MEDICAL-4402A-01.docx`,\n  `cost-sheet-Q-EXAMPLE-MEDICAL-4402A-01.xlsx`, `NCR-2026-0141.docx`. Name each file in\n  the reply.\n\nA **record** is a handoff to another skill or a store: a contract payload (a\ndowntime record, a geometry estimate), a register row, a pulse day record, a\nsupplier bid record, a selection record, a sourcing-event row. **It is never\npasted into the reply as a raw YAML or JSON block.** A quality manager, a\nbuyer or an estimator should not have to read 150 lines of field names to\nfind out what happened.\n\nInstead:\n\n1. **Save the full record** where its contract says, or to a file next to the\n   run's other outputs, and **name the file** in the reply.\n2. **Show a short table of the fields a person decides on**, under their\n   contract names so nothing is lost in translation — the key, the status,\n   and whichever of these the record has: `fields_missing`, `data_complete`,\n   `decided_by`, `decided_at`, `follows_recommendation`, `actuals_confidence`,\n   `geometry_path`, `reading_basis`, `approval`. One row per record, or one\n   row per field for a single record. Never more than about a dozen rows.\n3. **If the record cannot be saved** (no write access this session), print it\n   in full, **as a table, not a code block**, marked *not stored — paste this\n   back next time*.\n\nThe person can always ask for the raw record (\"show me the YAML\"). Then print\nit.\n\n## Where the plant's memory lives\n\n### The plant setup, the rates and the open work: three private pages\n\nThe plant profile and the plant's rates are wri...[truncated]",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B11-positive-8i6980__/plugin/shared\"; grep -n -i -A6 \"fallback\\|tools are absent\\|not updated\" live-dashboard.md | head -120; ls contracts",
+    "description": "Read live-dashboard fallback guidance"
+   },
+   "response": "45:placement line, and one plain sentence saying the dashboard was not updated.\n46-\n47:> *The dashboard was not updated: the artifact tools are not available in this\n48-> session. Here is today's page; save it over yesterday's.*\n49-\n50-Say why in a few words (tools not available, the publish was refused, the\n51-record write failed). Never say \"updated,\" \"published,\" \"scheduled\" or\n52:\"shared\" on a fallback run, and never offer to publish it \"later\" or \"once\n53-X is confirmed\": that promises a run nobody has scheduled.\n54-\n55-**Unattended publishing is unverified.** Whether a session started by a\n56-schedule, with nobody watching, can publish and update artifacts has not been\n57-tested. Until it is, a scheduled pulse run checks for the tools like any other\n58-run and falls back when they are absent. **Never claim a scheduled run\n--\n153:numbers can be checked and a fallback run says what would have been written —\n154-as the summary table in `replies.md`, with the key and `data_complete` by\n155-those names, never as a raw YAML block.\n156-\n157-### 3. Keep the page static\n158-\n159-**The skill reads the records, computes every figure in code, and bakes the\n--\n172:fallback sentence. A created dashboard says *Created* with the URL. On the\n173-Quality Register, the sensitivity line follows it (see below).\n174-\n175----\n176-\n177-## Rules that carry over unchanged\n178-\n--\n195:  the newest source the numbers rest on. A fallback page, which was not\n196-  published, says *Generated [timestamp] · data as of [timestamp]* instead.\n197-\n198----\n199-\n200-## Back-fill on the first run\n201-\n--\n230:**The date is never dropped.** On a fallback run, with no register to read\n231-the oldest record from, it says *\"since [date unknown: the register was not\n232-reachable this run]\"* — the sentence keeps its shape, so a reader always sees\n233-that a start date exists and what it is or why it is missing.\n234-\n235-A manager reading \"3 open\" will assume that is everything. The banner is what\n236-stops it. Where the M365 quality library is readable in this run, a read-only\n--\n266:**not recorded** and the register was not updated. Never report it closed.\n267-There is no in-page editing.\n268-\n269-**Sensitivity.** The register is internal. It holds customer names and\n270-customer-notification deadlines. It carries the NCR and the 8D **by\n271-reference** — the identifier and a one-line summary — never the documents,\n272-and never any content from a redacted customer pack. Every line that reports\nREADME.md\nconsolidated-dataset.md\ndowntime-record.md\nfloor-layout.md\ngeometry-estimate.md\nintake-form.md\nncr.md\npulse-day-record.md\nquality-register-record.md\nsupplier-bid.md\nsupplier-caused-flag.md\nvariant-manifest.md",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B11-positive-8i6980__/plugin/skills/daily-production-report\"; grep -n -i \"step 4\\|^## \\|^\\*\\*[0-9]\\|today's actions\\|decision\\b\\|observation\\|investigation\" SKILL.md | head -60",
+    "description": "Find report order and actions guidance"
+   },
+   "response": "3:description: \"Produces the morning production report: output against plan by line, cell and product; OEE with availability, performance and quality shown separately; the downtime log ranked both by minutes and by frequency; scrap and downtime priced in dollars; week-over-week movers; and the exceptions needing a decision today. For each significant exception it drafts a specific reschedule or changeover move with its consequences traced, never a re-optimised day. Reads the consolidated dataset and leads with data freshness. When the plant has a floor plan on file, or attaches one, it also draws each machine's OEE, availability and downtime on a schematic of the floor. Use when someone says \\\"morning report,\\\" \\\"production report,\\\" \\\"how did we do yesterday,\\\" \\\"what's our OEE,\\\" \\\"downtime report,\\\" \\\"what's late,\\\" or \\\"what do I take into the production meeting.\\\"\"\n41:## Inputs\n64:## Workflow\n122:### Step 4 — Build the downtime log\n313:## Approval gates\n334:## Output\n374:4. **Today's actions**: one row per exception that needs someone, with the\n376:   owner role, and its type. **A decision** is something genuinely waiting\n378:   scheduler. **An investigation** is something to find out first: an unknown\n379:   work order, a contradicted record, an uncoded stop. **An observation**\n415:## Edge cases and failure modes\n438:## Degradation\n460:## Chain position\n475:## Reference files",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B11-positive-8i6980__\\plugin\\skills\\daily-production-report\\SKILL.md",
+    "offset": 64,
+    "limit": 350
+   },
+   "response": "64\t## Workflow\n65\t\n66\t### Step 1 — Confirm freshness\n67\t\n68\tConfirm freshness via `data-consolidate` — the data quality report and each\n69\trow's `as_of`. **If last night's export did not land, say so at the top of the\n70\treport**, directly under any safety block. Nothing about data age goes above a\n71\tsafety-flagged record, not even a one-line note.\n72\t\n73\tA source whose timestamps run later than now is flagged `future_timestamp`:\n74\tsay its dates can't be trusted and give it no age. A production report built on\n75\tstale data is worse than no production report,\n76\tbecause it gets believed and acted on. Never silently reuse yesterday's data.\n77\tThe rule is `../../shared/absent-is-not-zero.md`.\n78\t\n79\t**On reading both the dataset and the raw exports.** The dataset is the primary\n80\tinput — it carries the freshness picture and the classified key mismatches. The\n81\tplan, output and downtime exports give rows at their native grain. Where the two\n82\tdisagree on a count, **report both and name which is which**; a discrepancy is a\n83\tfinding about the export, not a number to choose between. See *What this dataset\n84\tis authoritative for* in `../../shared/contracts/consolidated-dataset.md`.\n85\t\n86\t### Step 2 — Output against plan\n87\t\n88\tBy line, cell and product, with variances. Use the plant's own word for the\n89\torganizational unit, from the `## Plant context` block.\n90\t\n91\t**Where plan and output spell a part differently, do not match them silently,\n92\tand do not refuse to match them.** Run on raw exports, the plan says\n93\t`PN-4471-B` and the MES says `4471B`. Dropping the row makes output against\n94\tplan look broken; joining it without a word applies a fix nobody approved. So:\n95\t\n96\t1. Use any normalization already approved — in the consolidated dataset, or\n97\t   on the profile's `### Approved normalizations` list — as it stands.\n98\t2. For every other match that depends on a normalization, **show the variance\n99\t   labelled provisional**, and beside it **each normalization it rests on, with\n100\t   both spellings verbatim** — `4471B` → `PN-4471-B`, format drift.\n101\t3. **Ask for a yes on each**, the same \"apply?\" gate `data-consolidate` uses.\n102\t   Until then the rows stay provisional, in the table and in any total built\n103\t   on them.\n104\t\n105\tAn unattended run cannot ask: it carries the same provisional table and lists\n106\tthe normalizations as *proposed, awaiting approval*. Per\n107\t`../../shared/approval-gates.md`.\n108\t\n109\t### Step 3 — Compute OEE\n110\t\n111\tPer asset or line, **with the three components always shown separately**. Read\n112\t`reference/oee.md` first — the denominators carry real traps, and a missing\n113\tcomponent is never substituted with 1.0.\n114\t\n115\t**State the quality convention on every run**, as a line under the OEE table:\n116\t*\"quality = good ÷ (good + scrap)\"*. **Only when the export has no rework\n117\tcolumn** does the line continue: *\"no rework column, so first-pass yield could\n118\tnot be applied.\"* Where the export does carry rework, quality is first-pass\n119\tyield, good ÷ (good + scrap + rework), and the line says so instead. Never\n120\tprint the no-rework caveat against an export that has the column.\n121\t\n122\t### Step 4 — Build the downtime log\n123\t\n124\tRanked **two ways, both always shown**: by total minutes, and by frequency.\n125\t\n126\t**`Other` never appears in a cause ranking.** Before ranking by reason code,\n127\tcount the events and minutes coded `Other` or left blank and state that share\n128\tas a finding of its own: *\"18 of 39 events, 46%, carry no usable reason code.\"*\n129\tThen rank the named codes only, with the caveat that the picture is incomplete\n130\tby that share. A table with `Other` in row 1, priced, tells the meeting the\n131\tplant's biggest problem is a word, and it is the single most common way this\n132\treport has been wrong.\n133\t\n134\t**A downtime row that ends before it starts, or whose duration disagrees with\n135\tits own start and end, has no trustworthy minutes.** It carries\n136\t`end_before_start` or `duration_mismatch` from the dataset; reading the export\n137\traw, test it in code. Hold its minutes out of every total and the minutes\n138\tranking, count it as an event, and state the exclusion beside the ranking with\n139\tthe row: *\"DOOSAN-PUMA-07, 4 Aug: ends 14:01 after starting 14:05, 56 minutes\n140\tstated, not counted.\"* Never pick a figure for it.\n141\t\n142\tThese describe different problems. One long outage and forty chronic small\n143\tstoppages can total the same minutes, and the second is usually the more fixable\n144\tof the two. A single ranking hides whichever one it does not sort by.\n145\t\n146\t### Step 5 — Price the losses\n147\t\n148\tScrap × standard cost. Downtime × the plant's configured cost-per-hour.\n149\t\n150\t**Scrap dollars are an estimate at standard cost, and say so** where they are\n151\tprinted (*\"$180 scrap, estimated at standard cost\"*): they are exposure, not\n152\ta booked loss. With no rate, downtime dollars are *unknown*, never $0.\n153\t\n154\t\"47 parts scrapped\" does not land in a production meeting. \"$8,400 of scrap, 71%\n155\tof it on one part number\" does, and it is the same data multiplied by a cost.\n156\t\n157\t**Every quantity in the priced-losses table is the figures-block row, printed.**\n158\tThe scrap count beside a part's dollar figure is the same number the dollar\n159\tfigure was multiplied from; a table that says 155 units against a figure\n160\tcomputed from 62 has been typed, not printed. Build the table from the block,\n161\tper `../../shared/computed-figures.md`, and never from memory of it.\n162\t\n163\t**A part whose scrap is recorded in a different unit from its standard cost is\n164\tunpriced, not converted.** Scrap in `box12` against a cost per `each` has no\n165\tdollar figure until the plant says what a box holds: report the quantity in\n166\tits own unit, mark the dollar cell \"unpriced — unit conflict,\" and name the\n167\tconflict. Never price it two ways (\"$5,465 if singles, $65,584 if boxes of\n168\t12\"): both numbers are guesses, and...[truncated]",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B11-positive-8i6980__/work/out/pulse-output\"; head -1 figures.csv; grep -v \"^id\" figures.csv | cut -d, -f1-4 | head -400 | awk -F, '{print $1\" | \"$2\" | \"$3}' | grep -iv \"short\" | head -150",
+    "description": "Inspect figures block rows"
+   },
+   "response": "id,figure,value,unit,period,source,filter\r\ncov.plan | \"Coverage |  plan.csv\"\ncov.output | \"Coverage |  output.csv\"\ncov.downtime | \"Coverage |  downtime.csv\"\ncov.work_orders | \"Coverage |  work_orders.csv\"\nfresh.days_old | Days between the newest production day and the run date | 3\nfresh.future | Records timestamped after the run time (future_timestamp) | 0\nfresh.day | Production day reported | 2026-11-12\norphan.count | Class 1: MES rows whose production work order is not in the ERP | 0\nscrap.absent_rows | \"MES rows with no scrap recorded (absent |  not zero)\"\ndiag.blocked | \"Diagnosis records blocked |  safety status unknown\"\nproblems.count | \"Data problems (classes 1-5 |  8\nchecked.count | \"Checked |  nothing wrong (class 6)\nmismatched.count | Mismatched records: classes 1-5 and 8 | 0\nintegrity.dt_flags | Downtime rows held out for end_before_start or duration_mismatch | 0\nintegrity.ncr | NCRs whose part or date disagrees with their work order | 0\nintegrity.terse | Maintenance close-out notes that say nothing | 0\nintegrity.blank_lot | MES rows with a blank lot number | 0\nexc.late_undeterminable | Open work orders due on or before 2026-11-12 whose completion cannot be judged | 0\nexc.count | \"Exceptions (late jobs |  machines down\nwow.this.days | \"Week over week |  this week 2026-11-06..2026-11-12: days\"\nwow.this.output_vs_plan_pct | \"Week over week |  this week 2026-11-06..2026-11-12: output_vs_plan_pct\"\nwow.this.availability | \"Week over week |  this week 2026-11-06..2026-11-12: availability\"\nwow.this.quality | \"Week over week |  this week 2026-11-06..2026-11-12: quality\"\nwow.this.downtime_minutes | \"Week over week |  this week 2026-11-06..2026-11-12: downtime_minutes\"\nwow.this.scrap_usd | \"Week over week |  this week 2026-11-06..2026-11-12: scrap_usd\"\nwow.prev.days | \"Week over week |  prev week 2026-10-30..2026-11-05: days\"\nwow.prev.output_vs_plan_pct | \"Week over week |  prev week 2026-10-30..2026-11-05: output_vs_plan_pct\"\nwow.prev.availability | \"Week over week |  prev week 2026-10-30..2026-11-05: availability\"\nwow.prev.quality | \"Week over week |  prev week 2026-10-30..2026-11-05: quality\"\nwow.prev.downtime_minutes | \"Week over week |  prev week 2026-10-30..2026-11-05: downtime_minutes\"\nwow.prev.scrap_usd | \"Week over week |  prev week 2026-10-30..2026-11-05: scrap_usd\"\nper.day:2026-11-12..2026-11-12.out.PN-100.planned | \"Planned |  PN-100 [day:2026-11-12..2026-11-12]\"\nper.day:2026-11-12..2026-11-12.out.PN-100.good | \"Good |  PN-100 [day:2026-11-12..2026-11-12]\"\nper.day:2026-11-12..2026-11-12.out.PN-100.variance | \"Variance |  PN-100 [day:2026-11-12..2026-11-12]\"\nper.day:2026-11-12..2026-11-12.out.PN-100.variance_pct | \"Variance pct |  PN-100 [day:2026-11-12..2026-11-12]\"\nper.day:2026-11-12..2026-11-12.out.PN-100.days_under_plan | \"Days under plan |  PN-100 [day:2026-11-12..2026-11-12]\"\nper.day:2026-11-12..2026-11-12.out.PN-100.days_compared | \"Days compared |  PN-100 [day:2026-11-12..2026-11-12]\"\nper.day:2026-11-12..2026-11-12.out.PN-100.quality | \"Quality |  PN-100 [day:2026-11-12..2026-11-12]\"\nper.day:2026-11-12..2026-11-12.out.PN-200.planned | \"Planned |  PN-200 [day:2026-11-12..2026-11-12]\"\nper.day:2026-11-12..2026-11-12.out.PN-200.good | \"Good |  PN-200 [day:2026-11-12..2026-11-12]\"\nper.day:2026-11-12..2026-11-12.out.PN-200.variance | \"Variance |  PN-200 [day:2026-11-12..2026-11-12]\"\nper.day:2026-11-12..2026-11-12.out.PN-200.variance_pct | \"Variance pct |  PN-200 [day:2026-11-12..2026-11-12]\"\nper.day:2026-11-12..2026-11-12.out.PN-200.days_under_plan | \"Days under plan |  PN-200 [day:2026-11-12..2026-11-12]\"\nper.day:2026-11-12..2026-11-12.out.PN-200.days_compared | \"Days compared |  PN-200 [day:2026-11-12..2026-11-12]\"\nper.day:2026-11-12..2026-11-12.out.PN-200.quality | \"Quality |  PN-200 [day:2026-11-12..2026-11-12]\"\nper.day:2026-11-12..2026-11-12.scrap.PN-100 | \"Scrap qty |  PN-100 [day:2026-11-12..2026-11-12]\"\nper.day:2026-11-12..2026-11-12.scrapusd.PN-100 | \"Scrap $ |  PN-100 [day:2026-11-12..2026-11-12]\"\nper.day:2026-11-12..2026-11-12.scrap.PN-200 | \"Scrap qty |  PN-200 [day:2026-11-12..2026-11-12]\"\nper.day:2026-11-12..2026-11-12.scrapusd.PN-200 | \"Scrap $ |  PN-200 [day:2026-11-12..2026-11-12]\"\nper.day:2026-11-12..2026-11-12.scrapusd | Priced scrap $ [day:2026-11-12..2026-11-12] | not computable\nper.day:2026-11-12..2026-11-12.scrapshare.PN-100 | \"Share of priced scrap $ |  PN-100 [day:2026-11-12..2026-11-12]\"\nper.day:2026-11-12..2026-11-12.scrapshare.PN-200 | \"Share of priced scrap $ |  PN-200 [day:2026-11-12..2026-11-12]\"\nper.day:2026-11-12..2026-11-12.maxvar | Largest absolute variance among comparable parts [day:2026-11-12..2026-11-12] | 12\nper.day:2026-11-12..2026-11-12.comparable | Comparable parts [day:2026-11-12..2026-11-12] | 2\nper.day:2026-11-12..2026-11-12.heldgood | \"Good on held-out rows |  not in totals [day:2026-11-12..2026-11-12]\"\nper.day:2026-11-12..2026-11-12.held | Held-out output rows [day:2026-11-12..2026-11-12] | 0\nper.week:2026-11-09..2026-11-12.out.PN-100.planned | \"Planned |  PN-100 [week:2026-11-09..2026-11-12]\"\nper.week:2026-11-09..2026-11-12.out.PN-100.good | \"Good |  PN-100 [week:2026-11-09..2026-11-12]\"\nper.week:2026-11-09..2026-11-12.out.PN-100.variance | \"Variance |  PN-100 [week:2026-11-09..2026-11-12]\"\nper.week:2026-11-09..2026-11-12.out.PN-100.variance_pct | \"Variance pct |  PN-100 [week:2026-11-09..2026-11-12]\"\nper.week:2026-11-09..2026-11-12.out.PN-100.days_under_plan | \"Days under plan |  PN-100 [week:2026-11-09..2026-11-12]\"\nper.week:2026-11-09..2026-11-12.out.PN-100.days_compared | \"Days compared |  PN-100 [week:2026-11-09..2026-11-12]\"\nper.week:2026-11-09..2026-11-12.out.PN-100.quality | \"Quality |  PN-100 [week:2026-11-09..2026-11-12]\"\nper.week:2026-11-09..2026-11-12.out.PN-200.planned | \"Planned |  PN-200 [week:2026-11-09..2026-11-12]\"\nper.week:2026-11-09..2026-11-12.out.PN-200.good | \"Good |  PN-200 [week:2026-11-09..2026-11-12]\"\nper.week:2026-11-09..2026-11-12.out.PN-200.variance | \"Variance |  PN-200 [week:2026-11-09..2026-11...[truncated]",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B11-positive-8i6980__/work/out/pulse-output\"; grep -v \"^per\\.\\|^dt\\.\\|^wow\" figures.csv | grep -v \"^short\" | head -120; wc -l figures.csv; python3 -I \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B11-positive-8i6980__/plugin/skills/morning-plant-pulse/scripts/render_short.py\" --help",
+    "description": "Show remaining figures rows and render_short help"
+   },
+   "response": "id,figure,value,unit,period,source,filter\ncov.plan,\"Coverage, plan.csv\",2026-11-12 to 2026-11-12,,window,plan.csv,min/max of the date column\ncov.output,\"Coverage, output.csv\",2026-11-12 to 2026-11-12,,window,output.csv,min/max of the date column\ncov.downtime,\"Coverage, downtime.csv\",2026-11-12 to 2026-11-12,,window,downtime.csv,min/max of the date column\ncov.work_orders,\"Coverage, work_orders.csv\",2026-11-13 to 2026-11-15,,window,work_orders.csv,min/max of the date column\nfresh.days_old,Days between the newest production day and the run date,3,,window,run clock vs exports,run date - newest production day\nfresh.future,Records timestamped after the run time (future_timestamp),0,,window,\"downtime, historian, NCR exports\",timestamp > run time; due and promised dates excluded\nfresh.day,Production day reported,2026-11-12,,window,exports,latest complete production day in the exports (no day requested)\norphan.count,Class 1: MES rows whose production work order is not in the ERP,0,,window,output.csv vs work_orders.csv,work_order not in ERP\nscrap.absent_rows,\"MES rows with no scrap recorded (absent, not zero)\",0,,window,output.csv,qty_scrap blank or column missing\ndiag.blocked,\"Diagnosis records blocked, safety status unknown\",0,,window,breakdown-diagnosis records,safety_flagged absent\nproblems.count,\"Data problems (classes 1-5, 8, contradicted one-sided and unit conflicts), numbered table count\",0,,window,this run,\nchecked.count,\"Checked, nothing wrong (class 6), outside the count\",0,,window,this run,\nmismatched.count,Mismatched records: classes 1-5 and 8,0,,window,this run,\nintegrity.dt_flags,Downtime rows held out for end_before_start or duration_mismatch,0,,window,downtime export,\nintegrity.ncr,NCRs whose part or date disagrees with their work order,0,,window,NCR export vs ERP and MES,\nintegrity.terse,Maintenance close-out notes that say nothing,0,,window,maintenance export,\"close_out_note in ('Fixed.', 'Done', ...)\"\nintegrity.blank_lot,MES rows with a blank lot number,0,,window,MES export,lot_number == ''\nexc.late,Open work orders due on or before 2026-11-12 with good output short of ordered,0,,window,ERP vs MES,\nexc.late_undeterminable,Open work orders due on or before 2026-11-12 whose completion cannot be judged,0,,window,ERP vs MES,unit conflict or held-out rows: \nexc.count,\"Exceptions (late jobs, machines down, quality holds, contradicted one-sided)\",0,,window,this run,\nout.2026-11-12.PN-100.planned,\"Planned, PN-100, 2026-11-12\",800,,2026-11-12,plan export,plan_date == 2026-11-12; part == PN-100\nout.2026-11-12.PN-100.good,\"Good, PN-100, 2026-11-12\",780,,2026-11-12,MES export,production_day == 2026-11-12; part == PN-100; held-out rows excluded\nout.2026-11-12.PN-100.variance,\"Variance, PN-100, 2026-11-12\",-20,,2026-11-12,plan and MES,good - planned\nout.2026-11-12.PN-100.variance_pct,\"Variance %, PN-100, 2026-11-12\",-2.5,%,2026-11-12,plan and MES,(good - planned) / planned\nout.2026-11-12.PN-200.planned,\"Planned, PN-200, 2026-11-12\",250,,2026-11-12,plan export,plan_date == 2026-11-12; part == PN-200\nout.2026-11-12.PN-200.good,\"Good, PN-200, 2026-11-12\",220,,2026-11-12,MES export,production_day == 2026-11-12; part == PN-200; held-out rows excluded\nout.2026-11-12.PN-200.variance,\"Variance, PN-200, 2026-11-12\",-30,,2026-11-12,plan and MES,good - planned\nout.2026-11-12.PN-200.variance_pct,\"Variance %, PN-200, 2026-11-12\",-12,%,2026-11-12,plan and MES,(good - planned) / planned\noee.2026-11-12.availability,\"Site availability, 2026-11-12\",0.9549,,2026-11-12,\"plan, MES, downtime, routings\",time-weighted availability; ideal ÷ run performance; pooled quality\noee.2026-11-12.performance,\"Site performance, 2026-11-12\",0.8679,,2026-11-12,\"plan, MES, downtime, routings\",time-weighted availability; ideal ÷ run performance; pooled quality\noee.2026-11-12.quality,\"Site quality, 2026-11-12\",0.9852,,2026-11-12,\"plan, MES, downtime, routings\",time-weighted availability; ideal ÷ run performance; pooled quality\noee.2026-11-12.oee,\"Site oee, 2026-11-12\",0.8165,,2026-11-12,\"plan, MES, downtime, routings\",time-weighted availability; ideal ÷ run performance; pooled quality\noee.2026-11-12.CNC-01.availability,\"CNC-01 availability, 2026-11-12\",0.9531,,2026-11-12,\"plan, MES, downtime, routings\",asset == CNC-01\noee.2026-11-12.CNC-01.performance,\"CNC-01 performance, 2026-11-12\",0.8656,,2026-11-12,\"plan, MES, downtime, routings\",asset == CNC-01\noee.2026-11-12.CNC-01.quality,\"CNC-01 quality, 2026-11-12\",0.9848,,2026-11-12,\"plan, MES, downtime, routings\",asset == CNC-01\noee.2026-11-12.CNC-01.oee,\"CNC-01 oee, 2026-11-12\",0.8125,,2026-11-12,\"plan, MES, downtime, routings\",asset == CNC-01\noee.2026-11-12.CNC-02.availability,\"CNC-02 availability, 2026-11-12\",0.9583,,2026-11-12,\"plan, MES, downtime, routings\",asset == CNC-02\noee.2026-11-12.CNC-02.performance,\"CNC-02 performance, 2026-11-12\",0.8726,,2026-11-12,\"plan, MES, downtime, routings\",asset == CNC-02\noee.2026-11-12.CNC-02.quality,\"CNC-02 quality, 2026-11-12\",0.9865,,2026-11-12,\"plan, MES, downtime, routings\",asset == CNC-02\noee.2026-11-12.CNC-02.oee,\"CNC-02 oee, 2026-11-12\",0.8249,,2026-11-12,\"plan, MES, downtime, routings\",asset == CNC-02\nscrap.2026-11-12.PN-100,\"Scrap qty, PN-100, 2026-11-12\",12,,2026-11-12,MES export,production_day == 2026-11-12; held-out rows excluded\nscrapusd.2026-11-12.PN-100,\"Scrap $, PN-100, 2026-11-12\",not computable,USD,2026-11-12,MES x item master std_cost,unpriced when not recorded or a unit conflict\nscrap.2026-11-12.PN-200,\"Scrap qty, PN-200, 2026-11-12\",3,,2026-11-12,MES export,production_day == 2026-11-12; held-out rows excluded\nscrapusd.2026-11-12.PN-200,\"Scrap $, PN-200, 2026-11-12\",not computable,USD,2026-11-12,MES x item master std_cost,unpriced when not recorded or a unit conflict\nscrapusd.2026-11-12.total,\"Priced scrap $, 2026-11-12\",not computable,USD,2026-11-12,MES x item master std_cost,sum of priced parts\ndtusd.2026-11-12,\"Downtime $, 2026-11-12\",not computable,USD,2026-11-12,downtime minutes x rate,unset\nfigures.rows,Rows in figures.csv...[truncated]",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B11-positive-8i6980__\\work\\out\\_build\\build_page.py",
+    "content": "\"\"\"Build the Operations Command Center fallback page from the pulse engine's output.\n\nEvery number printed comes from pulse_model.json / figures.csv, or from the few\npage-level figures computed below from the raw exports, which are written to\nfigures-page.csv with their filters. Nothing is retyped.\n\"\"\"\nimport csv, json, sys, html, datetime as dt\nfrom pathlib import Path\n\nout = Path(sys.argv[1])          # pulse-output folder\nexports = Path(sys.argv[2])      # export folder\nM = json.loads((out / \"pulse_model.json\").read_text(encoding=\"utf-8\"))\nR = json.loads((out / \"day_records.json\").read_text(encoding=\"utf-8\"))\nF = list(csv.DictReader(open(out / \"figures.csv\", encoding=\"utf-8\")))\nFV = {r[\"id\"]: r for r in F}\n\ne = html.escape\nctx, fr, td = M[\"context\"], M[\"freshness\"], M[\"today\"]\nsite, day = ctx[\"site\"], fr[\"production_day\"]\nrun_local = ctx[\"run_time_local\"].replace(\" (plant local)\", \"\")\nrun_date = dt.date.fromisoformat(ctx[\"run_time\"][:10])\npday = dt.date.fromisoformat(day)\n\ndef fv(i):\n    return FV[i][\"value\"]\n\ndef pct(x):\n    return \"not computable\" if x is None else f\"{x*100:.1f}%\"\n\n# ---------- page-level figures, computed here from the raw exports ----------\nP = []  # id, figure, value, unit, period, source, filter\ndef addp(i, fig, val, src, flt, unit=\"\", period=\"window\"):\n    P.append(dict(id=i, figure=fig, value=val, unit=unit, period=period, source=src, filter=flt))\n    return val\n\noutrows = list(csv.DictReader(open(exports / \"output.csv\", encoding=\"utf-8\")))\nworows = list(csv.DictReader(open(exports / \"work_orders.csv\", encoding=\"utf-8\")))\nshifts = sorted({r[\"shift\"] for r in outrows if r[\"production_day\"] == day})\naddp(\"page.shifts\", f\"Shifts present in output.csv, {day}\", \" and \".join(shifts), \"output.csv\",\n     f\"distinct shift where production_day == {day}\", period=day)\n\nmissing_days = []\nd = pday + dt.timedelta(days=1)\nwhile d < run_date:\n    missing_days.append(d.isoformat()); d += dt.timedelta(days=1)\naddp(\"page.days_missing\", \"Production days between the newest day in the drop and the run date with no rows in plan, output or downtime\",\n     len(missing_days), \"plan.csv, output.csv, downtime.csv\",\n     f\"days {', '.join(missing_days)}: no rows in any of the three files\")\n\nwo_table = []\nfor w in worows:\n    good = sum(int(r[\"qty_good\"]) for r in outrows if r[\"work_order\"] == w[\"work_order\"])\n    ordered = int(w[\"qty_ordered\"])\n    rem = ordered - good\n    due = dt.date.fromisoformat(w[\"due_date\"])\n    if rem <= 0:\n        state = \"Ordered quantity reached in the drop\"\n    elif due < run_date:\n        state = \"Due date passed; completion after the newest production day not in the drop\"\n    else:\n        state = \"Due today; completion after the newest production day not in the drop\"\n    k = w[\"work_order\"]\n    addp(f\"page.wo.{k}.good\", f\"Good output in the drop, {k}\", good, \"output.csv\", f\"sum qty_good where work_order == {k}\")\n    addp(f\"page.wo.{k}.remaining\", f\"Ordered less good in the drop, {k}\", rem, \"work_orders.csv, output.csv\", \"qty_ordered - good\")\n    wo_table.append(dict(wo=k, part=w[\"part_number\"], ordered=ordered, good=good, rem=rem,\n                         due=w[\"due_date\"], status=w[\"status\"], state=state))\nopen_short = [w for w in wo_table if w[\"rem\"] > 0]\naddp(\"page.wo.short_unjudged\", \"Released work orders short of ordered qty in the drop, due after the newest production day\",\n     len(open_short), \"work_orders.csv, output.csv\", f\"qty_ordered > good and due_date > {day}\")\n\ndt_day = M[\"downtime\"][\"day\"]\ncnc01 = next(a for a in dt_day[\"by_asset\"] if a[\"key\"] == \"CNC-01\")\nsp = M[\"short_page\"][\"decisions\"][1]\naddp(\"page.trend.days_with_data\", \"Days in the 14-day trend window with data from this run's exports\",\n     sum(1 for r in R if r[\"data_complete\"]), \"day_records.json\", \"data_complete == true\")\naddp(\"page.stored_days\", \"Production days stored on the dashboard\", \"0 (no artifact store this session; nothing stored)\",\n     \"ArtifactData query\", \"not run: Artifact / ArtifactData tools absent\")\n\nwith open(out / \"figures-page.csv\", \"w\", newline=\"\", encoding=\"utf-8\") as f:\n    w = csv.DictWriter(f, fieldnames=[\"id\", \"figure\", \"value\", \"unit\", \"period\", \"source\", \"filter\"])\n    w.writeheader(); w.writerows(P)\nPV = {p[\"id\"]: p[\"value\"] for p in P}\n\n# ---------------------------------- HTML ----------------------------------\nCSS = (Path(__file__).parent / \"style.css\").read_text(encoding=\"utf-8\")\nH = []\na = H.append\n\ndef table(head, rows, num_cols=()):\n    s = ['<div class=\"table-scroll\"><table><thead><tr>']\n    s += [f\"<th{' class=\\\"num\\\"' if i in num_cols else ''}>{e(h)}</th>\" for i, h in enumerate(head)]\n    s.append(\"</tr></thead><tbody>\")\n    for r in rows:\n        s.append(\"<tr>\" + \"\".join(f\"<td{' class=\\\"num\\\"' if i in num_cols else ''}>{c}</td>\" for i, c in enumerate(r)) + \"</tr>\")\n    s.append(\"</tbody></table></div>\")\n    return \"\".join(s)\n\ndef pill(kind, txt):\n    return f'<span class=\"status status--{kind}\">{e(txt)}</span>'\n\na(f\"\"\"<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>{e(site)}: Operations Command Center · {day}</title>\n<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n<link href=\"https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap\" rel=\"stylesheet\">\n<style>{CSS}</style></head><body><main class=\"page\">\n<header class=\"page-header\"><div>\n<h1>{e(site)}: Operations Command Center</h1>\n<p class=\"meta\">{e(site)} · Generated {e(run_local)} · data as of {e(fr['data_as_of_local'].replace(' (plant local)',''))}</p>\n<p class=\"meta\">Production day: <span class=\"mono\">{day}</span> · day boundary: {e(ctx['day_boundary'])}</p>\n<p class=\"meta synthetic\">Built from SYNTHETIC test data for a fictitious plant. Offered page, not a published dashboard.</p>\n</div></header>\n<nav class=\"tabs\"><a href=\"#today\">Today</a><a href=\"#trend\">Trend</a><a href=\"#data\">Figures &amp; records</a></nav>\n<section id=\"today\" class=\"panel-group\"><h2 class=\"group\">Panel 1 — Today</h2>\n\"\"\")\n\n# Safety\na('<div class=\"panel safety\"><h2>Safety</h2><p><strong>Safety status: not assessed</strong> (no breakdown diagnosis records in this drop). '\n  'Not the same as \"no safety issues\".</p><p class=\"sub\">Blocked — safety status unknown: none '\n  f'(<span class=\"mono\">diag.blocked = {fv(\"diag.blocked\")}</span>).</p></div>')\n\n# Freshness banner\ncov = fr[\"coverage\"]\nrows = [[f\"<strong>Last night's drop</strong>\", \"—\", f\"No rows for <span class='mono'>{', '.join(missing_days)}</span>\",\n         pill(\"critical\", f\"{PV['page.days_missing']} production days missing\")],\n        [\"Newest production day\", f\"<span class='mono'>{e(fr['newest_production_day'])}</span>\", \"—\",\n         pill(\"warn\", f\"{fv('fresh.days_old')} days old\")]]\nlabels = {\"plan\": \"Planning export (plan.csv)\", \"output\": \"Production / MES export (output.csv)\",\n          \"downtime\": \"Maintenance downtime export (downtime.csv) — export-sourced, not a live CMMS\",\n          \"work_orders\": \"ERP work orders (work_orders.csv) — export, no ERP connector\"}\nfor k, c in cov.items():\n    rows.append([e(labels.get(k, k)), f\"<span class='mono'>{e(c['landed'].replace(' (plant local)',''))}</span>\",\n                 f\"<span class='mono'>{e(FV['cov.'+k]['value'])}</span> · {c['rows']} rows\" if ('cov.'+k) in FV else \"\",\n                 pill(\"warn\", \"Landed, stale\") if c[\"activity\"] else pill(\"good\", \"Landed (due dates)\")])\nrows.append([\"routing.csv\", \"same drop\", \"run minutes per unit, PN-100 and PN-200\", pill(\"good\", \"Used for performance\")])\nrows.append([\"Standard cost / item master\", \"—\", \"not in the drop\", pill(\"critical\", \"Missing: scrap unpriced\")])\nrows.append([\"Plant profile (## Plant context)\", \"—\", \"none found\", pill(\"warn\", \"Assumed defaults\")])\na(f'<div class=\"panel freshness\"><h2>Freshness</h2>'\n  f'<p class=\"lead\">The newest production data in the drop is <span class=\"mono\">{day}</span>, {fv(\"fresh.days_old\")} days before this run. '\n  f'Nothing landed for <span class=\"mono\">{\", \".join(missing_days)}</span>: those days are gaps, not zeros, and nothing below covers them. '\n  f'The {day} day itself is complete in the exports (shifts {e(PV[\"page.shifts\"])} present).</p>'\n  + table([\"Source\", \"Landed\", \"Covers\", \"Status\"], rows) +\n  \"<ul class='assume'>\" + \"\".join(f\"<li>{e(x)}</li>\" for x in ctx[\"assumptions\"]) +\n  f\"<li>Day chosen: {e(fr['day_source'])}.</li><li>Files not used: \" +\n  \", \".join(f\"{e(x['file'])} ({e(x['why'])})\" for x in ctx[\"files_not_used\"]) +\n  \". <span class='mono'>rates_memo.txt</span> (outside the export folder) was read but not used for pricing — see Priced losses.</li></ul></div>\")\n\n# Today's actions\nacts = [\n    [\"Exports for \" + \", \".join(missing_days) + \" did not land\",\n     \"This page describes \" + day + \" only; any meeting decision about the last two days has no data behind it\",\n     \"Check the export job and re-run the pulse once the files land; the re-run overwrites this day's record\",\n     \"suggested: production supervisor / IT owner of the export job\", pill(\"warn\", \"Investigation\")],\n    [f\"CNC-01: {cnc01['minutes']} min down, reason TOOL ({e(sp['reason_text'])})\",\n     f\"{sp['share_pct']}% of the day's {dt_day['minutes']} downtime minutes; CNC-01 OEE {pct(td['oee_by_asset'][0]['oee'])}\",\n     \"Review the tool-change standard for the PN-100 setup; safety status not assessed (no diagnosis record)\",\n     \"suggested: maintenance lead\", pill(\"warn\", \"Investigation\")],\n    [f\"PN-200 under plan by {abs(td['parts']['PN-200']['variance'])} ({td['parts']['PN-200']['variance_pct']}%)\",\n     f\"WO-1002 (due 2026-11-13) had {PV['page.wo.WO-1002.remaining']} still to make at the end of {day}; whether it shipped is not in the drop\",\n     \"Confirm WO-1002 completion in the ERP; CNC-02 also lost 20 min waiting on material (MAT)\",\n     \"suggested: production scheduler\", pill(\"warn\", \"Investigation\")],\n    [f\"WO-1001 (PN-100, due 2026-11-14): {PV['page.wo.WO-1001.remaining']} short of ordered in the drop\",\n     \"Due date has passed; completion after \" + day + \" not in the drop\", \"Confirm in the ERP with the WO-1002 check\",\n     \"suggested: production scheduler\", pill(\"warn\", \"Investigation\")],\n]\na('<div class=\"panel\"><h2>Today\\'s actions</h2><p class=\"lead\"><strong>No decisions waiting today.</strong> '\n  'No normalizations to approve, no reschedule move drafted (see Exceptions). Everything below is something to find out first.</p>'\n  + table([\"Issue\", \"Impact\", \"Next step\", \"Owner role\", \"Type\"], acts) + \"</div>\")\n\n# Headline tiles\na('<div class=\"tiles\">')\nfor fig, lab, ctxt in [\n    (f\"{td['actual_qty']['unit']} / {td['planned_qty']['unit']}\", \"Good output vs plan, units\", \"Both parts under plan; no provisional rows\"),\n    (pct(td[\"oee\"]), \"Site OEE\", f\"A {pct(td['availability'])} · P {pct(td['performance'])} · Q {pct(td['quality'])}\"),\n    (f\"{td['downtime_minutes']} min\", \"Downtime\", f\"{td['events']} events, {td['open_outages']} open\"),\n    (\"unpriced\", \"Scrap & downtime $\", f\"{sum(s['scrap'] for s in td['scrap'])} parts scrapped; no standard cost, no downtime rate\"),\n]:\n    a(f'<div class=\"stat-tile\"><div class=\"stat-figure\">{e(fig)}</div><div class=\"stat-label\">{e(lab)}</div><p class=\"stat-context\">{e(ctxt)}</p></div>')\na(\"</div>\")\n\n# Output vs plan\nrows = []\nfor p in td[\"parts\"].values():\n    rows.append([f\"<span class='mono'>{e(p['part'])}</span>\", \"CELL-A\", \"VMC\", p[\"planned\"], p[\"good\"],\n                 p[\"variance\"], f\"{p['variance_pct']}%\", pill(\"good\", p[\"status\"]) if p[\"status\"] == \"comparable\" else pill(\"warn\", p[\"status\"])])\na('<div class=\"panel\"><h2>Output against plan</h2>' + table(\n    [\"Part\", \"Cell\", \"Work centre\", \"Planned\", \"Good\", \"Variance\", \"Variance %\", \"Status\"], rows, num_cols=(3, 4, 5, 6)) +\n  f'<p class=\"sub\">Total good {td[\"actual_qty\"][\"unit\"]} against {td[\"planned_qty\"][\"unit\"]} planned, one unit of measure. '\n  'Plan and output spell both parts identically; no normalization was needed or proposed. '\n  'Cell is from output.csv; work centre from plan.csv. One cell (CELL-A) in the drop, so the line/cell view equals the site view.</p></div>')\n\n# OEE\nrows = [[f\"<span class='mono'>{e(o['asset'])}</span>\", o[\"planned_minutes\"], o[\"downtime_minutes\"], pct(o[\"availability\"]),\n         pct(o[\"performance\"]), pct(o[\"quality\"]), f\"<strong>{pct(o['oee'])}</strong>\"] for o in td[\"oee_by_asset\"]]\nrows.append([\"<strong>Site</strong>\", \"\", td[\"downtime_minutes\"], pct(td[\"availability\"]), pct(td[\"performance\"]), pct(td[\"quality\"]), f\"<strong>{pct(td['oee'])}</strong>\"])\na('<div class=\"panel\"><h2>OEE</h2>' + table([\"Asset\", \"Planned min\", \"Downtime min\", \"Availability\", \"Performance\", \"Quality\", \"OEE\"], rows, num_cols=(1, 2, 3, 4, 5, 6)) +\n  f'<p class=\"sub\">Quality = {e(td[\"quality_convention\"])}. Availability = (planned − downtime) ÷ planned; performance = ideal minutes (routing run min/unit × total units) ÷ run minutes; '\n  f'site figures are {e(R[0][\"oee_basis\"])}. Performance is the largest loss on both machines.</p></div>')\n\n# Downtime\ndef rank_rows(lst):\n    return [[f\"<span class='mono'>{e(x['key'])}</span>\", x[\"minutes\"], x[\"events\"], x[\"rank_minutes\"], x[\"rank_events\"]] for x in lst]\nby_min = sorted(dt_day[\"by_asset\"], key=lambda x: x[\"rank_minutes\"])\nby_ev = sorted(dt_day[\"by_asset\"], key=lambda x: x[\"rank_events\"])\nstops = [[f\"<span class='mono'>{e(s['asset'])}</span>\", f\"<span class='mono'>{e(s['start'].replace(' (plant local)',''))}</span>\", s[\"minutes\"],\n          f\"<span class='mono'>{e(s['code'])}</span>\", e(s[\"text\"])] for s in td[\"stops\"]]\na('<div class=\"panel\"><h2>Downtime</h2>'\n  f'<p class=\"lead\">{dt_day[\"uncoded_events\"]} of {dt_day[\"events\"]} events carry no usable reason code (Other or blank), so the cause ranking is complete. '\n  f'{dt_day[\"held_out\"] and len(dt_day[\"held_out\"]) or 0} rows held out for untrustworthy minutes.</p>'\n  '<div class=\"two\"><div><h3>By minutes — asset</h3>' + table([\"Asset\", \"Minutes\", \"Events\", \"Rank (min)\", \"Rank (freq)\"], rank_rows(by_min), (1, 2, 3, 4)) +\n  '</div><div><h3>By frequency — asset</h3>' + table([\"Asset\", \"Events\", \"Minutes\", \"Rank (freq)\", \"Rank (min)\"],\n   [[r[0], r[2], r[1], r[4], r[3]] for r in rank_rows(by_ev)], (1, 2, 3, 4)) + '</div></div>'\n  '<div class=\"two\"><div><h3>By minutes — reason code</h3>' + table([\"Code\", \"Minutes\", \"Events\", \"Rank (min)\", \"Rank (freq)\"],\n   rank_rows(sorted(dt_day[\"by_code\"], key=lambda x: x[\"rank_minutes\"])), (1, 2, 3, 4)) +\n  '</div><div><h3>By frequency — reason code</h3>' + table([\"Code\", \"Events\", \"Minutes\", \"Rank (freq)\", \"Rank (min)\"],\n   [[r[0], r[2], r[1], r[4], r[3]] for r in rank_rows(sorted(dt_day[\"by_code\"], key=lambda x: x[\"rank_events\"]))], (1, 2, 3, 4)) + '</div></div>'\n  '<p class=\"sub\">Ties share a rank (1, 1): with one stop per asset the frequency ranking cannot separate them; the minutes ranking can.</p>'\n  '<h3>Stop log</h3>' + table([\"Asset\", \"Start\", \"Minutes\", \"Code\", \"Reason text\"], stops, (2,)) + '</div>')\n\n# Priced losses\nrows = [[f\"<span class='mono'>{e(s['part'])}</span>\", s[\"scrap\"], \"unpriced — no standard cost on file\"] for s in td[\"scrap\"]]\nrows.append([\"Downtime, all\", f\"{td['downtime_minutes']} min\", \"unpriced — no downtime cost rate\"])\na('<div class=\"panel\"><h2>Priced losses</h2>' + table([\"Loss\", \"Quantity\", \"$ (estimate at standard cost)\"], rows, (1,)) +\n  f'<p class=\"sub\">Rate source: <span class=\"mono\">{e(td[\"rate_source\"])}</span>. Unpriced, with reasons: ' +\n  \"; \".join(e(u) for u in td[\"unpriced\"]) + '.</p>'\n  '<p class=\"sub\"><strong>Why the finance memo in the drop was not used.</strong> <span class=\"mono\">rates_memo.txt</span> gives burdened shop rates for MILL-H, MILL-V, TURN and INSP. '\n  'It holds no standard material cost (which its own scrap rule needs), no downtime cost per hour, and no rate for the VMC work centre these jobs ran on. '\n  'Mapping VMC to MILL-V, or using a shop rate as a downtime cost, would be a guess, so $ figures are left unknown rather than shown as $0. '\n  'To price them: add standard costs for PN-100 and PN-200 and a confirmed downtime cost per hour to the plant rates.</p></div>')\n\n# Exceptions\nwrows = [[f\"<span class='mono'>{w['wo']}</span>\", f\"<span class='mono'>{w['part']}</span>\", w[\"ordered\"], w[\"good\"], w[\"rem\"],\n          f\"<span class='mono'>{w['due']}</span>\", e(w[\"state\"])] for w in wo_table]\na('<div class=\"panel\"><h2>Exceptions</h2>'\n  f'<p class=\"lead\">Engine exceptions for {day}: {fv(\"exc.count\")} (late jobs due on or before {day}: {fv(\"exc.late\")}; machines down at end of day: {td[\"open_outages\"]}; quality holds: none in the drop). '\n  'No reschedule move is drafted: there is no significant exception on the production day, and a move for WO-1001/WO-1002 would rest on two days of output the drop does not hold.</p>'\n  f'<p class=\"sub\">Commitment impact not traceable: no work order to sales order link in the ERP ({len(wo_table)} work orders affected).</p>'\n  '<h3>Open work orders against output in the drop</h3>' + table([\"Work order\", \"Part\", \"Ordered\", \"Good in drop\", \"Ordered − good\", \"Due\", \"State\"], wrows, (2, 3, 4)) +\n  f'<p class=\"sub\">{PV[\"page.wo.short_unjudged\"]} released work orders are short of ordered quantity in the drop and fall due after {day}; they are listed under Today\\'s actions as investigations, not counted as late.</p></div>')\n\n# Data problems + checked\na('<div class=\"panel\"><h2>Data problems · ' + str(M[\"data_problems\"][\"count\"]) + '</h2>'\n  '<p>No mismatched keys in classes 1–5 or 8, no contradicted one-sided records, no unit conflicts. Every output row\\'s work order is in work_orders.csv; plan and output part numbers match verbatim; no duplicate work-order/shift/day rows; '\n  f'no downtime rows held out for duration conflicts ({fv(\"integrity.dt_flags\")}); no future timestamps ({fv(\"fresh.future\")}). Class 7 (date window): none beyond the missing days in the freshness banner.</p>'\n  '<h3>Checked, nothing wrong</h3><p class=\"sub\">No class 6 one-sided records in this drop (outside the count above).</p></div>')\na(\"</section>\")\n\n# Trend\ntrows = []\nfor i in range(13, -1, -1):\n    d = (run_date - dt.timedelta(days=i + 1))\n    ds = d.isoformat()\n    rec = next((r for r in R if r[\"production_day\"] == ds), None)\n    if rec:\n        trows.append([f\"<span class='mono'>{ds}</span>\", pct(rec[\"oee\"]), pct(rec[\"availability\"]), pct(rec[\"performance\"]), pct(rec[\"quality\"]),\n                      f\"{rec['actual_qty']['unit']} / {rec['planned_qty']['unit']}\", rec[\"downtime_minutes_total\"], \"complete\"])\n    elif ds in missing_days:\n        trows.append([f\"<span class='mono'>{ds}</span>\"] + [\"—\"] * 6 + [pill(\"critical\", \"no export landed\")])\n    else:\n        trows.append([f\"<span class='mono'>{ds}</span>\"] + [\"—\"] * 6 + [\"no data in this run's exports\"])\na('<section id=\"trend\" class=\"panel-group\"><h2 class=\"group\">Panel 2 — Trend</h2><div class=\"panel\">'\n  '<p class=\"lead\"><strong>From this run\\'s exports, not stored history.</strong> No artifact store this session, so no stored day records could be read. '\n  f'The exports cover one production day, so there is no line to draw yet; the table shows the last 14 days with gaps as gaps, never zeros. '\n  'The 30-day view would hold the same single point and is omitted.</p>'\n  + table([\"Day\", \"OEE\", \"Availability\", \"Performance\", \"Quality\", \"Good / plan\", \"Downtime min\", \"State\"], trows, (1, 2, 3, 4, 5, 6)) +\n  f'<p class=\"sub\"><strong>Week-over-week movers: skipped.</strong> The previous window ({M[\"week_over_week\"][\"last_week\"][\"from\"]} to {M[\"week_over_week\"][\"last_week\"][\"to\"]}) has '\n  f'{M[\"week_over_week\"][\"last_week\"][\"days\"]} days with data; this window rests on {M[\"week_over_week\"][\"this_week\"][\"days\"]} of 7.</p></div></section>')\n\n# Data: day record + figures block\nrec = R[0]\nrrows = [[\"record_key\", rec[\"record_key\"]], [\"data_complete\", str(rec[\"data_complete\"]).lower()], [\"gaps\", \"none for this day\" if not rec[\"gaps\"] else \"; \".join(rec[\"gaps\"])],\n         [\"backfilled\", str(rec[\"backfilled\"]).lower()], [\"oee\", rec[\"oee\"]], [\"availability\", rec[\"availability\"]], [\"performance\", rec[\"performance\"]],\n         [\"quality\", rec[\"quality\"]], [\"downtime_minutes_total\", rec[\"downtime_minutes_total\"]], [\"loss_usd.scrap\", \"null (unpriced)\"],\n         [\"loss_usd.downtime\", \"null (unpriced)\"], [\"data_problems_count\", rec[\"data_problems_count\"]], [\"stored\", \"computed, not stored\"]]\nallf = F + P\nfrow = [[f\"<span class='mono'>{e(r['id'])}</span>\", e(r[\"figure\"]), f\"<span class='mono'>{e(str(r['value']))}</span>\", e(r[\"source\"]), e(r[\"filter\"])] for r in allf]\na('<section id=\"data\" class=\"panel-group\"><h2 class=\"group\">Figures &amp; records</h2>'\n  '<div class=\"panel\"><h2>Day record</h2>' + table([\"Field\", \"Value\"], [[e(k), f\"<span class='mono'>{e(str(v))}</span>\"] for k, v in rrows]) +\n  '<p class=\"sub\">Full record: <span class=\"mono\">pulse-output/day_records.json</span>. Not stored: no dashboard database this session.</p></div>'\n  f'<div class=\"panel\"><details><summary><h2 style=\"display:inline\">Figures block · {len(allf)} rows</h2></summary>'\n  '<p class=\"sub\">Engine rows from <span class=\"mono\">figures.csv</span>; page rows (id <span class=\"mono\">page.*</span>) from <span class=\"mono\">figures-page.csv</span>. Engine self-checks: '\n  f'{M[\"checks\"][\"run\"]} run, {len(M[\"checks\"][\"failed\"])} failed.</p>'\n  + table([\"Id\", \"Figure\", \"Value\", \"Source\", \"Filter\"], frow) + '</details></div></section>')\n\na(f'<footer class=\"page-footer\">Generated by <strong>morning-plant-pulse</strong> — Manufacturing · 0 production days stored · '\n  'Read-only: nothing was written to any ERP, CMMS, M365 or supplier system.<br>'\n  f'Here is the Operations page for {day}; save it over yesterday\\'s. The dashboard was not updated: the artifact tools are not available in this session.</footer>')\na(\"</main></body></html>\")\n\ntarget = out / f\"operations-{site}-{day}.html\"\ntarget.write_text(\"\".join(H), encoding=\"utf-8\")\nprint(target)\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B11-positive-8i6980__\\work\\out\\_build\\build_page.py (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B11-positive-8i6980__/work/out/_build\" && python3 - <<'EOF'\np='build_page.py'; s=open(p,encoding='utf-8').read()\ns=s.replace('''acts = [''','''WO = {w[\"wo\"]: w for w in wo_table}\nmat = next(x for x in td[\"stops\"] if x[\"code\"] == \"MAT\")\nplan_rows = list(csv.DictReader(open(exports / \"plan.csv\", encoding=\"utf-8\")))\ncell_of = {r[\"part_number\"]: r[\"cell\"] for r in outrows if r[\"production_day\"] == day}\nwc_of = {r[\"part_number\"]: r[\"work_center\"] for r in plan_rows}\nacts = [''')\ns=s.replace('''f\"WO-1002 (due 2026-11-13) had {PV['page.wo.WO-1002.remaining']}''','''f\"WO-1002 (due {WO['WO-1002']['due']}) had {PV['page.wo.WO-1002.remaining']}''')\ns=s.replace('''\"Confirm WO-1002 completion in the ERP; CNC-02 also lost 20 min waiting on material (MAT)\"''','''f\"Confirm WO-1002 completion in the ERP; {mat['asset']} also lost {mat['minutes']} min to {mat['code']} ({mat['text']})\"''')\ns=s.replace('''f\"WO-1001 (PN-100, due 2026-11-14): {PV''','''f\"WO-1001 ({WO['WO-1001']['part']}, due {WO['WO-1001']['due']}): {PV''')\ns=s.replace('''\"CELL-A\", \"VMC\", p[\"planned\"]''','''e(cell_of.get(p[\"part\"], \"—\")), e(wc_of.get(p[\"part\"], \"—\")), p[\"planned\"]''')\ns=s.replace(\"One cell (CELL-A) in the drop\",\"One cell in the drop\")\nopen(p,'w',encoding='utf-8').write(s)\nEOF\ncat > style.css <<'EOF'\n:root{--ink:#1A1D21;--paper:#F2F3F5;--paper-raised:#FFFFFF;--line:#D6D9DD;--accent:#1F5C8B;--accent-soft:#E4EDF4;--good:#2E7248;--good-soft:#E3EFE7;--warn:#A8641A;--warn-soft:#F7EBDA;--critical:#A93226;--critical-soft:#F9E9E7;--font-display:'IBM Plex Sans Condensed','Arial Narrow',sans-serif;--font-body:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,sans-serif;--font-mono:'IBM Plex Mono','SF Mono',Consolas,monospace;--text-xs:.75rem;--text-sm:.875rem;--text-base:1rem;--text-lg:1.125rem;--text-xl:1.375rem;--text-2xl:1.75rem;--text-3xl:2.25rem}\n@media (prefers-color-scheme:dark){:root:not([data-theme=\"light\"]){--ink:#E8EAEC;--paper:#15181B;--paper-raised:#1D2126;--line:#2E343A;--accent:#6BA8D4;--accent-soft:#1B2C39;--good:#6FBF88;--good-soft:#1B2E22;--warn:#D9A15C;--warn-soft:#33271A;--critical:#DE8378;--critical-soft:#35201E}}\n:root[data-theme=\"dark\"]{--ink:#E8EAEC;--paper:#15181B;--paper-raised:#1D2126;--line:#2E343A;--accent:#6BA8D4;--accent-soft:#1B2C39;--good:#6FBF88;--good-soft:#1B2E22;--warn:#D9A15C;--warn-soft:#33271A;--critical:#DE8378;--critical-soft:#35201E}\n*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:400 var(--text-base)/1.5 var(--font-body)}\n.page{display:flex;flex-direction:column;gap:1.25rem;max-width:1000px;margin:0 auto;padding:2rem 1.5rem}\n.panel-group{display:flex;flex-direction:column;gap:1.25rem}\nh1,h2,h3{font-family:var(--font-display);font-weight:600;margin:0 0 .5rem}h1{font-size:var(--text-2xl)}h2{font-size:var(--text-xl)}h3{font-size:var(--text-lg);margin-top:1rem}\nh2.group{font-size:var(--text-sm);text-transform:uppercase;letter-spacing:.06em;color:var(--accent);border-bottom:1px solid var(--line);padding-bottom:.3rem}\n.meta{margin:.15rem 0;font-size:var(--text-sm)}.synthetic{color:var(--warn)}\n.tabs{display:flex;gap:1rem;font-size:var(--text-sm)}.tabs a{color:var(--accent)}\n.panel{background:var(--paper-raised);border:1px solid var(--line);border-radius:4px;padding:1.5rem}\n.safety{border-left:4px solid var(--warn)}.freshness{border-left:4px solid var(--critical)}\n.lead{margin-top:0}.sub{font-size:var(--text-sm)}.assume{font-size:var(--text-sm);margin:.75rem 0 0}\n.table-scroll{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:var(--text-sm)}\nth,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--line);vertical-align:top}th{font-weight:600}\n.num,.mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums}td.num,th.num{text-align:right}\n.status{display:inline-block;padding:.15rem .55rem;border-radius:2px;font:600 var(--text-xs) var(--font-body);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}\n.status--good{background:var(--good-soft);color:var(--good)}.status--warn{background:var(--warn-soft);color:var(--warn)}.status--critical{background:var(--critical-soft);color:var(--critical)}\n.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}\n.stat-tile{background:var(--paper-raised);border:1px solid var(--line);border-radius:4px;padding:1rem}\n.stat-figure{font:500 var(--text-3xl) var(--font-mono);font-variant-numeric:tabular-nums}.stat-label{font-weight:600}.stat-context{font-size:var(--text-sm);margin:.25rem 0 0}\n.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:1rem}\ndetails summary{cursor:pointer}.page-footer{font-size:var(--text-xs);color:var(--ink);opacity:.8}\nEOF\ncd ../.. && python3 -I out/_build/build_page.py out/pulse-output inputs/pulse_oee && python3 -I \"../plugin/skills/morning-plant-pulse/scripts/render_short.py\" --out out/pulse-output; ls out/pulse-output",
+    "description": "Patch builder, write CSS, build page, render short page"
+   },
+   "response": "out\\pulse-output\\operations-SITE-1-2026-11-12.html\r\nshort page: out/pulse-output\\operations-short-SITE-1-2026-11-12.html | 3 views (1 days) | checks passed\r\ndecision 1: Export. Last night�s drop holds nothing after 2026-11-12 (3 days old). Restart the export, then re-run the pulse; a re-run rewrites this page rather than adding a second one.\r\ndecision 2: Machine: CNC-01. Safety status: not assessed. Confirm whether CNC-01 is still down, then run a breakdown diagnosis. CNC-01 carries 69% of downtime minutes month to date (45 of 65 min); MES reason text �tool change overrun�.\r\nthen: Nothing else is waiting on a decision. Details on the full Operations page (in this run's reply).\r\nday_records.json\nfigures-page.csv\nfigures-short-page.csv\nfigures.csv\noperations-SITE-1-2026-11-12.html\noperations-short-SITE-1-2026-11-12.html\nperiods.json\npulse_model.json",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B11-positive-8i6980__/work/out/pulse-output\" && python3 -I -c \"\nimport re,html;s=open('operations-SITE-1-2026-11-12.html',encoding='utf-8').read();s=s.split('<section id=\\\"data\\\"')[0];s=re.sub(r'<style>.*?</style>','',s,flags=re.S);t=re.sub(r'<[^>]+>',' ',s);print(re.sub(r'\\s+',' ',html.unescape(t))[:6500])\"",
+    "description": "Print page text to verify content"
+   },
+   "response": "Exit code 1\nTraceback (most recent call last):\r\n  File \"<string>\", line 2, in <module>\r\n    import re,html;s=open('operations-SITE-1-2026-11-12.html',encoding='utf-8').read();s=s.split('<section id=\"data\"')[0];s=re.sub(r'<style>.*?</style>','',s,flags=re.S);t=re.sub(r'<[^>]+>',' ',s);print(re.sub(r'\\s+',' ',html.unescape(t))[:6500])\r\n                                                                                                                                                                                                     ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\Administrator\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\encodings\\cp1252.py\", line 19, in encode\r\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\r\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nUnicodeEncodeError: 'charmap' codec can't encode character '\\u2212' in position 4362: character maps to <undefined>",
+   "is_error": true,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B11-positive-8i6980__/work/out/pulse-output\" && PYTHONIOENCODING=utf-8 python3 -I -c \"\nimport re,html;s=open('operations-SITE-1-2026-11-12.html',encoding='utf-8').read();s=s.split('<section id=\\\"data\\\"')[0];s=re.sub(r'<style>.*?</style>','',s,flags=re.S);t=re.sub(r'<[^>]+>',' ',s);print(re.sub(r'\\s+',' ',html.unescape(t))[:7000])\"",
+    "description": "Print page text with UTF-8 output"
+   },
+   "response": "Exit code 1\nTraceback (most recent call last):\r\n  File \"<string>\", line 2, in <module>\r\n    import re,html;s=open('operations-SITE-1-2026-11-12.html',encoding='utf-8').read();s=s.split('<section id=\"data\"')[0];s=re.sub(r'<style>.*?</style>','',s,flags=re.S);t=re.sub(r'<[^>]+>',' ',s);print(re.sub(r'\\s+',' ',html.unescape(t))[:7000])\r\n                                                                                                                                                                                                     ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\Administrator\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\encodings\\cp1252.py\", line 19, in encode\r\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\r\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nUnicodeEncodeError: 'charmap' codec can't encode character '\\u2212' in position 4362: character maps to <undefined>",
+   "is_error": true,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B11-positive-8i6980__/work/out/pulse-output\" && python3 -I -X utf8 -c \"\nimport re,html;s=open('operations-SITE-1-2026-11-12.html',encoding='utf-8').read();s=s.split('<section id=\\\"data\\\"')[0];s=re.sub(r'<style>.*?</style>','',s,flags=re.S);t=re.sub(r'<[^>]+>',' ',s);print(re.sub(r'\\s+',' ',html.unescape(t))[:7000])\"",
+    "description": "Print page text in UTF-8 mode"
+   },
+   "response": " SITE-1: Operations Command Center · 2026-11-12 SITE-1: Operations Command Center SITE-1 · Generated 2026-11-15 18:09 · data as of 2026-11-13 14:54 Production day: 2026-11-12 · day boundary: calendar day, plant local (assumed; no plant profile and no MES shift labels) Built from SYNTHETIC test data for a fictitious plant. Offered page, not a published dashboard. Today Trend Figures & records Panel 1 — Today Safety Safety status: not assessed (no breakdown diagnosis records in this drop). Not the same as \"no safety issues\". Blocked — safety status unknown: none ( diag.blocked = 0 ). Freshness The newest production data in the drop is 2026-11-12 , 3 days before this run. Nothing landed for 2026-11-13, 2026-11-14 : those days are gaps, not zeros, and nothing below covers them. The 2026-11-12 day itself is complete in the exports (shifts 1 and 2 present). Source Landed Covers Status Last night's drop — No rows for 2026-11-13, 2026-11-14 2 production days missing Newest production day 2026-11-12 — 3 days old Planning export (plan.csv) 2026-11-13 14:54 2026-11-12 to 2026-11-12 · 2 rows Landed, stale Production / MES export (output.csv) 2026-11-13 14:54 2026-11-12 to 2026-11-12 · 3 rows Landed, stale Maintenance downtime export (downtime.csv) — export-sourced, not a live CMMS 2026-11-13 14:54 2026-11-12 to 2026-11-12 · 2 rows Landed, stale ERP work orders (work_orders.csv) — export, no ERP connector 2026-11-13 14:54 2026-11-13 to 2026-11-15 · 3 rows Landed (due dates) routing.csv same drop run minutes per unit, PN-100 and PN-200 Used for performance Standard cost / item master — not in the drop Missing: scrap unpriced Plant profile (## Plant context) — none found Assumed defaults Times are plant local, assumed America/New_York; no plant profile. Production-day rule: calendar day, plant local (assumed; no plant profile and no MES shift labels). Day chosen: latest complete production day in the exports (no day requested). Files not used: README.txt (not CSV or XLSX). rates_memo.txt (outside the export folder) was read but not used for pricing — see Priced losses. Today's actions No decisions waiting today. No normalizations to approve, no reschedule move drafted (see Exceptions). Everything below is something to find out first. Issue Impact Next step Owner role Type Exports for 2026-11-13, 2026-11-14 did not land This page describes 2026-11-12 only; any meeting decision about the last two days has no data behind it Check the export job and re-run the pulse once the files land; the re-run overwrites this day's record suggested: production supervisor / IT owner of the export job Investigation CNC-01: 45 min down, reason TOOL (tool change overrun) 69% of the day's 65 downtime minutes; CNC-01 OEE 81.2% Review the tool-change standard for the PN-100 setup; safety status not assessed (no diagnosis record) suggested: maintenance lead Investigation PN-200 under plan by 30 (-12.0%) WO-1002 (due 2026-11-13) had 30 still to make at the end of 2026-11-12; whether it shipped is not in the drop Confirm WO-1002 completion in the ERP; CNC-02 also lost 20 min to MAT (waiting on material) suggested: production scheduler Investigation WO-1001 (PN-100, due 2026-11-14): 20 short of ordered in the drop Due date has passed; completion after 2026-11-12 not in the drop Confirm in the ERP with the WO-1002 check suggested: production scheduler Investigation 1000 / 1050 Good output vs plan, units Both parts under plan; no provisional rows 81.7% Site OEE A 95.5% · P 86.8% · Q 98.5% 65 min Downtime 2 events, 0 open unpriced Scrap & downtime $ 15 parts scrapped; no standard cost, no downtime rate Output against plan Part Cell Work centre Planned Good Variance Variance % Status PN-100 CELL-A VMC 800 780 -20 -2.5% comparable PN-200 CELL-A VMC 250 220 -30 -12.0% comparable Total good 1000 against 1050 planned, one unit of measure. Plan and output spell both parts identically; no normalization was needed or proposed. Cell is from output.csv; work centre from plan.csv. One cell in the drop, so the line/cell view equals the site view. OEE Asset Planned min Downtime min Availability Performance Quality OEE CNC-01 960 45 95.3% 86.6% 98.5% 81.2% CNC-02 480 20 95.8% 87.3% 98.7% 82.5% Site 65 95.5% 86.8% 98.5% 81.7% Quality = good ÷ (good + scrap); no rework column, so first-pass yield could not be applied. Availability = (planned − downtime) ÷ planned; performance = ideal minutes (routing run min/unit × total units) ÷ run minutes; site figures are per asset, time-weighted to site; excluded: none. Performance is the largest loss on both machines. Downtime 0 of 2 events carry no usable reason code (Other or blank), so the cause ranking is complete. 0 rows held out for untrustworthy minutes. By minutes — asset Asset Minutes Events Rank (min) Rank (freq) CNC-01 45 1 1 1 CNC-02 20 1 2 1 By frequency — asset Asset Events Minutes Rank (freq) Rank (min) CNC-01 1 45 1 1 CNC-02 1 20 1 2 By minutes — reason code Code Minutes Events Rank (min) Rank (freq) TOOL 45 1 1 1 MAT 20 1 2 1 By frequency — reason code Code Events Minutes Rank (freq) Rank (min) TOOL 1 45 1 1 MAT 1 20 1 2 Ties share a rank (1, 1): with one stop per asset the frequency ranking cannot separate them; the minutes ranking can. Stop log Asset Start Minutes Code Reason text CNC-01 2026-11-12 09:10 45 TOOL tool change overrun CNC-02 2026-11-12 13:00 20 MAT waiting on material Priced losses Loss Quantity $ (estimate at standard cost) PN-100 12 unpriced — no standard cost on file PN-200 3 unpriced — no standard cost on file Downtime, all 65 min unpriced — no downtime cost rate Rate source: unset . Unpriced, with reasons: all downtime: no downtime cost rate (MFG_DOWNTIME_COST_PER_HOUR not set, none in the plant's rates); PN-100 scrap: no standard cost on file; PN-200 scrap: no standard cost on file. Why the finance memo in the drop was not used. rates_memo.txt gives burdened shop rates for MILL-H, MILL-V, TURN and INSP. It holds no standard material cost (which its own scrap rule needs),...[truncated]",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B11-positive-8i6980__/work\" && python3 - <<'EOF'\np='out/_build/build_page.py'; s=open(p,encoding='utf-8').read()\ns=s.replace('f\"{x*100:.1f}%\"','f\"{x*100:.2f}%\"')\ns=s.replace('''dt_day = M[\"downtime\"][\"day\"]''','''addp(\"page.scrap_total\", f\"Scrap qty, all parts, {day}\", sum(x[\"scrap\"] for x in td[\"scrap\"]), \"pulse_model.json today.scrap\", \"sum of scrap over parts\", period=day)\ndt_day = M[\"downtime\"][\"day\"]''')\ns=s.replace('''f\"{sum(s['scrap'] for s in td['scrap'])} parts scrapped''','''f\"{PV['page.scrap_total']} parts scrapped''')\nopen(p,'w',encoding='utf-8').write(s)\nEOF\npython3 -I out/_build/build_page.py out/pulse-output inputs/pulse_oee && grep -o \"Site OEE\\|15 parts scrapped\\|81.25%\" out/pulse-output/operations-SITE-1-2026-11-12.html | sort | uniq -c",
+    "description": "Fix percent format, add scrap total figure, rebuild"
+   },
+   "response": "out\\pulse-output\\operations-SITE-1-2026-11-12.html\r\n      1 15 parts scrapped\n      2 81.25%\n      1 Site OEE",
+   "is_error": false,
+   "parent_tool_use_id": null
+  }
+ ],
+ "tool_summary": {
+  "Bash": 16,
+  "Read": 1,
+  "Skill": 1,
+  "Write": 1
+ },
+ "result": {
+  "subtype": "success",
+  "is_error": false,
+  "num_turns": 21,
+  "duration_ms": 186753,
+  "duration_api_ms": 180398,
+  "total_cost_usd": 1.3294373999999998,
+  "usage": {
+   "input_tokens": 38,
+   "cache_creation_input_tokens": 90454,
+   "cache_read_input_tokens": 977367,
+   "output_tokens": 20509,
+   "output_tokens_details": {
+    "thinking_tokens": 3513
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 90454,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 784,
+     "cache_read_input_tokens": 96311,
+     "cache_creation_input_tokens": 1160,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 1160
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard",
+   "fallback_credit": null
+  },
+  "modelUsage": {
+   "claude-opus-5-5": {
+    "inputTokens": 38,
+    "outputTokens": 20509,
+    "cacheReadInputTokens": 977367,
+    "cacheCreationInputTokens": 90454,
+    "webSearchRequests": 0,
+    "costUSD": 1.3294373999999998,
+    "contextWindow": 1000000,
+    "maxOutputTokens": 128000,
+    "thinkingTokens": 3513,
+    "cacheCreationEphemeral5mInputTokens": 0,
+    "cacheCreationEphemeral1hInputTokens": 90454,
+    "canonicalModel": "claude-opus-5-5",
+    "provider": "firstParty",
+    "costBasis": "list"
+   }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "result": "I've built the Operations Command Center page as an HTML file. It covers **SITE-1, production day 12 Nov 2026**, and it was not published anywhere.\n\n**Safety status: not assessed.** The drop has no breakdown diagnosis records.\n\n**Freshness:** 12 Nov is complete (shifts 1 and 2), but it's 3 days old. No data came in for 13 or 14 Nov. The page shows those two days as gaps, not zeros.\n\n**Headline:** 1000 good parts against a plan of 1050. OEE was 81.65%: availability 95.49%, performance 86.79%, quality 98.52%. Performance is the biggest loss on both machines. Downtime was 65 min over 2 events.\n\n**Exceptions:**\n- CNC-01 was down 45 min for a tool change overrun, which is 69% of the downtime.\n- PN-200 came in 30 parts (12%) under plan. Order WO-1002 was due 13 Nov and still needed 30 parts at the end of the 12th. WO-1001 still needed 20 and was due 14 Nov. Whether either finished isn't in the drop.\n- Scrap and downtime have no dollar figure. The finance memo has no standard costs, no downtime cost per hour, and no rate for the VMC work centre, so I didn't use it.\n\n**No decisions waiting today.** Nothing else needs approval: the part numbers and order numbers all matched, and no data problems were found.\n\nRecord `SITE-1_2026-11-12`: data complete, no gaps for that day, calculated but not stored.\n\nFiles are in `out/pulse-output/`:\n- **Full page:** `operations-SITE-1-2026-11-12.html`\n- **Short page:** `operations-short-SITE-1-2026-11-12.html`. Its two decisions are to fix the export and re-run, and to confirm whether CNC-01 is still down and then diagnose it (safety not assessed).\n- **The numbers behind it:** `figures.csv`, `figures-page.csv`, `day_records.json`\n\nHere is the Operations page for 12 Nov; save it over yesterday's. The dashboard was not updated: the artifact tools are not available in this session."
+ },
+ "outputs": [
+  {
+   "path": "_build/build_page.py",
+   "sha256": "78ed41f4ea47154e35059bc80df2b30106fda9df81e388294c1d87ccdd2b240c",
+   "bytes": 22873,
+   "text": true
+  },
+  {
+   "path": "_build/style.css",
+   "sha256": "f95f75f554d549a1e1e8c0258a1660dfbc3b7f45197f6f3d7258c10a1e884541",
+   "bytes": 3405,
+   "text": false
+  },
+  {
+   "path": "pulse-output/day_records.json",
+   "sha256": "d33ab34ecfa8ee4c42dc68a5ed0eb65f80df7ddac8104436ff34df5c0b59fdca",
+   "bytes": 1560,
+   "text": true
+  },
+  {
+   "path": "pulse-output/figures-page.csv",
+   "sha256": "0bb36106675cb68b24b99f986b45872709fe747a96b079c331f69276103b07f7",
+   "bytes": 1815,
+   "text": true
+  },
+  {
+   "path": "pulse-output/figures-short-page.csv",
+   "sha256": "fea7a52a89d8e151699f2e6eec81af384a6b501584bfaeb0e0f22afcea930833",
+   "bytes": 38653,
+   "text": true
+  },
+  {
+   "path": "pulse-output/figures.csv",
+   "sha256": "99de8fec9c9d05727632f932028a58f07861cff346829668734a174a3bd08807",
+   "bytes": 34864,
+   "text": true
+  },
+  {
+   "path": "pulse-output/operations-short-SITE-1-2026-11-12.html",
+   "sha256": "32dc50127787ba99e2b8f106b81c70cd98e00b7ad2634304299167d6fd0fc1a7",
+   "bytes": 36235,
+   "text": true
+  },
+  {
+   "path": "pulse-output/operations-SITE-1-2026-11-12.html",
+   "sha256": "2b1844b82179c71fc68c3e7d15831794a71fd3912bebfde76312ce96583d3397",
+   "bytes": 78412,
+   "text": true
+  },
+  {
+   "path": "pulse-output/periods.json",
+   "sha256": "5b589723aac71da88626292590e121e040b4a0133ba37723440ec3ca8ec45f40",
+   "bytes": 12001,
+   "text": true
+  },
+  {
+   "path": "pulse-output/pulse_model.json",
+   "sha256": "0a55ddd8f6df23da7a516692dfd2793487d065415c3954f14257704e43eddb00",
+   "bytes": 17501,
+   "text": true
+  }
+ ],
+ "files_written_outside_out": [],
+ "plugin_copy_modified": [],
+ "stderr_tail": "",
+ "transcript": "evidence/SKILL_OUTPUTS/B11/cli-positive/transcript.jsonl.gz",
+ "deterministic_checks": [
+  {
+   "check": "skill 'morning-plant-pulse' activated through the Skill tool",
+   "pass": true,
+   "observed": [
+    "claude-for-manufacturing:morning-plant-pulse"
+   ]
+  },
+  {
+   "check": "chained skill 'daily-production-report' instructions used",
+   "pass": true
+  },
+  {
+   "check": "at least 1 work product file(s) under out/",
+   "pass": true,
+   "observed": [
+    "_build/build_page.py",
+    "_build/style.css",
+    "pulse-output/day_records.json",
+    "pulse-output/figures-page.csv",
+    "pulse-output/figures-short-page.csv",
+    "pulse-output/figures.csv",
+    "pulse-output/operations-short-SITE-1-2026-11-12.html",
+    "pulse-output/operations-SITE-1-2026-11-12.html",
+    "pulse-output/periods.json",
+    "pulse-output/pulse_model.json"
+   ]
+  },
+  {
+   "check": "mentions /OEE/",
+   "pass": true
+  },
+  {
+   "check": "mentions /plan/",
+   "pass": true
+  },
+  {
+   "check": "no external network, install or send action attempted",
+   "pass": true,
+   "observed": []
+  },
+  {
+   "check": "only the permitted tools were used (Read,Write,Edit,Glob,Grep,Skill,Bash)",
+   "pass": true,
+   "observed": [
+    "Bash",
+    "Read",
+    "Skill",
+    "Write"
+   ]
+  }
+ ],
+ "evaluator": {
+  "engine": "nvidia-nim",
+  "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+  "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "duration_s": 53.8,
+  "usage": {
+   "prompt_tokens": 86076,
+   "completion_tokens": 11175,
+   "total_tokens": 97251,
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 11067
+   }
+  },
+  "attempts": [
+   {
+    "mode": "reasoning",
+    "usage": {
+     "prompt_tokens": 86076,
+     "completion_tokens": 11175,
+     "total_tokens": 97251,
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     },
+     "completion_tokens_details": {
+      "reasoning_tokens": 11067
+     }
+    },
+    "verdict_returned": true,
+    "error": null
+   }
+  ],
+  "verdict_mode": "reasoning",
+  "material_given": [
+   {
+    "file": "skills/morning-plant-pulse/SKILL.md",
+    "given": "full"
+   },
+   {
+    "file": "out/_build/build_page.py",
+    "sha256": "78ed41f4ea47154e35059bc80df2b30106fda9df81e388294c1d87ccdd2b240c",
+    "bytes": 22873,
+    "given": "full"
+   },
+   {
+    "file": "out/_build/style.css",
+    "sha256": "f95f75f554d549a1e1e8c0258a1660dfbc3b7f45197f6f3d7258c10a1e884541",
+    "bytes": 3405,
+    "given": "name only (binary)"
+   },
+   {
+    "file": "out/pulse-output/day_records.json",
+    "sha256": "d33ab34ecfa8ee4c42dc68a5ed0eb65f80df7ddac8104436ff34df5c0b59fdca",
+    "bytes": 1560,
+    "given": "full"
+   },
+   {
+    "file": "out/pulse-output/figures-page.csv",
+    "sha256": "0bb36106675cb68b24b99f986b45872709fe747a96b079c331f69276103b07f7",
+    "bytes": 1815,
+    "given": "full"
+   },
+   {
+    "file": "out/pulse-output/figures-short-page.csv",
+    "sha256": "fea7a52a89d8e151699f2e6eec81af384a6b501584bfaeb0e0f22afcea930833",
+    "bytes": 38653,
+    "given": "first 30000 of 38653 chars"
+   },
+   {
+    "file": "out/pulse-output/figures.csv",
+    "sha256": "99de8fec9c9d05727632f932028a58f07861cff346829668734a174a3bd08807",
+    "bytes": 34864,
+    "given": "first 30000 of 34860 chars"
+   },
+   {
+    "file": "out/pulse-output/operations-short-SITE-1-2026-11-12.html",
+    "sha256": "32dc50127787ba99e2b8f106b81c70cd98e00b7ad2634304299167d6fd0fc1a7",
+    "bytes": 36235,
+    "given": "first 30000 of 36232 chars"
+   },
+   {
+    "file": "out/pulse-output/operations-SITE-1-2026-11-12.html",
+    "sha256": "2b1844b82179c71fc68c3e7d15831794a71fd3912bebfde76312ce96583d3397",
+    "bytes": 78412,
+    "given": "first 30000 of 78192 chars"
+   },
+   {
+    "file": "out/pulse-output/periods.json",
+    "sha256": "5b589723aac71da88626292590e121e040b4a0133ba37723440ec3ca8ec45f40",
+    "bytes": 12001,
+    "given": "full"
+   },
+   {
+    "file": "out/pulse-output/pulse_model.json",
+    "sha256": "0a55ddd8f6df23da7a516692dfd2793487d065415c3954f14257704e43eddb00",
+    "bytes": 17501,
+    "given": "full"
+   },
+   {
+    "file": "inputs/pulse_oee/downtime.csv",
+    "sha256": "c6b67ed143582ab9ba983f600925fd8ea2d8e060d8d345ad83db88a8d8e51e9b",
+    "bytes": 219,
+    "given": "full"
+   },
+   {
+    "file": "inputs/pulse_oee/output.csv",
+    "sha256": "059b2ea252bd443231231e9990182aa6b71a389e5e75a63d76cc63888d3b13b8",
+    "bytes": 248,
+    "given": "full"
+   },
+   {
+    "file": "inputs/pulse_oee/plan.csv",
+    "sha256": "adfed48e210488c760fc91c7b1005756e5e0a384ebd52f70d8fa482866188ca4",
+    "bytes": 140,
+    "given": "full"
+   },
+   {
+    "file": "inputs/pulse_oee/README.txt",
+    "sha256": "b255661d13e32686c1e3b2f0f6f0755c356dce04dd67e1f9d1c19a36dd55e665",
+    "bytes": 345,
+    "given": "full"
+   },
+   {
+    "file": "inputs/pulse_oee/routing.csv",
+    "sha256": "1fe0dbcb9d07119191d0fda75334ad3151427cf46587ed998cb91bc1277b5635",
+    "bytes": 84,
+    "given": "full"
+   },
+   {
+    "file": "inputs/pulse_oee/work_orders.csv",
+    "sha256": "dd725c3fdf0cfe0e7798ca2754de75265ce64797c0c833a4db69c9508e677868",
+    "bytes": 168,
+    "given": "full"
+   },
+   {
+    "file": "inputs/rates_memo.txt",
+    "sha256": "de3ec4c8a9ad5471950808cc37c6f27d315a7f0f5d414492cc8824eb2b9f123e",
+    "bytes": 465,
+    "given": "full"
+   }
+  ],
+  "tools_used": [],
+  "verdict": {
+   "verdict": "PASS",
+   "core_task_done": true,
+   "required_products_present": true,
+   "claims_sourced": true,
+   "fabrication": [],
+   "missing_data_handled": true,
+   "approval_rules_respected": true,
+   "arithmetic_mismatches": [],
+   "notes": "All core tasks performed; required outputs present; claims sourced from inputs or labelled; no fabrication; gaps handled; approval rules respected; arithmetic consistent."
+  },
+  "raw": null,
+  "error": null
+ },
+ "status": "PASS",
+ "skills_read_full": [
+  "daily-production-report"
+ ],
+ "rechecked_utc": "2026-11-15T23:24:22Z"
+}

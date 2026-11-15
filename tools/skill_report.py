@@ -71,6 +71,8 @@ def main(argv=None) -> int:
                 "deterministic_checks": f"{sum(x['pass'] for x in r.get('deterministic_checks', []))}/"
                                         f"{len(r.get('deterministic_checks', []))}",
                 "failed_checks": [x["check"] for x in r.get("deterministic_checks", []) if not x["pass"]],
+                "evaluator_engine": (r.get("evaluator") or {}).get("engine") or "claude-code-cli",
+                "evaluator_model": (r.get("evaluator") or {}).get("model"),
                 "evaluator_verdict": ev.get("verdict"), "evaluator_fabrication": ev.get("fabrication"),
                 "evaluator_notes": ev.get("notes"), "duration_s": r.get("duration_s"),
                 "usage": (r.get("result") or {}).get("usage"),

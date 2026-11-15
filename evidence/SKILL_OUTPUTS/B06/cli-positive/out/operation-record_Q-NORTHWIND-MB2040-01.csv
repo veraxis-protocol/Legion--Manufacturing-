@@ -1,0 +1,8 @@
+part,revision_priced_to,op_seq,work_center,machine_class,rung,path,cutting_data_basis,setup_h_low_exp_high,run_min_pc_low_exp_high,quantity_breaks,sources,geometry_estimate,date_derived
+MB-2040,C (spec sheet; no drawing),10,MILL-V,MILL-V,4,first principles: similar-part MB-1880 rev B,n/a,0.333/0.333/0.333,1.5/1.5/1.5,250/500/1000,MB-1880 rev B routing standard only; no spread available,"geometry-estimate_MB-2040_L1.txt (hand_entered, draft)",2026-11-15
+MB-2040,C (spec sheet; no drawing),20,MILL-V,MILL-V,4,first principles: similar-part MB-1880 rev B,n/a,0.75/0.825/0.867,6.2/6.59/6.7,250/500/1000,"median of MB-1880 rev B closed-job actuals (WO-7702, WO-7811); low/high = min/max of those actuals and the MB-1880 routing standard","geometry-estimate_MB-2040_L1.txt (hand_entered, draft)",2026-11-15
+MB-2040,C (spec sheet; no drawing),30,MILL-V,MILL-V,4,first principles: similar-part MB-1880 rev B,n/a,0.483/0.525/0.567,3.1/3.265/3.35,250/500/1000,"median of MB-1880 rev B closed-job actuals (WO-7702, WO-7811); low/high = min/max of those actuals and the MB-1880 routing standard","geometry-estimate_MB-2040_L1.txt (hand_entered, draft)",2026-11-15
+MB-2040,C (spec sheet; no drawing),40,INSP,INSP,4,first principles: similar-part MB-1880 rev B,n/a,0.167/0.167/0.167,2.0/2.0/2.0,250/500/1000,MB-1880 rev B routing standard only; no spread available,"geometry-estimate_MB-2040_L1.txt (hand_entered, draft)",2026-11-15
+MB-2040,C (spec sheet; no drawing),50,outside,,,Anodize OSP - no machine time,n/a,,,250/500/1000,,draft,2026-11-15
+MB-2040,C (spec sheet; no drawing),60,outside,,,Laser mark OSP - not timed,n/a,,,250/500/1000,,draft,2026-11-15
+MB-2040,C (spec sheet; no drawing),70,INSP,,,FAI/final inspect - not timed,n/a,,,250/500/1000,,draft,2026-11-15

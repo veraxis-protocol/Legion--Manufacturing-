@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>INTERNAL COST SHEET Q-NORTHWIND-MB2040-01, not for customer</title>
+<style>
+:root{--ink:#1A1D21;--paper:#F2F3F5;--line:#D6D9DD;--accent-soft:#E4EDF4;--warn:#A8641A;--warn-soft:#F7EBDA;--crit:#A93226;--crit-soft:#F9E9E7}
+body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',Arial,sans-serif;font-size:13.5px;margin:0;padding:24px}main{max-width:1150px;margin:auto}
+h1,h2{font-family:'IBM Plex Sans Condensed','Arial Narrow',sans-serif}h2{border-bottom:1px solid var(--line);margin-top:26px}
+table{border-collapse:collapse;width:100%;background:#fff;font-size:12.5px}th,td{border:1px solid var(--line);padding:4px 7px;text-align:left;vertical-align:top}th{background:var(--accent-soft)}
+.rom{background:var(--crit-soft);border:1px solid var(--crit);padding:10px;font-weight:600}.blk{background:var(--warn-soft);border:1px solid var(--warn);padding:10px}
+code{font-family:Consolas,monospace}
+</style></head><body><main>
+<p>=== INTERNAL COST SHEET — NOT FOR CUSTOMER ===</p>
+<p class="rom">ROM — rough order of magnitude. Path A: text specs, no drawing. Not a firm quote and not releasable as one.</p>
+<h1>Q-NORTHWIND-MB2040-01: MB-2040 rev C, Northwind Robotics (SYNTHETIC)</h1>
+<p>Site EPW1 · Prepared 2026-11-15 · Intake: <code>open-work/inquiries/northwind-robotics-MB-2040.intake.txt</code> · Geometry estimate: <code>geometry-estimate_MB-2040_L1.txt</code> (draft) · Fusion not connected, so no model was built.</p>
+
+<h2>Status and gates</h2>
+<table><tr><th>Gate</th><th>Step</th><th>State</th></tr>
+<tr><td>1 — send questions</td><td>4</td><td>Questions approved as drafted by Test Estimator (LEGION WO-LMFG-004 test operator), <b>not sent</b>. <code>questions_sent_at</code> is null, so the stale clock still runs from receipt (stale since 2026-11-09).</td></tr>
+<tr><td>2 — bid/no-bid</td><td>5</td><td><b>Confirmed: bid</b>, line 1, by Test Estimator (LEGION WO-LMFG-004 test operator), 2026-11-15. The basis was the provisional bid shown on 2026-11-15. Quoting with open questions Q1–Q7 as exclusions, on the estimator's instruction.</td></tr>
+<tr><td>3 — design</td><td>8</td><td><b>Not passed.</b> The hand-entered feature list is <code>draft</code>. "Proceed" was not a Gate 3 yes or an explicit override, so no geometry-derived hour exists. The hours below are rung 4 on the unconfirmed operation list.</td></tr>
+<tr><td>4 — release</td><td>11</td><td>Open. Not releasable as-is: prices are blocked (rates) and the line is a ROM.</td></tr></table>
+
+<h2>Rates: resolution and what is blocked</h2>
+<div class="blk">
+<b>Labour rate: not set. Burden/machine rate: not set. Margin rules: not set.</b> No <code>MFG_LABOR_RATE</code>, <code>MFG_BURDEN_RATE</code> or <code>MFG_MARGIN_RULES</code> is set in the environment, and there is no plant rates file. The finance memo in <code>inputs/plant/rates_memo.txt</code> is <b>not confirmed</b> as the plant's rates file, so it was not used and its values are not restated here. Its markup rules (material, outside processing) are margin rules too, so they are not applied either.<br>
+<b>Blocked lines:</b> labour, machine and burden, setup cost per break, margin, material markup, outside-processing markup. As a result, <b>no unit price and no job total is produced at any break.</b><br>
+<b>To unblock:</b> say "update our labour rate" (and burden and margin) to record them as confirmed on the plant's rates page through onboarding, or set <code>MFG_LABOR_RATE</code>, <code>MFG_BURDEN_RATE</code> and <code>MFG_MARGIN_RULES</code>. The quote completes as soon as they are set.</div>
+
+<h2>Capability flags (before price)</h2>
+<ul>
+<li>H7 bore Ø22.000 +0.021/−0 with Ra 1.6: the plant's demonstrated capability is <b>not on file</b> (no capability profile), so this was not checked. It is quoted as achieved before anodize, unmasked (customer assumption 4).</li>
+<li>Mounting-face flatness: not specified (TBD) and excluded. Stock allows only 0.35 mm per side of face cleanup (0.5 in plate against a 12 mm part).</li>
+<li>Laser marking: no in-house laser (equipment.csv) and no outside source on file.</li>
+<li>AS9102 FAI: plant capability and certifications not on file.</li>
+</ul>
+
+<h2>Hours-basis table (rung 4 for every operation)</h2>
+<p>Why not higher: <b>rung 1</b> has no MB-2040 routing (0 rows). <b>Rung 2</b> has no MB-2040 actuals (0 rows). <b>Rung 3</b> has no confirmed geometry estimate (Gate 3 not passed), and the Plant context has no machine-class table or cutting data, so the feature path could not time a cut anyway. The analog is <b>MB-1880 rev B</b>, a similar bracket and a different part. Its drawing is not on file, so the similarity is unverified. Variance threshold: <b>15% — default threshold, not plant-set</b>.</p>
+<table><tr><th>Op</th><th>WC / cell</th><th>Rung</th><th>Path</th><th>Cutting data</th><th>Setup h low / exp / high</th><th>Run min/pc low / exp / high</th><th>Other rungs</th><th>Variance / drivers</th><th>Toolpath check</th></tr>
+<tr><td>10 Saw &amp; face blank</td><td>MILL-V / Cell A or B</td><td>4</td><td>first principles: similar-part routing</td><td>n/a</td><td>0.333 / 0.333 / 0.333 (MB-1880 routing; no spread available)</td><td>1.5 / 1.5 / 1.5 (same)</td><td>none</td><td>MB-1880 has no actuals for op 10 (one-sided)</td><td>not run — feature path</td></tr>
+<tr><td>20 Op1: profile, H7 bore, M5 taps, slot</td><td>MILL-V / A or B</td><td>4</td><td>first principles: similar-part actuals</td><td>n/a</td><td>0.75 / 0.825 / 0.867 (exp = median WO-7702, WO-7811; low/high = MB-1880 routing and actuals)</td><td>6.2 / 6.59 / 6.7 (same)</td><td>none for MB-2040</td><td>MB-1880 actuals against its own routing: setup +10.0%, run +6.3%, under 15%. Drivers not known: the H7/Ra 1.6 bore, the slot and the M5 taps may or may not be on MB-1880</td><td>not run</td></tr>
+<tr><td>30 Op2: flip, finish, edge break</td><td>MILL-V / A or B</td><td>4</td><td>same</td><td>n/a</td><td>0.483 / 0.525 / 0.567</td><td>3.1 / 3.265 / 3.35</td><td>none</td><td>MB-1880 actuals against routing: setup +5.0%, run +5.3%</td><td>not run</td></tr>
+<tr><td>40 Deburr &amp; inspect</td><td>INSP / Cell B</td><td>4</td><td>similar-part routing</td><td>n/a</td><td>0.167 / 0.167 / 0.167 (no spread available)</td><td>2.0 / 2.0 / 2.0</td><td>none</td><td>MB-1880 has no actuals for op 40 (one-sided)</td><td>—</td></tr>
+<tr><td>50 Anodize (OSP)</td><td>outside</td><td>—</td><td>vendor price</td><td>—</td><td colspan="2">no machine time; 12 days PO-to-receipt on PO-30602</td><td>—</td><td>masking not included (Q3)</td><td>—</td></tr>
+<tr><td>60 Laser mark (OSP)</td><td>outside</td><td>—</td><td>—</td><td>—</td><td colspan="2"><b>not timed, not priced</b>: no source on file</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>70 FAI AS9102, final inspect, pack</td><td>INSP</td><td>4</td><td>—</td><td>—</td><td colspan="2"><b>not timed</b>: no basis on file</td><td>—</td><td>—</td><td>—</td></tr>
+</table>
+<p>The hours above are a <b>lower bound</b> on work content, because ops 60 and 70 and any masking are untimed. <b>What would firm them up:</b> the rev C drawing (re-runs step 7 as path C2), a Gate 3 yes on the feature list, and plant cutting data and machine-class setup values for 6061 in the Plant context. An MB-1880 drawing would also show how comparable the analog really is.</p>
+
+<h2>Setup re-amortized at each break (hours; dollars blocked)</h2>
+<table><tr><th>Qty</th><th>Total setup h (low / exp / high)</th><th>Setup h per pc (exp)</th><th>Total run h (low / exp / high)</th><th>Work content by WC, exp</th><th>Setup $ / pc</th></tr>
+<tr><td>250</td><td>1.733 / 1.85 / 1.934</td><td>0.0074</td><td>53.33 / 55.65 / 56.46</td><td>MILL-V 48.99 h · INSP 8.5 h</td><td>blocked (rates)</td></tr>
+<tr><td>500</td><td>1.733 / 1.85 / 1.934</td><td>0.0037</td><td>106.67 / 111.29 / 112.92</td><td>MILL-V 96.3 h · INSP 16.83 h</td><td>blocked</td></tr>
+<tr><td>1,000</td><td>1.733 / 1.85 / 1.934</td><td>0.00185</td><td>213.33 / 222.58 / 225.83</td><td>MILL-V 190.93 h · INSP 33.5 h</td><td>blocked</td></tr></table>
+<p>This assumes one setup per op per break quantity. If Northwind's answer to Q5 means monthly releases each run separately, setup repeats per release.</p>
+
+<h2>Cost build-up: the lines the rates don't touch</h2>
+<table><tr><th>Line</th><th>250</th><th>500</th><th>1,000</th><th>Source / assumption</th></tr>
+<tr><td>Material: starts / sheets</td><td>255 / 10</td><td>510 / 19</td><td>1,019 / 37</td><td>Starts = qty ÷ (1 − 1.84%), using the pooled MB-1880 scrap rate (WO-7702 1.96%, WO-7811 1.77%). Sheets at 28 blanks per sheet (123 × 83 mm blank; <b>3 mm kerf/cleanup allowance ASSUMED</b>, not plant data; the zero-allowance bound is 30)</td></tr>
+<tr><td>Material cost (USD)</td><td>2,199.00 (8.80/pc)</td><td>4,178.10 (8.36/pc)</td><td>8,136.30 (8.14/pc)</td><td>PO-30588, 2026-09-30, Metals Supply Co, 219.90/sheet 6061-T6 0.5 × 12 × 48 in. This is +3.53% against PO-30411 (2026-08-14), so the price is rising: add a validity caveat. No markup applied (blocked)</td></tr>
+<tr><td>Anodize OSP: lots / cost (USD)</td><td>1 / 385.00 (1.54/pc)</td><td>2 / 770.00 (1.54/pc)</td><td>4 / 1,540.00 (1.54/pc)</td><td>PO-30602, 2026-10-03, Bright Anodize LLC, Type II black, per lot of up to 300 pcs, ≤150 mm (part max 120 mm). Assumes one shipment per 300 pcs. Masking not included. No markup applied (blocked)</td></tr>
+<tr><td>Laser marking OSP</td><td colspan="3">not priced: no source</td><td>Source a vendor, or confirm in-house capability</td></tr>
+<tr><td>Labour</td><td colspan="3">blocked: labour rate not set</td><td>Hours above</td></tr>
+<tr><td>Machine and burden</td><td colspan="3">blocked: burden rate not set</td><td>Same hours as labour (not a second estimate)</td></tr>
+<tr><td>Setup</td><td colspan="3">blocked: labour and burden rates not set</td><td>Hours per break above</td></tr>
+<tr><td>Tooling / NRE</td><td colspan="3">not priced: no basis</td><td>Vise or soft jaws assumed, no dedicated fixture. Tooling ownership to be stated if NRE is charged</td></tr>
+<tr><td>Material certs, FAI report</td><td colspan="3">not priced: no basis</td><td>Mill cert assumed supplied with the plate. FAI time is untimed (op 70)</td></tr>
+<tr><td><b>Margin</b></td><td colspan="3"><b>blocked: margin rules not set</b></td><td>Will appear on its own line</td></tr>
+</table>
+<p>No subtotal is shown. A partial sum would read as a price.</p>
+
+<h2>Comparables</h2>
+<table><tr><th>Job</th><th>Closed (age)</th><th>Qty / scrap</th><th>Why comparable</th><th>How MB-2040 differs</th></tr>
+<tr><td>WO-7702, MB-1880 rev B</td><td>2026-07-18 (~4 months)</td><td>300 / 6</td><td>"similar bracket" (routing note); same MILL-V / INSP flow; similar quantity</td><td>Different part, and its drawing isn't on file. Material and finish not recorded in the export. MB-2040 adds the H7 bore, a slot, black anodize, laser marking and an AS9102 FAI. No actual-cost or revenue columns, so profitability is unknown</td></tr>
+<tr><td>WO-7811, MB-1880 rev B</td><td>2026-09-26 (~7 weeks)</td><td>500 / 9</td><td>same</td><td>same</td></tr></table>
+<p>There is no MB-2040 history and no prior quote for Northwind: the NetSuite quote export was not supplied, and this is not a reading that the customer is new.</p>
+
+<h2>Date check</h2>
+<p><b>Not checked against shop load: there is no planning or schedule export.</b> Requested first articles are due 2027-01-15, 61 days from 2026-11-15. The first lot of 250 (rung 4, lower bound) adds MILL-V 48.99 h and INSP 8.5 h. MILL-V has two VMCs, VMC-02 (Cell A) and VMC-03 (Cell B). Material lead time is 7 days on both plate POs; anodize is 12 days (PO-30602); laser marking and FAI lead times are unknown. The date is plausible on lead times alone, but it depends on the order date, load, the marking source and the year-end holidays. <b>Confirm with scheduling before release.</b></p>
+
+<h2>Assumptions and exclusions (internal)</h2>
+<ul>
+<li>The bid decision is confirmed (Gate 2). The recommendation was provisional, and open questions Q1–Q7 are what the price rests on. They are carried as customer exclusions a–g and assumptions 4–5.</li>
+<li>Gate 3 has not been passed. The operation list is unconfirmed and all hours are rung 4.</li>
+<li>Commercial terms are null and the plant's standard terms are not on file. The customer block holds bracketed placeholders for payment, freight, packaging and validity that the estimator must fill before release.</li>
+<li>Quote template not on file, so a neutral layout was used.</li>
+<li>Cost-down proposals: none (no model built).</li>
+</ul>
+
+<h2>Gaps (names only)</h2>
+<p>Labour rate, burden rate, margin rules: not set. Capability profile, Machining data (machine classes, cutting data, variance threshold), planning export, plant standard terms, quote template, laser-marking source: not on file. Rev C drawing (customer, Q1).</p>
+
+<h2>Figures block</h2>
+<p>All figures above come from <code>out/figures.json</code> and <code>out/dataset/figures_block.csv</code>, produced by <code>out/scripts/step6_and_quote_figures.py</code> over the input CSVs, with the filter or arithmetic stated on each row.</p>
+<p>=== END ===</p>
+</main></body></html>

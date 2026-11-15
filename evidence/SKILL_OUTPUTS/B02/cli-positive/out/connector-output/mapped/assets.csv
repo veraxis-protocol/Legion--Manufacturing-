@@ -1,0 +1,4 @@
+site,source_system,source_ref,as_of,join_status,mismatch_class,contradicted_by,integrity_flags,asset_id,asset_id_verbatim,location
+EPW1,cmms,cmms_synthetic.sqlite:assets/HMC-01,,matched,,,,HMC-01,HMC-01,
+EPW1,cmms,cmms_synthetic.sqlite:assets/VMC-02,,matched,,,,VMC-02,VMC-02,
+EPW1,cmms,cmms_synthetic.sqlite:assets/VMC-03,,matched,,,,VMC-03,VMC-03,

@@ -1,0 +1,44 @@
+contract_version: 2
+site: "not on file (no plant profile)"
+
+determination: supplier_caused
+confidence: medium
+is_leading_candidate: true
+competing_candidates:
+  - "Receiving measurement bias (tester calibration / method / test location), ranked second. Supported only by the C of C conflict (32 HRF stated) and missing gage records; contradicted by AS-7702 and AS-7744 passing the same incoming check. Not killed: reference-block check pending."
+  - "Identity error (tested pieces not lot AS-7781), ranked third. No evidence for; receipt, PO and lot recorded together."
+ncr_ref: NCR-RCV9921
+capa_ref: 8D-RCV9921
+
+part_number: BSH-1210
+part_number_verbatim: "BSH-1210 rev A"
+part_revision: "A"
+lot_number: AS-7781
+lot_number_verbatim: "AS-7781"
+supplier_id: "ALDER-SINTERED (provisional; ERP vendor ID not available)"
+supplier_id_verbatim: "Alder Sintered Parts (fictitious)"
+supplier_name: "Alder Sintered Parts (fictitious)"
+purchase_order: PO-30655
+received_at: null   # RCV-9921 receipt date not stated in source
+qty_affected: 1000
+uom: each
+
+evidence_for:
+  - "5 of 5 samples 46-50 HRF, mean 48, against 25-40 HRF (incoming_finding.txt:3; figures.json)."
+  - "Within-lot LCL 40.69 HRF above the 40 HRF max: a lot-level shift (figures.json)."
+  - "Found at receiving, before any processing at this plant (incoming_finding.txt)."
+  - "Failure confined to AS-7781; AS-7702 and AS-7744 passed incoming hardness (incoming_finding.txt:5)."
+  - "C of C states 32 HRF, 16 HRF below the measured mean (incoming_finding.txt:4; figures.json)."
+evidence_against:
+  - "Tester ID, calibration and test location not recorded; measurement bias not excluded (incoming_finding.txt)."
+  - "AS-7781 is also the most recent lot tested: lot effect is confounded with any tester change since October."
+  - "1 failing lot of 3 is a small number; oil content not tested."
+lot_clustering_observed: true
+recurrence: no_searchable_history
+escape_occurred: false
+escape_detected_at: null
+determination_made_at: "2026-11-15T17:59:41-05:00"   # the middle of the three; this cannot be reconstructed afterwards
+
+approved_by: "Test Quality Owner (LEGION WO-LMFG-004 test operator)"
+approved_at: "2026-11-15T18:06:00-05:00"
+approval_state: approved   # approved to act while tester calibration check is pending; competing candidate 2 open

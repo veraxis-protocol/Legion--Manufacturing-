@@ -1,0 +1,62 @@
+| # | Figure | Value | Computed from | Filter or query |
+|---|---|---|---|---|
+| F1 | Inspection rows (all) | 11 | inspection_measurements.csv | `all data rows` |
+| F2 | UTC offsets present (inspection + maintenance) | -5h | both CSVs | `utcoffset of every timestamp` |
+| F3 | Coverage, inspection export | 2026-11-09T07:10:00-05:00 to 2026-11-11T07:05:00-05:00 | inspection_measurements.csv | `min/max timestamp` |
+| F4 | Coverage, maintenance export | 2026-11-08T16:00:00-05:00 to 2026-11-11T06:40:00-05:00 | maintenance_log.csv | `min/max timestamp` |
+| F5 | In-process readings outside 22.000-22.021 | 3 of 11: L-0412 seq 1 = 22.022; L-0412 seq 90 = 22.029; L-0412 seq 180 = 22.034 | inspection_measurements.csv | `bore_dia_mm > 22.021 or < 22.000` |
+| F6 | First out-of-spec in-process reading | 2026-11-10T15:10:00-05:00 L-0412 seq 1 = 22.022 (+1 um over USL) | inspection_measurements.csv | `earliest row with bore > 22.021` |
+| F7 | Final-inspection value 22.034 over USL | +13 um | finding.txt | `measured - 22.021` |
+| F8 | Final-inspection value 22.031 over USL | +10 um | finding.txt | `measured - 22.021` |
+| F9 | Final-inspection value 22.029 over USL | +8 um | finding.txt | `measured - 22.021` |
+| F10 | Final-inspection values present in the inspection export | 22.034:yes, 22.031:no, 22.029:yes | finding.txt vs inspection export | `exact value match` |
+| F11 | Readings on insert T7-0031 | 10 | inspection export | `tool_id == T7-0031` |
+| F12 | Increasing steps across T7-0031 readings | 9 of 9 | inspection export | `x[i] > x[i-1], T7-0031, time order` |
+| F13 | SPC centreline (I chart) | 22.0180 mm | inspection export | `mean of T7-0031 readings` |
+| F14 | SPC UCL (I chart) | 22.0257 mm | inspection export | `CL + 2.66*MRbar` |
+| F15 | SPC LCL (I chart) | 22.0103 mm | inspection export | `CL - 2.66*MRbar` |
+| F16 | SPC basis | Individuals/moving range, n=10 points, lots L-0409..L-0412 on insert T7-0031, MRbar=2.89 um, sigma_hat=2.56 um. No stable baseline exists; limits are inflated by the trend itself | inspection export | `MR of consecutive readings` |
+| F17 | Points beyond I-chart limits | 4: L-0409 seq 1 = 22.008, L-0409 seq 40 = 22.010, L-0412 seq 90 = 22.029, L-0412 seq 180 = 22.034 | computed | `x > UCL or x < LCL` |
+| F18 | UCL vs spec USL | UCL 22.0257 is +4.7 um vs USL 22.021 (control limit, not spec limit) | computed | `UCL - USL` |
+| F19 | Run rule checked: 6 points in a row increasing (AIAG trend rule) - first fires | 2026-11-10T07:20:00-05:00 L-0411 seq 1 = 22.017 (in spec) | computed | `5 consecutive increases` |
+| F20 | Run rule checked: Nelson rule 3 (6 consecutive increases) - first fires | 2026-11-10T11:05:00-05:00 L-0411 seq 70 = 22.019 (in spec) | computed | `6 consecutive increases` |
+| F21 | Hours from first trend-rule signal to first out-of-spec reading | 7.83 h | computed | `first_oos.t - trend_fire.t` |
+| F22 | Longest run above centreline | 4 | computed | `consecutive x > CL (rule needs 9; not fired)` |
+| F23 | Linear drift vs elapsed time, T7-0031 | 0.535 um/h (r = 0.936) | computed | `OLS bore ~ hours since 2026-11-09T07:10` |
+| F24 | Within-lot drift L-0409 (shift 1) | +4 um over 5.08 h (0.79 um/h) and 79 parts (0.051 um/part) | computed | `first vs last reading in L-0409` |
+| F25 | Within-lot drift L-0410 (shift 2) | +3 um over 4.25 h (0.71 um/h) and 59 parts (0.051 um/part) | computed | `first vs last reading in L-0410` |
+| F26 | Within-lot drift L-0411 (shift 1) | +2 um over 3.75 h (0.53 um/h) and 69 parts (0.029 um/part) | computed | `first vs last reading in L-0411` |
+| F27 | Within-lot drift L-0412 (shift 2) | +12 um over 6.67 h (1.80 um/h) and 179 parts (0.067 um/part) | computed | `first vs last reading in L-0412` |
+| F28 | Change across overnight idle (L-0410 last -> L-0411 first) | +1 um over 11.58 h | computed | `readings either side of the night` |
+| F29 | Interpolated USL crossing (ASSUMES linear drift between readings) | 2026-11-10T13:48:20-05:00 - between L-0411 seq 70 (2026-11-10T11:05:00-05:00) and L-0412 seq 1 (2026-11-10T15:10:00-05:00) | computed | `interpolate 22.021 between bracketing readings` |
+| F30 | L-0411 last reading margin to USL | 2 um | computed | `22.021 - 22.019` |
+| F31 | Parts cut on insert T7-0031, floor | at least 510 (L-0409:80 + L-0410:60 + L-0411:70 + L-0412:300); L-0409..L-0411 = highest part_seq sampled, lot sizes not on file; L-0412 = lot size 300 per finding | inspection export + finding.txt | `sum` |
+| F32 | Parts on T7-0031 before L-0412 seq 1, floor | at least 210 | computed | `highest seq sampled in L-0409..L-0411` |
+| F33 | CAPA-071 insert-change interval | 600 parts | prior_ncrs.csv | `row NCR-0219` |
+| F34 | First reading after insert change | 2026-11-11T07:05:00-05:00 L-0413 = 22.007 (first reading on new T7-0031 was 22.008) | inspection export | `tool_id == T7-0032` |
+| F35 | Step at insert change (last T7-0031 -> first T7-0032) | -27 um | computed | — |
+| F36 | Readings by shift 1 | 6 of 11 readings (55%); 0 of 3 out-of-spec | inspection export | `group by shift` |
+| F37 | Readings by shift 2 | 5 of 11 readings (45%); 3 of 3 out-of-spec | inspection export | `group by shift` |
+| F38 | Readings by operator OP-11 | 6 of 11 readings (55%); 0 of 3 out-of-spec | inspection export | `group by operator` |
+| F39 | Readings by operator OP-23 | 5 of 11 readings (45%); 3 of 3 out-of-spec | inspection export | `group by operator` |
+| F40 | Shift and operator confounded | yes: every shift-1 reading is OP-11, every shift-2 reading is OP-23 | inspection export | `cross-tab shift x operator` |
+| F41 | Mean residual from time trend, shift 1 | -1.20 um (n=5) | computed | `x - OLS fit, T7-0031` |
+| F42 | Mean residual from time trend, shift 2 | +1.20 um (n=5) | computed | `x - OLS fit, T7-0031` |
+| F43 | Machines in inspection export | VMC-03 | inspection export | `distinct machine` |
+| F44 | Material lot / heat in inspection export | absent - no such column | inspection export header | `column list` |
+| F45 | Maintenance event 2026-11-08T16:00:00-05:00 (VMC-03) | coolant concentration adjusted 6% -> 8% | maintenance_log.csv | `asset_id == VMC-03` |
+| F46 | Maintenance event 2026-11-11T06:40:00-05:00 (VMC-03) | boring head T7 insert replaced (T7-0031 -> T7-0032) after inspection hold | maintenance_log.csv | `asset_id == VMC-03` |
+| F47 | Maintenance events during T7-0031 life other than its replacement | 0 | maintenance_log.csv | `t in (2026-11-09T07:10, 2026-11-11T07:05), event not 'replaced'` |
+| F48 | Clock anchor: insert replacement (maint) -> first T7-0032 reading (insp) | +25 min, expected order | both CSVs | `event visible in two sources` |
+| F49 | Prior NCRs, same part MB-1880 | 1: NCR-0219 | prior_ncrs.csv | `part == 'MB-1880'` |
+| F50 | Prior NCRs, same defect (bore) any part | 1 | prior_ncrs.csv | `defect contains 'bore'` |
+| F51 | Prior NCRs searchable by machine or supplier/lot | no - prior_ncrs.csv has no machine, supplier or lot column | prior_ncrs.csv header | `column list` |
+| F52 | Prior NCR rows screened | 2 | prior_ncrs.csv | `all rows` |
+| F53 | NCR-0219 measured vs this event max | 22.026 then; 22.034 now (+8 um) | prior_ncrs.csv + finding.txt | — |
+| F54 | Lot L-0412 location reconciliation | 120 + 150 + 30 = 300 vs lot size 300 (reconciles) | finding.txt | — |
+| F55 | Final inspection sample | 3 of 5 above USL; the 2 passing values not recorded | finding.txt | — |
+| F56 | 'Inspection hold' (maint log) before shipment PS-5521 | 80 min (hold-triggered insert change 2026-11-11T06:40:00-05:00, shipment 2026-11-11T08:00:00-05:00) | maintenance_log.csv + finding.txt | `shipped - replacement time (finding time ASSUMED -05:00)` |
+| F57 | Shipment PS-5521 before final-inspection finding | 125 min | finding.txt | `found - shipped` |
+| F58 | Elapsed from finding to start of 2026-11-15 (today) | at least 3 d 13 h 55 min (85.9 h) | finding.txt + session date | `2026-11-15T00:00-05:00 - found_at` |
+| F59 | Floor of parts on T7-0031 vs CAPA-071 interval | floor 510 vs 600: below - cannot show interval exceeded | computed | `F31 vs F33` |
+| F60 | If L-0409..L-0411 were each 300 (UNVERIFIED hypothetical) | 1200 parts on T7-0031; 600 reached during lot L-0410 | computed | `hypothetical only - lot sizes not on file` |

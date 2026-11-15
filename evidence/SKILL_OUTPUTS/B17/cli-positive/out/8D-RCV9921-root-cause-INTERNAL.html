@@ -1,0 +1,101 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><title>ROOT CAUSE AND 8D (INTERNAL) — 8D-RCV9921, for NCR-RCV9921</title><style>body{font-family:Calibri,Arial,sans-serif;max-width:980px;margin:24px auto;font-size:14px;color:#111}table{border-collapse:collapse;margin:8px 0}td,th{border:1px solid #888;padding:4px 6px;vertical-align:top}th{background:#eee}.delim{font-family:Consolas,monospace;background:#f3f3f3;padding:4px}</style></head><body>
+<h1>ROOT CAUSE AND 8D (INTERNAL) — 8D-RCV9921, for NCR-RCV9921</h1>
+<p><b>Status: DRAFT 8D, no longer blocked.</b> NCR-RCV9921 was approved on 2026-11-15T18:06:00-05:00 by Test Quality Owner (LEGION WO-LMFG-004 test operator). The supplier-caused determination was approved by the same owner at the same time, to be acted on <b>while the tester calibration check is still pending</b>. D4 therefore keeps Candidate 2 open. D6 and D8 stay as empty placeholders until real outcomes and sign-off exist. This is the internal 8D and is not customer-facing. Template: the plant&#x27;s controlled 8D template is not on file; standard eight-discipline structure used.</p>
+<h2>A. Ranked candidate causes</h2>
+<p>Every link has its own For and Against, each citing its source. Sources: F = incoming_finding.txt, D = BSH-1210_drawing_revA.md, S = approved_suppliers.csv, FB = figures block (out/figures.json).</p>
+<h3>Candidate 1 (leading): supplier lot AS-7781 supplied above hardness specification, and the C of C did not reflect it</h3>
+<p><code>AS-7781 produced above 40 HRF at the supplier</code> → <code>supplier lot release / C of C stated 32 HRF and the lot shipped</code> → <code>lot accepted onto PO-30655, 400 pcs issued to WO-8150</code></p>
+<p><b>Link 1: AS-7781 is above 40 HRF as made.</b></p>
+<ul>
+<li>For: 5 of 5 samples above 40 HRF (46–50, mean 48) [F line 3; FB]. The within-lot spread sits wholly above spec: computed LCL 40.69 HRF &gt; 40 HRF max [FB]. This is a lot-level shift, not a few outliers. The parts were found at receiving, before any processing at this plant, so no shift, operator, machine or tool change here could have produced them [F]. The failure is confined to AS-7781: AS-7702 and AS-7744 from the same supplier passed incoming hardness [F line 5].</li>
+<li>Against: tester ID, calibration date and test location aren&#x27;t recorded [F], so a measurement bias isn&#x27;t ruled out. AS-7781 is also the most recent lot tested, so &quot;only this lot fails&quot; can&#x27;t yet be told apart from &quot;the tester changed since October&quot;. 1 failing lot of 3 is a small number. Oil content wasn&#x27;t tested, so the density/porosity mechanism behind the hardness is unconfirmed [F].</li>
+</ul>
+<p><b>Link 2: the supplier&#x27;s release did not catch it.</b></p>
+<ul>
+<li>For: the C of C states 32 HRF, 16 HRF below our measured mean [F; FB].</li>
+<li>Against: we hold only the stated value, not the supplier&#x27;s test records. If our tester reads high, the C of C could be correct.</li>
+</ul>
+<p><b>Link 3: the lot reached the line.</b></p>
+<ul>
+<li>For: 400 pcs issued to assembly line 2, WO-8150 [F line 4].</li>
+<li>Against: nothing on record. <b>This is the weak point of this chain: nothing under For says whether the issue happened before or after the inspection result.</b> The sequence isn&#x27;t recorded.</li>
+</ul>
+<ul>
+<li><b>Confirm:</b> an independent lab measures AS-7781 pieces above 40 HRF, <b>or</b> the supplier&#x27;s own raw test records for AS-7781 show values above 40.</li>
+<li><b>Kill:</b> our tester passes on a certified HRF reference block, a retained AS-7744 piece now reads above 40 on it, <b>or</b> the independent lab reads AS-7781 within 25–40.</li>
+</ul>
+<h3>Candidate 2: receiving hardness measurement reads high (tester calibration, scale/indenter/load, or test location)</h3>
+<p><code>tester or method biased high</code> → <code>readings inflated by 6–10+ HRF</code> → <code>conforming lot rejected</code></p>
+<p><b>Link 1: tester or method biased high.</b></p>
+<ul>
+<li>For: the only positive evidence is the conflict with the C of C (32 HRF stated vs 46–50 measured) [F]. Wall and flange are both about 2.0 mm thick (OD 16, ID 12, flange 2.0) [D]. Thin, curved, porous oil-impregnated sections are sensitive to test location and anvil support. Calibration status isn&#x27;t recorded [F].</li>
+<li>Against: the same incoming check passed AS-7702 and AS-7744 [F]. A tester fault would have to begin between the October and November receipts. The bias needed to reconcile with the C of C is large: mean 48 vs 32 stated is 16 HRF [FB].</li>
+<li><b>Weak point of this chain:</b> no measurement record shows the tester is off. Link 1 rests on the C of C conflict and on missing records.</li>
+</ul>
+<p><b>Link 2: readings inflated by 6–10+ HRF.</b> No independent evidence either way.</p>
+<ul>
+<li><b>Confirm:</b> the tester reads outside tolerance on a certified HRF reference block, <b>or</b> retained AS-7744 pieces now read above 40 on the same tester.</li>
+<li><b>Kill:</b> the tester is within tolerance on the reference block, and a re-test of AS-7781 at a documented location still reads above 40.</li>
+</ul>
+<h3>Candidate 3 (low): identity error, meaning the pieces tested were not BSH-1210 lot AS-7781</h3>
+<ul>
+<li>For: none.</li>
+<li>Against: receipt RCV-9921, PO-30655 and lot AS-7781 are recorded together in the finding [F].</li>
+<li><b>Confirm:</b> the tested pieces&#x27; tags or markings don&#x27;t match RCV-9921 / AS-7781.</li>
+<li><b>Kill:</b> the tags match and the pieces match the drawing dimensions [D].</li>
+</ul>
+<p><b>Ranking:</b> Candidate 1 leads, but not decisively. Candidate 2 hasn&#x27;t been killed; it lacks positive evidence. This is not a tie (Candidate 2 has nothing under For at link 1 beyond the C of C conflict), but confidence is <b>medium</b>.</p>
+<p><b>Cheapest discriminating test:</b> verify the receiving hardness tester on a certified HRF reference block, then re-test 3 retained AS-7781 pieces and 1–2 retained AS-7744 pieces (if any are still in stock) on that tester, at a documented location with proper support. That takes about an hour on equipment already in the building, and it separates Candidate 1 from Candidate 2. Before the claim goes to the supplier, follow with an independent lab hardness and oil-content test on 3 AS-7781 pieces.</p>
+<h2>B. Checks run, clean, and could not run</h2>
+<table>
+<tr><th>Check</th><th>Result</th></tr>
+<tr><td>Lot clustering</td><td><b>Ran.</b> All 5 failures are in AS-7781; 1 of 3 receipts from this supplier failed. AS-7702/AS-7744 sample sizes aren&#x27;t recorded, so there&#x27;s no base rate per lot. Small numbers: 3 lots</td></tr>
+<tr><td>SPC drift</td><td><b>Ran, limited value.</b> Individuals chart on n=5 from one lot: CL 48.0, UCL 55.31, LCL 40.69 HRF. 0 points beyond control limits. Run rule (7 on one side): could not be evaluated, n=5 &lt; 7. No prior-lot readings in the inputs, so drift across lots can&#x27;t be charted. Control limits are not spec limits: in control within the lot, entirely out of spec</td></tr>
+<tr><td>Shift / operator / machine / tool-change clustering</td><td><b>Not applicable.</b> No processing at this plant before detection</td></tr>
+<tr><td>Maintenance correlation</td><td><b>Could not run.</b> No CMMS or calibration records for the tester in the inputs</td></tr>
+<tr><td>Time alignment</td><td><b>Not needed.</b> No cross-source time correlation is used. Lot clustering doesn&#x27;t depend on clocks</td></tr>
+<tr><td>Recurrence</td><td><b>No searchable history available</b> (no quality library this session). Not a first occurrence</td></tr>
+<tr><td>Sensor/historian</td><td><b>Not available.</b> No historian export; not relevant to a purchased-part receiving finding</td></tr>
+</table>
+<h2>C. The 8D</h2>
+<p><b>D1 — Team (proposed; names blank for the quality owner):</b> Quality owner (lead) [ ]; Receiving inspection [ ]; Metrology / gage control [ ]; Supplier quality engineer [ ]; Buyer for BSH-1210 [ ]; Assembly line 2 supervisor [ ].</p>
+<p><b>D2 — Problem description:</b> BSH-1210 rev A flanged bushings, supplier lot AS-7781 (1,000 pcs, PO-30655, RCV-9921), measured 46–50 HRF (mean 48) on 5 of 5 samples at receiving on 2026-11-12, against 25–40 HRF (drawing BSH-1210 rev A, hardness note). The supplier&#x27;s C of C states 32 HRF. Suspect quantity: 1,000 pcs (whole lot). Traceability is incomplete at line 2, where 400 pcs were issued to WO-8150. Oil content (18% min) is untested.</p>
+<p><b>D3 — Interim containment:</b> as in the NCR, customer side first.</p>
+<ul>
+<li>Shipment check on WO-8150 assemblies (escape possible, not established).</li>
+<li>Stop issuing AS-7781 parts at line 2, then count, tag and hold loose parts and built assemblies.</li>
+<li>600 pcs held in Q-1.</li>
+<li>Supplier-side containment requested in the held SCAR: quarantine any remaining AS-7781 stock and any lot from the same production run, and provide the actual test records.</li>
+</ul>
+<p>None of this has been done by this run; it&#x27;s a plan for owners to execute.</p>
+<p><b>D4 — Root cause (ranked, uncertainty kept):</b> Leading candidate: lot AS-7781 supplied above specification, with a C of C that doesn&#x27;t reflect the measured condition (Candidate 1, medium confidence). Not yet excluded: a receiving measurement bias (Candidate 2). The confirming test is the reference-block check and re-test above, then an independent lab. <b>The supplier&#x27;s internal process cause (compaction density, sintering, sizing, composition) is unknown and must come from the supplier&#x27;s own investigation</b>, requested in the SCAR. D4 is not final until Candidate 2 is killed and the supplier&#x27;s cause is received. <b>Gate 1:</b> the supplier-caused determination was approved by Test Quality Owner (LEGION WO-LMFG-004 test operator) at 2026-11-15T18:06:00-05:00, explicitly before the tester check. <b>If the reference-block check finds our tester reading high, this determination must be reopened</b>, and the SCAR and the alternate-source RFQ revisited.</p>
+<p><b>D5 — Corrective actions (each names the link it breaks):</b></p>
+<p>1. Supplier identifies and corrects the process cause of AS-7781&#x27;s hardness and submits their 8D. <i>Breaks Candidate 1, link 1 (lot made above 40 HRF).</i> Pending the supplier&#x27;s response.</p>
+<p>2. Require, per lot, the actual hardness test results on the certificate (n, values, method, tester calibration reference), plus oil content, instead of a single stated value. <i>Breaks Candidate 1, link 2 (release did not reflect the condition).</i></p>
+<p>3. Tightened incoming inspection for BSH-1210: hardness <b>and</b> oil content on every lot, with tester ID, calibration date and test location recorded, until 3 consecutive lots pass. <i>Breaks Candidate 1, link 3 (nonconforming lot accepted onto the line).</i></p>
+<p>4. Conditional, only if the sequence shows parts were issued before the inspection result: no issue of BSH-1210 to production before incoming disposition. <i>Breaks Candidate 1, link 3.</i></p>
+<p><i>Improvement, not corrective action:</i> qualify an alternate source for BSH-1210 (the RFQ package from this chain). It removes the single-source exposure. It doesn&#x27;t break any link in the causal chain.</p>
+<p><b>D6 — Implement and verify (placeholder, not filled in on purpose):</b></p>
+<table>
+<tr><th>Action</th><th>Implemented (date, by)</th><th>Verification method</th><th>Result</th><th>Verified by / date</th></tr>
+<tr><td>D5-1</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>D5-2</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>D5-3</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>D5-4</td><td></td><td></td><td></td><td></td></tr>
+</table>
+<p><b>D7 — Prevent recurrence (system level):</b></p>
+<ul>
+<li><b>Purchasing quality clauses for sintered/oil-impregnated parts</b> require actual measured values per lot on the C of C, not a stated value. This applies to every sintered part, not just BSH-1210.</li>
+<li><b>The receiving inspection plan</b> records tester ID, calibration due date and test location for every hardness reading. The gap that keeps Candidate 2 open is a records gap, and that applies to every hardness check at receiving.</li>
+<li><b>Receiving hold:</b> no purchased part is issued to production before incoming disposition (if D5-4&#x27;s condition is confirmed).</li>
+<li><b>Single-source review:</b> BSH-1210 has exactly one qualified supplier. Review other purchased parts with one qualified source and start second-source work before a quality event forces it.</li>
+<li><b>Recurrence:</b> no searchable history, so D7 can&#x27;t judge whether an earlier fix on this part or supplier failed. Before closure, search the quality library for prior NCRs on BSH-1210 or this supplier.</li>
+</ul>
+<p><b>D8 — Close and recognize (placeholder, not filled in on purpose):</b></p>
+<table>
+<tr><th>Closure criteria met</th><th>Effectiveness check date</th><th>Approved by</th><th>Date</th><th>Team recognized</th></tr>
+<tr><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+<h2>D. Customer-facing pack</h2>
+<p>Not requested, and no customer is identified (an escape is possible but not established). If a customer pack is needed, it is built from this 8D through a reviewable redaction diff, approved before release. Pending redaction log: no removal requests were made.</p>
+</body></html>

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Export request specification - Example Precision Works (EPW1)</title>
+<style>
+:root{--ink:#1A1D21;--paper:#F2F3F5;--paper-raised:#FFFFFF;--line:#D6D9DD;--accent:#1F5C8B;
+--font-body:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,sans-serif;--font-display:'IBM Plex Sans Condensed','Arial Narrow',sans-serif;--font-mono:'IBM Plex Mono',Consolas,monospace}
+body{background:var(--paper);color:var(--ink);font:14px/1.5 var(--font-body);margin:0;padding:24px}
+main{max-width:1000px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+h1{font-family:var(--font-display);font-size:24px;margin:0}
+h2{font-family:var(--font-display);font-size:14px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin:0 0 8px}
+section{background:var(--paper-raised);border:1px solid var(--line);border-radius:6px;padding:14px 18px}
+table{border-collapse:collapse;width:100%}th,td{border-top:1px solid var(--line);padding:4px 8px;text-align:left;vertical-align:top}
+th{font-size:12px;color:#5f6862}code{font-family:var(--font-mono);font-size:13px}
+</style>
+</head>
+<body>
+<main>
+<h1>Export request specification - Example Precision Works, Plant 1 (EPW1)</h1>
+<p>For the plant's IT. Written 2026-11-15 because these sources were not in hand at setup. Each file lets the plugin's scheduled skills run without a live connector.</p>
+
+<section><h2>Rules for every file</h2><ul>
+<li><b>Format:</b> CSV, UTF-8, header row, comma-delimited, text fields quoted.</li>
+<li><b>Landing path:</b> the SharePoint "Exports" library folder the MES already writes to (exact folder to be confirmed).</li>
+<li><b>Naming:</b> <code>&lt;source&gt;_&lt;entity&gt;_&lt;YYYY-MM-DD&gt;.csv</code>, dated the day of export.</li>
+<li><b>Cadence:</b> nightly, landing by 23:45 local, alongside the 23:30 MES file - or a later fixed time, stated.</li>
+<li><b>Timestamps:</b> ISO 8601 <b>with offset</b> (<code>2026-11-13T14:30:00-05:00</code>). Bare local times break cross-system correlation.</li>
+<li><b>Late or corrected records:</b> re-export the full rolling window every night; the newest file wins on the record key.</li>
+<li><b>Every row:</b> a <code>site</code> column = <code>EPW1</code>.</li>
+</ul></section>
+
+<section><h2>1. MES downtime - <code>mes_downtime_YYYY-MM-DD.csv</code> - window: rolling 7 days</h2><table>
+<tr><th>Field</th><th>Type</th><th>Unit / format</th><th>Required</th><th>Notes</th></tr>
+<tr><td>event_id</td><td>text</td><td>-</td><td>yes</td><td>MES's own ID</td></tr>
+<tr><td>asset_id</td><td>text</td><td>as equipment.csv (HMC-01 ...)</td><td>yes</td><td></td></tr>
+<tr><td>start_at / end_at</td><td>timestamp</td><td>ISO 8601 with offset</td><td>yes / when ended</td><td>end blank, never zero, while open</td></tr>
+<tr><td>minutes</td><td>number</td><td>minutes, decimal</td><td>yes</td><td></td></tr>
+<tr><td>reason_code / reason_text</td><td>text</td><td>-</td><td>yes</td><td>plant's own codes, verbatim</td></tr>
+<tr><td>planned</td><td>text</td><td><code>planned</code> / <code>unplanned</code></td><td>yes</td><td>PM, breaks and changeovers are planned</td></tr>
+<tr><td>production_wo</td><td>text</td><td>-</td><td>no</td><td>job running at the time</td></tr>
+<tr><td>shift</td><td>text</td><td><code>1</code> / <code>2</code> / <code>OT</code></td><td>yes</td><td></td></tr>
+</table></section>
+
+<section><h2>2. MES production output - confirm the existing file carries these</h2><table>
+<tr><th>Field</th><th>Type</th><th>Unit / format</th><th>Required</th></tr>
+<tr><td>production_wo, part_number, part_revision, op_seq, asset_id</td><td>text</td><td>-</td><td>yes (revision if known)</td></tr>
+<tr><td>qty_good, qty_scrap</td><td>number</td><td>pieces</td><td>yes</td></tr>
+<tr><td>scrap_reason</td><td>text</td><td>-</td><td>when scrap &gt; 0</td></tr>
+<tr><td>shift, production_day</td><td>text / date</td><td>shift code; ISO date per the plant's day rule</td><td>yes</td></tr>
+<tr><td>reported_at</td><td>timestamp</td><td>ISO 8601 with offset</td><td>yes</td></tr>
+<tr><td>ideal_cycle_time</td><td>number</td><td>seconds per piece</td><td>yes for OEE performance</td></tr>
+</table></section>
+
+<section><h2>3. Maintenance - <code>maintenance_log_YYYY-MM-DD.csv</code> (from the shared spreadsheet) - window: rolling 90 days of opened_at</h2><table>
+<tr><th>Field</th><th>Type</th><th>Unit / format</th><th>Required</th><th>Notes</th></tr>
+<tr><td>work_order_id</td><td>text</td><td>-</td><td>yes</td><td>add an ID column to the spreadsheet if it has none</td></tr>
+<tr><td>asset_id</td><td>text</td><td>same IDs as equipment.csv and the MES</td><td>yes</td><td></td></tr>
+<tr><td>asset_name</td><td>text</td><td>-</td><td>yes</td><td></td></tr>
+<tr><td>type</td><td>text</td><td><code>corrective</code> / <code>preventive</code> / <code>inspection</code></td><td>yes</td><td>never blank</td></tr>
+<tr><td>status</td><td>text</td><td><code>open</code> / <code>in_progress</code> / <code>closed</code></td><td>yes</td><td></td></tr>
+<tr><td>opened_at</td><td>timestamp</td><td>ISO 8601 with offset</td><td>yes</td><td></td></tr>
+<tr><td>closed_at</td><td>timestamp</td><td>ISO 8601 with offset</td><td>when closed</td><td>blank, never zero, while open</td></tr>
+<tr><td>failure_mode</td><td>text</td><td>-</td><td>no</td><td></td></tr>
+<tr><td>close_out_note</td><td>text</td><td>free text, verbatim</td><td>no</td><td>mined by breakdown-diagnosis</td></tr>
+<tr><td>parts_used</td><td>text</td><td><code>part_no:qty;...</code></td><td>no</td><td></td></tr>
+<tr><td>labor_hours</td><td>number</td><td>hours, decimal</td><td>no</td><td></td></tr>
+<tr><td>pm_plan_id</td><td>text</td><td>-</td><td>no</td><td>preventive work only</td></tr>
+</table>
+<p>Asset register: <code>maintenance_assets_YYYY-MM-DD.csv</code> weekly - asset_id, asset_name, work_center, cell, make, model, install_date (extends equipment.csv).</p></section>
+
+<section><h2>4. NetSuite saved-search exports - <code>netsuite_&lt;entity&gt;_YYYY-MM-DD.csv</code></h2><table>
+<tr><th>Entity</th><th>Fields</th><th>Window</th></tr>
+<tr><td>items</td><td>item_id, description, revision (if held), uom, standard_cost, average_cost, last_purchase_price, item_class</td><td>full, weekly</td></tr>
+<tr><td>sales_orders</td><td>so_number, line, customer, item_id, qty, promised_date, ship_date, status</td><td>open plus last 90 days</td></tr>
+<tr><td>work_orders</td><td>wo_number, item_id, revision, qty_ordered, qty_completed, due_date, status, sales_order, closed_date, actual material / labor / burden / subcontract cost with currency</td><td>open plus last 365 days</td></tr>
+<tr><td>purchase_orders</td><td>po_number, line, vendor_id, item_id, qty, unit_cost, currency, due_date, received_date, lot_number</td><td>last 365 days</td></tr>
+<tr><td>inventory</td><td>item_id, location, lot_number, qty_on_hand</td><td>snapshot, nightly</td></tr>
+<tr><td>routings</td><td>item_id, revision, op_seq, work_center, setup_hours, run_time_per_unit, run_time_unit (<code>min</code> or <code>h</code>, stated)</td><td>full, weekly</td></tr>
+<tr><td>operation_actuals</td><td>wo_number, op_seq, work_center, actual_setup_hours, actual_run_hours, qty_completed, uom, closed_date</td><td>last 365 days</td></tr>
+</table></section>
+
+<section><h2>5. Planning / schedule - <code>plan_YYYY-MM-DD.csv</code> - window: next 14 days</h2><table>
+<tr><th>Field</th><th>Type</th><th>Unit / format</th><th>Required</th></tr>
+<tr><td>production_day</td><td>date</td><td>ISO date per the plant's day rule</td><td>yes</td></tr>
+<tr><td>shift, asset_id or work_center</td><td>text</td><td>-</td><td>yes</td></tr>
+<tr><td>production_wo, part_number</td><td>text</td><td>-</td><td>yes</td></tr>
+<tr><td>planned_qty</td><td>number</td><td>pieces</td><td>yes</td></tr>
+<tr><td>planned_minutes</td><td>number</td><td>minutes</td><td>no</td></tr>
+</table></section>
+
+<section><h2>6. Quality / inspection - <code>inspection_YYYY-MM-DD.csv</code> - window: rolling 30 days</h2><table>
+<tr><th>Field</th><th>Type</th><th>Unit / format</th><th>Required</th></tr>
+<tr><td>inspection_id, production_wo, part_number, part_revision, lot_number</td><td>text</td><td>-</td><td>yes (lot if used)</td></tr>
+<tr><td>characteristic (drawing balloon), nominal, lower_tol, upper_tol, measured</td><td>text / number</td><td>units stated in a units column</td><td>yes</td></tr>
+<tr><td>result</td><td>text</td><td><code>pass</code> / <code>fail</code></td><td>yes</td></tr>
+<tr><td>gauge_id, inspector, asset_id</td><td>text</td><td>-</td><td>no</td></tr>
+<tr><td>measured_at</td><td>timestamp</td><td>ISO 8601 with offset</td><td>yes</td></tr>
+</table></section>
+
+<section><h2>7. Historian / machine monitoring - only if one exists - <code>historian_&lt;asset_id&gt;_YYYY-MM-DD.csv</code></h2><table>
+<tr><th>Field</th><th>Type</th><th>Unit / format</th><th>Required</th></tr>
+<tr><td>asset_id, tag</td><td>text</td><td>-</td><td>yes</td></tr>
+<tr><td>ts</td><td>timestamp</td><td>ISO 8601 with offset (UTC is fine if stated)</td><td>yes</td></tr>
+<tr><td>value, unit</td><td>number / text</td><td>engineering unit stated per row</td><td>yes</td></tr>
+<tr><td>alarm_code, alarm_text</td><td>text</td><td>-</td><td>no</td></tr>
+</table><p>Window: prior day; on request, a 24-hour window around a named breakdown.</p></section>
+</main>
+</body>
+</html>

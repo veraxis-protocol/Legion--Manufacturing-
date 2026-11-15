@@ -1,0 +1,20 @@
+# Scored comparison - motor bracket trade study (SYNTHETIC test data). Normalization: ratio (lower-is-better = best/value; higher-is-better = value/best). Contribution = normalized x weight x 100. Source: inputs/trade/trade_matrix.csv + analysis_notes.md
+rank,option,criterion,weight,direction,raw_value,unit,best_value,normalized,contribution,basis,source
+1,A 6061 machined,unit_cost_at_1000,0.30,lower,18.40,USD,9.80,0.5326,15.98,estimate,quote-build estimate Q-118
+1,A 6061 machined,tooling_cost,0.10,lower,0,USD,0,1.0000,10.00,estimate,matrix value 0 - no tooling source cited (D-55 covers option C only)
+1,A 6061 machined,stiffness_first_mode,0.25,higher,412,Hz,418,0.9856,24.64,analysis,FEA-2040-01..03 modal
+1,A 6061 machined,mass,0.15,lower,198,g,198,1.0000,15.00,analysis,CAD mass properties
+1,A 6061 machined,lead_time_first_article,0.20,lower,15,days,15,1.0000,20.00,estimate,supplier and shop schedule
+1,A 6061 machined,TOTAL,1.00,,,,,,85.62,,
+2,B 7075 machined,unit_cost_at_1000,0.30,lower,24.10,USD,9.80,0.4066,12.20,estimate,quote-build estimate Q-119
+2,B 7075 machined,tooling_cost,0.10,lower,0,USD,0,1.0000,10.00,estimate,matrix value 0 - no tooling source cited (D-55 covers option C only)
+2,B 7075 machined,stiffness_first_mode,0.25,higher,418,Hz,418,1.0000,25.00,analysis,FEA-2040-01..03 modal
+2,B 7075 machined,mass,0.15,lower,206,g,198,0.9612,14.42,analysis,CAD mass properties
+2,B 7075 machined,lead_time_first_article,0.20,lower,18,days,15,0.8333,16.67,estimate,supplier and shop schedule
+2,B 7075 machined,TOTAL,1.00,,,,,,78.28,,
+3,C A380 die cast,unit_cost_at_1000,0.30,lower,9.80,USD,9.80,1.0000,30.00,estimate,quote-build estimate Q-120 (excludes impregnation)
+3,C A380 die cast,tooling_cost,0.10,lower,14500,USD,0,0.0000,0.00,estimate,die quote D-55
+3,C A380 die cast,stiffness_first_mode,0.25,higher,365,Hz,418,0.8732,21.83,analysis,FEA-2040-01..03 modal
+3,C A380 die cast,mass,0.15,lower,221,g,198,0.8959,13.44,analysis,CAD mass properties (incl. 1.5 deg draft)
+3,C A380 die cast,lead_time_first_article,0.20,lower,63,days,15,0.2381,4.76,estimate,supplier and shop schedule
+3,C A380 die cast,TOTAL,1.00,,,,,,70.03,,

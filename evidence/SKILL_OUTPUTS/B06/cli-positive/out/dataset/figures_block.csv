@@ -1,0 +1,57 @@
+figure,value,computed_from,filter_or_arithmetic
+Routing rows,4,routings.csv,all data rows
+Routing rows for MB-2040 (any rev),0,routings.csv,part == 'MB-2040'
+Closed-job operation rows,4,closed_jobs.csv,all data rows
+Closed-job rows for MB-2040,0,closed_jobs.csv,part == 'MB-2040'
+Closed work orders (distinct),2,closed_jobs.csv,"distinct work_order: WO-7702, WO-7811"
+PO rows,3,purchase_orders.csv,all data rows
+Actuals rows joined to routing exactly,4,closed_jobs x routings,"key (part, rev, op, work_center)"
+Actuals rows unmatched,0,closed_jobs x routings,same key
+"Routing ops with no actuals (one-sided, class 6)",2,routings vs closed_jobs,"ops: 10, 40"
+Actuals rows flagged probable_standard,0,backflush check,|run/unit ÷ routing − 1| ≤ 1% or peer WO agreement ≤ 1%
+WO-7702 op20 run min/pc (actual),6.7,closed_jobs.csv,2010 ÷ 300
+WO-7702 op20 deviation vs MB-1880 routing run,8.1%,closed_jobs x routings,6.7 ÷ 6.2 − 1
+WO-7702 op30 run min/pc (actual),3.35,closed_jobs.csv,1005 ÷ 300
+WO-7702 op30 deviation vs MB-1880 routing run,8.1%,closed_jobs x routings,3.35 ÷ 3.1 − 1
+WO-7811 op20 run min/pc (actual),6.48,closed_jobs.csv,3240 ÷ 500
+WO-7811 op20 deviation vs MB-1880 routing run,4.5%,closed_jobs x routings,6.48 ÷ 6.2 − 1
+WO-7811 op30 run min/pc (actual),3.18,closed_jobs.csv,1590 ÷ 500
+WO-7811 op30 deviation vs MB-1880 routing run,2.6%,closed_jobs x routings,3.18 ÷ 3.1 − 1
+WO-7702 scrap rate,1.96%,closed_jobs.csv,6 ÷ (300+6)
+WO-7811 scrap rate,1.77%,closed_jobs.csv,9 ÷ (500+9)
+Pooled scrap rate MB-1880 (material allowance basis),1.84%,closed_jobs.csv,"15 ÷ (800+15), WO-7702 + WO-7811"
+Work centers mapping to more than one cell,"MILL-V: ['Cell A', 'Cell B']",equipment.csv,distinct cell per work_center
+Op10 setup h low/exp/high (rung 4),"[0.333, 0.333, 0.333]",routings + closed_jobs (MB-1880 rev B),MB-1880 rev B routing standard only; no spread available
+Op10 run min/pc low/exp/high (rung 4),"[1.5, 1.5, 1.5]",routings + closed_jobs (MB-1880 rev B),MB-1880 rev B routing standard only; no spread available
+Op20 setup h low/exp/high (rung 4),"[0.75, 0.825, 0.867]",routings + closed_jobs (MB-1880 rev B),"median of MB-1880 rev B closed-job actuals (WO-7702, WO-7811); low/high = min/max of those actuals and the MB-1880 routing standard"
+Op20 run min/pc low/exp/high (rung 4),"[6.2, 6.59, 6.7]",routings + closed_jobs (MB-1880 rev B),"median of MB-1880 rev B closed-job actuals (WO-7702, WO-7811); low/high = min/max of those actuals and the MB-1880 routing standard"
+Op20 MB-1880 actuals median vs MB-1880 routing (setup / run),+10.0% / +6.3%,same,"median ÷ routing − 1; threshold 15% — default threshold, not plant-set"
+Op30 setup h low/exp/high (rung 4),"[0.483, 0.525, 0.567]",routings + closed_jobs (MB-1880 rev B),"median of MB-1880 rev B closed-job actuals (WO-7702, WO-7811); low/high = min/max of those actuals and the MB-1880 routing standard"
+Op30 run min/pc low/exp/high (rung 4),"[3.1, 3.265, 3.35]",routings + closed_jobs (MB-1880 rev B),"median of MB-1880 rev B closed-job actuals (WO-7702, WO-7811); low/high = min/max of those actuals and the MB-1880 routing standard"
+Op30 MB-1880 actuals median vs MB-1880 routing (setup / run),+5.0% / +5.3%,same,"median ÷ routing − 1; threshold 15% — default threshold, not plant-set"
+Op40 setup h low/exp/high (rung 4),"[0.167, 0.167, 0.167]",routings + closed_jobs (MB-1880 rev B),MB-1880 rev B routing standard only; no spread available
+Op40 run min/pc low/exp/high (rung 4),"[2.0, 2.0, 2.0]",routings + closed_jobs (MB-1880 rev B),MB-1880 rev B routing standard only; no spread available
+"Qty 250: setup h per piece (expected, one setup per op)",0.0074,ops table,1.85 h ÷ 250
+"Qty 250: work content by work center, expected h","{""MILL-V"": 48.99, ""INSP"": 8.5}",ops table,Σ(setup + qty × run/60) by work_center
+Qty 250: total run h low/exp/high,"[53.33, 55.65, 56.46]",ops table,qty × Σ run min/pc ÷ 60
+"Qty 500: setup h per piece (expected, one setup per op)",0.0037,ops table,1.85 h ÷ 500
+"Qty 500: work content by work center, expected h","{""MILL-V"": 96.3, ""INSP"": 16.83}",ops table,Σ(setup + qty × run/60) by work_center
+Qty 500: total run h low/exp/high,"[106.67, 111.29, 112.92]",ops table,qty × Σ run min/pc ÷ 60
+"Qty 1000: setup h per piece (expected, one setup per op)",0.00185,ops table,1.85 h ÷ 1000
+"Qty 1000: work content by work center, expected h","{""MILL-V"": 190.93, ""INSP"": 33.5}",ops table,Σ(setup + qty × run/60) by work_center
+Qty 1000: total run h low/exp/high,"[213.33, 222.58, 225.83]",ops table,qty × Σ run min/pc ÷ 60
+Plate price used (latest PO),PO-30588 2026-09-30 USD 219.90/sheet,purchase_orders.csv,"item == AL6061-PL-0.5, latest po_date"
+Plate price change vs prior PO,+3.53%,purchase_orders.csv,219.90 ÷ 212.40 − 1 (PO-30411)
+PO-30411 order-to-receipt days,7,purchase_orders.csv,received_date − po_date
+PO-30588 order-to-receipt days,7,purchase_orders.csv,received_date − po_date
+"Blanks per sheet, zero allowance (physical upper bound)",30,geometry,"12x48 in sheet, 120x80 mm part, best of two orientations"
+Blanks per sheet with 3 mm assumed kerf/cleanup allowance,28,geometry,"blank 123x83 mm, best of two orientations — ALLOWANCE ASSUMED"
+Thickness cleanup available,0.7 mm total (0.35 mm per side),PO item description vs spec,0.5 in = 12.7 mm stock − 12 mm part
+Qty 250: material starts / sheets / cost / per pc,255 / 10 / USD 2199.00 / USD 8.80,purchase_orders.csv + scrap rate,ceil(250÷(1−0.0184)); ceil(starts÷28); sheets × 219.9
+Qty 500: material starts / sheets / cost / per pc,510 / 19 / USD 4178.10 / USD 8.36,purchase_orders.csv + scrap rate,ceil(500÷(1−0.0184)); ceil(starts÷28); sheets × 219.9
+Qty 1000: material starts / sheets / cost / per pc,1019 / 37 / USD 8136.30 / USD 8.14,purchase_orders.csv + scrap rate,ceil(1000÷(1−0.0184)); ceil(starts÷28); sheets × 219.9
+Anodize OSP lead time (PO to receipt),12,purchase_orders.csv,PO-30602 received_date − po_date (calendar days)
+Qty 250: anodize lots / cost / per pc,1 / USD 385.00 / USD 1.54,purchase_orders.csv,"ceil(250÷300) × 385.0 (PO-30602, 2026-10-03); assumes one anodize shipment per 300 pcs"
+Qty 500: anodize lots / cost / per pc,2 / USD 770.00 / USD 1.54,purchase_orders.csv,"ceil(500÷300) × 385.0 (PO-30602, 2026-10-03); assumes one anodize shipment per 300 pcs"
+Qty 1000: anodize lots / cost / per pc,4 / USD 1540.00 / USD 1.54,purchase_orders.csv,"ceil(1000÷300) × 385.0 (PO-30602, 2026-10-03); assumes one anodize shipment per 300 pcs"
+Calendar days to requested FAI date,61,intake required_delivery,2027-01-15 - 2026-11-15

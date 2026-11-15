@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Data quality: step 6, MB-2040 (file-only)</title>
+<style>body{background:#F2F3F5;color:#1A1D21;font-family:'IBM Plex Sans',Arial,sans-serif;font-size:13.5px;padding:24px}main{max-width:1000px;margin:auto}table{border-collapse:collapse;width:100%;background:#fff}th,td{border:1px solid #D6D9DD;padding:4px 7px;text-align:left}th{background:#E4EDF4}.f{background:#F7EBDA;border:1px solid #A8641A;padding:8px}</style></head><body><main>
+<h1>Data consolidation: Chain 1 step 6, MB-2040 rev C (SYNTHETIC)</h1>
+<p class="f"><b>Freshness:</b> file-only run over the static files in <code>inputs/cost</code> and <code>inputs/plant</code>. NetSuite is export-only, so there was no live ERP, CMMS, M365 or planning export. The latest dated records are closed jobs to 2026-09-26 and POs to 2026-10-15.</p>
+<table><tr><th>Figure</th><th>Value</th><th>Filter</th></tr>
+<tr><td>Routing rows</td><td>4</td><td>all rows (all MB-1880 rev B)</td></tr>
+<tr><td>Routing rows for MB-2040</td><td>0</td><td>part == MB-2040: no rung 1</td></tr>
+<tr><td>Closed-job operation rows</td><td>4 (2 work orders: WO-7702, WO-7811)</td><td>all rows</td></tr>
+<tr><td>Closed-job rows for MB-2040</td><td>0</td><td>part == MB-2040: no rung 2</td></tr>
+<tr><td>Actuals joined to routing, exact</td><td>4 of 4</td><td>key part, rev, op, work_center</td></tr>
+<tr><td>Routing ops with no actuals: class 6, genuine one-sided</td><td>2 (ops 10, 40)</td><td>No fix proposed. Ops 10 and 40 were likely not reported against the work orders. Confirm with the shop</td></tr>
+<tr><td>Actuals flagged <code>probable_standard</code></td><td>0</td><td>Backflush check: run per unit within 1% of routing, or two WOs within 1% of each other. The closest deviation is op 30 on WO-7811, at +2.6% against routing. All 4 rows are <code>actuals_confidence: recorded</code></td></tr>
+<tr><td>Work centers in more than one cell</td><td>MILL-V: Cell A and Cell B</td><td>equipment.csv. No Plant-context cell map, so the cell is left as "A or B"</td></tr>
+<tr><td>PO rows</td><td>3 (2 plate, 1 anodize)</td><td>No item master to join against</td></tr>
+</table>
+<p>Units are declared by column name (<code>setup_min</code>, <code>run_min_per_unit</code>, <code>actual_setup_min</code>, <code>actual_run_min_total</code>), so no <code>time_unit_flag</code> was raised. Op 10 "Saw and face blank" is routed to MILL-V, which is odd for a saw operation; confirm. No production work orders carry actual-cost columns, so actual cost is absent, not zero. No CSV fixes were applied; none were needed.</p>
+<p>Dataset tabs (CSV, because no XLSX writer is available this session): <code>out/dataset/routings.csv</code>, <code>operation_actuals.csv</code>, <code>purchase_orders.csv</code>, <code>assets.csv</code>, <code>figures_block.csv</code>.</p>
+</main></body></html>

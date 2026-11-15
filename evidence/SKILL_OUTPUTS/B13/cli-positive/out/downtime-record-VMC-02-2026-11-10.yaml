@@ -1,0 +1,28 @@
+# Downtime record, contract version 3: breakdown_diagnosis -> daily-production-report
+# Advisory. Not written to any system of record.
+contract_version: 3
+site: null            # not stated in event.txt; the only site in the production drop is SITE-1, and VMC-02 is not in it. Confirm.
+asset_id: VMC-02
+asset_id_verbatim: "VMC-02"
+started_at: 2026-11-10T15:24:00-05:00
+ended_at: null        # status after the 16:10 'still down' note is unknown
+duration_minutes: null   # not zero; at least 46 min known
+reason_code: null     # no plant reason code in the event; alarm text kept in reason_text
+reason_text: "SPINDLE OVERLOAD / OVERTEMP alarm; grinding noise ~20 min before; stopped mid-cycle"
+production_wo: WO-8120
+production_wo_verbatim: "WO-8120"
+shift: null           # shift pattern not on file
+production_day: 2026-11-10
+source_system: breakdown_diagnosis
+source_ref: "inputs/breakdown/event.txt"
+
+diagnosis_ref: "out/VMC-02-diagnosis-2026-11-10.html"
+leading_cause: "Spindle bearing damage / preload loss (progressive); chiller cooling deficit possible contributor"
+leading_cause_confidence: medium
+cited_work_orders: ["MW-118", "MW-140"]
+safety_flagged: true
+safety_reason: "Electrical fault, a trip: the spindle drive stopped on a 'SPINDLE OVERLOAD / OVERTEMP' alarm mid-cycle. The OEM manual (Sect. 7.4) says not to run a spindle that is making a grinding noise, and the operator reported grinding for about 20 minutes before the alarm. The drawbar's Belleville spring stack is stored energy, and one of the checks below involves it. The bluish colour on the spindle nose shows it ran hot. Nobody has yet checked whether the spindle turns freely."
+pm_adjustment_proposed: true
+maintenance_wo: null  # no ticket for this event in the maintenance export (latest record 2026-09-24)
+diagnosis_state: advisory
+technician_step: skipped

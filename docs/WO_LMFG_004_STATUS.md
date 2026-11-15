@@ -1,6 +1,8 @@
 # WO-LMFG-004 — LEGION Manufacturing E2E Activation: status
 
-Status: **overall GO/NO-GO = Z** (evidence/WO_LMFG_004_GO_NO_GO.json: 7 T, 0 F, 6 Z). Every remaining Z is an external dependency (CLI sign-in on this account, Fusion, Microsoft 365, NetSuite, Infor M3). Not complete under WO §14.
+Status: **overall GO/NO-GO = Z** (evidence/WO_LMFG_004_GO_NO_GO.json: 8 T, 0 F, 5 Z). Every remaining Z is an external dependency (Fusion, Microsoft 365, NetSuite, Infor M3). Not complete under WO §14.
+Update 2026-11-15: the Claude Code CLI is signed in; all 16 runnable skills were re-run through the standalone CLI with
+plugin discovery (criterion 1 → T). See §2.
 Branch `dev/wo-lmfg-001-phase-a`. Every figure below is taken from a committed evidence file; nothing here is a
 projection.
 
@@ -81,18 +83,42 @@ pooled 100 cannot be relied on). Limits: one run per configuration, same model.
 | Item | Status |
 |---|---|
 | Claude Code CLI | installed, 2.1.325 (desktop-managed install under `%LOCALAPPDATA%\Claude-Data`) |
-| CLI sign-in | **BLOCKED** — `claude auth status`: loggedIn false |
-| Plugin discovery via `claude -p --plugin-dir` | **BLOCKED** (harness route 1 implemented; returns BLOCKED, never PASS, while signed out) |
-| Model-driven execution | **PASS** via route 2: subagents of the signed-in Claude Code desktop session, model `claude-opus-5-5`; plugin loaded **by path** (the model reads the original SKILL.md from a byte-identical copy). These are not labelled CLI executions. |
+| CLI sign-in | **PASS** (2026-11-15, owner signed in in a non-recorded `cmd` window) — `claude auth status`: loggedIn true, authMethod claude.ai, apiProvider firstParty |
+| Plugin discovery via `claude -p --plugin-dir` | **PASS** — 16/16 runnable skills (route 1, `evidence/SKILL_OUTPUTS/<case>/cli-positive/`) |
+| Model-driven execution (route 2) | **PASS**: subagents of the signed-in desktop session, `claude-opus-5-5`, plugin loaded by path (`<case>/positive|negative/`). Kept as separate evidence; not labelled CLI executions. |
 
-Sign-in diagnosis (2026-11-14, no credential value read or shown): there is one Windows account
+### Route 1: standalone Claude Code CLI (evidence/CLAUDE_RUNTIME.json `cli_runs`)
+
+Each run: `claude -p <task> --plugin-dir <byte-identical plugin copy> --restricted --strict-mcp-config
+--permission-mode dontAsk` with a tool allow-list (Read/Write/Edit/Glob/Grep/Skill/Bash; web, curl/wget, pip, git,
+ssh, PowerShell denied). Every `ANTHROPIC_*`/`CLAUDE*` variable of the host desktop session is removed, so the CLI can
+only use its own sign-in. In every run the CLI listed all 17 manufacturing skills from `--plugin-dir` and the model
+entered the case's skill through the **Skill tool** (plugin discovery, not a path given in the prompt).
+
+| | Result |
+|---|---|
+| Positive cases through the CLI | 16/16 PASS (B08 not run: Fusion absent) — model `claude-opus-5-5` |
+| Gated skills (B06, B15, B16, B17) | stopped at their approval gates; the named test operator's decision was given as a resumed second turn (`--resume`), same text as route 2 (`operator_turn` in cases.json) |
+| Independent evaluator | B01–B05: Claude Code CLI (claude-opus-5-5, read-only tools). B06–B17: **NVIDIA NIM `nvidia/nemotron-3.5-lightning-30b-a3b`** (owner decision 2026-11-15, to save Claude usage; a different model family, no tools, SKILL.md + inputs + outputs in the prompt, nothing truncated except B10's two largest inputs at 30 000 chars) |
+| Negative cases | not re-run on route 1 (16/16 PASS on route 2) |
+
+Harness corrections made during route 1 (each recorded in the run where it applied): the 8.3 short temp path
+(`ADMINI~1`) made the CLI treat `./out` as outside its working directory (Write denied) → long path; a prefix-only
+Bash allow-list denied ordinary shell loops (B11 could not run its engine) → Bash allowed with network/install/VCS
+commands denied; the Pro "5-hour limit" message was not recognised (B13–B17 first recorded FAIL in 1–6 s) → detected
+as BLOCKED and re-run; chained-skill reads by `cat` were not counted on route 1 (B13 false FAIL) → same detection as
+route 2, checks recomputed from the recorded tool calls (`--recheck`, no model call); NIM reasoning used up the
+output budget on B06/B10/B11 (no verdict) → larger budget with a no-reasoning fallback, re-judged (`--re-evaluate`).
+Known limit: NIM is a weaker judge than Opus; one NIM verdict (B10) returned the template text as its notes.
+
+Earlier sign-in diagnosis (2026-11-14, no credential value read or shown): there is one Windows account
 (`Administrator`); no `.credentials.json` under `C:\Users\Administrator\.claude` (checked inside and outside the
 sandbox); no Claude entry in Windows Credential Manager; no `CLAUDE_CONFIG_DIR` override (user or machine); no
 credential in the desktop package folder; no CLI in WSL. The desktop app authenticates its own sessions through a
 host proxy that the standalone CLI cannot use. Conclusion: the `claude auth login` flow did not complete on this
 account (the browser step finishes, but the code is never returned to the CLI), so no CLI credential was stored. It is
 not a second account or store. Unblock: complete `claude auth login` in a non-recorded terminal until
-`claude auth status` shows loggedIn true, then `python tools/skill_run.py B04` runs route 1.
+`claude auth status` shows loggedIn true, then `python tools/skill_run.py B04` runs route 1. Resolved 2026-11-15 (see above).
 
 ## 3. Enterprise connector readiness
 
@@ -113,7 +139,7 @@ No mock was used to satisfy any live criterion.
 
 | # | Criterion | Verdict |
 |---|---|---|
-| 1 | Real Claude runtime demonstrated | Z (model-driven PASS; CLI plugin discovery BLOCKED) |
+| 1 | Real Claude runtime demonstrated | T (standalone CLI, plugin discovery via `--plugin-dir`, 16/16 PASS) |
 | 2 | All 17 skills executed in their required environments | Z (16 PASS, B08 BLOCKED on Fusion) |
 | 3 | All skill outputs independently evaluated | T |
 | 4–7 | Microsoft 365 / Fusion / NetSuite / Infor M3 live | Z ×4 (BLOCKED) |
@@ -128,9 +154,7 @@ Protected repository modifications: 0 (Deal-Rescue, ZTL repos, Marketplace, Fede
 
 ## Remaining work (external / owner)
 
-1. CLI sign-in on this Windows account (`claude auth login` completed until `claude auth status` shows loggedIn true),
-   then rerun the cases through route 1 (`python tools/skill_run.py <case>`) for plugin-discovery evidence.
-2. Autodesk Fusion desktop with its MCP add-in and an authorised reference design (B08 and WO §6).
-3. Authorised Microsoft 365, NetSuite and Infor M3 tenants (read-only), provided through a protected environment.
-4. Commercial authorisation for LEGION Marketplace / Federation (PolyForm-NC) before the coalition proposal can be
+1. Autodesk Fusion desktop with its MCP add-in and an authorised reference design (B08 and WO §6).
+2. Authorised Microsoft 365, NetSuite and Infor M3 tenants (read-only), provided through a protected environment.
+3. Commercial authorisation for LEGION Marketplace / Federation (PolyForm-NC) before the coalition proposal can be
    admitted.

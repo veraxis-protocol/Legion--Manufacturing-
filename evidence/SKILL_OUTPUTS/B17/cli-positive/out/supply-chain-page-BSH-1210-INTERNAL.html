@@ -1,0 +1,58 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><title>SUPPLY CHAIN — BSH-1210 alternate source (INTERNAL, not for suppliers)</title><style>body{font-family:Calibri,Arial,sans-serif;max-width:980px;margin:24px auto;font-size:14px;color:#111}table{border-collapse:collapse;margin:8px 0}td,th{border:1px solid #888;padding:4px 6px;vertical-align:top}th{background:#eee}.delim{font-family:Consolas,monospace;background:#f3f3f3;padding:4px}</style></head><body>
+<h1>SUPPLY CHAIN — BSH-1210 alternate source (INTERNAL, not for suppliers)</h1>
+<h2>Single-source finding (read first)</h2>
+<p><b>BSH-1210 has exactly one qualified supplier, and it is the implicated one.</b> Per approved_suppliers.csv:</p>
+<ul>
+<li><b>Alder Sintered Parts (fictitious)</b> is the only row noted &quot;current source BSH-1210&quot;.</li>
+<li><b>Birch Powder Metal (fictitious)</b> is approved for the commodity but not qualified on this part.</li>
+<li><b>Cedar Bearings Inc (fictitious)</b> is conditional, with its audit overdue.</li>
+</ul>
+<p>So there is <b>one approved alternate (Birch) and no qualified alternate.</b> Requalification (samples, first article, and PPAP if required) takes weeks to months, and that clock starts only when the buyer releases this RFQ.</p>
+<h2>Gate status and hard stops</h2>
+<table>
+<tr><th>Check</th><th>State</th></tr>
+<tr><td>NCR-RCV9921</td><td><b>Approved</b>: Test Quality Owner (LEGION WO-LMFG-004 test operator), 2026-11-15T18:06:00-05:00</td></tr>
+<tr><td>Gate 1: supplier-caused flag</td><td><b>Approved</b> by the same owner at the same time, explicitly while the tester calibration check is pending. Leading candidate at medium confidence; competing candidate (receiving measurement bias) still open. If the tester check kills the supplier cause, this sourcing event becomes insurance against single-source risk, not a response to a supplier failure, and should be relabelled</td></tr>
+<tr><td>Hard stop: revision</td><td><b>Cleared on document-control confirmation.</b> Drawing title reads rev A (2025-06-02). Document control (Test Quality Owner, LEGION WO-LMFG-004 test operator) confirmed rev A current, since no ERP exists. Recorded as a confirmation, not an ERP match</td></tr>
+<tr><td>Hard stop: restricted data</td><td>No ITAR/EAR/export marking on the drawing. Customer program classification is not on file; confirm before release</td></tr>
+<tr><td>Gate 2: release</td><td><b>Not released.</b> Nothing has gone to any supplier</td></tr>
+</table>
+<h2>Candidate suppliers (only from approved_suppliers.csv)</h2>
+<table>
+<tr><th>Supplier</th><th>Approval status (csv)</th><th>Commodity match</th><th>Requalification path</th><th>Notes</th></tr>
+<tr><td>Alder Sintered Parts (fictitious)</td><td>approved (audit 2025-11-03): <b>incumbent and implicated</b></td><td>&quot;sintered bronze&quot;</td><td>n/a (current source)</td><td>Subject of NCR-RCV9921 and the held SCAR. Whether to invite a re-quote is the buyer&#x27;s call; no RFQ email drafted</td></tr>
+<tr><td>Birch Powder Metal (fictitious)</td><td>approved (audit 2026-02-20)</td><td>&quot;sintered bronze and iron&quot;</td><td>Part qualification: samples, first article, PPAP level as set by the buyer</td><td>Approved for the commodity, <b>not qualified on BSH-1210</b>. Their 2026-10 quote had no revision stated; it must not be reused and is requoted against rev A</td></tr>
+<tr><td>Cedar Bearings Inc (fictitious)</td><td><b>conditional</b>, audit overdue (last 2024-06-15, 883 days ago): not confirmed approved</td><td>&quot;bronze bushings&quot; (sintered, oil-impregnated capability unconfirmed)</td><td>Supplier audit, then part qualification</td><td>Buyer decides whether to invite before requalification</td></tr>
+</table>
+<p>No other supplier is proposed. None is in the input, and none is invented.</p>
+<h2>Missing items (each with where it should have come from)</h2>
+<table>
+<tr><th>Missing</th><th>Why it matters</th><th>Where it should come from</th></tr>
+<tr><td>Historical usage and annual volume</td><td>Suppliers price 1,000/yr very differently from 12,000/yr. Only one lot size is known (AS-7781: 1,000)</td><td>Usage/receipt history. No ERP exists, so the buyer supplies it</td></tr>
+<tr><td>Quantities of AS-7702 and AS-7744 receipts</td><td>Demand picture</td><td>Receiving records</td></tr>
+<tr><td>Open demand (WO-8150 quantity, other consuming WOs)</td><td>Demand picture and urgency</td><td>Planning</td></tr>
+<tr><td>Quantity breaks 2 and 3</td><td>The bid form needs them</td><td>Buyer, from annual usage</td></tr>
+<tr><td>First article and production need dates</td><td>Delivery section is placeholders</td><td>Planning / buyer</td></tr>
+<tr><td>Standard quality clause set, incl. PPAP level</td><td>Section 4 lists only the drawing&#x27;s clauses; the set is <b>unverified</b>. PPAP level changes cost materially</td><td>Plant quality clause template (not on file)</td></tr>
+<tr><td>Standard commercial terms</td><td>Section 5 is placeholders</td><td>Plant standard terms (not on file)</td></tr>
+<tr><td>Response due date, buyer and technical contacts</td><td>Emails held</td><td>Buyer</td></tr>
+<tr><td>Supplier contact addresses</td><td>Emails held</td><td>Vendor records</td></tr>
+<tr><td>Current price and PO history (internal comparison only)</td><td>No baseline for bids</td><td>PO records. <b>Never put in the package</b></td></tr>
+<tr><td>Plant RFQ template</td><td>Neutral structure used</td><td>Plant document library</td></tr>
+<tr><td>Customer program / export classification</td><td>Restricted-data check is incomplete</td><td>Contract review</td></tr>
+</table>
+<h2>Response tracker: RFQ-BSH1210-A-01</h2>
+<table>
+<tr><th>Supplier</th><th>Approval</th><th>Drafted</th><th>Sent (per buyer)</th><th>Due</th><th>Response</th><th>Chased</th></tr>
+<tr><td>Birch Powder Metal (fictitious)</td><td>approved</td><td>2026-11-15 (HELD)</td><td>—</td><td>not set</td><td>—</td><td>—</td></tr>
+<tr><td>Cedar Bearings Inc (fictitious)</td><td>not confirmed approved</td><td>2026-11-15 (HELD)</td><td>—</td><td>not set</td><td>—</td><td>—</td></tr>
+</table>
+<p><b>Not saved:</b> no Open work page could be written this session (no artifact tools). The tracker is in ./out; paste it back next time.</p>
+<h2>Escape-to-RFQ timestamps (Chain 5)</h2>
+<table>
+<tr><th>Stamp</th><th>Value</th><th>Note</th></tr>
+<tr><td>escape_detected_at</td><td><b>null</b></td><td>No escape established. It is possible (400 pcs issued to WO-8150; shipment check open). Defect found 2026-11-12, time not recorded</td></tr>
+<tr><td>determination_made_at</td><td><b>2026-11-15T17:59:41-05:00</b></td><td><b>The middle of the three; this cannot be reconstructed afterwards.</b> Approved 2026-11-15T18:06:00-05:00</td></tr>
+<tr><td>rfq_issued_at</td><td><b>null</b></td><td>Recorded only when the buyer says the package went out</td></tr>
+</table>
+</body></html>

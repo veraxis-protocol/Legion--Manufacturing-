@@ -1,0 +1,58 @@
+figure,value,computed_from,filter_or_query
+Distinct UTC offsets across inspection + maintenance timestamps,-05:00,both CSVs,timestamp[-6:]
+Zone-naive timestamps,0,both CSVs,tzinfo is None
+Anchor: maint insert change -> first T7-0032 inspection (min),25,maintenance_log r2; inspection r11,tool_id=='T7-0032' first row vs event 'insert replaced'
+Anchor ordering consistent (last T7-0031 < change < first T7-0032),True,both CSVs,timestamp compare
+Inspection rows,11,inspection_measurements.csv,all data rows
+Rows out of spec (>22.021 or <22.000),3,inspection_measurements.csv,"bore_dia_mm outside [22.000,22.021]"
+Out-of-spec rows: lots,L-0412,inspection_measurements.csv,lot of OOS rows
+Out-of-spec rows: part_seq,1;90;180,inspection_measurements.csv,part_seq of OOS rows
+Max bore measured (mm),22.034,inspection_measurements.csv,max(bore_dia_mm)
+Max bore excess over USL (um),13.0,inspection_measurements.csv,max - 22.021
+SPC basis,"Individuals (I-MR) chart, n=10 points, lots L-0409,L-0410,L-0411,L-0412, insert T7-0031 only, sigma=MRbar/1.128",inspection_measurements.csv,tool_id=='T7-0031'
+SPC centreline (mm),22.018,same computation,mean(x)
+SPC MR-bar (um),2.9,same computation,mean(|x_i - x_i-1|)
+SPC sigma-hat (um),2.6,same computation,MRbar/1.128
+SPC UCL (mm),22.0257,same computation,CL + 3 sigma
+SPC LCL (mm),22.0103,same computation,CL - 3 sigma
+Points beyond control limits,L-0409#1=22.008;L-0409#40=22.01;L-0412#90=22.029;L-0412#180=22.034,same computation,x>UCL or x<LCL
+Max point minus UCL (um),8.3,same computation,max(x) - UCL
+"Run rule checked: trend (>=6 consecutive increasing, Nelson rule 3)",longest increasing run = 10 points -> FIRED,same computation,consecutive x_i > x_i-1
+"Trend rule first fires at (point, time)",L-0411#1=22.017 at 2026-11-10T07:20:00-05:00,same computation,6th consecutive increasing point
+Hours from trend-rule signal to first out-of-spec part,7.83,same computation,t(first OOS) - t(rule fires)
+Run rule checked: 9 on one side of CL (Nelson rule 2),longest same-side run = 6 -> not fired,same computation,sign(x - CL)
+Run rule checked: 2 of 3 beyond 2 sigma (Nelson rule 5),FIRED,same computation,z=(x-CL)/sigma
+Note: limits computed on a drifting series,CL/limits are inflated by the trend itself; the trend rule is the valid signal,interpretation,-
+"Total drift on T7-0031, first to last point (um)",26.0,inspection_measurements.csv,T7-0031 last x - first x
+Elapsed time on T7-0031 measured span (h),38.7,inspection_measurements.csv,last t - first t
+Linear slope bore vs time on T7-0031 (um/h),0.535,same computation,OLS x ~ hours
+R^2 bore vs time on T7-0031,0.876,same computation,1-SSR/SST
+Within-lot wear rate L-0409 (um/part),0.051,inspection_measurements.csv,"lot==L-0409, (x_last-x_first)/(seq_last-seq_first)"
+Within-lot wear rate L-0410 (um/part),0.051,inspection_measurements.csv,"lot==L-0410, (x_last-x_first)/(seq_last-seq_first)"
+Within-lot wear rate L-0411 (um/part),0.029,inspection_measurements.csv,"lot==L-0411, (x_last-x_first)/(seq_last-seq_first)"
+Within-lot wear rate L-0412 (um/part),0.067,inspection_measurements.csv,"lot==L-0412, (x_last-x_first)/(seq_last-seq_first)"
+L-0411 headroom to USL at last measured part #70 (um),2.0,inspection_measurements.csv,22.021 - x(L-0411 #70)
+L-0411 projected USL crossing at its own rate (part_seq),139,same computation,"70 + headroom/rate_L-0411 (linear extrapolation, NOT a measurement)"
+L-0412 first part (#1) bore vs USL (um over),1.0,inspection_measurements.csv,x(L-0412 #1) - 22.021
+First part on new insert T7-0032 (mm),22.007,inspection_measurements.csv r11,tool_id=='T7-0032'
+Step change at insert replacement (um),-27.0,inspection_measurements.csv,x(first T7-0032) - x(last T7-0031)
+"First part on T7-0031 (L-0409 #1, mm)",22.008,inspection_measurements.csv r1,first T7-0031 row
+Cluster by lot: OOS/sampled,L-0409 0/3; L-0410 0/2; L-0411 0/2; L-0412 3/3; L-0413 0/1,inspection_measurements.csv,group by lot
+Cluster by shift: OOS/sampled,1 0/6; 2 3/5,inspection_measurements.csv,group by shift
+Cluster by operator: OOS/sampled,OP-11 0/6; OP-23 3/5,inspection_measurements.csv,group by operator
+Cluster by machine: OOS/sampled,VMC-03 3/11,inspection_measurements.csv,group by machine
+Cluster by tool_id: OOS/sampled,T7-0031 3/10; T7-0032 0/1,inspection_measurements.csv,group by tool_id
+Shift-boundary transitions on T7-0031,L-0409#80(s1)=22.012 -> L-0410#1(s2)=22.013 (+1.0 um) | L-0410#60(s2)=22.016 -> L-0411#1(s1)=22.017 (+1.0 um) | L-0411#70(s1)=22.019 -> L-0412#1(s2)=22.022 (+3.0 um),inspection_measurements.csv,consecutive rows with shift change
+Shift vs operator confounded,True,inspection_measurements.csv,shift==1 <=> operator==OP-11 for every row
+Tool changes recorded on T7-0031 rows after first,0,inspection_measurements.csv,"tool_id=='T7-0031' and tool_change_since_last=='yes', excluding first row"
+Lots run on insert T7-0031,4,inspection_measurements.csv,distinct lot where tool_id=='T7-0031'
+Parts on T7-0031 - LOWER BOUND from highest sampled part_seq per lot,390,inspection_measurements.csv,sum over lots of max(part_seq); true count needs WO quantities
+"Parts on T7-0031 if L-0409..L-0411 were also 300 (assumption, unverified)",1080,assumption,3x300 + L-0412 #180
+Maint event 2026-11-08T16:00:00-05:00 'coolant concentration adjusted 6% -> 8%': inspection rows before / after,0/11,maintenance_log.csv + inspection,t < event time
+Maint event 2026-11-11T06:40:00-05:00 'boring head T7 insert replaced (T7-0031 -> T7-0032) after inspection hold': inspection rows before / after,10/1,maintenance_log.csv + inspection,t < event time
+Hours from coolant change to first measurement,15.2,both CSVs,first insp t - coolant event t
+Coolant changes recorded after 2026-11-08 16:00 (incl. reversal),0,maintenance_log.csv,event contains 'coolant' and t > 2026-11-08T16:00
+Maintenance records on VMC-03 in log,2,maintenance_log.csv,asset_id=='VMC-03'
+Prior NCRs same part + 'bore oversize',NCR-0219,prior_ncrs.csv,part=='MB-1880' and defect contains 'bore oversize'
+Prior NCRs total in file,2,prior_ncrs.csv,all rows
+NCR-0219 CAPA and effectiveness,CAPA-071 insert change every 600 parts | capa_effective=not verified,prior_ncrs.csv,ncr=='NCR-0219'

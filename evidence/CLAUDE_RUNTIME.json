@@ -1,6 +1,6 @@
 {
-  "source_commit": "3282ee2e89b430e14b0a563c59e3c6b1cfc49f7a",
-  "executed_at_utc": "2026-11-15T17:46:27+00:00",
+  "source_commit": "06355fc97489fff982fbddb763400c30eac2fb57",
+  "executed_at_utc": "2026-11-15T23:24:38+00:00",
   "environment": {
     "python": "3.14.7",
     "implementation": "CPython",
@@ -32,6 +32,171 @@
   "plugin_discovery_via_cli": "PASS",
   "cli_runs": [
     {
+      "case": "B01",
+      "variant": "positive",
+      "status": "PASS",
+      "reason": null,
+      "model": "claude-opus-5-5",
+      "claude_code_version": "2.1.325",
+      "manufacturing_skills_discovered": 17,
+      "skill_tool_invocations": [
+        "claude-for-manufacturing:onboarding"
+      ],
+      "deterministic_checks": "9/9",
+      "failed_checks": [],
+      "evaluator_engine": "claude-code-cli",
+      "evaluator_model": "claude-opus-5-5",
+      "evaluator_verdict": "PASS",
+      "evaluator_fabrication": [],
+      "evaluator_notes": "The plant profile and config page take the site, timezone, shifts, systems and assets from the inputs, labelled 'inferred'. NetSuite, M3 and Fusion are listed as not live and untested, with setup steps quoted. Memo rates (145/95/85/60, 12%, 18%, 10%) appear only in the internal approval draft, not in out/ files. The 15% threshold and 5-day RFQ default are labelled defaults. Downtime cost and production-day start are not assumed. 61 gaps listed. Everything is marked draft; nothing written or sent. No arithmetic to check.",
+      "duration_s": 329.1,
+      "usage": {
+        "input_tokens": 34,
+        "cache_creation_input_tokens": 122184,
+        "cache_read_input_tokens": 1143106,
+        "output_tokens": 37799,
+        "output_tokens_details": {
+          "thinking_tokens": 10282
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 122184,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 3573,
+            "cache_read_input_tokens": 124152,
+            "cache_creation_input_tokens": 5049,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 5049
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "run_record": "evidence/SKILL_OUTPUTS/B01/cli-positive/run.json"
+    },
+    {
+      "case": "B02",
+      "variant": "positive",
+      "status": "PASS",
+      "reason": null,
+      "model": "claude-opus-5-5",
+      "claude_code_version": "2.1.325",
+      "manufacturing_skills_discovered": 17,
+      "skill_tool_invocations": [
+        "claude-for-manufacturing:custom-connector"
+      ],
+      "deterministic_checks": "8/8",
+      "failed_checks": [],
+      "evaluator_engine": "claude-code-cli",
+      "evaluator_model": "claude-opus-5-5",
+      "evaluator_verdict": "PASS",
+      "evaluator_fabrication": [],
+      "evaluator_notes": "Run landed on Tier 4 (read-only DB) with reasons and logged tiers 1–2 as not checked. Connector opens with mode=ro plus query_only; SHA-256 unchanged. Readback matches the sqlite: 3 assets, 3 WOs, open MW-170. Unmapped fields, location, timezone and the self-referential count are stated. Registration correctly withheld. Minor gap: the CREATE VIEW SQL is on disk only, not printed in the reply as the skill's Output rule wants. Plant-setup step skipped (stated).",
+      "duration_s": 167.7,
+      "usage": {
+        "input_tokens": 32,
+        "cache_creation_input_tokens": 52393,
+        "cache_read_input_tokens": 514039,
+        "output_tokens": 17685,
+        "output_tokens_details": {
+          "thinking_tokens": 2951
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 52393,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 2212,
+            "cache_read_input_tokens": 53674,
+            "cache_creation_input_tokens": 5736,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 5736
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "run_record": "evidence/SKILL_OUTPUTS/B02/cli-positive/run.json"
+    },
+    {
+      "case": "B03",
+      "variant": "positive",
+      "status": "PASS",
+      "reason": null,
+      "model": "claude-opus-5-5",
+      "claude_code_version": "2.1.325",
+      "manufacturing_skills_discovered": 17,
+      "skill_tool_invocations": [
+        "claude-for-manufacturing:data-consolidate"
+      ],
+      "deterministic_checks": "4/4",
+      "failed_checks": [],
+      "evaluator_engine": "claude-code-cli",
+      "evaluator_model": "claude-opus-5-5",
+      "evaluator_verdict": "PASS",
+      "evaluator_fabrication": [],
+      "evaluator_notes": "Output is CSV per tab, which the run states openly. The HTML report names the mismatched keys: CNC-01 and CNC-02 against the equipment list, VMC against MILL-*, and CELL-A versus Cell A. Recomputed sums 1,000 good/15 scrap, plan 800=500+300, 17 rows and 45/20-min downtime are all correct. No fixes were applied without a yes. Gaps: counts were made by reading rather than in code (disclosed). Rows with no time zone were not flagged in integrity_flags. The report loads Google Fonts.",
+      "duration_s": 232.5,
+      "usage": {
+        "input_tokens": 24,
+        "cache_creation_input_tokens": 68867,
+        "cache_read_input_tokens": 428377,
+        "output_tokens": 26340,
+        "output_tokens_details": {
+          "thinking_tokens": 8763
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 68867,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 1645,
+            "cache_read_input_tokens": 66979,
+            "cache_creation_input_tokens": 8905,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 8905
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "run_record": "evidence/SKILL_OUTPUTS/B03/cli-positive/run.json"
+    },
+    {
       "case": "B04",
       "variant": "positive",
       "status": "PASS",
@@ -44,6 +209,8 @@
       ],
       "deterministic_checks": "11/11",
       "failed_checks": [],
+      "evaluator_engine": "claude-code-cli",
+      "evaluator_model": "claude-opus-5-5",
       "evaluator_verdict": "PASS",
       "evaluator_fabrication": [],
       "evaluator_notes": "MB-2040 rev C, breaks 250/500/1000 not averaged, FAI 2027-01-15, 6061-T6, MIL-A-8625 Type II black, H7 bore verbatim (from_text). Flatness null/TBD in missing register; rev B ignored per customer, recorded and asked. ISO 2768-m ±0.3/±0.2 applications correct; stale date 2026-11-09 and 9 business days correct. Path A correct (spec only). Draft email unsent, bid_decision_state draft, constraint-free/no-cost degradations stated. Minor: rev B listed ambiguous rather than plainly superseded.",
@@ -83,6 +250,666 @@
         "fallback_credit": null
       },
       "run_record": "evidence/SKILL_OUTPUTS/B04/cli-positive/run.json"
+    },
+    {
+      "case": "B05",
+      "variant": "positive",
+      "status": "PASS",
+      "reason": null,
+      "model": "claude-opus-5-5",
+      "claude_code_version": "2.1.325",
+      "manufacturing_skills_discovered": 17,
+      "skill_tool_invocations": [
+        "claude-for-manufacturing:quote-build"
+      ],
+      "deterministic_checks": "9/9",
+      "failed_checks": [],
+      "evaluator_engine": "claude-code-cli",
+      "evaluator_model": "claude-opus-5-5",
+      "evaluator_verdict": "PASS",
+      "evaluator_fabrication": [],
+      "evaluator_notes": "Material from PO-30588 ($219.90) and anodize from PO-30602 (1/2/4 lots). Hours are borrowed from MB-1880's routing and WO-7702/WO-7811, labelled rung 4, setup and run separate. Rates come from the memo. I rechecked starts, plates, markups, setup, run, subtotals, 18% margin, unit prices and variances; all match. Kerf, allowance and margin basis are labelled assumptions. Flatness, laser marking, FAI hours, terms and shop load are flagged as gaps. Draft, not sent. The customer block shows no hours, rates or margin.",
+      "duration_s": 279.2,
+      "usage": {
+        "input_tokens": 24,
+        "cache_creation_input_tokens": 64499,
+        "cache_read_input_tokens": 417866,
+        "output_tokens": 30123,
+        "output_tokens_details": {
+          "thinking_tokens": 9714
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 64499,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 4575,
+            "cache_read_input_tokens": 69371,
+            "cache_creation_input_tokens": 2145,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 2145
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "run_record": "evidence/SKILL_OUTPUTS/B05/cli-positive/run.json"
+    },
+    {
+      "case": "B06",
+      "variant": "positive",
+      "status": "PASS",
+      "reason": null,
+      "model": "claude-opus-5-5",
+      "claude_code_version": "2.1.325",
+      "manufacturing_skills_discovered": 17,
+      "skill_tool_invocations": [
+        "claude-for-manufacturing:rfq-to-quote"
+      ],
+      "deterministic_checks": "10/10",
+      "failed_checks": [],
+      "evaluator_engine": "nvidia-nim",
+      "evaluator_model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "evaluator_verdict": "PASS",
+      "evaluator_fabrication": [],
+      "evaluator_notes": "All core products present; no fabrication; gaps stated; approvals respected; arithmetic consistent.",
+      "duration_s": 596.1,
+      "usage": {
+        "input_tokens": 32,
+        "cache_creation_input_tokens": 82019,
+        "cache_read_input_tokens": 2191621,
+        "output_tokens": 38029,
+        "output_tokens_details": {
+          "thinking_tokens": 10233
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 82019,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 3559,
+            "cache_read_input_tokens": 166472,
+            "cache_creation_input_tokens": 2035,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 2035
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "run_record": "evidence/SKILL_OUTPUTS/B06/cli-positive/run.json"
+    },
+    {
+      "case": "B07",
+      "variant": "positive",
+      "status": "PASS",
+      "reason": null,
+      "model": "claude-opus-5-5",
+      "claude_code_version": "2.1.325",
+      "manufacturing_skills_discovered": 17,
+      "skill_tool_invocations": [
+        "claude-for-manufacturing:supplier-quote-request"
+      ],
+      "deterministic_checks": "9/9",
+      "failed_checks": [],
+      "evaluator_engine": "nvidia-nim",
+      "evaluator_model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "evaluator_verdict": "PASS",
+      "evaluator_fabrication": [],
+      "evaluator_notes": "PASS: RFQ package built at drawing rev A with demand, quality clauses, mandated response format; comparison flags supplier A hardness exception (25-45 vs 25-40 HRF) and supplier B unstated revision and tooling; no award or sending; missing data and revision check held; arithmetic consistent.",
+      "duration_s": 254.4,
+      "usage": {
+        "input_tokens": 28,
+        "cache_creation_input_tokens": 65293,
+        "cache_read_input_tokens": 507979,
+        "output_tokens": 28294,
+        "output_tokens_details": {
+          "thinking_tokens": 5507
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 65293,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 3778,
+            "cache_read_input_tokens": 67056,
+            "cache_creation_input_tokens": 5254,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 5254
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "run_record": "evidence/SKILL_OUTPUTS/B07/cli-positive/run.json"
+    },
+    {
+      "case": "B09",
+      "variant": "positive",
+      "status": "PASS",
+      "reason": null,
+      "model": "claude-opus-5-5",
+      "claude_code_version": "2.1.325",
+      "manufacturing_skills_discovered": 17,
+      "skill_tool_invocations": [
+        "claude-for-manufacturing:trade-study-report"
+      ],
+      "deterministic_checks": "8/8",
+      "failed_checks": [],
+      "evaluator_engine": "nvidia-nim",
+      "evaluator_model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "evaluator_verdict": "PASS",
+      "evaluator_fabrication": [],
+      "evaluator_notes": "Work product performs core task: produces scored comparison, sensitivity analysis, decision memo with scores cited to sources. All consequential numbers traceable to inputs or labelled as estimates/assumptions. No values presented as fact beyond inputs. Data gaps explicitly stated (production volume, tooling confirmation, etc.). Approval gates respected (draft status, no external release). Arithmetic verified: weighted totals consistent with normalization conventions and rounding.",
+      "duration_s": 170.5,
+      "usage": {
+        "input_tokens": 22,
+        "cache_creation_input_tokens": 41280,
+        "cache_read_input_tokens": 245370,
+        "output_tokens": 18040,
+        "output_tokens_details": {
+          "thinking_tokens": 7070
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 41280,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 3012,
+            "cache_read_input_tokens": 44414,
+            "cache_creation_input_tokens": 3883,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 3883
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "run_record": "evidence/SKILL_OUTPUTS/B09/cli-positive/run.json"
+    },
+    {
+      "case": "B10",
+      "variant": "positive",
+      "status": "PASS",
+      "reason": null,
+      "model": "claude-opus-5-5",
+      "claude_code_version": "2.1.325",
+      "manufacturing_skills_discovered": 17,
+      "skill_tool_invocations": [
+        "claude-for-manufacturing:daily-production-report"
+      ],
+      "deterministic_checks": "9/9",
+      "failed_checks": [],
+      "evaluator_engine": "nvidia-nim",
+      "evaluator_model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "evaluator_verdict": "PASS",
+      "evaluator_fabrication": [],
+      "evaluator_notes": "<=80 words",
+      "duration_s": 223.9,
+      "usage": {
+        "input_tokens": 22,
+        "cache_creation_input_tokens": 58842,
+        "cache_read_input_tokens": 336417,
+        "output_tokens": 26631,
+        "output_tokens_details": {
+          "thinking_tokens": 4109
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 58842,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 842,
+            "cache_read_input_tokens": 64521,
+            "cache_creation_input_tokens": 1338,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 1338
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "run_record": "evidence/SKILL_OUTPUTS/B10/cli-positive/run.json"
+    },
+    {
+      "case": "B11",
+      "variant": "positive",
+      "status": "PASS",
+      "reason": null,
+      "model": "claude-opus-5-5",
+      "claude_code_version": "2.1.325",
+      "manufacturing_skills_discovered": 17,
+      "skill_tool_invocations": [
+        "claude-for-manufacturing:morning-plant-pulse"
+      ],
+      "deterministic_checks": "7/7",
+      "failed_checks": [],
+      "evaluator_engine": "nvidia-nim",
+      "evaluator_model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "evaluator_verdict": "PASS",
+      "evaluator_fabrication": [],
+      "evaluator_notes": "All core tasks performed; required outputs present; claims sourced from inputs or labelled; no fabrication; gaps handled; approval rules respected; arithmetic consistent.",
+      "duration_s": 187.4,
+      "usage": {
+        "input_tokens": 38,
+        "cache_creation_input_tokens": 90454,
+        "cache_read_input_tokens": 977367,
+        "output_tokens": 20509,
+        "output_tokens_details": {
+          "thinking_tokens": 3513
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 90454,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 784,
+            "cache_read_input_tokens": 96311,
+            "cache_creation_input_tokens": 1160,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 1160
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "run_record": "evidence/SKILL_OUTPUTS/B11/cli-positive/run.json"
+    },
+    {
+      "case": "B12",
+      "variant": "positive",
+      "status": "PASS",
+      "reason": null,
+      "model": "claude-opus-5-5",
+      "claude_code_version": "2.1.325",
+      "manufacturing_skills_discovered": 17,
+      "skill_tool_invocations": [
+        "claude-for-manufacturing:breakdown-diagnosis"
+      ],
+      "deterministic_checks": "9/9",
+      "failed_checks": [],
+      "evaluator_engine": "nvidia-nim",
+      "evaluator_model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "evaluator_verdict": "PASS",
+      "evaluator_fabrication": [],
+      "evaluator_notes": "<=80 words",
+      "duration_s": 143.1,
+      "usage": {
+        "input_tokens": 22,
+        "cache_creation_input_tokens": 33938,
+        "cache_read_input_tokens": 259149,
+        "output_tokens": 14287,
+        "output_tokens_details": {
+          "thinking_tokens": 3728
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 33938,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 1972,
+            "cache_read_input_tokens": 40325,
+            "cache_creation_input_tokens": 630,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 630
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "run_record": "evidence/SKILL_OUTPUTS/B12/cli-positive/run.json"
+    },
+    {
+      "case": "B13",
+      "variant": "positive",
+      "status": "PASS",
+      "reason": null,
+      "model": "claude-opus-5-5",
+      "claude_code_version": "2.1.325",
+      "manufacturing_skills_discovered": 17,
+      "skill_tool_invocations": [
+        "claude-for-manufacturing:breakdown-to-next-report"
+      ],
+      "deterministic_checks": "9/9",
+      "failed_checks": [],
+      "evaluator_engine": "nvidia-nim",
+      "evaluator_model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "evaluator_verdict": "PASS",
+      "evaluator_fabrication": [],
+      "evaluator_notes": "All core tasks completed; outputs present; claims sourced from inputs; no fabrication; gaps stated; approvals respected; arithmetic consistent.",
+      "duration_s": 406.4,
+      "usage": {
+        "input_tokens": 40,
+        "cache_creation_input_tokens": 104801,
+        "cache_read_input_tokens": 1073370,
+        "output_tokens": 39494,
+        "output_tokens_details": {
+          "thinking_tokens": 11655
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 104801,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 3223,
+            "cache_read_input_tokens": 104326,
+            "cache_creation_input_tokens": 475,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 475
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "run_record": "evidence/SKILL_OUTPUTS/B13/cli-positive/run.json"
+    },
+    {
+      "case": "B14",
+      "variant": "positive",
+      "status": "PASS",
+      "reason": null,
+      "model": "claude-opus-5-5",
+      "claude_code_version": "2.1.325",
+      "manufacturing_skills_discovered": 17,
+      "skill_tool_invocations": [
+        "claude-for-manufacturing:ncr-writeup"
+      ],
+      "deterministic_checks": "10/10",
+      "failed_checks": [],
+      "evaluator_engine": "nvidia-nim",
+      "evaluator_model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "evaluator_verdict": "PASS",
+      "evaluator_fabrication": [],
+      "evaluator_notes": "NCR completed: requirement MB-1880 rev B note 4 cited; suspect quantity at least 300 (lot) with locations 120 WIP, 150 FG, 30 shipped; recurrence NCR-0219 CAPA-071 not verified; all numbers sourced or labelled; gaps stated; draft approval respected; arithmetic consistent.",
+      "duration_s": 152.1,
+      "usage": {
+        "input_tokens": 22,
+        "cache_creation_input_tokens": 53660,
+        "cache_read_input_tokens": 346711,
+        "output_tokens": 16242,
+        "output_tokens_details": {
+          "thinking_tokens": 3886
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 53660,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 3396,
+            "cache_read_input_tokens": 57254,
+            "cache_creation_input_tokens": 3423,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 3423
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "run_record": "evidence/SKILL_OUTPUTS/B14/cli-positive/run.json"
+    },
+    {
+      "case": "B15",
+      "variant": "positive",
+      "status": "PASS",
+      "reason": null,
+      "model": "claude-opus-5-5",
+      "claude_code_version": "2.1.325",
+      "manufacturing_skills_discovered": 17,
+      "skill_tool_invocations": [
+        "claude-for-manufacturing:root-cause-capa"
+      ],
+      "deterministic_checks": "7/7",
+      "failed_checks": [],
+      "evaluator_engine": "nvidia-nim",
+      "evaluator_model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "evaluator_verdict": "PASS",
+      "evaluator_fabrication": [],
+      "evaluator_notes": "Work product meets all skill criteria: core task completed, required outputs present, claims sourced, no fabrication, gaps handled, approval rules respected, arithmetic consistent.",
+      "duration_s": 406.9,
+      "usage": {
+        "input_tokens": 6,
+        "cache_creation_input_tokens": 10017,
+        "cache_read_input_tokens": 158668,
+        "output_tokens": 11827,
+        "output_tokens_details": {
+          "thinking_tokens": 1056
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 10017,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 4545,
+            "cache_read_input_tokens": 80527,
+            "cache_creation_input_tokens": 7631,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 7631
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "run_record": "evidence/SKILL_OUTPUTS/B15/cli-positive/run.json"
+    },
+    {
+      "case": "B16",
+      "variant": "positive",
+      "status": "PASS",
+      "reason": null,
+      "model": "claude-opus-5-5",
+      "claude_code_version": "2.1.325",
+      "manufacturing_skills_discovered": 17,
+      "skill_tool_invocations": [
+        "claude-for-manufacturing:inspection-to-capa"
+      ],
+      "deterministic_checks": "10/10",
+      "failed_checks": [],
+      "evaluator_engine": "nvidia-nim",
+      "evaluator_model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "evaluator_verdict": "PASS",
+      "evaluator_fabrication": [],
+      "evaluator_notes": "<=80 words",
+      "duration_s": 555.8,
+      "usage": {
+        "input_tokens": 20,
+        "cache_creation_input_tokens": 21290,
+        "cache_read_input_tokens": 1112434,
+        "output_tokens": 17121,
+        "output_tokens_details": {
+          "thinking_tokens": 3033
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 21290,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 2479,
+            "cache_read_input_tokens": 134891,
+            "cache_creation_input_tokens": 1096,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 1096
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "run_record": "evidence/SKILL_OUTPUTS/B16/cli-positive/run.json"
+    },
+    {
+      "case": "B17",
+      "variant": "positive",
+      "status": "PASS",
+      "reason": null,
+      "model": "claude-opus-5-5",
+      "claude_code_version": "2.1.325",
+      "manufacturing_skills_discovered": 17,
+      "skill_tool_invocations": [
+        "claude-for-manufacturing:supplier-escape-to-alternate-source"
+      ],
+      "deterministic_checks": "13/13",
+      "failed_checks": [],
+      "evaluator_engine": "nvidia-nim",
+      "evaluator_model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "evaluator_verdict": "PASS",
+      "evaluator_fabrication": [],
+      "evaluator_notes": "<=80 words",
+      "duration_s": 609.1,
+      "usage": {
+        "input_tokens": 20,
+        "cache_creation_input_tokens": 22327,
+        "cache_read_input_tokens": 1250918,
+        "output_tokens": 14995,
+        "output_tokens_details": {
+          "thinking_tokens": 1438
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 22327,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 6175,
+            "cache_read_input_tokens": 145395,
+            "cache_creation_input_tokens": 4487,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 4487
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "run_record": "evidence/SKILL_OUTPUTS/B17/cli-positive/run.json"
     }
   ],
   "model_driven_execution": "PASS",

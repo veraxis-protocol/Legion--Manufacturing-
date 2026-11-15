@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Data Quality Report — SITE-1 — production day 2026-11-12 (SYNTHETIC)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1A1D21;--paper:#F2F3F5;--paper-raised:#FFFFFF;--line:#D6D9DD;--accent:#1F5C8B;--accent-soft:#E4EDF4;--good:#2E7248;--good-soft:#E3EFE7;--warn:#A8641A;--warn-soft:#F7EBDA;--critical:#A93226;--critical-soft:#F9E9E7;
+--font-display:'IBM Plex Sans Condensed','Arial Narrow',sans-serif;--font-body:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,sans-serif;--font-mono:'IBM Plex Mono','SF Mono',Consolas,monospace;
+--text-xs:.75rem;--text-sm:.875rem;--text-base:1rem;--text-lg:1.125rem;--text-xl:1.375rem;--text-2xl:1.75rem;--text-3xl:2.25rem}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#E8EAEC;--paper:#15181B;--paper-raised:#1D2126;--line:#2E343A;--accent:#6BA8D4;--accent-soft:#1B2C39;--good:#6FBF88;--good-soft:#1B2E22;--warn:#D9A15C;--warn-soft:#33271A;--critical:#DE8378;--critical-soft:#35201E}}
+:root[data-theme="dark"]{--ink:#E8EAEC;--paper:#15181B;--paper-raised:#1D2126;--line:#2E343A;--accent:#6BA8D4;--accent-soft:#1B2C39;--good:#6FBF88;--good-soft:#1B2E22;--warn:#D9A15C;--warn-soft:#33271A;--critical:#DE8378;--critical-soft:#35201E}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 var(--text-base)/1.5 var(--font-body)}
+.page{display:flex;flex-direction:column;gap:1.25rem;max-width:900px;margin:0 auto;padding:2rem 1.5rem}
+.panel{background:var(--paper-raised);border:1px solid var(--line);border-radius:4px;padding:1.5rem}
+h1,h2,h3{font-family:var(--font-display);font-weight:600;margin:0 0 .5rem}
+h1{font-size:var(--text-2xl)}h2{font-size:var(--text-xl)}h3{font-size:var(--text-lg)}
+.meta{font-size:var(--text-sm);margin:0;opacity:.8}
+.table-scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:var(--text-sm)}
+th,td{text-align:left;padding:.4rem .5rem;border-bottom:1px solid var(--line);vertical-align:top}
+td.num,code,.mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+td.num{text-align:right}
+.status{display:inline-block;padding:.15rem .55rem;border-radius:2px;font:600 var(--text-xs) var(--font-body);text-transform:uppercase;letter-spacing:.04em}
+.status--good{background:var(--good-soft);color:var(--good)}.status--warn{background:var(--warn-soft);color:var(--warn)}.status--critical{background:var(--critical-soft);color:var(--critical)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem}
+.stat-figure{font:600 var(--text-3xl) var(--font-mono);font-variant-numeric:tabular-nums}
+.stat-label{font-weight:600}.stat-context{font-size:var(--text-sm);margin:.25rem 0 0}
+.proposal{border-left:4px solid var(--warn)}
+.decision{border:2px solid var(--warn)}
+.page-footer{font-size:var(--text-xs);opacity:.7;text-align:center}
+ul{margin:.25rem 0;padding-left:1.25rem}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="page-header">
+  <h1>Data Quality Report</h1>
+  <p class="meta">SITE-1 (SYNTHETIC test plant) · Generated Nov 15, 2026 · data as of production day Nov 12, 2026 (no zone in any source)</p>
+  <p class="meta"><strong>All figures were counted by reading, not computed. Verify them before relying on them.</strong> Code execution was unavailable in this session.</p>
+</header>
+
+<div class="panel decision">
+  <h2>DECISION REQUIRED: APPROVE OR REJECT</h2>
+  <p><strong>Cell label <code>CELL-A</code> (MES output) = <code>Cell A</code> (equipment list).</strong></p>
+  <ul>
+    <li><strong>Why it is proposed:</strong> the two labels match after case folding (rung 2) and punctuation folding (rung 3).</li>
+    <li><strong>Limits:</strong> cell is a label, not a join key. Approving it does <em>not</em> link any machine. CNC-01 and CNC-02 stay unmatched (see Finding 1).</li>
+    <li><strong>Rows touched:</strong> 3 output rows (output.csv lines 2–4: WO-1001, WO-1002, WO-1003; 1,000 good and 15 scrap, unit not stated) and 2 equipment rows (HMC-01, VMC-02).</li>
+    <li><strong>Approve:</strong> both labels are read as one cell for cell-level rollups. The spelling each file used is kept in <code>cell_verbatim</code>, and the rule is saved to the approved-normalizations list.</li>
+    <li><strong>Reject:</strong> the labels stay separate, so MES cell totals cannot be laid against the equipment list by cell. The rule is not proposed again.</li>
+    <li><strong>Reply asked for:</strong> "approve cell CELL-A = Cell A" or "reject". Please include the name of the person approving.</li>
+  </ul>
+</div>
+
+<div class="panel freshness">
+  <h2>Sources</h2>
+  <div class="table-scroll"><table>
+    <thead><tr><th>Source</th><th>Last refreshed</th><th>Covers</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Production output (MES export) <code>output.csv</code></td><td class="num">not readable this session</td><td class="num">2026-11-12</td><td><span class="status status--warn">3 days old</span></td></tr>
+      <tr><td>Downtime (MES export) <code>downtime.csv</code></td><td class="num">not readable this session</td><td class="num">2026-11-12 09:10–13:20</td><td><span class="status status--warn">3 days old</span></td></tr>
+      <tr><td>Plan (planning export) <code>plan.csv</code></td><td class="num">not readable this session</td><td class="num">2026-11-12</td><td><span class="status status--warn">3 days old</span></td></tr>
+      <tr><td>Production work orders <code>work_orders.csv</code> (source system not stated)</td><td class="num">not readable this session</td><td class="num">open orders, due 11-13 to 11-15</td><td><span class="status status--warn">No record date</span></td></tr>
+      <tr><td>Routing <code>routing.csv</code></td><td class="num">not readable this session</td><td class="num">no date</td><td><span class="status status--critical">Set aside: incomplete</span></td></tr>
+      <tr><td>Equipment list <code>equipment.csv</code>: <strong>maintenance/asset data is from a file export, not a live CMMS</strong></td><td class="num">2026-11-13 23:04 (file time)</td><td class="num">reference list, undated</td><td><span class="status status--good">Read</span></td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>The "last night" drop holds only Nov 12.</strong> Today is Sun Nov 15. Output, plan and downtime all cover one day, Nov 12, and nothing covers Nov 13 or Nov 14. Either the export was not refreshed, or the plant did not run on those days. Please confirm which before this feeds a morning report.</p>
+  <p>The activity sources all cover the same single day, so their windows overlap fully. There is no date-window mismatch (class 7), and no row is out of window. No source carries a timestamp later than the run time, so there is no future-timestamp finding.</p>
+</div>
+
+<div class="tiles">
+  <div class="panel stat-tile"><div class="stat-figure">10 / 10</div><div class="stat-label">Part and work-order keys matched</div><p class="stat-context">All exact. No normalization was needed.</p></div>
+  <div class="panel stat-tile"><div class="stat-figure">0 / 7</div><div class="stat-label">Machine IDs matched to equipment list</div><p class="stat-context">The MES uses CNC-01 and CNC-02, which are not in the equipment list.</p></div>
+  <div class="panel stat-tile"><div class="stat-figure">10 / 17</div><div class="stat-label">Dataset rows joined</div><p class="stat-context">The 7 unjoined rows are 2 downtime events and 5 equipment rows, all caused by Finding 1.</p></div>
+</div>
+
+<div class="panel">
+  <h2>Rows in vs rows joined, per tab</h2>
+  <div class="table-scroll"><table>
+    <thead><tr><th>Tab</th><th>Joined on</th><th>Rows in</th><th>Joined</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>parts (derived from work orders)</td><td>part</td><td class="num">2</td><td class="num">2</td><td><span class="status status--warn">No item master</span></td></tr>
+      <tr><td>production_work_orders</td><td>production WO</td><td class="num">3</td><td class="num">3</td><td><span class="status status--good">Matched</span></td></tr>
+      <tr><td>production_output</td><td>production WO, part</td><td class="num">3</td><td class="num">3</td><td><span class="status status--good">Matched</span></td></tr>
+      <tr><td>plan</td><td>part</td><td class="num">2</td><td class="num">2</td><td><span class="status status--good">Matched</span></td></tr>
+      <tr><td>downtime_events</td><td>asset</td><td class="num">2</td><td class="num">0</td><td><span class="status status--critical">Orphan machine IDs</span></td></tr>
+      <tr><td>assets</td><td>asset</td><td class="num">5</td><td class="num">0</td><td><span class="status status--critical">No crosswalk</span></td></tr>
+      <tr><td>routings</td><td>part</td><td class="num">2 (file)</td><td class="num">not loaded</td><td><span class="status status--critical">Set aside</span></td></tr>
+    </tbody>
+  </table></div>
+  <p>Not in the drop, so these tabs are missing rather than empty: <strong>operation_actuals, sales_orders, lots, inventory, purchase_orders, inspection_results, maintenance_work_orders, ncrs.</strong></p>
+</div>
+
+<div class="panel">
+  <h2>Finding 1: The MES and the equipment list number machines differently <span class="status status--critical">Orphan record (class 1)</span></h2>
+  <p>Output, plan and downtime name two machines, <code>CNC-01</code> and <code>CNC-02</code>. The equipment list names five: <code>HMC-01, VMC-02, VMC-03, LTH-01, DEB-01</code>. None of the five matches on any normalization rung. This is a single cause behind 7 rows (2 machine IDs), not 7 separate problems.</p>
+  <div class="table-scroll"><table>
+    <thead><tr><th>File, line</th><th>Machine</th><th>What it says</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">downtime.csv:2</td><td class="mono">CNC-01</td><td>45 min TOOL, tool change overrun, 09:10–09:55</td></tr>
+      <tr><td class="mono">downtime.csv:3</td><td class="mono">CNC-02</td><td>20 min MAT, waiting on material, 13:00–13:20</td></tr>
+      <tr><td class="mono">output.csv:2</td><td class="mono">CNC-01</td><td>WO-1001 PN-100, 480 good / 12 scrap, shift 1</td></tr>
+      <tr><td class="mono">plan.csv:3</td><td class="mono">CNC-02</td><td>PN-200, 250 planned, 8 h, work center VMC</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>The evidence points in different directions.</strong> The MES puts both CNC machines in CELL-A. The equipment list's Cell A holds HMC-01 (a horizontal machine, MILL-H) and VMC-02. The plan says both CNC machines are work center <code>VMC</code>, and the vertical machines on the list are VMC-02 (Cell A) and VMC-03 (Cell B). Nothing establishes which physical machine CNC-01 or CNC-02 is. They could also be machines missing from the equipment list.</p>
+  <p><strong>Proposed fix:</strong> none automatic. I won't guess a mapping. <strong>Question for the plant:</strong> which equipment-list asset is CNC-01, and which is CNC-02? Alternatively, is the equipment list missing them?</p>
+  <p><strong>What it means:</strong> downtime and OEE can be reported by MES machine name, but not tied to any machine's install year, cell or maintenance history until the crosswalk exists.</p>
+  <p><strong>The 5 equipment-list assets</strong> are not referenced anywhere in the drop. I have left them <em>unclassified</em> rather than calling them "not running" (class 6), because two of them may be CNC-01 and CNC-02 under another name.</p>
+</div>
+
+<div class="panel proposal">
+  <span class="status status--warn">Awaiting approval</span>
+  <h3>Format drift (class 2): cell label <code>CELL-A</code> vs <code>Cell A</code></h3>
+  <p>The 3 output rows read <code>CELL-A</code> and the 2 equipment rows read <code>Cell A</code>. Folding case and punctuation makes them identical. 3 output rows would line up with Cell A if this is approved. No machine join follows from it. See the decision block at the top.</p>
+</div>
+
+<div class="panel">
+  <h2>Finding 2: Work-center names don't match <span class="status status--warn">Question</span></h2>
+  <p>The plan and routing use work center <code>VMC</code>. The equipment list uses <code>MILL-H, MILL-V, TURN, INSP</code>. No rung matches them, and there is no plant work-center-to-cell map on file, so <code>cell</code> is null on the plan rows. Cell can't be read from the equipment list either, because MILL-V sits in both Cell A and Cell B.</p>
+  <p><strong>Proposed fix:</strong> none automatic. Please tell me whether <code>VMC</code> means <code>MILL-V</code>, and give the work-center-to-cell map; running onboarding would capture it.</p>
+</div>
+
+<div class="panel">
+  <h2>Finding 3: The routing file is incomplete <span class="status status--critical">Set aside</span></h2>
+  <p><code>routing.csv</code> has part, operation, work center and run minutes per unit. It has <strong>no setup time and no revision</strong>, so it fails the routing check and was not loaded into a <code>routings</code> tab. Loading it would have meant filling the gap.</p>
+  <div class="table-scroll"><table>
+    <thead><tr><th>Line</th><th>Part</th><th>Op</th><th>Work center</th><th>Run</th><th>Setup</th><th>Revision</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">routing.csv:2</td><td class="mono">PN-100</td><td class="num">10</td><td class="mono">VMC</td><td class="num">1.0 min/unit</td><td>not in file</td><td>unknown</td></tr>
+      <tr><td class="mono">routing.csv:3</td><td class="mono">PN-200</td><td class="num">10</td><td class="mono">VMC</td><td class="num">1.8 min/unit</td><td>not in file</td><td>unknown</td></tr>
+    </tbody>
+  </table></div>
+  <p>Both of its part numbers match the work orders exactly, so the keys are fine. The file's unit is minutes, as declared in its header, and the plan's <code>planned_hours</code> is in hours. Nothing was converted.</p>
+  <p><strong>What it means:</strong> the file is good enough for a run-rate (performance) comparison, but not for quoting. Quoting would need setup time and a revision. No actuals file was provided, so the backflush check (<code>probable_standard</code>) did not run.</p>
+</div>
+
+<div class="panel">
+  <h2>Clean checks</h2>
+  <ul>
+    <li><strong>Part numbers:</strong> <code>PN-100</code> and <code>PN-200</code> are spelled identically in output, plan, routing and work orders. All 7 part references matched exactly.</li>
+    <li><strong>Production work orders:</strong> all 3 output work orders (WO-1001, WO-1002, WO-1003) exist in work_orders.csv, and every output row's part agrees with its work order's part.</li>
+    <li><strong>Plan vs work orders:</strong> PN-100 is planned at 800, which equals WO-1001 (500) plus WO-1003 (300). PN-200 is planned at 250, which equals WO-1002.</li>
+    <li><strong>Duplicate keys (class 8):</strong> none. The grains checked were WO + shift + day, part + date + machine, part + op, and asset ID.</li>
+    <li><strong>Leading zeros, revision suffix, case/whitespace on keys (classes 3, 4, 5):</strong> none fired.</li>
+    <li><strong>Downtime integrity:</strong> both events end after they start, and the stated minutes equal end minus start (45 and 20).</li>
+    <li><strong>Sign convention, units conflict, future timestamps:</strong> no file has a sales-order or fulfilment line, no key has two units, and no date is later than the run time.</li>
+  </ul>
+</div>
+
+<div class="panel">
+  <h2>Gaps that limit what the dataset can be used for</h2>
+  <ul>
+    <li><strong>Unit of measure:</strong> no file states one. Every quantity is <code>uom = not_stated</code>, and units are never assumed.</li>
+    <li><strong>Time zone:</strong> no file carries one. Output and plan have dates only. The figures can be counted, but they can't be correlated across systems or split at midnight.</li>
+    <li><strong>Site:</strong> only output.csv names one (<code>SITE-1</code>). Every other tab has <code>not_stated</code>.</li>
+    <li><strong>Item master:</strong> no file in the drop has one. The parts tab is derived from the work orders and has no description, cost or UOM.</li>
+    <li><strong>Vocabulary:</strong> this report uses the plugin's standard terms (production work order, cell, work center), not this plant's own words, because no plant profile exists yet.</li>
+  </ul>
+</div>
+
+<div class="panel">
+  <h2>What the plant should know (not data-quality defects)</h2>
+  <ul>
+    <li>WO-1002 was due Nov 13 and is still RELEASED. It has 220 good and 3 scrap on Nov 12 against 250 ordered.</li>
+    <li>WO-1003 produced its full 300 on Nov 12 and is still RELEASED, not closed.</li>
+  </ul>
+</div>
+
+<div class="panel">
+  <h2>Normalizations applied</h2>
+  <p><strong>None.</strong> Every key that joined did so exactly. One normalization is proposed (the cell label) and is waiting for a yes.</p>
+  <h3>Verbatim lookups</h3>
+  <p>Searching by the spelling the source printed works. <code>WO-1002</code> finds <code>production_output</code> output.csv:3 and <code>production_work_orders</code> work_orders.csv:3. <code>CNC-01</code> finds downtime.csv:2, output.csv:2 and output.csv:4, and plan.csv:2. Format-drift, revision-suffix and case-and-whitespace lookups are <em>not applicable: no key in this drop has a second spelling.</em></p>
+</div>
+
+<div class="panel">
+  <h2>Figures block <span class="status status--warn">Counted by reading, not computed</span></h2>
+  <div class="table-scroll"><table>
+    <thead><tr><th>Figure</th><th>Value</th><th>Source</th><th>Filter</th></tr></thead>
+    <tbody>
+      <tr><td>Input data rows</td><td class="num">17</td><td>all 6 files</td><td>equipment 5 + work orders 3 + output 3 + plan 2 + downtime 2 + routing 2</td></tr>
+      <tr><td>Dataset rows written</td><td class="num">17</td><td>6 tabs</td><td>parts 2 (derived) + PWO 3 + output 3 + plan 2 + downtime 2 + assets 5; routing 2 set aside</td></tr>
+      <tr><td>Dataset rows joined</td><td class="num">10</td><td>tabs</td><td>join_status = matched</td></tr>
+      <tr><td>· matched exactly</td><td class="num">10</td><td></td><td>no ladder rung fired</td></tr>
+      <tr><td>· matched after normalization</td><td class="num">0</td><td></td><td>10 + 0 = 10 ✓</td></tr>
+      <tr><td>Dataset rows unjoined</td><td class="num">7</td><td></td><td>downtime 2 (class 1) + assets 5 (unclassified); 10 + 7 = 17 ✓</td></tr>
+      <tr><td>Part references checked</td><td class="num">7 matched / 7</td><td>output, plan, routing</td><td>part_number in work_orders.csv</td></tr>
+      <tr><td>Production WO references checked</td><td class="num">3 matched / 3</td><td>output</td><td>work_order in work_orders.csv</td></tr>
+      <tr><td>Machine-ID references</td><td class="num">0 matched / 7</td><td>output 3, plan 2, downtime 2</td><td>asset_id in equipment.csv; 2 distinct IDs</td></tr>
+      <tr><td>Class 1, orphan</td><td class="num">7 rows (2 IDs)</td><td></td><td>2 on asset-keyed rows (downtime) + 5 where asset is an attribute</td></tr>
+      <tr><td>Class 2, format drift (proposed)</td><td class="num">3 output rows</td><td>cell attribute</td><td>CELL-A vs Cell A</td></tr>
+      <tr><td>Classes 3, 4, 5, 7, 8</td><td class="num">0 each</td><td></td><td></td></tr>
+      <tr><td>Integrity flags raised</td><td class="num">0</td><td></td><td>all 8 checks; downtime 45 = 45, 20 = 20</td></tr>
+      <tr><td>Rows awaiting a proposed fix (join_status proposed_normalization)</td><td class="num">0</td><td></td><td>the cell proposal changes no key, so no row is held</td></tr>
+      <tr><td>probable_standard rows</td><td class="num">not run</td><td></td><td>no operation actuals in the drop</td></tr>
+      <tr><td>Output 1,000 good / 15 scrap (unit not stated)</td><td class="num">1,000 / 15</td><td>output.csv</td><td>480+220+300; 12+3+0</td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+<footer class="page-footer">Generated by <strong>data-consolidate</strong> — Manufacturing · SYNTHETIC test data · file-only run, nothing written to any external system</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+id,figure,value,unit,period,source,filter
+page.shifts,"Shifts present in output.csv, 2026-11-12",1 and 2,,2026-11-12,output.csv,distinct shift where production_day == 2026-11-12
+page.days_missing,"Production days between the newest day in the drop and the run date with no rows in plan, output or downtime",2,,window,"plan.csv, output.csv, downtime.csv","days 2026-11-13, 2026-11-14: no rows in any of the three files"
+page.wo.WO-1001.good,"Good output in the drop, WO-1001",480,,window,output.csv,sum qty_good where work_order == WO-1001
+page.wo.WO-1001.remaining,"Ordered less good in the drop, WO-1001",20,,window,"work_orders.csv, output.csv",qty_ordered - good
+page.wo.WO-1002.good,"Good output in the drop, WO-1002",220,,window,output.csv,sum qty_good where work_order == WO-1002
+page.wo.WO-1002.remaining,"Ordered less good in the drop, WO-1002",30,,window,"work_orders.csv, output.csv",qty_ordered - good
+page.wo.WO-1003.good,"Good output in the drop, WO-1003",300,,window,output.csv,sum qty_good where work_order == WO-1003
+page.wo.WO-1003.remaining,"Ordered less good in the drop, WO-1003",0,,window,"work_orders.csv, output.csv",qty_ordered - good
+page.wo.short_unjudged,"Released work orders short of ordered qty in the drop, due after the newest production day",2,,window,"work_orders.csv, output.csv",qty_ordered > good and due_date > 2026-11-12
+page.scrap_total,"Scrap qty, all parts, 2026-11-12",15,,2026-11-12,pulse_model.json today.scrap,sum of scrap over parts
+page.trend.days_with_data,Days in the 14-day trend window with data from this run's exports,1,,window,day_records.json,data_complete == true
+page.stored_days,Production days stored on the dashboard,0 (no artifact store this session; nothing stored),,window,ArtifactData query,not run: Artifact / ArtifactData tools absent

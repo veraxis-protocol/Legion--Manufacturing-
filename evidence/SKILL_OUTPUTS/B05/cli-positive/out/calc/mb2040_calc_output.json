@@ -1,0 +1,591 @@
+{
+ "ops": [
+  {
+   "op": 10,
+   "wc": "MILL-V",
+   "desc": "Saw and face blank",
+   "routing_setup_min": 20.0,
+   "routing_run_min": 1.5,
+   "actuals": [],
+   "probable_standard": null,
+   "setup": {
+    "low": 20.0,
+    "exp": 20.0,
+    "high": 20.0,
+    "exp_src": "MB-1880 Rev B routing (no actuals; no spread available)"
+   },
+   "run": {
+    "low": 1.5,
+    "exp": 1.5,
+    "high": 1.5,
+    "exp_src": "MB-1880 Rev B routing (no actuals; no spread available)"
+   }
+  },
+  {
+   "op": 20,
+   "wc": "MILL-V",
+   "desc": "Mill profile bore and holes op1",
+   "routing_setup_min": 45.0,
+   "routing_run_min": 6.2,
+   "actuals": [
+    {
+     "wo": "WO-7702",
+     "setup_min": 52.0,
+     "run_min_per_started": 6.5686,
+     "run_min_per_good": 6.7,
+     "closed": "2026-07-18"
+    },
+    {
+     "wo": "WO-7811",
+     "setup_min": 47.0,
+     "run_min_per_started": 6.3654,
+     "run_min_per_good": 6.48,
+     "closed": "2026-09-26"
+    }
+   ],
+   "probable_standard": false,
+   "setup": {
+    "low": 45.0,
+    "exp": 49.5,
+    "high": 52.0,
+    "exp_src": "median of MB-1880 actuals WO-7702, WO-7811"
+   },
+   "run": {
+    "low": 6.2,
+    "exp": 6.467024923918487,
+    "high": 6.568627450980392,
+    "exp_src": "median of MB-1880 actuals per started piece"
+   },
+   "variance_vs_routing": {
+    "WO-7702": {
+     "setup": 0.1556,
+     "run": 0.0595
+    },
+    "WO-7811": {
+     "setup": 0.0444,
+     "run": 0.0267
+    }
+   }
+  },
+  {
+   "op": 30,
+   "wc": "MILL-V",
+   "desc": "Op2 flip and finish",
+   "routing_setup_min": 30.0,
+   "routing_run_min": 3.1,
+   "actuals": [
+    {
+     "wo": "WO-7702",
+     "setup_min": 34.0,
+     "run_min_per_started": 3.2843,
+     "run_min_per_good": 3.35,
+     "closed": "2026-07-18"
+    },
+    {
+     "wo": "WO-7811",
+     "setup_min": 29.0,
+     "run_min_per_started": 3.1238,
+     "run_min_per_good": 3.18,
+     "closed": "2026-09-26"
+    }
+   ],
+   "probable_standard": true,
+   "setup": {
+    "low": 29.0,
+    "exp": 31.5,
+    "high": 34.0,
+    "exp_src": "median of MB-1880 actuals WO-7702, WO-7811"
+   },
+   "run": {
+    "low": 3.1,
+    "exp": 3.2040429138256483,
+    "high": 3.284313725490196,
+    "exp_src": "median of MB-1880 actuals per started piece"
+   },
+   "variance_vs_routing": {
+    "WO-7702": {
+     "setup": 0.1333,
+     "run": 0.0595
+    },
+    "WO-7811": {
+     "setup": -0.0333,
+     "run": 0.0077
+    }
+   }
+  },
+  {
+   "op": 40,
+   "wc": "INSP",
+   "desc": "Deburr and inspect",
+   "routing_setup_min": 10.0,
+   "routing_run_min": 2.0,
+   "actuals": [],
+   "probable_standard": null,
+   "setup": {
+    "low": 10.0,
+    "exp": 10.0,
+    "high": 10.0,
+    "exp_src": "MB-1880 Rev B routing (no actuals; no spread available)"
+   },
+   "run": {
+    "low": 2.0,
+    "exp": 2.0,
+    "high": 2.0,
+    "exp_src": "MB-1880 Rev B routing (no actuals; no spread available)"
+   }
+  }
+ ],
+ "plate_po": {
+  "po_number": "PO-30588",
+  "po_date": "2026-09-30",
+  "vendor": "Metals Supply Co (fictitious)",
+  "item": "AL6061-PL-0.5",
+  "description": "6061-T6 plate 0.5in x 12in x 48in",
+  "qty": "12",
+  "uom": "each",
+  "unit_price_usd": "219.90",
+  "received_date": "2026-10-07"
+ },
+ "anod_po": {
+  "po_number": "PO-30602",
+  "po_date": "2026-10-03",
+  "vendor": "Bright Anodize LLC (fictitious)",
+  "item": "OSP-ANOD-II-BLK",
+  "description": "Type II black anodize per lot (up to 300 pcs <=150 mm)",
+  "qty": "3",
+  "uom": "lot",
+  "unit_price_usd": "385.00",
+  "received_date": "2026-10-15"
+ },
+ "scrap": 0.018404907975460124,
+ "results": {
+  "low": [
+   {
+    "qty": 250,
+    "starts": 255,
+    "scrap_pcs_allowed": 5,
+    "plates": 10,
+    "blanks_bought": 270,
+    "material": 2199.0,
+    "material_markup": 263.88,
+    "material_sell_basis": 2462.88,
+    "anod_lots": 1,
+    "osp": 385.0,
+    "osp_markup": 38.5,
+    "osp_sell_basis": 423.5,
+    "setup_cost": 158.83,
+    "setup_per_pc": 0.6353,
+    "run_cost": 4870.5,
+    "conversion": 5029.33,
+    "subtotal": 7915.71,
+    "margin": 1737.6,
+    "price_total": 9653.31,
+    "unit_price": 38.61,
+    "alt_unit_price_margin_on_conversion_only": 36.08,
+    "hours_by_wc": {
+     "MILL-V": {
+      "setup_h": 1.57,
+      "run_h": 45.9
+     },
+     "INSP": {
+      "setup_h": 0.17,
+      "run_h": 8.5
+     }
+    }
+   },
+   {
+    "qty": 500,
+    "starts": 510,
+    "scrap_pcs_allowed": 10,
+    "plates": 19,
+    "blanks_bought": 513,
+    "material": 4178.1,
+    "material_markup": 501.37,
+    "material_sell_basis": 4679.47,
+    "anod_lots": 2,
+    "osp": 770.0,
+    "osp_markup": 77.0,
+    "osp_sell_basis": 847.0,
+    "setup_cost": 158.83,
+    "setup_per_pc": 0.3177,
+    "run_cost": 9741.0,
+    "conversion": 9899.83,
+    "subtotal": 15426.31,
+    "margin": 3386.26,
+    "price_total": 18812.57,
+    "unit_price": 37.63,
+    "alt_unit_price_margin_on_conversion_only": 35.2,
+    "hours_by_wc": {
+     "MILL-V": {
+      "setup_h": 1.57,
+      "run_h": 91.8
+     },
+     "INSP": {
+      "setup_h": 0.17,
+      "run_h": 17.0
+     }
+    }
+   },
+   {
+    "qty": 1000,
+    "starts": 1019,
+    "scrap_pcs_allowed": 19,
+    "plates": 38,
+    "blanks_bought": 1026,
+    "material": 8356.2,
+    "material_markup": 1002.74,
+    "material_sell_basis": 9358.94,
+    "anod_lots": 4,
+    "osp": 1540.0,
+    "osp_markup": 154.0,
+    "osp_sell_basis": 1694.0,
+    "setup_cost": 158.83,
+    "setup_per_pc": 0.1588,
+    "run_cost": 19462.9,
+    "conversion": 19621.73,
+    "subtotal": 30674.68,
+    "margin": 6733.47,
+    "price_total": 37408.14,
+    "unit_price": 37.41,
+    "alt_unit_price_margin_on_conversion_only": 34.98,
+    "hours_by_wc": {
+     "MILL-V": {
+      "setup_h": 1.57,
+      "run_h": 183.42
+     },
+     "INSP": {
+      "setup_h": 0.17,
+      "run_h": 33.97
+     }
+    }
+   }
+  ],
+  "exp": [
+   {
+    "qty": 250,
+    "starts": 255,
+    "scrap_pcs_allowed": 5,
+    "plates": 10,
+    "blanks_bought": 270,
+    "material": 2199.0,
+    "material_markup": 263.88,
+    "material_sell_basis": 2462.88,
+    "anod_lots": 1,
+    "osp": 385.0,
+    "osp_markup": 38.5,
+    "osp_sell_basis": 423.5,
+    "setup_cost": 169.92,
+    "setup_per_pc": 0.6797,
+    "run_cost": 5020.32,
+    "conversion": 5190.24,
+    "subtotal": 8076.62,
+    "margin": 1772.92,
+    "price_total": 9849.53,
+    "unit_price": 39.4,
+    "alt_unit_price_margin_on_conversion_only": 36.86,
+    "hours_by_wc": {
+     "MILL-V": {
+      "setup_h": 1.68,
+      "run_h": 47.48
+     },
+     "INSP": {
+      "setup_h": 0.17,
+      "run_h": 8.5
+     }
+    }
+   },
+   {
+    "qty": 500,
+    "starts": 510,
+    "scrap_pcs_allowed": 10,
+    "plates": 19,
+    "blanks_bought": 513,
+    "material": 4178.1,
+    "material_markup": 501.37,
+    "material_sell_basis": 4679.47,
+    "anod_lots": 2,
+    "osp": 770.0,
+    "osp_markup": 77.0,
+    "osp_sell_basis": 847.0,
+    "setup_cost": 169.92,
+    "setup_per_pc": 0.3398,
+    "run_cost": 10040.64,
+    "conversion": 10210.55,
+    "subtotal": 15737.03,
+    "margin": 3454.47,
+    "price_total": 19191.5,
+    "unit_price": 38.38,
+    "alt_unit_price_margin_on_conversion_only": 35.96,
+    "hours_by_wc": {
+     "MILL-V": {
+      "setup_h": 1.68,
+      "run_h": 94.95
+     },
+     "INSP": {
+      "setup_h": 0.17,
+      "run_h": 17.0
+     }
+    }
+   },
+   {
+    "qty": 1000,
+    "starts": 1019,
+    "scrap_pcs_allowed": 19,
+    "plates": 38,
+    "blanks_bought": 1026,
+    "material": 8356.2,
+    "material_markup": 1002.74,
+    "material_sell_basis": 9358.94,
+    "anod_lots": 4,
+    "osp": 1540.0,
+    "osp_markup": 154.0,
+    "osp_sell_basis": 1694.0,
+    "setup_cost": 169.92,
+    "setup_per_pc": 0.1699,
+    "run_cost": 20061.59,
+    "conversion": 20231.5,
+    "subtotal": 31284.45,
+    "margin": 6867.32,
+    "price_total": 38151.77,
+    "unit_price": 38.15,
+    "alt_unit_price_margin_on_conversion_only": 35.73,
+    "hours_by_wc": {
+     "MILL-V": {
+      "setup_h": 1.68,
+      "run_h": 189.72
+     },
+     "INSP": {
+      "setup_h": 0.17,
+      "run_h": 33.97
+     }
+    }
+   }
+  ],
+  "high": [
+   {
+    "qty": 250,
+    "starts": 255,
+    "scrap_pcs_allowed": 5,
+    "plates": 10,
+    "blanks_bought": 270,
+    "material": 2199.0,
+    "material_markup": 263.88,
+    "material_sell_basis": 2462.88,
+    "anod_lots": 1,
+    "osp": 385.0,
+    "osp_markup": 38.5,
+    "osp_sell_basis": 423.5,
+    "setup_cost": 177.83,
+    "setup_per_pc": 0.7113,
+    "run_cost": 5093.75,
+    "conversion": 5271.58,
+    "subtotal": 8157.96,
+    "margin": 1790.77,
+    "price_total": 9948.74,
+    "unit_price": 39.79,
+    "alt_unit_price_margin_on_conversion_only": 37.26,
+    "hours_by_wc": {
+     "MILL-V": {
+      "setup_h": 1.77,
+      "run_h": 48.25
+     },
+     "INSP": {
+      "setup_h": 0.17,
+      "run_h": 8.5
+     }
+    }
+   },
+   {
+    "qty": 500,
+    "starts": 510,
+    "scrap_pcs_allowed": 10,
+    "plates": 19,
+    "blanks_bought": 513,
+    "material": 4178.1,
+    "material_markup": 501.37,
+    "material_sell_basis": 4679.47,
+    "anod_lots": 2,
+    "osp": 770.0,
+    "osp_markup": 77.0,
+    "osp_sell_basis": 847.0,
+    "setup_cost": 177.83,
+    "setup_per_pc": 0.3557,
+    "run_cost": 10187.5,
+    "conversion": 10365.33,
+    "subtotal": 15891.81,
+    "margin": 3488.45,
+    "price_total": 19380.25,
+    "unit_price": 38.76,
+    "alt_unit_price_margin_on_conversion_only": 36.33,
+    "hours_by_wc": {
+     "MILL-V": {
+      "setup_h": 1.77,
+      "run_h": 96.5
+     },
+     "INSP": {
+      "setup_h": 0.17,
+      "run_h": 17.0
+     }
+    }
+   },
+   {
+    "qty": 1000,
+    "starts": 1019,
+    "scrap_pcs_allowed": 19,
+    "plates": 38,
+    "blanks_bought": 1026,
+    "material": 8356.2,
+    "material_markup": 1002.74,
+    "material_sell_basis": 9358.94,
+    "anod_lots": 4,
+    "osp": 1540.0,
+    "osp_markup": 154.0,
+    "osp_sell_basis": 1694.0,
+    "setup_cost": 177.83,
+    "setup_per_pc": 0.1778,
+    "run_cost": 20355.02,
+    "conversion": 20532.86,
+    "subtotal": 31585.8,
+    "margin": 6933.47,
+    "price_total": 38519.27,
+    "unit_price": 38.52,
+    "alt_unit_price_margin_on_conversion_only": 36.09,
+    "hours_by_wc": {
+     "MILL-V": {
+      "setup_h": 1.77,
+      "run_h": 192.81
+     },
+     "INSP": {
+      "setup_h": 0.17,
+      "run_h": 33.97
+     }
+    }
+   }
+  ]
+ },
+ "figures": {
+  "routing_rows_MB1880_revB": {
+   "value": 4,
+   "basis": "routings.csv rows where part==MB-1880"
+  },
+  "routing_rows_MB2040": {
+   "value": 0,
+   "basis": "routings.csv rows where part==MB-2040"
+  },
+  "closed_WOs_MB1880": {
+   "value": 2,
+   "basis": "distinct work_order in closed_jobs.csv where part==MB-1880: WO-7702, WO-7811"
+  },
+  "closed_WOs_MB2040": {
+   "value": 0,
+   "basis": "closed_jobs.csv where part==MB-2040"
+  },
+  "actuals_date_range": {
+   "value": [
+    "2026-07-18",
+    "2026-09-26"
+   ],
+   "basis": "min/max closed_date"
+  },
+  "plate_POs": {
+   "value": 2,
+   "basis": "purchase_orders.csv item==AL6061-PL-0.5"
+  },
+  "scrap_rate_WO-7702": {
+   "value": 0.01961,
+   "basis": "6/(300+6)"
+  },
+  "scrap_rate_WO-7811": {
+   "value": 0.01768,
+   "basis": "9/(500+9)"
+  },
+  "scrap_rate_pooled": {
+   "value": 0.018404907975460124,
+   "basis": "15/(800+15) over WO-7702, WO-7811"
+  },
+  "var_op20_WO-7702": {
+   "value": {
+    "setup": 0.1556,
+    "run": 0.0595
+   },
+   "basis": "(actual - MB-1880 routing)/routing; run per started piece"
+  },
+  "var_op20_WO-7811": {
+   "value": {
+    "setup": 0.0444,
+    "run": 0.0267
+   },
+   "basis": "(actual - MB-1880 routing)/routing; run per started piece"
+  },
+  "var_op30_WO-7702": {
+   "value": {
+    "setup": 0.1333,
+    "run": 0.0595
+   },
+   "basis": "(actual - MB-1880 routing)/routing; run per started piece"
+  },
+  "var_op30_WO-7811": {
+   "value": {
+    "setup": -0.0333,
+    "run": 0.0077
+   },
+   "basis": "(actual - MB-1880 routing)/routing; run per started piece"
+  },
+  "plate_price_change": {
+   "value": 0.0353,
+   "basis": "(PO-30588 - PO-30411)/PO-30411"
+  },
+  "blanks_per_plate_by_allowance_mm": {
+   "value": {
+    "0": 28,
+    "5": 27,
+    "10": 27
+   },
+   "basis": "nest 80+a x 120+a mm in 304.8 x 1219.2 mm, 3 mm kerf, best orientation"
+  },
+  "blanks_per_plate_used": {
+   "value": 27,
+   "basis": "5 mm allowance case"
+  },
+  "stock_thickness_mm": {
+   "value": 12.7,
+   "basis": "0.5 in plate vs 12 mm finished: 0.7 mm total to face"
+  },
+  "unit_price_low_250": {
+   "value": 38.61,
+   "basis": "case low; (subtotal/(1-0.18))/qty"
+  },
+  "unit_price_low_500": {
+   "value": 37.63,
+   "basis": "case low; (subtotal/(1-0.18))/qty"
+  },
+  "unit_price_low_1000": {
+   "value": 37.41,
+   "basis": "case low; (subtotal/(1-0.18))/qty"
+  },
+  "unit_price_exp_250": {
+   "value": 39.4,
+   "basis": "case exp; (subtotal/(1-0.18))/qty"
+  },
+  "unit_price_exp_500": {
+   "value": 38.38,
+   "basis": "case exp; (subtotal/(1-0.18))/qty"
+  },
+  "unit_price_exp_1000": {
+   "value": 38.15,
+   "basis": "case exp; (subtotal/(1-0.18))/qty"
+  },
+  "unit_price_high_250": {
+   "value": 39.79,
+   "basis": "case high; (subtotal/(1-0.18))/qty"
+  },
+  "unit_price_high_500": {
+   "value": 38.76,
+   "basis": "case high; (subtotal/(1-0.18))/qty"
+  },
+  "unit_price_high_1000": {
+   "value": 38.52,
+   "basis": "case high; (subtotal/(1-0.18))/qty"
+  }
+ }
+}

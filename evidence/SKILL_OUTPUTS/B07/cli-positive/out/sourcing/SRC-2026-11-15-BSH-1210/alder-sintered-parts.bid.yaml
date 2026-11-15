@@ -1,0 +1,101 @@
+# Supplier bid record (contract v1). INTERNAL. JSON is valid YAML.
+{
+  "contract_version": 1,
+  "site": "not set (no plant profile)",
+  "event_ref": "SRC-2026-11-15-BSH-1210",
+  "bid_ref": "SRC-2026-11-15-BSH-1210/A/1",
+  "supersedes": null,
+  "supplier_id": "unlisted",
+  "supplier_id_verbatim": "A",
+  "supplier_name": "Alder Sintered Parts",
+  "approval_status": "not_confirmed_approved",
+  "received_at": null,
+  "received_at_note": "no date in the file; nothing dates the bid",
+  "received_via": "pasted",
+  "source_ref": "bid_supplier_A.txt",
+  "ingested_at": "2026-11-15T13:12-05:00",
+  "revision_quoted": "A",
+  "revision_ref": "bid_supplier_A.txt, line 2",
+  "supplier_quote_no": "Q-A-118",
+  "validity_until": null,
+  "validity_stated": "valid 30 days (from an undated quote; cannot be converted to a date)",
+  "validity_ref": "bid_supplier_A.txt, line 2",
+  "currency": "USD",
+  "breaks": [
+    {
+      "quantity": 800,
+      "uom": "each",
+      "unit_price": null,
+      "as_quoted": "not priced at this break; quoted breaks: 1,000 pcs 0.62 USD/ea; 3,000 pcs 0.55 USD/ea",
+      "lead_time_first_article": null,
+      "lead_time_production": null,
+      "lead_time_as_quoted": "4 weeks ARO",
+      "source_ref": "bid_supplier_A.txt, line 3"
+    },
+    {
+      "quantity": 1200,
+      "uom": "each",
+      "unit_price": null,
+      "as_quoted": "not priced at this break; quoted breaks: 1,000 pcs 0.62 USD/ea; 3,000 pcs 0.55 USD/ea",
+      "lead_time_first_article": null,
+      "lead_time_production": null,
+      "lead_time_as_quoted": "4 weeks ARO",
+      "source_ref": "bid_supplier_A.txt, line 3"
+    },
+    {
+      "quantity": 3200,
+      "uom": "each",
+      "unit_price": null,
+      "as_quoted": "not priced at this break; quoted breaks: 1,000 pcs 0.62 USD/ea; 3,000 pcs 0.55 USD/ea",
+      "lead_time_first_article": null,
+      "lead_time_production": null,
+      "lead_time_as_quoted": "4 weeks ARO",
+      "source_ref": "bid_supplier_A.txt, line 3"
+    }
+  ],
+  "quoted_breaks_off_request": [
+    {
+      "quantity": 1000,
+      "unit_price": 0.62,
+      "as_quoted": "1,000 pcs 0.62 USD/ea",
+      "source_ref": "bid_supplier_A.txt, line 3"
+    },
+    {
+      "quantity": 3000,
+      "unit_price": 0.55,
+      "as_quoted": "3,000 pcs 0.55 USD/ea",
+      "source_ref": "bid_supplier_A.txt, line 3"
+    }
+  ],
+  "tooling_price": null,
+  "tooling_in_unit_price": null,
+  "tooling_ownership": null,
+  "tooling_note": "\"Tooling: existing.\" (bid_supplier_A.txt, line 3) \u2014 no price and no owner stated",
+  "moq": 1000,
+  "moq_uom": "each",
+  "moq_ref": "bid_supplier_A.txt, line 3",
+  "freight_basis": "FOB origin",
+  "freight_ref": "bid_supplier_A.txt, line 3",
+  "payment_terms": null,
+  "quality_clause_acceptance": "not_stated",
+  "clause_exceptions": [],
+  "exceptions": [
+    "\"hardness 25-45 HRF.\" (bid_supplier_A.txt, line 4) \u2014 drawing requires 25-40 HRF"
+  ],
+  "fields_missing": [
+    "unit price at 800 (not priced at this break)",
+    "unit price at 1200 (not priced at this break)",
+    "unit price at 3200 (not priced at this break)",
+    "lead time, first article, from a named event (only '4 weeks ARO' given, not split)",
+    "lead time, production, split from first article",
+    "tooling price, or an explicit statement that none is charged ('existing' only)",
+    "tooling ownership",
+    "price validity as a date (30 days from an undated quote)",
+    "quote date",
+    "quality clause acceptance (certificate of conformance per lot not addressed)",
+    "freight cost to our dock (quoted FOB origin)",
+    "payment terms"
+  ],
+  "conformance": "off_format",
+  "restatement_requested": true
+}

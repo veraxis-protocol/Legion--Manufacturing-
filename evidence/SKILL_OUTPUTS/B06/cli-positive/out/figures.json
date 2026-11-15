@@ -1,0 +1,638 @@
+{
+ "figures": [
+  {
+   "figure": "Routing rows",
+   "value": 4,
+   "computed_from": "routings.csv",
+   "filter_or_arithmetic": "all data rows"
+  },
+  {
+   "figure": "Routing rows for MB-2040 (any rev)",
+   "value": 0,
+   "computed_from": "routings.csv",
+   "filter_or_arithmetic": "part == 'MB-2040'"
+  },
+  {
+   "figure": "Closed-job operation rows",
+   "value": 4,
+   "computed_from": "closed_jobs.csv",
+   "filter_or_arithmetic": "all data rows"
+  },
+  {
+   "figure": "Closed-job rows for MB-2040",
+   "value": 0,
+   "computed_from": "closed_jobs.csv",
+   "filter_or_arithmetic": "part == 'MB-2040'"
+  },
+  {
+   "figure": "Closed work orders (distinct)",
+   "value": 2,
+   "computed_from": "closed_jobs.csv",
+   "filter_or_arithmetic": "distinct work_order: WO-7702, WO-7811"
+  },
+  {
+   "figure": "PO rows",
+   "value": 3,
+   "computed_from": "purchase_orders.csv",
+   "filter_or_arithmetic": "all data rows"
+  },
+  {
+   "figure": "Actuals rows joined to routing exactly",
+   "value": 4,
+   "computed_from": "closed_jobs x routings",
+   "filter_or_arithmetic": "key (part, rev, op, work_center)"
+  },
+  {
+   "figure": "Actuals rows unmatched",
+   "value": 0,
+   "computed_from": "closed_jobs x routings",
+   "filter_or_arithmetic": "same key"
+  },
+  {
+   "figure": "Routing ops with no actuals (one-sided, class 6)",
+   "value": 2,
+   "computed_from": "routings vs closed_jobs",
+   "filter_or_arithmetic": "ops: 10, 40"
+  },
+  {
+   "figure": "Actuals rows flagged probable_standard",
+   "value": 0,
+   "computed_from": "backflush check",
+   "filter_or_arithmetic": "|run/unit \u00f7 routing \u2212 1| \u2264 1% or peer WO agreement \u2264 1%"
+  },
+  {
+   "figure": "WO-7702 op20 run min/pc (actual)",
+   "value": 6.7,
+   "computed_from": "closed_jobs.csv",
+   "filter_or_arithmetic": "2010 \u00f7 300"
+  },
+  {
+   "figure": "WO-7702 op20 deviation vs MB-1880 routing run",
+   "value": "8.1%",
+   "computed_from": "closed_jobs x routings",
+   "filter_or_arithmetic": "6.7 \u00f7 6.2 \u2212 1"
+  },
+  {
+   "figure": "WO-7702 op30 run min/pc (actual)",
+   "value": 3.35,
+   "computed_from": "closed_jobs.csv",
+   "filter_or_arithmetic": "1005 \u00f7 300"
+  },
+  {
+   "figure": "WO-7702 op30 deviation vs MB-1880 routing run",
+   "value": "8.1%",
+   "computed_from": "closed_jobs x routings",
+   "filter_or_arithmetic": "3.35 \u00f7 3.1 \u2212 1"
+  },
+  {
+   "figure": "WO-7811 op20 run min/pc (actual)",
+   "value": 6.48,
+   "computed_from": "closed_jobs.csv",
+   "filter_or_arithmetic": "3240 \u00f7 500"
+  },
+  {
+   "figure": "WO-7811 op20 deviation vs MB-1880 routing run",
+   "value": "4.5%",
+   "computed_from": "closed_jobs x routings",
+   "filter_or_arithmetic": "6.48 \u00f7 6.2 \u2212 1"
+  },
+  {
+   "figure": "WO-7811 op30 run min/pc (actual)",
+   "value": 3.18,
+   "computed_from": "closed_jobs.csv",
+   "filter_or_arithmetic": "1590 \u00f7 500"
+  },
+  {
+   "figure": "WO-7811 op30 deviation vs MB-1880 routing run",
+   "value": "2.6%",
+   "computed_from": "closed_jobs x routings",
+   "filter_or_arithmetic": "3.18 \u00f7 3.1 \u2212 1"
+  },
+  {
+   "figure": "WO-7702 scrap rate",
+   "value": "1.96%",
+   "computed_from": "closed_jobs.csv",
+   "filter_or_arithmetic": "6 \u00f7 (300+6)"
+  },
+  {
+   "figure": "WO-7811 scrap rate",
+   "value": "1.77%",
+   "computed_from": "closed_jobs.csv",
+   "filter_or_arithmetic": "9 \u00f7 (500+9)"
+  },
+  {
+   "figure": "Pooled scrap rate MB-1880 (material allowance basis)",
+   "value": "1.84%",
+   "computed_from": "closed_jobs.csv",
+   "filter_or_arithmetic": "15 \u00f7 (800+15), WO-7702 + WO-7811"
+  },
+  {
+   "figure": "Work centers mapping to more than one cell",
+   "value": "MILL-V: ['Cell A', 'Cell B']",
+   "computed_from": "equipment.csv",
+   "filter_or_arithmetic": "distinct cell per work_center"
+  },
+  {
+   "figure": "Op10 setup h low/exp/high (rung 4)",
+   "value": [
+    0.333,
+    0.333,
+    0.333
+   ],
+   "computed_from": "routings + closed_jobs (MB-1880 rev B)",
+   "filter_or_arithmetic": "MB-1880 rev B routing standard only; no spread available"
+  },
+  {
+   "figure": "Op10 run min/pc low/exp/high (rung 4)",
+   "value": [
+    1.5,
+    1.5,
+    1.5
+   ],
+   "computed_from": "routings + closed_jobs (MB-1880 rev B)",
+   "filter_or_arithmetic": "MB-1880 rev B routing standard only; no spread available"
+  },
+  {
+   "figure": "Op20 setup h low/exp/high (rung 4)",
+   "value": [
+    0.75,
+    0.825,
+    0.867
+   ],
+   "computed_from": "routings + closed_jobs (MB-1880 rev B)",
+   "filter_or_arithmetic": "median of MB-1880 rev B closed-job actuals (WO-7702, WO-7811); low/high = min/max of those actuals and the MB-1880 routing standard"
+  },
+  {
+   "figure": "Op20 run min/pc low/exp/high (rung 4)",
+   "value": [
+    6.2,
+    6.59,
+    6.7
+   ],
+   "computed_from": "routings + closed_jobs (MB-1880 rev B)",
+   "filter_or_arithmetic": "median of MB-1880 rev B closed-job actuals (WO-7702, WO-7811); low/high = min/max of those actuals and the MB-1880 routing standard"
+  },
+  {
+   "figure": "Op20 MB-1880 actuals median vs MB-1880 routing (setup / run)",
+   "value": "+10.0% / +6.3%",
+   "computed_from": "same",
+   "filter_or_arithmetic": "median \u00f7 routing \u2212 1; threshold 15% \u2014 default threshold, not plant-set"
+  },
+  {
+   "figure": "Op30 setup h low/exp/high (rung 4)",
+   "value": [
+    0.483,
+    0.525,
+    0.567
+   ],
+   "computed_from": "routings + closed_jobs (MB-1880 rev B)",
+   "filter_or_arithmetic": "median of MB-1880 rev B closed-job actuals (WO-7702, WO-7811); low/high = min/max of those actuals and the MB-1880 routing standard"
+  },
+  {
+   "figure": "Op30 run min/pc low/exp/high (rung 4)",
+   "value": [
+    3.1,
+    3.265,
+    3.35
+   ],
+   "computed_from": "routings + closed_jobs (MB-1880 rev B)",
+   "filter_or_arithmetic": "median of MB-1880 rev B closed-job actuals (WO-7702, WO-7811); low/high = min/max of those actuals and the MB-1880 routing standard"
+  },
+  {
+   "figure": "Op30 MB-1880 actuals median vs MB-1880 routing (setup / run)",
+   "value": "+5.0% / +5.3%",
+   "computed_from": "same",
+   "filter_or_arithmetic": "median \u00f7 routing \u2212 1; threshold 15% \u2014 default threshold, not plant-set"
+  },
+  {
+   "figure": "Op40 setup h low/exp/high (rung 4)",
+   "value": [
+    0.167,
+    0.167,
+    0.167
+   ],
+   "computed_from": "routings + closed_jobs (MB-1880 rev B)",
+   "filter_or_arithmetic": "MB-1880 rev B routing standard only; no spread available"
+  },
+  {
+   "figure": "Op40 run min/pc low/exp/high (rung 4)",
+   "value": [
+    2.0,
+    2.0,
+    2.0
+   ],
+   "computed_from": "routings + closed_jobs (MB-1880 rev B)",
+   "filter_or_arithmetic": "MB-1880 rev B routing standard only; no spread available"
+  },
+  {
+   "figure": "Qty 250: setup h per piece (expected, one setup per op)",
+   "value": 0.0074,
+   "computed_from": "ops table",
+   "filter_or_arithmetic": "1.85 h \u00f7 250"
+  },
+  {
+   "figure": "Qty 250: work content by work center, expected h",
+   "value": {
+    "MILL-V": 48.99,
+    "INSP": 8.5
+   },
+   "computed_from": "ops table",
+   "filter_or_arithmetic": "\u03a3(setup + qty \u00d7 run/60) by work_center"
+  },
+  {
+   "figure": "Qty 250: total run h low/exp/high",
+   "value": [
+    53.33,
+    55.65,
+    56.46
+   ],
+   "computed_from": "ops table",
+   "filter_or_arithmetic": "qty \u00d7 \u03a3 run min/pc \u00f7 60"
+  },
+  {
+   "figure": "Qty 500: setup h per piece (expected, one setup per op)",
+   "value": 0.0037,
+   "computed_from": "ops table",
+   "filter_or_arithmetic": "1.85 h \u00f7 500"
+  },
+  {
+   "figure": "Qty 500: work content by work center, expected h",
+   "value": {
+    "MILL-V": 96.3,
+    "INSP": 16.83
+   },
+   "computed_from": "ops table",
+   "filter_or_arithmetic": "\u03a3(setup + qty \u00d7 run/60) by work_center"
+  },
+  {
+   "figure": "Qty 500: total run h low/exp/high",
+   "value": [
+    106.67,
+    111.29,
+    112.92
+   ],
+   "computed_from": "ops table",
+   "filter_or_arithmetic": "qty \u00d7 \u03a3 run min/pc \u00f7 60"
+  },
+  {
+   "figure": "Qty 1000: setup h per piece (expected, one setup per op)",
+   "value": 0.00185,
+   "computed_from": "ops table",
+   "filter_or_arithmetic": "1.85 h \u00f7 1000"
+  },
+  {
+   "figure": "Qty 1000: work content by work center, expected h",
+   "value": {
+    "MILL-V": 190.93,
+    "INSP": 33.5
+   },
+   "computed_from": "ops table",
+   "filter_or_arithmetic": "\u03a3(setup + qty \u00d7 run/60) by work_center"
+  },
+  {
+   "figure": "Qty 1000: total run h low/exp/high",
+   "value": [
+    213.33,
+    222.58,
+    225.83
+   ],
+   "computed_from": "ops table",
+   "filter_or_arithmetic": "qty \u00d7 \u03a3 run min/pc \u00f7 60"
+  },
+  {
+   "figure": "Plate price used (latest PO)",
+   "value": "PO-30588 2026-09-30 USD 219.90/sheet",
+   "computed_from": "purchase_orders.csv",
+   "filter_or_arithmetic": "item == AL6061-PL-0.5, latest po_date"
+  },
+  {
+   "figure": "Plate price change vs prior PO",
+   "value": "+3.53%",
+   "computed_from": "purchase_orders.csv",
+   "filter_or_arithmetic": "219.90 \u00f7 212.40 \u2212 1 (PO-30411)"
+  },
+  {
+   "figure": "PO-30411 order-to-receipt days",
+   "value": 7,
+   "computed_from": "purchase_orders.csv",
+   "filter_or_arithmetic": "received_date \u2212 po_date"
+  },
+  {
+   "figure": "PO-30588 order-to-receipt days",
+   "value": 7,
+   "computed_from": "purchase_orders.csv",
+   "filter_or_arithmetic": "received_date \u2212 po_date"
+  },
+  {
+   "figure": "Blanks per sheet, zero allowance (physical upper bound)",
+   "value": 30,
+   "computed_from": "geometry",
+   "filter_or_arithmetic": "12x48 in sheet, 120x80 mm part, best of two orientations"
+  },
+  {
+   "figure": "Blanks per sheet with 3 mm assumed kerf/cleanup allowance",
+   "value": 28,
+   "computed_from": "geometry",
+   "filter_or_arithmetic": "blank 123x83 mm, best of two orientations \u2014 ALLOWANCE ASSUMED"
+  },
+  {
+   "figure": "Thickness cleanup available",
+   "value": "0.7 mm total (0.35 mm per side)",
+   "computed_from": "PO item description vs spec",
+   "filter_or_arithmetic": "0.5 in = 12.7 mm stock \u2212 12 mm part"
+  },
+  {
+   "figure": "Qty 250: material starts / sheets / cost / per pc",
+   "value": "255 / 10 / USD 2199.00 / USD 8.80",
+   "computed_from": "purchase_orders.csv + scrap rate",
+   "filter_or_arithmetic": "ceil(250\u00f7(1\u22120.0184)); ceil(starts\u00f728); sheets \u00d7 219.9"
+  },
+  {
+   "figure": "Qty 500: material starts / sheets / cost / per pc",
+   "value": "510 / 19 / USD 4178.10 / USD 8.36",
+   "computed_from": "purchase_orders.csv + scrap rate",
+   "filter_or_arithmetic": "ceil(500\u00f7(1\u22120.0184)); ceil(starts\u00f728); sheets \u00d7 219.9"
+  },
+  {
+   "figure": "Qty 1000: material starts / sheets / cost / per pc",
+   "value": "1019 / 37 / USD 8136.30 / USD 8.14",
+   "computed_from": "purchase_orders.csv + scrap rate",
+   "filter_or_arithmetic": "ceil(1000\u00f7(1\u22120.0184)); ceil(starts\u00f728); sheets \u00d7 219.9"
+  },
+  {
+   "figure": "Anodize OSP lead time (PO to receipt)",
+   "value": 12,
+   "computed_from": "purchase_orders.csv",
+   "filter_or_arithmetic": "PO-30602 received_date \u2212 po_date (calendar days)"
+  },
+  {
+   "figure": "Qty 250: anodize lots / cost / per pc",
+   "value": "1 / USD 385.00 / USD 1.54",
+   "computed_from": "purchase_orders.csv",
+   "filter_or_arithmetic": "ceil(250\u00f7300) \u00d7 385.0 (PO-30602, 2026-10-03); assumes one anodize shipment per 300 pcs"
+  },
+  {
+   "figure": "Qty 500: anodize lots / cost / per pc",
+   "value": "2 / USD 770.00 / USD 1.54",
+   "computed_from": "purchase_orders.csv",
+   "filter_or_arithmetic": "ceil(500\u00f7300) \u00d7 385.0 (PO-30602, 2026-10-03); assumes one anodize shipment per 300 pcs"
+  },
+  {
+   "figure": "Qty 1000: anodize lots / cost / per pc",
+   "value": "4 / USD 1540.00 / USD 1.54",
+   "computed_from": "purchase_orders.csv",
+   "filter_or_arithmetic": "ceil(1000\u00f7300) \u00d7 385.0 (PO-30602, 2026-10-03); assumes one anodize shipment per 300 pcs"
+  }
+ ],
+ "ops": [
+  {
+   "op": "10",
+   "description": "Saw and face blank",
+   "work_center": "MILL-V",
+   "setup_h": [
+    0.333,
+    0.333,
+    0.333
+   ],
+   "run_min_pc": [
+    1.5,
+    1.5,
+    1.5
+   ],
+   "basis": "MB-1880 rev B routing standard only; no spread available",
+   "analog_actual_vs_routing_setup": null,
+   "analog_actual_vs_routing_run": null,
+   "flag_over_threshold": null
+  },
+  {
+   "op": "20",
+   "description": "Mill profile bore and holes op1",
+   "work_center": "MILL-V",
+   "setup_h": [
+    0.75,
+    0.825,
+    0.867
+   ],
+   "run_min_pc": [
+    6.2,
+    6.59,
+    6.7
+   ],
+   "basis": "median of MB-1880 rev B closed-job actuals (WO-7702, WO-7811); low/high = min/max of those actuals and the MB-1880 routing standard",
+   "analog_actual_vs_routing_setup": 0.1,
+   "analog_actual_vs_routing_run": 0.0629,
+   "flag_over_threshold": false
+  },
+  {
+   "op": "30",
+   "description": "Op2 flip and finish",
+   "work_center": "MILL-V",
+   "setup_h": [
+    0.483,
+    0.525,
+    0.567
+   ],
+   "run_min_pc": [
+    3.1,
+    3.265,
+    3.35
+   ],
+   "basis": "median of MB-1880 rev B closed-job actuals (WO-7702, WO-7811); low/high = min/max of those actuals and the MB-1880 routing standard",
+   "analog_actual_vs_routing_setup": 0.05,
+   "analog_actual_vs_routing_run": 0.0532,
+   "flag_over_threshold": false
+  },
+  {
+   "op": "40",
+   "description": "Deburr and inspect",
+   "work_center": "INSP",
+   "setup_h": [
+    0.167,
+    0.167,
+    0.167
+   ],
+   "run_min_pc": [
+    2.0,
+    2.0,
+    2.0
+   ],
+   "basis": "MB-1880 rev B routing standard only; no spread available",
+   "analog_actual_vs_routing_setup": null,
+   "analog_actual_vs_routing_run": null,
+   "flag_over_threshold": null
+  }
+ ],
+ "by_break": {
+  "250": {
+   "ops": [
+    {
+     "op": "10",
+     "setup_h": 0.333,
+     "setup_h_per_pc": 0.00133,
+     "run_h": 6.25
+    },
+    {
+     "op": "20",
+     "setup_h": 0.825,
+     "setup_h_per_pc": 0.0033,
+     "run_h": 27.46
+    },
+    {
+     "op": "30",
+     "setup_h": 0.525,
+     "setup_h_per_pc": 0.0021,
+     "run_h": 13.6
+    },
+    {
+     "op": "40",
+     "setup_h": 0.167,
+     "setup_h_per_pc": 0.00067,
+     "run_h": 8.33
+    }
+   ],
+   "work_content_h_by_wc_expected": {
+    "MILL-V": 48.99,
+    "INSP": 8.5
+   },
+   "total_setup_h_exp": 1.85,
+   "setup_h_per_pc_exp": 0.0074,
+   "run_h_total_low_exp_high": [
+    53.33,
+    55.65,
+    56.46
+   ],
+   "setup_h_total_low_exp_high": [
+    1.733,
+    1.85,
+    1.934
+   ]
+  },
+  "500": {
+   "ops": [
+    {
+     "op": "10",
+     "setup_h": 0.333,
+     "setup_h_per_pc": 0.00067,
+     "run_h": 12.5
+    },
+    {
+     "op": "20",
+     "setup_h": 0.825,
+     "setup_h_per_pc": 0.00165,
+     "run_h": 54.92
+    },
+    {
+     "op": "30",
+     "setup_h": 0.525,
+     "setup_h_per_pc": 0.00105,
+     "run_h": 27.21
+    },
+    {
+     "op": "40",
+     "setup_h": 0.167,
+     "setup_h_per_pc": 0.00033,
+     "run_h": 16.67
+    }
+   ],
+   "work_content_h_by_wc_expected": {
+    "MILL-V": 96.3,
+    "INSP": 16.83
+   },
+   "total_setup_h_exp": 1.85,
+   "setup_h_per_pc_exp": 0.0037,
+   "run_h_total_low_exp_high": [
+    106.67,
+    111.29,
+    112.92
+   ],
+   "setup_h_total_low_exp_high": [
+    1.733,
+    1.85,
+    1.934
+   ]
+  },
+  "1000": {
+   "ops": [
+    {
+     "op": "10",
+     "setup_h": 0.333,
+     "setup_h_per_pc": 0.00033,
+     "run_h": 25.0
+    },
+    {
+     "op": "20",
+     "setup_h": 0.825,
+     "setup_h_per_pc": 0.00082,
+     "run_h": 109.83
+    },
+    {
+     "op": "30",
+     "setup_h": 0.525,
+     "setup_h_per_pc": 0.00053,
+     "run_h": 54.42
+    },
+    {
+     "op": "40",
+     "setup_h": 0.167,
+     "setup_h_per_pc": 0.00017,
+     "run_h": 33.33
+    }
+   ],
+   "work_content_h_by_wc_expected": {
+    "MILL-V": 190.93,
+    "INSP": 33.5
+   },
+   "total_setup_h_exp": 1.85,
+   "setup_h_per_pc_exp": 0.00185,
+   "run_h_total_low_exp_high": [
+    213.33,
+    222.58,
+    225.83
+   ],
+   "setup_h_total_low_exp_high": [
+    1.733,
+    1.85,
+    1.934
+   ]
+  }
+ },
+ "material": {
+  "250": {
+   "starts": 255,
+   "sheets": 10,
+   "material_cost_usd": 2199.0,
+   "per_pc_usd": 8.796
+  },
+  "500": {
+   "starts": 510,
+   "sheets": 19,
+   "material_cost_usd": 4178.1,
+   "per_pc_usd": 8.3562
+  },
+  "1000": {
+   "starts": 1019,
+   "sheets": 37,
+   "material_cost_usd": 8136.3,
+   "per_pc_usd": 8.1363
+  }
+ },
+ "anodize": {
+  "250": {
+   "lots": 1,
+   "cost_usd": 385.0,
+   "per_pc_usd": 1.54
+  },
+  "500": {
+   "lots": 2,
+   "cost_usd": 770.0,
+   "per_pc_usd": 1.54
+  },
+  "1000": {
+   "lots": 4,
+   "cost_usd": 1540.0,
+   "per_pc_usd": 1.54
+  }
+ },
+ "blanks_per_sheet": 28,
+ "scrap_rate": 0.018404907975460124
+}

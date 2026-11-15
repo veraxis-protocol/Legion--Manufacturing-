@@ -1,0 +1,23 @@
+﻿Figure,Value,Computed from,Filter or query
+Hardness samples (n),5,incoming_finding.txt,regex 'Hardness measured ... HRF'
+Readings HRF,47 49 46 50 48,incoming_finding.txt,same
+Mean HRF,48,readings,statistics.mean
+Min / max HRF,46 / 50,readings,"min, max"
+Samples out of spec (25-40),5 of 5,readings,x>40 or x<25
+Excess over USL min-max,6 to 10,readings,x-40
+Mean minus C of C (32),16,"readings, finding",48-32
+SPC basis,"individuals chart, n=5, one lot (AS-7781); no prior-lot readings in inputs",readings,I-MR
+SPC centreline,48,readings,mean
+SPC UCL,55.31,readings,"CL+3*MRbar/1.128, MRbar=2.75"
+SPC LCL,40.69,readings,CL-3*MRbar/1.128
+Points beyond control limits,0,readings,x>UCL or x<LCL
+Run rule,"7 consecutive points one side of CL: cannot evaluate, n=5 < 7",readings,n<7
+LCL minus USL,0.69,SPC,40.69-40
+Lot qty / issued / Q-1,1000 / 400 / 600 (reconciles: True),incoming_finding.txt,400+600==1000
+Receipts from supplier listed / failed,3 / 1,incoming_finding.txt,"AS-7702, AS-7744, AS-7781"
+Suppliers in approved list,3,approved_suppliers.csv,all rows
+Approved for sintered bronze,2,approved_suppliers.csv,commodity contains 'sintered bronze' and status==approved
+  of which not implicated,1,approved_suppliers.csv,excluding Alder
+Qualified on BSH-1210,1,approved_suppliers.csv,notes contains 'current source BSH-1210'
+Not confirmed approved,1,approved_suppliers.csv,status!=approved
+Cedar days since audit (to 2026-11-15),883,approved_suppliers.csv,2026-11-15 minus 2024-06-15

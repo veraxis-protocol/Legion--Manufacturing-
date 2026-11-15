@@ -1,0 +1,566 @@
+{
+ "case": "B14",
+ "skill": "ncr-writeup",
+ "variant": "positive",
+ "started_utc": "2026-11-15T22:35:30Z",
+ "runtime_route": "cli",
+ "cli_auth": {
+  "loggedIn": true,
+  "authMethod": "claude.ai",
+  "apiProvider": "firstParty"
+ },
+ "turns": [
+  {
+   "turn": 1,
+   "from": "task prompt",
+   "exit": 0,
+   "duration_s": 152.1,
+   "result": {
+    "subtype": "success",
+    "is_error": false,
+    "num_turns": 13,
+    "usage": {
+     "input_tokens": 22,
+     "cache_creation_input_tokens": 53660,
+     "cache_read_input_tokens": 346711,
+     "output_tokens": 16242,
+     "output_tokens_details": {
+      "thinking_tokens": 3886
+     },
+     "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+     },
+     "service_tier": "standard",
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 53660,
+      "ephemeral_5m_input_tokens": 0
+     },
+     "inference_geo": "global",
+     "iterations": [
+      {
+       "input_tokens": 2,
+       "output_tokens": 3396,
+       "cache_read_input_tokens": 57254,
+       "cache_creation_input_tokens": 3423,
+       "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3423
+       },
+       "type": "message"
+      }
+     ],
+     "speed": "standard",
+     "fallback_credit": null
+    }
+   }
+  }
+ ],
+ "plugin_discovery": {
+  "plugins": [
+   "claude-for-manufacturing",
+   "cc-plugin-agents-md",
+   "cc-plugin-telemetry",
+   "cc-plugin-privacy",
+   "cc-plugin-plugin-authoring"
+  ],
+  "manufacturing_skills_listed": 17,
+  "skills_listed": [
+   "claude-for-manufacturing:breakdown-diagnosis",
+   "claude-for-manufacturing:breakdown-to-next-report",
+   "claude-for-manufacturing:custom-connector",
+   "claude-for-manufacturing:customer-inquiry-intake",
+   "claude-for-manufacturing:daily-production-report",
+   "claude-for-manufacturing:data-consolidate",
+   "claude-for-manufacturing:design-space-explore",
+   "claude-for-manufacturing:inspection-to-capa",
+   "claude-for-manufacturing:morning-plant-pulse",
+   "claude-for-manufacturing:ncr-writeup",
+   "claude-for-manufacturing:onboarding",
+   "claude-for-manufacturing:quote-build",
+   "claude-for-manufacturing:rfq-to-quote",
+   "claude-for-manufacturing:root-cause-capa",
+   "claude-for-manufacturing:supplier-escape-to-alternate-source",
+   "claude-for-manufacturing:supplier-quote-request",
+   "claude-for-manufacturing:trade-study-report"
+  ]
+ },
+ "task_prompt": "Write up the nonconformance from this morning's final inspection (./inputs). Cite the requirement, scope the suspect parts and say where every one of them is, and check whether this has happened before.\n\nThe input files are in ./inputs (all of them are SYNTHETIC test data for a fictitious plant). Write every work product you produce as files under ./out. Do not contact, email or write to any external system; there is no live ERP, Microsoft 365, CMMS or supplier available in this session.",
+ "inputs": [
+  {
+   "path": "inputs/finding.txt",
+   "source": "tests/runtime/inputs/quality/finding.txt",
+   "sha256": "70b00e96c426176a6080d9c7fcf3cecc475bcf026eac5268da050a22929652f1",
+   "bytes": 571
+  },
+  {
+   "path": "inputs/MB-1880_drawing_revB_notes.md",
+   "source": "tests/runtime/inputs/quality/MB-1880_drawing_revB_notes.md",
+   "sha256": "7fb4a3aa73364ad8647043b72c0f113d868adcbfcbab8bcaa640bfc8379c8dc8",
+   "bytes": 364
+  },
+  {
+   "path": "inputs/prior_ncrs.csv",
+   "source": "tests/runtime/inputs/quality/prior_ncrs.csv",
+   "sha256": "10d492855334cb73d79d22c9cd321ea5516e11cdfb771229c8f0d56879bd6cc1",
+   "bytes": 439
+  }
+ ],
+ "cli_exit": 0,
+ "duration_s": 152.1,
+ "runtime": {
+  "model": "claude-opus-5-5",
+  "claude_code_version": "2.1.325",
+  "permission_mode": "dontAsk",
+  "tools": [
+   "Bash",
+   "Edit",
+   "Glob",
+   "Grep",
+   "Read",
+   "Skill",
+   "Write"
+  ],
+  "plugins": [
+   {
+    "name": "claude-for-manufacturing",
+    "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B14-positive-zarhm8oi\\plugin",
+    "source": "claude-for-manufacturing@inline",
+    "version": "1.0.0"
+   },
+   {
+    "name": "cc-plugin-agents-md",
+    "path": "builtin",
+    "source": "cc-plugin-agents-md@builtin"
+   },
+   {
+    "name": "cc-plugin-telemetry",
+    "path": "builtin",
+    "source": "cc-plugin-telemetry@builtin"
+   },
+   {
+    "name": "cc-plugin-privacy",
+    "path": "builtin",
+    "source": "cc-plugin-privacy@builtin"
+   },
+   {
+    "name": "cc-plugin-plugin-authoring",
+    "path": "builtin",
+    "source": "cc-plugin-plugin-authoring@builtin"
+   }
+  ],
+  "skills": [
+   "claude-for-manufacturing:breakdown-diagnosis",
+   "claude-for-manufacturing:breakdown-to-next-report",
+   "claude-for-manufacturing:custom-connector",
+   "claude-for-manufacturing:customer-inquiry-intake",
+   "claude-for-manufacturing:daily-production-report",
+   "claude-for-manufacturing:data-consolidate",
+   "claude-for-manufacturing:design-space-explore",
+   "claude-for-manufacturing:inspection-to-capa",
+   "claude-for-manufacturing:morning-plant-pulse",
+   "claude-for-manufacturing:ncr-writeup",
+   "claude-for-manufacturing:onboarding",
+   "claude-for-manufacturing:quote-build",
+   "claude-for-manufacturing:rfq-to-quote",
+   "claude-for-manufacturing:root-cause-capa",
+   "claude-for-manufacturing:supplier-escape-to-alternate-source",
+   "claude-for-manufacturing:supplier-quote-request",
+   "claude-for-manufacturing:trade-study-report",
+   "design",
+   "design-sync",
+   "dataviz",
+   "update-config",
+   "verify",
+   "debug",
+   "code-review",
+   "simplify",
+   "batch",
+   "fewer-permission-prompts",
+   "doctor",
+   "loop",
+   "schedule",
+   "claude-api",
+   "run",
+   "run-skill-generator",
+   "plugin-authoring"
+  ],
+  "mcp_servers": [],
+  "session_id": "c74e2740-2e71-4c5e-ac02-0d5963428412"
+ },
+ "skills_invoked": [
+  "claude-for-manufacturing:ncr-writeup"
+ ],
+ "skill_files_read": [
+  "ncr-writeup/reference/*.md"
+ ],
+ "tool_calls": [
+  {
+   "tool": "Skill",
+   "input": {
+    "skill": "claude-for-manufacturing:ncr-writeup",
+    "args": "Write up the nonconformance from this morning's final inspection (./inputs). Cite the requirement, scope the suspect parts and say where every one of them is, and check whether this has happened before. Outputs under ./out. No external systems."
+   },
+   "response": "Launching skill: claude-for-manufacturing:ncr-writeup",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B14-positive-zarhm8oi/work\"; find inputs -type f | head -100; python3 -I ../plugin/skills/ncr-writeup/../../shared/scripts/plant_setup.py find",
+    "description": "List inputs and find plant setup"
+   },
+   "response": "inputs/finding.txt\ninputs/MB-1880_drawing_revB_notes.md\ninputs/prior_ncrs.csv\n{\"setup_page_first\": \"Required before reading the plant profile or any rate, once per conversation, even when profile_path does not exist yet: if you have the artifact tools (Artifact, or mcp__claude-artifacts__* in Cowork), list the user's artifacts (scope all) and look for 'Plant setup: <company>' and 'Plant rates: <company>'. If more than one 'Plant setup:' page exists and the user has not named the company, ask which plant before reading any page (run find again with --titles and the titles listed; companies names them). For each page found, read its file with those tools (action read, path setup/plant-context.txt or setup/plant-rates.txt; an older page has setup/plant-context.md or setup/plant-rates.md instead; never retype it), then run: python3 \\\"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-B14-positive-zarhm8oi\\\\plugin\\\\shared\\\\scripts\\\\plant_setup.py\\\" install --from <the saved file> --company \\\"<company>\\\" (add --kind rates for the rates file), and read profile_path and rates_path. If this skill reads or writes ## Dashboards, ## Open inquiries or ## Sourcing events, also look for 'Open work: <company>': read setup/open-work.txt and then every file it names and every file the page lists (action read with paths, or one read per file) into one folder, keeping the page's paths, and run install --kind work --from <that folder> --company \\\"<company>\\\"; the blocks are then at work_path. Not found, no artifact tools, or a call refused: read the paths as printed and say nothing about a page. Never show a rate value from rates_path outside an internal artifact.\", \"profile_path\": \"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-B14-positive-zarhm8oi\\\\work\\\\plant-setup\\\\plant-context.md\", \"exists\": false, \"rates_path\": \"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-B14-positive-zarhm8oi\\\\work\\\\plant-setup\\\\plant-rates.md\", \"rates_exists\": false, \"work_path\": \"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Temp\\\\lmfg-B14-positive-zarhm8oi\\\\work\\\\plant-setup\\\\open-work\\\\open-work.md\", \"work_exists\": false, \"companies\": [], \"company\": null, \"persistent\": false}",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B14-positive-zarhm8oi/plugin\"; ls skills/ncr-writeup/reference shared shared/contracts; cat shared/replies.md",
+    "description": "List skill references and read replies guide"
+   },
+   "response": "shared:\nabsent-is-not-zero.md\napproval-gates.md\nartifact-style.md\ncommand-center.md\ncomputed-figures.md\ncontracts\nerp-connectors.md\nlive-dashboard.md\nreplies.md\nscheduling.md\nscripts\nsecret-config.md\n\nshared/contracts:\nREADME.md\nconsolidated-dataset.md\ndowntime-record.md\nfloor-layout.md\ngeometry-estimate.md\nintake-form.md\nncr.md\npulse-day-record.md\nquality-register-record.md\nsupplier-bid.md\nsupplier-caused-flag.md\nvariant-manifest.md\n\nskills/ncr-writeup/reference:\nrecurrence-and-escape.md\nrequirement-citation.md\nscope-and-containment.md\n# What a reply holds — documents, records, memory and names\n\n**Shared across every skill.** Four rules about what goes in front of the\nperson and where things are kept.\n\n---\n\n## Documents are printed in full; records are summarised\n\nA **document** is what a person reads, signs or sends: the quote, the cost\nsheet, the NCR, the 8D, the RFQ package, an email draft, the morning report,\nthe intake form. **It is printed in the reply, in full.** Saving a copy to a\nfile as well is fine; a file *instead of* the reply is not. The person reads\nthe reply, and every delimited block and outbound check lives in it.\n\n### Reports are the exception: a short reply when the page was written\n\nThe morning report, the Operations page and the supplier bid comparison are\nread on a page, not in the chat. For\nthe bid comparison the headline is the provisional recommendation and its main\ntradeoff, the exceptions are the requirements still open before an award, and\nthe decision waiting is the next-step question. **When this run wrote the full page\nsomewhere the person can open** (a publish returned its URL, or the page was\nsaved as an HTML file and the reply names the file), the reply is a summary\nof about 150 words. **200 words is a hard limit: count before sending.** Each\nitem below is one sentence; an exception or a decision is the thing and its\nnumber, with the explanation left on the page.\n\n1. Safety first, one line per item: a safety-flagged record, a record under\n   *\"Blocked — safety status unknown\"*, or *\"Safety status: not assessed\"*.\n2. The site, the production day, and the freshness state in one line: data\n   complete, or the gap.\n3. The headline: good output against plan, and OEE or why it is not computed.\n4. Up to three exceptions, one line each.\n5. The decisions waiting today, or *\"No decisions waiting today.\"*\n6. Where the full page is: the URL or the file path.\n\nNo tables, logs or methods in the summary; they are on the page. Every\nnumber in the summary is one the page prints. **This is for the whole\nreport only.** A request that picks sections or skips some (\"freshness and\nthe rankings, skip OEE this time\"), a question, a record the person asked to\nsee, or text to paste is answered in the reply in full, in report order, as\nalways; the page may still be saved as well. **When nothing could be written**\n(no file writer and no publish), the page is printed in the reply in full, as\nabove. Where a skill offers \"the page in the conversation\", a saved file named\nin the reply is that offer. Documents someone signs or sends (quotes, NCRs,\n8Ds, RFQ packages, email drafts) are always printed in full.\n\n### Saved copies: Word for documents, Excel for tables, never .txt\n\nWhen a document is also saved as a file, and it should be wherever the person\ndownloads from a file card (Cowork), the file is one a plant opens without\nthinking about it:\n\n| What it is | File |\n|---|---|\n| A controlled document: customer quote, supplier RFQ package, NCR, escape notification, 8D, trade study memo | `.docx` |\n| A table someone works in: internal cost sheet, bid comparison, ranked candidates, scrap or downtime lists | `.xlsx` |\n| A report or dashboard | the HTML page, per `artifact-style.md` |\n| A record (contract payload, day record, register row) | its contract's format, as below |\n\n**Never `.txt` or `.md` for a document.** A plain-text quote reads as a draft\nnobody finished, and it is what a person gets when no format is named.\n\n- **How.** Use the session's Word or Excel skill where there is one (Cowork\n  has both); else `python-docx` or `openpyxl` where already installed. Never\n  install a package for it and never hand-build the file's XML: a file Word\n  cannot open is worse than none. With no writer, write no file and say so in\n  one line: *\"No Word copy this session: no Word writer available.\"* The\n  reply already holds the document.\n- **The plant's template.** A controlled document keeps the structure\n  `onboarding` captured. Where that example is a `.docx` in the documents\n  folder, start the Word copy from that file; otherwise use a plain layout\n  and keep the *template not on file* flag the document already carries.\n- **What goes in which file.** The customer's file holds only what the\n  sendable block holds. Internal figures (hours, rates, margin, the cost\n  build-up) go in their own file, the internal cost sheet, and never into the\n  customer's.\n- **Names.** What it is and its reference: `quote-Q-EXAMPLE-MEDICAL-4402A-01.docx`,\n  `cost-sheet-Q-EXAMPLE-MEDICAL-4402A-01.xlsx`, `NCR-2026-0141.docx`. Name each file in\n  the reply.\n\nA **record** is a handoff to another skill or a store: a contract payload (a\ndowntime record, a geometry estimate), a register row, a pulse day record, a\nsupplier bid record, a selection record, a sourcing-event row. **It is never\npasted into the reply as a raw YAML or JSON block.** A quality manager, a\nbuyer or an estimator should not have to read 150 lines of field names to\nfind out what happened.\n\nInstead:\n\n1. **Save the full record** where its contract says, or to a file next to the\n   run's other outputs, and **name the file** in the reply.\n2. **Show a short table of the fields a person decides on**, under their\n   contract names so nothing is lost in translation — the key, the status,\n   and whichever of these the record has: `fields_missing`, `data_complete`,\n   `decided_by`, `decided_at`, `follows_recommendation`, `actuals_confidence`,\n   `geometry_path`, ...[truncated]",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B14-positive-zarhm8oi/work\"; for f in inputs/*; do echo \"=== $f\"; cat \"$f\"; done; ls; ls -a ..; cat CLAUDE.local.md 2>/dev/null",
+    "description": "Read all input files"
+   },
+   "response": "Exit code 1\n=== inputs/MB-1880_drawing_revB_notes.md\n<!-- SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data. -->\n# MB-1880 drawing revision B - notes page (sheet 2)\n1. Material 6061-T6. 2. Break edges 0.2-0.5. 3. General tolerance ISO 2768-m.\n4. Bore A: dia 22.000 +0.021/-0.000, Ra 1.6. 5. Anodize Type II black after machining; bore masked.\n=== inputs/finding.txt\n# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.\n2026-11-11 10:05, final inspection, inspector J. Ortiz: MB-1880 rev B, work order WO-8102, lot L-0412.\nMain bore measured 22.034, 22.031, 22.029 mm on 3 of 5 sampled parts (spec on drawing MB-1880 rev B, note 4: dia 22.000 +0.021/-0.000).\nParts made on VMC-03 2nd shift 2026-11-10. Lot size 300; 120 still at VMC-03 queue, 150 in finished goods FG-2 rack 14, 30 already shipped to Northwind Robotics on 2026-11-11 08:00 (packing slip PS-5521).\n=== inputs/prior_ncrs.csv\n# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.\nncr,date,part,defect,cause,capa,capa_effective\nNCR-0219,2026-04-14,MB-1880,bore oversize 22.026,boring insert wear beyond 900 parts,CAPA-071 insert change every 600 parts,not verified\nNCR-0244,2026-08-02,MB-1500,slot width undersize,wrong offset after tool change,CAPA-080 offset check sheet,verified 2026-09-01\ninputs\nout\n.\n..\nplugin\nwork",
+   "is_error": true,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B14-positive-zarhm8oi/plugin\"; cat skills/ncr-writeup/reference/*.md shared/contracts/ncr.md shared/contracts/quality-register-record.md shared/absent-is-not-zero.md",
+    "description": "Read skill references and contracts"
+   },
+   "response": "<persisted-output>\nOutput too large (42.6KB). Full output saved to: C:\\Users\\Administrator\\.claude\\projects\\C--Users-Administrator-AppData-Local-Temp-lmfg-B14-positive-zarhm8oi-work\\abbb6667-a136-4ec6-b8f6-7906675ea0d4\\tool-results\\bzpr9n8zr.txt\n\nPreview (first 2KB):\n# Recurrence and escape\n\nTwo steps that both exist because of the same problem: they are things everyone\nagrees should happen, and they do not happen, because the moment they need to\nhappen is the moment everybody is busy.\n\n---\n\n## Recurrence — searched at creation, not on request\n\n**The search runs automatically when the NCR is written.** Not when somebody\nthinks to ask for it. The moment of detection is the only moment anyone is\nlooking at this part and this defect, and if the question is not answered then,\nit is not answered at all.\n\n### Search four ways\n\n| Search | Finds |\n|---|---|\n| Same part number | Has this part done this before |\n| Same defect on any part | A process problem wearing a different part number |\n| Same process, operation or cell | A machine or a setup that keeps producing this |\n| Same supplier or material lot | The signal that routes into Chain 5 |\n\nSearch prior NCRs and closed CAPAs in the plant's quality document library.\n\n### The highest-value line in the whole chain\n\nFor any match, report **whether the earlier corrective action held.**\n\nA recurrence after a closed CAPA is a materially more serious finding than a\nfirst occurrence. It says the fix did not work, or was never really implemented,\nor addressed a symptom. It changes what happens next, it changes who needs to\nknow, and in an audit it is the difference between a minor observation and a\nsystemic finding.\n\nThree distinct outcomes, and they must not be collapsed:\n\n- `first_occurrence` — searched, nothing found\n- `recurrence_prior_capa_held` — it happened before, the fix worked, this is\n  something new\n- `recurrence_prior_capa_failed` — it happened before, the fix did not hold\n\n### \"No searchable history\" is its own answer\n\n`no_searchable_history` is a separate value from `first_occurrence` on purpose.\n\nIf there is no quality document library, or it holds nothing for this part, say\n**\"no searchable history available.\"** Never say nothing — per\n...\n</persisted-output>",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Read",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\.claude\\projects\\C--Users-Administrator-AppData-Local-Temp-lmfg-B14-positive-zarhm8oi-work\\abbb6667-a136-4ec6-b8f6-7906675ea0d4\\tool-results\\bzpr9n8zr.txt"
+   },
+   "response": "1\t# Recurrence and escape\n2\t\n3\tTwo steps that both exist because of the same problem: they are things everyone\n4\tagrees should happen, and they do not happen, because the moment they need to\n5\thappen is the moment everybody is busy.\n6\t\n7\t---\n8\t\n9\t## Recurrence — searched at creation, not on request\n10\t\n11\t**The search runs automatically when the NCR is written.** Not when somebody\n12\tthinks to ask for it. The moment of detection is the only moment anyone is\n13\tlooking at this part and this defect, and if the question is not answered then,\n14\tit is not answered at all.\n15\t\n16\t### Search four ways\n17\t\n18\t| Search | Finds |\n19\t|---|---|\n20\t| Same part number | Has this part done this before |\n21\t| Same defect on any part | A process problem wearing a different part number |\n22\t| Same process, operation or cell | A machine or a setup that keeps producing this |\n23\t| Same supplier or material lot | The signal that routes into Chain 5 |\n24\t\n25\tSearch prior NCRs and closed CAPAs in the plant's quality document library.\n26\t\n27\t### The highest-value line in the whole chain\n28\t\n29\tFor any match, report **whether the earlier corrective action held.**\n30\t\n31\tA recurrence after a closed CAPA is a materially more serious finding than a\n32\tfirst occurrence. It says the fix did not work, or was never really implemented,\n33\tor addressed a symptom. It changes what happens next, it changes who needs to\n34\tknow, and in an audit it is the difference between a minor observation and a\n35\tsystemic finding.\n36\t\n37\tThree distinct outcomes, and they must not be collapsed:\n38\t\n39\t- `first_occurrence` — searched, nothing found\n40\t- `recurrence_prior_capa_held` — it happened before, the fix worked, this is\n41\t  something new\n42\t- `recurrence_prior_capa_failed` — it happened before, the fix did not hold\n43\t\n44\t### \"No searchable history\" is its own answer\n45\t\n46\t`no_searchable_history` is a separate value from `first_occurrence` on purpose.\n47\t\n48\tIf there is no quality document library, or it holds nothing for this part, say\n49\t**\"no searchable history available.\"** Never say nothing — per\n50\t`../../../shared/absent-is-not-zero.md`, silence reads as \"no recurrence,\" which\n51\tis a far stronger claim than the evidence supports and exactly the wrong thing to\n52\ttell a quality manager.\n53\t\n54\t---\n55\t\n56\t## Escape — the clock starts without you\n57\t\n58\t**An escape is a nonconforming part that reached a customer.** It is triggered\n59\tthe moment containment places any suspect quantity at `at_customer` or\n60\t`installed_at_customer`.\n61\t\n62\tThat usually starts a contractual notification window — often 24 to 48 hours in\n63\tautomotive and aerospace. **Missing that window is a bigger problem than the\n64\tdefect itself.** A defect is a quality event. A missed notification is a breach,\n65\tand it is the thing that costs an approved-supplier status.\n66\t\n67\t### Chained straight off containment\n68\t\n69\tThe notification draft is produced **automatically**, as the immediate next\n70\toutput after containment finds parts at a customer. Nobody has to remember it,\n71\tunder time pressure, against a clock they are not watching.\n72\t\n73\tThis is the single most valuable piece of automation in the skill, and it is\n74\tvaluable precisely because it is boring.\n75\t\n76\t### What the draft contains\n77\t\n78\t- Part, revision, quantity shipped and the shipments involved\n79\t- What the nonconformance is, in plain terms, against the cited requirement\n80\t- What we are asking the customer to do — usually quarantine the receipt and\n81\t  confirm whether any have been installed or shipped on\n82\t- What we are doing about it and when they will hear next\n83\t- The NCR reference\n84\t\n85\t### The clock, stated\n86\t\n87\tRecord `notification_deadline` as a **timestamp with its zone**, computed from\n88\t`found_at` plus the contractual window, and put it at the top of the draft.\n89\t\n90\tWhere the contractual window is not known, say so and do not guess one — an\n91\tinvented 48 hours that is really 24 is worse than an open question. Ask where the\n92\tcustomer's terms are recorded.\n93\t\n94\t### It still does not send\n95\t\n96\tThe draft is a draft. Nothing customer-facing leaves without a quality owner\n97\tapproving it — this is the Chain 2 and Chain 5 approval gate, and an escape\n98\tnotification is the most consequential thing this plugin will ever put in front\n99\tof a person. Speed is the point; unattended sending is not.\n100\t# Citing the requirement — the field the whole chain gates on\n101\t\n102\t**Nonconformance is always against a specific requirement, never just \"it looked\n103\twrong.\"** An NCR without a cited requirement is not an NCR, and\n104\t`root-cause-capa` blocks on one with a pointer back here.\n105\t\n106\tThis is the single most common way a nonconformance record is written badly, and\n107\tit is worth being strict about, because a quality manager reads the citation\n108\tbefore they read anything else.\n109\t\n110\t---\n111\t\n112\t## What counts as a requirement\n113\t\n114\tA requirement is **stated, measurable, and locatable in a document.** Four\n115\tsources, roughly in order of how often they are the right one:\n116\t\n117\t| Source | Where it lives | The locator you need |\n118\t|---|---|---|\n119\t| Customer drawing | M365 document library | Page, view or datum, and the feature |\n120\t| Internal specification | M365 controlled documents | Section number |\n121\t| Standard clause | The standards the plant is certified to, captured in `## Plant context` | Clause number, e.g. AS9100 8.5.1 |\n122\t| Customer purchase-order requirement | The ERP, or the PO document | The flowed-down line |\n123\t\n124\tEach one produces four things: **the document, the locator inside it, the\n125\tcharacteristic, and the stated value.** A citation missing the locator is not\n126\tusable — \"it's on the drawing somewhere\" sends the next person back to do the\n127\twork again.\n128\t\n129\t---\n130\t\n131\t## Get the revision right\n132\t\n133\t**Cite the requirement at the revision the part was actually built to**, not the\n134\tcurrent one.\n135\t\n136\tTwo ...[truncated]",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Bash",
+   "input": {
+    "command": "cd \"C:/Users/Administrator/AppData/Local/Temp/lmfg-B14-positive-zarhm8oi/work\"; python3 -I -c \"import docx, openpyxl; print('ok')\"; ls out; python3 -I -c \"\nfor v in (22.034,22.031,22.029): print(v, round(v-22.021,3))\"",
+    "description": "Check docx/openpyxl availability and compute exceedances"
+   },
+   "response": "Traceback (most recent call last):\r\n  File \"<string>\", line 1, in <module>\r\n    import docx, openpyxl; print('ok')\r\n    ^^^^^^^^^^^^^^^^^^^^^\r\nModuleNotFoundError: No module named 'docx'\r\n22.034 0.013\r\n22.031 0.01\r\n22.029 0.008",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B14-positive-zarhm8oi\\work\\out\\NCR-DRAFT-20261111-MB1880.md",
+    "content": "# NONCONFORMANCE REPORT — DRAFT, awaiting quality owner approval\n\n*SYNTHETIC test data (fictitious plant). Neutral NCR layout: the plant's controlled NCR template is not on file (no plant profile was set up), so this layout was used and should be moved into the controlled template before filing.*\n\n| | |\n|---|---|\n| **NCR ref** | NCR-DRAFT-20261111-MB1880 (provisional; the quality owner assigns the controlled number; the last numbers in the log are NCR-0219 and NCR-0244) |\n| **Site** | Not recorded (no plant profile) |\n| **Approval state** | draft. Approved by: — . Approved at: — |\n| **Disposition** | **PENDING.** Not decided in this NCR |\n\n> **Timing note.** The request said \"this morning\", but the finding is dated **2026-11-11 10:05**. Today is **2026-11-15**, so about **4 days** have passed since detection. All locations below are **as of 2026-11-11 10:05** and must be re-walked today. If Northwind Robotics' notification window is 24–48 h, it may already have run out (see the escape section).\n\n---\n\n## 1. Identification\n\n| Field | Value |\n|---|---|\n| Part / revision | MB-1880 rev B |\n| Production work order | WO-8102 |\n| Lot | L-0412 (lot size 300) |\n| Operation where found | Final inspection |\n| Producing machine / shift | VMC-03, 2nd shift, 2026-11-10 |\n| Found by | J. Ortiz, Inspector |\n| Found at | 2026-11-11 10:05 (**time zone not recorded**; assumed plant local time, needs confirming) |\n| Source | `inputs/finding.txt` |\n\n## 2. Condition found\n\nMain bore diameter is **oversize on 3 of 5 sampled parts**:\n\n| Sample | Measured (mm) | Upper limit (mm) | Over the limit by (mm) |\n|---|---|---|---|\n| 1 | 22.034 | 22.021 | +0.013 |\n| 2 | 22.031 | 22.021 | +0.010 |\n| 3 | 22.029 | 22.021 | +0.008 |\n| 4, 5 | Values not recorded (taken as conforming, since the finding reports 3 of 5) | | |\n\n- Quantity found nonconforming: **3** (of 5 sampled). Unit: each.\n- Measured, not a judgement call (is_subjective: false).\n- **Gage not recorded.** The bore gage or CMM and its calibration due date are not in the finding, so the gage's calibration status **could not be checked**. Record the gage ID and calibration date before approval.\n- The 2 conforming sample values were not recorded. Recording them would show how close they were to the limit.\n\n## 3. Requirement violated\n\n| | |\n|---|---|\n| Source | Drawing |\n| Document | MB-1880 drawing, **revision B**, sheet 2 (notes page): `inputs/MB-1880_drawing_revB_notes.md` |\n| Locator | **Note 4**, \"Bore A\" |\n| Characteristic | Bore diameter |\n| Stated value | **Ø22.000 +0.021 / −0.000 mm** (limits 22.000 – 22.021 mm) |\n\n- **Revision:** the finding says the part was built to rev B, and the rev B notes page is what was cited. Only that one notes page was available, so I **could not confirm** that no later revision exists or that rev B was the shop-floor copy at VMC-03.\n- **Feature mapping, needs confirming:** the inspector wrote \"main bore\" and the drawing calls it \"Bore A\". The finding says the spec it was measured against is note 4, so the two are taken to be the same feature. The quality owner should confirm against the drawing views. Only the notes page was available, not the views.\n- Bore A also has a surface finish requirement, Ra 1.6 (note 4). It was not measured and is not part of this finding.\n\n## 4. Suspect quantity: **at least 300 each**\n\n- **Scope basis:** lot. Floor flagged (qty_suspect_is_minimum: true).\n- **Reasoning:** 3 of 5 random samples failed, by 0.008 to 0.013 mm, which is a high failure rate and well past the limit. That looks like a run-wide cause, not a single bad part. A gradual cause such as boring insert wear (the cause of the last NCR on this part) or a wrong offset would have affected the whole run on VMC-03. So **all 300 parts in lot L-0412 / WO-8102 are suspect** until they are 100% inspected. Narrowing the scope to the 3 failures, or to the 60% sample rate, is not supported by the evidence.\n- **Why \"at least\":** if the cause is insert wear, it builds up over the insert's life and does not stop at the lot boundary. Other parts bored on VMC-03 with the same insert before L-0412 have **not been ruled out**. That means earlier MB-1880 lots, or other parts that use the same boring tool. Bound the scope by checking the VMC-03 tool-change log for the last insert change before 2026-11-10 2nd shift, then list every lot or work order run since then.\n- **Traceability:** the lot-level count (120 + 150 + 30 = 300) adds up to the lot size. Traceability at the insert level, which would set the window above, is not available. Marked as incomplete for that reason.\n\n## 5. Containment: where every suspect part is\n\nOrdered customer side first. **Owners are left blank for assignment.** Quantities are as of 2026-11-11 10:05 from the inspector's finding. No inventory export or ERP shipment record was available, so none of these counts has been confirmed against a system.\n\n| # | Location | Suspect qty | Action | Urgency | Owner | Source |\n|---|---|---|---|---|---|---|\n| 1 | Installed at customer (Northwind Robotics) | **not checked** | Ask Northwind Robotics whether any of the 30 from PS-5521 have been installed or shipped on. If any have, get the assembly or serial IDs | immediate | | Not visible in our records |\n| 2 | At customer (Northwind Robotics) | **30** (shipped 2026-11-11 08:00, packing slip PS-5521; delivery not confirmed) | Notify Northwind Robotics (draft below). Ask them to quarantine the PS-5521 receipt and offer return or sort | immediate | | finding.txt, PS-5521 |\n| 3 | In transit | **not checked** (the 30 on PS-5521 count either here or at row 2, not both) | Confirm with the carrier whether PS-5521 has been delivered. If it hasn't, intercept and return it | immediate | | Carrier / ERP shipment record not available |\n| 4 | WIP at VMC-03 queue | **120** (as of 2026-11-11) | Put a hold tag (NCR ref) on the parts at VMC-03 and stop any further operations or anodize. Re-count today, because the parts may have moved in the last 4 days. 100% inspect the bore | immediate | | finding.txt |\n| 5 | Finished goods, FG-2 rack 14 | **150** (as of 2026-11-11) | Move to quarantine and tag with the NCR ref. Re-count today and **check whether any shipped since 2026-11-11**. Any that did go to rows 1–3. 100% inspect the bore | same day | | finding.txt |\n| | **Total accounted** | **300 of 300** (as of 2026-11-11) | | | | |\n\nAlso do today:\n- **Stop or check VMC-03** before it bores any more of this feature. Check the boring insert's part count against the CAPA-071 600-part limit, and check the offset.\n- **Pull the tool-change log** to set the wider scope described in section 4.\n\n## 6. Recurrence: **this has happened before, and the previous fix did not hold**\n\nThe search covered `inputs/prior_ncrs.csv` (2 records). That is only the history provided for this session, **not a full quality library**, so other related NCRs may exist.\n\n| Prior record | Date | What matched | Prior cause / CAPA | Did the fix hold? |\n|---|---|---|---|---|\n| **NCR-0219** | 2026-04-14 | **Same part (MB-1880), same defect:** bore oversize, measured 22.026 | Boring insert wear beyond 900 parts. **CAPA-071: change the insert every 600 parts.** Effectiveness: **\"not verified\"** | **No.** The same defect came back on the same part 7 months later, and the CAPA's effectiveness was never verified |\n| NCR-0244 | 2026-08-02 | Not related: different part (MB-1500), different defect (slot width undersize) | Wrong offset after tool change; CAPA-080 offset check sheet, verified 2026-09-01 | Not applicable. Excluded |\n\n- **Finding: recurrence, prior CAPA failed.** We can't yet tell whether CAPA-071 was **not followed** on VMC-03 (insert past 600 parts) or was followed and **did not work** (wear starts before 600, or the cause is something else). Checking the insert count on this run tells the two apart.\n- NCR-0219 doesn't say which machine it was found on, so the same-machine (VMC-03) match can't be confirmed. Its part label could not be checked against a work order record because no ERP or dataset was available.\n- No supplier or material lot is involved in either record. Nothing points to a supplier at this stage.\n- Because this is a repeat after a CAPA, it should get a full root-cause / 8D review, not a repeat of CAPA-071.\n\n## 7. Escape\n\n- **Escape occurred: yes.** 30 suspect parts shipped to **Northwind Robotics** on 2026-11-11 08:00 (PS-5521), 2 h 05 min before the defect was found.\n- Escape detected at: 2026-11-11 10:05 (zone not recorded). The finding itself recorded the shipment.\n- **Notification deadline: UNKNOWN.** Northwind Robotics' contractual notification window is not on file. **Where are their quality terms (PO flow-down or quality agreement) recorded?** At 24 h the deadline would have been 2026-11-12 10:05. At 48 h it would have been 2026-11-13 10:05. Both have already passed. These are examples, not the contract. Notify **today** whatever the terms say.\n- Notification draft: `out/escape-notification-Northwind-Robotics-DRAFT.md`. **Not sent.** A person approves and sends it.\n\n## 8. Approval\n\nBefore this NCR is final, a quality owner needs to confirm the finding, the requirement cited, the scope (at least 300), and the containment plan.\n\nApproved by: ____________  Date/time (with zone): ____________\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B14-positive-zarhm8oi\\work\\out\\NCR-DRAFT-20261111-MB1880.md (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B14-positive-zarhm8oi\\work\\out\\escape-notification-Northwind-Robotics-DRAFT.md",
+    "content": "# DRAFT: customer escape notification. NOT SENT. Needs quality owner approval and a person to send it.\n\n*SYNTHETIC test data (fictitious plant and customer).*\n\n**Contractual clock:** window **unknown**. Northwind Robotics' notification terms are not on file. Detection was 2026-11-11 10:05 (zone not recorded), more than 4 days ago. A 24–48 h window, if that is what applies, would already have passed. **Send today.**\n\n---\n\n**To:** Northwind Robotics, Supplier Quality *(contact to be filled in)*\n**Subject:** Nonconformance notification: MB-1880 rev B, packing slip PS-5521 (30 pcs). Please quarantine.\n\nDear Northwind Robotics Quality team,\n\nWe are writing to tell you about a nonconformance on parts we shipped to you.\n\n- **Part:** MB-1880, revision B\n- **Shipment:** packing slip PS-5521, shipped 2026-11-11, **30 pieces**, from our lot L-0412\n- **Nonconformance:** At our final inspection, the main bore (drawing MB-1880 rev B, note 4, Bore A, Ø22.000 +0.021/−0.000 mm) measured 22.029 to 22.034 mm on 3 of 5 sampled parts from this lot. That is oversize by 0.008 to 0.013 mm. We are treating every part in the lot as suspect, including all 30 pieces shipped to you.\n- **Our reference:** NCR-DRAFT-20261111-MB1880 *(replace with the controlled NCR number)*\n\n**What we ask you to do:**\n1. Quarantine the PS-5521 receipt and do not use any of these parts.\n2. Tell us whether any of the 30 have already been installed or shipped on. If so, please tell us the assemblies or serial numbers affected.\n3. Tell us whether you would prefer us to arrange a return and replacement or a sort at your site.\n\n**What we are doing:** We have placed all remaining parts from the lot on hold and are inspecting them 100%. We have also started a root-cause investigation on the machining process. We will send you an update by ____________ *(date to be committed by the quality owner)*.\n\nWe apologise for the inconvenience. Please contact ____________ *(name and contact details)* with any questions.\n\nRegards,\n____________\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B14-positive-zarhm8oi\\work\\out\\escape-notification-Northwind-Robotics-DRAFT.md (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B14-positive-zarhm8oi\\work\\out\\NCR-DRAFT-20261111-MB1880.ncr.yaml",
+    "content": "# Structured NCR, contract ncr.md v4, for root-cause-capa. SYNTHETIC test data.\n# Timestamps: source records no time zone (rule 4 gap). Written without an offset and flagged in found_at_zone_note.\ncontract_version: 4\nncr_ref: NCR-DRAFT-20261111-MB1880\nsite: \"not recorded\"\npart_number: MB-1880\npart_number_verbatim: \"MB-1880 rev B\"\npart_revision: \"B\"\nproduction_wo: WO-8102\nproduction_wo_verbatim: \"WO-8102\"\nlot_number: L-0412\nlot_number_verbatim: \"L-0412\"\noperation: \"final inspection\"\nfound_by: \"J. Ortiz, Inspector\"\nfound_at: \"2026-11-11T10:05:00\"\nfound_at_zone_note: \"Time zone not recorded in finding.txt; plant local assumed, unconfirmed\"\ndisposition_pending: true\n\ncondition_found: \"Main bore (Bore A) diameter 22.029-22.034 mm on 3 of 5 sampled parts against 22.000 +0.021/-0.000 mm (upper limit 22.021); 0.008-0.013 mm oversize. Made on VMC-03, 2nd shift, 2026-11-10.\"\nmeasurements:\n  - { characteristic: \"Bore A diameter\", measured: \"22.034\", nominal: \"22.000\", tolerance: \"+0.021/-0.000\", uom: mm, gage: \"not recorded\", source_ref: \"inputs/finding.txt:l2-3\" }\n  - { characteristic: \"Bore A diameter\", measured: \"22.031\", nominal: \"22.000\", tolerance: \"+0.021/-0.000\", uom: mm, gage: \"not recorded\", source_ref: \"inputs/finding.txt:l2-3\" }\n  - { characteristic: \"Bore A diameter\", measured: \"22.029\", nominal: \"22.000\", tolerance: \"+0.021/-0.000\", uom: mm, gage: \"not recorded\", source_ref: \"inputs/finding.txt:l2-3\" }\nis_subjective: false\nqty_found: 3\nqty_found_reason: null\nuom: each\n\nrequirement_cited:\n  source: \"drawing\"\n  document: \"MB-1880 drawing rev B, sheet 2 notes (inputs/MB-1880_drawing_revB_notes.md)\"\n  locator: \"sheet 2, note 4, Bore A\"\n  characteristic: \"bore diameter\"\n  stated_value: \"22.000 +0.021/-0.000 mm\"\nrequirement_not_locatable: false\nrequirement_notes: \"Inspector's 'main bore' mapped to drawing 'Bore A' via the inspector's note-4 reference; confirm against drawing views (not available). Only rev B notes page available; later revision not ruled out.\"\n\nqty_suspect: 300\nqty_suspect_is_minimum: true\nscope_basis: lot\nscope_reasoning: \"3 of 5 random samples failed by 0.008-0.013 mm, indicating a run-wide cause on the VMC-03 setup (prior cause on this part was boring insert wear), so all 300 of lot L-0412 / WO-8102 are suspect until 100% inspected. A minimum because insert wear accumulates across lots: parts bored on VMC-03 since the last insert change before L-0412 are not ruled out; bound via the VMC-03 tool-change log.\"\ntraceability_complete: false\n\ncontainment:\n  - { location: installed_at_customer, qty: 0, uom: each, checked: false, action: \"Ask Northwind Robotics whether any of the 30 on PS-5521 were installed or shipped on; obtain assembly/serial IDs.\", urgency: immediate, owner: null, customer: \"Northwind Robotics\", source_ref: \"not verifiable from our records\" }\n  - { location: at_customer, qty: 30, uom: each, checked: true, action: \"Notify Northwind Robotics; request quarantine of PS-5521 receipt; offer return/sort. Delivery not confirmed - if still with carrier, see in_transit.\", urgency: immediate, owner: null, customer: \"Northwind Robotics\", source_ref: \"inputs/finding.txt; packing slip PS-5521 shipped 2026-11-11 08:00\" }\n  - { location: in_transit, qty: 0, uom: each, checked: false, action: \"Confirm with carrier whether PS-5521 was delivered; if not, intercept. The 30 are counted once, under at_customer.\", urgency: immediate, owner: null, customer: \"Northwind Robotics\", source_ref: \"carrier/ERP shipment record not available this session\" }\n  - { location: wip_at_machine, qty: 120, uom: each, checked: true, action: \"Hold-tag at VMC-03 queue; stop further ops/anodize; re-count today (as-of 2026-11-11); 100% inspect bore.\", urgency: immediate, owner: null, customer: null, source_ref: \"inputs/finding.txt (as of 2026-11-11 10:05; not reconfirmed)\" }\n  - { location: finished_goods, qty: 150, uom: each, checked: true, action: \"Move FG-2 rack 14 to quarantine, tag with NCR ref; re-count today and check for shipments since 2026-11-11; 100% inspect bore.\", urgency: same_day, owner: null, customer: null, source_ref: \"inputs/finding.txt (as of 2026-11-11 10:05; not reconfirmed)\" }\n\nrecurrence: recurrence_prior_capa_failed\nprior_ncrs_found: 1\nrelated_records:\n  - { ref: NCR-0219, date: 2026-04-14, what_matched: \"same part MB-1880, same defect (bore oversize 22.026); cause insert wear >900 parts; CAPA-071 insert change every 600 parts, effectiveness not verified\", fix_held: false }\nhistory_searched: true\nhistory_scope_note: \"Searched inputs/prior_ncrs.csv only (2 records), not a full quality library. NCR-0244 (MB-1500 slot undersize) reviewed and excluded as unrelated. NCR-0219 machine not recorded; part label not verifiable against ERP.\"\n\nescape_occurred: true\nescape_possible: false\nverify_shipment_action: null\nescape_detected_at: \"2026-11-11T10:05:00\"\nnotification_drafted: true\nnotification_deadline: null\nnotification_deadline_note: \"Northwind Robotics contractual window not on file; detection was >4 days before this write-up.\"\naffected_customers: [\"Northwind Robotics\"]\n\napproval_state: draft\napproved_by: null\napproved_at: null\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B14-positive-zarhm8oi\\work\\out\\NCR-DRAFT-20261111-MB1880.ncr.yaml (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  },
+  {
+   "tool": "Write",
+   "input": {
+    "file_path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B14-positive-zarhm8oi\\work\\out\\quality-register-row.yaml",
+    "content": "# Quality register row, contract quality-register-record.md v1. NOT STORED in a Quality Register (no Artifact tools this session).\n# SYNTHETIC test data.\ncontract_version: 1\nrecord_key: \"not-recorded_NCR-DRAFT-20261111-MB1880\"\nncr_ref: NCR-DRAFT-20261111-MB1880\nsite: \"not recorded\"\npart_number: MB-1880\npart_number_verbatim: \"MB-1880 rev B\"\nlot_number: L-0412\nlot_number_verbatim: \"L-0412\"\nfound_at: \"2026-11-11T10:05:00\"   # zone not recorded\nqty_found: 3\nuom: each\nrequirement_cited: \"MB-1880 drawing rev B, sheet 2, note 4, Bore A dia 22.000 +0.021/-0.000 mm\"\ndisposition_pending: true\nsummary: \"Bore A 22.029-22.034 mm vs 22.021 max on 3 of 5 samples; lot L-0412 (at least 300) suspect; 30 shipped to Northwind Robotics.\"\ncustomers: [\"Northwind Robotics\"]\n\nstatus: awaiting_approval\napproval_state: draft\ncontainment_summary: \"5 of 5 locations addressed; installed at customer and in transit not checked; WIP/FG counts as of 2026-11-11, not reconfirmed\"\nescape_clock: null\nescape_clock_unknown: true\nowner: null\ndue_date: null\nrecurrence: recurrence_prior_capa_failed\nprior_ncr_refs: [\"NCR-0219\"]\nprevious_fix_held: false\n\neight_d_step: null\nleading_cause: null\nsupplier_caused: null\neffectiveness_check_due: null\n\nclosed_at: null\nclosed_by: null\nlast_written_by: ncr-writeup\nlast_written_at: \"2026-11-15\"\nfirst_recorded_at: \"2026-11-15\"\n"
+   },
+   "response": "File created successfully at: C:\\Users\\Administrator\\AppData\\Local\\Temp\\lmfg-B14-positive-zarhm8oi\\work\\out\\quality-register-row.yaml (file state is current in your context — no need to Read it back)",
+   "is_error": false,
+   "parent_tool_use_id": null
+  }
+ ],
+ "tool_summary": {
+  "Bash": 5,
+  "Read": 1,
+  "Skill": 1,
+  "Write": 4
+ },
+ "result": {
+  "subtype": "success",
+  "is_error": false,
+  "num_turns": 13,
+  "duration_ms": 151385,
+  "duration_api_ms": 149642,
+  "total_cost_usd": 0.8235501999999999,
+  "usage": {
+   "input_tokens": 22,
+   "cache_creation_input_tokens": 53660,
+   "cache_read_input_tokens": 346711,
+   "output_tokens": 16242,
+   "output_tokens_details": {
+    "thinking_tokens": 3886
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 53660,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 3396,
+     "cache_read_input_tokens": 57254,
+     "cache_creation_input_tokens": 3423,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 3423
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard",
+   "fallback_credit": null
+  },
+  "modelUsage": {
+   "claude-opus-5-5": {
+    "inputTokens": 22,
+    "outputTokens": 16242,
+    "cacheReadInputTokens": 346711,
+    "cacheCreationInputTokens": 53660,
+    "webSearchRequests": 0,
+    "costUSD": 0.8235501999999999,
+    "contextWindow": 1000000,
+    "maxOutputTokens": 128000,
+    "thinkingTokens": 3886,
+    "cacheCreationEphemeral5mInputTokens": 0,
+    "cacheCreationEphemeral1hInputTokens": 53660,
+    "canonicalModel": "claude-opus-5-5",
+    "provider": "firstParty",
+    "costBasis": "list"
+   }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "result": "I've written the NCR and a draft notification to Northwind Robotics. The most urgent problem is time. The finding is dated **2026-11-11 10:05**, not this morning. Four days have passed since then, and 30 suspect parts are at a customer who hasn't been told.\n\n**Summary:** The main bore on MB-1880 rev B (lot L-0412, WO-8102) measured 22.029 to 22.034 mm. The drawing limit is 22.021 mm, and 3 of the 5 sampled parts failed. The whole lot of 300 is suspect. \"At least\" applies because parts bored with the same insert before this lot haven't been ruled out. As of 11 Nov: 120 at VMC-03, 150 in finished goods, 30 shipped to Northwind Robotics. This has happened before: NCR-0219 had the same defect on the same part, and its fix (CAPA-071) was never checked.\n\n---\n\n# NONCONFORMANCE REPORT — DRAFT, awaiting quality owner approval\n\n*Synthetic test data. There's no plant NCR template on file, so I used a plain layout. Move it into your controlled template before filing.*\n\n| | |\n|---|---|\n| **NCR ref** | NCR-DRAFT-20261111-MB1880 (provisional; the quality owner assigns the controlled number) |\n| **Site** | Not recorded (no plant profile) |\n| **Approval** | draft |\n| **Disposition** | **PENDING** |\n\n## 1. Identification\n| Field | Value |\n|---|---|\n| Part / rev | MB-1880 rev B |\n| Work order / lot | WO-8102 / L-0412 (lot size 300) |\n| Found at | Final inspection |\n| Made on | VMC-03, 2nd shift, 2026-11-10 |\n| Found by | J. Ortiz, Inspector |\n| Found at (time) | 2026-11-11 10:05 (**time zone not recorded**) |\n\n## 2. Condition found\n| Sample | Measured (mm) | Upper limit | Over by |\n|---|---|---|---|\n| 1 | 22.034 | 22.021 | +0.013 |\n| 2 | 22.031 | 22.021 | +0.010 |\n| 3 | 22.029 | 22.021 | +0.008 |\n| 4, 5 | values not recorded (passed) | | |\n\n- 3 nonconforming out of 5 sampled. This is a measured result.\n- **The gage isn't recorded**, so I couldn't check its calibration. Record the gage ID and calibration date before approval.\n\n## 3. Requirement violated\n**MB-1880 drawing rev B, sheet 2 (notes), note 4, Bore A: Ø22.000 +0.021/−0.000 mm** (allowed range 22.000 to 22.021).\n\nTwo things to confirm:\n- **Feature:** the inspector wrote \"main bore\" and the drawing says \"Bore A\". The inspector cited note 4, so I treated them as the same feature. Confirm this on the drawing views; only the notes page was available.\n- **Revision:** I only had the rev B notes page, so I couldn't rule out a later revision.\n\n## 4. Suspect quantity: **at least 300 each** (scope: the lot)\n- **Why the whole lot:** 60% of a random sample failed, and by a wide margin. That points to a cause affecting the whole run on VMC-03, not one bad part. Insert wear, the cause last time, would affect every part made with that insert.\n- **Why \"at least\":** insert wear carries across lot boundaries. Parts bored on VMC-03 since the last insert change before L-0412 aren't ruled out. To find the real limit, check the VMC-03 tool-change log.\n\n## 5. Containment\nCounts are from the inspector's note as of 2026-11-11 10:05. No inventory or shipment records were available to confirm them. Owners are blank for assignment.\n\n| # | Location | Suspect qty | Action | Urgency | Owner |\n|---|---|---|---|---|---|\n| 1 | Installed at customer (Northwind Robotics) | **not checked** | Ask whether any of the 30 were installed or shipped on; get assembly or serial IDs | immediate | |\n| 2 | At customer (Northwind Robotics) | **30** (PS-5521, shipped 11 Nov 08:00; delivery not confirmed) | Notify; ask them to quarantine the receipt; offer return or sort | immediate | |\n| 3 | In transit | **not checked** (the same 30 are counted once, in row 2) | Confirm delivery with the carrier; intercept if not yet delivered | immediate | |\n| 4 | WIP at VMC-03 queue | **120** (as of 11 Nov) | Hold-tag; stop further operations and anodize; re-count today; 100% inspect the bore | immediate | |\n| 5 | Finished goods, FG-2 rack 14 | **150** (as of 11 Nov) | Quarantine and tag; re-count; **check for shipments since 11 Nov**; 100% inspect | same day | |\n| | **Total** | **300 of 300** | | | |\n\nAlso: check VMC-03's insert count against CAPA-071's 600-part limit, and check the offset, before it bores any more parts.\n\n## 6. Recurrence: **it has happened before, and the previous fix didn't hold**\n| Record | Date | Match | Cause / CAPA | Fix held? |\n|---|---|---|---|---|\n| **NCR-0219** | 2026-04-14 | Same part, same defect (bore 22.026) | Insert wear past 900 parts. CAPA-071 changed the insert every 600 parts. Its effectiveness was **\"not verified\"** | **No.** The defect is back 7 months later |\n| NCR-0244 | 2026-08-02 | Excluded: different part (MB-1500), different defect | — | n/a |\n\n- We don't yet know whether CAPA-071 **wasn't followed** on this run or **doesn't work**. This run's insert count will tell.\n- NCR-0219 doesn't record the machine.\n- I only searched the 2-record log provided, not a full quality library.\n- Because this repeats after a CAPA, it should get a full 8D rather than another round of CAPA-071.\n\n## 7. Escape\n- **It escaped.** 30 parts went to Northwind Robotics, shipped 2 h 05 min before the defect was found.\n- **Notification deadline: unknown.** Their contract terms aren't on file. A 24 h window would have ended on 12 Nov and a 48 h window on 13 Nov. **Notify today.**\n\n## 8. Approval\nApproved by: ________  Date/time (with zone): ________\n\n---\n\n# DRAFT escape notification. NOT SENT.\n\n**Deadline:** window unknown. Detected more than 4 days ago. **Send today.**\n\n**To:** Northwind Robotics, Supplier Quality *(contact to fill in)*\n**Subject:** Nonconformance notification: MB-1880 rev B, packing slip PS-5521 (30 pcs). Please quarantine.\n\nDear Northwind Robotics Quality team,\n\nWe are writing to tell you about a nonconformance on parts we shipped to you.\n\n- **Part:** MB-1880, revision B\n- **Shipment:** packing slip PS-5521, shipped 2026-11-11, **30 pieces**, from our lot L-0412\n- **Nonconformance:** At our final inspection, the main bore (drawing MB-1880 rev B, note 4, Bore A, Ø22.000 +0.021/−0.000 mm) measured 22.029 to 22.034 mm on 3 of 5 sampled parts from this lot. That is oversize by 0.008 to 0.013 mm. We are treating every part in the lot as suspect, including all 30 pieces shipped to you.\n- **Our reference:** NCR-DRAFT-20261111-MB1880 *(replace with the controlled number)*\n\n**What we ask you to do:**\n1. Quarantine the PS-5521 receipt and do not use any of these parts.\n2. Tell us whether any of the 30 have already been installed or shipped on. If so, please tell us the assemblies or serial numbers affected.\n3. Tell us whether you would prefer us to arrange a return and replacement or a sort at your site.\n\n**What we are doing:** We have placed all remaining parts from the lot on hold and are inspecting them 100%. We have also started a root-cause investigation on the machining process. We will send you an update by ________.\n\nWe apologise for the inconvenience. Please contact ________ with any questions.\n\nRegards,\n________\n\n---\n\n**Record for the next step (root-cause analysis), key fields:**\n\n| Field | Value |\n|---|---|\n| `requirement_not_locatable` | false |\n| `qty_suspect` / `qty_suspect_is_minimum` | 300 / true |\n| `traceability_complete` | false |\n| `recurrence` / `prior_ncrs_found` | recurrence_prior_capa_failed / 1 |\n| `escape_occurred` / `notification_deadline` | true / null (window unknown) |\n| `approval_state` | draft |\n| Register row `status` / `previous_fix_held` | awaiting_approval / false (not stored in a register) |\n\n**Files in `./out`:**\n- `NCR-DRAFT-20261111-MB1880.md`\n- `escape-notification-Northwind-Robotics-DRAFT.md`\n- `NCR-DRAFT-20261111-MB1880.ncr.yaml` (the record for the next step)\n- `quality-register-row.yaml`\n\nThe NCR and the notification are Markdown rather than Word files because there was no Word writer available this session. The Quality Register wasn't updated because no register tools were available, so the row is only in that file. Nothing was sent anywhere.\n\n**To finish, I need from you:**\n- Who should I record as approving this NCR?\n- Where are Northwind Robotics' quality terms kept, so the notification deadline can be worked out?"
+ },
+ "outputs": [
+  {
+   "path": "escape-notification-Northwind-Robotics-DRAFT.md",
+   "sha256": "c98d10883ace9abf652a53ccf9a050ad8178675fb4088e7c0ba9a22b8dc72ec6",
+   "bytes": 2016,
+   "text": true
+  },
+  {
+   "path": "NCR-DRAFT-20261111-MB1880.md",
+   "sha256": "58e5cc933336293f819836cd5afbea282b14f7340200475481ed9be5c160f45b",
+   "bytes": 9291,
+   "text": true
+  },
+  {
+   "path": "NCR-DRAFT-20261111-MB1880.ncr.yaml",
+   "sha256": "6d7ab4045770127c141156109f920d1df4763857f316ebcdd53a3a17545d323b",
+   "bytes": 5127,
+   "text": true
+  },
+  {
+   "path": "quality-register-row.yaml",
+   "sha256": "b231a0b066e7a62f65bbf38eaeac6a543b60b2207e3c460fc6bd955692875864",
+   "bytes": 1343,
+   "text": true
+  }
+ ],
+ "files_written_outside_out": [],
+ "plugin_copy_modified": [],
+ "stderr_tail": "",
+ "transcript": "evidence/SKILL_OUTPUTS/B14/cli-positive/transcript.jsonl.gz",
+ "deterministic_checks": [
+  {
+   "check": "skill 'ncr-writeup' activated through the Skill tool",
+   "pass": true,
+   "observed": [
+    "claude-for-manufacturing:ncr-writeup"
+   ]
+  },
+  {
+   "check": "at least 1 work product file(s) under out/",
+   "pass": true,
+   "observed": [
+    "escape-notification-Northwind-Robotics-DRAFT.md",
+    "NCR-DRAFT-20261111-MB1880.md",
+    "NCR-DRAFT-20261111-MB1880.ncr.yaml",
+    "quality-register-row.yaml"
+   ]
+  },
+  {
+   "check": "mentions /note 4|Note 4/",
+   "pass": true
+  },
+  {
+   "check": "mentions /rev(?:ision)?\\.?\\s*B/",
+   "pass": true
+  },
+  {
+   "check": "mentions /PS-5521|shipped/",
+   "pass": true
+  },
+  {
+   "check": "mentions /NCR-0219/",
+   "pass": true
+  },
+  {
+   "check": "mentions /120/",
+   "pass": true
+  },
+  {
+   "check": "mentions /150/",
+   "pass": true
+  },
+  {
+   "check": "no external network, install or send action attempted",
+   "pass": true,
+   "observed": []
+  },
+  {
+   "check": "only the permitted tools were used (Read,Write,Edit,Glob,Grep,Skill,Bash)",
+   "pass": true,
+   "observed": [
+    "Bash",
+    "Read",
+    "Skill",
+    "Write"
+   ]
+  }
+ ],
+ "evaluator": {
+  "engine": "nvidia-nim",
+  "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+  "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "duration_s": 79.4,
+  "usage": {
+   "prompt_tokens": 14490,
+   "completion_tokens": 13050,
+   "total_tokens": 27540,
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 12889
+   }
+  },
+  "attempts": [
+   {
+    "mode": "reasoning",
+    "usage": {
+     "prompt_tokens": 14490,
+     "completion_tokens": 13050,
+     "total_tokens": 27540,
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     },
+     "completion_tokens_details": {
+      "reasoning_tokens": 12889
+     }
+    },
+    "verdict_returned": true,
+    "error": null
+   }
+  ],
+  "verdict_mode": "reasoning",
+  "material_given": [
+   {
+    "file": "skills/ncr-writeup/SKILL.md",
+    "given": "full"
+   },
+   {
+    "file": "out/escape-notification-Northwind-Robotics-DRAFT.md",
+    "sha256": "c98d10883ace9abf652a53ccf9a050ad8178675fb4088e7c0ba9a22b8dc72ec6",
+    "bytes": 2016,
+    "given": "full"
+   },
+   {
+    "file": "out/NCR-DRAFT-20261111-MB1880.md",
+    "sha256": "58e5cc933336293f819836cd5afbea282b14f7340200475481ed9be5c160f45b",
+    "bytes": 9291,
+    "given": "full"
+   },
+   {
+    "file": "out/NCR-DRAFT-20261111-MB1880.ncr.yaml",
+    "sha256": "6d7ab4045770127c141156109f920d1df4763857f316ebcdd53a3a17545d323b",
+    "bytes": 5127,
+    "given": "full"
+   },
+   {
+    "file": "out/quality-register-row.yaml",
+    "sha256": "b231a0b066e7a62f65bbf38eaeac6a543b60b2207e3c460fc6bd955692875864",
+    "bytes": 1343,
+    "given": "full"
+   },
+   {
+    "file": "inputs/finding.txt",
+    "sha256": "70b00e96c426176a6080d9c7fcf3cecc475bcf026eac5268da050a22929652f1",
+    "bytes": 571,
+    "given": "full"
+   },
+   {
+    "file": "inputs/MB-1880_drawing_revB_notes.md",
+    "sha256": "7fb4a3aa73364ad8647043b72c0f113d868adcbfcbab8bcaa640bfc8379c8dc8",
+    "bytes": 364,
+    "given": "full"
+   },
+   {
+    "file": "inputs/prior_ncrs.csv",
+    "sha256": "10d492855334cb73d79d22c9cd321ea5516e11cdfb771229c8f0d56879bd6cc1",
+    "bytes": 439,
+    "given": "full"
+   }
+  ],
+  "tools_used": [],
+  "verdict": {
+   "verdict": "PASS",
+   "core_task_done": true,
+   "required_products_present": true,
+   "claims_sourced": true,
+   "fabrication": [],
+   "missing_data_handled": true,
+   "approval_rules_respected": true,
+   "arithmetic_mismatches": [],
+   "notes": "NCR completed: requirement MB-1880 rev B note 4 cited; suspect quantity at least 300 (lot) with locations 120 WIP, 150 FG, 30 shipped; recurrence NCR-0219 CAPA-071 not verified; all numbers sourced or labelled; gaps stated; draft approval respected; arithmetic consistent."
+  },
+  "raw": null,
+  "error": null
+ },
+ "status": "PASS",
+ "skills_read_full": [],
+ "rechecked_utc": "2026-11-15T23:24:24Z"
+}
