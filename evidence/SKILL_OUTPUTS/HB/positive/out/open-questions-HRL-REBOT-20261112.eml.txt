@@ -1,0 +1,46 @@
+Subject: RE: RFQ - CNC aluminium part sets for reBot B601 DM arm (v1.1 STEP)
+
+Hello Lena,
+
+Thank you for the RFQ for 20 sets of the reBot B601 DM CNC parts. We have read the STEP file and the
+project readme: we count 21 different CNC parts, 31 pieces per arm, and the counts in the model agree
+with the readme. Before we can give you a firm price we need a few answers. Numbered so you can reply inline.
+
+1. Revision. We will price to reBot_B601_DM_v1.1_20260625.step as sent. The readme notes the published
+   BOM is not the final version and that tolerances may be adjusted later. Is v1.1 frozen for this order,
+   or do you expect a change before 31 January?
+
+2. Tolerances. The readme gives "Key dimension tolerance: ±0.02 mm GB/T1840-M" but does not say which
+   dimensions are key, and the model itself carries no tolerances. Could you tell us, per part, which
+   dimensions or features are key (a marked-up screenshot or a short list is fine), and confirm the
+   general tolerance standard and class you want for every other dimension? Please also confirm the
+   standard designation, which is written "GB/T1840-M" in the readme.
+
+3. Fits. The readme recommends H7 / interference fits for mating parts. Which bores or pins does that
+   apply to (for example the bearing seats for the 6707ZZ, 6803ZZ and AXK5578 bearings)?
+
+4. Finish. You say anodize is not required; the readme lists "Anodizing / Sandblasting". Should the parts
+   ship as machined and deburred, or do you want them sandblasted?
+
+5. Formed parts. Link 1, Link 2 (x2), Link 3 Left, Link 3 Right and Link 5 are listed as "CNC + Sheet
+   Metal" and the model shows them already formed. Could you send the flat patterns, or confirm the sheet
+   thickness and bend radii you expect?
+
+6. Material. The readme says Aluminum Alloy 5052 without a temper. Is 5052-H32 acceptable, and do you need
+   material certificates with the parts?
+
+7. Linear rail. You asked for one MGN9 170 mm rail per arm. Do you need the rail only, or also the MGN9
+   carriages (the readme lists two slider blocks per arm)? Is there an accuracy class or a length
+   tolerance on the 170 mm? Rail suppliers' minimum order quantities are well above 20 pieces, so please
+   also tell us whether you would rather source the rails yourselves.
+
+8. Inspection and paperwork. What inspection record do you need per set (for example a certificate of
+   conformance, or a dimensional report on the key dimensions)?
+
+9. Delivery and terms. Delivery by 31 January 2027 to which address? Do you have preferences for freight,
+   packaging (kitted per arm set?), and payment terms, and is there a date by which you need our quote?
+   Please also confirm that all 21 parts are wanted in aluminium, including the three the readme says
+   can be 3D printed (Motor 1 Bearing Mount, Motor 2-5 Front Spacer, Gripper Slider Metal Bracket).
+
+Best regards,
+[estimator name]

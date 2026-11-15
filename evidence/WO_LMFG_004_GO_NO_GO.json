@@ -1,6 +1,6 @@
 {
-  "source_commit": "38ec0a00a1814e66a95799c52fc0e38dc1146291",
-  "executed_at_utc": "2026-11-15T04:28:46+00:00",
+  "source_commit": "12d00566820bbeee0d69ccacf8c1871e88e7c1a0",
+  "executed_at_utc": "2026-11-15T04:30:29+00:00",
   "environment": {
     "python": "3.14.7",
     "implementation": "CPython",
@@ -68,8 +68,8 @@
     {
       "id": 9,
       "criterion": "LEGION adds a measured capability beyond the Anthropic baseline",
-      "verdict": "Z",
-      "evidence": "evidence/BASELINE_COMPARISON.json missing"
+      "verdict": "T",
+      "evidence": "LEGION adds a measured capability: step_verification_evidence_cited: B cites an OpenCascade/XCAF reconciliation (40/40 positions, 53/53 instances); A counted the STEP as text with its own script (unverified); engineering_gaps_named: B names 3/3 of the requirements the ZTL review left open (cnc_material_evidence, joint2_load_torque, rail_length_tolerance); A names 1/3 (cnc_material_evidence)"
     },
     {
       "id": 10,
@@ -98,8 +98,8 @@
   ],
   "protected_repository_modifications": null,
   "counts": {
-    "T": 3,
+    "T": 4,
     "F": 0,
-    "Z": 10
+    "Z": 9
   }
 }

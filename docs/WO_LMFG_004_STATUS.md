@@ -16,7 +16,7 @@ inputs (`tests/runtime/inputs/`, every file headed SYNTHETIC) and the existing l
 | PASS (deterministic checks **and** independent evaluator PASS, no fabrication) | 16 |
 | BLOCKED (required live system absent) | 1 — B08 design-space-explore: no Autodesk Fusion. The skill stopped and named what it needs; evaluator PASS on that behaviour |
 | FAIL | 0 (B05 attempt 1 = FAIL is kept: `evidence/SKILL_OUTPUTS/B05/attempt1`) |
-| Missing-evidence (negative) cases | 9 PASS, 5 awaiting evaluation (B06, B11, B12, B15, B16), 2 not finished (B13, B17) |
+| Missing-evidence (negative) cases | 16/16 PASS (B08 has no negative case: it cannot run without Fusion) |
 
 Per run (`evidence/SKILL_OUTPUTS/<case>/<variant>/run.json`): the task prompt, input file hashes, model id, the
 SKILL.md files the model read, every tool call with its actual response, token usage, the output files with SHA-256,
@@ -55,12 +55,26 @@ and installing was not permitted), so skills wrote CSV/HTML/Markdown and said so
 
 No buyer is real, no supplier quote is real, no order or payment exists.
 
-### A/B baseline (evidence/BASELINE_COMPARISON.json)
+### A/B baseline (evidence/BASELINE_COMPARISON.json — both runs evaluator PASS)
 
-NOT RUN yet. Cases HA (original plugin only) and HB (same task + LEGION engineering and coalition artifacts) were
-started and stopped by the model usage limit. `tools/baseline_compare.py` scores both against the engineering ground
-truth (CNC part coverage, STEP verification evidence, ZTL evidence, tolerances presented as fact, MOQ answer,
-buyer-reliance qualification, evaluator verdict) and claims a LEGION capability only where outcomes differ.
+Same task and inputs (RFQ, reBot readme, the 34.8 MB STEP, POs, rates memo, two supplied rail quotes, coalition
+demand). A = original plugin only (case HA). B = same plugin + LEGION's engineering and coalition artifacts (case HB).
+Scored by `tools/baseline_compare.py` against the engineering ground truth.
+
+| Metric | A original | B LEGION | |
+|---|---|---|---|
+| CNC parts named (of 21) | 21 | 21 | no difference |
+| STEP file opened by a tool | yes | yes | no difference |
+| STEP verification evidence (OpenCascade XCAF, 40/40 positions, 53/53 instances) | no — counted the STEP as text with its own script | yes | **difference** |
+| Open engineering requirements named (rail length tolerance, joint-2 load/torque, material grade/certificates) | 1/3 | 3/3 | **difference** |
+| Tolerances presented as fact (not in the inputs) | 0 | 0 | no difference |
+| MOQ answered / buyer reliance correctly qualified | yes / yes | yes / yes | no difference |
+| Independent evaluator | PASS | PASS | no difference |
+
+Measured LEGION capability: CAD-kernel-verified BOM evidence and the engineering gaps found by the real ZTL review.
+Not claimed: better BOM coverage (A matched 21/21 and 31 pieces per arm on its own), better cost accuracy (neither
+priced: both stopped at the rfq-to-quote gates with no rates on file), or a better coalition answer (both said the
+pooled 100 cannot be relied on). Limits: one run per configuration, same model.
 
 ## 2. Claude runtime readiness
 
@@ -104,7 +118,7 @@ No mock was used to satisfy any live criterion.
 | 3 | All skill outputs independently evaluated | T |
 | 4–7 | Microsoft 365 / Fusion / NetSuite / Infor M3 live | Z ×4 (BLOCKED) |
 | 8 | Integrated E2E workflow | T |
-| 9 | Measured LEGION capability beyond baseline | Z (A/B not run yet) |
+| 9 | Measured LEGION capability beyond baseline | T (2 measured differences, 5 equal metrics) |
 | 10 | No critical regressions | pending CI (local: skills 198 PASS / 0 FAIL / 20 NOT RUN / 2 BLOCKED; connectors 51/51; runtime 5/5; upstream 94/94) |
 | 11 | No unauthorised consequential actions | T |
 | 12 | GitHub CI PASS on the final commit | pending |
@@ -112,10 +126,11 @@ No mock was used to satisfy any live criterion.
 
 Protected repository modifications: 0 (Deal-Rescue, ZTL repos, Marketplace, Federation, Commerce, Formal-Core read only).
 
-## Remaining work
+## Remaining work (external / owner)
 
-1. After the model usage reset: finish B13/B17 negatives; evaluate B06/B11/B12/B15/B16 negatives; finish HA/HB and run
-   `tools/baseline_compare.py`.
-2. Recompute `tools/skill_report.py`, `tools/wo004_gate.py`; regenerate SHA256SUMS / EVIDENCE_MANIFEST; push; record CI.
-3. Owner/external: CLI sign-in on this account; Fusion install; authorised M365, NetSuite and M3 tenants; commercial
-   authorisation for Marketplace/Federation.
+1. CLI sign-in on this Windows account (`claude auth login` completed until `claude auth status` shows loggedIn true),
+   then rerun the cases through route 1 (`python tools/skill_run.py <case>`) for plugin-discovery evidence.
+2. Autodesk Fusion desktop with its MCP add-in and an authorised reference design (B08 and WO §6).
+3. Authorised Microsoft 365, NetSuite and Infor M3 tenants (read-only), provided through a protected environment.
+4. Commercial authorisation for LEGION Marketplace / Federation (PolyForm-NC) before the coalition proposal can be
+   admitted.

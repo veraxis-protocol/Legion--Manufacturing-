@@ -1,0 +1,190 @@
+# Intake form, contract version 7 (shared/contracts/intake-form.md). Record, not a document.
+# SYNTHETIC TEST DATA (fictitious plant, customer and suppliers). Written by customer-inquiry-intake via rfq-to-quote, 2026-11-15.
+contract_version: 7
+site: null   # no plant profile on file (plant_setup.py find: exists false); which plant builds it is unknown
+customer: "Harbor Robotics Lab (fictitious)"
+contact: { name: "Lena Okafor", email: "lena.okafor@harbor-robotics-lab.example", phone: null }
+rfq_reference: null   # customer gave none; internal reference HRL-REBOT-20261112 used for filing only
+internal_reference: "HRL-REBOT-20261112"   # LEGION's own case id for the same inquiry: RFQ-E2E-REBOT-001 (02_engineering.json inquiry_ref)
+received_at: 2026-11-12T11:20:00+00:00
+response_deadline: null
+supersedes_rfq: null
+payment: null
+freight: null
+packaging: null
+liability: null
+source_documents:
+  - { name: "rfq_rebot_email.txt", type: email_body, pages: 1 }
+  - { name: "reBot_B601_DM_v1.1_20260625.step", type: step, pages: null, bytes: 34840241, sha256: "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2" }
+  - { name: "readme.md", type: text_spec, pages: 1, lines: 244, note: "project BOM; customer says 'Material per the project BOM'" }
+field_sources:
+  customer: "rfq_rebot_email.txt:L2,L15"
+  contact: "rfq_rebot_email.txt:L2"
+  received_at: "rfq_rebot_email.txt:L4"
+  rfq_reference: "not stated (rfq_rebot_email.txt subject L5 carries no reference)"
+  response_deadline: "not stated"
+  payment: "not stated"
+  freight: "not stated"
+  packaging: "not stated"
+  liability: "not stated"
+
+line_items:
+  # Lines 1-21: CNC parts. Common to every line unless noted:
+  #   quantities: [{qty: <qty_per_arm x 20>, uom: each}]   (20 sets, rfq_rebot_email.txt:L10; per-arm qty from readme.md line shown)
+  #   material: "Aluminum Alloy 5052" (readme.md line shown; email L11 "Aluminium 5052"); temper not stated
+  #   specs: [{characteristic: "key dimensions (which dimensions are key is not identified)", nominal: null,
+  #            tolerance: "+/-0.02 mm GB/T1840-M (as written)", reading_basis: from_text, source_ref: "readme.md:L129"},
+  #           {characteristic: "mating fits", nominal: null, tolerance: "H7 / interference fit, recommended (features not identified)",
+  #            reading_basis: from_text, source_ref: "readme.md:L131"}]
+  #   finish: AMBIGUOUS (see ambiguous_register)
+  #   certifications_required: []  (none stated)
+  #   required_delivery: 2027-01-31 (rfq_rebot_email.txt:L12)
+  #   geometry_inputs: [{name: "reBot_B601_DM_v1.1_20260625.step", type: step, revision: "v1.1 20260625 (from file name; no drawing revision)", source_ref: "STEP product <name>"}]
+  #   geometry_path: C1   (STEP, no drawing; email L12 "We have no 2D drawings")
+  #   line_recommendation: bid (provisional) ; line_bid_decision: draft
+  # line | part_number (readme file) | description | qty/arm | qty 20 sets | readme line | STEP product | process
+  - { line_no: 1,  part_number: "02_Base_Reinforcement_Part", description: "Motor 1 Bearing Mount", qty_per_arm: 1, quantities: [{qty: 20, uom: each}], src: "readme.md:L105", step_product: "2-M1-STATOR-1", process: CNC }
+  - { line_no: 2,  part_number: "02_Arm_Yaw_Limit", description: "Motor 1 Rotation Axis", qty_per_arm: 1, quantities: [{qty: 20, uom: each}], src: "readme.md:L106", step_product: "2-M1-ROTOR-1", process: CNC }
+  - { line_no: 3,  part_number: "02_Motor_Front_Spacer", description: "Motor 2-5 Front Spacer", qty_per_arm: 4, quantities: [{qty: 80, uom: each}], src: "readme.md:L107", step_product: "2-SHAFT-SLEEVE-ROTATOR-1", process: CNC }
+  - { line_no: 4,  part_number: "02_Motor_Back_Spacer", description: "Motor 2-4 Rear Spacer", qty_per_arm: 3, quantities: [{qty: 60, uom: each}], src: "readme.md:L108", step_product: "2-SPACE-STATOR-1", process: CNC }
+  - { line_no: 5,  part_number: "02_FLANGE", description: "Motor 2-4 Rear Flange", qty_per_arm: 3, quantities: [{qty: 60, uom: each}], src: "readme.md:L109", step_product: "2-SHAFT-SLEEVE-STATOR-1", process: CNC }
+  - { line_no: 6,  part_number: "02_Wrist_Bracket", description: "Wrist Motor 5 Bracket", qty_per_arm: 1, quantities: [{qty: 20, uom: each}], src: "readme.md:L110", step_product: "2026-07-01-11-37-27-375", process: CNC }
+  - { line_no: 7,  part_number: "02_Gripper_Connector_A", description: "Gripper Connector A", qty_per_arm: 1, quantities: [{qty: 20, uom: each}], src: "readme.md:L111", step_product: "2-M6-ROTOR", process: CNC }
+  - { line_no: 8,  part_number: "02_Gripper_Connector_B", description: "Gripper Connector B", qty_per_arm: 1, quantities: [{qty: 20, uom: each}], src: "readme.md:L112", step_product: "2-M7-STATOR", process: CNC }
+  - { line_no: 9,  part_number: "02_Slider_Bracket", description: "Gripper Slider Metal Bracket", qty_per_arm: 1, quantities: [{qty: 20, uom: each}], src: "readme.md:L113", step_product: "2-RAIL-BASE-1", process: CNC }
+  - { line_no: 10, part_number: "02_Slider_Extension", description: "Slider to Gripper Extension", qty_per_arm: 2, quantities: [{qty: 40, uom: each}], src: "readme.md:L114", step_product: "2-SLIDER-FIX", process: CNC }
+  - { line_no: 11, part_number: "02_Lower_Upper_Link_L", description: "Upper-Lower Arm Link Left", qty_per_arm: 1, quantities: [{qty: 20, uom: each}], src: "readme.md:L115", step_product: "2-CONNECTING-ROD-1-L", process: CNC }
+  - { line_no: 12, part_number: "02_Lower_Upper_Link_R", description: "Upper-Lower Arm Link Right", qty_per_arm: 1, quantities: [{qty: 20, uom: each}], src: "readme.md:L116", step_product: "2-CONNECTING-ROD-1-R", process: CNC }
+  - { line_no: 13, part_number: "02_Lower_Wrist_Link_L", description: "Lower Arm-Wrist Link Left", qty_per_arm: 1, quantities: [{qty: 20, uom: each}], src: "readme.md:L117", step_product: "2-CONNECTING-ROD-2-L", process: CNC }
+  - { line_no: 14, part_number: "02_Lower_Wrist_Link_R", description: "Lower Arm-Wrist Link Right", qty_per_arm: 1, quantities: [{qty: 20, uom: each}], src: "readme.md:L118", step_product: "2-CONNECTING-ROD-2-R", process: CNC }
+  - { line_no: 15, part_number: "02_Gear_Connector", description: "Gear Connector", qty_per_arm: 1, quantities: [{qty: 20, uom: each}], src: "readme.md:L119", step_product: "2-M7-ROTOR", process: CNC }
+  - { line_no: 16, part_number: "02_Rack", description: "Rack", qty_per_arm: 2, quantities: [{qty: 40, uom: each}], src: "readme.md:L120", step_product: "2-RACK-1M", process: CNC }
+  - { line_no: 17, part_number: "03_Link1", description: "Link 1", qty_per_arm: 1, quantities: [{qty: 20, uom: each}], src: "readme.md:L121", step_product: "2-U-PLATE-1", process: "CNC + Sheet Metal" }
+  - { line_no: 18, part_number: "03_Link2", description: "Link 2", qty_per_arm: 2, quantities: [{qty: 40, uom: each}], src: "readme.md:L122", step_product: "2-LINK-1-ARM", process: "CNC + Sheet Metal" }
+  - { line_no: 19, part_number: "03_Link3_L", description: "Link 3 Left", qty_per_arm: 1, quantities: [{qty: 20, uom: each}], src: "readme.md:L123", step_product: "1-LINK-2-ARM-L", process: "CNC + Sheet Metal" }
+  - { line_no: 20, part_number: "03_Link3_R", description: "Link 3 Right", qty_per_arm: 1, quantities: [{qty: 20, uom: each}], src: "readme.md:L124", step_product: "2-LINK-2-ARM-R", process: "CNC + Sheet Metal" }
+  - { line_no: 21, part_number: "03_Link5", description: "Link 5", qty_per_arm: 1, quantities: [{qty: 20, uom: each}], src: "readme.md:L125", step_product: "2-M5-ROTOR-L", process: "CNC + Sheet Metal" }
+  - line_no: 22
+    part_number: "MGN9-170mm"
+    description: "Linear rail, purchased (buy-out), one per arm"
+    revision: null
+    quantities: [{qty: 20, uom: each}]
+    material: null   # not stated by customer; supplier bid ingest records "MGN9 steel rail" only as LEGION's normalisation
+    specs: []        # no accuracy class, no length tolerance stated
+    finish: null
+    certifications_required: []
+    required_delivery: 2027-01-31
+    geometry_inputs: [{name: "reBot_B601_DM_v1.1_20260625.step", type: step, revision: null, source_ref: "STEP product 6-RAIL-170"}]
+    geometry_path: C1   # catalog purchased part; no design step applies, priced from a supplier quote
+    field_sources: { quantities: "rfq_rebot_email.txt:L11 ('one per arm'); readme.md:L150", description: "rfq_rebot_email.txt:L11; readme.md:L150", required_delivery: "rfq_rebot_email.txt:L12" }
+    line_recommendation: bid
+    line_bid_decision: draft
+
+missing_register:
+  - { line_no: null, field: drawing revision, why_it_matters: "The quote must name the revision it is priced to; there is no drawing, only a STEP named v1.1 20260625 and a repo commit 22f002a.", should_have_come_from: "a released drawing or the customer's confirmation of the STEP revision" }
+  - { line_no: null, field: pending change risk, why_it_matters: "readme.md:L45 warns the published BOM is not the final Seeed version and that machining tolerances will be adjusted in production; a revision may follow.", should_have_come_from: "customer confirmation that v1.1 is frozen for this order" }
+  - { line_no: 1-21, field: which dimensions are 'key', why_it_matters: "+/-0.02 mm is stated for key dimensions only (readme.md:L129); no feature is identified, so the tolerance cannot be applied to any feature and nothing may be inferred.", should_have_come_from: "drawing or marked-up list of key characteristics" }
+  - { line_no: 1-21, field: general tolerance for non-key dimensions, why_it_matters: "Every other dimension has no tolerance; the standard is written 'GB/T1840-M' and must be confirmed.", should_have_come_from: "drawing general note" }
+  - { line_no: 1-21, field: H7 / interference fit features, why_it_matters: "readme.md:L131 recommends H7 / interference fits without naming bores; reamed bores change the operation list.", should_have_come_from: "drawing" }
+  - { line_no: 1-21, field: material temper and certificates, why_it_matters: "'Aluminum Alloy 5052' has no temper; certificate requirement unknown (LEGION cnc_material_evidence = Z).", should_have_come_from: "customer material spec" }
+  - { line_no: 17-21, field: sheet gauge, flat pattern, bend radii, why_it_matters: "Process is 'CNC + Sheet Metal' (readme.md:L121-125); the STEP holds the formed shape only, so blank size and stock cannot be determined.", should_have_come_from: "flat pattern / drawing" }
+  - { line_no: 1-21, field: inspection requirements, why_it_matters: "No inspection or documentation level stated; drives inspection hours.", should_have_come_from: "customer quality requirements" }
+  - { line_no: 22, field: rail accuracy class, length tolerance, carriage scope, why_it_matters: "Bids differ (X standard accuracy, rail only; Y accuracy not stated, cut +/-0.5 mm); readme.md:L151 lists 2 MGN9 slider blocks per arm which the customer did not ask for.", should_have_come_from: "customer spec" }
+  - { line_no: null, field: payment, freight, packaging, liability, response deadline, why_it_matters: "Not stated; quoted against plant standard terms, which are not on file either.", should_have_come_from: "customer terms" }
+  - { line_no: null, field: quantity breaks, why_it_matters: "Only 20 sets requested; no breaks. Captured as one quantity.", should_have_come_from: "n/a - recorded, not a question" }
+
+ambiguous_register:
+  - line_no: 1-21
+    field: finish
+    values_found:
+      - { value: "Anodizing / Sandblasting", source_ref: "readme.md:L130" }
+      - { value: "Anodize not required", source_ref: "rfq_rebot_email.txt:L13" }
+    why_it_matters: "The email removes anodize but says nothing about sandblasting; an outside process or bead-blast operation is priced or not depending on the answer."
+  - line_no: 1-21
+    field: material grade wording
+    values_found:
+      - { value: "Aluminium 5052", source_ref: "rfq_rebot_email.txt:L11" }
+      - { value: "Aluminum Alloy 5052", source_ref: "readme.md:L105-125" }
+    why_it_matters: "Same alloy; neither gives a temper. Plant PO stock is 5052-H32 (purchase_orders_5052.csv), which the customer has not accepted."
+  - line_no: 1, 3, 9
+    field: material / process option
+    values_found:
+      - { value: "CNC aluminium parts only, complete per-arm sets", source_ref: "rfq_rebot_email.txt:L10" }
+      - { value: "Can be 3D printed in ABS ... to reduce cost", source_ref: "readme.md:L105, L107, L113" }
+    why_it_matters: "Customer asks for CNC; readme offers printed alternatives. Treated as CNC; confirm."
+
+open_questions: |   # verbatim draft, NOT SENT (Gate 1 pending)
+  Subject: RE: RFQ - CNC aluminium part sets for reBot B601 DM arm (v1.1 STEP)
+  
+  Hello Lena,
+  
+  Thank you for the RFQ for 20 sets of the reBot B601 DM CNC parts. We have read the STEP file and the
+  project readme: we count 21 different CNC parts, 31 pieces per arm, and the counts in the model agree
+  with the readme. Before we can give you a firm price we need a few answers. Numbered so you can reply inline.
+  
+  1. Revision. We will price to reBot_B601_DM_v1.1_20260625.step as sent. The readme notes the published
+     BOM is not the final version and that tolerances may be adjusted later. Is v1.1 frozen for this order,
+     or do you expect a change before 31 January?
+  
+  2. Tolerances. The readme gives "Key dimension tolerance: ±0.02 mm GB/T1840-M" but does not say which
+     dimensions are key, and the model itself carries no tolerances. Could you tell us, per part, which
+     dimensions or features are key (a marked-up screenshot or a short list is fine), and confirm the
+     general tolerance standard and class you want for every other dimension? Please also confirm the
+     standard designation, which is written "GB/T1840-M" in the readme.
+  
+  3. Fits. The readme recommends H7 / interference fits for mating parts. Which bores or pins does that
+     apply to (for example the bearing seats for the 6707ZZ, 6803ZZ and AXK5578 bearings)?
+  
+  4. Finish. You say anodize is not required; the readme lists "Anodizing / Sandblasting". Should the parts
+     ship as machined and deburred, or do you want them sandblasted?
+  
+  5. Formed parts. Link 1, Link 2 (x2), Link 3 Left, Link 3 Right and Link 5 are listed as "CNC + Sheet
+     Metal" and the model shows them already formed. Could you send the flat patterns, or confirm the sheet
+     thickness and bend radii you expect?
+  
+  6. Material. The readme says Aluminum Alloy 5052 without a temper. Is 5052-H32 acceptable, and do you need
+     material certificates with the parts?
+  
+  7. Linear rail. You asked for one MGN9 170 mm rail per arm. Do you need the rail only, or also the MGN9
+     carriages (the readme lists two slider blocks per arm)? Is there an accuracy class or a length
+     tolerance on the 170 mm? Rail suppliers' minimum order quantities are well above 20 pieces, so please
+     also tell us whether you would rather source the rails yourselves.
+  
+  8. Inspection and paperwork. What inspection record do you need per set (for example a certificate of
+     conformance, or a dimensional report on the key dimensions)?
+  
+  9. Delivery and terms. Delivery by 31 January 2027 to which address? Do you have preferences for freight,
+     packaging (kitted per arm set?), and payment terms, and is there a date by which you need our quote?
+     Please also confirm that all 21 parts are wanted in aluminium, including the three the readme says
+     can be 3D printed (Motor 1 Bearing Mount, Motor 2-5 Front Spacer, Gripper Slider Metal Bracket).
+  
+  Best regards,
+  [estimator name]
+recommendation: bid
+recommendation_provisional: true
+recommendation_reasoning:
+  - "Constraint-free: no plant capability profile is on file, so manufacturability (5052 milling, +/-0.02 mm, sheet-metal bending, envelope up to 321 mm) was NOT checked."
+  - "No ERP closed-work-order cost history: scored on dates alone. No actual-cost comparable is available."
+  - "Delivery 2027-01-31 is 80 days after receipt (2026-11-12); not checked against shop load (no planning export)."
+  - "All 21 CNC positions and their per-arm quantities agree across readme, LEGION XCAF extraction and an independent text read of the STEP."
+constraint_violations: []   # none determinable: no capability profile
+would_change_recommendation:
+  - { question: "Q2 key dimensions / tolerance standard", line: "1-21", becomes: "no_bid or bid-with-exclusion on any line where +/-0.02 mm applies to features beyond the plant's demonstrated capability (capability not on file)" }
+  - { question: "Q5 sheet-metal parts", line: "17-21", becomes: "no_bid on lines 17-21 (partial) if the plant has no bending capability or the flat pattern cannot be agreed" }
+  - { question: "Q7 rail scope", line: 22, becomes: "no_bid on line 22 if carriages / an accuracy class are required that neither bid offers, or if the estimator will not carry the 80-rail MOQ excess" }
+  - { question: "Q1 revision freeze", line: all, becomes: "hold all lines if a revision is pending" }
+hard_disqualifier_stopped: false
+inquiry_state: open
+stale_since: null
+answers_received: []
+bid_decision_state: draft
+bid_decision_by: null
+bid_decision_at: null
+bid_decision_basis: null
+bid_decision_reset: null
+questions_sent_at: null
+questions_sent_by: null
+paused_at_step: 5
+waiting_on: "estimator: Gate 1 (send questions Q1-Q9) and Gate 2 (confirm bid/no-bid); then customer answers"
+gates_passed: []
+stale_after: 2026-11-19   # 5 business days from received_at (default, not plant-set; no questions_sent_at yet)

@@ -1,6 +1,6 @@
 {
-  "source_commit": "38ec0a00a1814e66a95799c52fc0e38dc1146291",
-  "executed_at_utc": "2026-11-15T04:28:46+00:00",
+  "source_commit": "12d00566820bbeee0d69ccacf8c1871e88e7c1a0",
+  "executed_at_utc": "2026-11-15T04:30:28+00:00",
   "environment": {
     "python": "3.14.7",
     "implementation": "CPython",
@@ -35,10 +35,10 @@
     "claude-opus-5-5"
   ],
   "tokens_total": {
-    "input_tokens": 1428,
-    "output_tokens": 1043433,
-    "cache_read_input_tokens": 68013721,
-    "cache_creation_input_tokens": 7463516
+    "input_tokens": 1502,
+    "output_tokens": 1097736,
+    "cache_read_input_tokens": 73375283,
+    "cache_creation_input_tokens": 8068499
   },
   "note": "Model-driven executions only. Deterministic contract/unit tests are reported separately (evidence/SKILL_MATRIX*.json) and are not counted here.",
   "skills": [
@@ -1442,7 +1442,46 @@
       "chain": [],
       "e2e_stage": null,
       "positive": {
-        "status": "NOT RUN"
+        "status": "PASS",
+        "reason": null,
+        "behaviour_without_live_system": null,
+        "runtime_route": "desktop-subagent",
+        "model": "claude-opus-5-5",
+        "skills_read_or_invoked": [
+          "customer-inquiry-intake",
+          "quote-build",
+          "rfq-to-quote"
+        ],
+        "tool_summary": {
+          "Bash": 28,
+          "Read": 6,
+          "SubagentHandback": 1,
+          "Write": 4
+        },
+        "duration_s": 22510.5,
+        "outputs": [
+          "cnc_bom_per_arm.csv",
+          "figures.json",
+          "geometry-estimates-HRL-REBOT-20261112.txt",
+          "open-questions-HRL-REBOT-20261112.eml.txt",
+          "open-work/inquiries/harbor-robotics-lab-HRL-REBOT-20261112.intake.txt",
+          "open-work/open-work.md",
+          "rfq-workup-HRL-REBOT-20261112.html",
+          "scripts/build_pages.py",
+          "scripts/figures.py",
+          "scripts/step_instances.py",
+          "scripts/step_leaf_bbox.py",
+          "sourcing-output/bid-comparison.html",
+          "step_instance_counts.json",
+          "step_leaf_geometry.json"
+        ],
+        "deterministic_checks": "5/5",
+        "failed_checks": [],
+        "evaluator_verdict": "PASS",
+        "evaluator_fabrication": [],
+        "evaluator_arithmetic_mismatches": [],
+        "evaluator_notes": "Chain correctly paused after step 5 at Gates 1/2. Questions are drafted and not sent. BOM is 21 positions, 31 pieces per arm, 620 for 20 sets, checked against the STEP as C1 unverified. The 19.00 USD/set material lower bound recomputes to 19.0026. Rail figures check (1140, 912, 2475, 2277). Coalition is 100 against MOQ, correctly called unreliable. The memo rates were withheld, which matches secret-config. Minor: copies saved as .txt (the skill forbids this) and no Word/Excel copy. No command-center page.",
+        "run_record": "evidence/SKILL_OUTPUTS/HB/positive/run.json"
       }
     }
   ]

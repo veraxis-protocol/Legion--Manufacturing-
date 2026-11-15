@@ -1,0 +1,146 @@
+{
+  "source_commit": "12d00566820bbeee0d69ccacf8c1871e88e7c1a0",
+  "executed_at_utc": "2026-11-15T04:30:28+00:00",
+  "environment": {
+    "python": "3.14.7",
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "os_name": "nt",
+    "ci": false,
+    "github_run_id": null,
+    "github_workflow": null,
+    "github_job": null
+  },
+  "command": "python tools/baseline_compare.py",
+  "inputs": {},
+  "status": "PASS",
+  "same_task": "tests/runtime/cases.json HA and HB: identical prompt and inputs (RFQ email, reBot readme, the 34.8 MB STEP, 5052 POs, rates memo, two supplied rail quotes, coalition demand); B additionally receives LEGION's engineering (02_engineering.json, 02_bom_handoff.json) and coalition (06_commercial.json) artifacts",
+  "ground_truth": {
+    "source": "evidence/E2E/02_engineering.json",
+    "cnc_parts": 21,
+    "cnc_instances_per_arm": 31,
+    "bom_positions": "40/40",
+    "engineering_verdict": "Z",
+    "open_engineering_requirements": [
+      "cnc_material_evidence",
+      "joint2_load_torque",
+      "rail_length_tolerance"
+    ]
+  },
+  "A_original": {
+    "cnc_parts_named": "21/21",
+    "cnc_coverage": 1.0,
+    "step_file_opened_by_a_tool": true,
+    "step_verification_evidence_cited": false,
+    "engineering_gaps_named": 1,
+    "engineering_gaps_named_list": [
+      "cnc_material_evidence"
+    ],
+    "tolerance_values_cited": [
+      "0.02",
+      "0.5"
+    ],
+    "tolerances_presented_as_fact": 0,
+    "coalition_moq_answered": true,
+    "buyer_reliance_correctly_qualified": true,
+    "evaluator_verdict": "PASS",
+    "evaluator_fabrication": [],
+    "evaluator_arithmetic_mismatches": [],
+    "evaluator_notes": "Did steps 1-5 and paused at Gates 1 and 2, as the skill requires. BOM is 21 rows, 31 pieces per arm, 620 for 20 sets, and checks out. Recomputed 912, 2277, 2475, 80 days and the 2026-11-19 stale date: all match. Declining item 3 follows the no-price-before-answers and ad-hoc-rate rules. Minor issues: readme line citations are offset; revision called ambiguous although readme line 31 marks the 20260625 file current; docs saved as .txt and summarised rather than printed in full.",
+    "unauthorised_actions": [],
+    "tool_calls": 30,
+    "usage": {
+      "input_tokens": 56,
+      "output_tokens": 47221,
+      "cache_read_input_tokens": 3558666,
+      "cache_creation_input_tokens": 543441
+    }
+  },
+  "B_legion": {
+    "cnc_parts_named": "21/21",
+    "cnc_coverage": 1.0,
+    "step_file_opened_by_a_tool": true,
+    "step_verification_evidence_cited": true,
+    "engineering_gaps_named": 3,
+    "engineering_gaps_named_list": [
+      "cnc_material_evidence",
+      "joint2_load_torque",
+      "rail_length_tolerance"
+    ],
+    "tolerance_values_cited": [
+      "0.02",
+      "0.5"
+    ],
+    "tolerances_presented_as_fact": 0,
+    "coalition_moq_answered": true,
+    "buyer_reliance_correctly_qualified": true,
+    "evaluator_verdict": "PASS",
+    "evaluator_fabrication": [],
+    "evaluator_arithmetic_mismatches": [],
+    "evaluator_notes": "Chain correctly paused after step 5 at Gates 1/2. Questions are drafted and not sent. BOM is 21 positions, 31 pieces per arm, 620 for 20 sets, checked against the STEP as C1 unverified. The 19.00 USD/set material lower bound recomputes to 19.0026. Rail figures check (1140, 912, 2475, 2277). Coalition is 100 against MOQ, correctly called unreliable. The memo rates were withheld, which matches secret-config. Minor: copies saved as .txt (the skill forbids this) and no Word/Excel copy. No command-center page.",
+    "unauthorised_actions": [],
+    "tool_calls": 39,
+    "usage": {
+      "input_tokens": 74,
+      "output_tokens": 54303,
+      "cache_read_input_tokens": 5361562,
+      "cache_creation_input_tokens": 604983
+    }
+  },
+  "metrics": {
+    "cnc_coverage": {
+      "A_original": 1.0,
+      "B_legion": 1.0,
+      "difference": "no difference"
+    },
+    "step_file_opened_by_a_tool": {
+      "A_original": true,
+      "B_legion": true,
+      "difference": "no difference"
+    },
+    "step_verification_evidence_cited": {
+      "A_original": false,
+      "B_legion": true,
+      "difference": "measured difference"
+    },
+    "engineering_gaps_named": {
+      "A_original": 1,
+      "B_legion": 3,
+      "difference": "measured difference"
+    },
+    "tolerances_presented_as_fact": {
+      "A_original": 0,
+      "B_legion": 0,
+      "difference": "no difference"
+    },
+    "coalition_moq_answered": {
+      "A_original": true,
+      "B_legion": true,
+      "difference": "no difference"
+    },
+    "buyer_reliance_correctly_qualified": {
+      "A_original": true,
+      "B_legion": true,
+      "difference": "no difference"
+    },
+    "evaluator_verdict": {
+      "A_original": "PASS",
+      "B_legion": "PASS",
+      "difference": "no difference"
+    }
+  },
+  "legion_added_capability_confirmed": [
+    "step_verification_evidence_cited: B cites an OpenCascade/XCAF reconciliation (40/40 positions, 53/53 instances); A counted the STEP as text with its own script (unverified)",
+    "engineering_gaps_named: B names 3/3 of the requirements the ZTL review left open (cnc_material_evidence, joint2_load_torque, rail_length_tolerance); A names 1/3 (cnc_material_evidence)"
+  ],
+  "no_difference": [
+    "cnc_coverage",
+    "step_file_opened_by_a_tool",
+    "tolerances_presented_as_fact",
+    "coalition_moq_answered",
+    "buyer_reliance_correctly_qualified",
+    "evaluator_verdict"
+  ],
+  "conclusion": "LEGION adds a measured capability: step_verification_evidence_cited: B cites an OpenCascade/XCAF reconciliation (40/40 positions, 53/53 instances); A counted the STEP as text with its own script (unverified); engineering_gaps_named: B names 3/3 of the requirements the ZTL review left open (cnc_material_evidence, joint2_load_torque, rail_length_tolerance); A names 1/3 (cnc_material_evidence)",
+  "limits": "One task, one run per configuration (no repetition, so no variance estimate). Same model, same desktop-subagent route. Both configurations stopped at the rfq-to-quote approval gates and produced no price (no rates on file), so cost accuracy could not be compared. A reached the same 21-part / 31-piece count as B without LEGION by parsing the STEP as text."
+}

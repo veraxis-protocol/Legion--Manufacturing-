@@ -1,0 +1,28 @@
+# Geometry estimates, contract shared/contracts/geometry-estimate.md - one per line. Record. SYNTHETIC TEST DATA.
+# All: geometry_path C1, origin customer_step, cad_backend none, document_integrity not_applicable (STEP read as text),
+# drawing_revision_priced_to null (no drawing; STEP reBot_B601_DM_v1.1_20260625.step), approval.status draft.
+# Every feature tolerance: null, reading_basis unreadable_flagged ("no tolerance in the STEP file; ask the customer for the drawing or a tolerance spec").
+# datums: none identified (a STEP identifies none; any datum would be inferred and is a Gate 3 question). operations: not proposed (no Plant context machine classes).
+line_no | part | step_product | qty_per_arm | bbox_mm (LEGION XCAF) | volume_mm3 (LEGION) | faces | stock assumption | unreadables | approval
+1 | 02_BASE_REINFORCEMENT_PART | 2-M1-STATOR-1 | 1 | 92.005 x 92.005 x 6.955 | 27284.499 | 103 | 5052-H32 plate 10 mm x 610 x 1220 (PO-30744), margin 3.045 mm | all tolerances; key dimensions; fits; finish | draft
+2 | 02_ARM_YAW_LIMIT | 2-M1-ROTOR-1 | 1 | 77.002 x 77.002 x 7.102 | 12608.648 | 57 | 5052-H32 plate 10 mm x 610 x 1220 (PO-30744), margin 2.898 mm | all tolerances; key dimensions; fits; finish | draft
+3 | 02_MOTOR_FRONT_SPACER | 2-SHAFT-SLEEVE-ROTATOR-1 | 4 | 34.8 x 34.8 x 4 | 2728.463 | 33 | 5052-H32 plate 6.35 mm x 610 x 1220 (PO-30711), margin 2.35 mm | all tolerances; key dimensions; fits; finish | draft
+4 | 02_MOTOR_BACK_SPACER | 2-SPACE-STATOR-1 | 3 | 5 x 57 x 57 | 9709.288 | 23 | 5052-H32 plate 6.35 mm x 610 x 1220 (PO-30711), margin 1.35 mm | all tolerances; key dimensions; fits; finish | draft
+5 | 02_FLANGE | 2-SHAFT-SLEEVE-STATOR-1 | 3 | 9.75 x 34.8 x 34.8 | 4154.28 | 31 | 5052-H32 plate 10 mm x 610 x 1220 (PO-30744), margin 0.25 mm | all tolerances; key dimensions; fits; finish | draft
+6 | 02_WRIST_BRACKET | 2026-07-01-11-37-27-375 | 1 | 60.75 x 8 x 92.922 | 23890.764 | 65 | 5052-H32 plate 10 mm x 610 x 1220 (PO-30744), margin 2 mm | all tolerances; key dimensions; fits; finish | draft
+7 | 02_GRIPPER_CONNECTOR_A | 2-M6-ROTOR | 1 | 35.62 x 6.02 x 34.433 | 3200.127 | 248 | 5052-H32 plate 6.35 mm x 610 x 1220 (PO-30711), margin 0.33 mm | all tolerances; key dimensions; fits; finish | draft
+8 | 02_GRIPPER_CONNECTOR_B | 2-M7-STATOR | 1 | 56.802 x 56.802 x 9.502 | 15100.508 | 61 | 5052-H32 plate 10 mm x 610 x 1220 (PO-30744), margin 0.498 mm | all tolerances; key dimensions; fits; finish | draft
+9 | 02_SLIDER_BRACKET | 2-RAIL-BASE-1 | 1 | 176.285 x 3 x 68.466 | 8187.262 | 57 | 5052-H32 sheet 3 mm x 1220 x 2440 (PO-30710), margin 0 mm, fits only without cleanup | all tolerances; key dimensions; fits; finish | draft
+10 | 02_SLIDER_EXTENSION | 2-SLIDER-FIX | 2 | 26.2 x 17.8 x 38.44 | 10223.294 | 20 | none: smallest bbox dimension 17.8 mm exceeds the thickest PO stock (10.0 mm); no PO price for suitable stock | all tolerances; key dimensions; fits; finish | draft
+11 | 02_LOWER_UPPER_LINK_L | 2-CONNECTING-ROD-1-L | 1 | 5 x 76.177 x 99 | 19411.168 | 32 | 5052-H32 plate 6.35 mm x 610 x 1220 (PO-30711), margin 1.35 mm | all tolerances; key dimensions; fits; finish | draft
+12 | 02_LOWER_UPPER_LINK_R | 2-CONNECTING-ROD-1-R | 1 | 5 x 76.177 x 99 | 19411.168 | 32 | 5052-H32 plate 6.35 mm x 610 x 1220 (PO-30711), margin 1.35 mm | all tolerances; key dimensions; fits; finish | draft
+13 | 02_LOWER_WRIST_LINK_L | 2-CONNECTING-ROD-2-L | 1 | 3 x 103.943 x 82.963 | 12283.605 | 49 | 5052-H32 sheet 3 mm x 1220 x 2440 (PO-30710), margin 0 mm, fits only without cleanup | all tolerances; key dimensions; fits; finish | draft
+14 | 02_LOWER_WRIST_LINK_R | 2-CONNECTING-ROD-2-R | 1 | 3 x 103.943 x 82.963 | 12283.605 | 49 | 5052-H32 sheet 3 mm x 1220 x 2440 (PO-30710), margin 0 mm, fits only without cleanup | all tolerances; key dimensions; fits; finish | draft
+15 | 02_GEAR_CONNECTOR | 2-M7-ROTOR | 1 | 35.002 x 9.502 x 35.002 | 2401.212 | 39 | 5052-H32 plate 10 mm x 610 x 1220 (PO-30744), margin 0.498 mm | all tolerances; key dimensions; fits; finish | draft
+16 | 02_RACK | 2-RACK-1M | 2 | 89.999 x 6 x 12.002 | 5588.088 | 226 | 5052-H32 plate 6.35 mm x 610 x 1220 (PO-30711), margin 0.35 mm | all tolerances; key dimensions; fits; finish | draft
+17 | 03_LINK1 | 2-U-PLATE-1 | 1 | 77.533 x 83.89 x 84.192 | 42600.877 | 68 | none: CNC + Sheet Metal: flat blank and sheet gauge are not in the inputs (the STEP holds the formed part only) | all tolerances; key dimensions; fits; finish; flat pattern and gauge | draft
+18 | 03_LINK2 | 2-LINK-1-ARM | 2 | 23 x 321 x 57 | 35628.419 | 90 | none: CNC + Sheet Metal: flat blank and sheet gauge are not in the inputs (the STEP holds the formed part only) | all tolerances; key dimensions; fits; finish; flat pattern and gauge | draft
+19 | 03_LINK3_L | 1-LINK-2-ARM-L | 1 | 28.625 x 297.826 x 57 | 28018.882 | 111 | none: CNC + Sheet Metal: flat blank and sheet gauge are not in the inputs (the STEP holds the formed part only) | all tolerances; key dimensions; fits; finish; flat pattern and gauge | draft
+20 | 03_LINK3_R | 2-LINK-2-ARM-R | 1 | 27.625 x 297.826 x 57 | 27979.478 | 132 | none: CNC + Sheet Metal: flat blank and sheet gauge are not in the inputs (the STEP holds the formed part only) | all tolerances; key dimensions; fits; finish; flat pattern and gauge | draft
+21 | 03_LINK5 | 2-M5-ROTOR-L | 1 | 50 x 60 x 60 | 16268.253 | 34 | none: CNC + Sheet Metal: flat blank and sheet gauge are not in the inputs (the STEP holds the formed part only) | all tolerances; key dimensions; fits; finish; flat pattern and gauge | draft
+22 | MGN9-170 rail (purchased) | 6-RAIL-170 | 1 | text-read vertex extents 6.5 x 9 x 170 | - | 47 | buy-out, no stock | accuracy class; length tolerance | draft

@@ -1,0 +1,66 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rail Bid Comparison</title><style>
+:root{--bg:#fbfaf7;--fg:#1d1d1b;--muted:#5f5e58;--line:#dedbd2;--card:#ffffff;--accent:#2f5d8a;--warn:#9a5b00;--bad:#a23b2a;--ok:#2d6a3e;--code:#f2efe8}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#17181a;--fg:#e9e7e1;--muted:#a3a19a;--line:#33353a;--card:#1f2124;--accent:#8db4dc;--warn:#e0a54a;--bad:#e2806f;--ok:#7cc18e;--code:#25272b}}
+:root[data-theme="dark"]{--bg:#17181a;--fg:#e9e7e1;--muted:#a3a19a;--line:#33353a;--card:#1f2124;--accent:#8db4dc;--warn:#e0a54a;--bad:#e2806f;--ok:#7cc18e;--code:#25272b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1100px;margin:0 auto;padding:24px 16px 64px}h1{font-size:1.6rem;margin:.2em 0}h2{font-size:1.2rem;margin-top:2em;border-bottom:1px solid var(--line);padding-bottom:.3em}h3{font-size:1rem;margin-top:1.4em}
+.muted{color:var(--muted)}.banner{border:1px solid var(--line);border-left:4px solid var(--warn);background:var(--card);padding:12px 14px;margin:12px 0}
+.tbl{overflow-x:auto;margin:8px 0}table{border-collapse:collapse;width:100%;font-size:13px;background:var(--card)}th,td{border:1px solid var(--line);padding:5px 7px;text-align:left;vertical-align:top}th{background:var(--code)}
+td.n{text-align:right;font-variant-numeric:tabular-nums}.T{color:var(--ok);font-weight:600}.Z{color:var(--warn);font-weight:600}.F{color:var(--bad);font-weight:600}
+pre{background:var(--code);border:1px solid var(--line);padding:12px;white-space:pre-wrap;font-size:13px}code{background:var(--code);padding:0 3px}
+details{margin:8px 0}summary{cursor:pointer;color:var(--accent)}
+</style></head><body><main>
+<p class="muted">INTERNAL. SYNTHETIC TEST QUOTES (not real offers). Sourcing event SRC-HRL-REBOT-RAIL-MGN9-170, for RFQ HRL-REBOT-20261112. Nothing sent, nothing awarded.</p>
+<h1>MGN9 170 mm rail - bid comparison</h1>
+<h2>Provisional recommendation</h2>
+<p><b>Pursue Xylem XL-5512 (provisional), only if 100 rails can be justified.</b> At any purchasable quantity it is the lower spend: 1140.00 USD for its MOQ of 100 against 2475.00 USD for Yarrow's MOQ of 250, and 3 weeks against 5. Main tradeoff: Yarrow is cheaper per piece (9.90 vs 11.40 USD) and delivered DDP, but its MOQ is 230 rails beyond our need and its accuracy class is not stated. Neither bid buys 20.</p>
+<p><b>Open before any award:</b> neither supplier is on an approved supplier list (none on file); both off-format; Xylem quote date missing, so validity cannot be checked, and freight is excluded (FOB origin); Yarrow accuracy class and validity not stated; no length tolerance from Xylem; customer has not stated accuracy class or carriage scope (Q7); no price at 20 from either.</p>
+<p><b>Next step:</b> pursue Xylem, look into the alternatives, or ask both suppliers to restate (drafts below)?</p>
+<h2>At the 20 rails needed</h2>
+<div class="tbl"><table><thead><tr><th>Supplier</th><th>Ref</th><th>Approval</th><th>Unit price as quoted</th><th>MOQ</th><th>Spend at MOQ USD (unit x MOQ)</th><th>Excess over 20 at MOQ (units / USD)</th><th>MOQ spend / 20 needed rails USD</th><th>Lead time</th><th>Freight basis</th><th>Accuracy / length tol.</th><th>Scope</th><th>Validity</th><th>Readiness</th><th>Source</th></tr></thead><tbody><tr><td>Xylem Linear Motion (fictitious)</td><td>XL-5512</td><td>not on any approved list (no ASL on file)</td><td>11.40 USD (quoted at 100 pcs)</td><td>100 - above the 20 needed</td><td>1140.00</td><td>80 rails / 912.00</td><td>57.00 (derived, not quoted)</td><td>3 weeks (from no named event)</td><td>FOB origin</td><td>standard accuracy; cut tolerance not stated</td><td>rail only (no carriage)</td><td>21 days (quote date not stated)</td><td>provisional</td><td>e2e_bids/rail_bid_X.txt</td></tr><tr><td>Yarrow Motion Parts (fictitious)</td><td>YMP-208</td><td>not on any approved list (no ASL on file)</td><td>9.90 USD (each, no quantity named)</td><td>250 - above the 20 needed</td><td>2475.00</td><td>230 rails / 2277.00</td><td>123.75 (derived, not quoted)</td><td>5 weeks (from no named event)</td><td>Delivered DDP</td><td>not stated; cut tolerance +/-0.5 mm</td><td>MGN9 rail cut to 170 mm (carriage not stated)</td><td>not stated</td><td>provisional</td><td>e2e_bids/rail_bid_Y.txt</td></tr></tbody></table></div>
+<h2>At 100 rails (pooled demand - see reliance caveat on the work-up page)</h2>
+<div class="tbl"><table><thead><tr><th>Supplier</th><th>Qty</th><th>Unit USD</th><th>Extended USD</th><th>MOQ met?</th><th>Freight</th><th>Source</th></tr></thead><tbody><tr><td>Xylem Linear Motion (fictitious)</td><td class="n">100</td><td class="n">11.40</td><td>1140.00</td><td>yes (MOQ 100)</td><td>FOB origin - freight not included, amount unknown</td><td>e2e_bids/rail_bid_X.txt</td></tr><tr><td>Yarrow Motion Parts (fictitious)</td><td class="n">100</td><td class="n">9.90</td><td>not purchasable at 100</td><td>NO (MOQ 250, short 150)</td><td>DDP</td><td>e2e_bids/rail_bid_Y.txt</td></tr></tbody></table></div>
+<h2>Draft supplier emails (HELD - not sent; recipient: not on file)</h2>
+<h3>Xylem Linear Motion (fictitious) - restatement</h3><pre>=== SUPPLIER EMAIL - HELD - Xylem Linear Motion ===
+Subject: XL-5512 - MGN9H rail 170 mm - restatement request
+
+Hello,
+
+Thank you for quote XL-5512. To compare it we need it restated with:
+1. The quote date (so the 21-day validity has a start).
+2. Unit price at 20 pcs and at 100 pcs, in USD.
+3. Lead time from receipt of order, for the first delivery.
+4. Freight cost or Incoterm with delivered price to our dock.
+5. Rail length tolerance on the 170 mm cut, and the accuracy class name for &quot;standard accuracy&quot;.
+6. Carriage (MGN9H block) price, if available, per piece.
+7. Any exclusions or assumptions.
+
+Regards,
+[buyer name]
+=== END ===</pre>
+<h3>Yarrow Motion Parts (fictitious) - restatement</h3><pre>=== SUPPLIER EMAIL - HELD - Yarrow Motion Parts ===
+Subject: YMP-208 - MGN9 rail cut to 170 mm - restatement request
+
+Hello,
+
+Thank you for reference YMP-208. To compare it we need it restated with:
+1. The quote date and validity period.
+2. Unit price at 20 pcs and at 100 pcs, in USD, with the minimum order quantity at each.
+3. The rail accuracy class.
+4. Lead time from receipt of order.
+5. Whether carriages (MGN9 blocks) are included or available, and their price.
+6. Any exclusions or assumptions.
+
+Regards,
+[buyer name]
+=== END ===</pre>
+<details><summary>Bid records summary (fields_missing)</summary>
+<div class="tbl"><table><thead><tr><th>Supplier</th><th>Source file</th><th>Break prices as quoted</th><th>fields_missing</th></tr></thead><tbody><tr><td>Xylem Linear Motion (fictitious)</td><td>e2e_bids/rail_bid_X.txt</td><td>11.40 USD at 100 pcs</td><td>quote date; unit price at 20; lead time from a named event; tooling statement; quality clause acceptance; length tolerance; freight amount</td></tr><tr><td>Yarrow Motion Parts (fictitious)</td><td>e2e_bids/rail_bid_Y.txt</td><td>9.90 USD each (no quantity break named)</td><td>quote date; validity; unit price at 20 and 100; accuracy class; lead time from a named event; tooling statement; quality clause acceptance</td></tr></tbody></table></div>
+</details>
+<details><summary>Readiness evidence</summary><ul>
+<li>Cost comparable: both partly - unit and currency stated, MOQ known; Xylem freight excluded; neither priced at 20.</li>
+<li>Supplier approved: not evidenced for either (no approved supplier list on file).</li>
+<li>Delivery evidenced: lead times stated without a named start event; LEGION assumed an order date of 2026-12-15 to place Xylem at 2027-01-15 - an assumption, not a quote.</li>
+<li>Technical and quality terms: not stated by either; no rail spec from the customer yet.</li></ul></details>
+</main></body></html>

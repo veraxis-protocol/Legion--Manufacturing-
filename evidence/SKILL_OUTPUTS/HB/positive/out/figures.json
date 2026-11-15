@@ -1,0 +1,1003 @@
+{
+ "figures": {
+  "cnc_positions": 21,
+  "readme_cnc_table_rows": 21,
+  "cnc_pieces_per_set": 31,
+  "cnc_pieces_20_sets": 620,
+  "positions_qty_agree_readme_legion_step": 21,
+  "positions_faces_agree_legion_vs_text_read": 21,
+  "positions_cnc_only": 16,
+  "positions_cnc_plus_sheet": 5,
+  "pieces_cnc_plus_sheet_per_set": 6,
+  "material_positions_lower_bound": 15,
+  "material_positions_blocked": 6,
+  "material_pieces_per_set_lower_bound": 23,
+  "material_usd_per_set_lower_bound_priced_positions_only": 19.0,
+  "positions_fit_only_without_cleanup": [
+   "02_SLIDER_BRACKET",
+   "02_LOWER_WRIST_LINK_L",
+   "02_LOWER_WRIST_LINK_R"
+  ],
+  "step_leaf_instances": 326,
+  "step_leaf_definitions": 64,
+  "rails_needed_20_sets": 20,
+  "rail_bids": {
+   "X": {
+    "file": "e2e_bids/rail_bid_X.txt",
+    "supplier": "Xylem Linear Motion (fictitious)",
+    "ref": "XL-5512",
+    "unit": 11.4,
+    "qty_quoted": 100,
+    "moq": 100,
+    "lead": "3 weeks (from no named event)",
+    "incoterm": "FOB origin",
+    "validity": "21 days (quote date not stated)",
+    "accuracy": "standard accuracy",
+    "cut_tol": "not stated",
+    "currency": "USD",
+    "scope": "rail only (no carriage)",
+    "min_commitment_usd": 1140.0,
+    "moq_exceeds_need": true,
+    "excess_units_at_moq": 80,
+    "excess_cost_at_moq_usd": 912.0,
+    "moq_spend_per_needed_rail_derived": 57.0
+   },
+   "Y": {
+    "file": "e2e_bids/rail_bid_Y.txt",
+    "supplier": "Yarrow Motion Parts (fictitious)",
+    "ref": "YMP-208",
+    "unit": 9.9,
+    "qty_quoted": null,
+    "moq": 250,
+    "lead": "5 weeks (from no named event)",
+    "incoterm": "Delivered DDP",
+    "validity": "not stated",
+    "accuracy": "not stated",
+    "cut_tol": "+/-0.5 mm",
+    "currency": "USD",
+    "scope": "MGN9 rail cut to 170 mm (carriage not stated)",
+    "min_commitment_usd": 2475.0,
+    "moq_exceeds_need": true,
+    "excess_units_at_moq": 230,
+    "excess_cost_at_moq_usd": 2277.0,
+    "moq_spend_per_needed_rail_derived": 123.75
+   }
+  },
+  "coalition_rows": 5,
+  "coalition_units": 100,
+  "coalition_meets_X_moq": true,
+  "coalition_meets_Y_moq": false,
+  "coalition_headroom_vs_X_units": 0,
+  "coalition_shortfall_vs_Y_units": 150,
+  "coalition_rows_no_signed_commitment": 4,
+  "coalition_rows_rfq_customer": 1,
+  "coalition_units_if_one_buyer_drops": 80,
+  "legion_engineering_verdict": "Z",
+  "legion_predicates": {
+   "cad_bom_extraction": "T",
+   "rail_length_tolerance": "Z",
+   "joint2_load_torque": "Z",
+   "cnc_material_evidence": "Z"
+  },
+  "legion_bom_mismatches": [
+   {
+    "part_id": "DM_MOTOR1_WIRING_HARNESS_CLIP",
+    "readme": 2,
+    "step": 0
+   }
+  ],
+  "legion_gates": {
+   "demand_discovery": "T",
+   "route_comparison": "T",
+   "ztl_engineering": "Z",
+   "legion_ztl_engineering_verdict": "Z",
+   "real_supplier_quote": "Z",
+   "buyer_signatures": "Z",
+   "seller_commitment": "Z",
+   "federation_admission": "Z",
+   "marketplace_listing": "Z",
+   "payment_authority": "Z",
+   "provider_readback": "Z"
+  }
+ },
+ "positions": [
+  {
+   "part_id": "02_BASE_REINFORCEMENT_PART",
+   "description": "Motor 1 Bearing Mount",
+   "file": "02_Base_Reinforcement_Part.step",
+   "material": "Aluminum Alloy 5052",
+   "process": "CNC",
+   "readme_line": 105,
+   "qty_readme": 1,
+   "qty_legion": 1,
+   "step_product": "2-M1-STATOR-1",
+   "qty_step": 1,
+   "faces_legion": 103,
+   "faces_step_text": 103,
+   "bbox_legion_mm": [
+    92.005,
+    92.005,
+    6.955
+   ],
+   "vertex_extents_step_text_mm": [
+    6.95,
+    92.0,
+    92.0
+   ],
+   "volume_legion_mm3": 27284.499,
+   "qty_agree": true,
+   "faces_agree": true,
+   "qty_20_sets": 20
+  },
+  {
+   "part_id": "02_ARM_YAW_LIMIT",
+   "description": "Motor 1 Rotation Axis",
+   "file": "02_Arm_Yaw_Limit.step",
+   "material": "Aluminum Alloy 5052",
+   "process": "CNC",
+   "readme_line": 106,
+   "qty_readme": 1,
+   "qty_legion": 1,
+   "step_product": "2-M1-ROTOR-1",
+   "qty_step": 1,
+   "faces_legion": 57,
+   "faces_step_text": 57,
+   "bbox_legion_mm": [
+    77.002,
+    77.002,
+    7.102
+   ],
+   "vertex_extents_step_text_mm": [
+    7.1,
+    57.25,
+    75.639
+   ],
+   "volume_legion_mm3": 12608.648,
+   "qty_agree": true,
+   "faces_agree": true,
+   "qty_20_sets": 20
+  },
+  {
+   "part_id": "02_MOTOR_FRONT_SPACER",
+   "description": "Motor 2\u20135 Front Spacer",
+   "file": "02_Motor_Front_Spacer.step",
+   "material": "Aluminum Alloy 5052",
+   "process": "CNC",
+   "readme_line": 107,
+   "qty_readme": 4,
+   "qty_legion": 4,
+   "step_product": "2-SHAFT-SLEEVE-ROTATOR-1",
+   "qty_step": 4,
+   "faces_legion": 33,
+   "faces_step_text": 33,
+   "bbox_legion_mm": [
+    34.8,
+    34.8,
+    4.0
+   ],
+   "vertex_extents_step_text_mm": [
+    4.0,
+    25.291,
+    34.8
+   ],
+   "volume_legion_mm3": 2728.463,
+   "qty_agree": true,
+   "faces_agree": true,
+   "qty_20_sets": 80
+  },
+  {
+   "part_id": "02_MOTOR_BACK_SPACER",
+   "description": "Motor 2\u20134 Rear Spacer",
+   "file": "02_Motor_Back_Spacer.step",
+   "material": "Aluminum Alloy 5052",
+   "process": "CNC",
+   "readme_line": 108,
+   "qty_readme": 3,
+   "qty_legion": 3,
+   "step_product": "2-SPACE-STATOR-1",
+   "qty_step": 3,
+   "faces_legion": 23,
+   "faces_step_text": 23,
+   "bbox_legion_mm": [
+    5.0,
+    57.0,
+    57.0
+   ],
+   "vertex_extents_step_text_mm": [
+    5.0,
+    50.0,
+    50.151
+   ],
+   "volume_legion_mm3": 9709.288,
+   "qty_agree": true,
+   "faces_agree": true,
+   "qty_20_sets": 60
+  },
+  {
+   "part_id": "02_FLANGE",
+   "description": "Motor 2\u20134 Rear Flange",
+   "file": "02_FLANGE.step",
+   "material": "Aluminum Alloy 5052",
+   "process": "CNC",
+   "readme_line": 109,
+   "qty_readme": 3,
+   "qty_legion": 3,
+   "step_product": "2-SHAFT-SLEEVE-STATOR-1",
+   "qty_step": 3,
+   "faces_legion": 31,
+   "faces_step_text": 31,
+   "bbox_legion_mm": [
+    9.75,
+    34.8,
+    34.8
+   ],
+   "vertex_extents_step_text_mm": [
+    9.75,
+    29.091,
+    30.9
+   ],
+   "volume_legion_mm3": 4154.28,
+   "qty_agree": true,
+   "faces_agree": true,
+   "qty_20_sets": 60
+  },
+  {
+   "part_id": "02_WRIST_BRACKET",
+   "description": "Wrist Motor 5 Bracket",
+   "file": "02_Wrist_Bracket.step",
+   "material": "Aluminum Alloy 5052",
+   "process": "CNC",
+   "readme_line": 110,
+   "qty_readme": 1,
+   "qty_legion": 1,
+   "step_product": "2026-07-01-11-37-27-375",
+   "qty_step": 1,
+   "faces_legion": 65,
+   "faces_step_text": 65,
+   "bbox_legion_mm": [
+    60.75,
+    8.0,
+    92.922
+   ],
+   "vertex_extents_step_text_mm": [
+    8.0,
+    60.75,
+    85.908
+   ],
+   "volume_legion_mm3": 23890.764,
+   "qty_agree": true,
+   "faces_agree": true,
+   "qty_20_sets": 20
+  },
+  {
+   "part_id": "02_GRIPPER_CONNECTOR_A",
+   "description": "Gripper Connector A",
+   "file": "02_Gripper_Connector_A.step",
+   "material": "Aluminum Alloy 5052",
+   "process": "CNC",
+   "readme_line": 111,
+   "qty_readme": 1,
+   "qty_legion": 1,
+   "step_product": "2-M6-ROTOR",
+   "qty_step": 1,
+   "faces_legion": 248,
+   "faces_step_text": 248,
+   "bbox_legion_mm": [
+    35.62,
+    6.02,
+    34.433
+   ],
+   "vertex_extents_step_text_mm": [
+    6.0,
+    34.013,
+    35.542
+   ],
+   "volume_legion_mm3": 3200.127,
+   "qty_agree": true,
+   "faces_agree": true,
+   "qty_20_sets": 20
+  },
+  {
+   "part_id": "02_GRIPPER_CONNECTOR_B",
+   "description": "Gripper Connector B",
+   "file": "02_Gripper_Connector_B.step",
+   "material": "Aluminum Alloy 5052",
+   "process": "CNC",
+   "readme_line": 112,
+   "qty_readme": 1,
+   "qty_legion": 1,
+   "step_product": "2-M7-STATOR",
+   "qty_step": 1,
+   "faces_legion": 61,
+   "faces_step_text": 61,
+   "bbox_legion_mm": [
+    56.802,
+    56.802,
+    9.502
+   ],
+   "vertex_extents_step_text_mm": [
+    9.5,
+    46.146,
+    54.317
+   ],
+   "volume_legion_mm3": 15100.508,
+   "qty_agree": true,
+   "faces_agree": true,
+   "qty_20_sets": 20
+  },
+  {
+   "part_id": "02_SLIDER_BRACKET",
+   "description": "Gripper Slider Metal Bracket",
+   "file": "02_Slider_Bracket.step",
+   "material": "Aluminum Alloy 5052",
+   "process": "CNC",
+   "readme_line": 113,
+   "qty_readme": 1,
+   "qty_legion": 1,
+   "step_product": "2-RAIL-BASE-1",
+   "qty_step": 1,
+   "faces_legion": 57,
+   "faces_step_text": 57,
+   "bbox_legion_mm": [
+    176.285,
+    3.0,
+    68.466
+   ],
+   "vertex_extents_step_text_mm": [
+    3.0,
+    68.466,
+    176.285
+   ],
+   "volume_legion_mm3": 8187.262,
+   "qty_agree": true,
+   "faces_agree": true,
+   "qty_20_sets": 20
+  },
+  {
+   "part_id": "02_SLIDER_EXTENSION",
+   "description": "Slider to Gripper Extension",
+   "file": "02_Slider_Extension.step",
+   "material": "Aluminum Alloy 5052",
+   "process": "CNC",
+   "readme_line": 114,
+   "qty_readme": 2,
+   "qty_legion": 2,
+   "step_product": "2-SLIDER-FIX",
+   "qty_step": 2,
+   "faces_legion": 20,
+   "faces_step_text": 20,
+   "bbox_legion_mm": [
+    26.2,
+    17.8,
+    38.44
+   ],
+   "vertex_extents_step_text_mm": [
+    17.8,
+    26.2,
+    38.44
+   ],
+   "volume_legion_mm3": 10223.294,
+   "qty_agree": true,
+   "faces_agree": true,
+   "qty_20_sets": 40
+  },
+  {
+   "part_id": "02_LOWER_UPPER_LINK_L",
+   "description": "Upper-Lower Arm Link Left",
+   "file": "02_Lower_Upper_Link_L.step",
+   "material": "Aluminum Alloy 5052",
+   "process": "CNC",
+   "readme_line": 115,
+   "qty_readme": 1,
+   "qty_legion": 1,
+   "step_product": "2-CONNECTING-ROD-1-L",
+   "qty_step": 1,
+   "faces_legion": 32,
+   "faces_step_text": 32,
+   "bbox_legion_mm": [
+    5.0,
+    76.177,
+    99.0
+   ],
+   "vertex_extents_step_text_mm": [
+    5.0,
+    70.148,
+    82.691
+   ],
+   "volume_legion_mm3": 19411.168,
+   "qty_agree": true,
+   "faces_agree": true,
+   "qty_20_sets": 20
+  },
+  {
+   "part_id": "02_LOWER_UPPER_LINK_R",
+   "description": "Upper-Lower Arm Link Right",
+   "file": "02_Lower_Upper_Link_R.step",
+   "material": "Aluminum Alloy 5052",
+   "process": "CNC",
+   "readme_line": 116,
+   "qty_readme": 1,
+   "qty_legion": 1,
+   "step_product": "2-CONNECTING-ROD-1-R",
+   "qty_step": 1,
+   "faces_legion": 32,
+   "faces_step_text": 32,
+   "bbox_legion_mm": [
+    5.0,
+    76.177,
+    99.0
+   ],
+   "vertex_extents_step_text_mm": [
+    5.0,
+    70.148,
+    82.691
+   ],
+   "volume_legion_mm3": 19411.168,
+   "qty_agree": true,
+   "faces_agree": true,
+   "qty_20_sets": 20
+  },
+  {
+   "part_id": "02_LOWER_WRIST_LINK_L",
+   "description": "Lower Arm-Wrist Link Left",
+   "file": "02_Lower_Wrist_Link_L.step",
+   "material": "Aluminum Alloy 5052",
+   "process": "CNC",
+   "readme_line": 117,
+   "qty_readme": 1,
+   "qty_legion": 1,
+   "step_product": "2-CONNECTING-ROD-2-L",
+   "qty_step": 1,
+   "faces_legion": 49,
+   "faces_step_text": 49,
+   "bbox_legion_mm": [
+    3.0,
+    103.943,
+    82.963
+   ],
+   "vertex_extents_step_text_mm": [
+    3.0,
+    71.875,
+    97.485
+   ],
+   "volume_legion_mm3": 12283.605,
+   "qty_agree": true,
+   "faces_agree": true,
+   "qty_20_sets": 20
+  },
+  {
+   "part_id": "02_LOWER_WRIST_LINK_R",
+   "description": "Lower Arm-Wrist Link Right",
+   "file": "02_Lower_Wrist_Link_R.step",
+   "material": "Aluminum Alloy 5052",
+   "process": "CNC",
+   "readme_line": 118,
+   "qty_readme": 1,
+   "qty_legion": 1,
+   "step_product": "2-CONNECTING-ROD-2-R",
+   "qty_step": 1,
+   "faces_legion": 49,
+   "faces_step_text": 49,
+   "bbox_legion_mm": [
+    3.0,
+    103.943,
+    82.963
+   ],
+   "vertex_extents_step_text_mm": [
+    3.0,
+    71.875,
+    97.485
+   ],
+   "volume_legion_mm3": 12283.605,
+   "qty_agree": true,
+   "faces_agree": true,
+   "qty_20_sets": 20
+  },
+  {
+   "part_id": "02_GEAR_CONNECTOR",
+   "description": "Gear Connector",
+   "file": "02_Gear_Connector.step",
+   "material": "Aluminum Alloy 5052",
+   "process": "CNC",
+   "readme_line": 119,
+   "qty_readme": 1,
+   "qty_legion": 1,
+   "step_product": "2-M7-ROTOR",
+   "qty_step": 1,
+   "faces_legion": 39,
+   "faces_step_text": 39,
+   "bbox_legion_mm": [
+    35.002,
+    9.502,
+    35.002
+   ],
+   "vertex_extents_step_text_mm": [
+    9.5,
+    28.6,
+    29.65
+   ],
+   "volume_legion_mm3": 2401.212,
+   "qty_agree": true,
+   "faces_agree": true,
+   "qty_20_sets": 20
+  },
+  {
+   "part_id": "02_RACK",
+   "description": "Rack",
+   "file": "02_Rack.step",
+   "material": "Aluminum Alloy 5052",
+   "process": "CNC",
+   "readme_line": 120,
+   "qty_readme": 2,
+   "qty_legion": 2,
+   "step_product": "2-RACK-1M",
+   "qty_step": 2,
+   "faces_legion": 226,
+   "faces_step_text": 226,
+   "bbox_legion_mm": [
+    89.999,
+    6.0,
+    12.002
+   ],
+   "vertex_extents_step_text_mm": [
+    6.0,
+    12.002,
+    89.999
+   ],
+   "volume_legion_mm3": 5588.088,
+   "qty_agree": true,
+   "faces_agree": true,
+   "qty_20_sets": 40
+  },
+  {
+   "part_id": "03_LINK1",
+   "description": "Link 1",
+   "file": "03_Link1.step",
+   "material": "Aluminum Alloy 5052",
+   "process": "CNC + Sheet Metal",
+   "readme_line": 121,
+   "qty_readme": 1,
+   "qty_legion": 1,
+   "step_product": "2-U-PLATE-1",
+   "qty_step": 1,
+   "faces_legion": 68,
+   "faces_step_text": 68,
+   "bbox_legion_mm": [
+    77.533,
+    83.89,
+    84.192
+   ],
+   "vertex_extents_step_text_mm": [
+    67.241,
+    77.25,
+    82.904
+   ],
+   "volume_legion_mm3": 42600.877,
+   "qty_agree": true,
+   "faces_agree": true,
+   "qty_20_sets": 20
+  },
+  {
+   "part_id": "03_LINK2",
+   "description": "Link 2",
+   "file": "03_Link2.step",
+   "material": "Aluminum Alloy 5052",
+   "process": "CNC + Sheet Metal",
+   "readme_line": 122,
+   "qty_readme": 2,
+   "qty_legion": 2,
+   "step_product": "2-LINK-1-ARM",
+   "qty_step": 2,
+   "faces_legion": 90,
+   "faces_step_text": 90,
+   "bbox_legion_mm": [
+    23.0,
+    321.0,
+    57.0
+   ],
+   "vertex_extents_step_text_mm": [
+    23.0,
+    55.752,
+    314.0
+   ],
+   "volume_legion_mm3": 35628.419,
+   "qty_agree": true,
+   "faces_agree": true,
+   "qty_20_sets": 40
+  },
+  {
+   "part_id": "03_LINK3_L",
+   "description": "Link 3 Left",
+   "file": "03_Link3_L.step",
+   "material": "Aluminum Alloy 5052",
+   "process": "CNC + Sheet Metal",
+   "readme_line": 123,
+   "qty_readme": 1,
+   "qty_legion": 1,
+   "step_product": "1-LINK-2-ARM-L",
+   "qty_step": 1,
+   "faces_legion": 111,
+   "faces_step_text": 111,
+   "bbox_legion_mm": [
+    28.625,
+    297.826,
+    57.0
+   ],
+   "vertex_extents_step_text_mm": [
+    28.625,
+    50.338,
+    295.502
+   ],
+   "volume_legion_mm3": 28018.882,
+   "qty_agree": true,
+   "faces_agree": true,
+   "qty_20_sets": 20
+  },
+  {
+   "part_id": "03_LINK3_R",
+   "description": "Link 3 Right",
+   "file": "03_Link3_R.step",
+   "material": "Aluminum Alloy 5052",
+   "process": "CNC + Sheet Metal",
+   "readme_line": 124,
+   "qty_readme": 1,
+   "qty_legion": 1,
+   "step_product": "2-LINK-2-ARM-R",
+   "qty_step": 1,
+   "faces_legion": 132,
+   "faces_step_text": 132,
+   "bbox_legion_mm": [
+    27.625,
+    297.826,
+    57.0
+   ],
+   "vertex_extents_step_text_mm": [
+    27.625,
+    50.338,
+    295.502
+   ],
+   "volume_legion_mm3": 27979.478,
+   "qty_agree": true,
+   "faces_agree": true,
+   "qty_20_sets": 20
+  },
+  {
+   "part_id": "03_LINK5",
+   "description": "Link 5",
+   "file": "03_Link5.step",
+   "material": "Aluminum Alloy 5052",
+   "process": "CNC + Sheet Metal",
+   "readme_line": 125,
+   "qty_readme": 1,
+   "qty_legion": 1,
+   "step_product": "2-M5-ROTOR-L",
+   "qty_step": 1,
+   "faces_legion": 34,
+   "faces_step_text": 34,
+   "bbox_legion_mm": [
+    50.0,
+    60.0,
+    60.0
+   ],
+   "vertex_extents_step_text_mm": [
+    37.899,
+    50.0,
+    60.0
+   ],
+   "volume_legion_mm3": 16268.253,
+   "qty_agree": true,
+   "faces_agree": true,
+   "qty_20_sets": 20
+  }
+ ],
+ "material": [
+  {
+   "part_id": "02_BASE_REINFORCEMENT_PART",
+   "qty_per_set": 1,
+   "min_bbox_dim_mm": 6.955,
+   "footprint_mm2": 8464.9,
+   "status": "lower_bound",
+   "stock_po": "PO-30744",
+   "stock_po_date": "2026-11-02",
+   "stock": "5052-H32 plate 10 mm x 610 x 1220",
+   "stock_t_mm": 10.0,
+   "thickness_margin_mm": 3.045,
+   "fits_only_without_cleanup": false,
+   "usd_per_piece_lb": 2.9892,
+   "usd_per_set_lb": 2.9892
+  },
+  {
+   "part_id": "02_ARM_YAW_LIMIT",
+   "qty_per_set": 1,
+   "min_bbox_dim_mm": 7.102,
+   "footprint_mm2": 5929.3,
+   "status": "lower_bound",
+   "stock_po": "PO-30744",
+   "stock_po_date": "2026-11-02",
+   "stock": "5052-H32 plate 10 mm x 610 x 1220",
+   "stock_t_mm": 10.0,
+   "thickness_margin_mm": 2.898,
+   "fits_only_without_cleanup": false,
+   "usd_per_piece_lb": 2.0938,
+   "usd_per_set_lb": 2.0938
+  },
+  {
+   "part_id": "02_MOTOR_FRONT_SPACER",
+   "qty_per_set": 4,
+   "min_bbox_dim_mm": 4.0,
+   "footprint_mm2": 1211.0,
+   "status": "lower_bound",
+   "stock_po": "PO-30711",
+   "stock_po_date": "2026-10-20",
+   "stock": "5052-H32 plate 6.35 mm x 610 x 1220",
+   "stock_t_mm": 6.35,
+   "thickness_margin_mm": 2.35,
+   "fits_only_without_cleanup": false,
+   "usd_per_piece_lb": 0.2787,
+   "usd_per_set_lb": 1.1147
+  },
+  {
+   "part_id": "02_MOTOR_BACK_SPACER",
+   "qty_per_set": 3,
+   "min_bbox_dim_mm": 5.0,
+   "footprint_mm2": 3249.0,
+   "status": "lower_bound",
+   "stock_po": "PO-30711",
+   "stock_po_date": "2026-10-20",
+   "stock": "5052-H32 plate 6.35 mm x 610 x 1220",
+   "stock_t_mm": 6.35,
+   "thickness_margin_mm": 1.35,
+   "fits_only_without_cleanup": false,
+   "usd_per_piece_lb": 0.7476,
+   "usd_per_set_lb": 2.2429
+  },
+  {
+   "part_id": "02_FLANGE",
+   "qty_per_set": 3,
+   "min_bbox_dim_mm": 9.75,
+   "footprint_mm2": 1211.0,
+   "status": "lower_bound",
+   "stock_po": "PO-30744",
+   "stock_po_date": "2026-11-02",
+   "stock": "5052-H32 plate 10 mm x 610 x 1220",
+   "stock_t_mm": 10.0,
+   "thickness_margin_mm": 0.25,
+   "fits_only_without_cleanup": false,
+   "usd_per_piece_lb": 0.4277,
+   "usd_per_set_lb": 1.283
+  },
+  {
+   "part_id": "02_WRIST_BRACKET",
+   "qty_per_set": 1,
+   "min_bbox_dim_mm": 8.0,
+   "footprint_mm2": 5645.0,
+   "status": "lower_bound",
+   "stock_po": "PO-30744",
+   "stock_po_date": "2026-11-02",
+   "stock": "5052-H32 plate 10 mm x 610 x 1220",
+   "stock_t_mm": 10.0,
+   "thickness_margin_mm": 2.0,
+   "fits_only_without_cleanup": false,
+   "usd_per_piece_lb": 1.9934,
+   "usd_per_set_lb": 1.9934
+  },
+  {
+   "part_id": "02_GRIPPER_CONNECTOR_A",
+   "qty_per_set": 1,
+   "min_bbox_dim_mm": 6.02,
+   "footprint_mm2": 1226.5,
+   "status": "lower_bound",
+   "stock_po": "PO-30711",
+   "stock_po_date": "2026-10-20",
+   "stock": "5052-H32 plate 6.35 mm x 610 x 1220",
+   "stock_t_mm": 6.35,
+   "thickness_margin_mm": 0.33,
+   "fits_only_without_cleanup": false,
+   "usd_per_piece_lb": 0.2822,
+   "usd_per_set_lb": 0.2822
+  },
+  {
+   "part_id": "02_GRIPPER_CONNECTOR_B",
+   "qty_per_set": 1,
+   "min_bbox_dim_mm": 9.502,
+   "footprint_mm2": 3226.5,
+   "status": "lower_bound",
+   "stock_po": "PO-30744",
+   "stock_po_date": "2026-11-02",
+   "stock": "5052-H32 plate 10 mm x 610 x 1220",
+   "stock_t_mm": 10.0,
+   "thickness_margin_mm": 0.498,
+   "fits_only_without_cleanup": false,
+   "usd_per_piece_lb": 1.1394,
+   "usd_per_set_lb": 1.1394
+  },
+  {
+   "part_id": "02_SLIDER_BRACKET",
+   "qty_per_set": 1,
+   "min_bbox_dim_mm": 3.0,
+   "footprint_mm2": 12069.5,
+   "status": "lower_bound",
+   "stock_po": "PO-30710",
+   "stock_po_date": "2026-10-20",
+   "stock": "5052-H32 sheet 3 mm x 1220 x 2440",
+   "stock_t_mm": 3.0,
+   "thickness_margin_mm": 0.0,
+   "fits_only_without_cleanup": true,
+   "usd_per_piece_lb": 0.6025,
+   "usd_per_set_lb": 0.6025
+  },
+  {
+   "part_id": "02_SLIDER_EXTENSION",
+   "qty_per_set": 2,
+   "min_bbox_dim_mm": 17.8,
+   "footprint_mm2": 1007.1,
+   "status": "blocked",
+   "reason": "smallest bbox dimension 17.8 mm exceeds the thickest PO stock (10.0 mm); no PO price for suitable stock"
+  },
+  {
+   "part_id": "02_LOWER_UPPER_LINK_L",
+   "qty_per_set": 1,
+   "min_bbox_dim_mm": 5.0,
+   "footprint_mm2": 7541.5,
+   "status": "lower_bound",
+   "stock_po": "PO-30711",
+   "stock_po_date": "2026-10-20",
+   "stock": "5052-H32 plate 6.35 mm x 610 x 1220",
+   "stock_t_mm": 6.35,
+   "thickness_margin_mm": 1.35,
+   "fits_only_without_cleanup": false,
+   "usd_per_piece_lb": 1.7354,
+   "usd_per_set_lb": 1.7354
+  },
+  {
+   "part_id": "02_LOWER_UPPER_LINK_R",
+   "qty_per_set": 1,
+   "min_bbox_dim_mm": 5.0,
+   "footprint_mm2": 7541.5,
+   "status": "lower_bound",
+   "stock_po": "PO-30711",
+   "stock_po_date": "2026-10-20",
+   "stock": "5052-H32 plate 6.35 mm x 610 x 1220",
+   "stock_t_mm": 6.35,
+   "thickness_margin_mm": 1.35,
+   "fits_only_without_cleanup": false,
+   "usd_per_piece_lb": 1.7354,
+   "usd_per_set_lb": 1.7354
+  },
+  {
+   "part_id": "02_LOWER_WRIST_LINK_L",
+   "qty_per_set": 1,
+   "min_bbox_dim_mm": 3.0,
+   "footprint_mm2": 8623.4,
+   "status": "lower_bound",
+   "stock_po": "PO-30710",
+   "stock_po_date": "2026-10-20",
+   "stock": "5052-H32 sheet 3 mm x 1220 x 2440",
+   "stock_t_mm": 3.0,
+   "thickness_margin_mm": 0.0,
+   "fits_only_without_cleanup": true,
+   "usd_per_piece_lb": 0.4305,
+   "usd_per_set_lb": 0.4305
+  },
+  {
+   "part_id": "02_LOWER_WRIST_LINK_R",
+   "qty_per_set": 1,
+   "min_bbox_dim_mm": 3.0,
+   "footprint_mm2": 8623.4,
+   "status": "lower_bound",
+   "stock_po": "PO-30710",
+   "stock_po_date": "2026-10-20",
+   "stock": "5052-H32 sheet 3 mm x 1220 x 2440",
+   "stock_t_mm": 3.0,
+   "thickness_margin_mm": 0.0,
+   "fits_only_without_cleanup": true,
+   "usd_per_piece_lb": 0.4305,
+   "usd_per_set_lb": 0.4305
+  },
+  {
+   "part_id": "02_GEAR_CONNECTOR",
+   "qty_per_set": 1,
+   "min_bbox_dim_mm": 9.502,
+   "footprint_mm2": 1225.1,
+   "status": "lower_bound",
+   "stock_po": "PO-30744",
+   "stock_po_date": "2026-11-02",
+   "stock": "5052-H32 plate 10 mm x 610 x 1220",
+   "stock_t_mm": 10.0,
+   "thickness_margin_mm": 0.498,
+   "fits_only_without_cleanup": false,
+   "usd_per_piece_lb": 0.4326,
+   "usd_per_set_lb": 0.4326
+  },
+  {
+   "part_id": "02_RACK",
+   "qty_per_set": 2,
+   "min_bbox_dim_mm": 6.0,
+   "footprint_mm2": 1080.2,
+   "status": "lower_bound",
+   "stock_po": "PO-30711",
+   "stock_po_date": "2026-10-20",
+   "stock": "5052-H32 plate 6.35 mm x 610 x 1220",
+   "stock_t_mm": 6.35,
+   "thickness_margin_mm": 0.35,
+   "fits_only_without_cleanup": false,
+   "usd_per_piece_lb": 0.2486,
+   "usd_per_set_lb": 0.4971
+  },
+  {
+   "part_id": "03_LINK1",
+   "qty_per_set": 1,
+   "min_bbox_dim_mm": 77.533,
+   "footprint_mm2": 7062.9,
+   "status": "blocked",
+   "reason": "CNC + Sheet Metal: flat blank and sheet gauge are not in the inputs (the STEP holds the formed part only)"
+  },
+  {
+   "part_id": "03_LINK2",
+   "qty_per_set": 2,
+   "min_bbox_dim_mm": 23.0,
+   "footprint_mm2": 18297.0,
+   "status": "blocked",
+   "reason": "CNC + Sheet Metal: flat blank and sheet gauge are not in the inputs (the STEP holds the formed part only)"
+  },
+  {
+   "part_id": "03_LINK3_L",
+   "qty_per_set": 1,
+   "min_bbox_dim_mm": 28.625,
+   "footprint_mm2": 16976.1,
+   "status": "blocked",
+   "reason": "CNC + Sheet Metal: flat blank and sheet gauge are not in the inputs (the STEP holds the formed part only)"
+  },
+  {
+   "part_id": "03_LINK3_R",
+   "qty_per_set": 1,
+   "min_bbox_dim_mm": 27.625,
+   "footprint_mm2": 16976.1,
+   "status": "blocked",
+   "reason": "CNC + Sheet Metal: flat blank and sheet gauge are not in the inputs (the STEP holds the formed part only)"
+  },
+  {
+   "part_id": "03_LINK5",
+   "qty_per_set": 1,
+   "min_bbox_dim_mm": 50.0,
+   "footprint_mm2": 3600.0,
+   "status": "blocked",
+   "reason": "CNC + Sheet Metal: flat blank and sheet gauge are not in the inputs (the STEP holds the formed part only)"
+  }
+ ],
+ "stock": [
+  {
+   "po": "PO-30710",
+   "date": "2026-10-20",
+   "received": "2026-10-27",
+   "item": "AL5052-SH-3",
+   "description": "5052-H32 sheet 3 mm x 1220 x 2440",
+   "t": 3.0,
+   "area_mm2": 2976800.0,
+   "unit_price": 148.6,
+   "usd_per_m2": 49.9194
+  },
+  {
+   "po": "PO-30711",
+   "date": "2026-10-20",
+   "received": "2026-10-27",
+   "item": "AL5052-PL-6",
+   "description": "5052-H32 plate 6.35 mm x 610 x 1220",
+   "t": 6.35,
+   "area_mm2": 744200.0,
+   "unit_price": 171.25,
+   "usd_per_m2": 230.1129
+  },
+  {
+   "po": "PO-30744",
+   "date": "2026-11-02",
+   "received": "2026-11-09",
+   "item": "AL5052-PL-10",
+   "description": "5052-H32 plate 10 mm x 610 x 1220",
+   "t": 10.0,
+   "area_mm2": 744200.0,
+   "unit_price": 262.8,
+   "usd_per_m2": 353.1309
+  }
+ ]
+}

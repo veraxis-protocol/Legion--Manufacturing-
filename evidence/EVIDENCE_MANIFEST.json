@@ -1,6 +1,6 @@
 {
-  "source_commit": "38ec0a00a1814e66a95799c52fc0e38dc1146291",
-  "executed_at_utc": "2026-11-15T04:28:48+00:00",
+  "source_commit": "12d00566820bbeee0d69ccacf8c1871e88e7c1a0",
+  "executed_at_utc": "2026-11-15T04:30:48+00:00",
   "environment": {
     "python": "3.14.7",
     "implementation": "CPython",
@@ -15,6 +15,10 @@
   "inputs": {},
   "files": [
     {
+      "path": "evidence/BASELINE_COMPARISON.json",
+      "sha256": "625c81db355e008083bf3f7cfff8613bf5cc47243a4281aaa9ee725a21a0d2d3"
+    },
+    {
       "path": "evidence/CAD_INTEGRATION.windows-local.json",
       "sha256": "f37e098096380067f4754879f498a4be2fd5816f22c1dc2816406afb456a3117"
     },
@@ -24,7 +28,7 @@
     },
     {
       "path": "evidence/CLAUDE_RUNTIME.json",
-      "sha256": "b0c9a307dc390756bf108dcd6b23256f3593d91cfa1312f5b1e56ab9bd18dd81"
+      "sha256": "ac094fb4dbc0906a0e481132dab4ea1f9db8faf04d3d4d9c918480c65bddc777"
     },
     {
       "path": "evidence/CONNECTOR_ACCEPTANCE.windows-local.json",
@@ -76,7 +80,7 @@
     },
     {
       "path": "evidence/SKILL_EXECUTIONS.json",
-      "sha256": "7639084da3633966c73d0839fbc8b636a22d2f41f9d9d0a4a1dcc046b97339f9"
+      "sha256": "12f9391550d205711d1ce90c60e192a47601108a342420e190a53d6de4e7ca1b"
     },
     {
       "path": "evidence/SKILL_MATRIX.windows-local.json",
@@ -92,7 +96,7 @@
     },
     {
       "path": "evidence/WO_LMFG_004_GO_NO_GO.json",
-      "sha256": "09b3aadcf3988392ab2544597750fe6cde8d02a6a432634f553dbbdd9f98a7bb"
+      "sha256": "239cc889513664a8f6bf9d505b80894ddb6ed4d3c5b23cf6b18988a2fbba2882"
     },
     {
       "path": "evidence/ZTL_MCP_RESULTS.json",
