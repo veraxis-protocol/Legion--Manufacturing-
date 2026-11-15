@@ -1,0 +1,6 @@
+source_ref,asset_id,description,cell,work_center,install_year
+equipment.csv:3,HMC-01,Horizontal machining centre 500 mm pallet,Cell A,MILL-H,2019
+equipment.csv:4,VMC-02,Vertical machining centre 3-axis,Cell A,MILL-V,2016
+equipment.csv:5,VMC-03,Vertical machining centre 3-axis,Cell B,MILL-V,2021
+equipment.csv:6,LTH-01,CNC lathe 8in chuck,Cell B,TURN,2018
+equipment.csv:7,DEB-01,Deburr and inspection bench,Cell B,INSP,2015

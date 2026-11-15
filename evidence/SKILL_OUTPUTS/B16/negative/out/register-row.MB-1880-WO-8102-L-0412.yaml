@@ -1,0 +1,36 @@
+# Quality register record per shared/contracts/quality-register-record.md v1. NOT STORED - artifact tools not permitted this run.
+contract_version: 1
+record_key: null            # <site>_<ncr_ref>: both site and ncr_ref not given; placeholder below
+record_key_placeholder: "SITE-UNKNOWN_DRAFT-MB-1880-WO-8102-L-0412"
+ncr_ref: null
+site: null
+part_number: MB-1880
+part_number_verbatim: "MB-1880 rev B"
+lot_number: L-0412
+lot_number_verbatim: "L-0412"
+found_at: "2026-11-11 10:05 (zone not stated)"
+qty_found: 3
+uom: each
+requirement_cited: null
+disposition_pending: true
+summary: "Main bore 22.029-22.034 mm on 3 of 5 sampled; requirement not located, nonconformance not established."
+customers: []
+status: blocked
+approval_state: draft
+containment_summary: "5 of 5 locations addressed; none verified; 30 shipped to Northwind Robotics per finding, delivery unknown"
+escape_clock: null
+escape_clock_unknown: false   # no escape established; window also unknown if one is confirmed
+owner: null
+due_date: null
+recurrence: no_searchable_history
+prior_ncr_refs: []
+previous_fix_held: null
+eight_d_step: null
+leading_cause: null
+supplier_caused: null
+effectiveness_check_due: null
+closed_at: null
+closed_by: null
+last_written_by: ncr-writeup
+last_written_at: "2026-11-14 (run date; zone not configured)"
+first_recorded_at: "2026-11-14 (run date; zone not configured)"

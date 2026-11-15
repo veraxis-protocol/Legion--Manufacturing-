@@ -1,0 +1,61 @@
+# Structured NCR per shared/contracts/ncr.md (contract version 4). Record handed to root-cause-capa.
+# DRAFT - BLOCKED: requirement not locatable; approval_state draft. SYNTHETIC test data.
+contract_version: 4
+ncr_ref: null            # NOT ASSIGNED - no NCR number given in inputs; ask quality owner (required field left open, not invented)
+ncr_ref_placeholder: "DRAFT-MB-1880-WO-8102-L-0412"
+site: null               # NOT GIVEN - no plant profile on file; ask (rule 7)
+part_number: MB-1880
+part_number_verbatim: "MB-1880 rev B"
+part_revision: "B"       # as stated by inspector; drawing at this revision not located
+production_wo: WO-8102
+production_wo_verbatim: "WO-8102"
+lot_number: L-0412
+lot_number_verbatim: "L-0412"
+operation: "final inspection"   # where found; machining operation on VMC-03 not identified by routing step in inputs
+found_by: "J. Ortiz, inspector"
+found_at: "2026-11-11 10:05 (zone not stated in finding; not assumed)"   # rule 4 cannot be met from inputs - ask
+disposition_pending: true
+
+condition_found: "Main bore measured 22.034, 22.031, 22.029 mm on 3 of 5 sampled parts at final inspection. Inspector believes oversize; drawing was not at the bench and the requirement has not been looked up. Not established as a nonconformance."
+measurements:
+  - { characteristic: "main bore diameter", measured: "22.034", nominal: null, tolerance: null, uom: mm, gage: null, source_ref: "inputs/finding.txt line 3" }
+  - { characteristic: "main bore diameter", measured: "22.031", nominal: null, tolerance: null, uom: mm, gage: null, source_ref: "inputs/finding.txt line 3" }
+  - { characteristic: "main bore diameter", measured: "22.029", nominal: null, tolerance: null, uom: mm, gage: null, source_ref: "inputs/finding.txt line 3" }
+is_subjective: false
+qty_found: 3
+qty_found_reason: null
+uom: each
+
+requirement_cited: null
+requirement_not_locatable: true
+requirement_search: "Searched C:/LMFG/runs/B16-negative/work/inputs (finding.txt, inspection_measurements.csv). Requested folder inputs/quality does not exist. No MB-1880 drawing (any revision), internal spec, standard clause or Northwind Robotics PO flow-down present. No M365/ERP connector in this run."
+
+qty_suspect: 300
+qty_suspect_is_minimum: true
+scope_basis: lot
+scope_reasoning: "Assumption: the cause, if any, acted on the run rather than single parts - all 300 of lot L-0412 (WO-8102) were made on VMC-03 2nd shift 2026-11-10 with tool T7-0031 and no recorded tool change, and only 5 were sampled, so the whole lot is suspect until sorted. It is a floor: the same tool T7-0031 ran lots L-0409, L-0410, L-0411 (WO-8099/8100/8101) with no tool change recorded between 2026-11-09 07:10 and 2026-11-11 07:05 (inspection_measurements.csv); whether those lots are affected cannot be judged until the requirement is located, and their quantities and locations are not in the inputs."
+traceability_complete: true   # lot recorded; location split is from inspector free text only (unverified)
+
+containment:   # ordered customer side first; all five addressed; quantities from finding text, none verified
+  - { location: installed_at_customer, qty: 0, uom: each, checked: false, action: "Ask Northwind Robotics whether any PS-5521 parts were installed or shipped on - ONLY after the requirement confirms nonconformance and a person releases the notification.", urgency: immediate, owner: null, customer: "Northwind Robotics", source_ref: "not verifiable from our records" }
+  - { location: at_customer, qty: 0, uom: each, checked: false, action: "Confirm delivery status of PS-5521 (30 pcs shipped 2026-11-11 08:00 per finding). If delivered, conditional notification applies.", urgency: immediate, owner: null, customer: "Northwind Robotics", source_ref: "inputs/finding.txt line 6 (packing slip PS-5521); ERP not available" }
+  - { location: in_transit, qty: 30, uom: each, checked: false, action: "Check with shipping/carrier whether PS-5521 is still in transit; if so, consider intercept.", urgency: immediate, owner: null, customer: "Northwind Robotics", source_ref: "inputs/finding.txt line 6 - 30 shipped 2026-11-11 08:00; delivered vs in transit unknown" }
+  - { location: wip_at_machine, qty: 120, uom: each, checked: false, action: "Hold the 120 at the VMC-03 queue; stop next operation; tag with NCR ref once assigned.", urgency: immediate, owner: null, customer: null, source_ref: "inputs/finding.txt line 5 - reported by inspector, not verified against inventory" }
+  - { location: finished_goods, qty: 150, uom: each, checked: false, action: "Move FG-2 rack 14 stock of L-0412 to quarantine; tag; block from picking.", urgency: same_day, owner: null, customer: null, source_ref: "inputs/finding.txt line 5 - reported by inspector, not verified against inventory" }
+
+recurrence: no_searchable_history
+prior_ncrs_found: 0
+related_records: []
+history_searched: false   # no quality document library reachable; only the inputs folder was enumerated
+
+escape_occurred: false
+escape_possible: true
+verify_shipment_action: "Confirm (a) the MB-1880 rev B main-bore requirement, to establish whether the measured values nonconform, and (b) whether PS-5521 (30 pcs of L-0412, shipped 2026-11-11 08:00) has been delivered to Northwind Robotics."
+escape_detected_at: null
+notification_drafted: true      # conditional draft; not sent
+notification_deadline: null     # contractual window unknown - not guessed
+affected_customers: []          # none established; Northwind Robotics is the possible customer
+
+approval_state: draft
+approved_by: null
+approved_at: null

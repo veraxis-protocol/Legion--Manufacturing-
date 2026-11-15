@@ -1,0 +1,156 @@
+[
+ {
+  "figure": "Bore values in finding (mm)",
+  "value": [
+   22.034,
+   22.031,
+   22.029
+  ],
+  "computed_from": "finding.txt",
+  "filter": "regex 22\\.\\d{3}"
+ },
+ {
+  "figure": "Bore values in finding, count",
+  "value": 3,
+  "computed_from": "finding.txt",
+  "filter": "len of above"
+ },
+ {
+  "figure": "Parts with bore value given / sampled",
+  "value": "3 of 5",
+  "computed_from": "finding.txt",
+  "filter": "'N of M sampled'"
+ },
+ {
+  "figure": "Lot size L-0412",
+  "value": 300,
+  "computed_from": "finding.txt",
+  "filter": "'Lot size N'"
+ },
+ {
+  "figure": "Reported at VMC-03 queue",
+  "value": 120,
+  "computed_from": "finding.txt",
+  "filter": "'N still at VMC-03 queue'"
+ },
+ {
+  "figure": "Reported in FG-2 rack 14",
+  "value": 150,
+  "computed_from": "finding.txt",
+  "filter": "'N in finished goods'"
+ },
+ {
+  "figure": "Reported shipped to Northwind Robotics (PS-5521)",
+  "value": 30,
+  "computed_from": "finding.txt",
+  "filter": "'N already shipped'"
+ },
+ {
+  "figure": "Sum of reported locations",
+  "value": 300,
+  "computed_from": "computed",
+  "filter": "wip+fg+shipped"
+ },
+ {
+  "figure": "Sum reconciles to lot size",
+  "value": true,
+  "computed_from": "computed",
+  "filter": "sum == lot size"
+ },
+ {
+  "figure": "Inspection export rows",
+  "value": 11,
+  "computed_from": "inspection_measurements.csv",
+  "filter": "all data rows"
+ },
+ {
+  "figure": "Export rows for L-0412",
+  "value": 3,
+  "computed_from": "inspection_measurements.csv",
+  "filter": "lot == 'L-0412'"
+ },
+ {
+  "figure": "L-0412 export bore values (mm)",
+  "value": [
+   22.022,
+   22.029,
+   22.034
+  ],
+  "computed_from": "inspection_measurements.csv",
+  "filter": "lot == 'L-0412', part_seq 1,90,180"
+ },
+ {
+  "figure": "Finding values also present as values in L-0412 export",
+  "value": [
+   22.029,
+   22.034
+  ],
+  "computed_from": "computed",
+  "filter": "set intersection of values only; NOT a part-level join (no part id in finding)"
+ },
+ {
+  "figure": "Export coverage window",
+  "value": "2026-11-09T07:10:00-05:00 to 2026-11-11T07:05:00-05:00",
+  "computed_from": "inspection_measurements.csv",
+  "filter": "min/max timestamp"
+ },
+ {
+  "figure": "Export timezone offsets present",
+  "value": [
+   "-05:00"
+  ],
+  "computed_from": "inspection_measurements.csv",
+  "filter": "last 6 chars of timestamp"
+ },
+ {
+  "figure": "Lots run on tool T7-0031",
+  "value": [
+   "L-0409",
+   "L-0410",
+   "L-0411",
+   "L-0412"
+  ],
+  "computed_from": "inspection_measurements.csv",
+  "filter": "tool_id == 'T7-0031'"
+ },
+ {
+  "figure": "Work orders run on tool T7-0031",
+  "value": [
+   "WO-8099",
+   "WO-8100",
+   "WO-8101",
+   "WO-8102"
+  ],
+  "computed_from": "inspection_measurements.csv",
+  "filter": "tool_id == 'T7-0031'"
+ },
+ {
+  "figure": "Tool changes recorded (tool_change_since_last == yes)",
+  "value": [
+   [
+    "2026-11-09T07:10:00-05:00",
+    "T7-0031",
+    "L-0409"
+   ],
+   [
+    "2026-11-11T07:05:00-05:00",
+    "T7-0032",
+    "L-0413"
+   ]
+  ],
+  "computed_from": "inspection_measurements.csv",
+  "filter": "tool_change_since_last == 'yes'"
+ },
+ {
+  "figure": "Prior NCR / CAPA documents found",
+  "value": "0 - no quality document library available; inputs folder enumerated (2 files)",
+  "computed_from": "work/inputs",
+  "filter": "ls work/inputs; inputs/quality does not exist"
+ },
+ {
+  "figure": "Requirement documents found (drawing/spec/PO)",
+  "value": "0 - not found; inputs folder enumerated",
+  "computed_from": "work/inputs",
+  "filter": "ls work/inputs"
+ }
+]

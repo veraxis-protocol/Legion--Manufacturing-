@@ -1,0 +1,278 @@
+[
+ {
+  "figure": "Bore A nominal (mm)",
+  "value": "22.000",
+  "computed_from": "MB-1880_drawing_revB_notes.md",
+  "filter_or_query": "note 4 regex 'Bore A: dia'"
+ },
+ {
+  "figure": "Bore A USL (mm)",
+  "value": "22.021",
+  "computed_from": "MB-1880_drawing_revB_notes.md",
+  "filter_or_query": "nominal + 0.021"
+ },
+ {
+  "figure": "Bore A LSL (mm)",
+  "value": "22.000",
+  "computed_from": "MB-1880_drawing_revB_notes.md",
+  "filter_or_query": "nominal - 0.000"
+ },
+ {
+  "figure": "Tolerance band (mm)",
+  "value": "0.021",
+  "computed_from": "MB-1880_drawing_revB_notes.md",
+  "filter_or_query": "USL - LSL"
+ },
+ {
+  "figure": "Requirement in finding matches drawing note 4",
+  "value": "True",
+  "computed_from": "finding.txt vs drawing notes",
+  "filter_or_query": "string compare '22.000 +0.021/-0.000'"
+ },
+ {
+  "figure": "Measured values recorded",
+  "value": 3,
+  "computed_from": "finding.txt",
+  "filter_or_query": "values in 'measured ... mm'"
+ },
+ {
+  "figure": "Nonconforming / sampled",
+  "value": "3 of 5",
+  "computed_from": "finding.txt",
+  "filter_or_query": "'N of M sampled'"
+ },
+ {
+  "figure": "Share of sample nonconforming",
+  "value": "60%",
+  "computed_from": "finding.txt",
+  "filter_or_query": "n_bad / n_sampled"
+ },
+ {
+  "figure": "Conforming sample values recorded",
+  "value": "0 of 2",
+  "computed_from": "finding.txt",
+  "filter_or_query": "no values given for the conforming parts"
+ },
+ {
+  "figure": "Recorded values above USL",
+  "value": "3 of 3",
+  "computed_from": "finding.txt",
+  "filter_or_query": "v > USL"
+ },
+ {
+  "figure": "Part 1: excess over USL (mm) / % of tolerance band",
+  "value": "0.013 / 62%",
+  "computed_from": "finding.txt + drawing",
+  "filter_or_query": "22.034 - 22.021; / 0.021"
+ },
+ {
+  "figure": "Part 2: excess over USL (mm) / % of tolerance band",
+  "value": "0.010 / 48%",
+  "computed_from": "finding.txt + drawing",
+  "filter_or_query": "22.031 - 22.021; / 0.021"
+ },
+ {
+  "figure": "Part 3: excess over USL (mm) / % of tolerance band",
+  "value": "0.008 / 38%",
+  "computed_from": "finding.txt + drawing",
+  "filter_or_query": "22.029 - 22.021; / 0.021"
+ },
+ {
+  "figure": "Mean of recorded values (mm)",
+  "value": "22.0313",
+  "computed_from": "finding.txt",
+  "filter_or_query": "mean of 3 recorded values"
+ },
+ {
+  "figure": "Range of recorded values (mm)",
+  "value": "0.005",
+  "computed_from": "finding.txt",
+  "filter_or_query": "max - min"
+ },
+ {
+  "figure": "Mean excess over USL (mm)",
+  "value": "0.0103",
+  "computed_from": "finding.txt + drawing",
+  "filter_or_query": "mean - USL"
+ },
+ {
+  "figure": "SPC centreline (mm)",
+  "value": "22.0313",
+  "computed_from": "finding.txt",
+  "filter_or_query": "I-MR: mean of individuals"
+ },
+ {
+  "figure": "SPC UCL (mm)",
+  "value": "22.0380",
+  "computed_from": "finding.txt",
+  "filter_or_query": "mean + 2.66 x MRbar (0.0025)"
+ },
+ {
+  "figure": "SPC LCL (mm)",
+  "value": "22.0247",
+  "computed_from": "finding.txt",
+  "filter_or_query": "mean - 2.66 x MRbar (0.0025)"
+ },
+ {
+  "figure": "SPC basis",
+  "value": "I-MR, n=3 points, one run (WO-8102 / L-0412), 2 moving ranges; nonconforming parts only, recorded order not production order; no prior runs available",
+  "computed_from": "finding.txt",
+  "filter_or_query": "only measurements in inputs"
+ },
+ {
+  "figure": "SPC run rule checked",
+  "value": "Rule 1 (point beyond 3-sigma limits): 0 points beyond. Rules 2-4 (run of 9, trend of 6, 2 of 3 beyond 2-sigma): cannot be evaluated with 3 points and no production sequence. Limits computed from a biased 3-point subset are NOT a valid control baseline.",
+  "computed_from": "finding.txt",
+  "filter_or_query": "computed against UCL/LCL above"
+ },
+ {
+  "figure": "UCL vs spec USL (mm)",
+  "value": "UCL 22.0380 is 0.0170 above USL 22.021",
+  "computed_from": "computed",
+  "filter_or_query": "UCL - USL (control limit != spec limit)"
+ },
+ {
+  "figure": "Lot size L-0412",
+  "value": 300,
+  "computed_from": "finding.txt",
+  "filter_or_query": "'Lot size N'"
+ },
+ {
+  "figure": "WIP at VMC-03 + FG-2 rack 14 + shipped",
+  "value": "120 + 150 + 30 = 300",
+  "computed_from": "finding.txt",
+  "filter_or_query": "sum of stated locations"
+ },
+ {
+  "figure": "Locations reconcile to lot size",
+  "value": "True",
+  "computed_from": "finding.txt",
+  "filter_or_query": "sum == lot size"
+ },
+ {
+  "figure": "Parts still in-house",
+  "value": 270,
+  "computed_from": "finding.txt",
+  "filter_or_query": "WIP + FG"
+ },
+ {
+  "figure": "Parts at customer (Northwind Robotics, PS-5521)",
+  "value": 30,
+  "computed_from": "finding.txt",
+  "filter_or_query": "'already shipped'"
+ },
+ {
+  "figure": "Prior NCRs in file (all parts)",
+  "value": 2,
+  "computed_from": "prior_ncrs.csv",
+  "filter_or_query": "all rows"
+ },
+ {
+  "figure": "Prior NCRs same part + bore oversize",
+  "value": "1 (NCR-0219)",
+  "computed_from": "prior_ncrs.csv",
+  "filter_or_query": "part=='MB-1880' and 'bore oversize' in defect"
+ },
+ {
+  "figure": "NCR-0219 CAPA and effectiveness",
+  "value": "CAPA-071 insert change every 600 parts | capa_effective = 'not verified'",
+  "computed_from": "prior_ncrs.csv",
+  "filter_or_query": "row ncr=='NCR-0219'"
+ },
+ {
+  "figure": "NCR-0219 excess over USL (mm)",
+  "value": "0.005",
+  "computed_from": "prior_ncrs.csv + drawing",
+  "filter_or_query": "22.026 - USL"
+ },
+ {
+  "figure": "Days NCR-0219 to this finding",
+  "value": 211,
+  "computed_from": "prior_ncrs.csv + finding.txt",
+  "filter_or_query": "2026-11-11 - 2026-04-14"
+ },
+ {
+  "figure": "Insert life numbers in prior record (parts)",
+  "value": "wear beyond 900; CAPA interval 600",
+  "computed_from": "prior_ncrs.csv",
+  "filter_or_query": "NCR-0219 cause / capa text"
+ },
+ {
+  "figure": "Prior NCRs with offset-after-tool-change cause",
+  "value": "1 (NCR-0244; part MB-1500, not MB-1880)",
+  "computed_from": "prior_ncrs.csv",
+  "filter_or_query": "'offset' in cause"
+ },
+ {
+  "figure": "Maintenance records VMC-03",
+  "value": 2,
+  "computed_from": "maintenance_log.csv",
+  "filter_or_query": "asset_id=='VMC-03'"
+ },
+ {
+  "figure": "Records mentioning T7 / boring",
+  "value": 1,
+  "computed_from": "maintenance_log.csv",
+  "filter_or_query": "'T7' in event"
+ },
+ {
+  "figure": "Records mentioning coolant",
+  "value": 1,
+  "computed_from": "maintenance_log.csv",
+  "filter_or_query": "'coolant' in event"
+ },
+ {
+  "figure": "Tool-life part count for insert T7-0031",
+  "value": "not in inputs",
+  "computed_from": "maintenance_log.csv, finding.txt",
+  "filter_or_query": "search 'count|parts' near T7-0031: none"
+ },
+ {
+  "figure": "Boring head / offset setting records for WO-8102",
+  "value": "0 - not in inputs",
+  "computed_from": "all 4 input files",
+  "filter_or_query": "search 'offset|setup|setting' in maintenance_log.csv and finding.txt: none"
+ },
+ {
+  "figure": "Maintenance log clock",
+  "value": "zone-aware, UTC-05:00",
+  "computed_from": "maintenance_log.csv",
+  "filter_or_query": "timestamp offset"
+ },
+ {
+  "figure": "Finding / shipment clock",
+  "value": "zone-naive (no offset), source zone not stated",
+  "computed_from": "finding.txt",
+  "filter_or_query": "timestamps '2026-11-11 10:05', '08:00'"
+ },
+ {
+  "figure": "Insert replacement minus finding, if finding is UTC-05:00",
+  "value": "-3h25m (replacement BEFORE finding)",
+  "computed_from": "computed",
+  "filter_or_query": "06:40-05:00 minus 10:05-05:00"
+ },
+ {
+  "figure": "Insert replacement minus finding, if finding is UTC",
+  "value": "+1h35m (replacement AFTER finding)",
+  "computed_from": "computed",
+  "filter_or_query": "06:40-05:00 minus 10:05Z"
+ },
+ {
+  "figure": "Shipment minus finding (same source clock)",
+  "value": "-2h05m",
+  "computed_from": "finding.txt",
+  "filter_or_query": "08:00 minus 10:05, both naive"
+ },
+ {
+  "figure": "Events visible in two sources that verify alignment",
+  "value": "0",
+  "computed_from": "all inputs",
+  "filter_or_query": "the 'inspection hold' named at 06:40 has no timestamped record in finding.txt; finding records 10:05 only"
+ },
+ {
+  "figure": "Shift boundary for '2nd shift 2026-11-10'",
+  "value": "not in inputs (no Plant context)",
+  "computed_from": "plant_setup.py find",
+  "filter_or_query": "profile exists = false"
+ }
+]

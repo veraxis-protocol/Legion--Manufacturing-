@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MB-2040 Internal Cost Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1A1D21;--paper:#F2F3F5;--paper-raised:#FFFFFF;--line:#D6D9DD;--accent:#1F5C8B;--warn:#A8641A;--warn-soft:#F7EBDA;--critical:#A93226;--critical-soft:#F9E9E7;
+--font-display:'IBM Plex Sans Condensed','Arial Narrow',sans-serif;--font-body:'IBM Plex Sans',sans-serif;--font-mono:'IBM Plex Mono',Consolas,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#E8EAEC;--paper:#15181B;--paper-raised:#1D2126;--line:#2E343A;--accent:#6BA8D4;--warn:#D9A15C;--warn-soft:#33271A;--critical:#DE8378;--critical-soft:#35201E}}
+:root[data-theme="dark"]{--ink:#E8EAEC;--paper:#15181B;--paper-raised:#1D2126;--line:#2E343A;--accent:#6BA8D4;--warn:#D9A15C;--warn-soft:#33271A;--critical:#DE8378;--critical-soft:#35201E}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);line-height:1.5}
+.page{display:flex;flex-direction:column;gap:1.25rem;max-width:960px;margin:0 auto;padding:2rem 1rem}
+.panel{background:var(--paper-raised);border:1px solid var(--line);border-radius:4px;padding:1.25rem}
+h1,h2{font-family:var(--font-display);font-weight:600;margin:0 0 .5rem}h1{font-size:1.75rem}h2{font-size:1.3rem}
+.crit{background:var(--critical-soft);border-color:var(--critical)}.warn{background:var(--warn-soft);border-color:var(--warn)}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.85rem}
+th,td{border-bottom:1px solid var(--line);padding:.35rem .5rem;text-align:left;vertical-align:top}th{font-family:var(--font-display)}
+.mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums}.delim{font-family:var(--font-mono);font-weight:600}
+</style>
+</head>
+<body><div class="page">
+<div class="delim">=== INTERNAL COST SHEET — NOT FOR CUSTOMER ===</div>
+
+<section class="panel crit">
+<p><strong>ROM — rough order of magnitude. Path A: text specs, no drawing. Not a firm quote and not releasable as one.</strong></p>
+<p>Northwind Robotics MB-2040 rev C, line 1, quantities 250 / 500 / 1,000. Example Precision Works EPW1. Generated 2026-11-14. SYNTHETIC TEST.</p>
+<p><strong>Fusion not connected — no model built.</strong> Step 7 produced a hand-entered feature list (<span class="mono">inquiries/northwind-robotics-MB-2040.L1.geometry-estimate.txt</span>, <span class="mono">approval.status: draft</span>).</p>
+<p><strong>No unit price and no job total.</strong> Every rate the price needs is unset. See the rates panel below.</p>
+</section>
+
+<section class="panel">
+<h2>Where the chain stands</h2>
+<div class="tw"><table>
+<tr><th>Gate</th><th>Step</th><th>State</th></tr>
+<tr><td class="mono">1</td><td class="mono">4</td><td>Q1-Q8 approved as drafted but <strong>not sent</strong>, so Gate 1 is not passed. The stale clock still runs from receipt; the inquiry has been stale since <span class="mono">2026-11-09</span> (visibility only; it remains open).</td></tr>
+<tr><td class="mono">2</td><td class="mono">5</td><td>Confirmed: bid, by "Test Estimator (LEGION WO-LMFG-004 test operator)", 2026-11-14, relayed by the coordinator. The instruction was to quote with Q1-Q8 as exclusions.</td></tr>
+<tr><td class="mono">3</td><td class="mono">8</td><td><strong>Open.</strong> The feature list, the inferred datums and the op list are draft. No geometry-derived hour (rung 3) was computed. "Proceed with the rest of the chain" was treated as continuation, not a Gate 3 yes.</td></tr>
+<tr><td class="mono">4</td><td class="mono">11</td><td><strong>Open.</strong> The budgetary estimate draft has blank prices and cannot be released.</td></tr>
+</table></div>
+</section>
+
+<section class="panel crit">
+<h2>Rates: unset, so these lines are blocked</h2>
+<p>I checked the <span class="mono">MFG_*</span> variables by name and none are set. No plant rates file exists (<span class="mono">plant_setup.py find</span>: <span class="mono">rates_exists: false</span>). The finance memo of 1 Oct 2026 (<span class="mono">inputs/plant/rates_memo.txt</span>) is <strong>not the plant's confirmed rates file</strong>, per the operator's instruction and the skill's rule. Its values are not used and not restated here.</p>
+<div class="tw"><table>
+<tr><th>Rate</th><th>Blocks</th></tr>
+<tr><td>Labour and machine/burden rate, MILL-V</td><td>Labour, machine and setup lines for ops 10-30</td></tr>
+<tr><td>Labour and machine/burden rate, INSP</td><td>Op 40 deburr and inspect, and the FAI effort</td></tr>
+<tr><td>Material markup</td><td>Material sell line</td></tr>
+<tr><td>Outside-processing markup</td><td>Anodize and laser-etch sell lines</td></tr>
+<tr><td>Margin rule</td><td>Margin line, unit price and totals</td></tr>
+</table></div>
+<p>There are two ways to set them. Say "update our labour rate" (onboarding step 10 records each rate as confirmed, with a name and date), or set <span class="mono">MFG_LABOR_RATE</span>, <span class="mono">MFG_BURDEN_RATE</span> and <span class="mono">MFG_MARGIN_RULES</span>. The estimate completes as soon as they are set.</p>
+</section>
+
+<section class="panel">
+<h2>Step 6: data consolidation (file-only, NetSuite export)</h2>
+<ul>
+<li><strong>Sources:</strong> <span class="mono">routings.csv</span> (4 rows), <span class="mono">closed_jobs.csv</span> (4 rows), <span class="mono">purchase_orders.csv</span> (3 rows) and <span class="mono">equipment.csv</span> (5 rows). Transactions run from 2026-07-18 to 2026-10-15, with no future-dated rows. The files carry no export timestamps.</li>
+<li><strong>Not supplied:</strong> item master, sales orders, production work orders with actual cost, inventory, planning/schedule export, and prior quotes. I could not check for orphan parts without an item master.</li>
+<li><strong>MB-2040 history:</strong> 0 routing rows and 0 actuals rows. The only history is MB-1880 rev B, which the plant labels "similar bracket". No MB-1880 specification is in the inputs, so <strong>how MB-2040 differs from it cannot be stated</strong>.</li>
+<li><strong>Time units:</strong> minutes in both files, declared by the <span class="mono">_min</span> headers.</li>
+<li><strong>Backflush check:</strong> 0 of 4 actuals rows are <span class="mono">probable_standard</span>. Run time per piece differs from the routing by +2.6% to +8.1%, and the two work orders differ from each other by 3.4% (op 20) and 5.3% (op 30). All 4 rows are <span class="mono">recorded</span>. Ops 10 and 40 have no actuals.</li>
+<li><strong>Work center to cell:</strong> there is no Machine classes table. In <span class="mono">equipment.csv</span>, MILL-V spans Cell A (VMC-02) and Cell B (VMC-03), so the cell is left null.</li>
+<li><strong>Units:</strong> plate is bought per <span class="mono">each</span> and anodize per <span class="mono">lot</span>. I did not convert between them.</li>
+</ul>
+<p>The dataset tabs are saved as CSV in <span class="mono">out/dataset/</span>. There is no Excel writer this session.</p>
+</section>
+
+<section class="panel">
+<h2>Hours basis per operation (rung 4, similar-part routing)</h2>
+<p>There is no MB-2040 routing (rung 1), no MB-2040 actuals (rung 2) and no confirmed geometry estimate (rung 3), so every op is <strong>rung 4, first principles: MB-1880 rev B routing</strong>. The op list itself is unconfirmed at Gate 3. The variance threshold is <strong>15% — default threshold, not plant-set</strong>. Units are setup minutes per job and run minutes per piece.</p>
+<div class="tw"><table>
+<tr><th>Op</th><th>WC</th><th>Rung / path</th><th>Cutting data</th><th>Setup min (low / exp / high)</th><th>Run min/pc (low / exp / high)</th><th>Other source and variance</th><th>Firms up with</th></tr>
+<tr><td>10 Saw and face blank</td><td>MILL-V</td><td>4 / similar-part routing</td><td>n/a</td><td class="mono">20 (no spread available)</td><td class="mono">1.5 (no spread available)</td><td>No actuals</td><td>MB-2040 drawing, Gate 3, plant machining data</td></tr>
+<tr><td>20 Op1 profile, bore H7, M5, slot</td><td>MILL-V</td><td>4 / similar-part routing</td><td>n/a</td><td class="mono">45 / 45 / 52</td><td class="mono">6.2 / 6.2 / 6.7</td><td>MB-1880 actuals: WO-7702 setup 52 (+15.6%, <strong>flagged</strong>), run 6.70 (+8.1%). WO-7811 setup 47 (+4.4%), run 6.48 (+4.5%)</td><td>Same; H7/Ra 1.6 capability</td></tr>
+<tr><td>30 Op2 flip, face, edge break</td><td>MILL-V</td><td>4 / similar-part routing</td><td>n/a</td><td class="mono">29 / 30 / 34</td><td class="mono">3.1 / 3.1 / 3.35</td><td>WO-7702 setup 34 (+13.3%), run 3.35 (+8.1%). WO-7811 setup 29 (-3.3%), run 3.18 (+2.6%)</td><td>Same</td></tr>
+<tr><td>40 Deburr, inspect, FAI</td><td>INSP</td><td>4 / similar-part routing</td><td>n/a</td><td class="mono">10 (no spread available)</td><td class="mono">2.0 (no spread available)</td><td>No actuals. AS9102 FAI effort is not in the routing</td><td>FAI scope (Q6/Q7)</td></tr>
+<tr><td>50 Laser etch</td><td>outside</td><td>not estimated</td><td>n/a</td><td colspan="2">No machine time. There is no laser on <span class="mono">equipment.csv</span>, and no vendor or price is on file</td><td>-</td><td>Vendor quote; location (Q5)</td></tr>
+<tr><td>60 Anodize Type II black</td><td>outside</td><td>PO price</td><td>n/a</td><td colspan="2">No machine time. Lead time observed: 12 days order-to-receipt on PO-30602</td><td>-</td><td>Masking (Q3)</td></tr>
+</table></div>
+<p><strong>Flagged variance, WO-7702 op 20 setup +15.6%:</strong> the drivers cannot be determined from the export, which has no operator, shift or tool-change data. WO-7702 (closed 2026-07-18) is the earlier of the two runs. These are MB-1880 figures; how far they transfer to MB-2040 is unknown.</p>
+<p><strong>Setup re-amortised per break</strong> (routing setup 105 min over all ops): <span class="mono">0.42</span> min/pc at 250, <span class="mono">0.21</span> at 500 and <span class="mono">0.105</span> at 1,000. Routing run total is <span class="mono">12.8</span> min/pc. These minutes are shown for structure only; their dollar value is blocked by the rates.</p>
+</section>
+
+<section class="panel">
+<h2>Cost build-up (USD, before any markup)</h2>
+<div class="tw"><table>
+<tr><th>Line</th><th>250</th><th>500</th><th>1,000</th><th>Source</th></tr>
+<tr><td>Blanks started / plates</td><td class="mono">255 / 9</td><td class="mono">510 / 17</td><td class="mono">1020 / 34</td><td>Scrap allowance 1.96% (higher MB-1880 observed rate). 30 blanks per plate is an upper bound at zero kerf and cleanup</td></tr>
+<tr><td>Material line</td><td class="mono">1979.10</td><td class="mono">3738.30</td><td class="mono">7476.60</td><td>PO-30588, 2026-09-30, 6061-T6 plate 0.5 x 12 x 48 in at 219.90/each. Up +3.53% on PO-30411 (2026-08-14). Prices are volatile, so a validity caveat applies</td></tr>
+<tr><td>Material per finished pc</td><td class="mono">7.916</td><td class="mono">7.477</td><td class="mono">7.477</td><td>Material line / qty</td></tr>
+<tr><td>Anodize (lots / cost / per pc)</td><td class="mono">1 / 385.00 / 1.540</td><td class="mono">2 / 770.00 / 1.540</td><td class="mono">4 / 1540.00 / 1.540</td><td>PO-30602, 2026-10-03, Bright Anodize LLC: 385.00 per lot of up to 300 pcs at 150 mm or smaller. Masking is not in the PO description. Monthly releases may need more lots</td></tr>
+<tr><td>Laser etch</td><td colspan="3">Unpriced: no source</td><td>Vendor quote needed</td></tr>
+<tr><td>Tooling / fixtures</td><td colspan="3">Not sourced. It is not decided whether tooling is amortised or charged separately as NRE</td><td>Estimator</td></tr>
+<tr><td>Labour, machine/burden, setup</td><td colspan="3"><strong>Blocked:</strong> rates unset</td><td>Hours above, rung 4</td></tr>
+<tr><td>Margin</td><td colspan="3"><strong>Blocked:</strong> margin rule unset</td><td>-</td></tr>
+</table></div>
+<p>The plate is 12.7 mm thick for a 12 mm finished part, which leaves 0.7 mm total for facing. The cleanup allowance is not on file, so this goes to Gate 3.</p>
+</section>
+
+<section class="panel">
+<h2>Comparables</h2>
+<p>There is no same-part history. The similar part is MB-1880 rev B (the plant's own label): WO-7702 closed 2026-07-18 (300 pcs, 6 scrapped) and WO-7811 closed 2026-09-26 (500 pcs, 9 scrapped). These records carry minutes only, with no actual-cost dollars, so whether either job made money is unknown. Their geometry, finish and tolerances are not in the inputs, so the differences from MB-2040 cannot be stated. There are no prior quotes for Northwind Robotics in the inputs; the history is <strong>not found in the supplied files</strong>, which is not the same as none existing.</p>
+</section>
+
+<section class="panel warn">
+<h2>Date check: not checked against shop load</h2>
+<p>There is no planning export. Work content added (rung 4, MB-1880 routing): MILL-V <span class="mono">46.58 / 91.58 / 181.58</span> h and INSP <span class="mono">8.5 / 16.83 / 33.5</span> h at 250 / 500 / 1,000. Observed lead times: plate 7 days (PO-30411 and PO-30588), anodize 12 days (PO-30602). First articles are requested by 2027-01-15, which is 62 days away. <strong>Whether that date can be met is not established</strong>; confirm with scheduling before release. The laser-etch lead time is unknown.</p>
+</section>
+
+<section class="panel">
+<h2>Assumptions and exclusions (internal)</h2>
+<ul>
+<li>Proceeded on Gate 2 "bid" confirmed with Q1-Q8 still open. Those questions are the assumptions this rests on: rev C drawing, flatness, bore after anodize and masking, M5 class, marking, releases and FAI quantity, AS9100 requirement and cert type, and commercial terms and due date.</li>
+<li>Payment, freight, packaging and liability were never stated. The plant's standard terms are not on file, so placeholders were used.</li>
+<li>Capability was not checked for H7, Ra 1.6 or flatness, and certifications held are not on file.</li>
+<li>The plant's controlled quote template is not on file, so the draft uses a neutral structure.</li>
+<li>No cost-down proposals.</li>
+</ul>
+</section>
+
+<section class="panel">
+<h2>Operation record</h2>
+<p>MB-2040, revision priced to: spec sheet rev C (no drawing). Ops 10-40 are MILL-V/INSP at rung 4, path similar-part routing (MB-1880 rev B, <span class="mono">routings.csv</span> rows op10-op40), with setup and run as tabled above. Breaks: 250, 500, 1,000. Geometry estimate: hand-entered, draft, no <span class="mono">document_ref</span>. Derived 2026-11-14.</p>
+</section>
+
+<section class="panel">
+<h2>Figures block</h2>
+<p>Every figure on this sheet comes from <span class="mono">out/scripts/quote_figures.py</span>, which is saved with each filter in <span class="mono">out/figures-MB-2040-quote.json</span>. The intake figures are in <span class="mono">out/figures-MB-2040-intake.json</span>. The low/expected/high bounds for ops 20-30 are the routing value and the MB-1880 actuals min/max from the same output.</p>
+</section>
+
+<div class="delim">=== END ===</div>
+<p>The Sales command-center page was not produced: it is fed at quote release (Gate 4), which has not been reached.</p>
+</div></body></html>

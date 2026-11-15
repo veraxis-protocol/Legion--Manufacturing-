@@ -1,0 +1,5 @@
+work_order,part,rev,qty_completed,qty_scrapped,op,work_center,actual_setup_min,actual_run_min_total,closed_date,run_min_per_unit_actual,routing_run_min_per_unit,run_var_vs_routing,setup_var_vs_routing,actuals_confidence,time_unit,note
+WO-7702,MB-1880,B,300,6,20,MILL-V,52,2010,2026-07-18,6.7,6.2,0.0806,0.1556,recorded,minutes (declared by header _min),MB-1880 rev B similar-part history; not MB-2040
+WO-7702,MB-1880,B,300,6,30,MILL-V,34,1005,2026-07-18,3.35,3.1,0.0806,0.1333,recorded,minutes (declared by header _min),MB-1880 rev B similar-part history; not MB-2040
+WO-7811,MB-1880,B,500,9,20,MILL-V,47,3240,2026-09-26,6.48,6.2,0.0452,0.0444,recorded,minutes (declared by header _min),MB-1880 rev B similar-part history; not MB-2040
+WO-7811,MB-1880,B,500,9,30,MILL-V,29,1590,2026-09-26,3.18,3.1,0.0258,-0.0333,recorded,minutes (declared by header _min),MB-1880 rev B similar-part history; not MB-2040

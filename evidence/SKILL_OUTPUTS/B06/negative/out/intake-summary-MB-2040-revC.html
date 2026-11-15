@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MB-2040 Intake Summary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1A1D21;--paper:#F2F3F5;--paper-raised:#FFFFFF;--line:#D6D9DD;--accent:#1F5C8B;--accent-soft:#E4EDF4;--good:#2E7248;--good-soft:#E3EFE7;--warn:#A8641A;--warn-soft:#F7EBDA;--critical:#A93226;--critical-soft:#F9E9E7;
+--font-display:'IBM Plex Sans Condensed','Arial Narrow',sans-serif;--font-body:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,sans-serif;--font-mono:'IBM Plex Mono','SF Mono',Consolas,monospace;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ink:#E8EAEC;--paper:#15181B;--paper-raised:#1D2126;--line:#2E343A;--accent:#6BA8D4;--accent-soft:#1B2C39;--good:#6FBF88;--good-soft:#1B2E22;--warn:#D9A15C;--warn-soft:#33271A;--critical:#DE8378;--critical-soft:#35201E;}}
+:root[data-theme="dark"]{--ink:#E8EAEC;--paper:#15181B;--paper-raised:#1D2126;--line:#2E343A;--accent:#6BA8D4;--accent-soft:#1B2C39;--good:#6FBF88;--good-soft:#1B2E22;--warn:#D9A15C;--warn-soft:#33271A;--critical:#DE8378;--critical-soft:#35201E;}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);line-height:1.5}
+.page{display:flex;flex-direction:column;gap:1.25rem;max-width:900px;margin:0 auto;padding:2rem 1rem}
+.panel{background:var(--paper-raised);border:1px solid var(--line);border-radius:4px;padding:1.25rem}
+h1,h2{font-family:var(--font-display);font-weight:600;margin:0 0 .5rem}
+h1{font-size:1.75rem}h2{font-size:1.125rem}
+.meta{color:var(--ink);opacity:.75;font-size:.875rem;margin:0}
+.banner{border-left:4px solid var(--warn);background:var(--warn-soft)}
+.crit{border-left:4px solid var(--critical);background:var(--critical-soft)}
+.wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.875rem}
+th,td{border-bottom:1px solid var(--line);padding:.4rem .5rem;text-align:left;vertical-align:top}
+th{font-family:var(--font-display);font-weight:600}
+.mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+.pill{display:inline-block;padding:.1rem .5rem;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-size:.75rem;font-weight:600}
+pre{white-space:pre-wrap;font-family:var(--font-mono);font-size:.8rem;background:var(--paper);padding:1rem;border:1px solid var(--line);border-radius:4px}
+</style>
+</head>
+<body>
+<main class="page">
+<header>
+  <h1>MB-2040 rev C - Intake Summary</h1>
+  <p class="meta">Example Precision Works, Plant 1 (EPW1) · Northwind Robotics inquiry · Generated Nov 14, 2026 · SYNTHETIC test data</p>
+</header>
+
+<section class="panel banner">
+  <h2>Sources and what could not be read</h2>
+  <ul>
+    <li>RFQ: <span class="mono">rfq_email.txt</span> (3-message thread, latest 2026-11-02 09:14 -05:00) and <span class="mono">MB-2040_spec_revC.md</span> (spec sheet rev C, 2026-10-27). Read from files; M365 not connected.</li>
+    <li><strong>Cost history: not available.</strong> The folder <span class="mono">inputs/cost</span> named in the request does not exist. No closed work orders, routings, actuals or purchase prices were read.</li>
+    <li><strong>Plant capability profile: not on file.</strong> Constraint check used only <span class="mono">plant_overview.md</span> and <span class="mono">equipment.csv</span>; partial.</li>
+    <li>Fusion: not connected. Shop load / planning export: not provided.</li>
+  </ul>
+</section>
+
+<section class="panel crit">
+  <h2>Where the chain stopped</h2>
+  <p>Paused after step 5, at Gate 1 and Gate 2 - the questions are drafted for you to send, and the bid/no-bid is provisional until you confirm it. Steps 6 to 11 run when the customer answers, or when you tell me to quote with those questions as exclusions. <strong>No customer quote has been drafted</strong>: a quote now would price open questions (drawing, flatness, anodize on the bore).</p>
+  <p><strong>Stale:</strong> received 2026-11-02 and no send of questions recorded; at the default 5 business days (not plant-set) it went stale on 2026-11-09. It stays open; nothing is declined.</p>
+</section>
+
+<section class="panel">
+  <h2>Provisional recommendation <span class="pill">bid · provisional · draft</span></h2>
+  <ul>
+    <li>Material, process and quantities are inside the stated business (CNC, aluminium, 1-5,000 pcs; 2 VMC + 1 HMC).</li>
+    <li>No hard disqualifier from stated facts. Unchecked: machine travels, H7/Ra 1.6 capability, certifications - not in the plant documents.</li>
+    <li>Scored on capability and dates alone - no cost comparable exists in this run.</li>
+    <li>Geometry path <span class="mono">A</span> (text spec only): ROM at most until the rev C drawing arrives.</li>
+    <li>Outside operations to arrange: anodize (no in-house line), laser marking (no marker listed).</li>
+  </ul>
+  <div class="wrap"><table>
+    <tr><th>Open question</th><th>Would change it to</th></tr>
+    <tr><td>Q2 Flatness</td><td>no_bid if tighter than the plant can demonstrate on 12 mm plate</td></tr>
+    <tr><td>Q3 Bore H7 after anodize / masking</td><td>re-score; possible no_bid if H7 must hold after coat unmasked</td></tr>
+    <tr><td>Q1 Rev C drawing</td><td>stays bid; firm quote impossible without it</td></tr>
+    <tr><td>Q5 Laser marking</td><td>stays bid with an outside source, else exclusion</td></tr>
+    <tr><td>Q6 FAI qty / monthly schedule</td><td>re-score on dates once shop load is known</td></tr>
+  </table></div>
+</section>
+
+<section class="panel">
+  <h2>Intake form - line 1</h2>
+  <div class="wrap"><table>
+    <tr><th>Field</th><th>Value</th><th>Source</th><th>reading_basis</th></tr>
+    <tr><td>customer / contact</td><td>Northwind Robotics; Dana Whitfield (Raj Patel, engineering)</td><td>rfq_email.txt msg 1, 2</td><td>-</td></tr>
+    <tr><td>rfq_reference</td><td>null (none stated)</td><td>msg 1 subject</td><td>-</td></tr>
+    <tr><td>received_at</td><td class="mono">2026-11-02T09:14-05:00</td><td>msg 1 Date</td><td>-</td></tr>
+    <tr><td>part_number / revision</td><td class="mono">MB-2040 / C</td><td>spec header; msg 2</td><td>-</td></tr>
+    <tr><td>quantities</td><td class="mono">250 / 500 / 1,000 each</td><td>msg 1</td><td>-</td></tr>
+    <tr><td>eau</td><td class="mono">~4,000 (not a commitment)</td><td>msg 3</td><td>-</td></tr>
+    <tr><td>material</td><td>6061-T6 plate, ASTM B209</td><td>spec 'Material'</td><td>-</td></tr>
+    <tr><td>envelope</td><td class="mono">120 x 80 x 12 mm, ISO 2768-m</td><td>spec 'Envelope', 'General tolerance'</td><td>from_text</td></tr>
+    <tr><td>main bore</td><td class="mono">22.000 +0.021/-0.000 (H7), through, Ra 1.6</td><td>spec 'Main bore', 'Surface finish'</td><td>from_text</td></tr>
+    <tr><td>mounting holes</td><td class="mono">4x M5x0.8 thru, 100 x 60 pattern (rev C)</td><td>spec 'Mounting holes'; msg 2</td><td>from_text</td></tr>
+    <tr><td>slot</td><td class="mono">8 x 40 mm thru, ISO 2768-m</td><td>spec 'Slot', 'General tolerance'</td><td>from_text</td></tr>
+    <tr><td>finish elsewhere / edge break</td><td class="mono">Ra 3.2 / 0.2-0.5 mm</td><td>spec rows</td><td>from_text</td></tr>
+    <tr><td>flatness, mounting face</td><td>TBD (pending customer decision)</td><td>spec row; msg 2</td><td>from_text (null value)</td></tr>
+    <tr><td>finish</td><td>Type II sulfuric anodize, black, MIL-A-8625</td><td>spec 'Finish'; msg 1</td><td>-</td></tr>
+    <tr><td>marking</td><td>PN + lot code, laser etched, location not given</td><td>spec 'Marking'</td><td>-</td></tr>
+    <tr><td>certifications_required</td><td>Material cert each lot; AS9102 FAI on first lot</td><td>msg 1; spec 'Inspection'</td><td>-</td></tr>
+    <tr><td>required_delivery</td><td class="mono">FAI by 2027-01-15; monthly after</td><td>msg 1</td><td>-</td></tr>
+    <tr><td>geometry_path</td><td class="mono">A</td><td>spec sheet only, no drawing/STEP</td><td>-</td></tr>
+    <tr><td>line_recommendation / line_bid_decision</td><td class="mono">bid / draft</td><td>-</td><td>-</td></tr>
+  </table></div>
+  <p class="meta">Commercial terms (payment, freight, packaging, liability) and response_deadline: all null - never stated.</p>
+</section>
+
+<section class="panel">
+  <h2>Missing register (never stated)</h2>
+  <div class="wrap"><table>
+    <tr><th>Field</th><th>Why it matters</th><th>Should have come from</th></tr>
+    <tr><td>Rev C drawing with datums</td><td>Path A: ROM only; feature locations unknown</td><td>RFQ attachment</td></tr>
+    <tr><td>Flatness, mounting face</td><td>Pending change; may move the bid</td><td>Spec sheet (TBD); Raj Patel msg 2</td></tr>
+    <tr><td>Bore H7/Ra vs anodize; masking</td><td>Coating eats the 0.021 mm band</td><td>Spec 'Finish' row / drawing note</td></tr>
+    <tr><td>Anodize class, thickness</td><td>Outside-process price, bore allowance</td><td>Spec 'Finish' row</td></tr>
+    <tr><td>M5 thread class / gauging</td><td>Tapping, masking, inspection</td><td>Spec / drawing</td></tr>
+    <tr><td>Marking location, format, sequence</td><td>Location 'per customer'; no laser in plant</td><td>Spec 'Marking' row</td></tr>
+    <tr><td>FAI qty, monthly releases</td><td>Setup amortization; date check</td><td>RFQ email</td></tr>
+    <tr><td>Material cert form</td><td>Material sourcing</td><td>RFQ email / quality terms</td></tr>
+    <tr><td>Response deadline</td><td>Turnaround target</td><td>RFQ email</td></tr>
+    <tr><td>Payment, freight + ship-to, packaging, T&amp;Cs</td><td>Unpriced / unchecked against plant terms (not on file)</td><td>Customer terms</td></tr>
+  </table></div>
+  <h2 style="margin-top:1rem">Ambiguous register</h2>
+  <p>None found. Rev B drawings were circulated by Northwind procurement but are not in this package; engineering (msg 2) says to ignore them.</p>
+</section>
+
+<section class="panel">
+  <h2>Questions back to the customer - draft for the estimator to send (Gate 1)</h2>
+<pre>Subject: MB-2040 rev C motor bracket - questions before we quote
+
+Hi Dana (cc Raj),
+
+Thanks for the MB-2040 rev C package. We are working on the quote for 250, 500 and 1,000 pcs
+with first articles by 15 January 2027. A few points we need from you to give you a firm price
+rather than a budgetary one:
+
+1. Drawing. We received the rev C specification sheet (dated 27 Oct 2026) but no drawing. Could you
+   send the rev C dimensioned drawing (PDF, and a STEP file if you have one) showing the datums and
+   the locations of the 22 mm bore, the 8 x 40 mm slot and the M5 pattern? Please also confirm rev C
+   is the revision to quote and that the rev B drawings circulated earlier are void.
+2. Flatness. Raj mentioned the mounting-face flatness is still being decided. What value should we
+   quote to, and when do you expect to confirm it? If it changes after we quote, the price may change.
+3. Anodize and the bore. Does the 22.000 +0.021/-0.000 (H7) size and the Ra 1.6 finish apply after
+   anodize? Should the bore and the M5 threads be masked? Please also confirm the MIL-A-8625 Type II
+   class and any coating-thickness requirement.
+4. Threads. What thread class do the M5x0.8 holes need, and are they gauged before or after anodize?
+5. Marking. Where should the laser-etched part number and lot code go, in what format, and should it
+   be applied before or after anodize?
+6. Quantities and schedule. How many pieces are in the first-article lot, and what monthly quantities
+   should we plan for after January? Which of the 250 / 500 / 1,000 breaks do you expect to order first?
+7. Certifications. What form of material certificate do you need with each lot, and do you have your
+   own AS9102 forms or ballooned drawing for the first-article report?
+8. Commercial. Please let us know your payment terms, freight terms and delivery address, any
+   packaging requirement for the anodized parts, and any purchase terms and conditions that will apply.
+9. Timing. By what date do you need our quote?
+
+Thanks,
+[Estimator name]</pre>
+</section>
+
+<section class="panel">
+  <h2>Approval gates</h2>
+  <div class="wrap"><table>
+    <tr><th>Gate</th><th>Step</th><th>What the estimator does</th><th>Status</th></tr>
+    <tr><td class="mono">1</td><td>4</td><td>Sends the questions above from their own mailbox</td><td>waiting</td></tr>
+    <tr><td class="mono">2</td><td>5</td><td>Confirms or declines the provisional bid</td><td>waiting</td></tr>
+    <tr><td class="mono">3</td><td>8</td><td>Confirms the model / feature list, tolerance reading, datums, operations</td><td>not reached</td></tr>
+    <tr><td class="mono">4</td><td>11</td><td>Reviews and releases the quote</td><td>not reached</td></tr>
+  </table></div>
+  <p class="meta">Before step 6 can price anything: cost exports (closed work orders, routings, purchase orders) are needed, and the rates in rates_memo.txt are not on file in the plant rates store - quote-build does not price on a rate that is only in a memo; save them through onboarding first.</p>
+</section>
+</main>
+</body>
+</html>

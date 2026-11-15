@@ -1,0 +1,588 @@
+{
+ "latest": "2026-11-12",
+ "days": [
+  "2026-11-12"
+ ],
+ "views": {
+  "2026-11-12": {
+   "day": "day:2026-11-12",
+   "week": "week:2026-11-09..2026-11-15",
+   "month": "month:2026-11-01..2026-11-12"
+  }
+ },
+ "rollups": {
+  "day:2026-11-12": {
+   "label": "Thursday, 2026-11-12",
+   "period": "production day == 2026-11-12",
+   "days": [
+    "2026-11-12"
+   ],
+   "summary": {
+    "comparable_parts": 0,
+    "max_abs_variance_pct": null,
+    "all_under": false,
+    "all_over": false,
+    "days_under": [],
+    "provisional": [],
+    "held_out_parts": [],
+    "not_comparable": [
+     {
+      "part": "PN-100",
+      "why": "no comparable day"
+     },
+     {
+      "part": "PN-200",
+      "why": "no comparable day"
+     }
+    ]
+   },
+   "parts": {
+    "PN-100": {
+     "part": "PN-100",
+     "planned": null,
+     "good": null,
+     "days_compared": 0,
+     "days_under_plan": 0,
+     "days_held_out": [],
+     "unit_conflict": false,
+     "provisional": false,
+     "plan_spellings": [],
+     "mes_spellings": [
+      "PN-100"
+     ],
+     "units": [],
+     "item_unit": null,
+     "quality": 0.9848,
+     "status": "no comparable day",
+     "variance": null,
+     "variance_pct": null
+    },
+    "PN-200": {
+     "part": "PN-200",
+     "planned": null,
+     "good": null,
+     "days_compared": 0,
+     "days_under_plan": 0,
+     "days_held_out": [],
+     "unit_conflict": false,
+     "provisional": false,
+     "plan_spellings": [],
+     "mes_spellings": [
+      "PN-200"
+     ],
+     "units": [],
+     "item_unit": null,
+     "quality": 0.9865,
+     "status": "no comparable day",
+     "variance": null,
+     "variance_pct": null
+    }
+   },
+   "scrap": {
+    "PN-100": {
+     "part": "PN-100",
+     "scrap": 12,
+     "scrap_usd": null,
+     "unit": null,
+     "days_not_recorded": 0,
+     "unit_conflict": false,
+     "priced": false,
+     "share_of_priced": null
+    },
+    "PN-200": {
+     "part": "PN-200",
+     "scrap": 3,
+     "scrap_usd": null,
+     "unit": null,
+     "days_not_recorded": 0,
+     "unit_conflict": false,
+     "priced": false,
+     "share_of_priced": null
+    }
+   },
+   "scrap_priced_usd": null,
+   "held_out_rows": 0,
+   "held_out_good": 0,
+   "downtime": {
+    "label": "sp-day:2026-11-12",
+    "events": 2,
+    "minutes": 65,
+    "ongoing": 0,
+    "held_out": [],
+    "uncoded_events": 0,
+    "uncoded_minutes": 0,
+    "by_asset": [
+     {
+      "key": "CNC-01",
+      "events": 1,
+      "minutes": 45,
+      "ongoing": 0,
+      "held_out": 0,
+      "rank_minutes": 1,
+      "rank_events": 1
+     },
+     {
+      "key": "CNC-02",
+      "events": 1,
+      "minutes": 20,
+      "ongoing": 0,
+      "held_out": 0,
+      "rank_minutes": 2,
+      "rank_events": 1
+     }
+    ],
+    "by_code": [
+     {
+      "key": "TOOL",
+      "events": 1,
+      "minutes": 45,
+      "ongoing": 0,
+      "held_out": 0,
+      "rank_minutes": 1,
+      "rank_events": 1
+     },
+     {
+      "key": "MAT",
+      "events": 1,
+      "minutes": 20,
+      "ongoing": 0,
+      "held_out": 0,
+      "rank_minutes": 2,
+      "rank_events": 1
+     }
+    ],
+    "asset_rows": [
+     {
+      "assets": [
+       "CNC-01"
+      ],
+      "events": 1,
+      "minutes": 45,
+      "ongoing": 0,
+      "held_out": 0,
+      "rank_minutes": 1,
+      "rank_events": 1
+     },
+     {
+      "assets": [
+       "CNC-02"
+      ],
+      "events": 1,
+      "minutes": 20,
+      "ongoing": 0,
+      "held_out": 0,
+      "rank_minutes": 2,
+      "rank_events": 1
+     }
+    ]
+   },
+   "kind": "day",
+   "span": [
+    "2026-11-12",
+    "2026-11-12"
+   ],
+   "covered": [
+    "2026-11-12"
+   ],
+   "missing": [],
+   "partial": false,
+   "stops": [
+    {
+     "asset": "CNC-01",
+     "cell": null,
+     "start": "2026-11-12 09:10 (plant local)",
+     "minutes": 45,
+     "stated_minutes": 45,
+     "code": "TOOL",
+     "text": "tool change overrun",
+     "flags": []
+    },
+    {
+     "asset": "CNC-02",
+     "cell": null,
+     "start": "2026-11-12 13:00 (plant local)",
+     "minutes": 20,
+     "stated_minutes": 20,
+     "code": "MAT",
+     "text": "waiting on material",
+     "flags": []
+    }
+   ]
+  },
+  "week:2026-11-09..2026-11-15": {
+   "label": "Week of 2026-11-09 to 2026-11-15",
+   "period": "2026-11-09 to 2026-11-15 (Monday to Sunday)",
+   "days": [
+    "2026-11-12"
+   ],
+   "summary": {
+    "comparable_parts": 0,
+    "max_abs_variance_pct": null,
+    "all_under": false,
+    "all_over": false,
+    "days_under": [],
+    "provisional": [],
+    "held_out_parts": [],
+    "not_comparable": [
+     {
+      "part": "PN-100",
+      "why": "no comparable day"
+     },
+     {
+      "part": "PN-200",
+      "why": "no comparable day"
+     }
+    ]
+   },
+   "parts": {
+    "PN-100": {
+     "part": "PN-100",
+     "planned": null,
+     "good": null,
+     "days_compared": 0,
+     "days_under_plan": 0,
+     "days_held_out": [],
+     "unit_conflict": false,
+     "provisional": false,
+     "plan_spellings": [],
+     "mes_spellings": [
+      "PN-100"
+     ],
+     "units": [],
+     "item_unit": null,
+     "quality": 0.9848,
+     "status": "no comparable day",
+     "variance": null,
+     "variance_pct": null
+    },
+    "PN-200": {
+     "part": "PN-200",
+     "planned": null,
+     "good": null,
+     "days_compared": 0,
+     "days_under_plan": 0,
+     "days_held_out": [],
+     "unit_conflict": false,
+     "provisional": false,
+     "plan_spellings": [],
+     "mes_spellings": [
+      "PN-200"
+     ],
+     "units": [],
+     "item_unit": null,
+     "quality": 0.9865,
+     "status": "no comparable day",
+     "variance": null,
+     "variance_pct": null
+    }
+   },
+   "scrap": {
+    "PN-100": {
+     "part": "PN-100",
+     "scrap": 12,
+     "scrap_usd": null,
+     "unit": null,
+     "days_not_recorded": 0,
+     "unit_conflict": false,
+     "priced": false,
+     "share_of_priced": null
+    },
+    "PN-200": {
+     "part": "PN-200",
+     "scrap": 3,
+     "scrap_usd": null,
+     "unit": null,
+     "days_not_recorded": 0,
+     "unit_conflict": false,
+     "priced": false,
+     "share_of_priced": null
+    }
+   },
+   "scrap_priced_usd": null,
+   "held_out_rows": 0,
+   "held_out_good": 0,
+   "downtime": {
+    "label": "sp-week:2026-11-09..2026-11-15",
+    "events": 2,
+    "minutes": 65,
+    "ongoing": 0,
+    "held_out": [],
+    "uncoded_events": 0,
+    "uncoded_minutes": 0,
+    "by_asset": [
+     {
+      "key": "CNC-01",
+      "events": 1,
+      "minutes": 45,
+      "ongoing": 0,
+      "held_out": 0,
+      "rank_minutes": 1,
+      "rank_events": 1
+     },
+     {
+      "key": "CNC-02",
+      "events": 1,
+      "minutes": 20,
+      "ongoing": 0,
+      "held_out": 0,
+      "rank_minutes": 2,
+      "rank_events": 1
+     }
+    ],
+    "by_code": [
+     {
+      "key": "TOOL",
+      "events": 1,
+      "minutes": 45,
+      "ongoing": 0,
+      "held_out": 0,
+      "rank_minutes": 1,
+      "rank_events": 1
+     },
+     {
+      "key": "MAT",
+      "events": 1,
+      "minutes": 20,
+      "ongoing": 0,
+      "held_out": 0,
+      "rank_minutes": 2,
+      "rank_events": 1
+     }
+    ],
+    "asset_rows": [
+     {
+      "assets": [
+       "CNC-01"
+      ],
+      "events": 1,
+      "minutes": 45,
+      "ongoing": 0,
+      "held_out": 0,
+      "rank_minutes": 1,
+      "rank_events": 1
+     },
+     {
+      "assets": [
+       "CNC-02"
+      ],
+      "events": 1,
+      "minutes": 20,
+      "ongoing": 0,
+      "held_out": 0,
+      "rank_minutes": 2,
+      "rank_events": 1
+     }
+    ]
+   },
+   "kind": "week",
+   "span": [
+    "2026-11-09",
+    "2026-11-15"
+   ],
+   "covered": [
+    "2026-11-12"
+   ],
+   "missing": [
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-13",
+    "2026-11-14",
+    "2026-11-15"
+   ],
+   "partial": true
+  },
+  "month:2026-11-01..2026-11-12": {
+   "label": "November to date: 1-12",
+   "period": "2026-11-01 to 2026-11-12 (month to date)",
+   "days": [
+    "2026-11-12"
+   ],
+   "summary": {
+    "comparable_parts": 0,
+    "max_abs_variance_pct": null,
+    "all_under": false,
+    "all_over": false,
+    "days_under": [],
+    "provisional": [],
+    "held_out_parts": [],
+    "not_comparable": [
+     {
+      "part": "PN-100",
+      "why": "no comparable day"
+     },
+     {
+      "part": "PN-200",
+      "why": "no comparable day"
+     }
+    ]
+   },
+   "parts": {
+    "PN-100": {
+     "part": "PN-100",
+     "planned": null,
+     "good": null,
+     "days_compared": 0,
+     "days_under_plan": 0,
+     "days_held_out": [],
+     "unit_conflict": false,
+     "provisional": false,
+     "plan_spellings": [],
+     "mes_spellings": [
+      "PN-100"
+     ],
+     "units": [],
+     "item_unit": null,
+     "quality": 0.9848,
+     "status": "no comparable day",
+     "variance": null,
+     "variance_pct": null
+    },
+    "PN-200": {
+     "part": "PN-200",
+     "planned": null,
+     "good": null,
+     "days_compared": 0,
+     "days_under_plan": 0,
+     "days_held_out": [],
+     "unit_conflict": false,
+     "provisional": false,
+     "plan_spellings": [],
+     "mes_spellings": [
+      "PN-200"
+     ],
+     "units": [],
+     "item_unit": null,
+     "quality": 0.9865,
+     "status": "no comparable day",
+     "variance": null,
+     "variance_pct": null
+    }
+   },
+   "scrap": {
+    "PN-100": {
+     "part": "PN-100",
+     "scrap": 12,
+     "scrap_usd": null,
+     "unit": null,
+     "days_not_recorded": 0,
+     "unit_conflict": false,
+     "priced": false,
+     "share_of_priced": null
+    },
+    "PN-200": {
+     "part": "PN-200",
+     "scrap": 3,
+     "scrap_usd": null,
+     "unit": null,
+     "days_not_recorded": 0,
+     "unit_conflict": false,
+     "priced": false,
+     "share_of_priced": null
+    }
+   },
+   "scrap_priced_usd": null,
+   "held_out_rows": 0,
+   "held_out_good": 0,
+   "downtime": {
+    "label": "sp-month:2026-11-01..2026-11-12",
+    "events": 2,
+    "minutes": 65,
+    "ongoing": 0,
+    "held_out": [],
+    "uncoded_events": 0,
+    "uncoded_minutes": 0,
+    "by_asset": [
+     {
+      "key": "CNC-01",
+      "events": 1,
+      "minutes": 45,
+      "ongoing": 0,
+      "held_out": 0,
+      "rank_minutes": 1,
+      "rank_events": 1
+     },
+     {
+      "key": "CNC-02",
+      "events": 1,
+      "minutes": 20,
+      "ongoing": 0,
+      "held_out": 0,
+      "rank_minutes": 2,
+      "rank_events": 1
+     }
+    ],
+    "by_code": [
+     {
+      "key": "TOOL",
+      "events": 1,
+      "minutes": 45,
+      "ongoing": 0,
+      "held_out": 0,
+      "rank_minutes": 1,
+      "rank_events": 1
+     },
+     {
+      "key": "MAT",
+      "events": 1,
+      "minutes": 20,
+      "ongoing": 0,
+      "held_out": 0,
+      "rank_minutes": 2,
+      "rank_events": 1
+     }
+    ],
+    "asset_rows": [
+     {
+      "assets": [
+       "CNC-01"
+      ],
+      "events": 1,
+      "minutes": 45,
+      "ongoing": 0,
+      "held_out": 0,
+      "rank_minutes": 1,
+      "rank_events": 1
+     },
+     {
+      "assets": [
+       "CNC-02"
+      ],
+      "events": 1,
+      "minutes": 20,
+      "ongoing": 0,
+      "held_out": 0,
+      "rank_minutes": 2,
+      "rank_events": 1
+     }
+    ]
+   },
+   "kind": "month",
+   "span": [
+    "2026-11-01",
+    "2026-11-12"
+   ],
+   "covered": [
+    "2026-11-12"
+   ],
+   "missing": [
+    "2026-11-01",
+    "2026-11-02",
+    "2026-11-03",
+    "2026-11-04",
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11"
+   ],
+   "partial": true
+  }
+ },
+ "data_window": [
+  "2026-11-12",
+  "2026-11-12"
+ ]
+}

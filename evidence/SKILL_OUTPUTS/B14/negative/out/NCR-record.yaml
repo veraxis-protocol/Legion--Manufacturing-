@@ -1,0 +1,68 @@
+# Structured NCR per plugin/shared/contracts/ncr.md (contract version 4), for root-cause-capa.
+# SYNTHETIC test data. Written by ncr-writeup, run 2026-11-14T22:02-05:00 (host clock).
+# Values marked UNASSIGNED / null were not in the inputs and were not invented.
+contract_version: 4
+ncr_ref: "UNASSIGNED"            # no NCR number in the inputs; plant to issue one
+site: "UNKNOWN"                  # no site named in the inputs; no plant profile on file
+part_number: MB-1880
+part_number_verbatim: "MB-1880 rev B"
+part_revision: "B"
+production_wo: WO-8102
+production_wo_verbatim: "WO-8102"
+lot_number: L-0412
+lot_number_verbatim: "L-0412"
+operation: "final inspection (found at); machined on VMC-03, 2nd shift 2026-11-10"
+found_by: "J. Ortiz, final inspection"
+found_at: "2026-11-11T10:05 (time zone not recorded in source)"
+disposition_pending: true
+
+condition_found: "Main bore measured 22.034, 22.031 and 22.029 mm on 3 of 5 sampled parts. Inspector believes these are oversize; the drawing was not at the bench and no requirement has been looked up, so nonconformance is not yet established against any stated limit."
+measurements:
+  - { characteristic: "main bore diameter", measured: "22.034", nominal: null, tolerance: null, uom: mm, gage: null, source_ref: "inputs/finding.txt line 3" }
+  - { characteristic: "main bore diameter", measured: "22.031", nominal: null, tolerance: null, uom: mm, gage: null, source_ref: "inputs/finding.txt line 3" }
+  - { characteristic: "main bore diameter", measured: "22.029", nominal: null, tolerance: null, uom: mm, gage: null, source_ref: "inputs/finding.txt line 3" }
+# The other 2 of 5 sampled parts: values not recorded in the source. Gage and its calibration date not recorded.
+is_subjective: false
+qty_found: 3
+qty_found_reason: null
+uom: each
+
+requirement_cited: null
+requirement_not_locatable: true
+# BLOCKING. Searched: inputs/finding.txt (states the drawing was not at the bench and the requirement was not looked up)
+# and inputs/prior_ncrs.csv (NCR-0219 gives a measured value only, no requirement). No MB-1880 rev B drawing,
+# spec, customer PO flow-down or quality document library was available this run.
+
+qty_suspect: 300
+qty_suspect_is_minimum: true
+scope_basis: lot
+scope_reasoning: "All 300 parts of lot L-0412 on WO-8102 were machined on VMC-03 on 2nd shift 2026-11-10; 3 of 5 parts in a sample read high on the same bore, so the whole lot is suspect until sorted. The suspected mechanism, by analogy with NCR-0219 (boring insert wear), is progressive tool wear, which does not respect lot boundaries: any other lot or work order run on VMC-03 on the same boring insert is also suspect. No tool-change or insert-life record and no VMC-03 production log was available, so other lots cannot be ruled out: at least 300."
+traceability_complete: false
+# Reason: lot is recorded, but no insert-change record for VMC-03, so the tool-wear window cannot be bounded.
+
+containment:
+  - { location: installed_at_customer, qty: 0, uom: each, checked: false, action: "Ask Northwind Robotics whether any of the 30 on PS-5521 have been installed or shipped on.", urgency: immediate, owner: null, customer: "Northwind Robotics", source_ref: "not verifiable from our records" }
+  - { location: at_customer, qty: 30, uom: each, checked: false, action: "Confirm delivery of PS-5521; if delivered, request Northwind Robotics quarantine the receipt.", urgency: immediate, owner: null, customer: "Northwind Robotics", source_ref: "inputs/finding.txt line 6 (inspector note: shipped 2026-11-11 08:00, packing slip PS-5521); no ERP shipment record read" }
+  - { location: in_transit, qty: 0, uom: each, checked: false, action: "If PS-5521 is not yet delivered, intercept at the carrier. The same 30 parts as the at_customer entry, not additional.", urgency: immediate, owner: null, customer: "Northwind Robotics", source_ref: "no ERP shipment record read; delivery status unknown" }
+  - { location: wip_at_machine, qty: 120, uom: each, checked: false, action: "Hold at VMC-03 queue, tag with the NCR reference, stop further operations on them. Check whether VMC-03 is still running on the same insert.", urgency: immediate, owner: null, customer: null, source_ref: "inputs/finding.txt line 5 (inspector note); not verified against an inventory tab or production_output" }
+  - { location: finished_goods, qty: 150, uom: each, checked: false, action: "Move from FG-2 rack 14 to quarantine, tag with the NCR reference, block from picking.", urgency: same_day, owner: null, customer: null, source_ref: "inputs/finding.txt line 5 (inspector note: FG-2 rack 14); not verified against an inventory tab" }
+
+recurrence: recurrence_prior_capa_failed
+prior_ncrs_found: 1
+related_records:
+  - { ref: NCR-0219, date: 2026-04-14, what_matched: "same part MB-1880, same defect (bore oversize, measured 22.026); cause boring insert wear beyond 900 parts", fix_held: false, note: "CAPA-071 (insert change every 600 parts) effectiveness 'not verified'. Judged not held provisionally: the same defect is reported again; conditional on the requirement confirming this lot is nonconforming. Part label not cross-checked against the ERP (no dataset)." }
+  - { ref: NCR-0244, date: 2026-08-02, what_matched: "not a match: different part (MB-1500) and defect (slot width undersize); machine not recorded, so a same-process match cannot be judged", fix_held: null }
+history_searched: true
+# Searched only inputs/prior_ncrs.csv (2 records). The plant's full quality document library was not available.
+
+escape_occurred: true
+escape_possible: false
+verify_shipment_action: "Confirm in the ERP or with shipping that PS-5521 carried 30 x MB-1880 from lot L-0412 to Northwind Robotics, and whether it has been delivered."
+escape_detected_at: "2026-11-14T22:02-05:00"   # this run, host clock; the source already recorded the shipment at 2026-11-11 10:05
+notification_drafted: true
+notification_deadline: null      # contractual window not known; not guessed
+affected_customers: ["Northwind Robotics"]
+
+approval_state: draft
+approved_by: null
+approved_at: null

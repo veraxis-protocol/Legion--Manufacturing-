@@ -1,0 +1,138 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bid Comparison SRC-2026-11-14-MGN9-170-RAIL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1A1D21;--paper:#F2F3F5;--paper-raised:#FFFFFF;--line:#D6D9DD;--accent:#1F5C8B;--accent-soft:#E4EDF4;--good:#2E7248;--good-soft:#E3EFE7;--warn:#A8641A;--warn-soft:#F7EBDA;--critical:#A93226;--critical-soft:#F9E9E7;
+--font-display:'IBM Plex Sans Condensed','Arial Narrow',sans-serif;--font-body:'IBM Plex Sans',-apple-system,sans-serif;--font-mono:'IBM Plex Mono',Consolas,monospace}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ink:#E8EAEC;--paper:#15181B;--paper-raised:#1D2126;--line:#2E343A;--accent:#6BA8D4;--accent-soft:#1B2C39;--good:#6FBF88;--good-soft:#1B2E22;--warn:#D9A15C;--warn-soft:#33271A;--critical:#DE8378;--critical-soft:#35201E}}
+:root[data-theme="dark"]{--ink:#E8EAEC;--paper:#15181B;--paper-raised:#1D2126;--line:#2E343A;--accent:#6BA8D4;--accent-soft:#1B2C39;--good:#6FBF88;--good-soft:#1B2E22;--warn:#D9A15C;--warn-soft:#33271A;--critical:#DE8378;--critical-soft:#35201E}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-body);margin:0}
+.page{display:flex;flex-direction:column;gap:1.25rem;max-width:1100px;margin:0 auto;padding:2rem 1rem}
+.panel{background:var(--paper-raised);border:1px solid var(--line);border-radius:4px;padding:1.25rem}
+h1,h2{font-family:var(--font-display);font-weight:600;margin:0 0 .5rem} .meta,.muted{color:var(--ink);opacity:.7;font-size:.875rem}
+table{border-collapse:collapse;width:100%;font-size:.85rem} th,td{border-bottom:1px solid var(--line);padding:.4rem;text-align:left;vertical-align:top}
+.num,.mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums} .table-scroll{overflow-x:auto}
+.status{display:inline-block;padding:.05rem .4rem;border-radius:3px;font-size:.75rem}
+.status--warn{background:var(--warn-soft);color:var(--warn)} .status--critical{background:var(--critical-soft);color:var(--critical)} .status--good{background:var(--good-soft);color:var(--good)}
+.rec{border-left:4px solid var(--accent)} pre{white-space:pre-wrap;font-family:var(--font-mono);font-size:.8rem}
+</style></head><body><div class="page">
+<header><h1>Bid Comparison — SRC-2026-11-14-MGN9-170-RAIL</h1><p class="meta">MGN9 linear rail, 170 mm · site not set (no plant profile) · Generated 2026-11-14 · data as of the supplied files (quotes undated) · INTERNAL — never to any supplier</p></header>
+
+<div class="panel rec"><h2>Provisional recommendation</h2>
+<p><b>Do not choose between these two bids yet: ask both suppliers to restate in the package format.</b> Neither is ready for buyer review. The bids price different quantities (100 @ 11.40 USD vs 250 @ 9.90 USD), on different freight bases (FOB origin vs Delivered DDP), and neither prices our 20-piece need; there is no quantity both priced, so they are not ranked.</p>
+<p><b>Main tradeoff, if pooling goes ahead:</b> Xylem Linear Motion has the lower MOQ (100, so others would pool 80 units) and the shorter stated lead (Lead time 3 weeks) but is FOB origin and rail only; Yarrow Motion Parts has the lower unit price as quoted but needs 250 pieces (230 pooled) and does not state accuracy class.</p>
+<p><b>Open before any award:</b> item spec unconfirmed by the customer (carriage, preload, accuracy, brand); neither supplier approved (0 approved on file); no unit price at 20; pooled quantity not set; lead times not from a named event and our needed-at-dock date not set; quality clauses not stated and the plant clause list not on file; tooling, ownership, payment, packaging not stated.</p></div>
+<div class="panel"><h2>Next step</h2><p><b>Pursue Xylem Linear Motion, look into the alternatives, or ask the suppliers to clarify?</b> (Recommended: ask both to clarify via the held restatement drafts.) Choosing is a preference about what to do next, not a selection or an award.</p></div>
+
+<div class="panel freshness"><h2>Sources</h2><div class="table-scroll"><table><thead><tr><th>Source</th><th>Last refreshed</th><th>Covers</th><th>Status</th></tr></thead><tbody>
+<tr><td>ERP item master / PO history / vendors</td><td>—</td><td>—</td><td><span class="status status--critical">not available</span></td></tr>
+<tr><td>Plant profile (approved suppliers, clauses, terms, template)</td><td>—</td><td>—</td><td><span class="status status--critical">not on file</span></td></tr>
+<tr><td class="mono">rail_bid_X.txt, rail_bid_Y.txt</td><td>undated</td><td>quotes as supplied</td><td><span class="status status--warn">undated — validity cannot be dated</span></td></tr>
+<tr><td class="mono">02_bom_handoff.json</td><td>file</td><td>reBot B601 BOM</td><td><span class="status status--good">read</span></td></tr>
+<tr><td class="mono">intake NOREF-20261112</td><td>2026-11-14</td><td>inquiry 2026-11-12</td><td><span class="status status--good">read</span></td></tr>
+</tbody></table></div></div>
+
+<div class="panel"><h2>Break: 20 each (our demand)</h2><div class="table-scroll"><table><thead><tr><th>Supplier</th><th>Approval</th><th>Unit price</th><th>Extended</th><th>Tooling</th><th>MOQ</th><th>Lead time FA / production</th><th>Clauses</th><th>Exceptions</th><th>Validity</th><th>Readiness</th><th>Source</th></tr></thead><tbody><tr><td>Xylem Linear Motion<br><span class='muted mono'>unlisted</span></td><td><span class='status status--warn'>not confirmed approved</span></td><td>not quoted per unit<br><span class='muted'>as quoted: Unit price 11.40 USD at 100 pcs</span></td><td>not computed</td><td>not stated</td><td class='num'>100 <span class='status status--critical'>MOQ above 20</span></td><td>Lead time 3 weeks (no named event, no FA/production split)</td><td>not stated</td><td>Rail only (no carriage)</td><td>valid 21 days</td><td><b>provisional</b>: no unit price at 20; MOQ above break; not approved; lead time not from a named event; clauses not stated</td><td class='mono'>inputs/e2e_bids/rail_bid_X.txt line 3</td></tr><tr><td>Yarrow Motion Parts<br><span class='muted mono'>unlisted</span></td><td><span class='status status--warn'>not confirmed approved</span></td><td>not quoted per unit<br><span class='muted'>as quoted: 9.90 USD each, minimum order 250 pcs</span></td><td>not computed</td><td>not stated</td><td class='num'>250 <span class='status status--critical'>MOQ above 20</span></td><td>Lead 5 weeks (no named event, no FA/production split)</td><td>not stated</td><td>none listed</td><td>not stated</td><td><b>provisional</b>: no unit price at 20; MOQ above break; not approved; lead time not from a named event; clauses not stated</td><td class='mono'>inputs/e2e_bids/rail_bid_Y.txt line 3</td></tr></tbody></table></div></div>
+<div class="panel"><h2>Break: pooled consolidated quantity</h2><p>Not set by the buyer; not priced by either supplier. Every cell: <i>not quoted</i>.</p></div>
+<div class="panel"><h2>As quoted, at each supplier's own quantity — not ranked</h2><p class="muted">Different quantities and freight bases; shown for the buyer's reading, not as a comparison. Absent is not zero.</p><div class="table-scroll"><table><thead><tr><th>Supplier</th><th>Qty quoted</th><th>Unit</th><th>Extended (computed)</th><th>Tooling</th><th>MOQ</th><th>Lead</th><th>Freight</th><th>Accuracy</th><th>Cut tolerance</th><th>Source</th></tr></thead><tbody><tr><td>Xylem Linear Motion</td><td class='num'>100</td><td class='num'>11.40 USD</td><td class='num'>1140.00 USD</td><td>not stated</td><td class='num'>100</td><td>Lead time 3 weeks</td><td>FOB origin</td><td>standard accuracy</td><td>not stated</td><td class='mono'>inputs/e2e_bids/rail_bid_X.txt line 3</td></tr><tr><td>Yarrow Motion Parts</td><td class='num'>250</td><td class='num'>9.90 USD</td><td class='num'>2475.00 USD</td><td>not stated</td><td class='num'>250</td><td>Lead 5 weeks</td><td>Delivered DDP</td><td>accuracy class not stated</td><td>Cut tolerance +/-0.5 mm</td><td class='mono'>inputs/e2e_bids/rail_bid_Y.txt line 3</td></tr></tbody></table></div>
+<p>Responses: 2 of 2 known suppliers responded; no sends recorded, no due date set, so no days past due. Off-format: both (fields_missing below).</p></div>
+
+<div class="panel"><h2>Draft supplier emails — not sent</h2><p><b>Held, both drafts:</b> no contact address on file; no response due date in the package; item specification not confirmed (no item master, customer spec questions open); suppliers not confirmed approved with no requalification decision.</p></div>
+<div class='panel draft'><p><span class='status status--warn'>HELD</span> Xylem Linear Motion · To: [recipient: not on file] · Held: the shared conditions above, and this supplier is not confirmed approved</p><pre>=== SUPPLIER EMAIL — HELD — unlisted Xylem Linear Motion ===
+To: [recipient: not on file]
+Subject: SRC-2026-11-14-MGN9-170-RAIL - RFQ, MGN9 linear rail 170 mm - please restate your quote XL-5512 in the attached format
+
+Hello,
+
+Thank you for your quotation XL-5512 for an MGN9 linear rail, 170 mm.
+
+We are issuing a formal request for quotation for this item, attached as
+&quot;RFQ SRC-2026-11-14-MGN9-170-RAIL - MGN9 linear rail 170 mm&quot; (specification-based request; no drawing
+exists for this catalogue item). To let us evaluate it, please restate your
+quote in the mandated response format in section 7 of that package. A bid in
+another format is returned for restatement rather than interpreted on our side.
+
+Your quotation as received does not state, or does not state in the required form:
+  - unit price at 20 each (not priced; quoted at 100 pcs, MOQ 100)
+  - unit price at the pooled quantity (break not yet set by the buyer)
+  - lead time, first article, from a named event (&#x27;Lead time 3 weeks&#x27;, no start event)
+  - lead time, production, from a named event (&#x27;Lead time 3 weeks&#x27;, no start event, no FA/production split)
+  - tooling price, or a statement that none is needed
+  - tooling ownership
+  - price validity as a date (period &#x27;valid 21 days&#x27; stated, but the quote is undated)
+  - freight basis named place (&#x27;FOB origin&#x27; stated without a named place)
+  - payment terms
+  - packaging
+  - quality clause acceptance
+  - offered item: manufacturer and part number
+  - offered item: preload
+  - offered item: cut-length tolerance
+  - offered item: mounting-hole pitch and end offset
+
+Please quote at each quantity in section 3 of the package, including the
+quantity below your stated minimum order, and state your minimum order quantity
+separately.
+
+Response due: [DUE DATE - buyer to set before sending]
+Send your response to: [buyer name and email - buyer to complete]
+Technical questions: [technical contact - buyer to complete]. Answers given
+to one bidder are shared with all bidders.
+
+Regards,
+[buyer name]
+=== END ===</pre></div><div class='panel draft'><p><span class='status status--warn'>HELD</span> Yarrow Motion Parts · To: [recipient: not on file] · Held: the shared conditions above, and this supplier is not confirmed approved</p><pre>=== SUPPLIER EMAIL — HELD — unlisted Yarrow Motion Parts ===
+To: [recipient: not on file]
+Subject: SRC-2026-11-14-MGN9-170-RAIL - RFQ, MGN9 linear rail 170 mm - please restate your quote YMP-208 in the attached format
+
+Hello,
+
+Thank you for your quotation YMP-208 for an MGN9 linear rail, 170 mm.
+
+We are issuing a formal request for quotation for this item, attached as
+&quot;RFQ SRC-2026-11-14-MGN9-170-RAIL - MGN9 linear rail 170 mm&quot; (specification-based request; no drawing
+exists for this catalogue item). To let us evaluate it, please restate your
+quote in the mandated response format in section 7 of that package. A bid in
+another format is returned for restatement rather than interpreted on our side.
+
+Your quotation as received does not state, or does not state in the required form:
+  - unit price at 20 each (not priced; quoted at 250 pcs, MOQ 250)
+  - unit price at the pooled quantity (break not yet set by the buyer)
+  - lead time, first article, from a named event (&#x27;Lead 5 weeks&#x27;, no start event)
+  - lead time, production, from a named event (&#x27;Lead 5 weeks&#x27;, no start event, no FA/production split)
+  - tooling price, or a statement that none is needed
+  - tooling ownership
+  - price validity
+  - freight basis named place (&#x27;Delivered DDP&#x27; stated without a named place)
+  - payment terms
+  - packaging
+  - quality clause acceptance
+  - offered item: manufacturer and part number
+  - offered item: accuracy class (bid says &#x27;accuracy class not stated&#x27;)
+  - offered item: carriage included or not (count and type)
+  - offered item: preload
+  - offered item: mounting-hole pitch and end offset
+  - exclusions and assumptions listed (none listed; silence is not &#x27;none&#x27;)
+
+Please quote at each quantity in section 3 of the package, including the
+quantity below your stated minimum order, and state your minimum order quantity
+separately.
+
+Response due: [DUE DATE - buyer to set before sending]
+Send your response to: [buyer name and email - buyer to complete]
+Technical questions: [technical contact - buyer to complete]. Answers given
+to one bidder are shared with all bidders.
+
+Regards,
+[buyer name]
+=== END ===</pre></div>
+
+<details class="panel"><summary><b>Readiness evidence per bid</b></summary><table><thead><tr><th>Prerequisite</th><th>Xylem Linear Motion</th><th>Yarrow Motion Parts</th></tr></thead><tbody>
+<tr><td>1 Cost comparable</td><td>No: no unit price at 20; MOQ 100; tooling not stated; FOB origin</td><td>No: no unit price at 20; MOQ 250; tooling not stated; Delivered DDP</td></tr>
+<tr><td>2 Supplier approved</td><td>No: not confirmed approved; requalification path not set (samples / first article at minimum, buyer to decide)</td><td>Same</td></tr>
+<tr><td>3 Delivery evidenced</td><td>No: "Lead time 3 weeks" from no named event; needed-at-dock date not set (arm sets due 2027-01-31)</td><td>No: "Lead 5 weeks" from no named event; same</td></tr>
+<tr><td>4 Terms accepted</td><td>No: quality clauses not stated (plant list not on file); accuracy "standard", carriage excluded</td><td>No: clauses not stated; accuracy class not stated</td></tr></tbody></table></details>
+<details class="panel"><summary><b>Bid records summary</b></summary><table><thead><tr><th>Supplier</th><th>Source file</th><th>As quoted</th><th>conformance</th><th>approval</th><th>fields_missing</th></tr></thead><tbody><tr><td>Xylem Linear Motion</td><td class='mono'>inputs/e2e_bids/rail_bid_X.txt</td><td>Unit price 11.40 USD at 100 pcs</td><td>off_format</td><td>not_confirmed_approved</td><td><ul><li>unit price at 20 each (not priced; quoted at 100 pcs, MOQ 100)</li><li>unit price at the pooled quantity (break not yet set by the buyer)</li><li>lead time, first article, from a named event (&#x27;Lead time 3 weeks&#x27;, no start event)</li><li>lead time, production, from a named event (&#x27;Lead time 3 weeks&#x27;, no start event, no FA/production split)</li><li>tooling price, or a statement that none is needed</li><li>tooling ownership</li><li>price validity as a date (period &#x27;valid 21 days&#x27; stated, but the quote is undated)</li><li>freight basis named place (&#x27;FOB origin&#x27; stated without a named place)</li><li>payment terms</li><li>packaging</li><li>quality clause acceptance</li><li>offered item: manufacturer and part number</li><li>offered item: preload</li><li>offered item: cut-length tolerance</li><li>offered item: mounting-hole pitch and end offset</li></ul></td></tr><tr><td>Yarrow Motion Parts</td><td class='mono'>inputs/e2e_bids/rail_bid_Y.txt</td><td>9.90 USD each, minimum order 250 pcs</td><td>off_format</td><td>not_confirmed_approved</td><td><ul><li>unit price at 20 each (not priced; quoted at 250 pcs, MOQ 250)</li><li>unit price at the pooled quantity (break not yet set by the buyer)</li><li>lead time, first article, from a named event (&#x27;Lead 5 weeks&#x27;, no start event)</li><li>lead time, production, from a named event (&#x27;Lead 5 weeks&#x27;, no start event, no FA/production split)</li><li>tooling price, or a statement that none is needed</li><li>tooling ownership</li><li>price validity</li><li>freight basis named place (&#x27;Delivered DDP&#x27; stated without a named place)</li><li>payment terms</li><li>packaging</li><li>quality clause acceptance</li><li>offered item: manufacturer and part number</li><li>offered item: accuracy class (bid says &#x27;accuracy class not stated&#x27;)</li><li>offered item: carriage included or not (count and type)</li><li>offered item: preload</li><li>offered item: mounting-hole pitch and end offset</li><li>exclusions and assumptions listed (none listed; silence is not &#x27;none&#x27;)</li></ul></td></tr></tbody></table><p class="mono">Records: sourcing/SRC-2026-11-14-MGN9-170-RAIL/*.bid.txt</p></details>
+<details class="panel"><summary><b>Figures block</b></summary><table><thead><tr><th>Figure</th><th>Value</th><th>Computed from</th><th>Filter or query</th></tr></thead><tbody><tr><td>Rails per arm</td><td class='mono'>1</td><td>02_bom_handoff.json</td><td class='mono'>purchased_rail.quantity_per_arm</td></tr><tr><td>Arm sets in the inquiry</td><td class='mono'>20</td><td>intake NOREF-20261112</td><td class='mono'>line_no 1 quantities[0].qty (line 39)</td></tr><tr><td>Rail demand (rails per arm x sets)</td><td class='mono'>20</td><td>BOM x intake; equals intake line 2 qty</td><td class='mono'>1 x 20; intake line 68 qty 20</td></tr><tr><td>Forecast / EAU</td><td class='mono'>none supplied (eau: null)</td><td>intake NOREF-20261112</td><td class='mono'>line_no 2 eau (line 76)</td></tr><tr><td>Purchase / receipt / usage exports found</td><td class='mono'>0 - not found by search</td><td>inputs folder enumerated (6 files)</td><td class='mono'>filename matches po|purchase|receipt|usage|vendor|supplier_list|item_master</td></tr><tr><td>Customer delivery date for the arm sets</td><td class='mono'>2027-01-31</td><td>intake NOREF-20261112</td><td class='mono'>line_no 2 required_delivery (line 75)</td></tr><tr><td>Calendar days from today to that date</td><td class='mono'>78</td><td>computed</td><td class='mono'>2027-01-31 - 2026-11-14</td></tr><tr><td>Approved suppliers on file for this commodity</td><td class='mono'>0 - no plant profile (plant_setup find: exists false)</td><td>plant_setup.py find</td><td class='mono'>### Approved suppliers table not present</td></tr><tr><td>Candidate suppliers (from the returned bids)</td><td class='mono'>2</td><td>inputs/e2e_bids</td><td class='mono'>files rail_bid_*.txt</td></tr><tr><td>Candidates not confirmed approved</td><td class='mono'>2</td><td>bid records</td><td class='mono'>approval_status == not_confirmed_approved</td></tr><tr><td>Bids received / suppliers known</td><td class='mono'>2 of 2</td><td>inputs/e2e_bids</td><td class='mono'>one bid per file</td></tr><tr><td>Sends recorded (per buyer)</td><td class='mono'>0</td><td>no Open work page, no buyer statement</td><td class='mono'>never reconstructed</td></tr><tr><td>Off-format bids</td><td class='mono'>2</td><td>bid records</td><td class='mono'>conformance == off_format</td></tr><tr><td>Currencies stated</td><td class='mono'>USD</td><td>bid records</td><td class='mono'>currency</td></tr><tr><td>Freight bases stated</td><td class='mono'>Delivered DDP | FOB origin</td><td>bid records</td><td class='mono'>freight_basis</td></tr><tr><td>Quantity break priced by both bids</td><td class='mono'>none</td><td>bid records</td><td class='mono'>offered_qty equal across bids</td></tr><tr><td>Xylem Linear Motion unit price at 100</td><td class='mono'>11.40 USD</td><td>inputs/e2e_bids/rail_bid_X.txt line 3</td><td class='mono'>as quoted</td></tr><tr><td>Xylem Linear Motion extended at its quoted qty (100 x 11.40)</td><td class='mono'>1140.00 USD</td><td>computed</td><td class='mono'>unit_price x offered_qty</td></tr><tr><td>Xylem Linear Motion MOQ</td><td class='mono'>100</td><td>inputs/e2e_bids/rail_bid_X.txt line 3</td><td class='mono'>as quoted</td></tr><tr><td>Xylem Linear Motion MOQ minus our demand (units others would have to pool)</td><td class='mono'>80</td><td>computed</td><td class='mono'>moq - demand</td></tr><tr><td>Xylem Linear Motion our demand as % of its MOQ</td><td class='mono'>20.0%</td><td>computed</td><td class='mono'>100 x demand / moq</td></tr><tr><td>Xylem Linear Motion fields_missing</td><td class='mono'>15</td><td>bid record</td><td class='mono'>mandated-field check, 20 fields</td></tr><tr><td>Yarrow Motion Parts unit price at 250</td><td class='mono'>9.90 USD</td><td>inputs/e2e_bids/rail_bid_Y.txt line 3</td><td class='mono'>as quoted</td></tr><tr><td>Yarrow Motion Parts extended at its quoted qty (250 x 9.90)</td><td class='mono'>2475.00 USD</td><td>computed</td><td class='mono'>unit_price x offered_qty</td></tr><tr><td>Yarrow Motion Parts MOQ</td><td class='mono'>250</td><td>inputs/e2e_bids/rail_bid_Y.txt line 3</td><td class='mono'>as quoted</td></tr><tr><td>Yarrow Motion Parts MOQ minus our demand (units others would have to pool)</td><td class='mono'>230</td><td>computed</td><td class='mono'>moq - demand</td></tr><tr><td>Yarrow Motion Parts our demand as % of its MOQ</td><td class='mono'>8.0%</td><td>computed</td><td class='mono'>100 x demand / moq</td></tr><tr><td>Yarrow Motion Parts fields_missing</td><td class='mono'>17</td><td>bid record</td><td class='mono'>mandated-field check, 20 fields</td></tr><tr><td>Mandated response fields checked per bid</td><td class='mono'>20</td><td>package section 7</td><td class='mono'>MANDATED list in this script</td></tr></tbody></table><p class="muted">Computed by out/scripts/sourcing_run.py over the input files.</p></details>
+<p class="muted">Offered page: save it over the last version of this event's comparison. Nothing was sent, awarded or written to any system.</p>
+</div></body></html>

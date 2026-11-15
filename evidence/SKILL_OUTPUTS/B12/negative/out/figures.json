@@ -1,0 +1,20 @@
+{
+ "input_files_enumerated": [
+  "inputs/breakdown/event.txt",
+  "inputs/breakdown/manual_troubleshooting.md"
+ ],
+ "input_file_count": 2,
+ "sensor_files": [],
+ "sensor_file_count": 0,
+ "maintenance_files": [],
+ "maintenance_file_count": 0,
+ "photo_files": [],
+ "photo_file_count": 0,
+ "maintenance_records_this_asset": 0,
+ "sibling_records": 0,
+ "closeout_note_groups": 0,
+ "alarm_time_verbatim": "2026-11-10 15:24 local",
+ "last_confirmed_down_verbatim": "still down at 16:10",
+ "minutes_alarm_to_last_confirmed_down": 46,
+ "maintenance_wo_refs_in_event_note": []
+}

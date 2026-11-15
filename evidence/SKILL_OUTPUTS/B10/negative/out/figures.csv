@@ -1,0 +1,73 @@
+figure,value,computed_from,filter
+Files in input folder,6,input folder listing,"all files, recursive"
+Production days in output export,2026-11-12,output.csv,distinct production_day
+Plan dates in plan export,2026-11-12,plan.csv,distinct plan_date
+Run date,2026-11-14,system clock,
+Production day expected for this morning (run date - 1),2026-11-13,run date,no plant day-boundary rule on file; calendar day before the run
+Latest production day present,2026-11-12,output.csv,max(production_day)
+"Production days with no export (after latest present, up to expected)",2026-11-13,output.csv vs run date,dates between latest production_day+1 and run date-1
+Files with a modified time later than the run,0,file system,mtime > run time
+Activity rows dated after the run date,0,"output.csv, plan.csv",production_day / plan_date > run date (due dates excluded: commitments)
+Output rows,3,output.csv,all rows
+Output rows whose work order matches work_orders.csv exactly,3,output.csv x work_orders.csv,"work_order equal, no normalization"
+Output rows whose part equals the work order's part,3,output.csv x work_orders.csv,part_number equal
+Plan rows,2,plan.csv,all rows
+Plan parts matching an output part exactly,2,plan.csv x output.csv,part_number equal
+Plan assets matching an output asset exactly,2,plan.csv x output.csv,asset_id equal
+Normalizations fired,0,join log,ladder rungs 1-5; every key matched as-is
+"Duplicate keys at production_output grain (WO, shift, day)",0,output.csv,"count>1 per (work_order, shift, production_day)"
+Work orders with no output rows (class 6 candidates),0,work_orders.csv vs output.csv,work_order not in output
+Planned parts with no output (class 6 candidates),0,plan.csv vs output.csv,part not in output
+Produced parts not on the plan,0,output.csv vs plan.csv,part not in plan
+Output rows outside plan window (class 7),0,output.csv vs plan.csv,production_day not in plan dates
+Exports carrying a unit-of-measure column,0,"output.csv, plan.csv, work_orders.csv headers",column named uom/unit/unit_of_measure
+Output export has a rework column,no,output.csv header,column containing 'rework'
+Routing rows carrying a revision,0,routing.csv,revision column present and populated
+Work orders carrying a sales order link,0,work_orders.csv,sales_order column present and populated
+Planned qty PN-100,800,plan.csv,"part_number==PN-100, plan_date=2026-11-12"
+Good qty PN-100,780,output.csv,"sum qty_good, part_number==PN-100, production_day=2026-11-12 (2 rows)"
+Scrap qty PN-100,12,output.csv,"sum qty_scrap, part_number==PN-100"
+Total qty (good+scrap) PN-100,792,output.csv,"good + scrap, part_number==PN-100"
+Good vs plan PN-100,-20,output.csv - plan.csv,"good - planned, PN-100"
+Good vs plan % PN-100,-2.5,same computation,"(good - planned)/planned x 100, 1 dp"
+Planned qty PN-200,250,plan.csv,"part_number==PN-200, plan_date=2026-11-12"
+Good qty PN-200,220,output.csv,"sum qty_good, part_number==PN-200, production_day=2026-11-12 (1 rows)"
+Scrap qty PN-200,3,output.csv,"sum qty_scrap, part_number==PN-200"
+Total qty (good+scrap) PN-200,223,output.csv,"good + scrap, part_number==PN-200"
+Good vs plan PN-200,-30,output.csv - plan.csv,"good - planned, PN-200"
+Good vs plan % PN-200,-12.0,same computation,"(good - planned)/planned x 100, 1 dp"
+"Shifts with output rows, CNC-01","1, 2",output.csv,"distinct shift, asset_id==CNC-01"
+"Shifts with output rows, CNC-02",1,output.csv,"distinct shift, asset_id==CNC-02"
+Planned hours CNC-01,16.0,plan.csv,"planned_hours, asset_id==CNC-01"
+Ideal minutes of parts made CNC-01,792.0,output.csv x routing.csv,"sum (good+scrap) x run_min_per_unit, asset_id==CNC-01"
+Quality % CNC-01,98.5,output.csv,"good/(good+scrap) x 100, asset_id==CNC-01: 780/792"
+Availability x performance combined % CNC-01,82.5,same computation,ideal minutes / (planned_hours x 60): 792.0/960
+Availability CNC-01,not computable,-,no downtime export in the drop
+Performance CNC-01,not computable,-,run time unknown without downtime export
+Composite OEE CNC-01,not reported,-,components cannot be separated
+Planned hours CNC-02,8.0,plan.csv,"planned_hours, asset_id==CNC-02"
+Ideal minutes of parts made CNC-02,401.4,output.csv x routing.csv,"sum (good+scrap) x run_min_per_unit, asset_id==CNC-02"
+Quality % CNC-02,98.7,output.csv,"good/(good+scrap) x 100, asset_id==CNC-02: 220/223"
+Availability x performance combined % CNC-02,83.6,same computation,ideal minutes / (planned_hours x 60): 401.4/480
+Availability CNC-02,not computable,-,no downtime export in the drop
+Performance CNC-02,not computable,-,run time unknown without downtime export
+Composite OEE CNC-02,not reported,-,components cannot be separated
+Downtime events read,unknown: no downtime export,input folder listing,no file with asset + start/end + reason code headers
+Downtime minutes,unknown: no downtime export,-,not zero; not measured
+Breakdown diagnosis records in drop,0,input folder listing,no downtime-record contract files (source_system breakdown_diagnosis)
+Scrap units PN-100 (for pricing table),12,output.csv,"sum qty_scrap, part_number==PN-100"
+Scrap units PN-200 (for pricing table),3,output.csv,"sum qty_scrap, part_number==PN-200"
+Standard cost rows available,0,input folder listing,no item master / parts / standard cost file
+Downtime cost per hour,not set,MFG_DOWNTIME_COST_PER_HOUR unset; no plant rates file,secret-config resolution order
+Scrap dollars,unpriced: no standard cost,-,
+Downtime dollars,unknown: no downtime data and no downtime rate,-,
+Good recorded vs ordered WO-1001,480 of 500,output.csv x work_orders.csv,"sum qty_good through 2026-11-12, work_order==WO-1001"
+Short vs order WO-1001,20,same computation,"ordered - good recorded, floor 0"
+Good recorded vs ordered WO-1002,220 of 250,output.csv x work_orders.csv,"sum qty_good through 2026-11-12, work_order==WO-1002"
+Short vs order WO-1002,30,same computation,"ordered - good recorded, floor 0"
+Good recorded vs ordered WO-1003,300 of 300,output.csv x work_orders.csv,"sum qty_good through 2026-11-12, work_order==WO-1003"
+Short vs order WO-1003,0,same computation,"ordered - good recorded, floor 0"
+Work orders past due and short,1,work_orders.csv,due_date < 2026-11-14 and good < ordered
+Work orders due today and short,1,work_orders.csv,due_date == 2026-11-14 and good < ordered
+Work orders complete by output but still RELEASED,1,work_orders.csv,good >= ordered and status RELEASED
+Work orders whose commitment impact is not traceable,3,work_orders.csv,no sales_order column

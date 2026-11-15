@@ -1,6 +1,6 @@
 {
-  "source_commit": "b10c2a1675c1e605b403b945daae57a5cf1448c1",
-  "executed_at_utc": "2026-11-14T22:15:27+00:00",
+  "source_commit": "992e4d79b19087d135cbd3aae7d448d158f35511",
+  "executed_at_utc": "2026-11-15T03:06:59+00:00",
   "environment": {
     "python": "3.14.7",
     "implementation": "CPython",
@@ -13,20 +13,20 @@
   },
   "command": "python tools/skill_report.py",
   "inputs": {},
-  "status": "FAIL",
+  "status": "PASS",
   "counts": {
     "skills": 17,
     "executed": 17,
-    "positive_PASS": 12,
-    "positive_FAIL": 1,
+    "positive_PASS": 16,
+    "positive_FAIL": 0,
     "positive_BLOCKED": 1,
-    "positive_Z": 3,
+    "positive_Z": 0,
     "positive_NOT_RUN": 0,
-    "negative_PASS": 3,
+    "negative_PASS": 9,
     "negative_FAIL": 0,
-    "negative_Z": 1,
-    "negative_NOT_RUN": 12,
-    "e2e_stages_PASS": 1
+    "negative_Z": 5,
+    "negative_NOT_RUN": 2,
+    "e2e_stages_PASS": 3
   },
   "runtime_routes": [
     "desktop-subagent"
@@ -35,10 +35,10 @@
     "claude-opus-5-5"
   ],
   "tokens_total": {
-    "input_tokens": 804,
-    "output_tokens": 591563,
-    "cache_read_input_tokens": 37897938,
-    "cache_creation_input_tokens": 3264634
+    "input_tokens": 1298,
+    "output_tokens": 931490,
+    "cache_read_input_tokens": 60886401,
+    "cache_creation_input_tokens": 6341240
   },
   "note": "Model-driven executions only. Deterministic contract/unit tests are reported separately (evidence/SKILL_MATRIX*.json) and are not counted here.",
   "skills": [
@@ -81,7 +81,34 @@
         "run_record": "evidence/SKILL_OUTPUTS/B01/positive/run.json"
       },
       "negative": {
-        "status": "NOT RUN"
+        "status": "PASS",
+        "reason": null,
+        "behaviour_without_live_system": null,
+        "runtime_route": "desktop-subagent",
+        "model": "claude-opus-5-5",
+        "skills_read_or_invoked": [
+          "onboarding"
+        ],
+        "tool_summary": {
+          "Bash": 13,
+          "Edit": 2,
+          "Read": 2,
+          "SubagentHandback": 1,
+          "Write": 3
+        },
+        "duration_s": 18023.6,
+        "outputs": [
+          "onboarding-setup-run.md",
+          "plant-context.DRAFT.md",
+          "plant-rates.DRAFT.md"
+        ],
+        "deterministic_checks": "7/7",
+        "failed_checks": [],
+        "evaluator_verdict": "PASS",
+        "evaluator_fabrication": [],
+        "evaluator_arithmetic_mismatches": [],
+        "evaluator_notes": "The rates memo is absent. All five rates are recorded as 'not set' and appear on the gaps list (G4-G9); no value or placeholder was invented. Mined values are labelled as inferred from the named file. The 15% variance threshold and 5-day RFQ staleness are labelled defaults. The profile and rates exist only as drafts, nothing is written, and no connection was attempted. The asset count checks out: 5 assets, 4 work centers. Minor gap: no Word/Excel copies were made, only Markdown (disclosed).",
+        "run_record": "evidence/SKILL_OUTPUTS/B01/negative/run.json"
       }
     },
     {
@@ -197,7 +224,38 @@
         "run_record": "evidence/SKILL_OUTPUTS/B03/positive/run.json"
       },
       "negative": {
-        "status": "NOT RUN"
+        "status": "PASS",
+        "reason": null,
+        "behaviour_without_live_system": null,
+        "runtime_route": "desktop-subagent",
+        "model": "claude-opus-5-5",
+        "skills_read_or_invoked": [
+          "data-consolidate"
+        ],
+        "tool_summary": {
+          "Bash": 11,
+          "Read": 3,
+          "SubagentHandback": 1,
+          "Write": 2
+        },
+        "duration_s": 18019.2,
+        "outputs": [
+          "_run_facts.json",
+          "data-quality-report.html",
+          "dataset/downtime_events.csv",
+          "dataset/plan.csv",
+          "dataset/production_output.csv",
+          "figures_block.csv",
+          "set_aside_equipment_list_not_joined.csv",
+          "set_aside_routing_unrecognized.csv"
+        ],
+        "deterministic_checks": "6/6",
+        "failed_checks": [],
+        "evaluator_verdict": "PASS",
+        "evaluator_fabrication": [],
+        "evaluator_arithmetic_mismatches": [],
+        "evaluator_notes": "The missing work-order export is stated plainly. The production_work_orders tab is named missing, not empty. WO-1001 to WO-1003 are marked unchecked, and no orders were made up. The HTML report and the dataset are present; the tabs are CSV, not XLSX, and the run says so. Row counts (3+2+2=7), downtime durations (45 and 20 minutes), zero asset overlap and the reconciled figures all check out. Routing.csv was set aside because it has no setup column, as the signature rule requires. Nothing was applied or sent.",
+        "run_record": "evidence/SKILL_OUTPUTS/B03/negative/run.json"
       }
     },
     {
@@ -269,7 +327,7 @@
       "chain": [],
       "e2e_stage": null,
       "positive": {
-        "status": "FAIL",
+        "status": "PASS",
         "reason": null,
         "behaviour_without_live_system": null,
         "runtime_route": "desktop-subagent",
@@ -279,32 +337,38 @@
           "quote-build"
         ],
         "tool_summary": {
-          "Bash": 13,
-          "Read": 3,
-          "SubagentHandback": 1,
-          "Write": 4
+          "Bash": 16,
+          "Edit": 6,
+          "Read": 4,
+          "SubagentHandback": 2,
+          "Write": 7
         },
-        "duration_s": 756.1,
+        "duration_s": 18329.9,
         "outputs": [
           "calc/compute_mb2040.py",
           "calc/figures_MB-2040.json",
           "calc/outbound_check.json",
           "calc/outbound_check.py",
+          "calc/price_mb2040.py",
+          "calc/pricing_MB-2040.json",
           "inquiries/northwind-robotics-MB-2040.intake.txt",
           "operation-record_MB-2040.json",
           "reply_quote-build_MB-2040.md"
         ],
         "deterministic_checks": "10/10",
         "failed_checks": [],
-        "evaluator_verdict": "FAIL",
+        "evaluator_verdict": "PASS",
         "evaluator_fabrication": [],
-        "evaluator_arithmetic_mismatches": [],
-        "evaluator_notes": "No unit price or total at 250/500/1,000. The producer declined to use rates_memo.txt, the supplied rates input that the case expects, even though the skill runs on 'pasted cost figures' and allows supplied rates labelled as supplied. So labor, burden, setup $ and margin are all blocked. Material (PO-30588), anodize (PO-30602), rung-4 hours with setup and run kept separate, unknowns and draft status are all handled well. All the arithmetic I rechecked is correct: scrap, starts, plates, lots, variances, hours and day counts.",
+        "evaluator_arithmetic_mismatches": [
+          "Setup cost shown as 160.40; exact value is 95 min x 95/60 + 10 min x 60/60 = 160.42 (hours were rounded to 3 dp before pricing). Unit prices unchanged at the cent",
+          "INSP run cost at the 1,000 break shown as 2,038.20; exact value is 1,019 x 2 min = 33.967 h x 60 = 2,038.00. Same hours-rounding drift, no effect on the unit price"
+        ],
+        "evaluator_notes": "Draft budgetary quote at 250/500/1,000 with setup re-spread at each break. Material is priced from PO-30588 and anodize from PO-30602. Hours come from the MB-1880 similar-part routing and WO-7702/7811 actuals, labelled rung 4, with setup and run kept separate. Rates are the operator-confirmed memo rates. The margin reading is flagged as an interpretation, with alternatives shown. Gaps are labelled: flatness, drawing, marking, FAI, certs, shop load and terms. The customer block is clean. Nothing was released. All other totals recompute correctly.",
         "run_record": "evidence/SKILL_OUTPUTS/B05/positive/run.json"
       },
       "negative": {
-        "status": "Z",
-        "reason": "no independent evaluator verdict",
+        "status": "PASS",
+        "reason": null,
         "behaviour_without_live_system": null,
         "runtime_route": "desktop-subagent",
         "model": "claude-opus-5-5",
@@ -326,10 +390,10 @@
         ],
         "deterministic_checks": "7/7",
         "failed_checks": [],
-        "evaluator_verdict": null,
-        "evaluator_fabrication": null,
-        "evaluator_arithmetic_mismatches": null,
-        "evaluator_notes": null,
+        "evaluator_verdict": "PASS",
+        "evaluator_fabrication": [],
+        "evaluator_arithmetic_mismatches": [],
+        "evaluator_notes": "There are no POs, so material and anodize are BLOCKED. No price is shown as paid, and every customer price says pending. The finance memo rates are not used and not repeated, as the skill requires. Rechecked against the inputs: setup 105 min = 1.75 h, run 12.8 min/pc, hours at each break (55.08/108.42/215.08), op variances (+15.6% flagged) and scrap 1.96%/1.77% all match. Minor gaps: no Word/Excel copy and no command-center page, both explained. Nothing was sent, and Gate 4 is left to the estimator.",
         "run_record": "evidence/SKILL_OUTPUTS/B05/negative/run.json"
       }
     },
@@ -342,6 +406,48 @@
       ],
       "e2e_stage": null,
       "positive": {
+        "status": "PASS",
+        "reason": null,
+        "behaviour_without_live_system": null,
+        "runtime_route": "desktop-subagent",
+        "model": "claude-opus-5-5",
+        "skills_read_or_invoked": [
+          "customer-inquiry-intake",
+          "quote-build",
+          "rfq-to-quote"
+        ],
+        "tool_summary": {
+          "Bash": 22,
+          "Edit": 2,
+          "Read": 6,
+          "SubagentHandback": 2,
+          "Write": 8
+        },
+        "duration_s": 18243.6,
+        "outputs": [
+          "budgetary-estimate-MB-2040-01.html",
+          "cost-sheet-MB-2040-01.html",
+          "dataset/assets.csv",
+          "dataset/operation_actuals.csv",
+          "dataset/purchase_orders.csv",
+          "dataset/routings.csv",
+          "figures-MB-2040-intake.json",
+          "figures-MB-2040-quote.json",
+          "inquiries/northwind-robotics-MB-2040.intake.txt",
+          "inquiries/northwind-robotics-MB-2040.L1.geometry-estimate.txt",
+          "MB-2040-intake-summary.html",
+          "open-work-open-inquiries.txt",
+          "scripts/quote_figures.py"
+        ],
+        "deterministic_checks": "11/11",
+        "failed_checks": [],
+        "evaluator_verdict": "PASS",
+        "evaluator_fabrication": [],
+        "evaluator_arithmetic_mismatches": [],
+        "evaluator_notes": "Intake form (path A, 8 questions, provisional bid) hands off to a budgetary draft and an internal sheet, both delimited. Fusion is reported as not connected and the hand-entered feature list stays draft. Gate 1 is recorded as approved but not sent, Gate 2 as confirmed. Gate 3 is not treated as passed. Rates are unset and the memo was not used, so prices are blank. I recomputed hours, variances, plates, material, anodize, scrap and dates: all correct. One minor slip: line_items still shows line_bid_decision draft, while a comment says confirmed.",
+        "run_record": "evidence/SKILL_OUTPUTS/B06/positive/run.json"
+      },
+      "negative": {
         "status": "Z",
         "reason": "no independent evaluator verdict",
         "behaviour_without_live_system": null,
@@ -352,30 +458,24 @@
           "rfq-to-quote"
         ],
         "tool_summary": {
-          "Bash": 11,
-          "Read": 3,
+          "Bash": 10,
+          "Read": 4,
           "SubagentHandback": 1,
-          "Write": 2
+          "Write": 3
         },
-        "duration_s": 663.0,
+        "duration_s": 17413.7,
         "outputs": [
-          "figures-MB-2040-intake.json",
-          "inquiries/northwind-robotics-MB-2040.intake.txt",
-          "MB-2040-intake-summary.html",
-          "open-work-open-inquiries.txt"
+          "intake-summary-MB-2040-revC.html",
+          "open-work/inquiries/northwind-robotics-MB-2040-revC.intake.txt",
+          "open-work/open-work.md"
         ],
-        "deterministic_checks": "10/11",
-        "failed_checks": [
-          "chained skill 'quote-build' instructions used"
-        ],
+        "deterministic_checks": "10/10",
+        "failed_checks": [],
         "evaluator_verdict": null,
         "evaluator_fabrication": null,
         "evaluator_arithmetic_mismatches": null,
         "evaluator_notes": null,
-        "run_record": "evidence/SKILL_OUTPUTS/B06/positive/run.json"
-      },
-      "negative": {
-        "status": "NOT RUN"
+        "run_record": "evidence/SKILL_OUTPUTS/B06/negative/run.json"
       }
     },
     {
@@ -419,7 +519,41 @@
         "run_record": "evidence/SKILL_OUTPUTS/B07/positive/run.json"
       },
       "negative": {
-        "status": "NOT RUN"
+        "status": "PASS",
+        "reason": null,
+        "behaviour_without_live_system": null,
+        "runtime_route": "desktop-subagent",
+        "model": "claude-opus-5-5",
+        "skills_read_or_invoked": [
+          "supplier-quote-request"
+        ],
+        "tool_summary": {
+          "Bash": 14,
+          "Read": 2,
+          "SubagentHandback": 1,
+          "Write": 5
+        },
+        "duration_s": 18031.7,
+        "outputs": [
+          "plant-setup/open-work/open-work.md",
+          "RUN_OUTPUT_supplier-quote-request.md",
+          "scripts/build_comparison_page.py",
+          "scripts/compute_bsh1210.py",
+          "scripts/drafts.txt",
+          "scripts/outbound_check.py",
+          "sourcing/SRC-2026-11-14-BSH-1210/alder-sintered-parts.bid.txt",
+          "sourcing/SRC-2026-11-14-BSH-1210/birch-powder-metal.bid.txt",
+          "sourcing/SRC-2026-11-14-BSH-1210/computed.json",
+          "sourcing/SRC-2026-11-14-BSH-1210/outbound_check.txt",
+          "sourcing-output/bid-comparison.html"
+        ],
+        "deterministic_checks": "7/7",
+        "failed_checks": [],
+        "evaluator_verdict": "PASS",
+        "evaluator_fabrication": [],
+        "evaluator_arithmetic_mismatches": [],
+        "evaluator_notes": "Run flags the missing drawing up front and blocks release because the revision is unverified. Drawing, specification, clauses and terms are left as bracketed placeholders, with no hardness or tolerance invented. It names the hardness exception it could not judge. MRP total of 3,200 checks out. Birch 0.49×3,200=1,568, plus 1,850 tooling = 3,418; Alder 620/1,650; illustrative arrival dates all correct. Emails HELD, nothing sent or awarded. Minor: quantity breaks were chosen by the producer, but they are labelled for the buyer to confirm.",
+        "run_record": "evidence/SKILL_OUTPUTS/B07/negative/run.json"
       }
     },
     {
@@ -563,7 +697,41 @@
         "run_record": "evidence/SKILL_OUTPUTS/B10/positive/run.json"
       },
       "negative": {
-        "status": "NOT RUN"
+        "status": "PASS",
+        "reason": null,
+        "behaviour_without_live_system": null,
+        "runtime_route": "desktop-subagent",
+        "model": "claude-opus-5-5",
+        "skills_read_or_invoked": [
+          "daily-production-report",
+          "data-consolidate",
+          "morning-plant-pulse"
+        ],
+        "tool_summary": {
+          "Bash": 17,
+          "Read": 3,
+          "SubagentHandback": 1,
+          "Write": 2
+        },
+        "duration_s": 18028.4,
+        "outputs": [
+          "_build/compute.py",
+          "_build/render.py",
+          "data-quality-report.html",
+          "dataset/plan.csv",
+          "dataset/production_output.csv",
+          "dataset/production_work_orders.csv",
+          "figures.csv",
+          "report-output/morning-report.html",
+          "report_model.json"
+        ],
+        "deterministic_checks": "6/6",
+        "failed_checks": [],
+        "evaluator_verdict": "PASS",
+        "evaluator_fabrication": [],
+        "evaluator_arithmetic_mismatches": [],
+        "evaluator_notes": "With no downtime export, availability, performance and composite OEE show as 'not computable/not reported', and both downtime rankings and downtime minutes/dollars show as unknown, never zero. Rechecked figures: 780/800 (-2.5%), 220/250 (-12.0%), quality 98.5%/98.7%, A×P 792/960=82.5% and 401.4/480=83.6%. The A×P figure is labelled as one that can't be split. rates_memo was not used. Nothing was posted. Report saved to report-output/morning-report.html with the figures block.",
+        "run_record": "evidence/SKILL_OUTPUTS/B10/negative/run.json"
       }
     },
     {
@@ -610,7 +778,38 @@
         "run_record": "evidence/SKILL_OUTPUTS/B11/positive/run.json"
       },
       "negative": {
-        "status": "NOT RUN"
+        "status": "Z",
+        "reason": "no independent evaluator verdict",
+        "behaviour_without_live_system": null,
+        "runtime_route": "desktop-subagent",
+        "model": "claude-opus-5-5",
+        "skills_read_or_invoked": [
+          "morning-plant-pulse"
+        ],
+        "tool_summary": {
+          "Bash": 18,
+          "Read": 1,
+          "SubagentHandback": 1,
+          "Write": 1
+        },
+        "duration_s": 17351.9,
+        "outputs": [
+          "pulse-output/day_records.json",
+          "pulse-output/figures-short-page.csv",
+          "pulse-output/figures.csv",
+          "pulse-output/operations-short-SITE-1-2026-11-12.html",
+          "pulse-output/operations-SITE-1-2026-11-12.html",
+          "pulse-output/periods.json",
+          "pulse-output/pulse_model.json",
+          "scripts/build_operations_page.py"
+        ],
+        "deterministic_checks": "7/7",
+        "failed_checks": [],
+        "evaluator_verdict": null,
+        "evaluator_fabrication": null,
+        "evaluator_arithmetic_mismatches": null,
+        "evaluator_notes": null,
+        "run_record": "evidence/SKILL_OUTPUTS/B11/negative/run.json"
       }
     },
     {
@@ -649,7 +848,34 @@
         "run_record": "evidence/SKILL_OUTPUTS/B12/positive/run.json"
       },
       "negative": {
-        "status": "NOT RUN"
+        "status": "Z",
+        "reason": "no independent evaluator verdict",
+        "behaviour_without_live_system": null,
+        "runtime_route": "desktop-subagent",
+        "model": "claude-opus-5-5",
+        "skills_read_or_invoked": [
+          "breakdown-diagnosis"
+        ],
+        "tool_summary": {
+          "Bash": 9,
+          "Read": 1,
+          "SubagentHandback": 1,
+          "Write": 1
+        },
+        "duration_s": 17356.4,
+        "outputs": [
+          "breakdown-diagnosis-VMC-02-2026-11-10.html",
+          "downtime-record-VMC-02-2026-11-10.yaml",
+          "figures.json",
+          "scripts/figures.py"
+        ],
+        "deterministic_checks": "8/8",
+        "failed_checks": [],
+        "evaluator_verdict": null,
+        "evaluator_fabrication": null,
+        "evaluator_arithmetic_mismatches": null,
+        "evaluator_notes": null,
+        "run_record": "evidence/SKILL_OUTPUTS/B12/negative/run.json"
       }
     },
     {
@@ -741,7 +967,33 @@
         "run_record": "evidence/SKILL_OUTPUTS/B14/positive/run.json"
       },
       "negative": {
-        "status": "NOT RUN"
+        "status": "PASS",
+        "reason": null,
+        "behaviour_without_live_system": null,
+        "runtime_route": "desktop-subagent",
+        "model": "claude-opus-5-5",
+        "skills_read_or_invoked": [
+          "ncr-writeup"
+        ],
+        "tool_summary": {
+          "Bash": 6,
+          "Read": 2,
+          "SubagentHandback": 1,
+          "Write": 3
+        },
+        "duration_s": 17328.9,
+        "outputs": [
+          "NCR-record.yaml",
+          "NCR-reply.md",
+          "register-row.yaml"
+        ],
+        "deterministic_checks": "8/8",
+        "failed_checks": [],
+        "evaluator_verdict": "PASS",
+        "evaluator_fabrication": [],
+        "evaluator_arithmetic_mismatches": [],
+        "evaluator_notes": "Requirement correctly marked not located and blocking; it lists what was searched and takes no limit from NCR-0219's 22.026. Scope is at least 300, all five locations are addressed, and 30+120+150=300 checks. Recurrence on NCR-0219/CAPA-071 is sourced. Escape draft is unsent, has no guessed deadline, and is conditional. Minor issues: the YAML sets escape_occurred true and escape_possible false although delivery is unverified, and it records previous_fix_held as false where the reply calls that judgment provisional. Register not updated, and the reply says so.",
+        "run_record": "evidence/SKILL_OUTPUTS/B14/negative/run.json"
       }
     },
     {
@@ -750,8 +1002,8 @@
       "chain": [],
       "e2e_stage": null,
       "positive": {
-        "status": "Z",
-        "reason": "no independent evaluator verdict",
+        "status": "PASS",
+        "reason": null,
         "behaviour_without_live_system": null,
         "runtime_route": "desktop-subagent",
         "model": "claude-opus-5-5",
@@ -779,14 +1031,44 @@
         ],
         "deterministic_checks": "8/8",
         "failed_checks": [],
+        "evaluator_verdict": "PASS",
+        "evaluator_fabrication": [],
+        "evaluator_arithmetic_mismatches": [],
+        "evaluator_notes": "Timeline and SPC were computed in code; I rechecked the CL, UCL and LCL, sigma, ratios, OLS slope and intercept, USL crossing, shift residuals, per-lot rise and the 15.17 h gap. All match. Four ranked chains (tool wear, head setting, coolant, shift) each carry For/Against per link, Confirm/Kill tests and a cheapest discriminating test, with a stated tie and no single verdict. The 8D has D6/D8 placeholders, links D5 actions to D4 and explains in D7 why CAPA-071 (never verified) failed. Effectiveness criteria are proposed. Nothing sent; register not updated, stated. Minor: escape_detected_at uses run time.",
+        "run_record": "evidence/SKILL_OUTPUTS/B15/positive/run.json"
+      },
+      "negative": {
+        "status": "Z",
+        "reason": "no independent evaluator verdict",
+        "behaviour_without_live_system": null,
+        "runtime_route": "desktop-subagent",
+        "model": "claude-opus-5-5",
+        "skills_read_or_invoked": [
+          "root-cause-capa"
+        ],
+        "tool_summary": {
+          "Bash": 12,
+          "Read": 2,
+          "SubagentHandback": 1,
+          "Write": 4
+        },
+        "duration_s": 17494.6,
+        "outputs": [
+          "analysis/build_report.py",
+          "analysis/compute_figures.py",
+          "analysis/figures.json",
+          "analysis/report_template.html",
+          "figures_block.csv",
+          "MB-1880_root_cause_investigation_DRAFT.html",
+          "quality_register_row_MB-1880.yaml"
+        ],
+        "deterministic_checks": "7/7",
+        "failed_checks": [],
         "evaluator_verdict": null,
         "evaluator_fabrication": null,
         "evaluator_arithmetic_mismatches": null,
         "evaluator_notes": null,
-        "run_record": "evidence/SKILL_OUTPUTS/B15/positive/run.json"
-      },
-      "negative": {
-        "status": "NOT RUN"
+        "run_record": "evidence/SKILL_OUTPUTS/B15/negative/run.json"
       }
     },
     {
@@ -798,8 +1080,8 @@
       ],
       "e2e_stage": null,
       "positive": {
-        "status": "Z",
-        "reason": "no independent evaluator verdict",
+        "status": "PASS",
+        "reason": null,
         "behaviour_without_live_system": null,
         "runtime_route": "desktop-subagent",
         "model": "claude-opus-5-5",
@@ -827,14 +1109,44 @@
         ],
         "deterministic_checks": "11/11",
         "failed_checks": [],
+        "evaluator_verdict": "PASS",
+        "evaluator_fabrication": [],
+        "evaluator_arithmetic_mismatches": [],
+        "evaluator_notes": "The chain runs in order: NCR cited to drawing note 4, all five containment locations covered, recurrence after the unverified CAPA-071 shown, Gate 1 approval recorded from the test operator, then the ranked tie in D4 with discriminating tests, the 8D (D6/D8 left as placeholders), and the customer pack held at Gate 2 with a redaction diff that keeps the recurrence. I recomputed the I-chart, phase-I limits, regression, residuals and band percentages: all match. Minor: documents are files rather than printed in the reply; section 3 of the main report still says paused at Gate 1.",
+        "run_record": "evidence/SKILL_OUTPUTS/B16/positive/run.json"
+      },
+      "negative": {
+        "status": "Z",
+        "reason": "no independent evaluator verdict",
+        "behaviour_without_live_system": null,
+        "runtime_route": "desktop-subagent",
+        "model": "claude-opus-5-5",
+        "skills_read_or_invoked": [
+          "inspection-to-capa",
+          "ncr-writeup",
+          "root-cause-capa"
+        ],
+        "tool_summary": {
+          "Bash": 11,
+          "Read": 3,
+          "SubagentHandback": 1,
+          "Write": 4
+        },
+        "duration_s": 184.0,
+        "outputs": [
+          "chain-reply.inspection-to-capa.md",
+          "figures-block.json",
+          "ncr-record.MB-1880-WO-8102-L-0412.yaml",
+          "quality-register-fallback.html",
+          "register-row.MB-1880-WO-8102-L-0412.yaml"
+        ],
+        "deterministic_checks": "10/10",
+        "failed_checks": [],
         "evaluator_verdict": null,
         "evaluator_fabrication": null,
         "evaluator_arithmetic_mismatches": null,
         "evaluator_notes": null,
-        "run_record": "evidence/SKILL_OUTPUTS/B16/positive/run.json"
-      },
-      "negative": {
-        "status": "NOT RUN"
+        "run_record": "evidence/SKILL_OUTPUTS/B16/negative/run.json"
       }
     },
     {
@@ -932,7 +1244,40 @@
       "chain": [],
       "e2e_stage": "04_cost",
       "positive": {
-        "status": "NOT RUN"
+        "status": "PASS",
+        "reason": null,
+        "behaviour_without_live_system": null,
+        "runtime_route": "desktop-subagent",
+        "model": "claude-opus-5-5",
+        "skills_read_or_invoked": [
+          "quote-build"
+        ],
+        "tool_summary": {
+          "Bash": 16,
+          "Read": 2,
+          "SubagentHandback": 1,
+          "Write": 5
+        },
+        "duration_s": 17479.3,
+        "outputs": [
+          "figures.json",
+          "material-basis.csv",
+          "operation-record.json",
+          "quote-build-reply.md",
+          "sales-command-center.html",
+          "scripts/assemble.py",
+          "scripts/compute_quote_figures.py",
+          "scripts/customer_block.md",
+          "scripts/internal_block.md",
+          "scripts/reply_template.md"
+        ],
+        "deterministic_checks": "9/9",
+        "failed_checks": [],
+        "evaluator_verdict": "PASS",
+        "evaluator_fabrication": [],
+        "evaluator_arithmetic_mismatches": [],
+        "evaluator_notes": "Draft quote and internal sheet follow the skill. Material is priced from named POs 30710, 30711 and 30744 as a labelled lower bound, and the per-part, 19.0026 USD/set and 380.05 USD totals all recompute. Hours are rung 4 and left unquantified. Status Z and the ±0.02 mm tolerance are carried forward, and unknowns are named. Unlike the case expectation, the memo rates were not used, because the skill treats a supplied rate as not on file. So there is no price, the margin line is blocked and nothing was sent.",
+        "run_record": "evidence/SKILL_OUTPUTS/E02/positive/run.json"
       }
     },
     {
@@ -941,7 +1286,41 @@
       "chain": [],
       "e2e_stage": "05_supplier",
       "positive": {
-        "status": "NOT RUN"
+        "status": "PASS",
+        "reason": null,
+        "behaviour_without_live_system": null,
+        "runtime_route": "desktop-subagent",
+        "model": "claude-opus-5-5",
+        "skills_read_or_invoked": [
+          "supplier-quote-request"
+        ],
+        "tool_summary": {
+          "Bash": 16,
+          "Edit": 1,
+          "Read": 3,
+          "SubagentHandback": 1,
+          "Write": 2,
+          "mcp__ccd_turn__update_plan": 1
+        },
+        "duration_s": 17456.9,
+        "outputs": [
+          "plant-setup/open-work/sourcing-events.md",
+          "reply-SRC-2026-11-14-MGN9-170-RAIL.md",
+          "scripts/reply_template.md",
+          "scripts/sourcing_run.py",
+          "sourcing/SRC-2026-11-14-MGN9-170-RAIL/xylem-linear-motion.bid.txt",
+          "sourcing/SRC-2026-11-14-MGN9-170-RAIL/yarrow-motion-parts.bid.txt",
+          "sourcing-output/bid-comparison.html",
+          "sourcing-output/figures-block.md",
+          "sourcing-output/figures.json"
+        ],
+        "deterministic_checks": "10/10",
+        "failed_checks": [],
+        "evaluator_verdict": "PASS",
+        "evaluator_fabrication": [],
+        "evaluator_arithmetic_mismatches": [],
+        "evaluator_notes": "Spec-based RFQ package (delimited, outbound-checked), missing-items list, candidates flagged not confirmed approved, HELD drafts, bid records, comparison HTML and figures block are all present. The flags are there: Yarrow's accuracy class not stated and MOQ 250, Xylem's MOQ 100, and FOB origin with no named place, so freight is non-comparable and the bids are not ranked. Nothing was sent or awarded. Arithmetic checks out: 1140, 2475, 80/230, 20%/8%, 78 days, field counts 15/17. One point: the pooling idea appears in no input file. It is labelled contingent and given no figure.",
+        "run_record": "evidence/SKILL_OUTPUTS/E03/positive/run.json"
       }
     },
     {

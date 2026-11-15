@@ -1,0 +1,773 @@
+{
+ "context": {
+  "engine_version": "1",
+  "site": "SITE-1",
+  "company": null,
+  "profile": false,
+  "profile_source": null,
+  "time_zone": "America/New_York",
+  "time_zone_assumed": true,
+  "day_start": "00:00",
+  "day_boundary": "calendar day, plant local (assumed; no plant profile and no MES shift labels)",
+  "run_time": "2026-11-14T22:02:13.952190-05:00",
+  "run_time_local": "2026-11-14 22:02 (plant local)",
+  "assumptions": [
+   "Times are plant local, assumed America/New_York; no plant profile.",
+   "Production-day rule: calendar day, plant local (assumed; no plant profile and no MES shift labels)."
+  ],
+  "files_used": {
+   "downtime": "downtime.csv",
+   "output": "output.csv",
+   "routings": "routing.csv",
+   "work_orders": "work_orders.csv"
+  },
+  "files_not_used": [
+   {
+    "file": "README.txt",
+    "why": "not CSV or XLSX"
+   }
+  ],
+  "part_reference": "work_orders.csv part numbers (no item master in the drop)",
+  "unit_reference": null
+ },
+ "normalizations": [],
+ "freshness": {
+  "production_day": "2026-11-12",
+  "day_source": "latest complete production day in the exports (no day requested)",
+  "newest_production_day": "2026-11-12",
+  "days_old": 2,
+  "data_as_of": "2026-11-13T14:54:48.425646-05:00",
+  "data_as_of_local": "2026-11-13 14:54 (plant local)",
+  "data_as_of_basis": "when the plan, output and downtime exports landed (drop manifest, else file time)",
+  "newest_event": "2026-11-12 13:00 (plant local)",
+  "data_complete": false,
+  "gaps": [
+   "planning export did not land"
+  ],
+  "coverage": {
+   "output": {
+    "file": "output.csv",
+    "first": "2026-11-12",
+    "last": "2026-11-12",
+    "rows": 3,
+    "landed": "2026-11-13 14:54 (plant local)",
+    "activity": true
+   },
+   "downtime": {
+    "file": "downtime.csv",
+    "first": "2026-11-12",
+    "last": "2026-11-12",
+    "rows": 2,
+    "landed": "2026-11-13 14:54 (plant local)",
+    "activity": true
+   },
+   "work_orders": {
+    "file": "work_orders.csv",
+    "first": "2026-11-13",
+    "last": "2026-11-15",
+    "rows": 3,
+    "landed": "2026-11-13 14:54 (plant local)",
+    "activity": false
+   }
+  },
+  "activity_window": [
+   "2026-11-12",
+   "2026-11-12"
+  ],
+  "future_timestamps": [],
+  "sources_disagree": false
+ },
+ "diagnoses": {
+  "blocked_safety_unknown": [],
+  "safety_flagged": [],
+  "matched_to_mes_row": [],
+  "assets_with_diagnosis": []
+ },
+ "data_problems": {
+  "numbered": [],
+  "count": 0,
+  "mismatched": [],
+  "duplicates": [],
+  "waiting_on_decision": {
+   "unit_conflicts": {},
+   "normalizations": [],
+   "provisional_rows": 0,
+   "ncr_keys": []
+  },
+  "class7": [],
+  "checked_nothing_wrong": [],
+  "contradicted": [],
+  "integrity": {
+   "downtime_duration_conflicts": [],
+   "blank_lots": [],
+   "mes_part_differs": [],
+   "terse_close_out_notes": [],
+   "shared_lots": {}
+  }
+ },
+ "exceptions": {
+  "items": [],
+  "late_jobs": [],
+  "late_undeterminable": [],
+  "so_link": false,
+  "maintenance_history": {}
+ },
+ "week_over_week": {
+  "basis": "per-day figures computed this run from the exports",
+  "this_week": {
+   "from": "2026-11-06",
+   "to": "2026-11-12",
+   "days": 1,
+   "output_vs_plan_pct": null,
+   "availability": null,
+   "availability_days": 0,
+   "quality": null,
+   "quality_days": 0,
+   "downtime_minutes": 65,
+   "scrap_usd": null
+  },
+  "last_week": {
+   "from": "2026-10-30",
+   "to": "2026-11-05",
+   "days": 0,
+   "output_vs_plan_pct": null,
+   "availability": null,
+   "availability_days": 0,
+   "quality": null,
+   "quality_days": 0,
+   "downtime_minutes": null,
+   "scrap_usd": null
+  },
+  "skip": true
+ },
+ "periods": {
+  "day": {
+   "label": "day:2026-11-12..2026-11-12",
+   "period": "production day == 2026-11-12",
+   "days": [
+    "2026-11-12"
+   ],
+   "summary": {
+    "comparable_parts": 0,
+    "max_abs_variance_pct": null,
+    "all_under": false,
+    "all_over": false,
+    "days_under": [],
+    "provisional": [],
+    "held_out_parts": [],
+    "not_comparable": [
+     {
+      "part": "PN-100",
+      "why": "no comparable day"
+     },
+     {
+      "part": "PN-200",
+      "why": "no comparable day"
+     }
+    ]
+   },
+   "parts": {
+    "PN-100": {
+     "part": "PN-100",
+     "planned": null,
+     "good": null,
+     "days_compared": 0,
+     "days_under_plan": 0,
+     "days_held_out": [],
+     "unit_conflict": false,
+     "provisional": false,
+     "plan_spellings": [],
+     "mes_spellings": [
+      "PN-100"
+     ],
+     "units": [],
+     "item_unit": null,
+     "quality": 0.9848,
+     "status": "no comparable day",
+     "variance": null,
+     "variance_pct": null
+    },
+    "PN-200": {
+     "part": "PN-200",
+     "planned": null,
+     "good": null,
+     "days_compared": 0,
+     "days_under_plan": 0,
+     "days_held_out": [],
+     "unit_conflict": false,
+     "provisional": false,
+     "plan_spellings": [],
+     "mes_spellings": [
+      "PN-200"
+     ],
+     "units": [],
+     "item_unit": null,
+     "quality": 0.9865,
+     "status": "no comparable day",
+     "variance": null,
+     "variance_pct": null
+    }
+   },
+   "scrap": {
+    "PN-100": {
+     "part": "PN-100",
+     "scrap": 12,
+     "scrap_usd": null,
+     "unit": null,
+     "days_not_recorded": 0,
+     "unit_conflict": false,
+     "priced": false,
+     "share_of_priced": null
+    },
+    "PN-200": {
+     "part": "PN-200",
+     "scrap": 3,
+     "scrap_usd": null,
+     "unit": null,
+     "days_not_recorded": 0,
+     "unit_conflict": false,
+     "priced": false,
+     "share_of_priced": null
+    }
+   },
+   "scrap_priced_usd": null,
+   "held_out_rows": 0,
+   "held_out_good": 0
+  },
+  "week": {
+   "label": "week:2026-11-09..2026-11-12",
+   "period": "2026-11-09 to 2026-11-12 (Mon-Sun week to date)",
+   "days": [
+    "2026-11-12"
+   ],
+   "summary": {
+    "comparable_parts": 0,
+    "max_abs_variance_pct": null,
+    "all_under": false,
+    "all_over": false,
+    "days_under": [],
+    "provisional": [],
+    "held_out_parts": [],
+    "not_comparable": [
+     {
+      "part": "PN-100",
+      "why": "no comparable day"
+     },
+     {
+      "part": "PN-200",
+      "why": "no comparable day"
+     }
+    ]
+   },
+   "parts": {
+    "PN-100": {
+     "part": "PN-100",
+     "planned": null,
+     "good": null,
+     "days_compared": 0,
+     "days_under_plan": 0,
+     "days_held_out": [],
+     "unit_conflict": false,
+     "provisional": false,
+     "plan_spellings": [],
+     "mes_spellings": [
+      "PN-100"
+     ],
+     "units": [],
+     "item_unit": null,
+     "quality": 0.9848,
+     "status": "no comparable day",
+     "variance": null,
+     "variance_pct": null
+    },
+    "PN-200": {
+     "part": "PN-200",
+     "planned": null,
+     "good": null,
+     "days_compared": 0,
+     "days_under_plan": 0,
+     "days_held_out": [],
+     "unit_conflict": false,
+     "provisional": false,
+     "plan_spellings": [],
+     "mes_spellings": [
+      "PN-200"
+     ],
+     "units": [],
+     "item_unit": null,
+     "quality": 0.9865,
+     "status": "no comparable day",
+     "variance": null,
+     "variance_pct": null
+    }
+   },
+   "scrap": {
+    "PN-100": {
+     "part": "PN-100",
+     "scrap": 12,
+     "scrap_usd": null,
+     "unit": null,
+     "days_not_recorded": 0,
+     "unit_conflict": false,
+     "priced": false,
+     "share_of_priced": null
+    },
+    "PN-200": {
+     "part": "PN-200",
+     "scrap": 3,
+     "scrap_usd": null,
+     "unit": null,
+     "days_not_recorded": 0,
+     "unit_conflict": false,
+     "priced": false,
+     "share_of_priced": null
+    }
+   },
+   "scrap_priced_usd": null,
+   "held_out_rows": 0,
+   "held_out_good": 0
+  },
+  "month": {
+   "label": "month:2026-11-01..2026-11-12",
+   "period": "2026-11-01 to 2026-11-12 (month to date)",
+   "days": [
+    "2026-11-12"
+   ],
+   "summary": {
+    "comparable_parts": 0,
+    "max_abs_variance_pct": null,
+    "all_under": false,
+    "all_over": false,
+    "days_under": [],
+    "provisional": [],
+    "held_out_parts": [],
+    "not_comparable": [
+     {
+      "part": "PN-100",
+      "why": "no comparable day"
+     },
+     {
+      "part": "PN-200",
+      "why": "no comparable day"
+     }
+    ]
+   },
+   "parts": {
+    "PN-100": {
+     "part": "PN-100",
+     "planned": null,
+     "good": null,
+     "days_compared": 0,
+     "days_under_plan": 0,
+     "days_held_out": [],
+     "unit_conflict": false,
+     "provisional": false,
+     "plan_spellings": [],
+     "mes_spellings": [
+      "PN-100"
+     ],
+     "units": [],
+     "item_unit": null,
+     "quality": 0.9848,
+     "status": "no comparable day",
+     "variance": null,
+     "variance_pct": null
+    },
+    "PN-200": {
+     "part": "PN-200",
+     "planned": null,
+     "good": null,
+     "days_compared": 0,
+     "days_under_plan": 0,
+     "days_held_out": [],
+     "unit_conflict": false,
+     "provisional": false,
+     "plan_spellings": [],
+     "mes_spellings": [
+      "PN-200"
+     ],
+     "units": [],
+     "item_unit": null,
+     "quality": 0.9865,
+     "status": "no comparable day",
+     "variance": null,
+     "variance_pct": null
+    }
+   },
+   "scrap": {
+    "PN-100": {
+     "part": "PN-100",
+     "scrap": 12,
+     "scrap_usd": null,
+     "unit": null,
+     "days_not_recorded": 0,
+     "unit_conflict": false,
+     "priced": false,
+     "share_of_priced": null
+    },
+    "PN-200": {
+     "part": "PN-200",
+     "scrap": 3,
+     "scrap_usd": null,
+     "unit": null,
+     "days_not_recorded": 0,
+     "unit_conflict": false,
+     "priced": false,
+     "share_of_priced": null
+    }
+   },
+   "scrap_priced_usd": null,
+   "held_out_rows": 0,
+   "held_out_good": 0
+  }
+ },
+ "short_page": {
+  "decisions": [
+   {
+    "kind": "export",
+    "missing": [
+     "planning export did not land"
+    ],
+    "stale": true,
+    "newest_day": "2026-11-12",
+    "days_old": 2
+   },
+   {
+    "kind": "machine",
+    "asset": "CNC-01",
+    "cell": null,
+    "period": "month:2026-11-01..2026-11-12",
+    "minutes": 45,
+    "total_minutes": 65,
+    "share_pct": 69,
+    "approximate": false,
+    "reason_text": "tool change overrun",
+    "down_since": null,
+    "as_of": "2026-11-12",
+    "stale": true,
+    "diagnosed": false,
+    "safety": null,
+    "lockout": false,
+    "repeat_failure": false,
+    "seizure": null
+   }
+  ],
+  "remaining": {
+   "unit_conflicts": [],
+   "normalizations": 0,
+   "provisional_rows": 0,
+   "ncr_keys": 0,
+   "overflow": []
+  }
+ },
+ "downtime": {
+  "day": {
+   "label": "2026-11-12",
+   "events": 2,
+   "minutes": 65,
+   "ongoing": 0,
+   "held_out": [],
+   "uncoded_events": 0,
+   "uncoded_minutes": 0,
+   "by_asset": [
+    {
+     "key": "CNC-01",
+     "events": 1,
+     "minutes": 45,
+     "ongoing": 0,
+     "held_out": 0,
+     "rank_minutes": 1,
+     "rank_events": 1
+    },
+    {
+     "key": "CNC-02",
+     "events": 1,
+     "minutes": 20,
+     "ongoing": 0,
+     "held_out": 0,
+     "rank_minutes": 2,
+     "rank_events": 1
+    }
+   ],
+   "by_code": [
+    {
+     "key": "TOOL",
+     "events": 1,
+     "minutes": 45,
+     "ongoing": 0,
+     "held_out": 0,
+     "rank_minutes": 1,
+     "rank_events": 1
+    },
+    {
+     "key": "MAT",
+     "events": 1,
+     "minutes": 20,
+     "ongoing": 0,
+     "held_out": 0,
+     "rank_minutes": 2,
+     "rank_events": 1
+    }
+   ]
+  },
+  "week": {
+   "label": "2026-11-09..2026-11-12",
+   "events": 2,
+   "minutes": 65,
+   "ongoing": 0,
+   "held_out": [],
+   "uncoded_events": 0,
+   "uncoded_minutes": 0,
+   "by_asset": [
+    {
+     "key": "CNC-01",
+     "events": 1,
+     "minutes": 45,
+     "ongoing": 0,
+     "held_out": 0,
+     "rank_minutes": 1,
+     "rank_events": 1
+    },
+    {
+     "key": "CNC-02",
+     "events": 1,
+     "minutes": 20,
+     "ongoing": 0,
+     "held_out": 0,
+     "rank_minutes": 2,
+     "rank_events": 1
+    }
+   ],
+   "by_code": [
+    {
+     "key": "TOOL",
+     "events": 1,
+     "minutes": 45,
+     "ongoing": 0,
+     "held_out": 0,
+     "rank_minutes": 1,
+     "rank_events": 1
+    },
+    {
+     "key": "MAT",
+     "events": 1,
+     "minutes": 20,
+     "ongoing": 0,
+     "held_out": 0,
+     "rank_minutes": 2,
+     "rank_events": 1
+    }
+   ]
+  },
+  "month": {
+   "label": "2026-11-01..2026-11-12",
+   "events": 2,
+   "minutes": 65,
+   "ongoing": 0,
+   "held_out": [],
+   "uncoded_events": 0,
+   "uncoded_minutes": 0,
+   "by_asset": [
+    {
+     "key": "CNC-01",
+     "events": 1,
+     "minutes": 45,
+     "ongoing": 0,
+     "held_out": 0,
+     "rank_minutes": 1,
+     "rank_events": 1
+    },
+    {
+     "key": "CNC-02",
+     "events": 1,
+     "minutes": 20,
+     "ongoing": 0,
+     "held_out": 0,
+     "rank_minutes": 2,
+     "rank_events": 1
+    }
+   ],
+   "by_code": [
+    {
+     "key": "TOOL",
+     "events": 1,
+     "minutes": 45,
+     "ongoing": 0,
+     "held_out": 0,
+     "rank_minutes": 1,
+     "rank_events": 1
+    },
+    {
+     "key": "MAT",
+     "events": 1,
+     "minutes": 20,
+     "ongoing": 0,
+     "held_out": 0,
+     "rank_minutes": 2,
+     "rank_events": 1
+    }
+   ]
+  },
+  "window": {
+   "label": "window",
+   "events": 2,
+   "minutes": 65,
+   "ongoing": 0,
+   "held_out": [],
+   "uncoded_events": 0,
+   "uncoded_minutes": 0,
+   "by_asset": [
+    {
+     "key": "CNC-01",
+     "events": 1,
+     "minutes": 45,
+     "ongoing": 0,
+     "held_out": 0,
+     "rank_minutes": 1,
+     "rank_events": 1
+    },
+    {
+     "key": "CNC-02",
+     "events": 1,
+     "minutes": 20,
+     "ongoing": 0,
+     "held_out": 0,
+     "rank_minutes": 2,
+     "rank_events": 1
+    }
+   ],
+   "by_code": [
+    {
+     "key": "TOOL",
+     "events": 1,
+     "minutes": 45,
+     "ongoing": 0,
+     "held_out": 0,
+     "rank_minutes": 1,
+     "rank_events": 1
+    },
+    {
+     "key": "MAT",
+     "events": 1,
+     "minutes": 20,
+     "ongoing": 0,
+     "held_out": 0,
+     "rank_minutes": 2,
+     "rank_events": 1
+    }
+   ]
+  }
+ },
+ "today": {
+  "day": "2026-11-12",
+  "parts": {
+   "PN-100": {
+    "part": "PN-100",
+    "planned": null,
+    "good": 780,
+    "rows_counted": 2,
+    "plan_spellings": [],
+    "mes_spellings": [
+     "PN-100"
+    ],
+    "units": [],
+    "provisional": false,
+    "held_out_rows": [],
+    "status": "no plan",
+    "variance": null,
+    "variance_pct": null,
+    "under_plan": null,
+    "item_unit": null,
+    "unit_conflict": false
+   },
+   "PN-200": {
+    "part": "PN-200",
+    "planned": null,
+    "good": 220,
+    "rows_counted": 1,
+    "plan_spellings": [],
+    "mes_spellings": [
+     "PN-200"
+    ],
+    "units": [],
+    "provisional": false,
+    "held_out_rows": [],
+    "status": "no plan",
+    "variance": null,
+    "variance_pct": null,
+    "under_plan": null,
+    "item_unit": null,
+    "unit_conflict": false
+   }
+  },
+  "planned_qty": {},
+  "actual_qty": {
+   "unit": 1000
+  },
+  "output_provisional": false,
+  "oee_by_asset": [],
+  "availability": null,
+  "performance": null,
+  "quality": null,
+  "oee": null,
+  "oee_excluded": [],
+  "quality_convention": "good \u00f7 (good + scrap); no rework column, so first-pass yield could not be applied",
+  "scrap": [
+   {
+    "part": "PN-100",
+    "scrap": 12,
+    "unit": null,
+    "recorded": true,
+    "unit_conflict": false,
+    "scrap_usd": null,
+    "share_of_priced": null
+   },
+   {
+    "part": "PN-200",
+    "scrap": 3,
+    "unit": null,
+    "recorded": true,
+    "unit_conflict": false,
+    "scrap_usd": null,
+    "share_of_priced": null
+   }
+  ],
+  "scrap_priced_usd": null,
+  "downtime_usd": null,
+  "rate_source": "unset",
+  "unpriced": [
+   "all downtime: no downtime cost rate (MFG_DOWNTIME_COST_PER_HOUR not set, none in the plant's rates)",
+   "PN-100 scrap: no standard cost on file",
+   "PN-200 scrap: no standard cost on file"
+  ],
+  "downtime_minutes": 65,
+  "events": 2,
+  "open_outages": 0,
+  "stops": [
+   {
+    "asset": "CNC-01",
+    "cell": null,
+    "start": "2026-11-12 09:10 (plant local)",
+    "minutes": 45,
+    "stated_minutes": 45,
+    "code": "TOOL",
+    "text": "tool change overrun",
+    "flags": []
+   },
+   {
+    "asset": "CNC-02",
+    "cell": null,
+    "start": "2026-11-12 13:00 (plant local)",
+    "minutes": 20,
+    "stated_minutes": 20,
+    "code": "MAT",
+    "text": "waiting on material",
+    "flags": []
+   }
+  ]
+ },
+ "checks": {
+  "run": 33,
+  "failed": []
+ }
+}

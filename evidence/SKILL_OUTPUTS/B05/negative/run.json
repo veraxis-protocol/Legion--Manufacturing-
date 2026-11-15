@@ -301,6 +301,35 @@
   }
  ],
  "transcript": "evidence/SKILL_OUTPUTS/B05/negative/transcript.jsonl.gz",
- "status": "Z",
- "z_reason": "no independent evaluator verdict"
+ "evaluator": {
+  "route": "desktop-subagent, separate context from the producer",
+  "model": "claude-opus-5-5",
+  "transcript_file": "agent-ad1c723e0620d7f94.jsonl",
+  "tools_used": [
+   "Glob",
+   "Grep",
+   "Read",
+   "SubagentHandback"
+  ],
+  "non_read_tool_calls": 1,
+  "usage": {
+   "input_tokens": 10,
+   "output_tokens": 2111,
+   "cache_read_input_tokens": 289098,
+   "cache_creation_input_tokens": 39887
+  },
+  "verdict": {
+   "verdict": "PASS",
+   "core_task_done": true,
+   "required_products_present": true,
+   "claims_sourced": true,
+   "fabrication": [],
+   "missing_data_handled": true,
+   "approval_rules_respected": true,
+   "arithmetic_mismatches": [],
+   "notes": "There are no POs, so material and anodize are BLOCKED. No price is shown as paid, and every customer price says pending. The finance memo rates are not used and not repeated, as the skill requires. Rechecked against the inputs: setup 105 min = 1.75 h, run 12.8 min/pc, hours at each break (55.08/108.42/215.08), op variances (+15.6% flagged) and scrap 1.96%/1.77% all match. Minor gaps: no Word/Excel copy and no command-center page, both explained. Nothing was sent, and Gate 4 is left to the estimator."
+  },
+  "raw": null
+ },
+ "status": "PASS"
 }

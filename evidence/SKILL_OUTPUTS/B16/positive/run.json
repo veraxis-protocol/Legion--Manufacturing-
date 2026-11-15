@@ -425,6 +425,35 @@
   }
  ],
  "transcript": "evidence/SKILL_OUTPUTS/B16/positive/transcript.jsonl.gz",
- "status": "Z",
- "z_reason": "no independent evaluator verdict"
+ "evaluator": {
+  "route": "desktop-subagent, separate context from the producer",
+  "model": "claude-opus-5-5",
+  "transcript_file": "agent-a2284b8bcf23e3cc0.jsonl",
+  "tools_used": [
+   "Glob",
+   "Grep",
+   "Read",
+   "SubagentHandback"
+  ],
+  "non_read_tool_calls": 1,
+  "usage": {
+   "input_tokens": 18,
+   "output_tokens": 3733,
+   "cache_read_input_tokens": 421299,
+   "cache_creation_input_tokens": 115757
+  },
+  "verdict": {
+   "verdict": "PASS",
+   "core_task_done": true,
+   "required_products_present": true,
+   "claims_sourced": true,
+   "fabrication": [],
+   "missing_data_handled": true,
+   "approval_rules_respected": true,
+   "arithmetic_mismatches": [],
+   "notes": "The chain runs in order: NCR cited to drawing note 4, all five containment locations covered, recurrence after the unverified CAPA-071 shown, Gate 1 approval recorded from the test operator, then the ranked tie in D4 with discriminating tests, the 8D (D6/D8 left as placeholders), and the customer pack held at Gate 2 with a redaction diff that keeps the recurrence. I recomputed the I-chart, phase-I limits, regression, residuals and band percentages: all match. Minor: documents are files rather than printed in the reply; section 3 of the main report still says paused at Gate 1."
+  },
+  "raw": null
+ },
+ "status": "PASS"
 }

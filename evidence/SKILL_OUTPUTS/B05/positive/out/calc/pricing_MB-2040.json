@@ -1,0 +1,461 @@
+{
+  "rates_source": "plant-setup/plant-rates.md (confirmed 2026-11-14)",
+  "margin_default": 0.18,
+  "breaks": [
+    {
+      "qty": 250,
+      "conversion_by_wc": {
+        "MILL-V": {
+          "setup_usd": 150.38,
+          "run_usd": 4360.5
+        },
+        "INSP": {
+          "setup_usd": 10.02,
+          "run_usd": 510.0
+        }
+      },
+      "setup_usd": 160.4,
+      "setup_usd_per_pc": 0.6416,
+      "run_usd": 4870.5,
+      "conversion_usd": 5030.9,
+      "cases": {
+        "27_per_plate_PRICED": {
+          "material_usd": 2199.0,
+          "anodize_usd": 385.0,
+          "cost_usd": 7614.9,
+          "cost_per_pc": 30.4596,
+          "material_markup_usd": 263.88,
+          "osp_markup_usd": 38.5,
+          "margin_on_conversion_usd": 1104.34,
+          "uplift_total_usd": 1406.72,
+          "price_usd": 9021.62,
+          "unit_price_usd": 36.09,
+          "extended_at_rounded_unit": 9022.5,
+          "uplift_share_of_price": 0.1559,
+          "alt_stacked_unit": 38.62,
+          "alt_margin_only_unit": 37.15
+        },
+        "30_per_plate_alt": {
+          "material_usd": 1979.1,
+          "anodize_usd": 385.0,
+          "cost_usd": 7395.0,
+          "cost_per_pc": 29.58,
+          "material_markup_usd": 237.49,
+          "osp_markup_usd": 38.5,
+          "margin_on_conversion_usd": 1104.34,
+          "uplift_total_usd": 1380.34,
+          "price_usd": 8775.34,
+          "unit_price_usd": 35.1,
+          "extended_at_rounded_unit": 8775.0,
+          "uplift_share_of_price": 0.1573,
+          "alt_stacked_unit": 37.42,
+          "alt_margin_only_unit": 36.07
+        }
+      }
+    },
+    {
+      "qty": 500,
+      "conversion_by_wc": {
+        "MILL-V": {
+          "setup_usd": 150.38,
+          "run_usd": 8721.0
+        },
+        "INSP": {
+          "setup_usd": 10.02,
+          "run_usd": 1020.0
+        }
+      },
+      "setup_usd": 160.4,
+      "setup_usd_per_pc": 0.3208,
+      "run_usd": 9741.0,
+      "conversion_usd": 9901.4,
+      "cases": {
+        "27_per_plate_PRICED": {
+          "material_usd": 4178.1,
+          "anodize_usd": 770.0,
+          "cost_usd": 14849.5,
+          "cost_per_pc": 29.699,
+          "material_markup_usd": 501.37,
+          "osp_markup_usd": 77.0,
+          "margin_on_conversion_usd": 2173.48,
+          "uplift_total_usd": 2751.85,
+          "price_usd": 17601.35,
+          "unit_price_usd": 35.2,
+          "extended_at_rounded_unit": 17600.0,
+          "uplift_share_of_price": 0.1563,
+          "alt_stacked_unit": 37.63,
+          "alt_margin_only_unit": 36.22
+        },
+        "30_per_plate_alt": {
+          "material_usd": 3738.3,
+          "anodize_usd": 770.0,
+          "cost_usd": 14409.7,
+          "cost_per_pc": 28.8194,
+          "material_markup_usd": 448.6,
+          "osp_markup_usd": 77.0,
+          "margin_on_conversion_usd": 2173.48,
+          "uplift_total_usd": 2699.07,
+          "price_usd": 17108.77,
+          "unit_price_usd": 34.22,
+          "extended_at_rounded_unit": 17110.0,
+          "uplift_share_of_price": 0.1578,
+          "alt_stacked_unit": 36.43,
+          "alt_margin_only_unit": 35.15
+        }
+      }
+    },
+    {
+      "qty": 1000,
+      "conversion_by_wc": {
+        "MILL-V": {
+          "setup_usd": 150.38,
+          "run_usd": 17424.9
+        },
+        "INSP": {
+          "setup_usd": 10.02,
+          "run_usd": 2038.2
+        }
+      },
+      "setup_usd": 160.4,
+      "setup_usd_per_pc": 0.1604,
+      "run_usd": 19463.1,
+      "conversion_usd": 19623.5,
+      "cases": {
+        "27_per_plate_PRICED": {
+          "material_usd": 8356.2,
+          "anodize_usd": 1540.0,
+          "cost_usd": 29519.7,
+          "cost_per_pc": 29.5197,
+          "material_markup_usd": 1002.74,
+          "osp_markup_usd": 154.0,
+          "margin_on_conversion_usd": 4307.6,
+          "uplift_total_usd": 5464.34,
+          "price_usd": 34984.04,
+          "unit_price_usd": 34.98,
+          "extended_at_rounded_unit": 34980.0,
+          "uplift_share_of_price": 0.1562,
+          "alt_stacked_unit": 37.41,
+          "alt_margin_only_unit": 36.0
+        },
+        "30_per_plate_alt": {
+          "material_usd": 7476.6,
+          "anodize_usd": 1540.0,
+          "cost_usd": 28640.1,
+          "cost_per_pc": 28.6401,
+          "material_markup_usd": 897.19,
+          "osp_markup_usd": 154.0,
+          "margin_on_conversion_usd": 4307.6,
+          "uplift_total_usd": 5358.79,
+          "price_usd": 33998.89,
+          "unit_price_usd": 34.0,
+          "extended_at_rounded_unit": 34000.0,
+          "uplift_share_of_price": 0.1576,
+          "alt_stacked_unit": 36.21,
+          "alt_margin_only_unit": 34.93
+        }
+      }
+    }
+  ],
+  "figures": [
+    {
+      "figure": "Q250 27_per_plate_PRICED cost_usd",
+      "value": 7614.9,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q250 27_per_plate_PRICED material_markup_usd",
+      "value": 263.88,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q250 27_per_plate_PRICED osp_markup_usd",
+      "value": 38.5,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q250 27_per_plate_PRICED margin_on_conversion_usd",
+      "value": 1104.34,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q250 27_per_plate_PRICED unit_price_usd",
+      "value": 36.09,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q250 27_per_plate_PRICED extended_at_rounded_unit",
+      "value": 9022.5,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q250 27_per_plate_PRICED alt_stacked_unit",
+      "value": 38.62,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q250 27_per_plate_PRICED alt_margin_only_unit",
+      "value": 37.15,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q250 30_per_plate_alt cost_usd",
+      "value": 7395.0,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q250 30_per_plate_alt material_markup_usd",
+      "value": 237.49,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q250 30_per_plate_alt osp_markup_usd",
+      "value": 38.5,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q250 30_per_plate_alt margin_on_conversion_usd",
+      "value": 1104.34,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q250 30_per_plate_alt unit_price_usd",
+      "value": 35.1,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q250 30_per_plate_alt extended_at_rounded_unit",
+      "value": 8775.0,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q250 30_per_plate_alt alt_stacked_unit",
+      "value": 37.42,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q250 30_per_plate_alt alt_margin_only_unit",
+      "value": 36.07,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q250 setup_usd",
+      "value": 160.4,
+      "arithmetic": "hours x work-centre rate"
+    },
+    {
+      "figure": "Q250 setup_usd_per_pc",
+      "value": 0.6416,
+      "arithmetic": "hours x work-centre rate"
+    },
+    {
+      "figure": "Q250 run_usd",
+      "value": 4870.5,
+      "arithmetic": "hours x work-centre rate"
+    },
+    {
+      "figure": "Q250 conversion_usd",
+      "value": 5030.9,
+      "arithmetic": "hours x work-centre rate"
+    },
+    {
+      "figure": "Q500 27_per_plate_PRICED cost_usd",
+      "value": 14849.5,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q500 27_per_plate_PRICED material_markup_usd",
+      "value": 501.37,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q500 27_per_plate_PRICED osp_markup_usd",
+      "value": 77.0,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q500 27_per_plate_PRICED margin_on_conversion_usd",
+      "value": 2173.48,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q500 27_per_plate_PRICED unit_price_usd",
+      "value": 35.2,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q500 27_per_plate_PRICED extended_at_rounded_unit",
+      "value": 17600.0,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q500 27_per_plate_PRICED alt_stacked_unit",
+      "value": 37.63,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q500 27_per_plate_PRICED alt_margin_only_unit",
+      "value": 36.22,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q500 30_per_plate_alt cost_usd",
+      "value": 14409.7,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q500 30_per_plate_alt material_markup_usd",
+      "value": 448.6,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q500 30_per_plate_alt osp_markup_usd",
+      "value": 77.0,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q500 30_per_plate_alt margin_on_conversion_usd",
+      "value": 2173.48,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q500 30_per_plate_alt unit_price_usd",
+      "value": 34.22,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q500 30_per_plate_alt extended_at_rounded_unit",
+      "value": 17110.0,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q500 30_per_plate_alt alt_stacked_unit",
+      "value": 36.43,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q500 30_per_plate_alt alt_margin_only_unit",
+      "value": 35.15,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q500 setup_usd",
+      "value": 160.4,
+      "arithmetic": "hours x work-centre rate"
+    },
+    {
+      "figure": "Q500 setup_usd_per_pc",
+      "value": 0.3208,
+      "arithmetic": "hours x work-centre rate"
+    },
+    {
+      "figure": "Q500 run_usd",
+      "value": 9741.0,
+      "arithmetic": "hours x work-centre rate"
+    },
+    {
+      "figure": "Q500 conversion_usd",
+      "value": 9901.4,
+      "arithmetic": "hours x work-centre rate"
+    },
+    {
+      "figure": "Q1000 27_per_plate_PRICED cost_usd",
+      "value": 29519.7,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q1000 27_per_plate_PRICED material_markup_usd",
+      "value": 1002.74,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q1000 27_per_plate_PRICED osp_markup_usd",
+      "value": 154.0,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q1000 27_per_plate_PRICED margin_on_conversion_usd",
+      "value": 4307.6,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q1000 27_per_plate_PRICED unit_price_usd",
+      "value": 34.98,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q1000 27_per_plate_PRICED extended_at_rounded_unit",
+      "value": 34980.0,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q1000 27_per_plate_PRICED alt_stacked_unit",
+      "value": 37.41,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q1000 27_per_plate_PRICED alt_margin_only_unit",
+      "value": 36.0,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q1000 30_per_plate_alt cost_usd",
+      "value": 28640.1,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q1000 30_per_plate_alt material_markup_usd",
+      "value": 897.19,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q1000 30_per_plate_alt osp_markup_usd",
+      "value": 154.0,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q1000 30_per_plate_alt margin_on_conversion_usd",
+      "value": 4307.6,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q1000 30_per_plate_alt unit_price_usd",
+      "value": 34.0,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q1000 30_per_plate_alt extended_at_rounded_unit",
+      "value": 34000.0,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q1000 30_per_plate_alt alt_stacked_unit",
+      "value": 36.21,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q1000 30_per_plate_alt alt_margin_only_unit",
+      "value": 34.93,
+      "arithmetic": "see price_mb2040.py"
+    },
+    {
+      "figure": "Q1000 setup_usd",
+      "value": 160.4,
+      "arithmetic": "hours x work-centre rate"
+    },
+    {
+      "figure": "Q1000 setup_usd_per_pc",
+      "value": 0.1604,
+      "arithmetic": "hours x work-centre rate"
+    },
+    {
+      "figure": "Q1000 run_usd",
+      "value": 19463.1,
+      "arithmetic": "hours x work-centre rate"
+    },
+    {
+      "figure": "Q1000 conversion_usd",
+      "value": 19623.5,
+      "arithmetic": "hours x work-centre rate"
+    }
+  ]
+}

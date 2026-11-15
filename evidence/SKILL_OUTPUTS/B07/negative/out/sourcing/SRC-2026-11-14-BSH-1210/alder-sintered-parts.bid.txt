@@ -1,0 +1,63 @@
+contract_version: 1
+site: "not stated (no plant profile)"
+event_ref: "SRC-2026-11-14-BSH-1210"
+bid_ref: "SRC-2026-11-14-BSH-1210/unlisted-alder/1"
+supersedes: null
+supplier_id: "unlisted"
+supplier_id_verbatim: "Alder Sintered Parts (fictitious)"
+supplier_name: "Alder Sintered Parts"
+approval_status: "not_confirmed_approved"
+received_at: null   # the bid text carries no date
+received_via: "pasted"
+source_ref: "bid_supplier_A.txt, line 2-4"
+ingested_at: "2026-11-14T00:00:00 (session date; time of day and zone not known)"
+currency: "USD"
+breaks:
+  - quantity: 800
+    uom: "each"
+    unit_price: null
+    as_quoted: "not priced at 800; supplier quoted: 1,000 pcs 0.62 USD/ea; 3,000 pcs 0.55 USD/ea"
+    lead_time_first_article: null
+    lead_time_production: null
+    source_ref: "bid_supplier_A.txt, line 2-4"
+  - quantity: 1200
+    uom: "each"
+    unit_price: null
+    as_quoted: "not priced at 1,200; supplier quoted: 1,000 pcs 0.62 USD/ea; 3,000 pcs 0.55 USD/ea"
+    lead_time_first_article: null
+    lead_time_production: null
+    source_ref: "bid_supplier_A.txt, line 2-4"
+  - quantity: 3200
+    uom: "each"
+    unit_price: null
+    as_quoted: "not priced at 3,200; supplier quoted: 1,000 pcs 0.62 USD/ea; 3,000 pcs 0.55 USD/ea"
+    lead_time_first_article: null
+    lead_time_production: null
+    source_ref: "bid_supplier_A.txt, line 2-4"
+tooling_price: null
+tooling_in_unit_price: null
+tooling_ownership: null
+tooling_note: "Tooling: existing."
+moq: 1000
+moq_uom: "each"
+validity_until: null
+freight_basis: "FOB origin"
+quality_clause_acceptance: "not_stated"
+clause_exceptions: []
+exceptions: ["hardness 25-45 HRF"]
+conformance: off_format
+fields_missing:
+  - "unit price at 800 (not priced at this quantity)"
+  - "unit price at 1,200 (not priced at this quantity)"
+  - "unit price at 3,200 (not priced at this quantity)"
+  - "lead time, first article, from a named event (as quoted: '4 weeks ARO')"
+  - "lead time, production, from a named event (as quoted: '4 weeks ARO')"
+  - "tooling price, or a statement that none is needed (as quoted: 'Tooling: existing.')"
+  - "tooling ownership"
+  - "price validity as a date (stated '30 days' but the quote is undated)"
+  - "quality clause acceptance"
+  - "payment terms"
+restatement_requested: true   # drafted, not sent
+# notes (verbatim, outside the contract fields):
+#   quote ref: Q-A-118; revision quoted: A (stated: 'Part BSH-1210 rev A'); lead time as quoted: 4 weeks ARO; validity as quoted: valid 30 days; payment: not stated
+#   supplier's own quantities: 1,000 pcs 0.62 USD/ea; 3,000 pcs 0.55 USD/ea

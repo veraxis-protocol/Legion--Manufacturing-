@@ -1,0 +1,67 @@
+# Geometry estimate - rfq-to-quote step 7 - SYNTHETIC TEST RUN. Internal estimating aid; never sent to the customer.
+# Fusion not connected - no model built. Hand-entered feature list prefilled from the written spec (path A). ROM only.
+contract_version: 1
+site: "Example Precision Works, Plant 1 (EPW1)"
+inquiry_ref: "Northwind Robotics MB-2040 (no customer RFQ number)"
+line_no: 1
+part_number: "MB-2040"
+part_number_verbatim: "MB-2040"
+geometry_path: A
+drawing_revision_priced_to: null      # no drawing; features read from spec sheet rev C (2026-10-27)
+origin: hand_entered
+document_ref: null
+base_model_ref: null
+cad_backend: none
+generated_at: null
+document_integrity: { result: not_applicable, bodies_before: null, bodies_after: null, sketches_before: null, sketches_after: null, checked_at: null, detail: "No CAD document opened: Fusion not connected; hand-entered list." }
+model_checks: null                    # no model; hand calc not meaningful: slot end form and feature positions not stated
+stock:
+  material: "Aluminium 6061-T6 plate, ASTM B209"
+  form: plate
+  size: "0.5 in x 12 in x 48 in (12.7 x 304.8 x 1219.2 mm), as bought on PO-30411 / PO-30588"
+  fit_check:
+    part_envelope: "120 x 80 x 12 mm"
+    cleanup_allowance: "not on file (no Machining data in a plant profile)"
+    fits: true
+    flag: "Thickness leaves 0.7 mm total over the finished 12 mm for facing both sides. Fits only if that suffices; cleanup allowance is not on file. 30 blanks per plate is an upper bound at zero kerf/cleanup."
+  source_ref: "MB-2040_spec_revC.md rows Material, Envelope; purchase_orders.csv PO-30588"
+datums:
+  - { label: "A (proposed)", feature: "mounting face", basis: inferred, source_ref: "none stated in MB-2040_spec_revC.md; assigned for estimating only" }
+  - { label: "B/C (proposed)", feature: "two adjacent outside edges", basis: inferred, source_ref: "none stated; assigned for estimating only" }
+features:
+  - { type: "face/profile (envelope)", count: 1, dimension: "120 x 80 x 12 mm", tolerance: "ISO 2768-m", tolerance_driver: false, surface_finish: "Ra 3.2 um", reading_basis: from_text, source_ref: "spec rows Envelope, General tolerance, Surface finish" }
+  - { type: "through-bore", count: 1, dimension: "dia 22.000 mm, through, 12 mm deep", tolerance: "+0.021/-0.000 (H7)", tolerance_driver: true, surface_finish: "Ra 1.6 um", reading_basis: from_text, source_ref: "spec rows Main bore, Surface finish" }
+  - { type: "thread", count: 4, dimension: "M5x0.8 tapped through, 100 x 60 mm pattern (rev C position)", tolerance: null, tolerance_driver: false, surface_finish: "Ra 3.2 um", reading_basis: from_text, source_ref: "spec row Mounting holes; rfq_email.txt msg 2026-10-29" }
+  - { type: "slot", count: 1, dimension: "8 mm wide x 40 mm long, through", tolerance: "ISO 2768-m (per general note)", tolerance_driver: false, surface_finish: "Ra 3.2 um", reading_basis: from_text, source_ref: "spec rows Slot, General tolerance" }
+  - { type: "edge break", count: 1, dimension: "0.2-0.5 mm all edges", tolerance: "range as stated", tolerance_driver: false, surface_finish: null, reading_basis: from_text, source_ref: "spec row Edge break" }
+setups:
+  - { setup_seq: 1, faces: "top face, profile, bore, M5 holes, slot", fixture_note: "vise or plate fixture - assumption", machine_class: "MILL-V (as named; no Machine classes table on file)" }
+  - { setup_seq: 2, faces: "flip; opposite face to 12 mm, edge break", fixture_note: "soft jaws - assumption", machine_class: "MILL-V (as named)" }
+operations:
+  - { op_seq: 10, description: "Saw and face blank", machine_class: "MILL-V", setup_seq: null, features: ["stock"], outside_process: false, assumptions: ["sequence mirrors MB-1880 rev B routing op 10"], source_ref: "routings.csv MB-1880 B op10 (structure only)" }
+  - { op_seq: 20, description: "Op1: profile, bore H7 Ra 1.6, drill and tap 4x M5, slot", machine_class: "MILL-V", setup_seq: 1, features: ["envelope","through-bore","thread","slot"], outside_process: false, assumptions: ["H7/Ra 1.6 finished on the VMC (finish bore or ream) - capability not on file", "bore and threads masked at anodize per Q3"], source_ref: "spec sheet" }
+  - { op_seq: 30, description: "Op2: flip, face to 12 mm, edge break all edges", machine_class: "MILL-V", setup_seq: 2, features: ["envelope","edge break"], outside_process: false, assumptions: ["0.7 mm stock suffices"], source_ref: "spec sheet" }
+  - { op_seq: 40, description: "Deburr and inspect; AS9102-format FAI on first lot", machine_class: "INSP", setup_seq: null, features: ["all"], outside_process: false, assumptions: ["FAI effort not separately estimated"], source_ref: "spec row Inspection" }
+  - { op_seq: 50, description: "Laser etch part number and lot code", machine_class: null, setup_seq: null, features: [], outside_process: true, assumptions: ["no laser marker on equipment.csv; outside process assumed; vendor and price not on file; location pending Q5"], source_ref: "spec row Marking; equipment.csv" }
+  - { op_seq: 60, description: "Type II sulfuric anodize, black, MIL-A-8625", machine_class: null, setup_seq: null, features: ["all"], outside_process: true, assumptions: ["vendor per PO-30602; masking requirement pending Q3 and not in PO description"], source_ref: "spec row Finish; purchase_orders.csv PO-30602" }
+tolerances:
+  - { characteristic: "general", value: "ISO 2768-m", reading_basis: from_text, source_ref: "spec row General tolerance", key_characteristic: null }
+  - { characteristic: "main bore dia", value: "22.000 +0.021/-0.000 (H7)", reading_basis: from_text, source_ref: "spec row Main bore", key_characteristic: null }
+  - { characteristic: "bore finish", value: "Ra 1.6 um", reading_basis: from_text, source_ref: "spec row Surface finish", key_characteristic: null }
+  - { characteristic: "other surfaces", value: "Ra 3.2 um", reading_basis: from_text, source_ref: "spec row Surface finish", key_characteristic: null }
+  - { characteristic: "edge break", value: "0.2-0.5 mm", reading_basis: from_text, source_ref: "spec row Edge break", key_characteristic: null }
+unreadables:
+  - { what: "positions of bore, slot and M5 pattern relative to edges; slot orientation and end form", where: "not in spec sheet", why: "cannot model or fixture-plan without them; needs rev C drawing (Q1)" }
+  - { what: "position tolerance of M5 pattern and bore", where: "not stated", why: "not invented; general ISO 2768-m covers linear dims only as stated" }
+  - { what: "flatness of mounting face", where: "spec 'TBD'", why: "pending customer decision (Q2); may drive process" }
+  - { what: "M5 thread class", where: "not stated", why: "Q4" }
+  - { what: "marking location", where: "'per customer'", why: "Q5" }
+questions_for_estimator:
+  - "Path A: every dimension is from_text. This line is a ROM only; a Gate 3 yes does not make it firm."
+  - "Fusion not connected - no model built. Confirm or correct this hand-entered feature list and operation list."
+  - "Datums A, B, C are inferred (none stated). Confirm or correct."
+  - "Op 20: will the H7 / Ra 1.6 bore be finished on VMC-02/VMC-03? Plant capability for H7 is not on file."
+  - "Op 30: is 0.7 mm total stock over 12 mm enough for facing both sides, or is thicker plate needed?"
+  - "Op 50: laser etch - outside vendor? None on file."
+cost_down_proposals: []
+approval: { status: draft, by: null, at: null, note: null }

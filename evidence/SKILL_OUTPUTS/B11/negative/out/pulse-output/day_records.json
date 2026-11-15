@@ -1,0 +1,61 @@
+[
+ {
+  "contract_version": 1,
+  "record_key": "SITE-1_2026-11-12",
+  "site": "SITE-1",
+  "production_day": "2026-11-12",
+  "day_boundary": "calendar day, plant local (assumed; no plant profile and no MES shift labels)",
+  "run_timestamp": "2026-11-14T22:02:13.952190-05:00",
+  "data_as_of": "2026-11-13T14:54:48.425646-05:00",
+  "data_complete": false,
+  "gaps": [
+   "plan export did not land"
+  ],
+  "backfilled": false,
+  "planned_qty": null,
+  "actual_qty": {
+   "unit": 1000
+  },
+  "output_provisional": false,
+  "oee": null,
+  "availability": null,
+  "performance": null,
+  "quality": null,
+  "quality_convention": "good \u00f7 (good + scrap); no rework column, so first-pass yield could not be applied",
+  "oee_basis": "per asset, time-weighted to site; excluded: none",
+  "downtime_by_reason": [
+   {
+    "reason_code": "TOOL",
+    "minutes": 45,
+    "events": 1
+   },
+   {
+    "reason_code": "MAT",
+    "minutes": 20,
+    "events": 1
+   }
+  ],
+  "downtime_minutes_total": 65,
+  "open_outages": 0,
+  "uncoded_share": {
+   "events": 0,
+   "minutes": 0,
+   "of_events": 2,
+   "of_minutes": 65
+  },
+  "blocked_safety_unknown": 0,
+  "loss_usd": {
+   "scrap": null,
+   "downtime": null,
+   "currency": "USD"
+  },
+  "rate_source": "unset",
+  "unpriced": [
+   "all downtime: no downtime cost rate (MFG_DOWNTIME_COST_PER_HOUR not set, none in the plant's rates)",
+   "PN-100 scrap: no standard cost on file",
+   "PN-200 scrap: no standard cost on file"
+  ],
+  "exceptions": [],
+  "data_problems_count": 0
+ }
+]

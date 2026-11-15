@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MB-1880 Bore Investigation</title>
+<style>
+:root{--ink:#1A1D21;--paper:#F2F3F5;--paper-raised:#FFFFFF;--line:#D6D9DD;--accent:#1F5C8B;--accent-soft:#E4EDF4;--good:#2E7248;--good-soft:#E3EFE7;--warn:#A8641A;--warn-soft:#F7EBDA;--critical:#A93226;--critical-soft:#F9E9E7;
+--font-display:'IBM Plex Sans Condensed','Arial Narrow',sans-serif;--font-body:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,sans-serif;--font-mono:'IBM Plex Mono','SF Mono',Consolas,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#E8EAEC;--paper:#15181B;--paper-raised:#1D2126;--line:#2E343A;--accent:#6BA8D4;--accent-soft:#1B2C39;--good:#6FBF88;--good-soft:#1B2E22;--warn:#D9A15C;--warn-soft:#33271A;--critical:#DE8378;--critical-soft:#35201E}}
+:root[data-theme="dark"]{--ink:#E8EAEC;--paper:#15181B;--paper-raised:#1D2126;--line:#2E343A;--accent:#6BA8D4;--accent-soft:#1B2C39;--good:#6FBF88;--good-soft:#1B2E22;--warn:#D9A15C;--warn-soft:#33271A;--critical:#DE8378;--critical-soft:#35201E}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-body);margin:0;padding:16px;line-height:1.45}
+main{max-width:1100px;margin:0 auto}
+h1,h2,h3{font-family:var(--font-display);font-weight:600}
+h1{font-size:1.75rem;margin:.2em 0}
+h2{font-size:1.375rem;border-bottom:1px solid var(--line);padding-bottom:4px;margin-top:1.6em}
+section,.panel{background:var(--paper-raised);border:1px solid var(--line);border-radius:6px;padding:12px 16px;margin:12px 0}
+.banner{border-left:4px solid var(--critical);background:var(--critical-soft)}
+.warn{border-left:4px solid var(--warn);background:var(--warn-soft)}
+.info{border-left:4px solid var(--accent);background:var(--accent-soft)}
+table{border-collapse:collapse;width:100%;font-size:.875rem;margin:8px 0}
+th,td{border:1px solid var(--line);padding:4px 6px;text-align:left;vertical-align:top}
+th{background:var(--accent-soft)}
+.mono,td.n{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+.wrap{overflow-x:auto}
+.pill{display:inline-block;padding:1px 8px;border-radius:10px;font-size:.75rem;background:var(--warn-soft);color:var(--warn);border:1px solid var(--warn)}
+.weak{color:var(--critical);font-weight:600}
+small{color:var(--ink);opacity:.75}
+</style>
+</head>
+<body><main>
+<p><small>SYNTHETIC test data, fictitious plant. Generated 2026-11-14 &middot; data as of 2026-11-11 10:05 (finding, zone not stated). Produced by root-cause-capa (Claude for Manufacturing plugin @099387b7). Nothing written to any system of record. Internal &mdash; not for the customer.</small></p>
+<h1>MB-1880 rev B &mdash; Bore A oversize: root-cause investigation and draft corrective action plan</h1>
+<p><span class="pill">DRAFT &mdash; investigation only</span> <span class="pill">8D BLOCKED</span> <span class="pill">Supplier-caused flag: not raised</span></p>
+
+<section class="banner">
+<strong>Safety status: not assessed</strong> (no safety information in the inputs; MB-1880's end use at Northwind Robotics is not stated).<br>
+<strong>Escape occurred:</strong> 30 parts of lot L-0412 shipped to Northwind Robotics on 2026-11-11 08:00, packing slip PS-5521 &mdash; 2h05m <em>before</em> the 10:05 final-inspection finding (same source clock). No customer escape notification exists in the inputs and the contractual notification window is unknown. Drafting that notification is <code>ncr-writeup</code>'s job and it has not been run; <strong>this is the most time-critical open item</strong>.
+</section>
+
+<section class="warn">
+<strong>Why the 8D is blocked.</strong> Per <code>shared/contracts/ncr.md</code>, the 8D, customer pack and redaction diff require an NCR from <code>ncr-writeup</code> with a cited requirement and <code>approval_state: approved</code>. The inputs hold an inspector's finding (finding.txt), not an NCR record: there is no NCR reference and no approval. The requirement itself <em>is</em> locatable (drawing MB-1880 rev B, sheet 2, note 4: Bore A dia 22.000 +0.021/-0.000), so the block is on <strong>approval/NCR record</strong>, not on the requirement. Pointer: run <code>ncr-writeup</code> on finding.txt, get it approved, then re-run this skill to produce the 8D. Below are the ranked candidates, the draft corrective action plan and the evidence appendix, all <strong>draft</strong>.
+</section>
+
+<section class="warn">
+<strong>Clock alignment could NOT be verified &mdash; maintenance correlation refused.</strong> No <code>## Plant context</code> exists for this plant (plant_setup.py find: profile does not exist), so per-source clocks, measured skew and the shift boundary are unknown. maintenance_log.csv is zone-aware (UTC-05:00); finding.txt is zone-naive. No event appears in two sources to anchor them. The one candidate anchor contradicts itself: the log says insert T7 was replaced at 06:40 &ldquo;after inspection hold&rdquo;, but read in UTC-05:00 that replacement is 3h25m <em>before</em> the 10:05 finding; read as UTC it is 1h35m after. Either an earlier inspection hold exists that is not in the inputs, or the two clocks differ. Any statement that a maintenance event &ldquo;preceded&rdquo; or &ldquo;caused&rdquo; the defect is therefore not made. Conclusions that survive without the clocks: the requirement and the measured excess, the recurrence of NCR-0219, lot/location reconciliation.
+</section>
+
+<h2>Summary</h2>
+<section>
+<p><strong>Found:</strong> Bore A on MB-1880 rev B measured 22.034, 22.031, 22.029 mm on 3 of 5 sampled parts (60%) from WO-8102 / lot L-0412, made on VMC-03, 2nd shift 2026-11-10. All 3 recorded values exceed the 22.021 mm USL, by 0.013 / 0.010 / 0.008 mm (62% / 48% / 38% of the 0.021 mm tolerance band). The 2 conforming sample values were not recorded.</p>
+<p><strong>Affects:</strong> lot of 300 = 120 WIP at VMC-03 + 150 in FG-2 rack 14 + 30 at Northwind Robotics. Proposed scope: <strong>at least 300</strong> &mdash; other lots machined on VMC-03 with insert T7-0031 are not ruled out because the insert's install date and part count are not in the inputs.</p>
+<p><strong>This is a recurrence.</strong> NCR-0219 (2026-04-14, 211 days earlier): MB-1880 bore oversize 22.026, cause &ldquo;boring insert wear beyond 900 parts&rdquo;, CAPA-071 &ldquo;insert change every 600 parts&rdquo;, effectiveness <strong>not verified</strong>. Recurrence status: <code>recurrence_prior_capa_failed</code> (the earlier fix did not prevent recurrence; whether CAPA-071 was wrong or was never implemented is unknown).</p>
+<p><strong>Leading candidate (not a verdict):</strong> boring insert T7-0031 cutting-edge condition beyond its effective life, with a boring-head setting/offset error a close second. Evidence cannot separate them yet. <strong>Next:</strong> inspect the removed insert T7-0031 and read its part count (cheapest discriminating test, below); in parallel re-measure the 3 rejects on an independent gage.</p>
+</section>
+
+<h2>Ranked candidate causal chains</h2>
+<p><small>Ranked by evidential strength. Every link carries its own For and Against with the source record. Confidence overall: low &mdash; three measurements, no tool-life data, no setup record, unverified clocks.</small></p>
+
+<section>
+<h3>Rank 1 &mdash; Boring insert T7-0031 run past its effective life (CAPA-071 interval not applied or not adequate) <small>(confidence: low-medium)</small></h3>
+<p class="mono">T7-0031 exceeded its effective life &rarr; edge condition changed (chipping / build-up) &rarr; Bore A cut oversize (+0.008 to +0.013 mm over USL) &rarr; condition persisted through part of L-0412 until T7-0031 was replaced</p>
+<table><tr><th>Link</th><th>For</th><th>Against</th></tr>
+<tr><td>1. T7-0031 exceeded its effective life</td><td class="weak">No direct evidence: the part count on T7-0031 is not in the inputs. <strong>This is the weak point of this chain.</strong> Indirect only: CAPA-071's 600-part interval was never verified effective (prior_ncrs.csv, NCR-0219 row).</td><td>Lot size 300 is below the 600-part interval (finding.txt) &mdash; only an exceedance if T7-0031 carried over from earlier lots, which is not recorded.</td></tr>
+<tr><td>2. Edge condition shifts the bore oversize</td><td>NCR-0219 recorded the same characteristic going oversize (22.026) with insert wear as cause (prior_ncrs.csv).</td><td>General machining expectation (engineering judgment, not plant data): progressive flank wear on a boring insert usually cuts <em>smaller</em>; oversize points more to edge chipping/build-up, chatter or setting. NCR-0219's cause was never verified either.</td></tr>
+<tr><td>3. Oversize bores produced on this lot</td><td>3 of 5 sampled over USL (finding.txt).</td><td>2 of 5 sampled conformed (finding.txt) &mdash; consistent with a change part-way through the run, but production sequence of the 5 samples is unknown.</td></tr>
+<tr><td>4. Replacing T7-0031 removed the condition</td><td>Insert replaced T7-0031 &rarr; T7-0032 &ldquo;after inspection hold&rdquo; (maintenance_log.csv, 2026-11-11T06:40-05:00).</td><td>No bore measurements after the replacement in the inputs; replacement-vs-finding order unresolved (clock alignment failed).</td></tr>
+</table>
+<p><strong>Confirm:</strong> T7-0031 shows edge chipping/build-up under magnification and its tool-life count exceeds 600 parts; first parts with T7-0032 at the unchanged boring-head setting measure in spec.</p>
+<p><strong>Kill:</strong> T7-0031 edge intact and count well under 600; or parts made with T7-0032 at the same setting still measure oversize.</p>
+</section>
+
+<section>
+<h3>Rank 2 &mdash; Boring-head setting / tool offset error on VMC-03 for WO-8102 <small>(confidence: low)</small></h3>
+<p class="mono">Boring head set or offset entered wrong (at setup, or at an insert change) &rarr; systematic diameter shift of about +0.01 mm over USL &rarr; Bore A oversize from the change point on</p>
+<table><tr><th>Link</th><th>For</th><th>Against</th></tr>
+<tr><td>1. Setting/offset wrong for WO-8102</td><td class="weak">No direct evidence: no setup sheet, first-article or offset record for WO-8102 in the inputs. <strong>This is the weak point of this chain.</strong> Class precedent only: NCR-0244 (part MB-1500, not MB-1880) &ldquo;wrong offset after tool change&rdquo; (prior_ncrs.csv).</td><td>CAPA-080 offset check sheet for that class was verified effective 2026-09-01 (prior_ncrs.csv) &mdash; whether it applies to VMC-03 / MB-1880 is unknown.</td></tr>
+<tr><td>2. Systematic shift produces uniform oversize</td><td>Recorded values tightly grouped: range 0.005 mm, mean 22.0313 mm (figures block) &mdash; consistent with a shift rather than random scatter.</td><td>2 of 5 sampled conformed (finding.txt); a shift from the first part would make nearly all parts oversize unless the change happened mid-run. Conforming values unrecorded, so this cannot be tested.</td></tr>
+</table>
+<p><strong>Confirm:</strong> WO-8102 setup/first-article record shows a bore size at or above USL, or the boring-head dial / offset table differs from the setup sheet.</p>
+<p><strong>Kill:</strong> First-article Bore A for WO-8102 recorded in spec with the setting unchanged through the run.</p>
+</section>
+
+<section>
+<h3>Rank 3 &mdash; Measurement error at final inspection <small>(confidence: low; must be eliminated first)</small></h3>
+<p class="mono">Gage / setting master / part temperature at final inspection biased high &rarr; conforming bores reported oversize</p>
+<table><tr><th>Link</th><th>For</th><th>Against</th></tr>
+<tr><td>1. Final-inspection measurement biased</td><td>Gage, its calibration and the measurement method are not identified in finding.txt; no MSA in the inputs.</td><td>Same inspection found 2 of 5 in spec; shop acted on the result (insert replaced after inspection hold, maintenance_log.csv); same characteristic failed before (NCR-0219).</td></tr>
+<tr><td>2. Bias of about +0.01 mm</td><td class="weak">No evidence. <strong>Weak point.</strong></td><td>&mdash;</td></tr>
+</table>
+<p><strong>Confirm:</strong> Re-measurement of the 3 rejected parts on an independent calibrated instrument (bore gage set on a certified 22.000 ring, or CMM) at stabilised temperature reads in spec.</p>
+<p><strong>Kill:</strong> Independent re-measurement agrees with 22.034 / 22.031 / 22.029 within gage uncertainty.</p>
+</section>
+
+<section>
+<h3>Rank 4 &mdash; Coolant concentration change on VMC-03 <small>(confidence: very low)</small></h3>
+<p class="mono">Coolant concentration raised 6% &rarr; 8% &rarr; changed lubricity / thermal behaviour at the boring operation &rarr; Bore A cut oversize</p>
+<table><tr><th>Link</th><th>For</th><th>Against</th></tr>
+<tr><td>1. Coolant concentration changed</td><td>maintenance_log.csv 2026-11-08T16:00-05:00, VMC-03 &ldquo;coolant concentration adjusted 6% -&gt; 8%&rdquo;.</td><td>Whether 8% is inside the coolant maker's range is not in the inputs. Timing vs production not correlated (clock alignment failed; maintenance correlation check not run).</td></tr>
+<tr><td>2. Change alters bore size by ~0.01 mm</td><td class="weak">No evidence. <strong>Weak point.</strong></td><td>No measurements from VMC-03 between the change and WO-8102 in the inputs.</td></tr>
+</table>
+<p><strong>Confirm:</strong> MB-1880 (or any VMC-03) bore measurements show a step after the coolant change and before WO-8102 while the same insert was in use.</p>
+<p><strong>Kill:</strong> In-spec bores made on VMC-03 after the coolant change; or T7-0032 at 8% concentration produces in-spec bores.</p>
+</section>
+
+<section class="info">
+<p><strong>Ranks 1 and 2 are not clearly separated</strong> &mdash; both rest on a first link with nothing under For. The ranking reflects only that Rank 1 has a prior NCR on the same part and characteristic and a maintenance action on the same tool.</p>
+<p><strong>Cheapest discriminating test:</strong> pull the removed insert T7-0031 (if retained) and examine its cutting edge under magnification, and read its tool-life / part count from the machine or tool crib record. Minutes of work, no parts consumed. It separates Rank 1 (damaged edge, count over interval) from Ranks 2 and 4 (intact edge, count under interval). Rank 3 is separated by re-measuring the 3 rejects on an independent gage, which should run in parallel because it is equally cheap and it gates every other conclusion.</p>
+</section>
+
+<h2>Draft corrective action plan (pre-8D &mdash; not an 8D)</h2>
+<section class="warn"><small>Blocked from the 8D until an approved NCR exists. Corrective actions are <strong>contingent</strong>: each is to be committed only when its candidate is confirmed by the test above. No owner, date or approval is filled in &mdash; they are asked, never inferred.</small></section>
+
+<section>
+<h3>Containment (D3-type &mdash; proposed; ncr-writeup owns the containment record)</h3>
+<div class="wrap"><table>
+<tr><th>Location</th><th class="n">Qty</th><th>Checked</th><th>Proposed action</th><th>Urgency</th><th>Owner</th><th>Source</th></tr>
+<tr><td>at_customer &mdash; Northwind Robotics</td><td class="n">30</td><td>per finding text; not verified against shipping record</td><td>Notify Northwind Robotics; request quarantine of PS-5521 receipt; offer sort/replacement. Draft notification via ncr-writeup.</td><td>immediate</td><td>unassigned</td><td>finding.txt (PS-5521)</td></tr>
+<tr><td>installed_at_customer</td><td class="n">unknown</td><td>false</td><td>Ask Northwind Robotics whether any of the 30 were installed.</td><td>immediate</td><td>unassigned</td><td>not verifiable from our records</td></tr>
+<tr><td>in_transit</td><td class="n">unknown</td><td>false</td><td>Confirm with shipping that PS-5521 is the only MB-1880 shipment of L-0412 and whether it has been delivered.</td><td>immediate</td><td>unassigned</td><td>no shipping record in inputs</td></tr>
+<tr><td>wip_at_machine &mdash; VMC-03 queue</td><td class="n">120</td><td>per finding text</td><td>Hold; tag; 100% Bore A measurement before any further operation (anodize).</td><td>immediate</td><td>unassigned</td><td>finding.txt</td></tr>
+<tr><td>finished_goods &mdash; FG-2 rack 14</td><td class="n">150</td><td>per finding text</td><td>Move to quarantine; 100% Bore A measurement; note bore is masked at anodize (drawing note 5) so as-machined size is the final size.</td><td>same_day</td><td>unassigned</td><td>finding.txt</td></tr>
+<tr><td>Other lots run with insert T7-0031</td><td class="n">unknown</td><td>false</td><td>Identify lots machined on VMC-03 since T7-0031 was installed; hold and sample.</td><td>same_day</td><td>unassigned</td><td>not in inputs</td></tr>
+</table></div>
+<p><small>Lot reconciliation: 120 + 150 + 30 = 300 = lot size (figures block).</small></p>
+</section>
+
+<section>
+<h3>Corrective actions (D5-type) &mdash; each names the link it breaks</h3>
+<div class="wrap"><table>
+<tr><th>#</th><th>Action (contingent on confirmation)</th><th>Breaks</th><th>Commit only if</th></tr>
+<tr><td>CA-1</td><td>Enforce the T7 boring-insert change on VMC-03 by a machine tool-life counter that stops the cycle at the limit, replacing the manual 600-part interval of CAPA-071; re-validate the limit itself from the measured life of T7-0031 and the bore trend before setting it (no new value is proposed here).</td><td>Rank 1, link 1 &mdash; insert runs past its effective life</td><td>Rank 1 confirmed</td></tr>
+<tr><td>CA-2</td><td>After every T7 insert change or boring-head adjustment, measure first-off Bore A and record it against the setup sheet before the machine is released.</td><td>Rank 2, link 1 &mdash; wrong setting/offset reaches production; also Rank 1 link 4 (verifies the replacement restored size)</td><td>Rank 2 confirmed, or Rank 1 confirmed</td></tr>
+<tr><td>CA-3</td><td>Control coolant concentration changes on VMC-03 against the coolant maker's stated range, with a recorded check of Bore A after any change.</td><td>Rank 4, link 1 &mdash; uncontrolled concentration change</td><td>Rank 4 confirmed</td></tr>
+<tr><td>CA-4</td><td>Correct the final-inspection gage/method (calibration, setting master, temperature soak) as the re-measurement finds.</td><td>Rank 3, link 1 &mdash; measurement bias</td><td>Rank 3 confirmed</td></tr>
+</table></div>
+<p><strong>Improvement, not corrective action</strong> (breaks no causal link): in-process Bore A check at a defined frequency during MB-1880 runs on VMC-03 with a reaction plan; a shipping gate so a lot under inspection hold cannot ship (30 parts left at 08:00 on 2026-11-11 while an &ldquo;inspection hold&rdquo; is referenced at 06:40 &mdash; to be confirmed once clocks are aligned).</p>
+</section>
+
+<section>
+<h3>Systemic prevention (D7-type) &mdash; why CAPA-071 did not hold</h3>
+<ul>
+<li><strong>CAPA-071 was never verified effective</strong> (prior_ncrs.csv: capa_effective = &ldquo;not verified&rdquo;) and the same defect returned 211 days later. Either the cause in NCR-0219 was wrong or the 600-part change was not actually carried out. The system change: a CAPA cannot close without a dated effectiveness check against the characteristic that failed (here, Bore A capability over subsequent MB-1880 lots), and an open-but-unverified CAPA is reviewed at a fixed interval.</li>
+<li><strong>Tool-life control by counter, not by memory</strong>: insert intervals set by a CAPA are implemented as machine/tool-crib limits that are auditable (the inputs hold no part count for T7-0031 at all &mdash; that absence is itself the gap).</li>
+<li><strong>Read the NCR-0219 investigation before closing this one</strong>: its records (not in the inputs) should show whether insert wear was demonstrated or assumed.</li>
+<li><strong>Clock discipline</strong>: inspection, shipping and maintenance records on one stated time zone, so a hold, a shipment and a repair can be ordered without dispute (this investigation could not order them).</li>
+</ul>
+</section>
+
+<section>
+<h3>Implement and verify (D6) &mdash; placeholder, intentionally empty</h3>
+<table><tr><th>Action</th><th>Implemented on</th><th>By</th><th>Verification method</th><th>Result</th><th>Verified on</th><th>Verified by</th></tr>
+<tr><td>CA-1</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>CA-2</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>CA-3</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>CA-4</td><td></td><td></td><td></td><td></td><td></td><td></td></tr></table>
+<h3>Close and recognise (D8) &mdash; placeholder, intentionally empty</h3>
+<table><tr><th>Closed on</th><th>Approved by</th><th>Effectiveness check date</th><th>Team recognised</th></tr><tr><td></td><td></td><td></td><td></td></tr></table>
+<p><small>Team (D1), proposed only from names in the inputs: J. Ortiz (final inspection, found the condition). Quality owner, VMC-03 cell lead and maintenance technician: not named in the inputs &mdash; asked.</small></p>
+</section>
+
+<h2>Supplier-caused flag</h2>
+<section><p><strong>Not raised.</strong> No candidate points at purchased material: the material (6061-T6, drawing note 1) has no lot, certificate, supplier or receipt record in the inputs, and the leading candidates are process/tooling. No ERP data was available, so a supplier-caused determination could not be reached either way; it is not claimed.</p></section>
+
+<h2>Evidence appendix</h2>
+<section>
+<h3>Timeline (each source in its own clock &mdash; NOT aligned)</h3>
+<div class="wrap"><table>
+<tr><th>Recorded time</th><th>Clock</th><th>Event</th><th>Source</th></tr>
+<tr><td class="n">2026-04-14</td><td>date only</td><td>NCR-0219 MB-1880 bore oversize 22.026; CAPA-071</td><td>prior_ncrs.csv</td></tr>
+<tr><td class="n">2026-08-02</td><td>date only</td><td>NCR-0244 MB-1500 slot undersize, offset after tool change; CAPA-080 verified 2026-09-01</td><td>prior_ncrs.csv</td></tr>
+<tr><td class="n">2026-11-08T16:00-05:00</td><td>UTC-05:00</td><td>VMC-03 coolant concentration 6% &rarr; 8%</td><td>maintenance_log.csv</td></tr>
+<tr><td class="n">2026-11-10, 2nd shift</td><td>shift label; boundary unknown</td><td>WO-8102 / L-0412 machined on VMC-03</td><td>finding.txt</td></tr>
+<tr><td class="n">2026-11-11T06:40-05:00</td><td>UTC-05:00</td><td>T7 insert T7-0031 &rarr; T7-0032 &ldquo;after inspection hold&rdquo;</td><td>maintenance_log.csv</td></tr>
+<tr><td class="n">2026-11-11 08:00</td><td>naive, zone unstated</td><td>30 parts shipped to Northwind Robotics, PS-5521</td><td>finding.txt</td></tr>
+<tr><td class="n">2026-11-11 10:05</td><td>naive, zone unstated</td><td>Final inspection, J. Ortiz: 3 of 5 Bore A oversize</td><td>finding.txt</td></tr>
+</table></div>
+<p><strong>Alignment result:</strong> not verified. Zone named for the maintenance log: UTC-05:00. Measured skew: none available (no Plant context, no shared event). Residual uncertainty: unbounded &mdash; at least the UTC vs UTC-05:00 ambiguity shown in the figures block (replacement -3h25m or +1h35m relative to the finding), and the shift boundary for &ldquo;2nd shift 2026-11-10&rdquo; is unknown, so it cannot be placed on the timeline at all. Maintenance is export-sourced (no CMMS connector); a repair logged after the export would not appear.</p>
+<p><strong>Work-order join:</strong> WO-8102 and L-0412 are tied to the finding <em>per finding text, not a data join</em> &mdash; no ERP/production record links them in the inputs.</p>
+
+<h3>Computed SPC view</h3>
+<p>I-MR on the 3 recorded values: centreline 22.0313, UCL 22.0380, LCL 22.0247 mm. Rule 1: 0 points beyond. Rules 2&ndash;4 could not be evaluated. <strong>These limits are not a valid control baseline</strong>: 3 points, all nonconforming, the 2 conforming values missing, recorded order not production order, no prior runs. Against the <em>specification</em>, all 3 values are above the 22.021 USL; the computed UCL sits 0.0170 mm above USL. Control limits are not spec limits.</p>
+
+<h3>Checks</h3>
+<table><tr><th>Check</th><th>State</th><th>Detail</th></tr>
+<tr><td>SPC drift</td><td>Computed, inconclusive</td><td>See above; drift across runs cannot be assessed &mdash; no prior-run measurements in inputs.</td></tr>
+<tr><td>Clustering by material lot</td><td>Could not run</td><td>One lot only (L-0412); no comparison lot, no base rate.</td></tr>
+<tr><td>Clustering by shift / operator</td><td>Could not run</td><td>One shift only; no operator data. (Not attempted on individuals.)</td></tr>
+<tr><td>Clustering by machine</td><td>Could not run</td><td>One machine only (VMC-03); no other machine's output for MB-1880.</td></tr>
+<tr><td>Position relative to tool change</td><td>Could not run</td><td>No part sequence and no part count since T7-0031 install.</td></tr>
+<tr><td>Correlation with maintenance event</td><td>Could not run &mdash; refused</td><td>Gated on clock alignment, which failed.</td></tr>
+<tr><td>Recurrence</td><td>Ran &mdash; found</td><td>1 prior NCR same part and defect (NCR-0219), CAPA-071 not verified effective &rarr; recurrence_prior_capa_failed. Searched prior_ncrs.csv only (2 rows); the full quality library was not available, so other prior NCRs are not ruled out.</td></tr>
+<tr><td>Requirement cross-check</td><td>Ran &mdash; clean</td><td>Finding's cited requirement matches drawing rev B note 4.</td></tr>
+<tr><td>Lot/location reconciliation</td><td>Ran &mdash; clean</td><td>120 + 150 + 30 = 300.</td></tr>
+<tr><td>Sensor / historian</td><td>Could not run</td><td>No historian export in the inputs.</td></tr>
+</table>
+<p><strong>Sources:</strong> inputs/quality/finding.txt; inputs/quality/maintenance_log.csv; inputs/quality/prior_ncrs.csv; inputs/quality/MB-1880_drawing_revB_notes.md. Plant setup: none (plant_setup.py find &rarr; exists: false). 8D template: not on file &mdash; standard eight-discipline structure used.</p>
+</section>
+
+<h2>Figures block (computed by out/analysis/compute_figures.py)</h2>
+<section class="wrap">{{FIGURES}}</section>
+
+<h2>Pending redaction log</h2>
+<section><p>The customer pack and its redaction diff are blocked (no approved NCR). Removal requests received so far: <strong>none</strong>. Items that will be proposed for removal when the pack is built: inspector name (personnel), supplier/other-customer references (NCR-0244 is a different part and is an unrelated finding), internal tooling identifiers at the quality owner's discretion. <strong>Must stay in:</strong> the recurrence of NCR-0219 and the failed/unverified CAPA-071; the 30 shipped parts; scope stated as at least 300.</p></section>
+
+<h2>Quality Register row</h2>
+<section><p><strong>The Quality Register was not updated: artifact tools are not permitted in this run and no NCR reference or site exists to key the row.</strong> The row this skill would write is saved at out/quality_register_row_MB-1880.yaml.</p>
+<table><tr><th>Field</th><th>Value</th></tr>
+<tr><td>record_key</td><td>null &mdash; site and ncr_ref unknown</td></tr>
+<tr><td>status</td><td>awaiting_approval (no approved NCR)</td></tr>
+<tr><td>eight_d_step</td><td>null &mdash; 8D blocked; ranked candidates and draft plan only</td></tr>
+<tr><td>leading_cause</td><td>Candidate: boring insert T7-0031 past effective life (tied closely with boring-head setting error)</td></tr>
+<tr><td>supplier_caused</td><td>false (flag not raised)</td></tr>
+<tr><td>recurrence / previous_fix_held</td><td>recurrence_prior_capa_failed / false</td></tr>
+<tr><td>customers</td><td>Northwind Robotics</td></tr>
+<tr><td>escape_clock / escape_clock_unknown</td><td>null / true</td></tr>
+<tr><td>owner / due_date / effectiveness_check_due</td><td>null / null / null</td></tr>
+</table></section>
+
+<h2>Questions recorded (would have been asked)</h2>
+<section><ol>
+<li>Has an NCR been raised for this finding (reference, site), and who approves it? Who should be recorded as approving?</li>
+<li>What is Northwind Robotics' contractual notification window, and has anyone told them? Is PS-5521 delivered; any parts installed?</li>
+<li>What time zone are finding.txt / shipping times in, and what are the shift boundaries? What was the &ldquo;inspection hold&rdquo; referenced at 06:40 on 2026-11-11, and when was it raised?</li>
+<li>Is insert T7-0031 retained? When was it installed and how many parts did it cut? Was CAPA-071's 600-part change ever implemented on VMC-03?</li>
+<li>Which gage measured Bore A at final inspection, its calibration status, and what were the 2 conforming values? Is there a production sequence for the 5 samples?</li>
+<li>Is there a setup sheet / first-article record for WO-8102 (boring-head setting)?</li>
+<li>What is the coolant maker's recommended concentration range for VMC-03, and why was it raised to 8%?</li>
+<li>Which other lots ran on VMC-03 with T7-0031? Have parts made with T7-0032 been measured?</li>
+<li>Does the plant or Northwind Robotics have a controlled 8D template? Report depth preference (summary-first or full)?</li>
+<li>Is there an MB-1880 end-use safety implication (Bore A function)?</li>
+</ol></section>
+</main></body></html>

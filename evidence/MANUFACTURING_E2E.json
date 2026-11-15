@@ -1,0 +1,136 @@
+{
+ "schema": "legion.manufacturing.e2e-trace.v1",
+ "inquiry_ref": "RFQ-E2E-REBOT-001",
+ "trace": [
+  {
+   "stage": "01_rfq",
+   "what": "input (synthetic, labelled)",
+   "artifact": "tests/runtime/inputs/e2e/rfq_rebot_email.txt",
+   "sha256": "b58e7b16b86d94d9457e1c87132ced6f270280345d4e1998813d7b96fb6086b4",
+   "status": "PASS",
+   "runtime": null
+  },
+  {
+   "stage": "02_intake",
+   "what": "Claude: customer-inquiry-intake",
+   "artifact": "evidence/SKILL_OUTPUTS/E01/positive/run.json",
+   "sha256": "d191937b96915f7010e5f32eb0d5304f785d830764051afe7e24acc414575155",
+   "status": "PASS",
+   "runtime": "claude-opus-5-5"
+  },
+  {
+   "stage": "03_bom_engineering",
+   "what": "LEGION: real STEP -> XCAF BOM -> ZTL review",
+   "artifact": "evidence/E2E/02_engineering.json",
+   "sha256": "e9ef4be5285208973dce3bc65f7c3df9c53f9b57a08d586f7449ff850385ec7b",
+   "status": "PRESENT",
+   "runtime": null
+  },
+  {
+   "stage": "03b_bom_handoff",
+   "what": "LEGION -> Claude handoff",
+   "artifact": "evidence/E2E/02_bom_handoff.json",
+   "sha256": "c79b8e42c08259c947da9681bb6086a9c56d23ae81e217e1329107fdf94eaf6c",
+   "status": "PRESENT",
+   "runtime": null
+  },
+  {
+   "stage": "04_cost",
+   "what": "Claude: quote-build",
+   "artifact": "evidence/SKILL_OUTPUTS/E02/positive/run.json",
+   "sha256": "aad07964b40fc2098fb566262cbe955a38572785849ff2b5c9bdd98fca9c9033",
+   "status": "PASS",
+   "runtime": "claude-opus-5-5"
+  },
+  {
+   "stage": "05_supplier",
+   "what": "Claude: supplier-quote-request + comparison",
+   "artifact": "evidence/SKILL_OUTPUTS/E03/positive/run.json",
+   "sha256": "84300b2c0b4cf1f8d3c6be0e07cd9c87d6799bed7ad01926264c1252a1d5df53",
+   "status": "PASS",
+   "runtime": "claude-opus-5-5"
+  },
+  {
+   "stage": "06_coalition",
+   "what": "LEGION: Deal-Rescue coalition rule -> proposal contract",
+   "artifact": "evidence/E2E/06_commercial.json",
+   "sha256": "2e20eb2d02d80dc877b67353ad4c99b0e68d8e06f3a0e55e89e93dc65d7d4278",
+   "status": "PRESENT",
+   "runtime": null
+  }
+ ],
+ "handoff_checks": [
+  {
+   "check": "intake names the 20-set quantity and the reBot STEP",
+   "pass": true
+  },
+  {
+   "check": "intake records tolerances as missing (customer says 'whatever the design needs')",
+   "pass": true
+  },
+  {
+   "check": "BOM extraction from the real STEP is T (40/40 positions)",
+   "pass": true
+  },
+  {
+   "check": "engineering verdict for the real reBot stays Z (missing sourced requirements)",
+   "pass": true
+  },
+  {
+   "check": "controlled ZTL cases: positive T, negative F (real MCP -> stand -> checker)",
+   "pass": true
+  },
+  {
+   "check": "cost stage consumed the intake output and the BOM handoff (exact files staged)",
+   "pass": true
+  },
+  {
+   "check": "quote prices material from a named PO and does not state a tolerance for the parts",
+   "pass": true
+  },
+  {
+   "check": "quote carries the Z engineering status / missing requirements forward",
+   "pass": true
+  },
+  {
+   "check": "supplier stage consumed the BOM handoff and both supplied test quotes",
+   "pass": true
+  },
+  {
+   "check": "supplier comparison flags Y's unstated accuracy class and MOQ 250 vs need",
+   "pass": true
+  },
+  {
+   "check": "coalition: 5 x 20 = 100 meets MOQ 100 (demonstration only)",
+   "pass": true
+  },
+  {
+   "check": "simulated buyers are never treated as real (as-if-real -> Z)",
+   "pass": true
+  },
+  {
+   "check": "duplicate buyer is rejected",
+   "pass": true
+  },
+  {
+   "check": "4 x 20 = 80 does not meet MOQ 100",
+   "pass": true
+  },
+  {
+   "check": "proposal not admitted, no external effects",
+   "pass": true
+  },
+  {
+   "check": "every Claude stage independently evaluated PASS",
+   "pass": true
+  },
+  {
+   "check": "BOM handoff matches the engineering artifact (no re-derivation)",
+   "pass": true
+  }
+ ],
+ "missing_stages": [],
+ "marketplace": "BLOCKED (license; see 06_commercial.json)",
+ "status": "PASS",
+ "scope": "PASS means the workflow ran end to end with real Claude stages, the real STEP/ZTL route and the existing coalition rule; buyers and supplier quotes are synthetic and labelled; the real reBot engineering verdict is Z; Marketplace/Federation admission is BLOCKED."
+}

@@ -1,0 +1,48 @@
+Held, both drafts: no contact address on file for either supplier; no response due date set in the package; drawing revision not verified (no drawing and no ERP item master in this run); neither supplier confirmed approved, and no requalification decision from the buyer.
+
+Held: the shared conditions above.
+=== SUPPLIER EMAIL — HELD — Alder Sintered Parts ===
+To: [recipient: not on file]
+Subject: SRC-2026-11-14-BSH-1210 — restatement requested, BSH-1210 bronze flanged bushing (your quote Q-A-118)
+
+Thank you for quote Q-A-118 for BSH-1210 rev A.
+
+Attached is our RFQ package SRC-2026-11-14-BSH-1210 for BSH-1210, drawing revision [to be confirmed by document control before sending]. Please restate your quote in the mandated response format in Section 6 of the package. Specifically, your quote did not state:
+
+- unit price at each requested quantity: 800, 1,200 and 3,200 each
+- lead time for first article and for production, each from a named event
+- tooling: a price, or a written statement that none is needed, and who owns the tooling
+- price validity as a date
+- acceptance of each quality clause in Section 4, with any exception listed
+- payment terms, on the commercial basis in Section 5
+
+Please also confirm whether the hardness exception in your quote still applies once you have reviewed the drawing and specification in the package, and state it against the drawing requirement it departs from.
+
+Please reply by [response due date — to be set by the buyer] to [buyer name and address]. Technical questions to [technical contact]; answers given to one bidder are shared with all bidders. A quote in a different shape will be returned for restatement.
+
+[Buyer name]
+=== END ===
+
+Held: the shared conditions above.
+=== SUPPLIER EMAIL — HELD — Birch Powder Metal ===
+To: [recipient: not on file]
+Subject: SRC-2026-11-14-BSH-1210 — restatement requested, BSH-1210 bronze flanged bushing (your ref BPM-77)
+
+Thank you for your quote BPM-77 for BSH-1210.
+
+Attached is our RFQ package SRC-2026-11-14-BSH-1210 for BSH-1210, drawing revision [to be confirmed by document control before sending]. Please restate your quote in the mandated response format in Section 6 of the package. Specifically, your quote did not state:
+
+- the drawing revision you quoted against
+- unit price at 800 and at 1,200 each (in addition to 3,200)
+- lead time for first article and for production, each from a named event
+- tooling ownership
+- minimum order quantity
+- price validity as a date
+- acceptance of each quality clause in Section 4, with any exception listed
+
+Please quote on the commercial basis in Section 5 of the package.
+
+Please reply by [response due date — to be set by the buyer] to [buyer name and address]. Technical questions to [technical contact]; answers given to one bidder are shared with all bidders. A quote in a different shape will be returned for restatement.
+
+[Buyer name]
+=== END ===

@@ -1,0 +1,30 @@
+# Downtime record, contract version 3 (shared/contracts/downtime-record.md)
+# Emitted by breakdown-diagnosis for daily-production-report. SYNTHETIC test data.
+# NOTE: site, started_at zone and production_day could not be resolved (no plant profile
+# on file). Per the contract, daily-production-report BLOCKS this row until they are supplied.
+contract_version: 3
+site: null                      # UNRESOLVED - no plant profile; site not named in inputs (Required)
+asset_id: VMC-02
+asset_id_verbatim: "VMC-02"
+started_at: null                # UNRESOLVED (rule 4) - source text "2026-11-10 15:24 local"; zone not declared, so not assumed
+ended_at: null                  # still down at last report ("Machine still down at 16:10")
+duration_minutes: null          # ongoing outage: null, never zero
+reason_code: null               # plant reason code not given; machine alarm text is in reason_text
+reason_text: "Alarm 'SPINDLE OVERLOAD / OVERTEMP', machine stopped mid-cycle. Operator: grinding noise from spindle for ~20 min before alarm, chips looked normal."
+production_wo: WO-8120
+production_wo_verbatim: "WO-8120 op 20 (MB-1880)"
+shift: null                     # shift pattern not on file
+production_day: null            # UNRESOLVED - calendar date 2026-11-10, but site day boundary not on file (Required)
+source_system: breakdown_diagnosis
+source_ref: "inputs/breakdown/event.txt"
+
+diagnosis_ref: "out/breakdown-diagnosis-VMC-02-2026-11-10.html"
+leading_cause: "Spindle bearing damage or contamination (OEM Section 7.4, 'Grinding noise' row) - unconfirmed; not distinguishable yet from chiller low flow or low drawbar clamp force"
+leading_cause_confidence: low
+cited_work_orders: []           # no maintenance history in the inputs; no prior work order can be cited
+safety_flagged: true
+safety_reason: "Electrical/drive trip: spindle stopped on 'SPINDLE OVERLOAD / OVERTEMP' mid-cycle after ~20 min of grinding noise; OEM Section 7.4 says do not run a spindle showing grinding noise and lock out the spindle drive before any manual rotation or inspection. Heat discolouration reported on spindle nose/taper (hot surface). Possible bearing seizure is NOT shown, only not excluded."
+pm_adjustment_proposed: false   # current PM plan/interval not readable; a question-first recommendation was drafted instead
+maintenance_wo: null            # no maintenance ticket number in the inputs
+diagnosis_state: advisory
+technician_step: pending

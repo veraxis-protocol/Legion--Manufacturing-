@@ -50,7 +50,9 @@ def sha256(p: Path) -> str:
 
 
 def tree_digest(root: Path) -> dict:
-    return {str(p.relative_to(root)).replace("\\", "/"): sha256(p) for p in sorted(root.rglob("*")) if p.is_file()}
+    # Python's bytecode cache (__pycache__, written when a skill runs a plugin script) is not plugin content
+    return {str(p.relative_to(root)).replace("\\", "/"): sha256(p) for p in sorted(root.rglob("*"))
+            if p.is_file() and "__pycache__" not in p.parts}
 
 
 def find_cli() -> str | None:
@@ -479,6 +481,10 @@ def parse_session_jsonl(path: Path) -> dict:
                     for a in re.findall(r"(?:^|\s)([\w-]+)/SKILL\.md", seg):
                         read.add(a)
                         p["skill_files_read"].append(f"{a}/SKILL.md")
+                if re.match(r"\s*sed\s+-n\s+['\"]?\d+,\d+p", seg):   # ranged read of a SKILL.md section: counts for
+                    for a in re.findall(r"(?:skills/|(?:^|\s))([\w-]+)/SKILL\.md", seg):  # chains, not as "full read"
+                        if cwd_skill == "<skills>" or "skills/" in seg:
+                            p["skill_files_read"].append(f"{a}/SKILL.md#sections")
                 if re.match(r"\s*(cat|Get-Content|type)\b", seg):
                     read.update(re.findall(r"skills/([\w-]+)/SKILL\.md", seg))
                     if cwd_skill and re.search(r"(^|\s)(\./)?SKILL\.md\b", seg):
@@ -529,8 +535,10 @@ def ingest(case_id: str, variant: str, transcript: Path, eval_transcript: Path |
     parsed["skills_invoked"] = read_skills
     checks = deterministic_checks(case, variant, parsed, outputs, dest / "out")
     checks[0]["check"] = f"skill '{case['skill']}' activated (its original SKILL.md read by the model)"
+    # host bookkeeping (task list / hand-back) has no effect outside the session; everything else is flagged
     bad_tools = [c for c in parsed["tool_calls"] if c["tool"] not in
-                 ("Read", "Write", "Edit", "Glob", "Grep", "Bash", "PowerShell", "TodoWrite", "SubagentHandback")]
+                 ("Read", "Write", "Edit", "Glob", "Grep", "Bash", "PowerShell", "TodoWrite", "SubagentHandback")
+                 and not c["tool"].startswith("mcp__ccd_turn__")]
     checks.append({"check": "only the permitted tools were used (no web, MCP, browser or messaging tool)",
                    "pass": not bad_tools, "observed": sorted({c["tool"] for c in bad_tools})})
     inputs_changed = [i["path"] for i in meta["inputs"]

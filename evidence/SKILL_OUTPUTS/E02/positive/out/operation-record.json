@@ -1,0 +1,1062 @@
+{
+ "quote": "Q-HARBOR-ROBOTICS-LAB-NOREF-20261112-01",
+ "draft": 1,
+ "inquiry": "NOREF-20261112",
+ "customer": "Harbor Robotics Lab",
+ "bid_decision_state": "draft",
+ "gates_passed": [],
+ "rates": {
+  "labor": "not set",
+  "burden": "not set",
+  "margin_rules": "not set",
+  "scrap_costing_basis": "not set"
+ },
+ "line_2": {
+  "part": "MGN9-170 linear rail",
+  "qty": 20,
+  "geometry_path": "A",
+  "price": null,
+  "status": "unknown - no PO or supplier quote"
+ },
+ "operations": [
+  {
+   "part": "02_BASE_REINFORCEMENT_PART",
+   "revision_priced_to": "v1.1 (reBot_B601_DM_v1.1_20260625.step)",
+   "op_seq": null,
+   "op": "machining (operation list not established)",
+   "work_center": null,
+   "machine_class": null,
+   "rung": 4,
+   "path": "first principles (not quantified)",
+   "cutting_data_basis": null,
+   "setup_h": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "h"
+   },
+   "run": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "min/pc"
+   },
+   "qty_per_set": 1,
+   "quantity_breaks_priced": [
+    20
+   ],
+   "material": {
+    "stock": "AL5052-PL-10",
+    "po": "PO-30744",
+    "po_date": "2026-11-02",
+    "blank_mm": [
+     92.005,
+     92.005
+    ],
+    "usd_per_pc": 2.9892,
+    "status": "lower bound",
+    "reason": null
+   },
+   "sources": [
+    "inputs/02_bom_handoff.json",
+    "inputs/purchase_orders_5052.csv",
+    "inputs/equipment.csv"
+   ],
+   "geometry_estimate": {
+    "document_ref": null,
+    "approval": null,
+    "note": "none in contract form; BOM handoff engineering_verdict Z"
+   },
+   "date_derived": "2026-11-14"
+  },
+  {
+   "part": "02_ARM_YAW_LIMIT",
+   "revision_priced_to": "v1.1 (reBot_B601_DM_v1.1_20260625.step)",
+   "op_seq": null,
+   "op": "machining (operation list not established)",
+   "work_center": null,
+   "machine_class": null,
+   "rung": 4,
+   "path": "first principles (not quantified)",
+   "cutting_data_basis": null,
+   "setup_h": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "h"
+   },
+   "run": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "min/pc"
+   },
+   "qty_per_set": 1,
+   "quantity_breaks_priced": [
+    20
+   ],
+   "material": {
+    "stock": "AL5052-PL-10",
+    "po": "PO-30744",
+    "po_date": "2026-11-02",
+    "blank_mm": [
+     77.002,
+     77.002
+    ],
+    "usd_per_pc": 2.0938,
+    "status": "lower bound",
+    "reason": null
+   },
+   "sources": [
+    "inputs/02_bom_handoff.json",
+    "inputs/purchase_orders_5052.csv",
+    "inputs/equipment.csv"
+   ],
+   "geometry_estimate": {
+    "document_ref": null,
+    "approval": null,
+    "note": "none in contract form; BOM handoff engineering_verdict Z"
+   },
+   "date_derived": "2026-11-14"
+  },
+  {
+   "part": "02_MOTOR_FRONT_SPACER",
+   "revision_priced_to": "v1.1 (reBot_B601_DM_v1.1_20260625.step)",
+   "op_seq": null,
+   "op": "machining (operation list not established)",
+   "work_center": null,
+   "machine_class": null,
+   "rung": 4,
+   "path": "first principles (not quantified)",
+   "cutting_data_basis": null,
+   "setup_h": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "h"
+   },
+   "run": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "min/pc"
+   },
+   "qty_per_set": 4,
+   "quantity_breaks_priced": [
+    20
+   ],
+   "material": {
+    "stock": "AL5052-PL-6",
+    "po": "PO-30711",
+    "po_date": "2026-10-20",
+    "blank_mm": [
+     34.8,
+     34.8
+    ],
+    "usd_per_pc": 0.2787,
+    "status": "lower bound",
+    "reason": null
+   },
+   "sources": [
+    "inputs/02_bom_handoff.json",
+    "inputs/purchase_orders_5052.csv",
+    "inputs/equipment.csv"
+   ],
+   "geometry_estimate": {
+    "document_ref": null,
+    "approval": null,
+    "note": "none in contract form; BOM handoff engineering_verdict Z"
+   },
+   "date_derived": "2026-11-14"
+  },
+  {
+   "part": "02_MOTOR_BACK_SPACER",
+   "revision_priced_to": "v1.1 (reBot_B601_DM_v1.1_20260625.step)",
+   "op_seq": null,
+   "op": "machining (operation list not established)",
+   "work_center": null,
+   "machine_class": null,
+   "rung": 4,
+   "path": "first principles (not quantified)",
+   "cutting_data_basis": null,
+   "setup_h": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "h"
+   },
+   "run": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "min/pc"
+   },
+   "qty_per_set": 3,
+   "quantity_breaks_priced": [
+    20
+   ],
+   "material": {
+    "stock": "AL5052-PL-6",
+    "po": "PO-30711",
+    "po_date": "2026-10-20",
+    "blank_mm": [
+     57.0,
+     57.0
+    ],
+    "usd_per_pc": 0.7476,
+    "status": "lower bound",
+    "reason": null
+   },
+   "sources": [
+    "inputs/02_bom_handoff.json",
+    "inputs/purchase_orders_5052.csv",
+    "inputs/equipment.csv"
+   ],
+   "geometry_estimate": {
+    "document_ref": null,
+    "approval": null,
+    "note": "none in contract form; BOM handoff engineering_verdict Z"
+   },
+   "date_derived": "2026-11-14"
+  },
+  {
+   "part": "02_FLANGE",
+   "revision_priced_to": "v1.1 (reBot_B601_DM_v1.1_20260625.step)",
+   "op_seq": null,
+   "op": "machining (operation list not established)",
+   "work_center": null,
+   "machine_class": null,
+   "rung": 4,
+   "path": "first principles (not quantified)",
+   "cutting_data_basis": null,
+   "setup_h": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "h"
+   },
+   "run": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "min/pc"
+   },
+   "qty_per_set": 3,
+   "quantity_breaks_priced": [
+    20
+   ],
+   "material": {
+    "stock": "AL5052-PL-10",
+    "po": "PO-30744",
+    "po_date": "2026-11-02",
+    "blank_mm": [
+     34.8,
+     34.8
+    ],
+    "usd_per_pc": 0.4277,
+    "status": "lower bound",
+    "reason": null
+   },
+   "sources": [
+    "inputs/02_bom_handoff.json",
+    "inputs/purchase_orders_5052.csv",
+    "inputs/equipment.csv"
+   ],
+   "geometry_estimate": {
+    "document_ref": null,
+    "approval": null,
+    "note": "none in contract form; BOM handoff engineering_verdict Z"
+   },
+   "date_derived": "2026-11-14"
+  },
+  {
+   "part": "02_WRIST_BRACKET",
+   "revision_priced_to": "v1.1 (reBot_B601_DM_v1.1_20260625.step)",
+   "op_seq": null,
+   "op": "machining (operation list not established)",
+   "work_center": null,
+   "machine_class": null,
+   "rung": 4,
+   "path": "first principles (not quantified)",
+   "cutting_data_basis": null,
+   "setup_h": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "h"
+   },
+   "run": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "min/pc"
+   },
+   "qty_per_set": 1,
+   "quantity_breaks_priced": [
+    20
+   ],
+   "material": {
+    "stock": "AL5052-PL-10",
+    "po": "PO-30744",
+    "po_date": "2026-11-02",
+    "blank_mm": [
+     60.75,
+     92.922
+    ],
+    "usd_per_pc": 1.9934,
+    "status": "lower bound",
+    "reason": null
+   },
+   "sources": [
+    "inputs/02_bom_handoff.json",
+    "inputs/purchase_orders_5052.csv",
+    "inputs/equipment.csv"
+   ],
+   "geometry_estimate": {
+    "document_ref": null,
+    "approval": null,
+    "note": "none in contract form; BOM handoff engineering_verdict Z"
+   },
+   "date_derived": "2026-11-14"
+  },
+  {
+   "part": "02_GRIPPER_CONNECTOR_A",
+   "revision_priced_to": "v1.1 (reBot_B601_DM_v1.1_20260625.step)",
+   "op_seq": null,
+   "op": "machining (operation list not established)",
+   "work_center": null,
+   "machine_class": null,
+   "rung": 4,
+   "path": "first principles (not quantified)",
+   "cutting_data_basis": null,
+   "setup_h": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "h"
+   },
+   "run": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "min/pc"
+   },
+   "qty_per_set": 1,
+   "quantity_breaks_priced": [
+    20
+   ],
+   "material": {
+    "stock": "AL5052-PL-6",
+    "po": "PO-30711",
+    "po_date": "2026-10-20",
+    "blank_mm": [
+     34.433,
+     35.62
+    ],
+    "usd_per_pc": 0.2822,
+    "status": "lower bound",
+    "reason": null
+   },
+   "sources": [
+    "inputs/02_bom_handoff.json",
+    "inputs/purchase_orders_5052.csv",
+    "inputs/equipment.csv"
+   ],
+   "geometry_estimate": {
+    "document_ref": null,
+    "approval": null,
+    "note": "none in contract form; BOM handoff engineering_verdict Z"
+   },
+   "date_derived": "2026-11-14"
+  },
+  {
+   "part": "02_GRIPPER_CONNECTOR_B",
+   "revision_priced_to": "v1.1 (reBot_B601_DM_v1.1_20260625.step)",
+   "op_seq": null,
+   "op": "machining (operation list not established)",
+   "work_center": null,
+   "machine_class": null,
+   "rung": 4,
+   "path": "first principles (not quantified)",
+   "cutting_data_basis": null,
+   "setup_h": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "h"
+   },
+   "run": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "min/pc"
+   },
+   "qty_per_set": 1,
+   "quantity_breaks_priced": [
+    20
+   ],
+   "material": {
+    "stock": "AL5052-PL-10",
+    "po": "PO-30744",
+    "po_date": "2026-11-02",
+    "blank_mm": [
+     56.802,
+     56.802
+    ],
+    "usd_per_pc": 1.1394,
+    "status": "lower bound",
+    "reason": null
+   },
+   "sources": [
+    "inputs/02_bom_handoff.json",
+    "inputs/purchase_orders_5052.csv",
+    "inputs/equipment.csv"
+   ],
+   "geometry_estimate": {
+    "document_ref": null,
+    "approval": null,
+    "note": "none in contract form; BOM handoff engineering_verdict Z"
+   },
+   "date_derived": "2026-11-14"
+  },
+  {
+   "part": "02_SLIDER_BRACKET",
+   "revision_priced_to": "v1.1 (reBot_B601_DM_v1.1_20260625.step)",
+   "op_seq": null,
+   "op": "machining (operation list not established)",
+   "work_center": null,
+   "machine_class": null,
+   "rung": 4,
+   "path": "first principles (not quantified)",
+   "cutting_data_basis": null,
+   "setup_h": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "h"
+   },
+   "run": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "min/pc"
+   },
+   "qty_per_set": 1,
+   "quantity_breaks_priced": [
+    20
+   ],
+   "material": {
+    "stock": "AL5052-SH-3",
+    "po": "PO-30710",
+    "po_date": "2026-10-20",
+    "blank_mm": [
+     68.466,
+     176.285
+    ],
+    "usd_per_pc": 0.6025,
+    "status": "lower bound",
+    "reason": null
+   },
+   "sources": [
+    "inputs/02_bom_handoff.json",
+    "inputs/purchase_orders_5052.csv",
+    "inputs/equipment.csv"
+   ],
+   "geometry_estimate": {
+    "document_ref": null,
+    "approval": null,
+    "note": "none in contract form; BOM handoff engineering_verdict Z"
+   },
+   "date_derived": "2026-11-14"
+  },
+  {
+   "part": "02_SLIDER_EXTENSION",
+   "revision_priced_to": "v1.1 (reBot_B601_DM_v1.1_20260625.step)",
+   "op_seq": null,
+   "op": "machining (operation list not established)",
+   "work_center": null,
+   "machine_class": null,
+   "rung": 4,
+   "path": "first principles (not quantified)",
+   "cutting_data_basis": null,
+   "setup_h": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "h"
+   },
+   "run": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "min/pc"
+   },
+   "qty_per_set": 2,
+   "quantity_breaks_priced": [
+    20
+   ],
+   "material": {
+    "stock": null,
+    "po": null,
+    "po_date": null,
+    "blank_mm": null,
+    "usd_per_pc": null,
+    "status": "unknown",
+    "reason": "smallest bbox dimension 17.8 mm exceeds every 5052 stock on PO (max 10.0 mm); no price paid on file"
+   },
+   "sources": [
+    "inputs/02_bom_handoff.json",
+    "inputs/purchase_orders_5052.csv",
+    "inputs/equipment.csv"
+   ],
+   "geometry_estimate": {
+    "document_ref": null,
+    "approval": null,
+    "note": "none in contract form; BOM handoff engineering_verdict Z"
+   },
+   "date_derived": "2026-11-14"
+  },
+  {
+   "part": "02_LOWER_UPPER_LINK_L",
+   "revision_priced_to": "v1.1 (reBot_B601_DM_v1.1_20260625.step)",
+   "op_seq": null,
+   "op": "machining (operation list not established)",
+   "work_center": null,
+   "machine_class": null,
+   "rung": 4,
+   "path": "first principles (not quantified)",
+   "cutting_data_basis": null,
+   "setup_h": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "h"
+   },
+   "run": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "min/pc"
+   },
+   "qty_per_set": 1,
+   "quantity_breaks_priced": [
+    20
+   ],
+   "material": {
+    "stock": "AL5052-PL-6",
+    "po": "PO-30711",
+    "po_date": "2026-10-20",
+    "blank_mm": [
+     76.177,
+     99.0
+    ],
+    "usd_per_pc": 1.7354,
+    "status": "lower bound",
+    "reason": null
+   },
+   "sources": [
+    "inputs/02_bom_handoff.json",
+    "inputs/purchase_orders_5052.csv",
+    "inputs/equipment.csv"
+   ],
+   "geometry_estimate": {
+    "document_ref": null,
+    "approval": null,
+    "note": "none in contract form; BOM handoff engineering_verdict Z"
+   },
+   "date_derived": "2026-11-14"
+  },
+  {
+   "part": "02_LOWER_UPPER_LINK_R",
+   "revision_priced_to": "v1.1 (reBot_B601_DM_v1.1_20260625.step)",
+   "op_seq": null,
+   "op": "machining (operation list not established)",
+   "work_center": null,
+   "machine_class": null,
+   "rung": 4,
+   "path": "first principles (not quantified)",
+   "cutting_data_basis": null,
+   "setup_h": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "h"
+   },
+   "run": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "min/pc"
+   },
+   "qty_per_set": 1,
+   "quantity_breaks_priced": [
+    20
+   ],
+   "material": {
+    "stock": "AL5052-PL-6",
+    "po": "PO-30711",
+    "po_date": "2026-10-20",
+    "blank_mm": [
+     76.177,
+     99.0
+    ],
+    "usd_per_pc": 1.7354,
+    "status": "lower bound",
+    "reason": null
+   },
+   "sources": [
+    "inputs/02_bom_handoff.json",
+    "inputs/purchase_orders_5052.csv",
+    "inputs/equipment.csv"
+   ],
+   "geometry_estimate": {
+    "document_ref": null,
+    "approval": null,
+    "note": "none in contract form; BOM handoff engineering_verdict Z"
+   },
+   "date_derived": "2026-11-14"
+  },
+  {
+   "part": "02_LOWER_WRIST_LINK_L",
+   "revision_priced_to": "v1.1 (reBot_B601_DM_v1.1_20260625.step)",
+   "op_seq": null,
+   "op": "machining (operation list not established)",
+   "work_center": null,
+   "machine_class": null,
+   "rung": 4,
+   "path": "first principles (not quantified)",
+   "cutting_data_basis": null,
+   "setup_h": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "h"
+   },
+   "run": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "min/pc"
+   },
+   "qty_per_set": 1,
+   "quantity_breaks_priced": [
+    20
+   ],
+   "material": {
+    "stock": "AL5052-SH-3",
+    "po": "PO-30710",
+    "po_date": "2026-10-20",
+    "blank_mm": [
+     82.963,
+     103.943
+    ],
+    "usd_per_pc": 0.4305,
+    "status": "lower bound",
+    "reason": null
+   },
+   "sources": [
+    "inputs/02_bom_handoff.json",
+    "inputs/purchase_orders_5052.csv",
+    "inputs/equipment.csv"
+   ],
+   "geometry_estimate": {
+    "document_ref": null,
+    "approval": null,
+    "note": "none in contract form; BOM handoff engineering_verdict Z"
+   },
+   "date_derived": "2026-11-14"
+  },
+  {
+   "part": "02_LOWER_WRIST_LINK_R",
+   "revision_priced_to": "v1.1 (reBot_B601_DM_v1.1_20260625.step)",
+   "op_seq": null,
+   "op": "machining (operation list not established)",
+   "work_center": null,
+   "machine_class": null,
+   "rung": 4,
+   "path": "first principles (not quantified)",
+   "cutting_data_basis": null,
+   "setup_h": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "h"
+   },
+   "run": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "min/pc"
+   },
+   "qty_per_set": 1,
+   "quantity_breaks_priced": [
+    20
+   ],
+   "material": {
+    "stock": "AL5052-SH-3",
+    "po": "PO-30710",
+    "po_date": "2026-10-20",
+    "blank_mm": [
+     82.963,
+     103.943
+    ],
+    "usd_per_pc": 0.4305,
+    "status": "lower bound",
+    "reason": null
+   },
+   "sources": [
+    "inputs/02_bom_handoff.json",
+    "inputs/purchase_orders_5052.csv",
+    "inputs/equipment.csv"
+   ],
+   "geometry_estimate": {
+    "document_ref": null,
+    "approval": null,
+    "note": "none in contract form; BOM handoff engineering_verdict Z"
+   },
+   "date_derived": "2026-11-14"
+  },
+  {
+   "part": "02_GEAR_CONNECTOR",
+   "revision_priced_to": "v1.1 (reBot_B601_DM_v1.1_20260625.step)",
+   "op_seq": null,
+   "op": "machining (operation list not established)",
+   "work_center": null,
+   "machine_class": null,
+   "rung": 4,
+   "path": "first principles (not quantified)",
+   "cutting_data_basis": null,
+   "setup_h": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "h"
+   },
+   "run": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "min/pc"
+   },
+   "qty_per_set": 1,
+   "quantity_breaks_priced": [
+    20
+   ],
+   "material": {
+    "stock": "AL5052-PL-10",
+    "po": "PO-30744",
+    "po_date": "2026-11-02",
+    "blank_mm": [
+     35.002,
+     35.002
+    ],
+    "usd_per_pc": 0.4326,
+    "status": "lower bound",
+    "reason": null
+   },
+   "sources": [
+    "inputs/02_bom_handoff.json",
+    "inputs/purchase_orders_5052.csv",
+    "inputs/equipment.csv"
+   ],
+   "geometry_estimate": {
+    "document_ref": null,
+    "approval": null,
+    "note": "none in contract form; BOM handoff engineering_verdict Z"
+   },
+   "date_derived": "2026-11-14"
+  },
+  {
+   "part": "02_RACK",
+   "revision_priced_to": "v1.1 (reBot_B601_DM_v1.1_20260625.step)",
+   "op_seq": null,
+   "op": "machining (operation list not established)",
+   "work_center": null,
+   "machine_class": null,
+   "rung": 4,
+   "path": "first principles (not quantified)",
+   "cutting_data_basis": null,
+   "setup_h": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "h"
+   },
+   "run": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "min/pc"
+   },
+   "qty_per_set": 2,
+   "quantity_breaks_priced": [
+    20
+   ],
+   "material": {
+    "stock": "AL5052-PL-6",
+    "po": "PO-30711",
+    "po_date": "2026-10-20",
+    "blank_mm": [
+     12.002,
+     89.999
+    ],
+    "usd_per_pc": 0.2486,
+    "status": "lower bound",
+    "reason": null
+   },
+   "sources": [
+    "inputs/02_bom_handoff.json",
+    "inputs/purchase_orders_5052.csv",
+    "inputs/equipment.csv"
+   ],
+   "geometry_estimate": {
+    "document_ref": null,
+    "approval": null,
+    "note": "none in contract form; BOM handoff engineering_verdict Z"
+   },
+   "date_derived": "2026-11-14"
+  },
+  {
+   "part": "03_LINK1",
+   "revision_priced_to": "v1.1 (reBot_B601_DM_v1.1_20260625.step)",
+   "op_seq": null,
+   "op": "machining (operation list not established); forming",
+   "work_center": null,
+   "machine_class": null,
+   "rung": 4,
+   "path": "first principles (not quantified)",
+   "cutting_data_basis": null,
+   "setup_h": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "h"
+   },
+   "run": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "min/pc"
+   },
+   "qty_per_set": 1,
+   "quantity_breaks_priced": [
+    20
+   ],
+   "material": {
+    "stock": null,
+    "po": null,
+    "po_date": null,
+    "blank_mm": null,
+    "usd_per_pc": null,
+    "status": "unknown",
+    "reason": "CNC + Sheet Metal: sheet gauge and flat pattern not in the handoff; bbox is the formed envelope, not the blank"
+   },
+   "sources": [
+    "inputs/02_bom_handoff.json",
+    "inputs/purchase_orders_5052.csv",
+    "inputs/equipment.csv"
+   ],
+   "geometry_estimate": {
+    "document_ref": null,
+    "approval": null,
+    "note": "none in contract form; BOM handoff engineering_verdict Z"
+   },
+   "date_derived": "2026-11-14"
+  },
+  {
+   "part": "03_LINK2",
+   "revision_priced_to": "v1.1 (reBot_B601_DM_v1.1_20260625.step)",
+   "op_seq": null,
+   "op": "machining (operation list not established); forming",
+   "work_center": null,
+   "machine_class": null,
+   "rung": 4,
+   "path": "first principles (not quantified)",
+   "cutting_data_basis": null,
+   "setup_h": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "h"
+   },
+   "run": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "min/pc"
+   },
+   "qty_per_set": 2,
+   "quantity_breaks_priced": [
+    20
+   ],
+   "material": {
+    "stock": null,
+    "po": null,
+    "po_date": null,
+    "blank_mm": null,
+    "usd_per_pc": null,
+    "status": "unknown",
+    "reason": "CNC + Sheet Metal: sheet gauge and flat pattern not in the handoff; bbox is the formed envelope, not the blank"
+   },
+   "sources": [
+    "inputs/02_bom_handoff.json",
+    "inputs/purchase_orders_5052.csv",
+    "inputs/equipment.csv"
+   ],
+   "geometry_estimate": {
+    "document_ref": null,
+    "approval": null,
+    "note": "none in contract form; BOM handoff engineering_verdict Z"
+   },
+   "date_derived": "2026-11-14"
+  },
+  {
+   "part": "03_LINK3_L",
+   "revision_priced_to": "v1.1 (reBot_B601_DM_v1.1_20260625.step)",
+   "op_seq": null,
+   "op": "machining (operation list not established); forming",
+   "work_center": null,
+   "machine_class": null,
+   "rung": 4,
+   "path": "first principles (not quantified)",
+   "cutting_data_basis": null,
+   "setup_h": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "h"
+   },
+   "run": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "min/pc"
+   },
+   "qty_per_set": 1,
+   "quantity_breaks_priced": [
+    20
+   ],
+   "material": {
+    "stock": null,
+    "po": null,
+    "po_date": null,
+    "blank_mm": null,
+    "usd_per_pc": null,
+    "status": "unknown",
+    "reason": "CNC + Sheet Metal: sheet gauge and flat pattern not in the handoff; bbox is the formed envelope, not the blank"
+   },
+   "sources": [
+    "inputs/02_bom_handoff.json",
+    "inputs/purchase_orders_5052.csv",
+    "inputs/equipment.csv"
+   ],
+   "geometry_estimate": {
+    "document_ref": null,
+    "approval": null,
+    "note": "none in contract form; BOM handoff engineering_verdict Z"
+   },
+   "date_derived": "2026-11-14"
+  },
+  {
+   "part": "03_LINK3_R",
+   "revision_priced_to": "v1.1 (reBot_B601_DM_v1.1_20260625.step)",
+   "op_seq": null,
+   "op": "machining (operation list not established); forming",
+   "work_center": null,
+   "machine_class": null,
+   "rung": 4,
+   "path": "first principles (not quantified)",
+   "cutting_data_basis": null,
+   "setup_h": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "h"
+   },
+   "run": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "min/pc"
+   },
+   "qty_per_set": 1,
+   "quantity_breaks_priced": [
+    20
+   ],
+   "material": {
+    "stock": null,
+    "po": null,
+    "po_date": null,
+    "blank_mm": null,
+    "usd_per_pc": null,
+    "status": "unknown",
+    "reason": "CNC + Sheet Metal: sheet gauge and flat pattern not in the handoff; bbox is the formed envelope, not the blank"
+   },
+   "sources": [
+    "inputs/02_bom_handoff.json",
+    "inputs/purchase_orders_5052.csv",
+    "inputs/equipment.csv"
+   ],
+   "geometry_estimate": {
+    "document_ref": null,
+    "approval": null,
+    "note": "none in contract form; BOM handoff engineering_verdict Z"
+   },
+   "date_derived": "2026-11-14"
+  },
+  {
+   "part": "03_LINK5",
+   "revision_priced_to": "v1.1 (reBot_B601_DM_v1.1_20260625.step)",
+   "op_seq": null,
+   "op": "machining (operation list not established); forming",
+   "work_center": null,
+   "machine_class": null,
+   "rung": 4,
+   "path": "first principles (not quantified)",
+   "cutting_data_basis": null,
+   "setup_h": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "h"
+   },
+   "run": {
+    "low": null,
+    "expected": null,
+    "high": null,
+    "unit": "min/pc"
+   },
+   "qty_per_set": 1,
+   "quantity_breaks_priced": [
+    20
+   ],
+   "material": {
+    "stock": null,
+    "po": null,
+    "po_date": null,
+    "blank_mm": null,
+    "usd_per_pc": null,
+    "status": "unknown",
+    "reason": "CNC + Sheet Metal: sheet gauge and flat pattern not in the handoff; bbox is the formed envelope, not the blank"
+   },
+   "sources": [
+    "inputs/02_bom_handoff.json",
+    "inputs/purchase_orders_5052.csv",
+    "inputs/equipment.csv"
+   ],
+   "geometry_estimate": {
+    "document_ref": null,
+    "approval": null,
+    "note": "none in contract form; BOM handoff engineering_verdict Z"
+   },
+   "date_derived": "2026-11-14"
+  }
+ ],
+ "revision_history": [
+  {
+   "draft": 1,
+   "date": "2026-11-14",
+   "change": "first draft, no prices"
+  }
+ ]
+}

@@ -1,0 +1,4 @@
+SUPPLIER RFQ PACKAGE — SENDABLE: PASS
+SUPPLIER EMAIL — HELD — Alder Sintered Parts: PASS
+SUPPLIER EMAIL — HELD — Birch Powder Metal: PASS
+blocks checked: 3

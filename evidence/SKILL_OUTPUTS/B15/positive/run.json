@@ -501,6 +501,34 @@
   }
  ],
  "transcript": "evidence/SKILL_OUTPUTS/B15/positive/transcript.jsonl.gz",
- "status": "Z",
- "z_reason": "no independent evaluator verdict"
+ "evaluator": {
+  "route": "desktop-subagent, separate context from the producer",
+  "model": "claude-opus-5-5",
+  "transcript_file": "agent-a53cdb2b9836e56f9.jsonl",
+  "tools_used": [
+   "Glob",
+   "Read",
+   "SubagentHandback"
+  ],
+  "non_read_tool_calls": 1,
+  "usage": {
+   "input_tokens": 14,
+   "output_tokens": 3067,
+   "cache_read_input_tokens": 276225,
+   "cache_creation_input_tokens": 141988
+  },
+  "verdict": {
+   "verdict": "PASS",
+   "core_task_done": true,
+   "required_products_present": true,
+   "claims_sourced": true,
+   "fabrication": [],
+   "missing_data_handled": true,
+   "approval_rules_respected": true,
+   "arithmetic_mismatches": [],
+   "notes": "Timeline and SPC were computed in code; I rechecked the CL, UCL and LCL, sigma, ratios, OLS slope and intercept, USL crossing, shift residuals, per-lot rise and the 15.17 h gap. All match. Four ranked chains (tool wear, head setting, coolant, shift) each carry For/Against per link, Confirm/Kill tests and a cheapest discriminating test, with a stated tie and no single verdict. The 8D has D6/D8 placeholders, links D5 actions to D4 and explains in D7 why CAPA-071 (never verified) failed. Effectiveness criteria are proposed. Nothing sent; register not updated, stated. Minor: escape_detected_at uses run time."
+  },
+  "raw": null
+ },
+ "status": "PASS"
 }

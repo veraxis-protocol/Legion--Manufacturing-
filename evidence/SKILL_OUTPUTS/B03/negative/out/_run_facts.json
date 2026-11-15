@@ -1,0 +1,308 @@
+{
+ "ident": {
+  "equipment.csv": [
+   "Equipment / asset list (manual list)",
+   "candidate for assets - see asset key overlap"
+  ],
+  "pulse_oee/README.txt": [
+   "Not a data export (README text)",
+   "not loaded"
+  ],
+  "pulse_oee/downtime.csv": [
+   "Downtime events (MES/historian export)",
+   "loaded to downtime_events"
+  ],
+  "pulse_oee/output.csv": [
+   "Production output (MES export)",
+   "loaded to production_output"
+  ],
+  "pulse_oee/plan.csv": [
+   "Plan / schedule (planning export)",
+   "loaded to plan"
+  ],
+  "pulse_oee/routing.csv": [
+   "Looks like a routing but misses signature column(s): setup time",
+   "UNRECOGNIZED - set aside, not loaded"
+  ]
+ },
+ "overlap": [
+  "2026-11-12",
+  "2026-11-12",
+  true
+ ],
+ "future": [],
+ "asset_overlap": 0,
+ "figures": [
+  [
+   "Files found in inputs folder",
+   6,
+   "folder walk",
+   "os.walk(inputs)"
+  ],
+  [
+   "Files loaded to dataset tabs",
+   3,
+   "identification",
+   "output.csv, downtime.csv, plan.csv"
+  ],
+  [
+   "Files set aside",
+   2,
+   "identification",
+   "routing.csv (unrecognized: no setup time), equipment.csv (zero asset key overlap)"
+  ],
+  [
+   "Rows in: production_output",
+   3,
+   "output.csv",
+   "data rows"
+  ],
+  [
+   "Rows in: downtime_events",
+   2,
+   "downtime.csv",
+   "data rows"
+  ],
+  [
+   "Rows in: plan",
+   2,
+   "plan.csv",
+   "data rows"
+  ],
+  [
+   "Rows in, three loaded tabs",
+   7,
+   "sum of the three above",
+   ""
+  ],
+  [
+   "Rows joined (matched)",
+   7,
+   "loaded tabs",
+   "join_status == matched"
+  ],
+  [
+   "  of which matched exactly",
+   7,
+   "loaded tabs",
+   "no normalization rule fired"
+  ],
+  [
+   "  of which matched after normalization",
+   0,
+   "loaded tabs",
+   "join_status == normalized"
+  ],
+  [
+   "Rows awaiting a proposed fix",
+   0,
+   "loaded tabs",
+   "join_status == proposed_normalization"
+  ],
+  [
+   "Rows unmatched",
+   0,
+   "loaded tabs",
+   "join_status == unmatched"
+  ],
+  [
+   "Equipment list rows (not joined)",
+   5,
+   "equipment.csv",
+   "data rows, comment line excluded"
+  ],
+  [
+   "Routing rows (not loaded)",
+   2,
+   "routing.csv",
+   "data rows"
+  ],
+  [
+   "Distinct asset IDs on MES/plan/downtime",
+   2,
+   "output, plan, downtime",
+   "CNC-01, CNC-02"
+  ],
+  [
+   "Distinct asset IDs on equipment list",
+   5,
+   "equipment.csv",
+   "HMC-01, VMC-02, VMC-03, LTH-01, DEB-01"
+  ],
+  [
+   "Asset IDs shared, exact",
+   0,
+   "both sides",
+   "set intersection"
+  ],
+  [
+   "Asset IDs shared after rungs 1-3",
+   0,
+   "both sides",
+   "trim, case, punctuation fold"
+  ],
+  [
+   "Asset IDs shared after rung 4 test",
+   0,
+   "both sides",
+   "leading zeros removed from both"
+  ],
+  [
+   "Distinct parts on plan",
+   2,
+   "plan.csv",
+   "PN-100, PN-200"
+  ],
+  [
+   "Distinct parts on output",
+   2,
+   "output.csv",
+   "PN-100, PN-200"
+  ],
+  [
+   "Parts on both plan and output, exact",
+   2,
+   "plan, output",
+   "set intersection"
+  ],
+  [
+   "Planned parts with no output",
+   0,
+   "plan vs output",
+   "plan parts minus output parts"
+  ],
+  [
+   "Output parts with no plan",
+   0,
+   "output vs plan",
+   "output parts minus plan parts"
+  ],
+  [
+   "Distinct production work orders on output",
+   3,
+   "output.csv",
+   "distinct work_order"
+  ],
+  [
+   "Production work orders checkable against a work order source",
+   0,
+   "inputs folder",
+   "no work order export found by folder walk; no ERP connector this run"
+  ],
+  [
+   "Duplicate keys at grain, production_output",
+   0,
+   "output.csv",
+   "(work_order, shift, production_day) count > 1"
+  ],
+  [
+   "Duplicate keys at grain, plan",
+   0,
+   "plan.csv",
+   "(part_number, plan_date) count > 1"
+  ],
+  [
+   "Duplicate asset IDs, equipment list",
+   0,
+   "equipment.csv",
+   "asset_id count > 1"
+  ],
+  [
+   "Integrity flag end_before_start",
+   0,
+   "downtime.csv",
+   "ended_at < started_at"
+  ],
+  [
+   "Integrity flag duration_mismatch",
+   0,
+   "downtime.csv",
+   "|end-start - duration| > 1 min"
+  ],
+  [
+   "Integrity flag future_timestamp",
+   0,
+   "all files",
+   "file mtime or transaction date after run date 2026-11-14"
+  ],
+  [
+   "Integrity flags sign_convention / mixed_sign / ncr_* / units_conflict",
+   0,
+   "n/a",
+   "no sales, fulfilment, NCR rows; no unit columns to conflict"
+  ],
+  [
+   "Rows with no UOM (qty not totalled)",
+   5,
+   "output, plan",
+   "no uom column in either file"
+  ],
+  [
+   "Rows with as_of lacking a zone",
+   7,
+   "loaded tabs",
+   "no zone in source; no Plant context source-clock row"
+  ],
+  [
+   "Mismatch class 1 records",
+   0,
+   "loaded tabs",
+   "mismatch_class == 1"
+  ],
+  [
+   "Mismatch class 2 records",
+   0,
+   "loaded tabs",
+   "mismatch_class == 2"
+  ],
+  [
+   "Mismatch class 3 records",
+   0,
+   "loaded tabs",
+   "mismatch_class == 3"
+  ],
+  [
+   "Mismatch class 4 records",
+   0,
+   "loaded tabs",
+   "mismatch_class == 4"
+  ],
+  [
+   "Mismatch class 5 records",
+   0,
+   "loaded tabs",
+   "mismatch_class == 5"
+  ],
+  [
+   "Mismatch class 6 records",
+   0,
+   "loaded tabs",
+   "mismatch_class == 6"
+  ],
+  [
+   "Mismatch class 7 records",
+   0,
+   "loaded tabs",
+   "mismatch_class == 7"
+  ],
+  [
+   "Mismatch class 8 records",
+   0,
+   "loaded tabs",
+   "mismatch_class == 8"
+  ]
+ ],
+ "n_in": 7,
+ "n_matched": 7,
+ "prod_side": [
+  "CNC-01",
+  "CNC-02"
+ ],
+ "eq_assets": [
+  "HMC-01",
+  "VMC-02",
+  "VMC-03",
+  "LTH-01",
+  "DEB-01"
+ ]
+}

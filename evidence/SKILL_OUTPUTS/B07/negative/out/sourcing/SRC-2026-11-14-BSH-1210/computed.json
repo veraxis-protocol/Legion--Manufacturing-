@@ -1,0 +1,512 @@
+{
+  "event": "SRC-2026-11-14-BSH-1210",
+  "breaks": [
+    800,
+    1200,
+    3200
+  ],
+  "total": 3200,
+  "monthly": {
+    "2026-12": 800,
+    "2027-01": 1200,
+    "2027-02": 1200
+  },
+  "revs": [
+    "A"
+  ],
+  "bids": [
+    {
+      "contract_version": 1,
+      "site": "not stated (no plant profile)",
+      "event_ref": "SRC-2026-11-14-BSH-1210",
+      "bid_ref": "SRC-2026-11-14-BSH-1210/unlisted-alder/1",
+      "supersedes": null,
+      "supplier_id": "unlisted",
+      "supplier_id_verbatim": "Alder Sintered Parts (fictitious)",
+      "supplier_name": "Alder Sintered Parts",
+      "approval_status": "not_confirmed_approved",
+      "received_at": null,
+      "received_at_reason": "the bid text carries no date",
+      "received_via": "pasted",
+      "source_ref": "bid_supplier_A.txt, line 2-4",
+      "ingested_at": "2026-11-14T00:00:00 (session date; time of day and zone not known)",
+      "quote_ref": "Q-A-118",
+      "revision_quoted": "A (stated: 'Part BSH-1210 rev A')",
+      "currency": "USD",
+      "supplier_breaks": [
+        [
+          1000,
+          0.62,
+          "1,000 pcs 0.62 USD/ea"
+        ],
+        [
+          3000,
+          0.55,
+          "3,000 pcs 0.55 USD/ea"
+        ]
+      ],
+      "lead_time_as_quoted": "4 weeks ARO",
+      "tooling_price": null,
+      "tooling_in_unit_price": null,
+      "tooling_ownership": null,
+      "tooling_note": "Tooling: existing.",
+      "moq": 1000,
+      "moq_uom": "each",
+      "validity_as_quoted": "valid 30 days",
+      "validity_until": null,
+      "freight_basis": "FOB origin",
+      "payment_terms": null,
+      "quality_clause_acceptance": "not_stated",
+      "clause_exceptions": [],
+      "exceptions": [
+        "hardness 25-45 HRF"
+      ],
+      "breaks": [
+        {
+          "quantity": 800,
+          "uom": "each",
+          "unit_price": null,
+          "as_quoted": "not priced at 800; supplier quoted: 1,000 pcs 0.62 USD/ea; 3,000 pcs 0.55 USD/ea",
+          "lead_time_first_article": null,
+          "lead_time_production": null,
+          "source_ref": "bid_supplier_A.txt, line 2-4"
+        },
+        {
+          "quantity": 1200,
+          "uom": "each",
+          "unit_price": null,
+          "as_quoted": "not priced at 1,200; supplier quoted: 1,000 pcs 0.62 USD/ea; 3,000 pcs 0.55 USD/ea",
+          "lead_time_first_article": null,
+          "lead_time_production": null,
+          "source_ref": "bid_supplier_A.txt, line 2-4"
+        },
+        {
+          "quantity": 3200,
+          "uom": "each",
+          "unit_price": null,
+          "as_quoted": "not priced at 3,200; supplier quoted: 1,000 pcs 0.62 USD/ea; 3,000 pcs 0.55 USD/ea",
+          "lead_time_first_article": null,
+          "lead_time_production": null,
+          "source_ref": "bid_supplier_A.txt, line 2-4"
+        }
+      ],
+      "fields_missing": [
+        "unit price at 800 (not priced at this quantity)",
+        "unit price at 1,200 (not priced at this quantity)",
+        "unit price at 3,200 (not priced at this quantity)",
+        "lead time, first article, from a named event (as quoted: '4 weeks ARO')",
+        "lead time, production, from a named event (as quoted: '4 weeks ARO')",
+        "tooling price, or a statement that none is needed (as quoted: 'Tooling: existing.')",
+        "tooling ownership",
+        "price validity as a date (stated '30 days' but the quote is undated)",
+        "quality clause acceptance",
+        "payment terms"
+      ],
+      "conformance": "off_format",
+      "restatement_requested": true
+    },
+    {
+      "contract_version": 1,
+      "site": "not stated (no plant profile)",
+      "event_ref": "SRC-2026-11-14-BSH-1210",
+      "bid_ref": "SRC-2026-11-14-BSH-1210/unlisted-birch/1",
+      "supersedes": null,
+      "supplier_id": "unlisted",
+      "supplier_id_verbatim": "Birch Powder Metal (fictitious)",
+      "supplier_name": "Birch Powder Metal",
+      "approval_status": "not_confirmed_approved",
+      "received_at": null,
+      "received_at_reason": "the bid text carries no date",
+      "received_via": "pasted",
+      "source_ref": "bid_supplier_B.txt, line 2-3",
+      "ingested_at": "2026-11-14T00:00:00 (session date; time of day and zone not known)",
+      "quote_ref": "BPM-77",
+      "revision_quoted": null,
+      "currency": "USD",
+      "supplier_breaks": [
+        [
+          3200,
+          0.49,
+          "Unit price 0.49 USD at 3,200 pcs"
+        ]
+      ],
+      "lead_time_as_quoted": "Lead 6-7 weeks",
+      "tooling_price": 1850.0,
+      "tooling_in_unit_price": false,
+      "tooling_ownership": null,
+      "tooling_note": "Tooling 1,850 USD one time",
+      "moq": null,
+      "moq_uom": "each",
+      "validity_as_quoted": null,
+      "validity_until": null,
+      "freight_basis": "Delivered DDP Dayton",
+      "payment_terms": "net 45",
+      "quality_clause_acceptance": "not_stated",
+      "clause_exceptions": [],
+      "exceptions": [],
+      "breaks": [
+        {
+          "quantity": 800,
+          "uom": "each",
+          "unit_price": null,
+          "as_quoted": "not priced at 800; supplier quoted: Unit price 0.49 USD at 3,200 pcs",
+          "lead_time_first_article": null,
+          "lead_time_production": null,
+          "source_ref": "bid_supplier_B.txt, line 2-3"
+        },
+        {
+          "quantity": 1200,
+          "uom": "each",
+          "unit_price": null,
+          "as_quoted": "not priced at 1,200; supplier quoted: Unit price 0.49 USD at 3,200 pcs",
+          "lead_time_first_article": null,
+          "lead_time_production": null,
+          "source_ref": "bid_supplier_B.txt, line 2-3"
+        },
+        {
+          "quantity": 3200,
+          "uom": "each",
+          "unit_price": 0.49,
+          "as_quoted": "Unit price 0.49 USD at 3,200 pcs",
+          "lead_time_first_article": null,
+          "lead_time_production": null,
+          "source_ref": "bid_supplier_B.txt, line 2-3"
+        }
+      ],
+      "fields_missing": [
+        "unit price at 800 (not priced at this quantity)",
+        "unit price at 1,200 (not priced at this quantity)",
+        "lead time, first article, from a named event (as quoted: 'Lead 6-7 weeks')",
+        "lead time, production, from a named event (as quoted: 'Lead 6-7 weeks')",
+        "tooling ownership",
+        "minimum order quantity",
+        "price validity",
+        "quality clause acceptance",
+        "drawing revision quoted against"
+      ],
+      "conformance": "off_format",
+      "restatement_requested": true
+    }
+  ],
+  "comparison": {
+    "800": {
+      "rows": [
+        {
+          "supplier": "Alder Sintered Parts",
+          "approval": "not_confirmed_approved",
+          "unit_price": null,
+          "as_quoted": "not priced at 800; supplier quoted: 1,000 pcs 0.62 USD/ea; 3,000 pcs 0.55 USD/ea",
+          "extended": null,
+          "tooling": null,
+          "tooling_note": "Tooling: existing.",
+          "first_order_total": null,
+          "moq": 1000,
+          "moq_above_break": true,
+          "lead": "4 weeks ARO",
+          "clauses": "not_stated",
+          "exceptions": [
+            "hardness 25-45 HRF"
+          ],
+          "validity": "valid 30 days",
+          "freight": "FOB origin",
+          "source": "bid_supplier_A.txt, line 2-4"
+        },
+        {
+          "supplier": "Birch Powder Metal",
+          "approval": "not_confirmed_approved",
+          "unit_price": null,
+          "as_quoted": "not priced at 800; supplier quoted: Unit price 0.49 USD at 3,200 pcs",
+          "extended": null,
+          "tooling": 1850.0,
+          "tooling_note": "Tooling 1,850 USD one time",
+          "first_order_total": null,
+          "moq": null,
+          "moq_above_break": false,
+          "lead": "Lead 6-7 weeks",
+          "clauses": "not_stated",
+          "exceptions": [],
+          "validity": null,
+          "freight": "Delivered DDP Dayton",
+          "source": "bid_supplier_B.txt, line 2-3"
+        }
+      ],
+      "priced_count": 0
+    },
+    "1200": {
+      "rows": [
+        {
+          "supplier": "Alder Sintered Parts",
+          "approval": "not_confirmed_approved",
+          "unit_price": null,
+          "as_quoted": "not priced at 1,200; supplier quoted: 1,000 pcs 0.62 USD/ea; 3,000 pcs 0.55 USD/ea",
+          "extended": null,
+          "tooling": null,
+          "tooling_note": "Tooling: existing.",
+          "first_order_total": null,
+          "moq": 1000,
+          "moq_above_break": false,
+          "lead": "4 weeks ARO",
+          "clauses": "not_stated",
+          "exceptions": [
+            "hardness 25-45 HRF"
+          ],
+          "validity": "valid 30 days",
+          "freight": "FOB origin",
+          "source": "bid_supplier_A.txt, line 2-4"
+        },
+        {
+          "supplier": "Birch Powder Metal",
+          "approval": "not_confirmed_approved",
+          "unit_price": null,
+          "as_quoted": "not priced at 1,200; supplier quoted: Unit price 0.49 USD at 3,200 pcs",
+          "extended": null,
+          "tooling": 1850.0,
+          "tooling_note": "Tooling 1,850 USD one time",
+          "first_order_total": null,
+          "moq": null,
+          "moq_above_break": false,
+          "lead": "Lead 6-7 weeks",
+          "clauses": "not_stated",
+          "exceptions": [],
+          "validity": null,
+          "freight": "Delivered DDP Dayton",
+          "source": "bid_supplier_B.txt, line 2-3"
+        }
+      ],
+      "priced_count": 0
+    },
+    "3200": {
+      "rows": [
+        {
+          "supplier": "Alder Sintered Parts",
+          "approval": "not_confirmed_approved",
+          "unit_price": null,
+          "as_quoted": "not priced at 3,200; supplier quoted: 1,000 pcs 0.62 USD/ea; 3,000 pcs 0.55 USD/ea",
+          "extended": null,
+          "tooling": null,
+          "tooling_note": "Tooling: existing.",
+          "first_order_total": null,
+          "moq": 1000,
+          "moq_above_break": false,
+          "lead": "4 weeks ARO",
+          "clauses": "not_stated",
+          "exceptions": [
+            "hardness 25-45 HRF"
+          ],
+          "validity": "valid 30 days",
+          "freight": "FOB origin",
+          "source": "bid_supplier_A.txt, line 2-4"
+        },
+        {
+          "supplier": "Birch Powder Metal",
+          "approval": "not_confirmed_approved",
+          "unit_price": 0.49,
+          "as_quoted": "Unit price 0.49 USD at 3,200 pcs",
+          "extended": 1568.0,
+          "tooling": 1850.0,
+          "tooling_note": "Tooling 1,850 USD one time",
+          "first_order_total": 3418.0,
+          "moq": null,
+          "moq_above_break": false,
+          "lead": "Lead 6-7 weeks",
+          "clauses": "not_stated",
+          "exceptions": [],
+          "validity": null,
+          "freight": "Delivered DDP Dayton",
+          "source": "bid_supplier_B.txt, line 2-3"
+        }
+      ],
+      "priced_count": 1
+    }
+  },
+  "own": [
+    {
+      "supplier": "Alder Sintered Parts",
+      "quantity": 1000,
+      "unit_price": 0.62,
+      "extended_at_own_qty": 620.0,
+      "as_quoted": "1,000 pcs 0.62 USD/ea",
+      "source": "bid_supplier_A.txt, line 2-4"
+    },
+    {
+      "supplier": "Alder Sintered Parts",
+      "quantity": 3000,
+      "unit_price": 0.55,
+      "extended_at_own_qty": 1650.0,
+      "as_quoted": "3,000 pcs 0.55 USD/ea",
+      "source": "bid_supplier_A.txt, line 2-4"
+    },
+    {
+      "supplier": "Birch Powder Metal",
+      "quantity": 3200,
+      "unit_price": 0.49,
+      "extended_at_own_qty": 1568.0,
+      "as_quoted": "Unit price 0.49 USD at 3,200 pcs",
+      "source": "bid_supplier_B.txt, line 2-3"
+    }
+  ],
+  "lead_illus": {
+    "Alder Sintered Parts": {
+      "weeks": "4",
+      "start_event": "ARO (stated)",
+      "arrival_if_ordered_today": "2026-12-12"
+    },
+    "Birch Powder Metal": {
+      "weeks": "6-7",
+      "start_event": "not stated",
+      "arrival_if_ordered_today": "2026-12-26 to 2027-01-02"
+    }
+  },
+  "figures": [
+    {
+      "figure": "MRP rows for BSH-1210",
+      "value": 3,
+      "source": "demand.csv",
+      "filter": "item == 'BSH-1210', comment lines skipped"
+    },
+    {
+      "figure": "Revisions on those rows",
+      "value": "A",
+      "source": "demand.csv",
+      "filter": "distinct rev"
+    },
+    {
+      "figure": "MRP window",
+      "value": "2026-12 to 2027-02",
+      "source": "demand.csv",
+      "filter": "min/max month"
+    },
+    {
+      "figure": "MRP requirement total",
+      "value": 3200,
+      "source": "demand.csv",
+      "filter": "sum qty_required over the 3 rows"
+    },
+    {
+      "figure": "MRP requirement 2026-12",
+      "value": 800,
+      "source": "demand.csv",
+      "filter": "month == '2026-12'"
+    },
+    {
+      "figure": "MRP requirement 2027-01",
+      "value": 1200,
+      "source": "demand.csv",
+      "filter": "month == '2027-01'"
+    },
+    {
+      "figure": "MRP requirement 2027-02",
+      "value": 1200,
+      "source": "demand.csv",
+      "filter": "month == '2027-02'"
+    },
+    {
+      "figure": "Quantity breaks in package",
+      "value": "800, 1,200, 3,200",
+      "source": "computed",
+      "filter": "min monthly, max monthly, window total"
+    },
+    {
+      "figure": "Historical usage rows",
+      "value": 0,
+      "source": "inputs folder",
+      "filter": "no PO / receipt / usage file present - not found by enumerating inputs/supplier"
+    },
+    {
+      "figure": "Bids received",
+      "value": 2,
+      "source": "inputs/supplier",
+      "filter": "files named bid_*.txt"
+    },
+    {
+      "figure": "Bids off_format",
+      "value": 2,
+      "source": "bid records",
+      "filter": "conformance == off_format"
+    },
+    {
+      "figure": "Bids ready for buyer review",
+      "value": 0,
+      "source": "bid records",
+      "filter": "all four prerequisites hold"
+    },
+    {
+      "figure": "Approved suppliers known",
+      "value": "not available",
+      "source": "plant profile",
+      "filter": "no ## Plant context found (plant_setup.py find: exists=false)"
+    },
+    {
+      "figure": "Alder Sintered Parts fields_missing count",
+      "value": 10,
+      "source": "bid record",
+      "filter": "mandated fields checked one by one"
+    },
+    {
+      "figure": "Birch Powder Metal fields_missing count",
+      "value": 9,
+      "source": "bid record",
+      "filter": "mandated fields checked one by one"
+    },
+    {
+      "figure": "Bids priced per unit at 800",
+      "value": 0,
+      "source": "bid records",
+      "filter": "breaks[].quantity == 800 and unit_price not null"
+    },
+    {
+      "figure": "Bids priced per unit at 1,200",
+      "value": 0,
+      "source": "bid records",
+      "filter": "breaks[].quantity == 1200 and unit_price not null"
+    },
+    {
+      "figure": "Bids priced per unit at 3,200",
+      "value": 1,
+      "source": "bid records",
+      "filter": "breaks[].quantity == 3200 and unit_price not null"
+    },
+    {
+      "figure": "Birch Powder Metal extended at 3,200",
+      "value": "1568.00 USD",
+      "source": "bid record",
+      "filter": "0.49 x 3200"
+    },
+    {
+      "figure": "Birch Powder Metal first-order total at 3,200 (includes one-time tooling)",
+      "value": "3418.00 USD",
+      "source": "bid record",
+      "filter": "extended + tooling 1850.0"
+    },
+    {
+      "figure": "Alder Sintered Parts extended at its own quoted qty 1,000 (not a requested break)",
+      "value": "620.00 USD",
+      "source": "bid record",
+      "filter": "0.62 x 1000"
+    },
+    {
+      "figure": "Alder Sintered Parts extended at its own quoted qty 3,000 (not a requested break)",
+      "value": "1650.00 USD",
+      "source": "bid record",
+      "filter": "0.55 x 3000"
+    },
+    {
+      "figure": "Birch Powder Metal extended at its own quoted qty 3,200 (not a requested break)",
+      "value": "1568.00 USD",
+      "source": "bid record",
+      "filter": "0.49 x 3200"
+    },
+    {
+      "figure": "Alder Sintered Parts arrival if ordered 2026-11-14 (illustrative)",
+      "value": "2026-12-12",
+      "source": "bid record + session date",
+      "filter": "4 weeks, start event ARO (stated)"
+    },
+    {
+      "figure": "Birch Powder Metal arrival if ordered 2026-11-14 (illustrative)",
+      "value": "2026-12-26 to 2027-01-02",
+      "source": "bid record + session date",
+      "filter": "6-7 weeks, start event not stated"
+    }
+  ]
+}

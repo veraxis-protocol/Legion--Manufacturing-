@@ -1,0 +1,37 @@
+# Quality register record (contract v1) - NOT STORED: artifact tools not permitted this run; no site / NCR ref to key it.
+# SYNTHETIC test data. Fields owned by ncr-writeup are null because no NCR record exists in the inputs.
+contract_version: 1
+record_key: null            # <site>_<ncr_ref>; site and ncr_ref unknown
+ncr_ref: null
+site: null
+part_number: MB-1880
+part_number_verbatim: "MB-1880 rev B"
+lot_number: L-0412
+lot_number_verbatim: "L-0412"
+found_at: null              # "2026-11-11 10:05" in finding.txt is zone-naive; zone unknown, not stamped
+found_at_verbatim: "2026-11-11 10:05"
+qty_found: 3
+uom: each
+requirement_cited: "MB-1880 drawing rev B, sheet 2, note 4: Bore A dia 22.000 +0.021/-0.000"
+disposition_pending: true
+summary: "Bore A 22.034/22.031/22.029 mm against 22.021 max on 3 of 5 sampled; lot L-0412, VMC-03."
+customers: ["Northwind Robotics"]
+status: awaiting_approval
+approval_state: null        # no NCR record; not 'approved'
+containment_summary: "Proposed only (ncr-writeup not run): WIP 120, FG 150, at customer 30; in transit and installed not checked"
+escape_clock: null
+escape_clock_unknown: true
+owner: null
+due_date: null
+recurrence: recurrence_prior_capa_failed
+prior_ncr_refs: ["NCR-0219"]
+previous_fix_held: false
+eight_d_step: null          # 8D blocked: no approved NCR; ranked candidates + draft plan only
+leading_cause: "Candidate: boring insert T7-0031 past effective life (close second: boring-head setting/offset error)"
+supplier_caused: false
+effectiveness_check_due: null
+closed_at: null
+closed_by: null
+last_written_by: root-cause-capa
+last_written_at: null       # not stored
+first_recorded_at: null

@@ -1,0 +1,4 @@
+po_number,po_date,vendor,item,description,qty,uom,unit_price_usd,received_date
+PO-30411,2026-08-14,Metals Supply Co (fictitious),AL6061-PL-0.5,6061-T6 plate 0.5in x 12in x 48in,10,each,212.40,2026-08-21
+PO-30588,2026-09-30,Metals Supply Co (fictitious),AL6061-PL-0.5,6061-T6 plate 0.5in x 12in x 48in,12,each,219.90,2026-10-07
+PO-30602,2026-10-03,Bright Anodize LLC (fictitious),OSP-ANOD-II-BLK,Type II black anodize per lot (up to 300 pcs <=150 mm),3,lot,385.00,2026-10-15

@@ -1,0 +1,62 @@
+contract_version: 1
+site: "not stated (no plant profile)"
+event_ref: "SRC-2026-11-14-BSH-1210"
+bid_ref: "SRC-2026-11-14-BSH-1210/unlisted-birch/1"
+supersedes: null
+supplier_id: "unlisted"
+supplier_id_verbatim: "Birch Powder Metal (fictitious)"
+supplier_name: "Birch Powder Metal"
+approval_status: "not_confirmed_approved"
+received_at: null   # the bid text carries no date
+received_via: "pasted"
+source_ref: "bid_supplier_B.txt, line 2-3"
+ingested_at: "2026-11-14T00:00:00 (session date; time of day and zone not known)"
+currency: "USD"
+breaks:
+  - quantity: 800
+    uom: "each"
+    unit_price: null
+    as_quoted: "not priced at 800; supplier quoted: Unit price 0.49 USD at 3,200 pcs"
+    lead_time_first_article: null
+    lead_time_production: null
+    source_ref: "bid_supplier_B.txt, line 2-3"
+  - quantity: 1200
+    uom: "each"
+    unit_price: null
+    as_quoted: "not priced at 1,200; supplier quoted: Unit price 0.49 USD at 3,200 pcs"
+    lead_time_first_article: null
+    lead_time_production: null
+    source_ref: "bid_supplier_B.txt, line 2-3"
+  - quantity: 3200
+    uom: "each"
+    unit_price: 0.49
+    as_quoted: "Unit price 0.49 USD at 3,200 pcs"
+    lead_time_first_article: null
+    lead_time_production: null
+    source_ref: "bid_supplier_B.txt, line 2-3"
+tooling_price: 1850.0
+tooling_in_unit_price: false
+tooling_ownership: null
+tooling_note: "Tooling 1,850 USD one time"
+moq: null
+moq_uom: "each"
+validity_until: null
+freight_basis: "Delivered DDP Dayton"
+quality_clause_acceptance: "not_stated"
+clause_exceptions: []
+exceptions: []
+conformance: off_format
+fields_missing:
+  - "unit price at 800 (not priced at this quantity)"
+  - "unit price at 1,200 (not priced at this quantity)"
+  - "lead time, first article, from a named event (as quoted: 'Lead 6-7 weeks')"
+  - "lead time, production, from a named event (as quoted: 'Lead 6-7 weeks')"
+  - "tooling ownership"
+  - "minimum order quantity"
+  - "price validity"
+  - "quality clause acceptance"
+  - "drawing revision quoted against"
+restatement_requested: true   # drafted, not sent
+# notes (verbatim, outside the contract fields):
+#   quote ref: BPM-77; revision quoted: not stated; lead time as quoted: Lead 6-7 weeks; validity as quoted: not stated; payment: net 45
+#   supplier's own quantities: Unit price 0.49 USD at 3,200 pcs

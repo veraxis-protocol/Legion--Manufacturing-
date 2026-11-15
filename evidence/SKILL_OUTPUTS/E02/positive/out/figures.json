@@ -1,0 +1,777 @@
+{
+ "figures": [
+  {
+   "figure": "Sets quoted",
+   "value": 20,
+   "computed_from": "intake form line 1 quantities",
+   "filter_or_arithmetic": "quantities[0].qty (EML:L10); user request 'Quote 20 sets'"
+  },
+  {
+   "figure": "CNC part ids in BOM handoff",
+   "value": 21,
+   "computed_from": "02_bom_handoff.json",
+   "filter_or_arithmetic": "len(cnc_parts)"
+  },
+  {
+   "figure": "Part ids, process == 'CNC'",
+   "value": 16,
+   "computed_from": "02_bom_handoff.json",
+   "filter_or_arithmetic": "process == 'CNC'"
+  },
+  {
+   "figure": "Part ids, process == 'CNC + Sheet Metal'",
+   "value": 5,
+   "computed_from": "02_bom_handoff.json",
+   "filter_or_arithmetic": "process == 'CNC + Sheet Metal'"
+  },
+  {
+   "figure": "CNC pieces per arm set",
+   "value": 31,
+   "computed_from": "02_bom_handoff.json",
+   "filter_or_arithmetic": "sum(quantity_per_arm)"
+  },
+  {
+   "figure": "CNC pieces per set, process == 'CNC'",
+   "value": 25,
+   "computed_from": "02_bom_handoff.json",
+   "filter_or_arithmetic": "sum(quantity_per_arm) where process=='CNC'"
+  },
+  {
+   "figure": "CNC pieces per set, 'CNC + Sheet Metal'",
+   "value": 6,
+   "computed_from": "02_bom_handoff.json",
+   "filter_or_arithmetic": "sum(quantity_per_arm) where process=='CNC + Sheet Metal'"
+  },
+  {
+   "figure": "CNC pieces for 20 sets",
+   "value": 620,
+   "computed_from": "arithmetic",
+   "filter_or_arithmetic": "31 x 20"
+  },
+  {
+   "figure": "Rails for 20 sets",
+   "value": 20,
+   "computed_from": "02_bom_handoff.json purchased_rail",
+   "filter_or_arithmetic": "quantity_per_arm 1 x 20"
+  },
+  {
+   "figure": "Distinct tolerance strings in BOM",
+   "value": 1,
+   "computed_from": "02_bom_handoff.json",
+   "filter_or_arithmetic": "len(set(tolerance))"
+  },
+  {
+   "figure": "Parts citing readme line 129 for tolerance",
+   "value": 21,
+   "computed_from": "02_bom_handoff.json",
+   "filter_or_arithmetic": "tolerance_source == 'readme.md line 129'"
+  },
+  {
+   "figure": "Engineering-missing items in handoff",
+   "value": 7,
+   "computed_from": "02_bom_handoff.json",
+   "filter_or_arithmetic": "len(engineering_missing)"
+  },
+  {
+   "figure": "Largest bbox dimension, any part (mm)",
+   "value": 321.0,
+   "computed_from": "02_bom_handoff.json",
+   "filter_or_arithmetic": "max over parts of max(bbox)"
+  },
+  {
+   "figure": "5052 purchase orders on file",
+   "value": 3,
+   "computed_from": "purchase_orders_5052.csv",
+   "filter_or_arithmetic": "data rows"
+  },
+  {
+   "figure": "PO-30710 price per m2 (USD)",
+   "value": 49.92,
+   "computed_from": "purchase_orders_5052.csv",
+   "filter_or_arithmetic": "148.6 / (1220 x 2440 mm) x 1e6"
+  },
+  {
+   "figure": "PO-30710 order-to-receipt days",
+   "value": 7,
+   "computed_from": "purchase_orders_5052.csv",
+   "filter_or_arithmetic": "2026-10-27 - 2026-10-20"
+  },
+  {
+   "figure": "PO-30711 price per m2 (USD)",
+   "value": 230.11,
+   "computed_from": "purchase_orders_5052.csv",
+   "filter_or_arithmetic": "171.25 / (610 x 1220 mm) x 1e6"
+  },
+  {
+   "figure": "PO-30711 order-to-receipt days",
+   "value": 7,
+   "computed_from": "purchase_orders_5052.csv",
+   "filter_or_arithmetic": "2026-10-27 - 2026-10-20"
+  },
+  {
+   "figure": "PO-30744 price per m2 (USD)",
+   "value": 353.13,
+   "computed_from": "purchase_orders_5052.csv",
+   "filter_or_arithmetic": "262.8 / (610 x 1220 mm) x 1e6"
+  },
+  {
+   "figure": "PO-30744 order-to-receipt days",
+   "value": 7,
+   "computed_from": "purchase_orders_5052.csv",
+   "filter_or_arithmetic": "2026-11-09 - 2026-11-02"
+  },
+  {
+   "figure": "Part ids with a material lower bound",
+   "value": 15,
+   "computed_from": "computed table",
+   "filter_or_arithmetic": "status == 'lower bound'"
+  },
+  {
+   "figure": "Part ids with material unknown",
+   "value": 6,
+   "computed_from": "computed table",
+   "filter_or_arithmetic": "status == 'unknown'"
+  },
+  {
+   "figure": "Pieces per set with a material lower bound",
+   "value": 23,
+   "computed_from": "computed table",
+   "filter_or_arithmetic": "sum(qty_per_arm) where lower bound"
+  },
+  {
+   "figure": "Pieces per set with material unknown",
+   "value": 8,
+   "computed_from": "computed table",
+   "filter_or_arithmetic": "sum(qty_per_arm) where unknown"
+  },
+  {
+   "figure": "Material lower bound per set, priced parts only (USD)",
+   "value": 19.0026,
+   "computed_from": "computed table",
+   "filter_or_arithmetic": "sum(usd_per_set) over lower-bound parts; excludes unknown parts, scrap allowance, kerf, workholding stock"
+  },
+  {
+   "figure": "Material lower bound, 20 sets, priced parts only (USD)",
+   "value": 380.05,
+   "computed_from": "computed table",
+   "filter_or_arithmetic": "sum(usd_20_sets) over lower-bound parts"
+  },
+  {
+   "figure": "Part ids priced from PO-30710",
+   "value": 3,
+   "computed_from": "computed table",
+   "filter_or_arithmetic": "po == PO-30710"
+  },
+  {
+   "figure": "Part ids priced from PO-30711",
+   "value": 6,
+   "computed_from": "computed table",
+   "filter_or_arithmetic": "po == PO-30711"
+  },
+  {
+   "figure": "Part ids priced from PO-30744",
+   "value": 6,
+   "computed_from": "computed table",
+   "filter_or_arithmetic": "po == PO-30744"
+  },
+  {
+   "figure": "Assets in equipment list",
+   "value": 5,
+   "computed_from": "equipment.csv",
+   "filter_or_arithmetic": "data rows"
+  },
+  {
+   "figure": "Work centres in equipment list",
+   "value": "INSP, MILL-H, MILL-V, TURN",
+   "computed_from": "equipment.csv",
+   "filter_or_arithmetic": "distinct work_center"
+  },
+  {
+   "figure": "Assets whose description mentions bend/brake/press/form/sheet",
+   "value": 0,
+   "computed_from": "equipment.csv",
+   "filter_or_arithmetic": "description contains bend|brake|press|form|sheet"
+  },
+  {
+   "figure": "Assets whose description mentions 5-axis",
+   "value": 0,
+   "computed_from": "equipment.csv",
+   "filter_or_arithmetic": "description contains '5-axis'"
+  },
+  {
+   "figure": "Input files that are routings, actuals, work orders, prior quotes or planning exports",
+   "value": 0,
+   "computed_from": "file enumeration of inputs/",
+   "filter_or_arithmetic": "name contains work_order|routing|actual|quote|sales_order|planning|schedule|load"
+  },
+  {
+   "figure": "Input files enumerated",
+   "value": 7,
+   "computed_from": "file enumeration of inputs/",
+   "filter_or_arithmetic": "os.walk"
+  },
+  {
+   "figure": "Calendar days, today (2026-11-14) to requested 2027-01-31",
+   "value": 78,
+   "computed_from": "arithmetic",
+   "filter_or_arithmetic": "2027-01-31 - 2026-11-14"
+  },
+  {
+   "figure": "Calendar days, receipt (2026-11-12) to requested 2027-01-31",
+   "value": 80,
+   "computed_from": "arithmetic",
+   "filter_or_arithmetic": "2027-01-31 - 2026-11-12"
+  },
+  {
+   "figure": "Variance threshold",
+   "value": "15% - default threshold, not plant-set",
+   "computed_from": "no Plant context",
+   "filter_or_arithmetic": "hours-ladder.md default"
+  },
+  {
+   "figure": "Operations with a variance computed",
+   "value": 0,
+   "computed_from": "hours table",
+   "filter_or_arithmetic": "fewer than two rungs exist for every operation"
+  },
+  {
+   "figure": "MFG_* rate variables set",
+   "value": 0,
+   "computed_from": "environment",
+   "filter_or_arithmetic": "names checked: MFG_LABOR_RATE, MFG_BURDEN_RATE, MFG_MARGIN_RULES, MFG_SCRAP_COSTING_BASIS (values never read out)"
+  }
+ ],
+ "material_table": [
+  {
+   "part_id": "02_BASE_REINFORCEMENT_PART",
+   "process": "CNC",
+   "qty_per_arm": 1,
+   "bbox_sorted_mm": [
+    6.955,
+    92.005,
+    92.005
+   ],
+   "volume_mm3": 27284.499,
+   "faces": 103,
+   "stock": "AL5052-PL-10",
+   "po": "PO-30744",
+   "po_date": "2026-11-02",
+   "stock_t_mm": 10.0,
+   "blank_mm": [
+    92.005,
+    92.005
+   ],
+   "blank_area_mm2": 8464.9,
+   "usd_per_pc": 2.9892,
+   "usd_per_set": 2.9892,
+   "usd_20_sets": 59.78,
+   "volume_over_blank": 0.322,
+   "status": "lower bound"
+  },
+  {
+   "part_id": "02_ARM_YAW_LIMIT",
+   "process": "CNC",
+   "qty_per_arm": 1,
+   "bbox_sorted_mm": [
+    7.102,
+    77.002,
+    77.002
+   ],
+   "volume_mm3": 12608.648,
+   "faces": 57,
+   "stock": "AL5052-PL-10",
+   "po": "PO-30744",
+   "po_date": "2026-11-02",
+   "stock_t_mm": 10.0,
+   "blank_mm": [
+    77.002,
+    77.002
+   ],
+   "blank_area_mm2": 5929.3,
+   "usd_per_pc": 2.0938,
+   "usd_per_set": 2.0938,
+   "usd_20_sets": 41.88,
+   "volume_over_blank": 0.213,
+   "status": "lower bound"
+  },
+  {
+   "part_id": "02_MOTOR_FRONT_SPACER",
+   "process": "CNC",
+   "qty_per_arm": 4,
+   "bbox_sorted_mm": [
+    4.0,
+    34.8,
+    34.8
+   ],
+   "volume_mm3": 2728.463,
+   "faces": 33,
+   "stock": "AL5052-PL-6",
+   "po": "PO-30711",
+   "po_date": "2026-10-20",
+   "stock_t_mm": 6.35,
+   "blank_mm": [
+    34.8,
+    34.8
+   ],
+   "blank_area_mm2": 1211.0,
+   "usd_per_pc": 0.2787,
+   "usd_per_set": 1.1147,
+   "usd_20_sets": 22.29,
+   "volume_over_blank": 0.355,
+   "status": "lower bound"
+  },
+  {
+   "part_id": "02_MOTOR_BACK_SPACER",
+   "process": "CNC",
+   "qty_per_arm": 3,
+   "bbox_sorted_mm": [
+    5.0,
+    57.0,
+    57.0
+   ],
+   "volume_mm3": 9709.288,
+   "faces": 23,
+   "stock": "AL5052-PL-6",
+   "po": "PO-30711",
+   "po_date": "2026-10-20",
+   "stock_t_mm": 6.35,
+   "blank_mm": [
+    57.0,
+    57.0
+   ],
+   "blank_area_mm2": 3249.0,
+   "usd_per_pc": 0.7476,
+   "usd_per_set": 2.2429,
+   "usd_20_sets": 44.86,
+   "volume_over_blank": 0.471,
+   "status": "lower bound"
+  },
+  {
+   "part_id": "02_FLANGE",
+   "process": "CNC",
+   "qty_per_arm": 3,
+   "bbox_sorted_mm": [
+    9.75,
+    34.8,
+    34.8
+   ],
+   "volume_mm3": 4154.28,
+   "faces": 31,
+   "stock": "AL5052-PL-10",
+   "po": "PO-30744",
+   "po_date": "2026-11-02",
+   "stock_t_mm": 10.0,
+   "blank_mm": [
+    34.8,
+    34.8
+   ],
+   "blank_area_mm2": 1211.0,
+   "usd_per_pc": 0.4277,
+   "usd_per_set": 1.283,
+   "usd_20_sets": 25.66,
+   "volume_over_blank": 0.343,
+   "status": "lower bound"
+  },
+  {
+   "part_id": "02_WRIST_BRACKET",
+   "process": "CNC",
+   "qty_per_arm": 1,
+   "bbox_sorted_mm": [
+    8.0,
+    60.75,
+    92.922
+   ],
+   "volume_mm3": 23890.764,
+   "faces": 65,
+   "stock": "AL5052-PL-10",
+   "po": "PO-30744",
+   "po_date": "2026-11-02",
+   "stock_t_mm": 10.0,
+   "blank_mm": [
+    60.75,
+    92.922
+   ],
+   "blank_area_mm2": 5645.0,
+   "usd_per_pc": 1.9934,
+   "usd_per_set": 1.9934,
+   "usd_20_sets": 39.87,
+   "volume_over_blank": 0.423,
+   "status": "lower bound"
+  },
+  {
+   "part_id": "02_GRIPPER_CONNECTOR_A",
+   "process": "CNC",
+   "qty_per_arm": 1,
+   "bbox_sorted_mm": [
+    6.02,
+    34.433,
+    35.62
+   ],
+   "volume_mm3": 3200.127,
+   "faces": 248,
+   "stock": "AL5052-PL-6",
+   "po": "PO-30711",
+   "po_date": "2026-10-20",
+   "stock_t_mm": 6.35,
+   "blank_mm": [
+    34.433,
+    35.62
+   ],
+   "blank_area_mm2": 1226.5,
+   "usd_per_pc": 0.2822,
+   "usd_per_set": 0.2822,
+   "usd_20_sets": 5.64,
+   "volume_over_blank": 0.411,
+   "status": "lower bound"
+  },
+  {
+   "part_id": "02_GRIPPER_CONNECTOR_B",
+   "process": "CNC",
+   "qty_per_arm": 1,
+   "bbox_sorted_mm": [
+    9.502,
+    56.802,
+    56.802
+   ],
+   "volume_mm3": 15100.508,
+   "faces": 61,
+   "stock": "AL5052-PL-10",
+   "po": "PO-30744",
+   "po_date": "2026-11-02",
+   "stock_t_mm": 10.0,
+   "blank_mm": [
+    56.802,
+    56.802
+   ],
+   "blank_area_mm2": 3226.5,
+   "usd_per_pc": 1.1394,
+   "usd_per_set": 1.1394,
+   "usd_20_sets": 22.79,
+   "volume_over_blank": 0.468,
+   "status": "lower bound"
+  },
+  {
+   "part_id": "02_SLIDER_BRACKET",
+   "process": "CNC",
+   "qty_per_arm": 1,
+   "bbox_sorted_mm": [
+    3.0,
+    68.466,
+    176.285
+   ],
+   "volume_mm3": 8187.262,
+   "faces": 57,
+   "stock": "AL5052-SH-3",
+   "po": "PO-30710",
+   "po_date": "2026-10-20",
+   "stock_t_mm": 3.0,
+   "blank_mm": [
+    68.466,
+    176.285
+   ],
+   "blank_area_mm2": 12069.5,
+   "usd_per_pc": 0.6025,
+   "usd_per_set": 0.6025,
+   "usd_20_sets": 12.05,
+   "volume_over_blank": 0.226,
+   "status": "lower bound"
+  },
+  {
+   "part_id": "02_SLIDER_EXTENSION",
+   "process": "CNC",
+   "qty_per_arm": 2,
+   "bbox_sorted_mm": [
+    17.8,
+    26.2,
+    38.44
+   ],
+   "volume_mm3": 10223.294,
+   "faces": 20,
+   "stock": null,
+   "status": "unknown",
+   "reason": "smallest bbox dimension 17.8 mm exceeds every 5052 stock on PO (max 10.0 mm); no price paid on file"
+  },
+  {
+   "part_id": "02_LOWER_UPPER_LINK_L",
+   "process": "CNC",
+   "qty_per_arm": 1,
+   "bbox_sorted_mm": [
+    5.0,
+    76.177,
+    99.0
+   ],
+   "volume_mm3": 19411.168,
+   "faces": 32,
+   "stock": "AL5052-PL-6",
+   "po": "PO-30711",
+   "po_date": "2026-10-20",
+   "stock_t_mm": 6.35,
+   "blank_mm": [
+    76.177,
+    99.0
+   ],
+   "blank_area_mm2": 7541.5,
+   "usd_per_pc": 1.7354,
+   "usd_per_set": 1.7354,
+   "usd_20_sets": 34.71,
+   "volume_over_blank": 0.405,
+   "status": "lower bound"
+  },
+  {
+   "part_id": "02_LOWER_UPPER_LINK_R",
+   "process": "CNC",
+   "qty_per_arm": 1,
+   "bbox_sorted_mm": [
+    5.0,
+    76.177,
+    99.0
+   ],
+   "volume_mm3": 19411.168,
+   "faces": 32,
+   "stock": "AL5052-PL-6",
+   "po": "PO-30711",
+   "po_date": "2026-10-20",
+   "stock_t_mm": 6.35,
+   "blank_mm": [
+    76.177,
+    99.0
+   ],
+   "blank_area_mm2": 7541.5,
+   "usd_per_pc": 1.7354,
+   "usd_per_set": 1.7354,
+   "usd_20_sets": 34.71,
+   "volume_over_blank": 0.405,
+   "status": "lower bound"
+  },
+  {
+   "part_id": "02_LOWER_WRIST_LINK_L",
+   "process": "CNC",
+   "qty_per_arm": 1,
+   "bbox_sorted_mm": [
+    3.0,
+    82.963,
+    103.943
+   ],
+   "volume_mm3": 12283.605,
+   "faces": 49,
+   "stock": "AL5052-SH-3",
+   "po": "PO-30710",
+   "po_date": "2026-10-20",
+   "stock_t_mm": 3.0,
+   "blank_mm": [
+    82.963,
+    103.943
+   ],
+   "blank_area_mm2": 8623.4,
+   "usd_per_pc": 0.4305,
+   "usd_per_set": 0.4305,
+   "usd_20_sets": 8.61,
+   "volume_over_blank": 0.475,
+   "status": "lower bound"
+  },
+  {
+   "part_id": "02_LOWER_WRIST_LINK_R",
+   "process": "CNC",
+   "qty_per_arm": 1,
+   "bbox_sorted_mm": [
+    3.0,
+    82.963,
+    103.943
+   ],
+   "volume_mm3": 12283.605,
+   "faces": 49,
+   "stock": "AL5052-SH-3",
+   "po": "PO-30710",
+   "po_date": "2026-10-20",
+   "stock_t_mm": 3.0,
+   "blank_mm": [
+    82.963,
+    103.943
+   ],
+   "blank_area_mm2": 8623.4,
+   "usd_per_pc": 0.4305,
+   "usd_per_set": 0.4305,
+   "usd_20_sets": 8.61,
+   "volume_over_blank": 0.475,
+   "status": "lower bound"
+  },
+  {
+   "part_id": "02_GEAR_CONNECTOR",
+   "process": "CNC",
+   "qty_per_arm": 1,
+   "bbox_sorted_mm": [
+    9.502,
+    35.002,
+    35.002
+   ],
+   "volume_mm3": 2401.212,
+   "faces": 39,
+   "stock": "AL5052-PL-10",
+   "po": "PO-30744",
+   "po_date": "2026-11-02",
+   "stock_t_mm": 10.0,
+   "blank_mm": [
+    35.002,
+    35.002
+   ],
+   "blank_area_mm2": 1225.1,
+   "usd_per_pc": 0.4326,
+   "usd_per_set": 0.4326,
+   "usd_20_sets": 8.65,
+   "volume_over_blank": 0.196,
+   "status": "lower bound"
+  },
+  {
+   "part_id": "02_RACK",
+   "process": "CNC",
+   "qty_per_arm": 2,
+   "bbox_sorted_mm": [
+    6.0,
+    12.002,
+    89.999
+   ],
+   "volume_mm3": 5588.088,
+   "faces": 226,
+   "stock": "AL5052-PL-6",
+   "po": "PO-30711",
+   "po_date": "2026-10-20",
+   "stock_t_mm": 6.35,
+   "blank_mm": [
+    12.002,
+    89.999
+   ],
+   "blank_area_mm2": 1080.2,
+   "usd_per_pc": 0.2486,
+   "usd_per_set": 0.4971,
+   "usd_20_sets": 9.94,
+   "volume_over_blank": 0.815,
+   "status": "lower bound"
+  },
+  {
+   "part_id": "03_LINK1",
+   "process": "CNC + Sheet Metal",
+   "qty_per_arm": 1,
+   "bbox_sorted_mm": [
+    77.533,
+    83.89,
+    84.192
+   ],
+   "volume_mm3": 42600.877,
+   "faces": 68,
+   "stock": null,
+   "status": "unknown",
+   "reason": "CNC + Sheet Metal: sheet gauge and flat pattern not in the handoff; bbox is the formed envelope, not the blank"
+  },
+  {
+   "part_id": "03_LINK2",
+   "process": "CNC + Sheet Metal",
+   "qty_per_arm": 2,
+   "bbox_sorted_mm": [
+    23.0,
+    57.0,
+    321.0
+   ],
+   "volume_mm3": 35628.419,
+   "faces": 90,
+   "stock": null,
+   "status": "unknown",
+   "reason": "CNC + Sheet Metal: sheet gauge and flat pattern not in the handoff; bbox is the formed envelope, not the blank"
+  },
+  {
+   "part_id": "03_LINK3_L",
+   "process": "CNC + Sheet Metal",
+   "qty_per_arm": 1,
+   "bbox_sorted_mm": [
+    28.625,
+    57.0,
+    297.826
+   ],
+   "volume_mm3": 28018.882,
+   "faces": 111,
+   "stock": null,
+   "status": "unknown",
+   "reason": "CNC + Sheet Metal: sheet gauge and flat pattern not in the handoff; bbox is the formed envelope, not the blank"
+  },
+  {
+   "part_id": "03_LINK3_R",
+   "process": "CNC + Sheet Metal",
+   "qty_per_arm": 1,
+   "bbox_sorted_mm": [
+    27.625,
+    57.0,
+    297.826
+   ],
+   "volume_mm3": 27979.478,
+   "faces": 132,
+   "stock": null,
+   "status": "unknown",
+   "reason": "CNC + Sheet Metal: sheet gauge and flat pattern not in the handoff; bbox is the formed envelope, not the blank"
+  },
+  {
+   "part_id": "03_LINK5",
+   "process": "CNC + Sheet Metal",
+   "qty_per_arm": 1,
+   "bbox_sorted_mm": [
+    50.0,
+    60.0,
+    60.0
+   ],
+   "volume_mm3": 16268.253,
+   "faces": 34,
+   "stock": null,
+   "status": "unknown",
+   "reason": "CNC + Sheet Metal: sheet gauge and flat pattern not in the handoff; bbox is the formed envelope, not the blank"
+  }
+ ],
+ "stock": [
+  {
+   "po": "PO-30710",
+   "po_date": "2026-10-20",
+   "received": "2026-10-27",
+   "item": "AL5052-SH-3",
+   "desc": "5052-H32 sheet 3 mm x 1220 x 2440",
+   "t_mm": 3.0,
+   "w_mm": 1220.0,
+   "l_mm": 2440.0,
+   "unit_price": 148.6,
+   "usd_per_mm2": 4.9919376511690404e-05,
+   "lead_days": 7
+  },
+  {
+   "po": "PO-30711",
+   "po_date": "2026-10-20",
+   "received": "2026-10-27",
+   "item": "AL5052-PL-6",
+   "desc": "5052-H32 plate 6.35 mm x 610 x 1220",
+   "t_mm": 6.35,
+   "w_mm": 610.0,
+   "l_mm": 1220.0,
+   "unit_price": 171.25,
+   "usd_per_mm2": 0.00023011287288363344,
+   "lead_days": 7
+  },
+  {
+   "po": "PO-30744",
+   "po_date": "2026-11-02",
+   "received": "2026-11-09",
+   "item": "AL5052-PL-10",
+   "desc": "5052-H32 plate 10 mm x 610 x 1220",
+   "t_mm": 10.0,
+   "w_mm": 610.0,
+   "l_mm": 1220.0,
+   "unit_price": 262.8,
+   "usd_per_mm2": 0.0003531308787960226,
+   "lead_days": 7
+  }
+ ],
+ "input_files": [
+  "02_bom_handoff.json",
+  "equipment.csv",
+  "intake/intake-summary-harbor-robotics-lab-NOREF-20261112.html",
+  "intake/plant-setup/open-work/inquiries/harbor-robotics-lab-NOREF-20261112.intake.txt",
+  "intake/plant-setup/open-work/open-work.md",
+  "purchase_orders_5052.csv",
+  "rates_memo.txt"
+ ],
+ "history_files": []
+}

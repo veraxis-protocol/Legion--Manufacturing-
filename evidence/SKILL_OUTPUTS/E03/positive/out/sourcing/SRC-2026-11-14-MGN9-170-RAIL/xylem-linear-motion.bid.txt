@@ -1,0 +1,73 @@
+# Supplier bid record (contract: shared/contracts/supplier-bid.md, version 1). INTERNAL - never to any supplier.
+# SYNTHETIC test data. Values mapped as stated; nothing normalised.
+contract_version: 1
+site: null   # REQUIRED: no plant profile on file this run; buyer/estimator to name the site
+event_ref: SRC-2026-11-14-MGN9-170-RAIL
+bid_ref: SRC-2026-11-14-MGN9-170-RAIL/unlisted-xylem-linear-motion/1
+supersedes: null
+supplier_id: unlisted
+supplier_id_verbatim: "Xylem Linear Motion (fictitious)"
+supplier_name: "Xylem Linear Motion"
+supplier_quote_ref: "XL-5512"
+approval_status: not_confirmed_approved   # no approved-supplier table and no ERP vendor record on file
+received_at: null   # nothing in the file dates the quote
+received_via: pasted   # supplied as a text file
+source_ref: "inputs/e2e_bids/rail_bid_X.txt lines 2-3"
+ingested_at: "2026-11-14T00:00:00+00:00 (session date; time of day not known)"
+item_as_quoted: "MGN9H miniature linear rail, length 170 mm, standard accuracy"
+currency: USD
+breaks:
+  - quantity: 20
+    uom: each
+    unit_price: null
+    as_quoted: "not priced at 20; supplier quoted 'Unit price 11.40 USD at 100 pcs', MOQ 100"
+    lead_time_first_article: null
+    lead_time_production: null
+    source_ref: "inputs/e2e_bids/rail_bid_X.txt line 3"
+  - quantity: null   # pooled consolidated quantity: break not yet set by the buyer
+    uom: each
+    unit_price: null
+    as_quoted: "not priced (break not set when the supplier quoted)"
+    lead_time_first_article: null
+    lead_time_production: null
+    source_ref: "inputs/e2e_bids/rail_bid_X.txt line 3"
+  - quantity: 100   # supplier-offered quantity, outside the package's breaks
+    uom: each
+    unit_price: 11.40
+    as_quoted: "Unit price 11.40 USD at 100 pcs"
+    lead_time_first_article: null   # stated: "Lead time 3 weeks" (no named start event, no split)
+    lead_time_production: null
+    lead_time_as_quoted: "Lead time 3 weeks"
+    source_ref: "inputs/e2e_bids/rail_bid_X.txt line 3"
+tooling_price: null
+tooling_in_unit_price: null
+tooling_ownership: null
+tooling_note: null
+moq: 100
+moq_uom: each
+validity_until: null   # stated period: "valid 21 days"; quote undated, so no date can be computed
+validity_as_quoted: "valid 21 days"
+freight_basis: "FOB origin"
+accuracy_as_quoted: "standard accuracy"
+cut_tolerance_as_quoted: null
+quality_clause_acceptance: not_stated
+clause_exceptions: []
+exceptions: ["Rail only (no carriage)"]
+conformance: off_format
+fields_missing:
+  - "unit price at 20 each (not priced; quoted at 100 pcs, MOQ 100)"
+  - "unit price at the pooled quantity (break not yet set by the buyer)"
+  - "lead time, first article, from a named event ('Lead time 3 weeks', no start event)"
+  - "lead time, production, from a named event ('Lead time 3 weeks', no start event, no FA/production split)"
+  - "tooling price, or a statement that none is needed"
+  - "tooling ownership"
+  - "price validity as a date (period 'valid 21 days' stated, but the quote is undated)"
+  - "freight basis named place ('FOB origin' stated without a named place)"
+  - "payment terms"
+  - "packaging"
+  - "quality clause acceptance"
+  - "offered item: manufacturer and part number"
+  - "offered item: preload"
+  - "offered item: cut-length tolerance"
+  - "offered item: mounting-hole pitch and end offset"
+restatement_requested: true   # drafted for the buyer to send; NOT sent

@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VMC-02 Breakdown Diagnosis</title>
+<style>
+:root{--ink:#1A1D21;--paper:#F2F3F5;--paper-raised:#FFFFFF;--line:#D6D9DD;--accent:#1F5C8B;--accent-soft:#E4EDF4;--good:#2E7248;--good-soft:#E3EFE7;--warn:#A8641A;--warn-soft:#F7EBDA;--critical:#A93226;--critical-soft:#F9E9E7;
+--font-display:'IBM Plex Sans Condensed','Arial Narrow',sans-serif;--font-body:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,sans-serif;--font-mono:'IBM Plex Mono','SF Mono',Consolas,monospace}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ink:#E8EAEC;--paper:#15181B;--paper-raised:#1D2126;--line:#2E343A;--accent:#6BA8D4;--accent-soft:#1B2C39;--good:#6FBF88;--good-soft:#1B2E22;--warn:#D9A15C;--warn-soft:#33271A;--critical:#DE8378;--critical-soft:#35201E}}
+:root[data-theme="dark"]{--ink:#E8EAEC;--paper:#15181B;--paper-raised:#1D2126;--line:#2E343A;--accent:#6BA8D4;--accent-soft:#1B2C39;--good:#6FBF88;--good-soft:#1B2E22;--warn:#D9A15C;--warn-soft:#33271A;--critical:#DE8378;--critical-soft:#35201E}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-body);margin:0;padding:16px;line-height:1.45}
+main{max-width:960px;margin:0 auto}
+h1,h2,h3{font-family:var(--font-display)}h1{font-size:1.75rem;margin:.2em 0}h2{font-size:1.375rem;border-bottom:1px solid var(--line);padding-bottom:4px;margin-top:1.6em}h3{font-size:1.125rem;margin-bottom:.3em}h4{margin:.8em 0 .2em}
+section,.card{background:var(--paper-raised);border:1px solid var(--line);border-radius:6px;padding:12px 16px;margin:12px 0}
+.safety{background:var(--critical-soft);border-left:5px solid var(--critical)}
+.lockout{font-weight:600}
+.warn{background:var(--warn-soft);border-left:5px solid var(--warn)}
+table{border-collapse:collapse;width:100%;font-size:.875rem}th,td{border:1px solid var(--line);padding:5px 7px;text-align:left;vertical-align:top}th{background:var(--accent-soft)}
+.tbl{overflow-x:auto}
+code,.mono{font-family:var(--font-mono);font-size:.85em}
+.pill{display:inline-block;padding:1px 8px;border-radius:10px;font-size:.75rem;background:var(--accent-soft);color:var(--accent)}
+.pill.crit{background:var(--critical-soft);color:var(--critical)}.pill.warnp{background:var(--warn-soft);color:var(--warn)}
+.small{font-size:.875rem}
+</style>
+</head>
+<body><main>
+<p class="small">SYNTHETIC test data, fictitious plant. Draft for the technician and planner. Nothing here was written to any system of record; no CMMS connector is live this session.</p>
+<h1>VMC-02 breakdown diagnosis, 2026-11-10</h1>
+<p><span class="pill crit">Safety flagged</span> <span class="pill warnp">Advisory: not technician-confirmed</span> <span class="pill">Still down at last report (16:10)</span></p>
+
+<section class="safety">
+<p class="lockout">Follow your plant's lockout procedure before anyone works on this machine. This is not a safety assessment.</p>
+<h3>Safety implication (leads, before any diagnosis)</h3>
+<ul>
+<li><b>Trigger: electrical/drive trip.</b> The spindle stopped mid-cycle on alarm <code>SPINDLE OVERLOAD / OVERTEMP</code> after the operator heard grinding from the spindle for ~20 min (event note).</li>
+<li><b>OEM instruction, Section 7.4:</b> do not run a spindle showing grinding noise; lock out the spindle drive before any manual rotation or inspection. So <b>no test below may run the spindle under power</b>, and the vibration-spectrum check in the manual is excluded until the spindle is cleared to run.</li>
+<li>Bluish discolouration reported on the spindle nose / taper: treat as a hot surface until checked.</li>
+<li>A seized spindle bearing is <b>not shown</b> by the evidence, only not excluded. Do not clear the alarm and restart to "see if it comes back".</li>
+</ul>
+</section>
+
+<section class="warn">
+<h3>What this diagnosis is built on, and what is missing</h3>
+<p>The request says the sensor window and maintenance history are in <code>inputs/breakdown</code>. The folder was enumerated in code and holds <b>2 files</b>: <code>event.txt</code> and <code>manual_troubleshooting.md</code>. <b>Sensor files: 0, maintenance-history files: 0, photo files: 0 — not found in the folder</b> (figures block). This does not mean they do not exist; they were not supplied to this run.</p>
+<ul>
+<li><b>Sensor evidence: unavailable.</b> No historian export, so no trend, step or excursion can be read, and the manual's key split (overtemp <i>with</i> vs <i>without</i> rising vibration) cannot be made from data.</li>
+<li><b>Maintenance history and close-out notes: unavailable.</b> No asset-ID query, sibling-model query or template check could run; there is no history to search, which is <b>not</b> evidence that this is a first occurrence.</li>
+<li><b>Photo:</b> no image file; only the technician's written description. Not read as a photo.</li>
+<li><b>Plant profile:</b> none on file (<code>plant_setup.py find</code>: profile and rates do not exist). Site, time zone, shift pattern and day boundary are unknown.</li>
+</ul>
+</section>
+
+<h2>1. Event as captured (technician's words, not translated)</h2>
+<div class="tbl"><table>
+<tr><th>Field</th><th>Value</th><th>Source</th></tr>
+<tr><td>Asset</td><td>VMC-02 (model not stated)</td><td>event.txt</td></tr>
+<tr><td>Time down</td><td>2026-11-10 15:24 local (zone undeclared)</td><td>event.txt</td></tr>
+<tr><td>Alarm</td><td>'SPINDLE OVERLOAD / OVERTEMP', stopped mid-cycle</td><td>event.txt</td></tr>
+<tr><td>Running</td><td>WO-8120 op 20 (MB-1880)</td><td>event.txt</td></tr>
+<tr><td>Symptom</td><td>"grinding noise from spindle for ~20 min before alarm, chips looked normal"</td><td>operator note, event.txt</td></tr>
+<tr><td>Visible</td><td>"bluish discolouration visible on the spindle nose / taper area" (description only, no photo file)</td><td>technician, event.txt</td></tr>
+<tr><td>Status</td><td>"Machine still down at 16:10"</td><td>event.txt</td></tr>
+</table></div>
+
+<h2>2. Sensor observation summary</h2>
+<p>No sensor data was supplied (0 sensor files). Nothing about vibration, spindle load, temperature trend or chiller flow is known from data. Sensor evidence was unavailable; nothing below rests on it.</p>
+
+<h2>3. Ranked candidate causes</h2>
+<p class="small">Ranked on the event note and the OEM table only. <b>No candidate carries a prior work-order citation</b>, because no maintenance history was supplied; each is therefore marked as reasoning matched to the manual, not history-backed evidence. Confidence in the ranking is low.</p>
+
+<div class="card">
+<h3>Candidate 1 — Spindle bearing damage or contamination (incl. wear / preload loss)</h3>
+<p class="small"><span class="pill warnp">No work-order citation — reasoning + OEM table</span></p>
+<h4>Evidence</h4>
+<ul><li>Grinding noise from the spindle for ~20 min before the alarm (operator). OEM Section 7.4 maps "Grinding noise" to "Bearing damage or contamination".</li>
+<li>Overtemp alarm: OEM row "Overtemp with rising vibration" points to bearing wear / preload loss, but vibration is unknown (no sensor data), so this row is only partly matched.</li>
+<li>Bluish discolouration on nose/taper is consistent with heat at the front of the spindle (description only; not diagnostic on its own).</li>
+<li>Against / unknown: chips looked normal; no vibration data; no history.</li></ul>
+<h4>First check</h4>
+<p>Under lockout of the spindle drive: <b>manual rotation feel</b> of the spindle (OEM Section 7.4 check for grinding noise). Rough, notchy or tight rotation supports this candidate. Then, still by hand, <b>run-out at the taper</b> with an indicator against the OEM limit &lt; 3 µm. The vibration-spectrum check is <b>not</b> to be run while the spindle shows grinding noise.</p>
+<h4>Expected fix and repair path</h4>
+<p>Spindle bearing replacement or spindle cartridge rebuild/exchange per the OEM; find and remove any contamination path. Before restart, confirm chiller function (Candidate 2), since cooling loss can be the cause of bearing damage rather than a separate fault. Repair scope and part numbers: not in the inputs.</p>
+</div>
+
+<div class="card">
+<h3>Candidate 2 — Spindle chiller low flow / low fluid level</h3>
+<p class="small"><span class="pill warnp">No work-order citation — reasoning + OEM table</span></p>
+<h4>Evidence</h4>
+<ul><li>Overtemp alarm. OEM row "Overtemp, normal vibration" maps to "Chiller low flow / fluid level"; vibration is unknown, so it cannot be ruled in or out from data.</li>
+<li>Against: the grinding noise is not explained by a chiller fault alone; it can be a consequence (overheated bearings) rather than the cause.</li></ul>
+<h4>First check</h4>
+<p><b>Chiller fluid level and flow</b> (OEM Section 7.4). This is the cheapest test of all: minutes, no spindle disassembly, and it does not require rotating the spindle. Low level or low flow makes this candidate primary (or the root of Candidate 1); normal level and flow largely removes it.</p>
+<h4>Expected fix and repair path</h4>
+<p>Restore fluid level, clear the flow restriction or repair the chiller; then still do the Candidate 1 rotation and run-out checks, because ~20 min of grinding may already have damaged the bearings.</p>
+</div>
+
+<div class="card">
+<h3>Candidate 3 — Drawbar clamp force low (tool slipping in the taper)</h3>
+<p class="small"><span class="pill warnp">No work-order citation — reasoning + OEM table; weakest match</span></p>
+<h4>Evidence</h4>
+<ul><li>Overload alarm. OEM row "Overload with tool pull-out marks" maps to "Drawbar clamp force low".</li>
+<li>Bluish discolouration is reported in the <i>taper</i> area, where a slipping holder would heat (reasoning, not observed fact).</li>
+<li>Against / unknown: <b>tool pull-out marks are not mentioned</b> in the event note either way; whether they are present is unknown.</li></ul>
+<h4>First check</h4>
+<p>Under lockout, remove the tool holder and <b>look at the holder shank and spindle taper for pull-out / fretting marks</b> (visual, minutes). If present, measure with the <b>clamp force gauge against the OEM spec 8.0–9.5 kN</b>. Note: the drawbar is spring-loaded (stored energy); follow the OEM procedure for any drawbar work.</p>
+<h4>Expected fix and repair path</h4>
+<p>Restore clamp force per OEM (drawbar spring pack / clamp mechanism service), clean or regrind a damaged taper, replace the damaged holder; check run-out afterwards.</p>
+</div>
+
+<h2>4. The cheapest test that tells them apart</h2>
+<section>
+<p>All with the spindle drive locked out; none runs the spindle. Total: a short sequence, cheapest first.</p>
+<ol>
+<li><b>Chiller level and flow</b> (no spindle contact). Low → Candidate 2 primary (bearings still to be checked). Normal → Candidate 2 largely out.</li>
+<li><b>Pull the tool holder and inspect shank + taper for pull-out marks.</b> Marks present → Candidate 3 in play; gauge clamp force (8.0–9.5 kN). No marks → Candidate 3 weak.</li>
+<li><b>Turn the spindle by hand.</b> Rough / notchy / tight → Candidate 1. Then dial run-out at the taper against &lt; 3 µm.</li>
+</ol>
+<p>If step 3 is rough, the spindle is not to be run for a vibration spectrum (OEM). If all three are clean, none of the three candidates is supported and the evidence (sensor window, maintenance history) is needed before going further.</p>
+</section>
+
+<h2>5. Cited history</h2>
+<p>None. No maintenance export, CMMS data or close-out notes were supplied, so no prior work order on VMC-02 or on same-model siblings can be cited, and the template check (grouping close-out notes by exact text across makes) could not run. Not found in the input folder, not "no history exists".</p>
+
+<h2>6. PM plan adjustment — recommendation for the planner (draft)</h2>
+<section>
+<p>The current PM plan and interval for VMC-02 were not available, so no interval change is drafted. <b>First question to the planner: what are today's PM tasks and intervals on VMC-02 for (a) spindle chiller level/flow and filter, (b) drawbar clamp-force check, (c) spindle run-out / bearing condition (vibration) check?</b></p>
+<p>Once the cause is confirmed: tighten the interval or add the task for <i>that</i> failure mode only (e.g. a chiller level/flow check on the PM if Candidate 2 is confirmed; a periodic clamp-force gauge check against 8.0–9.5 kN if Candidate 3; a periodic run-out &lt; 3 µm / vibration-trend check if Candidate 1). No interval value is proposed here because none can be derived from the inputs.</p>
+</section>
+
+<h2>7. Figures block</h2>
+<div class="tbl"><table>
+<tr><th>Figure</th><th>Value</th><th>Computed from</th><th>Filter or query</th></tr>
+<tr><td>Files in inputs (recursive)</td><td>2 (event.txt, manual_troubleshooting.md)</td><td>folder enumeration, out/scripts/figures.py</td><td><code>os.walk(inputs)</code></td></tr>
+<tr><td>Sensor / historian files</td><td>0 — not found in folder</td><td>same</td><td>extension csv/xlsx/parquet or name ~ sensor|historian|vib|temp</td></tr>
+<tr><td>Maintenance-history files</td><td>0 — not found in folder</td><td>same</td><td>name ~ maint|cmms|work order|history|limble</td></tr>
+<tr><td>Photo files</td><td>0 — not found in folder (description only)</td><td>same</td><td>extension jpg/jpeg/png/heic</td></tr>
+<tr><td>Maintenance records, VMC-02</td><td>not computable — no maintenance data</td><td>—</td><td><code>asset_id == "VMC-02"</code> not run: no source</td></tr>
+<tr><td>Sibling-model records on symptom</td><td>not computable — no maintenance data, model unknown</td><td>—</td><td>not run: no source</td></tr>
+<tr><td>Close-out note template groups</td><td>not computable — no notes</td><td>—</td><td>not run: no source</td></tr>
+<tr><td>Maintenance WO refs in event note</td><td>0</td><td>event.txt</td><td>regex <code>(LMB|MWO|PM)-?\d+</code></td></tr>
+<tr><td>Minutes from alarm (15:24) to last confirmed-down (16:10)</td><td>46 (minimum known down time, not outage duration)</td><td>event.txt</td><td>timestamp difference, same day, same clock</td></tr>
+<tr><td>Grinding before alarm</td><td>~20 min — as stated by operator, not computed</td><td>event.txt</td><td>quoted</td></tr>
+<tr><td>OEM limits quoted</td><td>run-out &lt; 3 µm; clamp force 8.0–9.5 kN</td><td>manual_troubleshooting.md, Section 7.4</td><td>quoted (excerpt has no page numbers)</td></tr>
+</table></div>
+
+<h2>8. Downtime record (for the next production report)</h2>
+<p>Saved as <code>out/downtime-record-VMC-02-2026-11-10.yaml</code> (contract v3). Key fields:</p>
+<div class="tbl"><table>
+<tr><th>Field</th><th>Value</th></tr>
+<tr><td>asset_id</td><td>VMC-02</td></tr>
+<tr><td>ended_at / duration_minutes</td><td>null / null — still down (never zero)</td></tr>
+<tr><td>production_wo</td><td>WO-8120 (verbatim "WO-8120 op 20 (MB-1880)")</td></tr>
+<tr><td>safety_flagged</td><td>true — drive overload/overtemp trip with grinding; OEM: do not run, lock out</td></tr>
+<tr><td>leading_cause / confidence</td><td>Spindle bearing damage or contamination / low</td></tr>
+<tr><td>cited_work_orders</td><td>none (no history supplied)</td></tr>
+<tr><td>diagnosis_state / technician_step</td><td>advisory / pending</td></tr>
+<tr><td>site, started_at, production_day</td><td><b>unresolved</b> — no plant profile; daily-production-report will block this row until supplied</td></tr>
+</table></div>
+
+<h2>9. Operations page — maintenance section (offered)</h2>
+<section>
+<p><b>VMC-02</b> — DOWN since 2026-11-10 15:24 (local, zone undeclared), still down at 16:10. <span class="pill crit">Safety flagged</span> Spindle overload/overtemp trip after ~20 min grinding; OEM: do not run the spindle, lock out before inspection. Interrupted WO-8120 op 20 (MB-1880). Proposed cause (advisory, low confidence, technician step pending): spindle bearing damage/contamination; chiller low flow and low drawbar clamp force not yet excluded. Next: chiller level/flow, taper pull-out marks, hand rotation + run-out — all under lockout.</p>
+<p class="small">This page was offered, not published: the Operations dashboard is published by Chain 3 only. Save it over the previous maintenance section where that lives. The dashboard was not updated: this run is Chain 4 and has no publish step.</p>
+</section>
+
+<h2>10. Open questions (recorded instead of asked)</h2>
+<ol class="small">
+<li>Where are the sensor window and the maintenance history? The request says they are in <code>inputs/breakdown</code>, but only the event note and the manual excerpt are there. Please supply the historian export (covering at least the hours before 15:24) and the VMC-02 maintenance export with close-out notes.</li>
+<li>Which make/model is VMC-02, and which other assets are the same model (for the sibling search)?</li>
+<li>Which site is this, and what is the site's time zone, shift pattern and production-day boundary? (Needed for started_at, shift and production_day.)</li>
+<li>Were tool pull-out marks seen on the holder or taper?</li>
+<li>Can the technician's photo of the spindle nose/taper be attached?</li>
+<li>Is there an open maintenance ticket number for this breakdown?</li>
+<li>What are VMC-02's current PM tasks and intervals for chiller, drawbar clamp force and spindle condition?</li>
+<li>Has VMC-02 had this alarm before and been restarted rather than repaired? (That would be a further safety trigger.)</li>
+</ol>
+<p class="small">Save this page over the previous VMC-02 diagnosis where your maintenance team keeps it. Draft only; the technician confirms or corrects the cause.</p>
+</main></body></html>

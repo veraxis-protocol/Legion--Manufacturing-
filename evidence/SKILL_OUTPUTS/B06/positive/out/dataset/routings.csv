@@ -1,0 +1,5 @@
+part,rev,op,work_center,description,setup_min,run_min_per_unit,source
+MB-1880,B,10,MILL-V,Saw and face blank,20,1.5,current routing (similar bracket)
+MB-1880,B,20,MILL-V,Mill profile bore and holes op1,45,6.2,current routing (similar bracket)
+MB-1880,B,30,MILL-V,Op2 flip and finish,30,3.1,current routing (similar bracket)
+MB-1880,B,40,INSP,Deburr and inspect,10,2.0,current routing (similar bracket)

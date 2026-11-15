@@ -149,13 +149,17 @@ inquiry_state: stale
 stale_since: 2026-11-09T09:14:00-05:00
 stale_basis: "Default interval 5 business days (no MFG_RFQ_STALE_DAYS, no profile line) - stated as the default, not plant-set. No questions_sent_at recorded, so the clock started at received_at 2026-11-02T09:14-05:00. Stale is visibility only: the inquiry remains open; nothing is cancelled, declined or closed."
 answers_received: []
-bid_decision_state: draft
-bid_decision_by: null
-bid_decision_at: null
-bid_decision_basis: null
+# --- Update 2026-11-14 (second pass): gate decisions relayed by the coordinator as the synthetic test operator's reply ---
+bid_decision_state: confirmed
+bid_decision_by: "Test Estimator (LEGION WO-LMFG-004 test operator)"
+bid_decision_at: 2026-11-14 (time not given)
+bid_decision_basis: { inquiry: "bid, provisional", line_1: "bid, provisional (line_bid_decision confirmed)", questions_open: "Q1-Q8", instruction: "quote with the open questions listed as exclusions/assumptions" }
 bid_decision_reset: null
+gate1_note: "Q1-Q8 approved as drafted, NOT sent. Gate 1 not passed: questions_sent_at stays null and the stale clock still runs from received_at."
 questions_sent_at: null
 questions_sent_by: null
-paused_at_step: 5
-waiting_on: "estimator: Gate 1 (send Q1-Q8 to Northwind Robotics) and Gate 2 (confirm or decline the provisional bid); then Northwind Robotics: answers to Q1-Q8"
-gates_passed: []
+paused_at_step: 11
+waiting_on: "estimator: Gate 3 (hand-entered feature list and op list, still draft) and Gate 4 (release; the estimate cannot be priced until the plant's rates are on file); estimator: Gate 1 send; Northwind Robotics: answers to Q1-Q8"
+gates_passed:
+  - { gate: 2, by: "Test Estimator (LEGION WO-LMFG-004 test operator)", at: "2026-11-14 (time not given)" }
+# line_items[0].line_bid_decision: confirmed (same Gate 2 decision)

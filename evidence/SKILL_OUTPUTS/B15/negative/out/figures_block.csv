@@ -1,0 +1,47 @@
+figure,value,computed_from,filter_or_query
+Bore A nominal (mm),22.000,MB-1880_drawing_revB_notes.md,note 4 regex 'Bore A: dia'
+Bore A USL (mm),22.021,MB-1880_drawing_revB_notes.md,nominal + 0.021
+Bore A LSL (mm),22.000,MB-1880_drawing_revB_notes.md,nominal - 0.000
+Tolerance band (mm),0.021,MB-1880_drawing_revB_notes.md,USL - LSL
+Requirement in finding matches drawing note 4,True,finding.txt vs drawing notes,string compare '22.000 +0.021/-0.000'
+Measured values recorded,3,finding.txt,values in 'measured ... mm'
+Nonconforming / sampled,3 of 5,finding.txt,'N of M sampled'
+Share of sample nonconforming,60%,finding.txt,n_bad / n_sampled
+Conforming sample values recorded,0 of 2,finding.txt,no values given for the conforming parts
+Recorded values above USL,3 of 3,finding.txt,v > USL
+Part 1: excess over USL (mm) / % of tolerance band,0.013 / 62%,finding.txt + drawing,22.034 - 22.021; / 0.021
+Part 2: excess over USL (mm) / % of tolerance band,0.010 / 48%,finding.txt + drawing,22.031 - 22.021; / 0.021
+Part 3: excess over USL (mm) / % of tolerance band,0.008 / 38%,finding.txt + drawing,22.029 - 22.021; / 0.021
+Mean of recorded values (mm),22.0313,finding.txt,mean of 3 recorded values
+Range of recorded values (mm),0.005,finding.txt,max - min
+Mean excess over USL (mm),0.0103,finding.txt + drawing,mean - USL
+SPC centreline (mm),22.0313,finding.txt,I-MR: mean of individuals
+SPC UCL (mm),22.0380,finding.txt,mean + 2.66 x MRbar (0.0025)
+SPC LCL (mm),22.0247,finding.txt,mean - 2.66 x MRbar (0.0025)
+SPC basis,"I-MR, n=3 points, one run (WO-8102 / L-0412), 2 moving ranges; nonconforming parts only, recorded order not production order; no prior runs available",finding.txt,only measurements in inputs
+SPC run rule checked,"Rule 1 (point beyond 3-sigma limits): 0 points beyond. Rules 2-4 (run of 9, trend of 6, 2 of 3 beyond 2-sigma): cannot be evaluated with 3 points and no production sequence. Limits computed from a biased 3-point subset are NOT a valid control baseline.",finding.txt,computed against UCL/LCL above
+UCL vs spec USL (mm),UCL 22.0380 is 0.0170 above USL 22.021,computed,UCL - USL (control limit != spec limit)
+Lot size L-0412,300,finding.txt,'Lot size N'
+WIP at VMC-03 + FG-2 rack 14 + shipped,120 + 150 + 30 = 300,finding.txt,sum of stated locations
+Locations reconcile to lot size,True,finding.txt,sum == lot size
+Parts still in-house,270,finding.txt,WIP + FG
+"Parts at customer (Northwind Robotics, PS-5521)",30,finding.txt,'already shipped'
+Prior NCRs in file (all parts),2,prior_ncrs.csv,all rows
+Prior NCRs same part + bore oversize,1 (NCR-0219),prior_ncrs.csv,part=='MB-1880' and 'bore oversize' in defect
+NCR-0219 CAPA and effectiveness,CAPA-071 insert change every 600 parts | capa_effective = 'not verified',prior_ncrs.csv,row ncr=='NCR-0219'
+NCR-0219 excess over USL (mm),0.005,prior_ncrs.csv + drawing,22.026 - USL
+Days NCR-0219 to this finding,211,prior_ncrs.csv + finding.txt,2026-11-11 - 2026-04-14
+Insert life numbers in prior record (parts),wear beyond 900; CAPA interval 600,prior_ncrs.csv,NCR-0219 cause / capa text
+Prior NCRs with offset-after-tool-change cause,"1 (NCR-0244; part MB-1500, not MB-1880)",prior_ncrs.csv,'offset' in cause
+Maintenance records VMC-03,2,maintenance_log.csv,asset_id=='VMC-03'
+Records mentioning T7 / boring,1,maintenance_log.csv,'T7' in event
+Records mentioning coolant,1,maintenance_log.csv,'coolant' in event
+Tool-life part count for insert T7-0031,not in inputs,"maintenance_log.csv, finding.txt",search 'count|parts' near T7-0031: none
+Boring head / offset setting records for WO-8102,0 - not in inputs,all 4 input files,search 'offset|setup|setting' in maintenance_log.csv and finding.txt: none
+Maintenance log clock,"zone-aware, UTC-05:00",maintenance_log.csv,timestamp offset
+Finding / shipment clock,"zone-naive (no offset), source zone not stated",finding.txt,"timestamps '2026-11-11 10:05', '08:00'"
+"Insert replacement minus finding, if finding is UTC-05:00",-3h25m (replacement BEFORE finding),computed,06:40-05:00 minus 10:05-05:00
+"Insert replacement minus finding, if finding is UTC",+1h35m (replacement AFTER finding),computed,06:40-05:00 minus 10:05Z
+Shipment minus finding (same source clock),-2h05m,finding.txt,"08:00 minus 10:05, both naive"
+Events visible in two sources that verify alignment,0,all inputs,the 'inspection hold' named at 06:40 has no timestamped record in finding.txt; finding records 10:05 only
+Shift boundary for '2nd shift 2026-11-10',not in inputs (no Plant context),plant_setup.py find,profile exists = false
