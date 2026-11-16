@@ -1,0 +1,7 @@
+# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.
+asset_id,description,cell,work_center,install_year
+HMC-01,Horizontal machining centre 500 mm pallet,Cell A,MILL-H,2019
+VMC-02,Vertical machining centre 3-axis,Cell A,MILL-V,2016
+VMC-03,Vertical machining centre 3-axis,Cell B,MILL-V,2021
+LTH-01,CNC lathe 8in chuck,Cell B,TURN,2018
+DEB-01,Deburr and inspection bench,Cell B,INSP,2015

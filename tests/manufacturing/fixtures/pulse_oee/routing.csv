@@ -1,0 +1,3 @@
+part_number,op_seq,work_center,run_min_per_unit
+PN-100,10,VMC,1.0
+PN-200,10,VMC,1.8

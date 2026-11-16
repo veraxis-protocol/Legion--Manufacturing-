@@ -2,3 +2,4 @@
 # The vendored Anthropic baseline must stay byte-identical to its upstream blobs (INV-01).
 upstream/** -text
 *.png binary
+evidence/SKILL_OUTPUTS/** -text

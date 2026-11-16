@@ -1,0 +1,15 @@
+# Unit-test and engineering-verifier jobs (WO-LMFG-003 / WO-D02). Installed with --no-deps --require-hashes on ubuntu-24.04
+# (CPython 3.12, x86_64): exactly these wheels, nothing resolved. Not redistributed.
+# sympy + mpmath: ztl-stand's certificate path (ustand/certify.py, checker.py) imports sympy lazily; its own test
+#   suite needs it. BSD-3-Clause / BSD-3-Clause.
+# numpy: imported when the stand loads (ustand/certify.py), so the MCP server cannot start without it.
+# scipy: parts of ztl-stand's own test suite (tests/test_stand.py: frames, FEA). BSD-3-Clause both.
+# cryptography (+ cffi, pycparser): Deal-Rescue ztl_gate verifies Ed25519 attestations (D02-17 replay tests use a
+#   key generated in memory per run). Apache-2.0 OR BSD-3-Clause / MIT-0 / BSD-3-Clause.
+sympy==1.14.0 --hash=sha256:e091cc3e99d2141a0ba2847328f5479b05d94a6635cb96148ccb3f34671bd8f5
+mpmath==1.3.0 --hash=sha256:a0b2b9fe80bbcd81a6647ff13108738cfb482d481d826cc0e02f5b35e5c88d2c
+numpy==2.5.4 --hash=sha256:fbde6962867ee75b48b0ee29b2b9372ec5d617799dbaf38e82dc0596f2f7738a
+scipy==1.18.1 --hash=sha256:f55fa87b6c612ecd6b058f167c53231b1d14e412efe361d3d6e38b3631c73218
+cryptography==50.0.2 --hash=sha256:9dab55f57c74c3cad24c323bacbbd04be4705ba6eb0d92e920b1fc4837ed5079
+cffi==2.1.1 --hash=sha256:c1453022f490d2459a11819d83ad1d586e9ff65a12ac3e705ffebd46d3685dcf
+pycparser==3.12 --hash=sha256:a076f3f489b39b43ed13563a1dafe42447445bec2e294154ec5c57fcdda4c85e

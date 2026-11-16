@@ -1,0 +1,4 @@
+# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.  (SUPPLIED TEST QUOTE - not a real offer)
+Supplier: Alder Sintered Parts (fictitious). Quote Q-A-118, valid 30 days. Part BSH-1210 rev A.
+Price: 1,000 pcs 0.62 USD/ea; 3,000 pcs 0.55 USD/ea. Tooling: existing. MOQ 1,000. Lead time 4 weeks ARO. FOB origin.
+Exceptions: hardness 25-45 HRF.

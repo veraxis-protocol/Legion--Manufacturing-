@@ -1,0 +1,4 @@
+# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.
+2026-11-11 10:05, final inspection, inspector J. Ortiz: MB-1880 rev B, work order WO-8102, lot L-0412.
+Main bore measured 22.034, 22.031, 22.029 mm on 3 of 5 sampled parts (spec on drawing MB-1880 rev B, note 4: dia 22.000 +0.021/-0.000).
+Parts made on VMC-03 2nd shift 2026-11-10. Lot size 300; 120 still at VMC-03 queue, 150 in finished goods FG-2 rack 14, 30 already shipped to Northwind Robotics on 2026-11-11 08:00 (packing slip PS-5521).

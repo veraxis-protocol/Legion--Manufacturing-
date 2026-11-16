@@ -1,0 +1,88 @@
+{
+ "schema": "legion.manufacturing.source-pins.v1",
+ "work_order": "WO-LMFG-001, WO-LMFG-002, WO-LMFG-003",
+ "pinned_at_utc": "2026-11-13",
+ "rule": "Every pin below was resolved with git ls-remote / git cat-file before use. LEGION repositories are READ-ONLY for this work order (INV-09): tools/protected_pins.py fails if any HEAD moves away from its pin.",
+ "upstream": {
+  "name": "Claude for Manufacturing",
+  "repository": "https://github.com/anthropics/claude-plugins-official",
+  "revision": "099387b7a2ea02022bb850becca750246ae12562",
+  "subtree": "plugins/claude-for-manufacturing",
+  "imported_to": "upstream/claude-for-manufacturing",
+  "license": "Apache-2.0",
+  "manifest": "manifests/UPSTREAM_MANIFEST.json",
+  "reuse_mode": "VENDORED_VERBATIM"
+ },
+ "protected": [
+  {
+   "name": "Deal Rescue reference",
+   "repository": "veraxis-protocol/LEGION-Deal-Rescue",
+   "revision": "6d5563af9a0eb838297933a8ae6b128defa9f69e",
+   "license": "Apache-2.0 (+NOTICE)",
+   "reuse_mode": "PINNED_FETCH_VERIFIED (WO-D01): files listed in legion/engineering/DEAL_RESCUE_PIN.json are fetched at this revision at test time, hash-verified, never copied into this repository and never modified"
+  },
+  {
+   "name": "Commerce",
+   "repository": "veraxis-protocol/LEGION-Commerce",
+   "revision": "94a3e93822bb88a2a5d4cbe7c17dd2846309afe0",
+   "license": "NONE_DECLARED (no LICENSE file at pinned revision)",
+   "reuse_mode": "REFERENCE_ONLY; Apache-2.0 copy of commerce_adapter available via LEGION-Deal-Rescue paypal_adapter/commerce_adapter (see LICENSE_MATRIX.json)"
+  },
+  {
+   "name": "Marketplace",
+   "repository": "veraxis-protocol/LEGION-Marketplace",
+   "revision": "0321386852b26bac6f67e2d3a28f5f01101a1e9c",
+   "license": "PolyForm-Noncommercial-1.0.0",
+   "reuse_mode": "EXTERNAL_PINNED_DEPENDENCY_ONLY pending owner decision"
+  },
+  {
+   "name": "Federation",
+   "repository": "veraxis-protocol/LEGION-Federation",
+   "revision": "622a0896439560cfebbc3c51e1904fe5bcb9a332",
+   "license": "PolyForm-Noncommercial-1.0.0",
+   "reuse_mode": "EXTERNAL_PINNED_DEPENDENCY_ONLY pending owner decision"
+  },
+  {
+   "name": "Formal Core",
+   "repository": "veraxis-protocol/LEGION-Formal-Core",
+   "revision": "fa1f30828028079bf6efe6a9fdafe164b0be90b5",
+   "license": "PolyForm-Noncommercial-1.0.0",
+   "reuse_mode": "EXTERNAL_PINNED_DEPENDENCY_ONLY pending owner decision"
+  },
+  {
+   "name": "ZTL Engineer",
+   "repository": "inventor1975/ztl-engineer",
+   "revision": "91d11672cb1986a7fb185d3ae5110d7209b36b97",
+   "license": "Apache-2.0",
+   "reuse_mode": "COPY_PERMITTED_WITH_NOTICE (integration planned via its executable interface, WO-D02)"
+  }
+ ],
+ "reference_inputs": [
+  {
+   "name": "reBot B601 DM (reference CAD for WO-D01)",
+   "repository": "https://github.com/Seeed-Projects/reBot-DevArm",
+   "revision": "22f002a230670f96abcd3805e0daa63bdf42f354",
+   "license": "CERN-OHL-W-2.0",
+   "reuse_mode": "DOWNLOADED_AT_TEST_TIME_NOT_REDISTRIBUTED",
+   "pins": "legion/engineering/DEAL_RESCUE_PIN.json reference_cad (size + SHA-256 per file)"
+  }
+ ],
+ "third_party": [
+  {
+   "name": "ztl-stand",
+   "repository": "inventor1975/ztl-stand",
+   "revision": "0b4d718fa3bd3105ea002105e0d89cdd76b7b573",
+   "license": "Apache-2.0 OR MIT",
+   "reuse_mode": "PINNED_FETCH_VERIFIED (WO-D02): sparse checkout of this revision in git-ignored _deps/, every file in manifests/ZTL_SOURCE_PINS.json verified (git blob SHA-1, size, SHA-256); never copied into this repository, never modified",
+   "role": "the stand and its independent checker"
+  },
+  {
+   "name": "ZTL",
+   "repository": "inventor1975/ZTL",
+   "revision": "2ba7c209371e90058df4666bb949fc253fe6cc27",
+   "license": "Apache-2.0 OR MIT",
+   "reuse_mode": "PINNED_FETCH_VERIFIED (WO-D02): sparse checkout of this revision in git-ignored _deps/, every file in manifests/ZTL_SOURCE_PINS.json verified (git blob SHA-1, size, SHA-256); never copied into this repository, never modified",
+   "role": "the numeric judge (znumjudge, znumsolve)"
+  }
+ ]
+}

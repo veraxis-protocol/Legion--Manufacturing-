@@ -1,0 +1,3 @@
+# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.  (SUPPLIED TEST QUOTE - not a real offer)
+Supplier: Xylem Linear Motion (fictitious). Quote XL-5512, valid 21 days. Item: MGN9H miniature linear rail, length 170 mm, standard accuracy.
+Unit price 11.40 USD at 100 pcs. MOQ 100 pcs. Lead time 3 weeks. FOB origin. Rail only (no carriage).

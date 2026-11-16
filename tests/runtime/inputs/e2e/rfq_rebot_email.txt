@@ -1,0 +1,15 @@
+# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.
+From: Lena Okafor <lena.okafor@harbor-robotics-lab.example>
+To: quotes@example-precision.example
+Date: Thu, 12 Nov 2026 11:20:00 +0000
+Subject: RFQ - CNC aluminium part sets for reBot B601 DM arm (v1.1 STEP)
+
+Hello,
+
+We build reBot B601 DM arms (the open-source Seeed reBot-DevArm design, STEP file reBot_B601_DM_v1.1_20260625.step)
+for a university lab. Please quote the CNC-machined aluminium parts only, as complete per-arm sets, for 20 sets.
+Material per the project BOM (Aluminium 5052). We also need the MGN9-170 mm linear rail, one per arm, if you can source it.
+Delivery wanted by 31 Jan 2027. We have no 2D drawings; tolerances are whatever the design needs - please tell us what
+you need from us. Anodize not required.
+
+Lena Okafor, Harbor Robotics Lab (fictitious)

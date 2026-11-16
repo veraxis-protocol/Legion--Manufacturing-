@@ -1,0 +1,5 @@
+# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.
+2026-11-12 receiving inspection: BSH-1210 rev A bushings, supplier Alder Sintered Parts (fictitious), PO-30655, receipt RCV-9921, lot AS-7781, qty 1,000.
+Hardness measured 47, 49, 46, 50, 48 HRF on 5 samples (drawing BSH-1210 rev A: 25-40 HRF). Oil content not tested.
+Supplier C of C for lot AS-7781 states hardness 32 HRF. 400 pcs already issued to assembly line 2 (WO-8150); 600 pcs in receiving quarantine Q-1.
+Prior receipts from this supplier: AS-7702 (2026-09) and AS-7744 (2026-10) passed incoming hardness checks.

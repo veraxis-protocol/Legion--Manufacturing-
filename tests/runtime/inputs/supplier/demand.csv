@@ -1,0 +1,5 @@
+# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.
+item,description,rev,month,qty_required,source
+BSH-1210,Bronze flanged bushing 12x16x10 mm SAE 841,A,2026-12,800,MRP export (fictitious)
+BSH-1210,Bronze flanged bushing 12x16x10 mm SAE 841,A,2027-01,1200,MRP export (fictitious)
+BSH-1210,Bronze flanged bushing 12x16x10 mm SAE 841,A,2027-02,1200,MRP export (fictitious)

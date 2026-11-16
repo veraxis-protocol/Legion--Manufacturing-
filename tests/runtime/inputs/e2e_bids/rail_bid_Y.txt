@@ -1,0 +1,3 @@
+# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.  (SUPPLIED TEST QUOTE - not a real offer)
+Supplier: Yarrow Motion Parts (fictitious). Ref YMP-208. MGN9 rail cut to 170 mm, accuracy class not stated.
+9.90 USD each, minimum order 250 pcs. Lead 5 weeks. Delivered DDP. Cut tolerance +/-0.5 mm.

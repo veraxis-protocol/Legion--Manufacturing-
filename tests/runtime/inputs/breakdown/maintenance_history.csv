@@ -1,0 +1,7 @@
+# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.
+wo,asset_id,opened,closed,type,close_out_note
+MW-118,VMC-02,2026-03-02,2026-03-02,PM,quarterly PM done. greased ways. spindle sounded a bit rough at 8k, monitor
+MW-131,VMC-02,2026-05-19,2026-05-20,CM,spindle alarm 2nd shift. found drawbar clamp low, adjusted belleville stack. ran ok
+MW-140,VMC-02,2026-07-08,2026-07-08,PM,PM. vib reading 2.1 mm/s at 8k (was 1.4 last yr). told sup
+MW-152,VMC-03,2026-08-11,2026-08-11,CM,coolant pump replaced - not related
+MW-160,VMC-02,2026-09-23,2026-09-24,CM,spindle hot after long cycle. checked chiller - low on fluid topped up. temp ok after

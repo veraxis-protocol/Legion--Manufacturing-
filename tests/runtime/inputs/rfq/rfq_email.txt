@@ -1,0 +1,29 @@
+# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.
+From: Dana Whitfield <dana.whitfield@northwind-robotics.example>
+To: quotes@example-precision.example
+Date: Mon, 2 Nov 2026 09:14:00 -0500
+Subject: RE: RE: FW: RFQ - motor bracket MB-2040 rev C
+
+Hi team,
+
+Following up on the thread below - please quote the bracket per the attached spec sheet (MB-2040_spec_revC.md).
+Quantities: 250, 500 and 1,000 pcs. We need first articles by 15 Jan 2027 and production deliveries monthly after that.
+Please include anodize per the spec. Material cert required with each lot.
+
+Thanks,
+Dana
+
+-----Original message-----
+From: Raj Patel <raj.patel@northwind-robotics.example>
+Date: Thu, 29 Oct 2026 16:02:00 -0500
+Subject: RE: FW: RFQ - motor bracket MB-2040
+
+Engineering note: rev C moved the M5 pattern 2 mm outboard. Ignore rev B drawings that procurement circulated last week.
+Flatness of the mounting face is still being decided by our design team; we will confirm it separately.
+
+-----Original message-----
+From: Dana Whitfield
+Date: Wed, 28 Oct 2026 10:40:00 -0500
+Subject: FW: RFQ - motor bracket MB-2040
+
+Forwarding for a quote. Annual volume is roughly 4,000 pcs if the pilot goes well (not a commitment).

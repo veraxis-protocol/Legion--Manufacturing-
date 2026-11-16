@@ -1,0 +1,9 @@
+# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.
+timestamp,asset_id,spindle_vibration_mm_s,spindle_temp_c,spindle_load_pct,coolant_pressure_bar
+2026-11-10T13:00:00-05:00,VMC-02,1.8,31.0,42,20.1
+2026-11-10T13:30:00-05:00,VMC-02,1.9,31.4,44,20.0
+2026-11-10T14:00:00-05:00,VMC-02,2.4,33.2,45,19.9
+2026-11-10T14:30:00-05:00,VMC-02,3.1,36.0,47,20.1
+2026-11-10T15:00:00-05:00,VMC-02,4.6,40.8,49,20.0
+2026-11-10T15:20:00-05:00,VMC-02,7.9,47.5,58,19.8
+2026-11-10T15:24:00-05:00,VMC-02,11.2,52.1,71,19.9

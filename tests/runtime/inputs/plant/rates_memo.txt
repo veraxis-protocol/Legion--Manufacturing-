@@ -1,0 +1,4 @@
+# SYNTHETIC TEST INPUT - authored by LEGION Manufacturing for WO-LMFG-004. Fictitious companies and people. Not customer data.
+Finance memo (fictitious), 1 Oct 2026: fully burdened shop rate MILL-H 145 USD/h, MILL-V 95 USD/h, TURN 85 USD/h,
+INSP 60 USD/h. Material markup 12 percent. Target margin 18 percent. Outside processing (anodize) markup 10 percent.
+Scrap cost is to be priced at standard material plus value-added labour at the work centre where scrapped.

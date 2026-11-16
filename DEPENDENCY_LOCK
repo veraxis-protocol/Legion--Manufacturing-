@@ -1,0 +1,21 @@
+# LEGION Manufacturing - dependency lock (WO-A01, updated WO-LMFG-002)
+# Runtime code (manufacturing/, legion/, tools/) uses the Python standard library, except:
+#   - PyYAML, only to read the YAML worked examples inside the upstream contracts (tests and reports)
+#   - OpenCascade bindings, only in the CAD CI job (WO-D01)
+python_min=3.9            # upstream pulse_compute.py: "Standard library only, so it runs wherever Python 3.9+ does"
+python_ci=3.12 (ubuntu-24.04 system python3, in a venv)
+python_local_verified=3.14.7 (Windows 11)
+third_party_packages (hash-pinned, --no-deps --require-hashes):
+  requirements-ci.txt:  pyyaml==6.0.3  sha256:ba1cc08a7ccde2d2ec775841541641e4548226580ab850948cbfda66a1befcdc (cp312 manylinux x86_64)
+  requirements-cad.txt: cadquery-ocp==8.0.1.1.0  sha256:2490e0faa6c3ec029defc8b37c9cbc4662f77b6ba02f230ce760c5b2d3f74cb7
+                        cadquery-ocp-proxy==8.0.1.1.0  sha256:98c71bb60cfb651afe179b134ab88580fd75384fce0cc6d633f727002cd18abd
+                        vtk==9.6.2  sha256:8c9f31430d15afbf46c2076cf3e30b4d6136512a5faabee8318552ccea907323
+  (same OCP pins as LEGION-Deal-Rescue requirements-judge.txt @6d5563a; hashes read from PyPI's JSON API 2026-11-13)
+pinned_sources:
+  LEGION-Deal-Rescue=6d5563af9a0eb838297933a8ae6b128defa9f69e (legion/engineering/DEAL_RESCUE_PIN.json, per-file git blob + sha256)
+  reBot-DevArm=22f002a230670f96abcd3805e0daa63bdf42f354 (STEP 34840241 bytes sha256 a1e301ee..., readme 35415 bytes sha256 6776445e...)
+github_actions:
+  actions/checkout=3d3c42e5aac5ba805825da76410c181273ba90b1           # v7.0.1 (ls-remote verified)
+  actions/upload-artifact=cf430e030ddbb5b0abf93d22962f4752f3646cd9    # v7.0.2 (ls-remote verified)
+  actions/download-artifact=9000827ccba6bdab643e8b6fd33ac0654aef8333  # v8.0.2 (ls-remote verified)
+upstream_pin=anthropics/claude-plugins-official@099387b7a2ea02022bb850becca750246ae12562

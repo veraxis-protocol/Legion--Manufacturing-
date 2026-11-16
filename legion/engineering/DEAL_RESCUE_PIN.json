@@ -1,0 +1,184 @@
+{
+ "schema": "legion.pinned-source.v1",
+ "purpose": "WO-D01: reuse LEGION-Deal-Rescue's CAD intake (STEP -> XCAF -> BOM -> requirements) without copying it into this repository and without modifying Deal-Rescue",
+ "repository": "https://github.com/veraxis-protocol/LEGION-Deal-Rescue",
+ "commit": "6d5563af9a0eb838297933a8ae6b128defa9f69e",
+ "license": {
+  "spdx": "Apache-2.0",
+  "basis": "PROVENANCE_AND_LICENSE.md at this commit: deal_rescue/, scripts/, tests/ 'Written for this application', Apache-2.0; LICENSE file is the Apache License 2.0",
+  "third_party": "pmix (third_party/pmix.LICENSE.md): MIT"
+ },
+ "reuse_mode": "fetched at the pinned commit at test time into a git-ignored folder; every file verified by git blob SHA-1, size and SHA-256 before import; never edited",
+ "not_used": {
+  "deal_rescue/industrial/pmix_adapter.py": "pinned because cad_bom imports it for .step; its STEP route needs the pmix sandbox (bubblewrap + Deal-Rescue vendor zip). LEGION Manufacturing routes STEP through cad_xcaf instead, so pmix is never executed here"
+ },
+ "files": [
+  {
+   "path": "deal_rescue/__init__.py",
+   "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "bytes": 0
+  },
+  {
+   "path": "deal_rescue/industrial/__init__.py",
+   "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "bytes": 0
+  },
+  {
+   "path": "deal_rescue/industrial/cad_xcaf.py",
+   "git_blob": "f4708eabfaa9c5dcf5951158755b405999b91f8d",
+   "sha256": "e3e5d0ac5a459ded5d65cb9e26a32498b91f9fdb54c046387625ddf27b18c9eb",
+   "bytes": 6700
+  },
+  {
+   "path": "deal_rescue/industrial/cad_bom.py",
+   "git_blob": "e0955016a7407e40e6e18fe3c565dbeb27b11d3f",
+   "sha256": "4b8a0020049ae17273d6d39b08b5f192f76697145fa6c3e855dbafadc9ab4cd2",
+   "bytes": 7092
+  },
+  {
+   "path": "deal_rescue/industrial/cad027_review.py",
+   "git_blob": "d534467e4f90eeec15fb7c4f7b31196efe50862c",
+   "sha256": "95f763aec82fd54f350364f4ac7f3e06067a05e568452d89c8fb3fd45e987b9d",
+   "bytes": 26036
+  },
+  {
+   "path": "deal_rescue/industrial/ztl_gate.py",
+   "git_blob": "d38bd2c6f6c25d64f0a1f795520242a9eefaf8e5",
+   "sha256": "bfba16aad58bd215149d018029352aab39cd9f5c6beebca82d9ae80e418f29b1",
+   "bytes": 15476
+  },
+  {
+   "path": "deal_rescue/industrial/pmix_adapter.py",
+   "git_blob": "ec54126554a4144eae5b791889a364f80123bf4c",
+   "sha256": "2de421286bf6fd391c63eebc9149c3fd724b5e1349674553ba3a1abe5f089e0d",
+   "bytes": 10943
+  },
+  {
+   "path": "deal_rescue/industrial/samples/BRACKET-20-ANNOTATED.dxf",
+   "git_blob": "82d3421ceb908b1c6e0ebff87b136139eabc1448",
+   "sha256": "bf4b82f190712b36790f9e91a5f35c55e8fb715070d6f4e66a7fa8a730a581b6",
+   "bytes": 18258
+  },
+  {
+   "path": "deal_rescue/industrial/samples/DEMO-BRACKET-20.json",
+   "git_blob": "47be3c8617d5882c9084ee33b8c4f637b12a18e0",
+   "sha256": "73b7ec03847fad170695584759da081638221c14cbf6d2fe1fd9b8a1d4020bc8",
+   "bytes": 84
+  },
+  {
+   "path": "tests/test_cad027_demo.py",
+   "git_blob": "014cf0adea443bba06edc2eb4c265618daceff66",
+   "sha256": "8df0d5f85257d83afed6eef3e79ead2577edbd9930910f350fd825411ac962d6",
+   "bytes": 9707
+  },
+  {
+   "path": "LICENSE",
+   "git_blob": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+   "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+   "bytes": 11358
+  },
+  {
+   "path": "PROVENANCE_AND_LICENSE.md",
+   "git_blob": "2a9dbe1f0de1a25c4e90d5a5dac23611c14ecef9",
+   "sha256": "098c57288d1124f95008380aa179914954d1120c1533fb9aa34c97f3732d380f",
+   "bytes": 1724
+  },
+  {
+   "path": "third_party/pmix.LICENSE.md",
+   "git_blob": "9426d9baa74ec1cb3cead85ce801e65b6d7dd5ce",
+   "sha256": "44d4211c4232d50175b46c2f332dba3c7aed1097b1cec610291a3cffc29e237a",
+   "bytes": 1076
+  },
+  {
+   "path": "deal_rescue/industrial/admission.py",
+   "git_blob": "323e1d5493c78b42e3304283aaf7d1fa82b934f9",
+   "sha256": "7600a29be731323a5ca51e08f7792e99e89d7aa0c84ed3c3f1c94f8c4ee44a11",
+   "bytes": 3599,
+   "added_by": "WO-LMFG-003"
+  },
+  {
+   "path": "tests/test_cad025_ztl_gate.py",
+   "git_blob": "fb42a0b8cb9e4d202f58a76a82cabc110c079fd2",
+   "sha256": "8fe7f51f2fe63af1a0b8fda01d09bec5523b7aa1dea7645bf3d7ccd960223d96",
+   "bytes": 16918,
+   "added_by": "WO-LMFG-003"
+  },
+  {
+   "path": "tests/judge_real_cad027.py",
+   "git_blob": "4069e23c579a4ae859a24787e34aa9ed8062f528",
+   "sha256": "9808661b43a7045ac4bbc70ec4b4a58e2a02936e39bc805374e23d5e7f8bfa18",
+   "bytes": 5017,
+   "added_by": "WO-LMFG-003"
+  },
+  {
+   "path": "docs/evidence/cad027/ZTL_REVIEW.json",
+   "git_blob": "13e2f74a85392d739e48f3537d60399c872ebf3e",
+   "sha256": "3590bb55f86420bce307bcda9ace3e43a76ac8b6cadbf3c64a4a3fc78d274f24",
+   "bytes": 3952,
+   "added_by": "WO-LMFG-003"
+  },
+  {
+   "path": "docs/evidence/cad027/BOM_VERIFIED.json",
+   "git_blob": "bdd0e841f20b566c76cc0f1c7528cc51c461edd1",
+   "sha256": "bd643a398ba06aaefef80b78da18bf68b1f9d7a271f8ecfb0202fb036942dce3",
+   "bytes": 46718,
+   "added_by": "WO-LMFG-003"
+  },
+  {
+   "path": "deal_rescue/industrial/core.py",
+   "git_blob": "79145f0271878a8818422890020ff6e1306fbf12",
+   "sha256": "abc59fafe1980fdb8fb5fb40cd29c1d93e676482e961367ab5ccedd29ea8e546",
+   "bytes": 14006,
+   "added_by": "WO-LMFG-004"
+  },
+  {
+   "path": "deal_rescue/industrial/data/sources.json",
+   "git_blob": "f060be519a18582429e34ebf0d234bb7ef0840f5",
+   "sha256": "eb8243261a4496597b8563ce94659192628135d0b4b425d553f4be771f46db25",
+   "bytes": 52287,
+   "added_by": "WO-LMFG-004"
+  }
+ ],
+ "reference_cad": {
+  "source": "Deal-Rescue scripts/judge_manifest.json 'cad' at the same commit",
+  "repository": "https://github.com/Seeed-Projects/reBot-DevArm",
+  "license": "CERN-OHL-W-2.0 (fetched at run time, not redistributed)",
+  "commit": "22f002a230670f96abcd3805e0daa63bdf42f354",
+  "raw_url": "https://raw.githubusercontent.com/Seeed-Projects/reBot-DevArm/{commit}/{path}",
+  "files": {
+   "step": {
+    "path": "hardware/reBot_B601_DM/reBot_B601_DM_v1.1_20260625.step",
+    "bytes": 34840241,
+    "sha256": "a1e301ee03d46589e26d3fc2272d19ba53c1878f0104274695e5c9a88aa512d2"
+   },
+   "readme": {
+    "path": "hardware/reBot_B601_DM/readme.md",
+    "bytes": 35415,
+    "sha256": "6776445eb8f994fdfea0897626fc3b2ae021d22b7ec82940b9313d021e26dcee"
+   }
+  }
+ },
+ "recorded_baseline": {
+  "source": "Deal-Rescue tests/judge_real_cad027.py at the same commit",
+  "xcaf": {
+   "assemblies": 33,
+   "leaf_definitions": 64,
+   "leaf_instances": 326,
+   "length_unit": "mm"
+  },
+  "bom": {
+   "mandatory_positions": 40,
+   "mandatory_positions_matched": 40,
+   "mandatory_instances": 53,
+   "purchased_readme_positions": 27
+  }
+ },
+ "runtime": {
+  "source": "Deal-Rescue requirements-judge.txt at the same commit",
+  "cadquery-ocp": "8.0.1.1.0",
+  "cadquery-ocp-proxy": "8.0.1.1.0",
+  "python": "3.12"
+ }
+}

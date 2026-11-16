@@ -1,0 +1,273 @@
+name: LEGION Manufacturing CI
+
+on:
+  push:
+    branches: [main, "dev/**"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  PYTHONDONTWRITEBYTECODE: "1"
+
+# Actions are pinned by commit SHA, resolved with `git ls-remote` from the official tags:
+#   actions/checkout        v7.0.1 -> 3d3c42e5aac5ba805825da76410c181273ba90b1
+#   actions/upload-artifact v7.0.2 -> cf430e030ddbb5b0abf93d22962f4752f3646cd9
+#   actions/download-artifact v8.0.2 -> 9000827ccba6bdab643e8b6fd33ac0654aef8333
+# No secret and no provider credential is referenced anywhere in this workflow (live connector tests stay BLOCKED).
+# Every evidence job writes its JSON to the public job summary and uploads it as an artifact, also on failure.
+
+jobs:
+  source-integrity:
+    name: Source integrity (INV-01, WO-A02)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Verify every imported file against the manifest
+        run: python3 -I tools/upstream_manifest.py verify --evidence evidence/SOURCE_MANIFEST.json
+      - name: Publish evidence
+        if: always()
+        run: python3 -I tools/ci_summary.py evidence/SOURCE_MANIFEST.json >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: evidence-source-integrity
+          path: evidence/SOURCE_MANIFEST.json
+          if-no-files-found: error
+
+  policy:
+    name: License compliance and secret scan (WO-A01)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: python3 -I tools/repo_policy.py --evidence evidence/LICENSE_REPORT.json
+      - name: Publish evidence
+        if: always()
+        run: python3 -I tools/ci_summary.py evidence/LICENSE_REPORT.json >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: evidence-license-report
+          path: evidence/LICENSE_REPORT.json
+          if-no-files-found: error
+
+  protected-repos:
+    name: Protected repositories unchanged (INV-09)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: python3 -I tools/protected_pins.py --evidence evidence/PROTECTED_REPOS.json
+      - name: Publish evidence
+        if: always()
+        run: python3 -I tools/ci_summary.py evidence/PROTECTED_REPOS.json >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: evidence-protected-repos
+          path: evidence/PROTECTED_REPOS.json
+          if-no-files-found: error
+
+  upstream-baseline:
+    name: Anthropic upstream executable baseline (WO-A03)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: python3 --version
+      - name: Run upstream entrypoints on a copy of the import
+        run: python3 -I tools/upstream_baseline.py --evidence evidence/UPSTREAM_BASELINE.json
+      - name: Publish evidence
+        if: always()
+        run: python3 -I tools/ci_summary.py evidence/UPSTREAM_BASELINE.json >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: evidence-upstream-baseline
+          path: evidence/UPSTREAM_BASELINE.json
+          if-no-files-found: error
+
+  unit-tests:
+    name: Unit tests (all suites except the real-STEP CAD run)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Python venv with hash-pinned packages (ZTL Stand imports numpy at load time; the D02 tests run it for real)
+        run: |
+          python3 -m venv .venv
+          .venv/bin/pip install --no-deps --require-hashes -r requirements-ci.txt -r requirements-ztl.txt
+      - run: .venv/bin/python -m unittest discover -s tests -t . -p "test_*.py" -v
+
+  manufacturing-skills:
+    name: 17 manufacturing skills, classified and tested (WO-LMFG-002, Phase C)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: |
+          python3 -m venv .venv
+          .venv/bin/pip install --no-deps --require-hashes -r requirements-ci.txt
+      - name: Run tests/manufacturing and publish the per-skill matrix
+        run: .venv/bin/python -I tools/test_report.py skills --evidence evidence/SKILL_MATRIX.json
+      - name: Publish evidence
+        if: always()
+        run: |
+          python3 -I tools/ci_summary.py evidence/SKILL_MATRIX.json >> "$GITHUB_STEP_SUMMARY"
+          python3 -I tools/ci_notice.py evidence/SKILL_MATRIX.json
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: evidence-skill-matrix
+          path: evidence/SKILL_MATRIX.json
+          if-no-files-found: error
+
+  connectors:
+    name: Four connector contract suites and live acceptance status (WO-B01..B05)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: |
+          python3 -m venv .venv
+          .venv/bin/pip install --no-deps --require-hashes -r requirements-ci.txt
+      - name: Contract suites (scripted provider responses, never reported as connectivity)
+        run: .venv/bin/python -I tools/test_report.py connectors --evidence evidence/CONNECTOR_CONTRACTS.json
+      - name: Live acceptance (no credentials are provided to this workflow, so every live test is BLOCKED)
+        run: .venv/bin/python -I tools/connector_acceptance.py --evidence evidence/CONNECTOR_ACCEPTANCE.json
+      - name: Publish evidence
+        if: always()
+        run: |
+          for f in CONNECTOR_CONTRACTS CONNECTOR_ACCEPTANCE; do
+            python3 -I tools/ci_summary.py evidence/$f.json >> "$GITHUB_STEP_SUMMARY"
+            python3 -I tools/ci_notice.py evidence/$f.json
+          done
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: evidence-connectors
+          path: |
+            evidence/CONNECTOR_CONTRACTS.json
+            evidence/CONNECTOR_ACCEPTANCE.json
+          if-no-files-found: error
+
+  engineering-cad:
+    name: LEGION CAD reuse on the real reBot STEP (WO-D01)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      LMFG_REAL_CAD: "1"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Python venv with hash-pinned OpenCascade bindings (no dependency resolution)
+        run: |
+          python3 -m venv .venv
+          .venv/bin/pip install --no-deps --require-hashes -r requirements-ci.txt -r requirements-cad.txt
+          .venv/bin/python -c "import OCP; print('OCP', OCP.__file__)"
+      - name: D01 suite (pinned Deal-Rescue fetched and verified; pinned STEP downloaded and verified)
+        run: .venv/bin/python -I tools/test_report.py engineering --evidence evidence/CAD_INTEGRATION.json
+      - name: Publish evidence
+        if: always()
+        run: |
+          python3 -I tools/ci_summary.py evidence/CAD_INTEGRATION.json >> "$GITHUB_STEP_SUMMARY"
+          python3 -I tools/ci_notice.py evidence/CAD_INTEGRATION.json
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: evidence-cad-integration
+          path: evidence/CAD_INTEGRATION.json
+          if-no-files-found: error
+      - name: Remove disposable inputs (34.8 MB STEP, pinned copies, venv)
+        if: always()
+        run: rm -rf .lmfg_cache _deps .venv
+
+  engineering-verifier:
+    name: ZTL Engineer -> ZTL Stand -> checker on the CAD path (WO-LMFG-003, WO-D02)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90         # ztl-stand's own suite is one sequential script (420 checks, ~690 s on its author's machine)
+    env:
+      LMFG_REAL_CAD: "1"
+      LMFG_ZTL_STRICT: "1"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Python venv with hash-pinned packages (OpenCascade, stand dependencies, Ed25519)
+        run: |
+          python3 -m venv .venv
+          .venv/bin/pip install --no-deps --require-hashes -r requirements-ci.txt -r requirements-cad.txt -r requirements-ztl.txt
+          .venv/bin/python -c "import OCP, sympy, cryptography; print('OCP', OCP.__file__)"
+      - name: Pinned sources (ztl-engineer, ztl-stand, ZTL, Deal-Rescue) fetched and verified file by file
+        run: .venv/bin/python -I tools/ztl_pins.py --verify
+      - name: D02 obligations, real MCP / stand / checker runs, the stand's own suite, regressions, protected repos
+        run: .venv/bin/python -I tools/d02_run.py --out evidence --stand-suite --regressions
+      - name: Publish evidence
+        if: always()
+        run: |
+          for f in ZTL_STAND_BASELINE ZTL_MCP_RESULTS ENGINEERING_VERDICTS ENGINEERING_NEGATIVES D02_GO_NO_GO; do
+            python3 -I tools/ci_summary.py evidence/$f.json >> "$GITHUB_STEP_SUMMARY"
+            python3 -I tools/ci_notice.py evidence/$f.json
+          done
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: evidence-engineering-verifier
+          path: |
+            evidence/ZTL_STAND_BASELINE.json
+            evidence/ZTL_MCP_RESULTS.json
+            evidence/ENGINEERING_VERDICTS.json
+            evidence/ENGINEERING_NEGATIVES.json
+            evidence/D02_GO_NO_GO.json
+          if-no-files-found: error
+      - name: Remove disposable inputs (STEP, pinned checkouts, venv)
+        if: always()
+        run: rm -rf .lmfg_cache _deps .venv
+
+  evidence-manifest:
+    name: SHA-256 manifest over every evidence artifact of this run
+    needs: [source-integrity, policy, protected-repos, upstream-baseline, manufacturing-skills, connectors, engineering-cad, engineering-verifier]
+    if: always()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          pattern: evidence-*
+          path: run-evidence
+          merge-multiple: true
+      - name: Hash every artifact file; publish the digest list as a public annotation
+        run: |
+          cd run-evidence
+          sha256sum *.json | tee ../SHA256SUMS.run
+          cd ..
+          echo "::notice title=Evidence SHA-256 (run ${GITHUB_RUN_ID})::$(paste -sd';' SHA256SUMS.run)"
+          { echo '## Evidence SHA-256'; echo '```'; cat SHA256SUMS.run; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: evidence-manifest
+          path: SHA256SUMS.run
+          if-no-files-found: error
